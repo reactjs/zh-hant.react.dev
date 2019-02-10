@@ -1,8 +1,8 @@
 ---
-title: Declarative
+title: 宣告式
 order: 0
 ---
 
-React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+React 讓實做互動式的使用者界面變得一點也不痛苦。 你只要在你的應用程式中為每個情境設計一個簡單的 View ，React 就為在資料變更時自動有效率的只更新並重繪有異動的元件。
 
-Declarative views make your code more predictable and easier to debug.
+宣告式的 View 讓你更容易預測你的程式的行為，同時也較為容易除錯。

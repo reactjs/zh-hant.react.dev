@@ -1,7 +1,7 @@
 ---
-title: A Component Using External Plugins
+title: 使用外部程式的元件
 order: 3
 domid: markdown-example
 ---
 
-React is flexible and provides hooks that allow you to interface with other libraries and frameworks. This example uses **remarkable**, an external Markdown library, to convert the `<textarea>`'s value in real time.
+React 提供了 hooks 讓你可以靈活的運用其他的函式庫和框架。這個範例使用了 **remarkable**，一個外部的 Markdown 函式庫來即時處理 `<textarea>` 的內容。
