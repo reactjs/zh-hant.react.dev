@@ -51,7 +51,7 @@ class Home extends Component {
     return (
       <Layout location={location}>
         <TitleAndMetaTags
-          title="React &ndash; 用來實做使用者界面的 JavaScript 函式庫"
+          title="React &ndash; 用來實作使用者界面的 JavaScript 函式庫"
           ogUrl={createOgUrl('index.html')}
         />
         <div css={{width: '100%'}}>
@@ -134,7 +134,7 @@ class Home extends Component {
                         fontSize: 30,
                       },
                     }}>
-                    用來實做使用者界面的 JavaScript 函式庫
+                    用來實作使用者界面的 JavaScript 函式庫
                   </p>
                   <Flex
                     valign="center"
