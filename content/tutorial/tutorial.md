@@ -44,11 +44,11 @@ redirect_from:
 
 當你稍微了解這個圈圈叉叉小遊戲是怎麼玩的之後，你就可以把它關掉了。 在這份指南中，我們會從更簡單的模板開始。我們的下一步是進行設定以幫助你開始開發這個遊戲。
 
-### Prerequisites {#prerequisites}
+### 先決條件 {#先決條件}
 
-我們假定你對 HTML 和 JavaScript 有一定的熟悉度，但即使你的背景是另一種程式語言，你應該也能游刃有餘地理解這份指南。我們也假定你對程式語言的中的某些概念，如 functions 、 objects 、 arrays 以及（某種程度上）classes ，有一定的涉獵。
+我們假設你對 HTML 和 JavaScript 有一定的熟悉度，但即使你的背景是另一種程式語言，你應該也能游刃有餘地理解這份指南。我們也假設你對程式語言的中的某些概念，如 functions 、 objects 、 arrays 以及（某種程度上）classes ，有一定的涉獵。
 
-如果你需要複習 JavaScript ，我們建議你閱讀這份[教學指南](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). 請注意我們也會用到一些 ES6 -- JavaScript 最新的版本之一。在這份指南中，我們將會使用 [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)，[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)， 和 [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 等表達式。你也可以用[Babel REPL](babel://es5-syntax-example)看看 ES6 的程式碼是如何被編譯的。
+如果你需要複習 JavaScript ，我們建議你閱讀這份[教學指南](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)。請注意我們也會用到一些 ES6，也就是JavaScript 最新的版本之一。在這份指南中，我們將會使用 [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)，[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)， 和 [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 等表達式。你也可以用 [Babel REPL](babel://es5-syntax-example)看看 ES6 的程式碼是如何被編譯的。
 
 ## 教學設定 {#教學設定}
 
@@ -56,9 +56,9 @@ redirect_from:
 
 ### 設定選項 1：在瀏覽器中寫程式碼 {#設定選項-1-在瀏覽器中寫程式碼}
 
-這是開始進行最快的方法！
+這是開始最快的方法！
 
-首先，在瀏覽器中的 tab 中打開這份**[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**。 你應該會看到一個空白的圈圈叉叉遊戲格和一些 React 的程式碼。在接下來的指南中，我們會修改中的 React 程式。
+首先，在瀏覽器中的分頁中打開這份**[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**。 你應該會看到一個空白的圈圈叉叉遊戲格和一些 React 的程式碼。在接下來的指南中，我們會修改中的 React 程式。
 
 你現在可以跳過第二個選項，然後直接看[概論](#概論)的部分並瞭解 React 如何運作。
 
@@ -121,7 +121,7 @@ import './index.css';
 
 ### 救命呀，我卡住了！ {#救命呀-我卡住了}
 
-如果你卡住了，請看看 [社群資源](/community/support.html). 其中 [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) 可以讓你很快得到幫助。如果沒人回你，或你還是卡住了，請填寫一個 issue，我們會協助你。
+如果你卡住了，請看看 [社群資源](/community/support.html)。 其中 [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) 可以讓你很快得到幫助。如果沒人回你，或你還是卡住了，請填寫一個 issue，我們會提供協助。
 
 ## 概論 {#概論}
 
@@ -129,7 +129,7 @@ import './index.css';
 
 ### React 是什麼？ {#React-是什麼}
 
-React 是一個 宣告式、高效且很有彈性的 JavaScript 函式庫，用以建立使用者介面。它讓你用小巧而獨立，名為 "components" 的程式碼，建立複雜的 UI 。
+React 是一個宣告式、高效且很有彈性的 JavaScript 函式庫，用以建立使用者介面。它讓你用小巧而獨立，名為「components」的程式碼，建立複雜的 UI 。
 
 React 有數種不同的 components，但我們先從 `React.Component` 這個 subclasses 開始：
 
@@ -154,9 +154,9 @@ class ShoppingList extends React.Component {
 
 我們稍後會解釋那些看起來很有趣像是 XML 的 tags。 我們使用 components 告訴 React 我們想要在螢幕上看到什麼。當我們的資料改變時，React 將會很有效率地更新並 re-render 我們的 components。
 
-這裡, ShoppingList 是一個 **React 的 component class**，或 **React component type**。 Component 會接受名為 `props` 的參數 ( props 為 "properties" 的簡稱)，並透過 `render` 這個方法回傳一個有階級的 views 到螢幕。
+在這裡，ShoppingList 是一個 **React 的 component class**，或 **React component type**。 Component 會接受名為 `props` 的參數 ( props 為 "properties" 的簡稱)，並透過 `render` 這個方法回傳一個有階層架構的 views 到螢幕上。
 
-名為 `render` 的方法回傳你想在螢幕上看到的*描述（ description ）*。 React 接收這個描述並展示其結果。其中，`render` 回傳的是一個 **React 元素**，也就是一個輕量的、包含該 render 什麼的描述。大部分 React 的開發者會使用一種特殊的、名為 "JSX" 的語法，因為它讓這些架構寫起來更容易。 `<div />` 語法在 build time 時被建立為 `React.createElement('div')`。上述的例子其實也等同於以下這些程式碼：
+名為 `render` 的方法回傳你想在螢幕上看到的*描述（ description ）*。 React 接收這個描述並展示其結果。其中，`render` 回傳的是一個 **React 元素**，也就是一個輕量的、包含該 render 什麼的描述。大部分 React 的開發者會使用一種特殊的、名為「 JSX 」的語法，因為它讓這些架構寫起來更容易。 `<div />` 語法在 build time 時被建立為 `React.createElement('div')`。上述的例子其實也等同於以下這些程式碼：
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
@@ -165,13 +165,13 @@ return React.createElement('div', {className: 'shopping-list'},
 );
 ```
 
-[你可以按這裡看到完整版](babel://tutorial-expanded-version)
+[你可以按這裡看到完整版](babel://tutorial-expanded-version)。
 
 如果你想了解更多， `createElement()` 在 [API 參考](/docs/react-api.html#createelement)中有更詳盡的解釋，但我們不會在這份指南中用到它。我們會繼續使用 JSX。
 
 JSX 就跟 JavaScript ㄧ樣強大。 你可以在 JSX 中的括號中放入 *任何* JavaScript 的表達式。 每個 React 元素都是一個 JavaScript 的物件，你可以把它存在一個變數中或在你的程式中傳來傳去。
 
-上面的 `ShoppingList` component above 只會 renders 內建如 `<div />` 和 `<li />` 的 DOM components。 但你也可以建立並 render 客製的 React components。例如，我們現在可以用 `<ShoppingList />` 來使用 shopping list。每個 React component 都是封裝（encapsulated）好，並能獨立運作的。這讓你能用簡單的 components 建立複雜的 UI。
+上面的 `ShoppingList` component 只會 renders 內建如 `<div />` 和 `<li />` 的 DOM components。 但你也可以建立並 render 客製的 React components。例如，我們現在可以用 `<ShoppingList />` 來使用 shopping list。每個 React component 都是封裝（encapsulated）好並能獨立運作的。 React 讓你能用簡單的 components 建立複雜的 UI。
 
 ## Inspecting the Starter Code {#inspecting-the-starter-code}
 
