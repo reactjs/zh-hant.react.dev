@@ -48,7 +48,7 @@ redirect_from:
 
 我們假設你對 HTML 和 JavaScript 有一定的熟悉度，但即使你的背景是另一種程式語言，你應該也能游刃有餘地理解這份指南。我們也假設你對程式語言的中的某些概念，如 functions 、 objects 、 arrays 以及（某種程度上）classes ，有一定的涉獵。
 
-如果你需要複習 JavaScript ，我們建議你閱讀這份[教學指南](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)。請注意我們也會用到一些 ES6，也就是JavaScript 最新的版本之一。在這份指南中，我們將會使用 [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)，[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)， 和 [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 等表達式。你也可以用 [Babel REPL](babel://es5-syntax-example) 看看 ES6 的程式碼是如何被編譯的。
+如果你需要複習 JavaScript ，我們建議你閱讀這份[教學指南](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)。請注意我們也會用到一些 ES6，也就是JavaScript 最新的版本之一。在這份指南中，我們將會使用 [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，[classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)，[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)， 和 [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 等表達式。你也可以用 [Babel REPL](babel://es5-syntax-example) 看看 ES6 的程式碼是如何被編譯的。
 
 ## 教學設定 {#教學設定}
 
@@ -85,7 +85,7 @@ npx create-react-app my-app
 
 > 注意：
 >
->**請不要刪除整個 `src` 資料集，只要刪除裡面的原始檔就好。** 下一步，我們將會把內建的原始檔換成這個遊戲所需的examples。
+>**請不要刪除整個 `src` 資料集，只要刪除裡面的原始檔就好。** 下一步，我們將會把內建的原始檔換成這個遊戲所需的範例檔。
 
 ```bash
 cd my-app
@@ -129,7 +129,7 @@ import './index.css';
 
 ### React 是什麼？ {#React-是什麼}
 
-React 是一個宣告式、高效且很有彈性的 JavaScript 函式庫，用以建立使用者介面。它讓你用小巧而獨立，名為「components」的程式碼，建立複雜的 UI 。
+React 是一個宣告式、高效且很有彈性的 JavaScript 函式庫，用以建立使用者介面。它讓你用小巧而獨立，名為「components」的程式碼，建立複雜的 UI。
 
 React 有數種不同的 components，但我們先從 `React.Component` 這個 subclasses 開始：
 
@@ -173,25 +173,25 @@ JSX 就跟 JavaScript ㄧ樣強大。 你可以在 JSX 中的括號中放入 *�
 
 上面的 `ShoppingList` component 只會 renders 內建如 `<div />` 和 `<li />` 的 DOM components。 但你也可以建立並 render 客製的 React components。例如，我們現在可以用 `<ShoppingList />` 來使用 shopping list。每個 React component 都是封裝（encapsulated）好並能獨立運作的。 React 讓你能用簡單的 components 建立複雜的 UI。
 
-## Inspecting the Starter Code {#inspecting-the-starter-code}
+## 檢查你的 Starter Code {#檢查你的-starter-code}
 
-If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
+如果你打算在 **你的瀏覽器** 中練習這份指南的話，請在分頁中開啟這份程式：**[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**。如果你打算在**本地開發環境** 中練習，在你的專案資料夾中打開 `src/index.js` （你在[setup](#setup-option-2-local-development-environment)時已接觸過這個檔案）。
 
-This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need to focus on learning React and programming the tic-tac-toe game.
+這個 Starter Code 是我們接下來練習的基礎。我們已幫你準備好了CSS，如此一來，你只需要把注意力集中在學習 React 和完成圈圈叉叉小遊戲的程式上。
 
-By inspecting the code, you'll notice that we have three React components:
+請看看其中的程式。你會注意到我們有三個 React components：
 
 * Square
 * Board
 * Game
 
-The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values which we'll modify later. There are currently no interactive components.
+Square component 會 renders 一個按鈕 `<button>`，而 Board 則 render 九個方格。Game component 則是 render 一個完整的遊戲格盤與 placeholder ，這些值我們稍候會修改。目前為止，沒有一個 component 是互動式的。
 
-### Passing Data Through Props {#passing-data-through-props}
+### 透過 Props 傳遞資料 {#透過-Props-傳遞資料}
 
-Just to get our feet wet, let's try passing some data from our Board component to our Square component.
+做為暖身，讓我們試試看把一些資料從 Board component 傳給 Square component。
 
-In Board's `renderSquare` method, change the code to pass a prop called `value` to the Square:
+在 Board 的 `renderSquare` 方法中，請修改程式碼，並把名為 `value` 的 prop 傳給 Square：
 
 ```js{3}
 class Board extends React.Component {
@@ -200,7 +200,7 @@ class Board extends React.Component {
   }
 ```
 
-Change Square's `render` method to show that value by replacing `{/* TODO */}` with `{this.props.value}`:
+接著請改變 Square 中的 `render` 方法，將 `{/* TODO */}` 替換成 `{this.props.value}` ，以顯示 value 的值：
 
 ```js{5}
 class Square extends React.Component {
@@ -214,22 +214,22 @@ class Square extends React.Component {
 }
 ```
 
-Before:
+修改前：
 
 ![React Devtools](../images/tutorial/tictac-empty.png)
 
-After: You should see a number in each square in the rendered output.
+修改後：你應該會看到每個方格中都有一個數字。
 
 ![React Devtools](../images/tutorial/tictac-numbers.png)
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
-Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
+恭喜！你剛剛已順利將把 prop 從 parent Board component 傳給 child Square component。傳遞 props (Passing props）是 React 的應用程式中資訊從 parents 傳給 children 的方式。
 
-### Making an Interactive Component {#making-an-interactive-component}
+### 建立互動式的 Component {#建立互動式的-component}
 
-Let's fill the Square component with an "X" when we click it. 
-First, change the button tag that is returned from the Square component's `render()` function to this:
+讓我們在點擊 Square component 時，能在方格中填入ㄧ個 X。 
+首先，把從 Square component 的 `render()` 中回傳的按鈕的標籤 ，修改成以下的程式：
 
 ```javascript{4}
 class Square extends React.Component {
@@ -243,11 +243,11 @@ class Square extends React.Component {
 }
 ```
 
-If we click on a Square now, we should get an alert in our browser.
+現在，當我們點擊任何一個 Square 時，我們應該能在瀏覽器中收到一個 alert。
 
->Note
+>注意：
 >
->To save typing and avoid the [confusing behavior of `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), we will use the [arrow function syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) for event handlers here and further below:
+>為了 save typing and 避免 [`this` 令人困惑的行為](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/)，我們將會在這裡以及以下的指南使用[arrow function 語法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 來寫 event handlers：
 >
 >```javascript{4}
 >class Square extends React.Component {
@@ -261,13 +261,13 @@ If we click on a Square now, we should get an alert in our browser.
 >}
 >```
 >
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. It only fires after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
+>注意在 how with `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop往下傳。這個 function 只會在被點擊後觸發。 把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次 re-render 時都觸發 alert。 
 
-As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
+下一步，我們要讓 Square component 記得它被點擊了，並在方格中填入 X 這個記號。Components 使用 **state** 來保持記憶。
 
-React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
+React 的 component 可以藉由在其 constructor 中設定 `this.state` 來維持一個 state。 `this.state` 對於在其被定義的 React component 中來說應該要是 private 的。 讓我們現在的 Square 的存在 `this.state`中，然後在 Square 被點擊後改變這個值：
 
-First, we'll add a constructor to the class to initialize the state:
+首先，我們要先加一個 constructor 在 class 中以初始化 state：
 
 ```javascript{2-7}
 class Square extends React.Component {
@@ -288,17 +288,17 @@ class Square extends React.Component {
 }
 ```
 
->Note
+>注意：
 >
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start it with a `super(props)` call.
+>在 [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)中， 當你定義一個 subclass 的 constructor 時，你總是會需要呼叫 `super`。所有的 React component class ，凡是有 `constructor` 的，都應該要從呼叫 `super(props)` 開始。
 
-Now we'll change the Square's `render` method to display the current state's value when clicked:
+現在我們會改變 Square 的 `render` 方法以顯示當 Square 被點擊時當下的 state 的值是什麼：
 
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `() => alert()` event handler with `() => this.setState({value: 'X'})`.
-* Put the `className` and `onClick` props on separate lines for better readability.
+* 把 `<button>` 標籤中的 `this.props.value` 換成 `this.state.value`。
+* 把 `() => alert()` 這個 event handler 換成 `() => this.setState({value: 'X'})`.
+* 將 `className` 和 `onClick` 兩個 prop 放在不同行，以方便閱讀。
 
-After these changes, the `<button>` tag that is returned by the Square's `render` method looks like this:
+在上述修改完成後，在 Square 的 `render` 方法中回傳的 `<button>` 標籤現在看起來是這樣：
 
 ```javascript{12-13,15}
 class Square extends React.Component {
@@ -322,42 +322,42 @@ class Square extends React.Component {
 }
 ```
 
-By calling `this.setState` from an `onClick` handler in the Square's `render` method, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
+藉由從 Square 的 `render` 方法中的 `onClick` handler 呼叫` this.setState`，我們告訴 React ，當該 Square 的 `<button>` 被點擊時，要 re-render。在這個修改後， Square 的 `this.state.value` 值將會變成 `'X'` ，所以我們將會在遊戲格盤中看到 `X`。當你點擊任何一個方格，應該能看到 `X`。
 
-When you call `setState` in a component, React automatically updates the child components inside of it too.
+當你在一個 component 中呼叫 `setState` 時， React 也會自動更新其中的 child component。
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
-### Developer Tools {#developer-tools}
+### 開發者工具 {#開發者工具}
 
-The React Devtools extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) lets you inspect a React component tree with your browser's developer tools.
+React 在[Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) 和 [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) 中的 Devtools extension 讓你用你的瀏覽器的開發者工具檢查 React component 的樹。
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
-The React DevTools let you check the props and the state of your React components.
+React DevTools 讓你檢查你的 React component 中的 props 和 state。
 
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tab will appear as the last tab to the right.
+在安裝 React DevTools 後，你在網頁上對任何元素按右鍵，之後按 Inspect 打開開發者工具，React 的 tab 會是右邊數來第一個。
 
-**However, note there are a few extra steps to get it working with CodePen:**
+**然而，請注意在 CodePen 中使用開發者工具需要一些額外的步驟：**
 
-1. Log in or register and confirm your email (required to prevent spam).
-2. Click the "Fork" button.
-3. Click "Change View" and then choose "Debug mode".
-4. In the new tab that opens, the devtools should now have a React tab.
+1. 登入網站，或註冊並確認你的 email (為防止 spam 的必要手續)。
+2. 點擊 Fork 按鈕。
+3. 點擊 Change View 並選擇 Debug mode。
+4. 在新開啟的分頁中，devtools 現在應該有 React 的 tab 了。
 
-## Completing the Game {#completing-the-game}
+## 完成遊戲 {#完成遊戲}
 
-We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and "O"s on the board, and we need a way to determine a winner.
+現在我們已經為我們的圈圈叉叉遊戲準備好基本的要件了。為了要做出一個完整的遊戲，我們現在需要在遊戲格盤中交互地放入 X 和 O，我們也需要決定如何分出勝負。
 
-### Lifting State Up {#lifting-state-up}
+### 把 State 向上提升 {#把-State-向上提升}
 
-Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
+目前，每個 Square component 都能更新這個遊戲的 state。如果要分出勝負的話，我們需要將這九個方格的值都紀錄在某個地方。
 
-We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent Board component instead of in each Square. The Board component can tell each Square what to display by passing a prop, [just like we did when we passed a number to each Square](#passing-data-through-props).
+也許我們會覺得 Board 應該從每個 Square 中確認該方格的狀態。雖然這個方法在 React 中是可行的，我們並不鼓勵你這麼做，因為你的程式碼會變得很難懂，很容易有 bug，也很難重寫。最好的方式是把這整個遊戲的 state 存放在 parent Board component 中，而不是在每一個 Square 中。Board component 會藉由傳遞 prop 的方式告訴每一個 Square 該顯示什麼值，[就如同我們剛開始先傳給每個 Square 一個數字是一樣的](#透過-Props-傳遞資料).
 
-**To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
+**為了從多個 children 中收集資料，或是讓兩個 child component 互相溝通，你需要在它們的 parent component 裡宣告一個共享的 state。這個 parent component 可以將 state 透過 proprs 向下傳給 children。這讓 child component 之間還有跟它們的 parent component 能隨時保持同步。**
 
-Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out. We'll add a constructor to the Board and set the Board's initial state to contain an array with 9 nulls. These 9 nulls correspond to the 9 squares:
+在修改 React component 時，把 state 提升到 parent component 裡面是很常見的。讓我們利用這個機會來試試看這該怎麼做。我們會在 Board 裡加一個 constructor，並將 Board 的初始 state 設定為一個包含九個 null 的 array。這九個 null 分別對應著九個 Square：
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -399,7 +399,7 @@ class Board extends React.Component {
 }
 ```
 
-When we fill the board in later, the board will look something like this:
+當我們稍後填滿格盤時，格盤會看起來像這樣：
 
 ```javascript
 [
@@ -409,7 +409,7 @@ When we fill the board in later, the board will look something like this:
 ]
 ```
 
-The Board's `renderSquare` method currently looks like this:
+Board 的 `renderSquare` 方法目前看起來是這樣：
 
 ```javascript
   renderSquare(i) {
@@ -417,9 +417,9 @@ The Board's `renderSquare` method currently looks like this:
   }
 ```
 
-In the beginning, we [passed the `value` prop down](#passing-data-through-props) from the Board to show numbers from 0 to 8 in every Square. In a different previous step, we replaced the numbers with an "X" mark [determined by Square's own state](#making-an-interactive-component). This is why Square currently ignores the `value` prop passed to it by the Board.
+一開始，我們從 Board [把 `value` 這個 prop 往下傳](#透過-Props-傳遞資料) 並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們 [根據 Square 自身的 state](#建立互動式的-component)把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
 
-We will now use the prop passing mechanism again. We will modify the Board to instruct each individual Square about its current value (`'X'`, `'O'`, or `null`). We have already defined the `squares` array in the Board's constructor, and we will modify the Board's `renderSquare` method to read from it:
+我們現在又會再使用傳遞 prop 的這個機制。 我們會修改 Board 以告訴每個 Square 它現在的值（`'X'`，`'O'`， 或 `null`）該是什麼。 我們已經在 Board 的 constructor 中定義了 `squares` 這個 array，接下來我們會修改 Board 的 `renderSquare` 方法以讀取這個 array:
 
 ```javascript{2}
   renderSquare(i) {
@@ -427,7 +427,7 @@ We will now use the prop passing mechanism again. We will modify the Board to in
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
 Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
 
