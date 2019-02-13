@@ -14,7 +14,7 @@ redirect_from:
 
 你不需要有任何 React 的基礎知識就能使用這份學習指南。
 
-## 在我們開始之前 {#在我們開始之前}
+## 在我們開始之前 {#before-we-start-the-tutorial}
 
 在這份學習指南中，我們會練習做一個小遊戲。 **也許你會很想跳過這份指南，因為你不是遊戲開發者 -- 但請試著跟著做做看。** 這份學習指南中你所會學到的技術是你做任何 React App 的基礎， 掌握好基礎會讓你對 React 有更深的了解。
 
@@ -33,7 +33,7 @@ redirect_from:
 
 當你在跟著指南練習時，複製貼上程式碼是沒關係的，但我們建議你把程式自己寫過一遍。 這會幫助你訓練手感並加強理解。
 
-### 我們要做什麼？ {#我們要做什麼？}
+### 我們要做什麼？ {#what-are-we-building?}
 
 在這份指南中，我們會教你如何用 React 做一個互動式的圈圈叉叉小遊戲。
 
@@ -44,17 +44,17 @@ redirect_from:
 
 當你稍微了解這個圈圈叉叉小遊戲是怎麼玩的之後，你就可以把它關掉了。 在這份指南中，我們會從更簡單的模板開始。我們的下一步是進行設定以幫助你開始開發這個遊戲。
 
-### 先決條件 {#先決條件}
+### 先決條件 {#prerequisites}
 
 我們假設你對 HTML 和 JavaScript 有一定的熟悉度，但即使你的背景是另一種程式語言，你應該也能游刃有餘地理解這份指南。我們也假設你對程式語言的中的某些概念，如 functions 、 objects 、 arrays 以及（某種程度上）classes ，有一定的涉獵。
 
 如果你需要複習 JavaScript ，我們建議你閱讀這份[教學指南](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)。請注意我們也會用到一些 ES6，也就是JavaScript 最新的版本之一。在這份指南中，我們將會使用 [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，[classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)，[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)， 和 [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 等表達式。你也可以用 [Babel REPL](babel://es5-syntax-example) 看看 ES6 的程式碼是如何被編譯的。
 
-## 教學設定 {#教學設定}
+## 教學設定 {#setup-for-the-tutorial}
 
 完成這份指南有兩種方法：你可以在瀏覽器中寫程式碼，或在你的電腦裡建立一個本地的開發環境。
 
-### 設定選項 1：在瀏覽器中寫程式碼 {#設定選項-1-在瀏覽器中寫程式碼}
+### 設定選項 1：在瀏覽器中寫程式碼 {#setup-option-1-write-code-in-the-browser}
 
 這是開始最快的方法！
 
@@ -62,7 +62,7 @@ redirect_from:
 
 你現在可以跳過第二個選項，然後直接看[概論](#概論)的部分並瞭解 React 如何運作。
 
-### 設定選項 2：建立本地開發環境 {#設定選項-2-建立本地開發環境}
+### 設定選項 2：建立本地開發環境 {#setup-option-2-local-development-environment}
 
 對完成這份指南來說，這完全是看你是否需要，而非必要的設定！
 
@@ -119,15 +119,15 @@ import './index.css';
 
 </details>
 
-### 救命呀，我卡住了！ {#救命呀-我卡住了}
+### 救命呀，我卡住了！ {#help-im-stuck}
 
 如果你卡住了，請看看 [社群資源](/community/support.html)。 其中 [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) 可以讓你很快得到幫助。如果沒人回你，或你還是卡住了，請填寫一個 issue，我們會提供協助。
 
-## 概論 {#概論}
+## 概論 {#overview}
 
 設定完成後，讓我們來討論 React 的概論吧！
 
-### React 是什麼？ {#React-是什麼}
+### React 是什麼？ {#what-is-react}
 
 React 是一個宣告式、高效且很有彈性的 JavaScript 函式庫，用以建立使用者介面。它讓你用小巧而獨立，名為「components」的程式碼，建立複雜的 UI。
 
@@ -173,7 +173,7 @@ JSX 就跟 JavaScript ㄧ樣強大。 你可以在 JSX 中的括號中放入 *�
 
 上面的 `ShoppingList` component 只會 renders 內建如 `<div />` 和 `<li />` 的 DOM components。 但你也可以建立並 render 客製的 React components。例如，我們現在可以用 `<ShoppingList />` 來使用 shopping list。每個 React component 都是封裝（encapsulated）好並能獨立運作的。 React 讓你能用簡單的 components 建立複雜的 UI。
 
-## 檢查你的 Starter Code {#檢查你的-starter-code}
+## 檢查你的 Starter Code {#inspecting-the-starter-code}
 
 如果你打算在 **你的瀏覽器** 中練習這份指南的話，請在分頁中開啟這份程式：**[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**。如果你打算在**本地開發環境** 中練習，在你的專案資料夾中打開 `src/index.js` （你在[setup](#setup-option-2-local-development-environment)時已接觸過這個檔案）。
 
@@ -187,7 +187,7 @@ JSX 就跟 JavaScript ㄧ樣強大。 你可以在 JSX 中的括號中放入 *�
 
 Square component 會 renders 一個按鈕 `<button>`，而 Board 則 render 九個方格。Game component 則是 render 一個完整的遊戲格盤與 placeholder ，這些值我們稍候會修改。目前為止，沒有一個 component 是互動式的。
 
-### 透過 Props 傳遞資料 {#透過-Props-傳遞資料}
+### 透過 Props 傳遞資料 {#passing-data-through-props}
 
 做為暖身，讓我們試試看把一些資料從 Board component 傳給 Square component。
 
@@ -224,9 +224,9 @@ class Square extends React.Component {
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
-恭喜！你剛剛已順利將把 prop 從 parent Board component 傳給 child Square component。傳遞 props (Passing props）是 React 的應用程式中資訊從 parents 傳給 children 的方式。
+恭喜！你剛剛已順利將把 prop 從 parent Board component 傳給 child Square component。傳遞 props (passing props）是 React 的應用程式中資訊從 parent 傳給 children 的方式。
 
-### 建立互動式的 Component {#建立互動式的-component}
+### 建立互動式的 Component {#making-an-interactive-component}
 
 讓我們在點擊 Square component 時，能在方格中填入ㄧ個 X。 
 首先，把從 Square component 的 `render()` 中回傳的按鈕的標籤 ，修改成以下的程式：
@@ -261,11 +261,11 @@ class Square extends React.Component {
 >}
 >```
 >
->注意在 how with `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop往下傳。這個 function 只會在被點擊後觸發。 把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次 re-render 時都觸發 alert。 
+>注意在 how with `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop往下傳。這個 function 只會在被點擊後觸發。 把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次 re-render 時都觸發 alert。
 
 下一步，我們要讓 Square component 記得它被點擊了，並在方格中填入 X 這個記號。Components 使用 **state** 來保持記憶。
 
-React 的 component 可以藉由在其 constructor 中設定 `this.state` 來維持一個 state。 `this.state` 對於在其被定義的 React component 中來說應該要是 private 的。 讓我們現在的 Square 的存在 `this.state`中，然後在 Square 被點擊後改變這個值：
+React 的 component 可以藉由在其 constructor 中設定 `this.state` 來維持一個 state。`this.state` 對於在其被定義的 React component 中來說應該要是 private 的。 讓我們現在的 Square 的存在 `this.state`中，然後在 Square 被點擊後改變這個值：
 
 首先，我們要先加一個 constructor 在 class 中以初始化 state：
 
@@ -290,12 +290,12 @@ class Square extends React.Component {
 
 >注意：
 >
->在 [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)中， 當你定義一個 subclass 的 constructor 時，你總是會需要呼叫 `super`。所有的 React component class ，凡是有 `constructor` 的，都應該要從呼叫 `super(props)` 開始。
+>在 [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 中， 當你定義一個 subclass 的 constructor 時，你總是會需要呼叫 `super`。所有的 React component class ，凡是有 `constructor` 的，都應該要從呼叫 `super(props)` 開始。
 
 現在我們會改變 Square 的 `render` 方法以顯示當 Square 被點擊時當下的 state 的值是什麼：
 
 * 把 `<button>` 標籤中的 `this.props.value` 換成 `this.state.value`。
-* 把 `() => alert()` 這個 event handler 換成 `() => this.setState({value: 'X'})`.
+* 把 `() => alert()` 這個 event handler 換成 `() => this.setState({value: 'X'})`。
 * 將 `className` 和 `onClick` 兩個 prop 放在不同行，以方便閱讀。
 
 在上述修改完成後，在 Square 的 `render` 方法中回傳的 `<button>` 標籤現在看起來是這樣：
@@ -322,21 +322,21 @@ class Square extends React.Component {
 }
 ```
 
-藉由從 Square 的 `render` 方法中的 `onClick` handler 呼叫` this.setState`，我們告訴 React ，當該 Square 的 `<button>` 被點擊時，要 re-render。在這個修改後， Square 的 `this.state.value` 值將會變成 `'X'` ，所以我們將會在遊戲格盤中看到 `X`。當你點擊任何一個方格，應該能看到 `X`。
+藉由從 Square 的 `render` 方法中的 `onClick` handler 呼叫 `this.setState`，我們告訴 React：當該 Square 的 `<button>` 被點擊時，要 re-render。在這個修改後， Square 的 `this.state.value` 值將會變成 `'X'` ，所以我們將會在遊戲格盤中看到 `'X'`。當你點擊任何一個方格，應該能看到 `'X'`。
 
 當你在一個 component 中呼叫 `setState` 時， React 也會自動更新其中的 child component。
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
-### 開發者工具 {#開發者工具}
+### 開發者工具 {#developer-tools}
 
-React 在[Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) 和 [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) 中的 Devtools extension 讓你用你的瀏覽器的開發者工具檢查 React component 的樹。
+React 在 [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) 和 [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) 中的 Devtools extension 讓你用你的瀏覽器的開發者工具檢查 React component 的樹。
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
 React DevTools 讓你檢查你的 React component 中的 props 和 state。
 
-在安裝 React DevTools 後，你在網頁上對任何元素按右鍵，之後按 Inspect 打開開發者工具，React 的 tab 會是右邊數來第一個。
+在安裝 React DevTools 後，你在網頁上對任何元素按右鍵，之後按 Inspect 開啟開發者工具，React 的 tab 會是右邊數來第一個。
 
 **然而，請注意在 CodePen 中使用開發者工具需要一些額外的步驟：**
 
@@ -345,19 +345,19 @@ React DevTools 讓你檢查你的 React component 中的 props 和 state。
 3. 點擊 Change View 並選擇 Debug mode。
 4. 在新開啟的分頁中，devtools 現在應該有 React 的 tab 了。
 
-## 完成遊戲 {#完成遊戲}
+## 完成遊戲 {#completing-the-game}
 
 現在我們已經為我們的圈圈叉叉遊戲準備好基本的要件了。為了要做出一個完整的遊戲，我們現在需要在遊戲格盤中交互地放入 X 和 O，我們也需要決定如何分出勝負。
 
-### 把 State 向上提升 {#把-State-向上提升}
+### 把 State 向上傳 {#lifting-state-up}
 
 目前，每個 Square component 都能更新這個遊戲的 state。如果要分出勝負的話，我們需要將這九個方格的值都紀錄在某個地方。
 
-也許我們會覺得 Board 應該從每個 Square 中確認該方格的狀態。雖然這個方法在 React 中是可行的，我們並不鼓勵你這麼做，因為你的程式碼會變得很難懂，很容易有 bug，也很難重寫。最好的方式是把這整個遊戲的 state 存放在 parent Board component 中，而不是在每一個 Square 中。Board component 會藉由傳遞 prop 的方式告訴每一個 Square 該顯示什麼值，[就如同我們剛開始先傳給每個 Square 一個數字是一樣的](#透過-Props-傳遞資料).
+也許我們會覺得 Board 應該從每個 Square 中確認該方格的狀態。雖然這個方法在 React 中是可行的，我們並不鼓勵你這麼做，因為你的程式碼會變得很難懂，很容易有 bug，也很難重寫。最好的方式是把這整個遊戲的 state 存放在 parent Board component 中，而不是在每一個 Square 中。Board component 會藉由傳遞 prop 的方式告訴每一個 Square 該顯示什麼值，[就如同我們剛開始先傳給每個 Square 一個數字是一樣的](#passing-data-through-props).
 
 **為了從多個 children 中收集資料，或是讓兩個 child component 互相溝通，你需要在它們的 parent component 裡宣告一個共享的 state。這個 parent component 可以將 state 透過 proprs 向下傳給 children。這讓 child component 之間還有跟它們的 parent component 能隨時保持同步。**
 
-在修改 React component 時，把 state 提升到 parent component 裡面是很常見的。讓我們利用這個機會來試試看這該怎麼做。我們會在 Board 裡加一個 constructor，並將 Board 的初始 state 設定為一個包含九個 null 的 array。這九個 null 分別對應著九個 Square：
+在修改 React component 時，把 state 上傳到 parent component 裡面是很常見的。讓我們利用這個機會來試試看這該怎麼做。我們會在 Board 裡加一個 constructor，並將 Board 的初始 state 設定為一個包含九個 null 的 array。這九個 null 分別對應著九個 Square：
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -417,7 +417,7 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
   }
 ```
 
-一開始，我們從 Board [把 `value` 這個 prop 往下傳](#透過-Props-傳遞資料) 並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們 [根據 Square 自身的 state](#建立互動式的-component)把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
+一開始，我們從 Board [把 `value` 這個 prop 往下傳](#passing-data-through-props) 並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們 [根據 Square 自身的 state](#making-an-interactive-component)把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
 
 我們現在又會再使用傳遞 prop 的這個機制。 我們會修改 Board 以告訴每個 Square 它現在的值（`'X'`，`'O'`， 或 `null`）該是什麼。 我們已經在 Board 的 constructor 中定義了 `squares` 這個 array，接下來我們會修改 Board 的 `renderSquare` 方法以讀取這個 array:
 
