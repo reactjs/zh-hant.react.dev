@@ -19,7 +19,7 @@ ReactDOM.render(
 
 [](codepen://hello-world)
 
-點擊上方連結開啟線上編輯器。請隨意地將程式碼做任何的改變，並觀察它們的輸出變化。大部分的文件頁面都有像這樣可以編輯的範例。
+點擊上方連結開啟線上編輯器。請隨意的變更程式碼並觀察它們的輸出變化。大部分的文件頁面都有像這樣可以編輯的範例。
 
 
 ## 如何閱讀本指南 {#how-to-read-this-guide}
@@ -36,7 +36,7 @@ ReactDOM.render(
 
 ## 需要的知識 {#knowledge-level-assumptions}
 
-React 是一個 JavaScript 的函式庫，而且我們假設你有一些 JavaScript 的基礎知識。**如果你感到沒有自信的話，我們推薦[過一遍這個 JavaScript 教學課程](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)**來確認你的知識水平如何，確保你可以跟上本篇指南。這需要花費大概 30 分鐘到 1 小時，但你不會覺得你在學習 React，同時又在學習 JavaScript。
+React 是一個 JavaScript 的函式庫，而且我們假設你有一些 JavaScript 的基礎知識。**如果你感到沒有自信的話，我們推薦[讀過一遍這個 JavaScript 教學課程](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)**來確認你的知識水平如何，確保你可以跟上本篇指南。這需要花費大概 30 分鐘到 1 小時，但你不會覺得你在學習 React，同時又在學習 JavaScript。
 
 >注意
 >
