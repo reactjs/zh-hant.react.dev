@@ -114,7 +114,7 @@ import './index.css';
 
 現在如果你在專案資料夾執行 `npm start` 並在瀏覽器中打開 `http://localhost:3000`，你會看到一個空白的圈圈叉叉遊戲格。
 
-我們推薦你跟著[這份指南](https://babeljs.io/docs/editors/)來設定你的編輯器中的語法亮高（syntax highlighting）。
+我們推薦你跟著[這份指南](https://babeljs.io/docs/editors/)來設定你的編輯器中的語法亮高。
 
 </details>
 
@@ -420,6 +420,7 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
 
 我們現在又會再使用傳遞 prop 的這個機制。我們會修改 Board 以告訴每個 Square 它現在的值（`'X'`，`'O'`， 或 `null`）該是什麼。我們已經在 Board 的 constructor 中定義了 `squares` 這個 array，接下來我們會修改 Board 的 `renderSquare` 方法以讀取這個 array：
 
+
 ```javascript{2}
   renderSquare(i) {
     return <Square value={this.state.squares[i]} />;
@@ -430,9 +431,9 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
 
 每個 Square 將會接收一個 `value` prop，在空的方格中，它的值會是 `'X'`、 `'O'` 或 `null`。
 
-接下來，我們需要改變當 Square 被點擊後會觸發的事件。 Board component 現在決定了哪一個方格會被填滿。We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
+接下來，我們需要改變當 Square 被點擊後會觸發的事件。Board component 現在決定了哪一個方格會被填滿。我們需要創造一個方法讓 Square 去更新 Board 的狀態。既然 state 對於定義它的 component 來說是 private 的，我們就不能直接從 Square 去更新 Board 的 state。
 
-To maintain the Board's state's privacy, we'll pass down a function from the Board to the Square. This function will get called when a Square is clicked. We'll change the `renderSquare` method in Board to:
+要能維持 Board 的 state 的私有性，我們需要從 Board 傳一個 function 給 Square。這個 function 將在 Square 被點擊的時候被呼叫。我們也會改變 Board 中 `renderSquare` 的方法：
 
 ```javascript{5}
   renderSquare(i) {
@@ -445,17 +446,17 @@ To maintain the Board's state's privacy, we'll pass down a function from the Boa
   }
 ```
 
->Note
+>注意
 >
->We split the returned element into multiple lines for readability, and added parentheses so that JavaScript doesn't insert a semicolon after `return` and break our code.
+>為了方便閱讀，我們將回完的 element 分成數行來寫，並加上括號，如此 JavaScript 才不會在 `return` 後加上一個分號然後破壞我們的程式。
 
-Now we're passing down two props from Board to Square: `value` and `onClick`. The `onClick` prop is a function that Square can call when clicked. We'll make the following changes to Square:
+現在我們從 Board 傳兩個 prop 給 Square： `value` 和 `onClick`。`onClick` prop 是一個當 Square 被呼叫時可以點擊的 function。我們會在 Square 中做出如下的修改：
 
-* Replace `this.state.value` with `this.props.value` in Square's `render` method
-* Replace `this.setState()` with `this.props.onClick()` in Square's `render` method
-* Delete the `constructor` from Square because Square no longer keeps track of the game's state
+* 把 Square 的 `render` 方法中的 `this.state.value` 換成 `this.props.value`。
+* 把 Square 的 `render` 方法中的 `this.setState()` 換成 `this.props.onClick()`。
+* 把 `constructor` 從 Square 中刪除，因為 Square 已不再需要追蹤遊戲的狀態。
 
-After these changes, the Square component looks like this:
+在上述修改完成後，Square component 現在看起來是這樣：
 
 ```javascript{1,2,6,8}
 class Square extends React.Component {
@@ -472,19 +473,19 @@ class Square extends React.Component {
 }
 ```
 
-When a Square is clicked, the `onClick` function provided by the Board is called. Here's a review of how this is achieved:
+當一個 Square 被點擊時，`onClick` 這個 Board 所提供給它的 function 會被呼叫。我們來看一下這件事是如何做到的：
 
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes.
+1. `onClick` prop 在內建的 DOM `<button>` component 告訴 React 要設定一個 click event listener。
+2. 當按鈕被點擊時，React 會呼叫 `onClick` 這個 Square 的 `render()` 方法中的 event handler。
+3. 這個 event handler 將會呼叫 `this.props.onClick()`。Square 中的 `onClick` prop 被 Board 選定。
+4. 因為 Board 把 `onClick={() => this.handleClick(i)}` 傳給 Square，Square 會在被點擊時呼叫 `this.handleClick(i)`。
+5. 我們尚未定義 `handleClick()`，所以我們的程式目前會 crash。
 
->Note
+>注意
 >
->The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could name the Square's `onClick` prop or Board's `handleClick` method differently. In React, however, it is a convention to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
+>DOM `<button>` element 的 `onClick` 屬性對 React 來說有特別的意義，因為它是一個內建的 component。對於像是 Square 這種客製的 components 來說，命名方式是看你的喜好。我們可以把 Square 的 `onClick` prop 或是 Board 的 `handleClick` 方法以完全不同的方式命名。然而，在 React 中，我們遵循的傳統通常是用 `on[Event]` 來命名那些代表 event 的 prop，用 `handle[Event]` 來命名那些 handle the event 的方法。
 
-When we try to click a Square, we should get an error because we haven't defined `handleClick` yet. We'll now add `handleClick` to the Board class:
+當我們試著點擊一個 Square，我們的程式應該會發生錯誤，因為我們尚未定義 `handleClick`。我們現在把 `handleClick` 加到 Board 的 class：
 
 ```javascript{9-13}
 class Board extends React.Component {
@@ -537,13 +538,13 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-After these changes, we're again able to click on the Squares to fill them. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
+在這些修改完成後，我們現在又可以點擊 Squares 並填入內容了。然而，現在 state 是儲存在 Board component 而非個別的 Square component 中。當 Board 的 state 改變時，Square component 會自動 re-render。在 Board component 中維持所有方格的狀態能使它在未來決定勝負。
 
-Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**. The Board has full control over them.
+因為 Square component 不再維持 state，Square component 從 Board component 接收 value 並在被點擊時通知 Board component 它的值。在 React 的詞彙中，Square component 現在是 **controlled components**。這意味著 Board 對其有完全的掌握。
 
-Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` array to modify instead of modifying the existing array. We will explain why we create a copy of the `squares` array in the next section.
+注意在 `handleClick` 中，我們呼叫 `.slice()` 以創造一個 `squares` array 的 copy 並修改它，而非直接修改現有的 array。在下一個段落，我們將會解釋為什麼我們要創造一個 `squares` array 的 copy。
 
 ### Why Immutability Is Important {#why-immutability-is-important}
 
