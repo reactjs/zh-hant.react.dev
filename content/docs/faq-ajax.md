@@ -1,31 +1,31 @@
 ---
 id: faq-ajax
-title: AJAX and APIs
+title: AJAX 和 APIs
 permalink: docs/faq-ajax.html
 layout: docs
 category: FAQ
 ---
 
-### How can I make an AJAX call? {#how-can-i-make-an-ajax-call}
+### AJAX 怎麼用？ {#how-can-i-make-an-ajax-call}
 
-You can use any AJAX library you like with React. Some popular ones are [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), and the browser built-in [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+你可以使用任何你喜歡的 AJAX 函式庫來與 React 搭配。一些流行的函式庫有：[Axios](https://github.com/axios/axios)、[jQuery AJAX](https://api.jquery.com/jQuery.ajax/) 以及瀏覽器內建的 [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)。
 
-### Where in the component lifecycle should I make an AJAX call? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
+### 應該在 Component 的哪個生命週期中使用 AJAX？ {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
-You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. This is so you can use `setState` to update your component when the data is retrieved.
+你應該在 [`componentDidMount`](/docs/react-component.html#mounting) 的生命週期方法內，使用 AJAX 呼叫來填充資料。如此一來，你可以在收到資料時，使用 `setState` 來更新 Component。
 
-### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
+### 範例：利用 AJAX 的回傳值來設定狀態 {#example-using-ajax-results-to-set-local-state}
 
-The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
+你應該在 `componentDidMount` 的生命週期方法內，使用 AJAX 呼叫來填充資料。如此一來，你可以在收到資料時，使用 `setState` 來更新 Component。
 
-The example API returns a JSON object like this:
+假設 API 回傳的 JSON 物件如下：
 
 ```
 {
   "items": [
     { "id": 1, "name": "Apples",  "price": "$2" },
     { "id": 2, "name": "Peaches", "price": "$5" }
-  ] 
+  ]
 }
 ```
 
