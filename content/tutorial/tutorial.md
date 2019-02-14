@@ -14,41 +14,40 @@ redirect_from:
 
 你不需要有任何 React 的基礎知識就能使用這份學習指南。
 
-## 在我們開始之前 {#before-we-start-the-tutorial}
+## 在我們開始這份教學課程之前 {#before-we-start-the-tutorial}
 
-在這份學習指南中，我們會練習做一個小遊戲。 **也許你會很想跳過這份指南，因為你不是遊戲開發者 -- 但請試著跟著做做看。** 這份學習指南中你所會學到的技術是你做任何 React App 的基礎， 掌握好基礎會讓你對 React 有更深的了解。
+在這份學習指南中，我們會練習做一個小遊戲。**也許你會很想跳過這份指南，因為你不是遊戲開發者 -- 但請試著跟著做做看。** 在這份學習指南中，你所學到的技術是你做任何 React 應用程式的基礎，掌握基礎後會讓你對 React 有更深入的了解。
 
->溫馨提示
+>Tip
 >
->這份學習指南是設計給那些喜歡**從做中學**的人們。如果你比較喜歡從零開始學習概念的話，請參考我們的[逐步教學](/docs/hello-world.html)。這份指南跟逐步教學兩者是相輔相成的。
+>這份學習指南是設計給那些喜歡**從做中學**的人們。如果你比較喜歡從零開始學習概念的話，請參考我們的[逐步教學](/docs/hello-world.html)。你可能會發現本篇指南和教學課程其實是相輔相成的。
 
 這份指南分成以下幾個部分：
 
 * [教學設定](#setup-for-the-tutorial) 會給你一個開始這份指南的**起始點**。
-* [概論](#概論) 會教你 React 中的**重要基礎**： components，props，和 state。
-* [完成遊戲](#完成遊戲) 會教你在 React 開發中**最常見的技術**。
-* [加入 Time Travel](#加入Time-Travel) 會讓你對 React 獨特的優點有**更深的見解**。
+* [概論](#overview)會教你 React 中的**重要基礎**：components、props 和 state。
+* [完成遊戲](#completing-the-game) 會教你在 React 開發中**最常見的技術**。
+* [加入 Time Travel](#adding-time-travel) 會讓你對 React 獨特的優點有**更深的見解**。
 
 你不需要一次就完成所有的部分才能從這份學習指南中獲益。試著練習越多越好 -- 即使只有一兩個部分。
 
-當你在跟著指南練習時，複製貼上程式碼是沒關係的，但我們建議你把程式自己寫過一遍。 這會幫助你訓練手感並加強理解。
+當你在跟著指南練習時，複製貼上程式碼是沒關係的，但我們建議你把程式自己寫過一遍。這會幫助你訓練手感並加強理解。
 
-### 我們要做什麼？ {#what-are-we-building?}
+### 我們要做什麼？ {#what-are-we-building}
 
-在這份指南中，我們會教你如何用 React 做一個互動式的圈圈叉叉小遊戲。
+在這份學習指南中，我們會教你如何用 React 做一個互動式的圈圈叉叉小遊戲。
 
-在這裡你可以看到我們將會做什麼： **[最終成果](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**。 如果你看不懂其中的程式碼，或是你對其中的語法不熟，請不要擔心。
-這份指南的目的就是要幫助你了解 React 及其語法。
+在這裡你可以看到我們將會做什麼：**[完成結果](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**。如果你看不懂其中的程式碼，或是你對其中的語法不熟，請不要擔心！這份指南的目的就是要幫助你了解 React 及其語法。
 
-我們建議你在往下看這份指南前先看看上面這個圈圈叉叉小遊戲。你會注意到遊戲格子的右邊有一個數字列表。這個列表將會列出遊戲中的所有動作的歷史，並在遊戲進行的同時更新。
+我們建議你在往下看這份指南之前，先看看上面這個圈圈叉叉小遊戲。你會注意到遊戲格子的右邊有一個數字列表。這個列表將會列出遊戲中的所有動作的歷史，並在遊戲進行的同時更新。
 
 當你稍微了解這個圈圈叉叉小遊戲是怎麼玩的之後，你就可以把它關掉了。 在這份指南中，我們會從更簡單的模板開始。我們的下一步是進行設定以幫助你開始開發這個遊戲。
 
 ### 先決條件 {#prerequisites}
 
-我們假設你對 HTML 和 JavaScript 有一定的熟悉度，但即使你的背景是另一種程式語言，你應該也能游刃有餘地理解這份指南。我們也假設你對程式語言的中的某些概念，如 functions 、 objects 、 arrays 以及（某種程度上）classes ，有一定的涉獵。
+我們假設你對 HTML 和 JavaScript 有一定的熟悉度，但即使你的背景是另一種程式語言，你應該也能游刃有餘地理解這份指南。我們也假設你對程式語言的中的某些概念，如 function、 object、array 以及（某種程度上）class，有一定的涉獵。
 
-如果你需要複習 JavaScript ，我們建議你閱讀這份[教學指南](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)。請注意我們也會用到一些 ES6，也就是JavaScript 最新的版本之一。在這份指南中，我們將會使用 [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，[classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)，[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)， 和 [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 等表達式。你也可以用 [Babel REPL](babel://es5-syntax-example) 看看 ES6 的程式碼是如何被編譯的。
+如果你需要複習 JavaScript，我們建議你閱讀這份[教學指南](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)。請注意我們也會用到一些 ES6，也就是 JavaScript 最新的版本之一。在這份指南中，我們將會使用 [arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)、[class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)、[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)，和 [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 等表達式。你也可以用 [Babel REPL](babel://es5-syntax-example) 看看 ES6 的程式碼是如何被編譯的。
 
 ## 教學設定 {#setup-for-the-tutorial}
 
@@ -58,9 +57,9 @@ redirect_from:
 
 這是開始最快的方法！
 
-首先，在瀏覽器中的分頁中打開這份**[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**。 你應該會看到一個空白的圈圈叉叉遊戲格和一些 React 的程式碼。在接下來的指南中，我們會修改中的 React 程式。
+首先，在瀏覽器中的分頁中打開這份**[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**。你應該會看到一個空白的圈圈叉叉遊戲格和一些 React 的程式碼。我們會在接下來的指南中，修改 React 的程式碼。
 
-你現在可以跳過第二個選項，然後直接看[概論](#概論)的部分並瞭解 React 如何運作。
+你現在可以跳過第二個選項，並前往[概論](#overview)的章節來了解 React 如何運作。
 
 ### 設定選項 2：建立本地開發環境 {#setup-option-2-local-development-environment}
 
@@ -70,12 +69,12 @@ redirect_from:
 
 <details>
 
-<summary><b>非必要: 以下為在本地環境中使用你想要的編輯器所需要的步驟</b></summary>
+<summary><b>可選擇：以下為在本地環境中使用你想要的編輯器所需要的步驟</b></summary>
 
 這個設定需要花些時間，但能讓你在你想要的編輯器上完成這份指南。以下是設定步驟：
 
 1. 確認你有安裝一個較新的版本的 [Node.js](https://nodejs.org/en/)。
-2. 按照[Create React App 安裝步驟](/docs/create-a-new-react-app.html#create-react-app)的指示設立一個新專案。
+2. 按照 [Create React App 安裝步驟](/docs/create-a-new-react-app.html#create-react-app)的指示建立一個新專案。
 
 ```bash
 npx create-react-app my-app
@@ -85,7 +84,7 @@ npx create-react-app my-app
 
 > 注意：
 >
->**請不要刪除整個 `src` 資料集，只要刪除裡面的原始檔就好。** 下一步，我們將會把內建的原始檔換成這個遊戲所需的範例檔。
+>**請不要刪除整個 `src` 資料夾，只要刪除裡面的原始檔就好。**下一步，我們將會把預設的原始檔換成這個遊戲所需的範例檔。
 
 ```bash
 cd my-app
@@ -101,9 +100,9 @@ del *
 cd ..
 ```
 
-4. 在 `src/` 資料夾中加入命名為 `index.css` 的檔案，用[這個CSS](https://codepen.io/gaearon/pen/oWWQNa?editors=0100)。
+4. 在 `src/` 資料夾中加入[這個 CSS 程式碼](https://codepen.io/gaearon/pen/oWWQNa?editors=0100)並命名為 `index.css`。
 
-5. 在 `src/` 資料夾中加入命名為 `index.js` 的檔案，用[這個JS](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)。
+5. 在 `src/` 資料夾中加入[這個 JS 程式碼](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)並命名為 `index.js` 的檔案。
 
 6. 在 `src/` 資料夾中加入這三行程式碼在 `index.js` 檔案的最上方：
 
@@ -113,15 +112,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 ```
 
-現在如果你在專案資料夾跑 `npm start` 並在瀏覽器中打開 `http://localhost:3000` ， 你會看到一個空白的圈圈叉叉遊戲格。
+現在如果你在專案資料夾執行 `npm start` 並在瀏覽器中打開 `http://localhost:3000`，你會看到一個空白的圈圈叉叉遊戲格。
 
-我們推薦你跟著 [這份指南](https://babeljs.io/docs/editors/) 去設定你的編輯器中的 syntax highlighting。
+我們推薦你跟著[這份指南](https://babeljs.io/docs/editors/)來設定你的編輯器中的語法亮高（syntax highlighting）。
 
 </details>
 
 ### 救命呀，我卡住了！ {#help-im-stuck}
 
-如果你卡住了，請看看 [社群資源](/community/support.html)。 其中 [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) 可以讓你很快得到幫助。如果沒人回你，或你還是卡住了，請填寫一個 issue，我們會提供協助。
+如果你卡住了，請參考[社群資源](/community/support.html)。其中[Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n)可以讓你很快得到幫助。如果沒人回覆，或者你依然無法解決，請填寫一個 issue，我們會提供協助。
 
 ## 概論 {#overview}
 
@@ -129,9 +128,9 @@ import './index.css';
 
 ### React 是什麼？ {#what-is-react}
 
-React 是一個宣告式、高效且很有彈性的 JavaScript 函式庫，用以建立使用者介面。它讓你用小巧而獨立，名為「components」的程式碼，建立複雜的 UI。
+React 是一個陳述式、高效且具有彈性的 JavaScript 函式庫，用以建立使用者介面。它讓你使用小巧而獨立的「component」，來建立複雜的 UI。
 
-React 有數種不同的 components，但我們先從 `React.Component` 這個 subclasses 開始：
+React 有數種不同的 component，但我們先從 `React.Component` 這個 subclass 開始：
 
 ```javascript
 class ShoppingList extends React.Component {
@@ -152,11 +151,11 @@ class ShoppingList extends React.Component {
 // Example usage: <ShoppingList name="Mark" />
 ```
 
-我們稍後會解釋那些看起來很有趣像是 XML 的 tags。 我們使用 components 告訴 React 我們想要在螢幕上看到什麼。當我們的資料改變時，React 將會很有效率地更新並 re-render 我們的 components。
+我們稍後會解釋那些看起來很有趣像是 XML 的 tag。我們使用 component 告訴 React 我們想要在螢幕上看到什麼。當我們的資料改變時，React 將會很有效率地更新並 re-render 我們的 component。
 
-在這裡，ShoppingList 是一個 **React 的 component class**，或 **React component type**。 Component 會接受名為 `props` 的參數 ( props 為 "properties" 的簡稱)，並透過 `render` 這個方法回傳一個有階層架構的 views 到螢幕上。
+在這裡，ShoppingList 是一個 **React 的 component class**，或 **React component type**。Component 會接受名為 `props` 的參數（「properties」的簡稱），並透過 `render` 這個方法回傳一個有階層架構的 view 到螢幕上。
 
-名為 `render` 的方法回傳你想在螢幕上看到的*描述（ description ）*。 React 接收這個描述並展示其結果。其中，`render` 回傳的是一個 **React 元素**，也就是一個輕量的、包含該 render 什麼的描述。大部分 React 的開發者會使用一種特殊的、名為「 JSX 」的語法，因為它讓這些架構寫起來更容易。 `<div />` 語法在 build time 時被建立為 `React.createElement('div')`。上述的例子其實也等同於以下這些程式碼：
+`render` 方法回傳你想在螢幕上看到的*描述*。React 接收這個描述並展示其結果。其中，`render` 回傳的是一個 **React element**，也就是一個 render 內容的輕量描述。大部分 React 的開發者會使用一種特殊的語法，被稱為「JSX」，因為它讓這些結構寫起來更容易。`<div />` 語法在構建時被建立為 `React.createElement('div')`。上述的例子其實也等同於以下這些程式碼：
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
@@ -167,25 +166,25 @@ return React.createElement('div', {className: 'shopping-list'},
 
 [你可以按這裡看到完整版](babel://tutorial-expanded-version)。
 
-如果你想了解更多， `createElement()` 在 [API 參考](/docs/react-api.html#createelement)中有更詳盡的解釋，但我們不會在這份指南中用到它。我們會繼續使用 JSX。
+如果你想了解更多 `createElement()`，在 [API 參考](/docs/react-api.html#createelement)中有更詳細的解釋，但我們不會在這份指南中用到它。我們會繼續使用 JSX。
 
-JSX 就跟 JavaScript ㄧ樣強大。 你可以在 JSX 中的括號中放入 *任何* JavaScript 的表達式。 每個 React 元素都是一個 JavaScript 的物件，你可以把它存在一個變數中或在你的程式中傳來傳去。
+JSX 就跟 JavaScript ㄧ樣強大。你可以在 JSX 中的括號中放入*任何* JavaScript 的表達式。每個 React element都是一個 JavaScript 的 object，你可以把它存在一個變數中或在程式中互相傳遞。
 
-上面的 `ShoppingList` component 只會 renders 內建如 `<div />` 和 `<li />` 的 DOM components。 但你也可以建立並 render 客製的 React components。例如，我們現在可以用 `<ShoppingList />` 來使用 shopping list。每個 React component 都是封裝（encapsulated）好並能獨立運作的。 React 讓你能用簡單的 components 建立複雜的 UI。
+上述的 `ShoppingList` component 只會 render 內建如 `<div />` 和 `<li />` 的 DOM component。此外，你也可以組合 render 客製的 React component。例如，我們現在可以用 `<ShoppingList />` 來使用 shopping list。每個 React component 都是封裝好並能獨立運作的。React 讓你能用簡單的 component 建立複雜的 UI。
 
 ## 檢查你的 Starter Code {#inspecting-the-starter-code}
 
-如果你打算在 **你的瀏覽器** 中練習這份指南的話，請在分頁中開啟這份程式：**[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**。如果你打算在**本地開發環境** 中練習，在你的專案資料夾中打開 `src/index.js` （你在[setup](#setup-option-2-local-development-environment)時已接觸過這個檔案）。
+如果你打算在**你的瀏覽器** 中練習這份指南的話，請在分頁中開啟這份程式：**[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**。如果你打算在**本地開發環境** 中練習，在你的專案資料夾中打開 `src/index.js`（你在 [setup](#setup-option-2-local-development-environment) 時已接觸過這個檔案）。
 
-這個 Starter Code 是我們接下來練習的基礎。我們已幫你準備好了CSS，如此一來，你只需要把注意力集中在學習 React 和完成圈圈叉叉小遊戲的程式上。
+這個 Starter Code 是我們接下來練習的基礎。我們已幫你準備好了 CSS，如此一來，你只需要把注意力集中在學習 React 和完成圈圈叉叉小遊戲的程式上。
 
-請看看其中的程式。你會注意到我們有三個 React components：
+請看看其中的程式。你會注意到我們有三個 React component：
 
 * Square
 * Board
 * Game
 
-Square component 會 renders 一個按鈕 `<button>`，而 Board 則 render 九個方格。Game component 則是 render 一個完整的遊戲格盤與 placeholder ，這些值我們稍候會修改。目前為止，沒有一個 component 是互動式的。
+Square component 會 render 一個按鈕 `<button>`，而 Board 則 render 九個方格。Game component 則是 render 一個完整的遊戲格盤與 placeholder，這些值我們稍候會修改。目前為止，沒有一個 component 是互動式的。
 
 ### 透過 Props 傳遞資料 {#passing-data-through-props}
 
@@ -224,7 +223,7 @@ class Square extends React.Component {
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
-恭喜！你剛剛已順利將把 prop 從 parent Board component 傳給 child Square component。傳遞 props (passing props）是 React 的應用程式中資訊從 parent 傳給 children 的方式。
+恭喜！你剛剛已順利將把 prop 從 parent Board component 傳給 child Square component。傳遞 props 是 React 的應用程式中資訊從 parent 傳給 children 的方式。
 
 ### 建立互動式的 Component {#making-an-interactive-component}
 
@@ -247,7 +246,7 @@ class Square extends React.Component {
 
 >注意：
 >
->為了節省空間和避免 [`this` 令人困惑的行為](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/)，我們將會在這裡以及以下的指南使用[arrow function 語法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 來寫 event handlers：
+>為了節省空間和避免 [`this` 令人困惑的行為](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/)，我們將會在這裡以及以下的指南使用 [arrow function 語法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 來寫 event handler：
 >
 >```javascript{4}
 >class Square extends React.Component {
@@ -261,9 +260,9 @@ class Square extends React.Component {
 >}
 >```
 >
->注意在 how with `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop往下傳。這個 function 只會在被點擊後觸發。 把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次 re-render 時都觸發 alert。
+>注意在 how with `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。這個 function 只會在被點擊後觸發。 把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次 re-render 時都觸發 alert。
 
-下一步，我們要讓 Square component 記得它被點擊了，並在方格中填入 X 這個記號。Components 使用 **state** 來保持記憶。
+下一步，我們要讓 Square component 記得它被點擊了，並在方格中填入 X 這個記號。Component 使用 **state** 來保持狀態。。
 
 React 的 component 可以藉由在其 constructor 中設定 `this.state` 來維持一個 state。`this.state` 對於在其被定義的 React component 中來說應該要是 private 的。 讓我們現在的 Square 的存在 `this.state`中，然後在 Square 被點擊後改變這個值：
 
@@ -290,7 +289,7 @@ class Square extends React.Component {
 
 >注意：
 >
->在 [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 中， 當你定義一個 subclass 的 constructor 時，你總是會需要呼叫 `super`。所有的 React component class ，凡是有 `constructor` 的，都應該要從呼叫 `super(props)` 開始。
+>在 [JavaScript class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 中，當你定義一個 subclass 的 constructor 時，你總是會需要呼叫 `super`。所有的 React component class，凡是有 `constructor` 的，都應該要從呼叫 `super(props)` 開始。
 
 現在我們會改變 Square 的 `render` 方法以顯示當 Square 被點擊時當下的 state 的值是什麼：
 
@@ -324,13 +323,13 @@ class Square extends React.Component {
 
 藉由從 Square 的 `render` 方法中的 `onClick` handler 呼叫 `this.setState`，我們告訴 React：當該 Square 的 `<button>` 被點擊時，要 re-render。在這個修改後， Square 的 `this.state.value` 值將會變成 `'X'` ，所以我們將會在遊戲格盤中看到 `'X'`。當你點擊任何一個方格，應該能看到 `'X'`。
 
-當你在一個 component 中呼叫 `setState` 時， React 也會自動更新其中的 child component。
+當你在一個 component 中呼叫 `setState` 時，React 也會自動更新其中的 child component。
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
 ### 開發者工具 {#developer-tools}
 
-React 在 [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) 和 [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) 中的 Devtools extension 讓你用你的瀏覽器的開發者工具檢查 React component 的樹。
+React 在 [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) 和 [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) 中的 Devtools extension 讓你用你的瀏覽器的開發者工具檢查 React component 的 tree。
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
@@ -349,7 +348,7 @@ React DevTools 讓你檢查你的 React component 中的 props 和 state。
 
 現在我們已經為我們的圈圈叉叉遊戲準備好基本的要件了。為了要做出一個完整的遊戲，我們現在需要在遊戲格盤中交互地放入 X 和 O，我們也需要決定如何分出勝負。
 
-### 把 State 向上傳 {#lifting-state-up}
+### 把 State 往上傳 {#lifting-state-up}
 
 目前，每個 Square component 都能更新這個遊戲的 state。如果要分出勝負的話，我們需要將這九個方格的值都紀錄在某個地方。
 
@@ -417,9 +416,9 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
   }
 ```
 
-一開始，我們從 Board [把 `value` 這個 prop 往下傳](#passing-data-through-props) 並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們 [根據 Square 自身的 state](#making-an-interactive-component)把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
+一開始，我們從 Board [把 `value` 這個 prop 往下傳](#passing-data-through-props) 並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們 [根據 Square 本身的 state](#making-an-interactive-component)把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
 
-我們現在又會再使用傳遞 prop 的這個機制。 我們會修改 Board 以告訴每個 Square 它現在的值（`'X'`，`'O'`， 或 `null`）該是什麼。 我們已經在 Board 的 constructor 中定義了 `squares` 這個 array，接下來我們會修改 Board 的 `renderSquare` 方法以讀取這個 array:
+我們現在又會再使用傳遞 prop 的這個機制。我們會修改 Board 以告訴每個 Square 它現在的值（`'X'`，`'O'`， 或 `null`）該是什麼。我們已經在 Board 的 constructor 中定義了 `squares` 這個 array，接下來我們會修改 Board 的 `renderSquare` 方法以讀取這個 array：
 
 ```javascript{2}
   renderSquare(i) {
@@ -429,9 +428,9 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+每個 Square 將會接收一個 `value` prop，在空的方格中，它的值會是 `'X'`、 `'O'` 或 `null`。
 
-Next, we need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
+接下來，我們需要改變當 Square 被點擊後會觸發的事件。 Board component 現在決定了哪一個方格會被填滿。We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
 
 To maintain the Board's state's privacy, we'll pass down a function from the Board to the Square. This function will get called when a Square is clicked. We'll change the `renderSquare` method in Board to:
 
