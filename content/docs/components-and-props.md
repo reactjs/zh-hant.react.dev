@@ -18,11 +18,11 @@ next: state-and-lifecycle.html
 
 Component 使你可以將 UI 拆分成獨立且可復用的程式碼，並且專注於各別程式碼的思考。本章節旨在介紹 component 的相關概念，你也可以在此參閱[詳細的 API 文件](/docs/react-component.html)。
 
-概念上來說，component 就像是 JavaScript 的函式，它接收任意的參數（稱之為「props」）並且回傳描述畫面的 React 元素。
+概念上來說，component 就像是 JavaScript 的 function，它接收任意的參數（稱之為「props」）並且回傳描述畫面的 React 元素。
 
-## Function Components 與 Class Components {#function-and-class-components}
+## Function Component 與 Class Component {#function-and-class-components}
 
-定義 component 最簡單的方法即是撰寫一個 Javascript 函式：
+定義 component 最簡單的方法即是撰寫一個 Javascript function：
 
 ```js
 function Welcome(props) {
@@ -30,7 +30,7 @@ function Welcome(props) {
 }
 ```
 
-此函式是一個符合規範的 React component，因為它接受一個「props」（指屬性 properties）物件並回傳一個 React 元素。我們稱之為 function component，因為它本身就是一個 JavaScript functions。
+此 function 是一個符合規範的 React component，因為它接受一個「props」（指屬性 properties）物件並回傳一個 React 元素。我們稱之為 function component，因為它本身就是一個 JavaScript functions。
 
 同樣的，你也可以使用 [ES6 Class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) 來定義 component：
 
@@ -46,7 +46,7 @@ class Welcome extends React.Component {
 
 我們將會在[下一個章節]((/docs/state-and-lifecycle.html))探討 class 所擁有的額外特性，但在那之前，我們會使用 function component 來保持簡潔。
 
-## Render 一個 component {#rendering-a-component}
+## Render 一個 Component {#rendering-a-component}
 
 在此之前，我們只見過這種相當於 DOM 標籤的 React 元素：
 
@@ -80,10 +80,10 @@ ReactDOM.render(
 
 讓我們來複習一下這個例子發生了什麼事：
 
-1. 我們對 `<Welcome name="Sara" />` 這個元素調用了 `ReactDOM.render()`。
+1. 我們對 `<Welcome name="Sara" />` 這個元素呼叫了 `ReactDOM.render()`。
 2. React 以 `{name: 'Sara'}` 作為 props 傳入 `Welcome` component 並呼叫。
 3. `Welcome` component 回傳了 `<h1>Hello, Sara</h1>` 元素作為返回值。
-4. React DOM 高效率的將 DOM 更新為 `<h1>Hello, Sara</h1>`。
+4. React DOM 有效的將 DOM 更新為 `<h1>Hello, Sara</h1>`。
 
 >**注意：** Component 的字首須為大寫字母
 >
@@ -91,7 +91,7 @@ ReactDOM.render(
 >
 >想要了解更多關於此慣例的原因，請參閱 [JSX In Depth](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized) 章節。
 
-## 組合 component {#composing-components}
+## 組合 Component {#composing-components}
 
 Component 可以在輸出中引用其他 component。我們可以在任何層次中抽象化相同的 component，按鈕、表單、對話框、甚至是整個畫面，在 React 應用程式中都將以 component 的方式呈現。
 
@@ -122,9 +122,9 @@ ReactDOM.render(
 
 通常來說，每個 React 應用程式都有一個最高層級的 `App` component。然而，如果你將 React 結合至現存的應用程式中，你可能需要使用像 `Button` 這樣的小型 component，並由下往上，逐步應用到畫面的最高層級。
 
-## 抽取 component {#extracting-components}
+## 抽取 Component {#extracting-components}
 
-別害怕將 component 分成更小的 component。
+別害怕將 component 拆分成更小的 component。
 
 舉例來說，我們看這個 `Comment` 的 component：
 
@@ -171,7 +171,7 @@ function Avatar(props) {
 }
 ```
 
-這個 `Avatar` 並不需知道他會被 render 在 `Comment` 中。這是為什麼我們給他一個更為一般的名字： `user` 而不是 `author`.
+這個 `Avatar` 並不需知道他會被 render 在 `Comment` 中。這是為什麼我們給他一個更為一般的名字：`user` 而不是 `author`。
 
 我們建議從 component 的角度為 props 命名，而不是它的使用情境。
 
@@ -198,7 +198,7 @@ function Comment(props) {
 }
 ```
 
-接下來，我們將 `UserInfo` component 也分離出來，它會在使用者名稱旁邊 render `Avatar` component：
+接下來，我們將 `UserInfo` component 也抽離出來，它會在使用者名稱旁邊 render `Avatar` component：
 
 ```js{3-8}
 function UserInfo(props) {
@@ -233,11 +233,11 @@ function Comment(props) {
 
 [在 CodePen 上試試看吧！](codepen://components-and-props/extracting-components-continued)
 
-在一開始，將 component 分離出來可能是一件繁重的工作，但是在較大的應用程式中，建構可復用的 component 是非常值得。以經驗來說，如果一個 UI 中有一部分會被重複使用很多次（`Button`、`Panel`、`Avatar`），或者它足夠複雜到自成一個 component（`App`、`FeedStory`、`Comment`），那它就適合被抽出作為一個可復用的 component。
+在一開始，將 component 抽離出來可能是一件繁重的工作，但是在較大的應用程式中，建構可復用的 component 是非常值得。以經驗來說，如果一個 UI 中有一部分會被重複使用很多次（`Button`、`Panel`、`Avatar`），或者它足夠複雜到自成一個 component（`App`、`FeedStory`、`Comment`），那它就適合被抽出作為一個可復用的 component。
 
-## Props 的唯獨性 {#props-are-read-only}
+## Props 是唯讀的 {#props-are-read-only}
 
-不管你使用[函式或是 Class 來宣告 component](#function-and-class-components)，都絕不能修改自己的 props。例如這個 sum 函式：
+不管你使用 [function 或是 class 來宣告 component](#function-and-class-components)，都絕不能修改自己的 props。例如這個 sum function：
 
 ```js
 function sum(a, b) {
@@ -245,9 +245,9 @@ function sum(a, b) {
 }
 ```
 
-像這樣的函式是[純函數](https://en.wikipedia.org/wiki/Pure_function)的，因為他們並沒有改變輸入，而且相同的輸入總是回傳一樣的結果。
+像這樣的 function 是 [Pure function](https://en.wikipedia.org/wiki/Pure_function) 的，因為他們並沒有改變輸入，而且相同的輸入總是回傳一樣的結果。
 
-相反地，這個函式並非純函數，因為它更改了它的參數：
+相反地，這個 function 並非 Pure function，因為它更改了它的參數：
 
 ```js
 function withdraw(account, amount) {
@@ -257,6 +257,6 @@ function withdraw(account, amount) {
 
 React 是很彈性的，但有一條嚴格的規定：
 
-**所有的 React component 都必須像純函數函式一般保護他的 props**
+**所有的 React component 都必須像 Pure function 一般保護他的 props**
 
 當然，應用程式的 UI 是動態的，而且總是隨著時間改變。在[下個章節](/docs/state-and-lifecycle.html)，我們會介紹一個新的概念「state」。State 可以在不違反上述規則的前提下，讓 React component 隨使用者操作、網路回應、或是其他方式改變輸出內容。
