@@ -16,9 +16,9 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
-Component 使你可以將 UI 拆分成獨立且可復用的程式碼，並且專注於各別程式碼的思考。本章節旨在介紹 component 的相關概念，你也可以在此參閱[詳細的 API 文件](/docs/react-component.html)。
+Component 使你可以將 UI 拆分成獨立且可複用的程式碼，並且專注於各別程式碼的思考。本章節旨在介紹 component 的相關概念，你也可以在此參閱[詳細的 API 文件](/docs/react-component.html)。
 
-概念上來說，component 就像是 JavaScript 的 function，它接收任意的參數（稱之為「props」）並且回傳描述畫面的 React 元素。
+概念上來說，component 就像是 JavaScript 的 function，它接收任意的參數（稱之為「props」）並且回傳描述畫面的 React element。
 
 ## Function Component 與 Class Component {#function-and-class-components}
 
@@ -30,7 +30,7 @@ function Welcome(props) {
 }
 ```
 
-此 function 是一個符合規範的 React component，因為它接受一個「props」（指屬性 properties）物件並回傳一個 React 元素。我們稱之為 function component，因為它本身就是一個 JavaScript functions。
+此 function 是一個符合規範的 React component，因為它接受一個「props」（指屬性 properties）物件並回傳一個 React element。我們稱之為 function component，因為它本身就是一個 JavaScript functions。
 
 同樣的，你也可以使用 [ES6 Class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) 來定義 component：
 
@@ -42,25 +42,25 @@ class Welcome extends React.Component {
 }
 ```
 
-上述兩種 component 的在 React 中是同等的。
+上述兩種 component 在 React 中是同等的。
 
 我們將會在[下一個章節]((/docs/state-and-lifecycle.html))探討 class 所擁有的額外特性，但在那之前，我們會使用 function component 來保持簡潔。
 
 ## Render 一個 Component {#rendering-a-component}
 
-在此之前，我們只見過這種相當於 DOM 標籤的 React 元素：
+在此之前，我們只見過這種相當於 DOM 標籤的 React element：
 
 ```js
 const element = <div />;
 ```
 
-不過，React 元素也可以是使用者自定義的 component：
+不過，React element 也可以是使用者自定義的 component：
 
 ```js
 const element = <Welcome name="Sara" />;
 ```
 
-當 React 元素為使用者定義的 component 時，它會將 JSX 所接收的屬性作為一個物件傳遞給 component，這一個物件被稱為「props」。
+當 React element 為使用者定義的 component 時，它會將 JSX 所接收的屬性作為一個物件傳遞給 component，這一個物件被稱為「props」。
 
 舉例來說，這段程式碼會在頁面上 render 出「Hello, Sara」：
 
@@ -80,9 +80,9 @@ ReactDOM.render(
 
 讓我們來複習一下這個例子發生了什麼事：
 
-1. 我們對 `<Welcome name="Sara" />` 這個元素呼叫了 `ReactDOM.render()`。
+1. 我們對 `<Welcome name="Sara" />` 這個 element 呼叫了 `ReactDOM.render()`。
 2. React 以 `{name: 'Sara'}` 作為 props 傳入 `Welcome` component 並呼叫。
-3. `Welcome` component 回傳了 `<h1>Hello, Sara</h1>` 元素作為返回值。
+3. `Welcome` component 回傳了 `<h1>Hello, Sara</h1>` 這個 element 作為返回值。
 4. React DOM 有效的將 DOM 更新為 `<h1>Hello, Sara</h1>`。
 
 >**注意：** Component 的字首須為大寫字母
@@ -156,7 +156,7 @@ function Comment(props) {
 
 它接受 `author` (一個物件)、`text` (一個字串)、還有 `date` (一個日期) 作為它的 props。它的作用是在一個社交網站上 render 一則評論。
 
-這個 component 可能因為太多的巢狀關係而難以更動，而且也難以復用獨立的部分。讓我們把一些 component 從中分離吧。
+這個 component 可能因為太多的巢狀關係而難以更動，而且也難以複用獨立的部分。讓我們把一些 component 從中分離吧。
 
 首先, 我們將 `Avatar` 分離出來：
 
@@ -171,7 +171,7 @@ function Avatar(props) {
 }
 ```
 
-這個 `Avatar` 並不需知道他會被 render 在 `Comment` 中。這是為什麼我們給他一個更為一般的名字：`user` 而不是 `author`。
+這個 `Avatar` 並不需知道它會被 render 在 `Comment` 中。這是為什麼我們給他一個更為一般的名字：`user` 而不是 `author`。
 
 我們建議從 component 的角度為 props 命名，而不是它的使用情境。
 
@@ -233,7 +233,7 @@ function Comment(props) {
 
 [在 CodePen 上試試看吧！](codepen://components-and-props/extracting-components-continued)
 
-在一開始，將 component 抽離出來可能是一件繁重的工作，但是在較大的應用程式中，建構可復用的 component 是非常值得。以經驗來說，如果一個 UI 中有一部分會被重複使用很多次（`Button`、`Panel`、`Avatar`），或者它足夠複雜到自成一個 component（`App`、`FeedStory`、`Comment`），那它就適合被抽出作為一個可復用的 component。
+在一開始，將 component 抽離出來可能是一件繁重的工作，但是在較大的應用程式中，建構可複用的 component 是非常值得。以經驗來說，如果一個 UI 中有一部分會被重複使用很多次（`Button`、`Panel`、`Avatar`），或者它足夠複雜到自成一個 component（`App`、`FeedStory`、`Comment`），那它就適合被抽出作為一個可複用的 component。
 
 ## Props 是唯讀的 {#props-are-read-only}
 
