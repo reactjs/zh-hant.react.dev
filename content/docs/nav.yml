@@ -18,7 +18,7 @@
     - id: rendering-elements
       title: Rendering Elements
     - id: components-and-props
-      title: 元件與 Props
+      title: Components 與 Props
     - id: state-and-lifecycle
       title: State and Lifecycle
     - id: handling-events
