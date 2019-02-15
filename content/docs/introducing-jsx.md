@@ -1,6 +1,6 @@
 ---
 id: introducing-jsx
-title:  隆重介紹 JSX
+title: 隆重介紹 JSX
 permalink: docs/introducing-jsx.html
 prev: hello-world.html
 next: rendering-elements.html
@@ -112,7 +112,7 @@ Don't put quotes around curly braces when embedding a JavaScript expression in a
 
 ### 在 JSX 中指定 Children {#specifying-children-with-jsx}
 
-就像是在 XML 之中，如果一個標籤是空白的，你可以用 `/>` 立刻關閉這個標籤。
+就像是在 XML 之中，如果一個標籤是空白的，你可以用 `/>` 立刻關閉這個標籤：
 
 ```js
 const element = <img src={user.avatarUrl} />;
@@ -139,7 +139,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-React DOM 預設會在 render 之前 [escape](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) 所有嵌入在 JSX 中的變數。這保證你永遠不會不小心注入任何不是直接寫在你的應用程式中的東西。所有變數都會在 render 之前轉為字串，這可以避免 [XSS (跨網站指令碼)](https://en.wikipedia.org/wiki/Cross-site_scripting) 攻擊。
+React DOM 預設會在 render 之前 [escape](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) 所有嵌入在 JSX 中的變數。這保證你永遠不會不小心注入任何不是直接寫在你的應用程式中的東西。所有變數都會在 render 之前轉為字串，這可以避免 [XSS（跨網站指令碼）](https://en.wikipedia.org/wiki/Cross-site_scripting)攻擊。
 
 ### JSX 表示物件 {#jsx-represents-objects}
 
@@ -182,4 +182,4 @@ const element = {
 
 >**提示:**
 >
-> 我們推薦你在編輯器中使用 ["Babel" 語法](http://babeljs.io/docs/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。這個網站使用的是一個相容的色彩主題 [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/)。
+> 我們推薦你在編輯器中使用 [「Babel」語法](http://babeljs.io/docs/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。這個網站使用的是一個相容的色彩主題 [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/)。
