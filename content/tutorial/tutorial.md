@@ -617,9 +617,9 @@ function Square(props) {
 
 ### Taking Turns {#taking-turns}
 
-We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.
+接下來，我們需要修正我們圈圈叉叉小遊戲中一個很明顯的缺陷：「O」沒辦法被放在棋盤上。
 
-We'll set the first move to be "X" by default. We can set this default by modifying the initial state in our Board constructor:
+我們會將第一步的預設值設定為「X」。我們可以透過修改 Board constructor 內最初的 state 來設定這個預設值：
 
 ```javascript{6}
 class Board extends React.Component {
@@ -632,7 +632,7 @@ class Board extends React.Component {
   }
 ```
 
-Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. We'll update the Board's `handleClick` function to flip the value of `xIsNext`:
+每當玩家做出一個動作，`xIsNext`（一個 boolean）就會被翻轉，以用來決定下ㄧ個玩家是誰，並儲存遊戲的 state。接下來，我們將更新 Board 的 `handleClick` function 以翻轉 `xIsNext` 的值：
 
 ```javascript{3,6}
   handleClick(i) {
@@ -645,17 +645,18 @@ Each time a player moves, `xIsNext` (a boolean) will be flipped to determine whi
   }
 ```
 
-With this change, "X"s and "O"s can take turns. Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
+這個改變會讓「X」和「O」輪流出現。我們也來更新一下 Board 的 `render` 中「status」的文字，讓它能顯示下ㄧ個玩家是誰：
 
 ```javascript{2}
   render() {
     const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
-      // the rest has not changed
+      // 以下不需要改變
 ```
 
-After applying these changes, you should have this Board component:
+在這些改變都完成後，你的 Board component 看起來應該會是這個樣子：
+
 
 ```javascript{6,11-16,29}
 class Board extends React.Component {
@@ -712,11 +713,11 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
 
-### Declaring a Winner {#declaring-a-winner}
+### 決定勝負 {#declaring-a-winner}
 
-Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. We can determine a winner by adding this helper function to the end of the file:
+在我們能顯示下一次輪到哪個玩家之後，我們也應該能在勝負揭曉時宣布誰是贏家，並告知玩家接下來沒有動作。我們可以在這個檔案的最後加上一個 helper function 來決定勝負：
 
 ```javascript
 function calculateWinner(squares) {
@@ -740,7 +741,7 @@ function calculateWinner(squares) {
 }
 ```
 
-We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
+我們會在 Board 的 `render` 方法中呼叫 `calculateWinner(squares)` 已確認是否有贏家產生。如果某個玩家贏了，我們可以顯示像「贏家：X」或「贏家：O」這樣的文字。接下來，讓我們把 Board 的 `render` function 中的 `status` 宣告換成以下的程式碼：
 
 ```javascript{2-8}
   render() {
@@ -756,7 +757,7 @@ We will call `calculateWinner(squares)` in the Board's `render` function to chec
       // the rest has not changed
 ```
 
-We can now change the Board's `handleClick` function to return early by ignoring a click if someone has won the game or if a Square is already filled:
+現在我們可以改變 Board 裡面的 `handleClick` function。如果勝負已經揭曉，或者某個 Square 已經被填滿了，這個 function 可以透過忽略點擊的方式來早點回傳。
 
 ```javascript{3-5}
   handleClick(i) {
@@ -772,9 +773,9 @@ We can now change the Board's `handleClick` function to return early by ignoring
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you're* probably the real winner here.
+恭喜！你現在有一個可行的圈圈叉叉小遊戲了。你也學到了 React 的基礎。所以，也許*你*才是真正的贏家。
 
 ## Adding Time Travel {#adding-time-travel}
 
