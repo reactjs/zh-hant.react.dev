@@ -575,7 +575,7 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 #### 簡化複雜功能 {#complex-features-become-simple}
 
-不可變性使得複雜的功能變得更容易實現。稍後在這份教學指南中，我們將會實現「時光旅行」（Time Travel）的功能。這個功能讓我們能回顧關關叉叉小遊戲的歷史並「跳回」之前的動作。這個功能並非只適用於遊戲 -- 復原動作與取消復原動作的功能是應用程式中很常見的需求。避免直接修改數據讓我們能將遊戲歷史先前的版本完整的保留下來，並在之後重新使用它們。
+不可變性使得複雜的功能變得更容易實現。稍後在這份教學指南中，我們將會實現「時間旅行」的功能。這個功能讓我們能回顧關關叉叉小遊戲的歷史並「跳回」之前的動作。這個功能並非只適用於遊戲 -- 復原動作與取消復原動作的功能是應用程式中很常見的需求。避免直接修改數據讓我們能將遊戲歷史先前的版本完整的保留下來，並在之後重新使用它們。
 
 #### 偵測改變 {#detecting-changes}
 
@@ -615,7 +615,7 @@ function Square(props) {
 >
 >當我們把 Square 變成 function component 的時候，我們也把 `onClick={() => this.props.onClick()}` 變成了更簡短的 `onClick={props.onClick}`（請特別注意在箭頭的*兩邊*，原本的括號現在都不見了）。在這個 class 中，我們用 arrow function 以取得 `this` 的正確值。但是在 function component 中，我們並不需要擔心 `this`。
 
-### Taking Turns {#taking-turns}
+### 輪流玩遊戲 {#taking-turns}
 
 接下來，我們需要修正我們圈圈叉叉小遊戲中一個很明顯的缺陷：「O」沒辦法被放在棋盤上。
 
@@ -777,17 +777,17 @@ function calculateWinner(squares) {
 
 恭喜！你現在有一個可行的圈圈叉叉小遊戲了。你也學到了 React 的基礎。所以，也許*你*才是真正的贏家。
 
-## Adding Time Travel {#adding-time-travel}
+## 加上時間旅行 {#adding-time-travel}
 
-As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
+作為最後的練習，讓我們試著在這個遊戲中把「回到過去的動作」變成可能。
 
-### Storing a History of Moves {#storing-a-history-of-moves}
+### 儲存歷史動作 {#storing-a-history-of-moves}
 
-If we mutated the `squares` array, implementing time travel would be very difficult.
+如果我們修改 `squares` array 的話，時間旅行將會變得非常難以實現。
 
-However, we used `slice()` to create a new copy of the `squares` array after every move, and [treated it as immutable](#why-immutability-is-important). This will allow us to store every past version of the `squares` array, and navigate between the turns that have already happened.
+然而，在每一個動作之後，我們使用了 `slice()` 來創造一個 `squares` array 的新的 copy，並[把它視為是不可變的](#why-immutability-is-important)。這讓我們能夠儲存每一個 `squares` array 過去的版本，並悠遊於這些已經發生的動作之中。
 
-We'll store the past `squares` arrays in another array called `history`. The `history` array represents all board states, from the first to the last move, and has a shape like this:
+接下來，我們將把過去的 `squares` array 們處存在另一個叫做 `history` 的 array 中。這個 `history` array 代表棋盤從第一個動作到最後一個動作所有的 state。它看起來會是這個樣子：
 
 ```javascript
 history = [
@@ -819,15 +819,15 @@ history = [
 ]
 ```
 
-Now we need to decide which component should own the `history` state.
+現在我們需要決定哪一個 component 應該擁有 `history` 的 state。
 
-### Lifting State Up, Again {#lifting-state-up-again}
+### 再一次把 State 往上傳 {#lifting-state-up-again}
 
-We'll want the top-level Game component to display a list of past moves. It will need access to the `history` to do that, so we will place the `history` state in the top-level Game component.
+我們會希望最頂層的 Game component 能展示過去一系列的動作。它需要能讀取 `history` 才能如此，所以我們會把 `history` state 放在最上層的 Game component 裡面。
 
-Placing the `history` state into the Game component lets us remove the `squares` state from its child Board component. Just like we ["lifted state up"](#lifting-state-up) from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board's data, and lets it instruct the Board to render previous turns from the `history`.
+把 `history` state 放在 Game component 裡面也讓我們能夠把 `squares` state 從它的 child Board component 中移除。如同我們把 state 從 Square component [「往上傳」](#lifting-state-up) 給 Board component ㄧ樣，我們現在也要把 state 從 Board 再度往上傳到最頂層的 Game component 中。這讓 Game component 能完全掌握 Board 的數據，並讓它能告訴 Board 何時該從 `history` 中 render 之前的動作。
 
-First, we'll set up the initial state for the Game component within its constructor:
+首先，我們會先在 Game component 的 constructor 中設定最初的 state：
 
 ```javascript{2-10}
 class Game extends React.Component {
@@ -857,13 +857,13 @@ class Game extends React.Component {
 }
 ```
 
-Next, we'll have the Board component receive `squares` and `onClick` props from the Game component. Since we now have a single click handler in Board for many Squares, we'll need to pass the location of each Square into the `onClick` handler to indicate which Square was clicked. Here are the required steps to transform the Board component:
+下一步，我們會讓 Board component 從 Game component 中接收 `squares` 和 `onClick` 這兩個 prop。因為我們現在在 Board 中有提供一個 click handler 給數個 Square 使用，我們需要把每一個 Square 的位置傳給 `onClick` handler 去告知它哪一個 Square 被點擊過了。下面是改變 Board component 的幾個步驟：
 
-* Delete the `constructor` in Board.
-* Replace `this.state.squares[i]` with `this.props.squares[i]` in Board's `renderSquare`.
-* Replace `this.handleClick(i)` with `this.props.onClick(i)` in Board's `renderSquare`.
+* 在 Board 中刪除 `constructor`。
+* 在 Board 的 `renderSquare` 裡把 `this.state.squares[i]` 換成 `this.props.squares[i]`。
+* 在 Board 的 `renderSquare` 裡把 `this.handleClick(i)` 換成 `this.props.onClick(i)`。
 
-The Board component now looks like this:
+現在，Board component 看起來是這樣：
 
 ```javascript{17,18}
 class Board extends React.Component {
@@ -921,7 +921,7 @@ class Board extends React.Component {
 }
 ```
 
-We'll update the Game component's `render` function to use the most recent history entry to determine and display the game's status:
+我們將會更新 Game component 的 `render` function 以使用歷史上最新的紀錄並顯示遊戲的狀態：
 
 ```javascript{2-11,16-19,22}
   render() {
@@ -953,7 +953,7 @@ We'll update the Game component's `render` function to use the most recent histo
   }
 ```
 
-Since the Game component is now rendering the game's status, we can remove the corresponding code from the Board's `render` method. After refactoring, the Board's `render` function looks like this:
+既然 Game component 現在能 render 遊戲的狀態，我們可以把 Board 的 `render` 中相對應的程式碼移除。在修改之後，Board 的 `render` function 看起來是這樣子：
 
 ```js{1-4}
   render() {
@@ -979,7 +979,7 @@ Since the Game component is now rendering the game's status, we can remove the c
   }
 ```
 
-Finally, we need to move the `handleClick` method from the Board component to the Game component. We also need to modify `handleClick` because the Game component's state is structured differently. Within the Game's `handleClick` method, we concatenate new history entries onto `history`.
+最後，我們需要把 `handleClick` 方法從 Board component 移到 Game component。由於 Game component 的 state 的結構不同，我們也需要修改 `handleClick`。在 Game 的 `handleClick` 方法中，我們將會把新的歷史紀錄與 `history` 串連起來。
 
 ```javascript{2-4,10-12}
   handleClick(i) {
@@ -999,13 +999,13 @@ Finally, we need to move the `handleClick` method from the Board component to th
   }
 ```
 
->Note
+>注意
 >
->Unlike the array `push()` method you might be more familiar with, the `concat()` method doesn't mutate the original array, so we prefer it.
+>`concat()`方法與你可能所熟悉的 array `push()` 方法不同，它並不會改變原本的 array，所以我們偏好這個方法。
 
-At this point, the Board component only needs the `renderSquare` and `render` methods. The game's state and the `handleClick` method should be in the Game component.
+現在，Board component 只需要 `renderSquare` 和 `render` 兩種方法。這個遊戲的 state 和 `handleClick` 方法應該要在 Game component 裡面。
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
 
 ### Showing the Past Moves {#showing-the-past-moves}
 
