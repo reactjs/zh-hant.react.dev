@@ -228,6 +228,7 @@ class Square extends React.Component {
 ### 建立互動式的 Component {#making-an-interactive-component}
 
 讓我們在點擊 Square component 時，能在方格中填入ㄧ個 X。 
+
 首先，把從 Square component 的 `render()` 中回傳的按鈕的標籤 ，修改成以下的程式：
 
 ```javascript{4}
@@ -289,7 +290,7 @@ class Square extends React.Component {
 
 >注意：
 >
->在 [JavaScript class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 中，當你定義一個 subclass 的 constructor 時，你總是會需要呼叫 `super`。所有的 React component class，凡是有 `constructor` 的，都應該要從呼叫 `super(props)` 開始。
+>在[JavaScript class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)中，當你定義一個 subclass 的 constructor 時，你總是會需要呼叫 `super`。所有的 React component class，凡是有 `constructor` 的，都應該要從呼叫 `super(props)` 開始。
 
 現在我們會改變 Square 的 `render` 方法以顯示當 Square 被點擊時當下的 state 的值是什麼：
 
@@ -321,7 +322,7 @@ class Square extends React.Component {
 }
 ```
 
-藉由從 Square 的 `render` 方法中的 `onClick` handler 呼叫 `this.setState`，我們告訴 React：當該 Square 的 `<button>` 被點擊時，要 re-render。在這個修改後， Square 的 `this.state.value` 值將會變成 `'X'` ，所以我們將會在遊戲格盤中看到 `'X'`。當你點擊任何一個方格，應該能看到 `'X'`。
+藉由從 Square 的 `render` 方法中的 `onClick` handler 呼叫 `this.setState`，我們告訴 React：當該 Square 的 `<button>` 被點擊時，要 re-render。在這個修改後，Square 的 `this.state.value` 值將會變成 `'X'`，所以我們將會在遊戲格盤中看到 `'X'`。當你點擊任何一個方格，應該能看到 `'X'`。
 
 當你在一個 component 中呼叫 `setState` 時，React 也會自動更新其中的 child component。
 
@@ -416,7 +417,7 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
   }
 ```
 
-一開始，我們從 Board [把 `value` 這個 prop 往下傳](#passing-data-through-props) 並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們 [根據 Square 本身的 state](#making-an-interactive-component)把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
+一開始，我們從 Board[把 `value` 這個 prop 往下傳](#passing-data-through-props) 並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們[根據 Square 本身的 state](#making-an-interactive-component)把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
 
 我們現在又會再使用傳遞 prop 的這個機制。我們會修改 Board 以告訴每個 Square 它現在的值（`'X'`，`'O'`， 或 `null`）該是什麼。我們已經在 Board 的 constructor 中定義了 `squares` 這個 array，接下來我們會修改 Board 的 `renderSquare` 方法以讀取這個 array：
 
@@ -540,61 +541,61 @@ class Board extends React.Component {
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-在這些修改完成後，我們現在又可以點擊 Squares 並填入內容了。然而，現在 state 是儲存在 Board component 而非個別的 Square component 中。當 Board 的 state 改變時，Square component 會自動 re-render。在 Board component 中維持所有方格的狀態能使它在未來決定勝負。
+在這些修改完成後，我們現在又可以點擊 Squares 並填入內容了。然而，現在 state 是儲存在 Board component 而非個別的 Square component 中。當 Board 的 state 改變時，Square component 會自動 re-render。在 Board component 中維持所有方格的狀態將能使它在未來決定勝負。
 
 因為 Square component 不再維持 state，Square component 從 Board component 接收 value 並在被點擊時通知 Board component 它的值。在 React 的詞彙中，Square component 現在是 **controlled components**。這意味著 Board 對其有完全的掌握。
 
 注意在 `handleClick` 中，我們呼叫 `.slice()` 以創造一個 `squares` array 的 copy 並修改它，而非直接修改現有的 array。在下一個段落，我們將會解釋為什麼我們要創造一個 `squares` array 的 copy。
 
-### Why Immutability Is Important {#why-immutability-is-important}
+### 不可變性的重要性 {#why-immutability-is-important}
 
-In the previous code example, we suggested that you use the `.slice()` operator to create a copy of the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+在上一段程式碼的範例中，我們建議你使用 `.slice()` 運算子去創造一個 `squares` array 的 copy 並修改它，而不是修改已存在的 array。現在我們來討論什麼是不可變性以及為什麼學習不可變性是很重要的。
 
-There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
+一般來說，修改數據有兩種做法。第一種方法是透過改變數據的值來直接*修改*資料。 第二種方法是改變 copy 中的數據，並用這個新的 copy 取代原本的數據。
 
-#### Data Change with Mutation {#data-change-with-mutation}
+#### 透過修改來變更數據 {#data-change-with-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 player.score = 2;
-// Now player is {score: 2, name: 'Jeff'}
+// 現在 player 是 {score: 2, name: 'Jeff'}
 ```
 
-#### Data Change without Mutation {#data-change-without-mutation}
+#### 不透過修改來變更數據 {#data-change-without-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 
 var newPlayer = Object.assign({}, player, {score: 2});
-// Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
+// 現在 player 保持不變，而 newPlayer 則是 {score: 2, name: 'Jeff'}
 
-// Or if you are using object spread syntax proposal, you can write:
+// 如果你想使用 object spread 語法的話，你可以用以下的寫法：
 // var newPlayer = {...player, score: 2};
 ```
 
-The end result is the same but by not mutating (or changing the underlying data) directly, we gain several benefits described below.
+兩者的結果是相同的，但是藉由不直接修改數據（或直接更改底層數據 data），有下列幾個優點：
 
-#### Complex Features Become Simple {#complex-features-become-simple}
+#### 簡化複雜功能 {#complex-features-become-simple}
 
-Immutability makes complex features much easier to implement. Later in this tutorial, we will implement a "time travel" feature that allows us to review the tic-tac-toe game's history and "jump back" to previous moves. This functionality isn't specific to games -- an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game's history intact, and reuse them later.
+不可變性使得複雜的功能變得更容易實現。稍後在這份教學指南中，我們將會實現「時光旅行」（Time Travel）的功能。這個功能讓我們能回顧關關叉叉小遊戲的歷史並「跳回」之前的動作。這個功能並非只適用於遊戲 -- 復原動作與取消復原動作的功能是應用程式中很常見的需求。避免直接修改數據讓我們能將遊戲歷史先前的版本完整的保留下來，並在之後重新使用它們。
 
-#### Detecting Changes {#detecting-changes}
+#### 偵測改變 {#detecting-changes}
 
-Detecting changes in mutable objects is difficult because they are modified directly. This detection requires the mutable object to be compared to previous copies of itself and the entire object tree to be traversed.
+在可變更的 object 中偵測改變是很困難的，因為這些改變是直接的。如果要偵測改變的話，我們需要比較這個可變更的 object 和它之前的 copy，並且遍歷整個 object tree。
 
-Detecting changes in immutable objects is considerably easier. If the immutable object that is being referenced is different than the previous one, then the object has changed.
+相較之下，在不可變更的 object 中偵測改變就容易多了。如果某個不可變更 object 和之前不ㄧ樣，那麼這個 object 就已經被改變了。
 
-#### Determining When to Re-render in React {#determining-when-to-re-render-in-react}
+#### 決定在 React 中該何時 Re-render {#determining-when-to-re-render-in-react}
 
-The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made which helps to determine when a component requires re-rendering.
+不可變性最主要的優點在於它幫助你在 React 中建立 _pure component_。我們能很容易決定不可變的數據中是否有任何改變，這幫助 React 決定某個 component 是否需要 re-rendering。
 
-You can learn more about `shouldComponentUpdate()` and how you can build *pure components* by reading [Optimizing Performance](/docs/optimizing-performance.html#examples).
+在[性能優化](/docs/optimizing-performance.html#examples)中，你可以知道更多關於 `shouldComponentUpdate()` 以及你如何能夠建立 *pure component*。
 
-### Function Components {#function-components}
+### Function Component {#function-components}
 
-We'll now change the Square to be a **function component**.
+現在，我們來把 Square 改成一個 **function component**。
 
-In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
+在 React 中，當我們要寫只包含 `render` 方法且沒有自己 state 的 component 時，**function component** 是一個很簡易的寫法。與其定義一個 class 並延伸 `React.Component`，我們可以寫用 `props` 作為輸入並回傳 render 的 function。相較於 class 來說，function component 寫起來比較沒有那麼乏味。許多的 component 都能以這種的形式表達。
 
-Replace the Square class with this function:
+把 Square class 換成這個 function：
 
 ```javascript
 function Square(props) {
@@ -606,13 +607,13 @@ function Square(props) {
 }
 ```
 
-We have changed `this.props` to `props` both times it appears.
+我們把出現過兩次的 `this.props` 通通換成 `props`。
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
 
->Note
+>注意
 >
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides). In a class, we used an arrow function to access the correct `this` value, but in a function component we don't need to worry about `this`.
+>當我們把 Square 變成 function component 的時候，我們也把 `onClick={() => this.props.onClick()}` 變成了更簡短的 `onClick={props.onClick}`（請特別注意在箭頭的*兩邊*，原本的括號現在都不見了）。在這個 class 中，我們用 arrow function 以取得 `this` 的正確值。但是在 function component 中，我們並不需要擔心 `this`。
 
 ### Taking Turns {#taking-turns}
 
