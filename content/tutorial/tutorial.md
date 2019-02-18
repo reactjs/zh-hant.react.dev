@@ -247,7 +247,7 @@ class Square extends React.Component {
 
 >注意：
 >
->為了節省空間和避免 [`this` 令人困惑的行為](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/)，我們將會在這裡以及以下的指南使用 [arrow function 語法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) 來寫 event handler：
+>為了節省空間和避免 [`this` 令人困惑的行為](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/)，我們將會在這裡以及以下的指南使用 [arrow function 語法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)來寫 event handler：
 >
 >```javascript{4}
 >class Square extends React.Component {
@@ -261,7 +261,7 @@ class Square extends React.Component {
 >}
 >```
 >
->請注意在 how with `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。這個 function 只會在被點擊後觸發。 把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次重新 render 時都會觸發 alert。
+>請注意在 `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。這個 function 只會在被點擊後觸發。 把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次重新 render 時都會觸發 alert。
 
 下一步，我們要讓 Square component 「記得」它被點擊了，並在方格中填入 X 這個記號。Component 使用 **state** 來保持狀態。
 
@@ -290,7 +290,7 @@ class Square extends React.Component {
 
 >注意：
 >
->在[JavaScript class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)中，當你定義一個 subclass 的 constructor 時，你總是會需要呼叫 `super`。所有的 React component class，凡是有 `constructor` 的，都應該要從呼叫 `super(props)` 開始。
+>在 [JavaScript class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) 中，當你定義一個 subclass 的 constructor 時，你總是會需要呼叫 `super`。所有的 React component class，凡是有 `constructor` 的，都應該要從呼叫 `super(props)` 開始。
 
 現在我們會改變 Square 的 `render` 方法以顯示當 Square 被點擊時當下的 state 的值是什麼：
 
@@ -417,9 +417,9 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
   }
 ```
 
-一開始，我們從 Board[把 `value` 這個 prop 往下傳](#passing-data-through-props)並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們[根據 Square 本身的 state](#making-an-interactive-component) 把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
+一開始，我們從 Board [把 `value` 這個 prop 往下傳](#passing-data-through-props)並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們[根據 Square 本身的 state](#making-an-interactive-component) 把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
 
-我們現在又會再次使用傳遞 prop 的這個機制。我們會修改 Board 以告訴每個 Square 它現在的值（`'X'`，`'O'`或 `null`）該是什麼。我們已經在 Board 的 constructor 中定義了 `squares` 這個 array，接下來，我們會修改 Board 的 `renderSquare` 方法以讀取這個 array：
+我們現在又會再次使用傳遞 prop 的這個機制。我們會修改 Board 以告訴每個 Square 它現在的值（`'X'`，`'O'` 或 `null`）該是什麼。我們已經在 Board 的 constructor 中定義了 `squares` 這個 array，接下來，我們會修改 Board 的 `renderSquare` 方法以讀取這個 array：
 
 
 ```javascript{2}
@@ -430,7 +430,7 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
-每個 Square 將會接收一個 `value` prop，在空的方格中，它的值會是`'X'`、`'O'`或 `null`。
+每個 Square 將會接收一個 `value` prop，在空的方格中，它的值會是`'X'`，`'O'` 或 `null`。
 
 接下來，我們需要改變當 Square 被點擊後會觸發的事件。Board component 現在決定了哪一個方格會被填滿。我們需要創造一個方法讓 Square 去更新 Board 的狀態。既然 state 對於定義它的 component 來說是 private 的，我們就不能直接從 Square 去更新 Board 的 state。
 
@@ -775,7 +775,7 @@ function calculateWinner(squares) {
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
 
-恭喜！你現在有一個可行的圈圈叉叉小遊戲了。你也學到了 React 的基礎。所以，也許*你*才是真正的贏家喔。
+恭喜！你現在有一個可行的圈圈叉叉小遊戲了。你也學到了 React 的基礎。所以，也許*你*才是真正的贏家。
 
 ## 加上時間旅行 {#adding-time-travel}
 
@@ -1093,7 +1093,7 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 <li>Alexa: 5 tasks left</li>
 ```
 
-除了數量的更新之外，如果讓一個人類來閱讀這個列表的話，他可你會說我們把 Alexa 和 Ben 的順序調換了，並把 Claudia 插入 Alexa 和 Ben 之中。然而，React 是一個電腦程式，它並不知道我們的意圖。正因為 React 並不知道我們的意圖，我們需要明確的為每一個列表中的東西加入一個 *key* 的屬性以確保 React 能清楚分辨每一個項目。一個可行的做法是使用 `alexa`、`ben`、`claudia` 等 string。如果我們是從數據庫來展示數據的話，Alexa、Ben 和 Claudia 的數據庫 ID 可以被用來當作 key。
+除了數量的更新之外，如果讓一個人類來閱讀這個列表的話，他可你會說我們把 Alexa 和 Ben 的順序調換了，並把 Claudia 插入 Alexa 和 Ben 之中。然而，React 是一個電腦程式，它並不知道我們的意圖。正因為 React 並不知道我們的意圖，我們需要明確的為每一個列表中的項目加入一個 *key* 的屬性，以確保 React 能清楚分辨每一個項目。一個可行的做法是使用 `alexa`、`ben`、`claudia` 等 string。如果我們是從數據庫來展示數據的話，Alexa、Ben 和 Claudia 的數據庫 ID 可以被用來當作 key。
 
 ```html
 <li key={user.id}>{user.name}: {user.taskCount} tasks left</li>
