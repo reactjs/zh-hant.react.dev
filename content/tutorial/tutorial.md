@@ -1210,24 +1210,24 @@ class Game extends React.Component {
 
 ### 總結 {#wrapping-up}
 
-恭喜！你現在已經創造了一個圈圈叉叉遊戲：
+恭喜！你現在已經創造了一個圈圈叉叉遊戲，它可以：
 
 * 讓你玩圈圈叉叉
 * 顯示哪一個玩家取得勝利
 * 在遊戲進行的同時儲存遊戲歷史
 * 讓玩家回顧遊戲的歷史，並回到棋盤之前的版本
 
-做得好！我們希望你現在覺得你對 React 的運作有一定的理解。
+做得好！希望你現在覺得你對 React 的運作有一定程度的理解。
 
 按這裡看看最終的結果：**[完成結果](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**。
 
-如果你有額外的時間或想練習你的 React 新技巧，下面是一些你可以改進圈圈叉叉小遊戲的想法，依照難易程度逐漸：
+如果你有額外的時間或想練習你的 React 新技巧，下面是一些你可以改進圈圈叉叉小遊戲的想法，依照程度逐漸增加困難度：
 
-1. Display the location for each move in the format (col, row) in the move history list.
-2. Bold the currently selected item in the move list.
-3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
-4. Add a toggle button that lets you sort the moves in either ascending or descending order.
-5. When someone wins, highlight the three squares that caused the win.
-6. When no one wins, display a message about the result being a draw.
+1. 在歷史動作列表中，用（欄，列）的格式來顯示每個動作的位置。
+2. 在動作列表中，將現在被選取的項目加粗。
+3. 改寫 Board，用兩個 loop 創造方格，而非使用 hardcode。
+4. 加上一個切換按鈕讓你可以根據動作由小到大、由大到小來排序。
+5. 當勝負揭曉時，把連成一條線的那三個方格凸顯出來。
+6. 當沒有勝負時，顯示遊戲結果為平手。
 
-Throughout this tutorial, we touched on React concepts including elements, components, props, and state. For a more detailed explanation of each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).
+在這份教學指南中，我們討論了許多 React 的概念，如元素、component、prop 和 state。如果你想更深入了解這些概念的話，請參考[接下來的官方手冊](/docs/hello-world.html)。若想深入了解如何定義 component，請看[`React.Component` API 參考指南](/docs/react-component.html)。
