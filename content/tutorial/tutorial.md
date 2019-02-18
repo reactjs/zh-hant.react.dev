@@ -587,13 +587,13 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 不可變性最主要的優點在於它幫助你在 React 中建立 _pure component_。我們能很容易決定不可變的數據中是否有任何改變，這幫助 React 決定某個 component 是否需要重新 render。
 
-在[性能優化](/docs/optimizing-performance.html#examples)中，你可以知道更多關於 `shouldComponentUpdate()` 以及你如何能夠建立 *pure component*。
+在[性能優化](/docs/optimizing-performance.html#examples)中，你可以深入了解 `shouldComponentUpdate()` 以及如何建立 *pure component*。
 
 ### Function Component {#function-components}
 
 現在，我們來把 Square 改成一個 **function component**。
 
-在 React 中，當我們要寫只包含 `render` 方法且沒有自己 state 的 component 時，**function component** 是一個很簡易的寫法。與其定義一個 class 並延伸 `React.Component`，我們可以寫用 `props` 作為輸入並回傳 render 的 function。相較於 class 來說，function component 寫起來比較沒有那麼乏味。許多的 component 都能以這種的形式表達。
+在 React 中，當我們要寫只包含 `render` 方法且沒有自己 state 的 component 時，**function component** 是一種很簡易的寫法。與其定義一個 class 並延伸 `React.Component`，我們可以寫用 `props` 作為輸入並回傳 render 的 function。相較於 class 來說，function component 寫起來比較沒有那麼乏味。許多的 component 都能以這種形式表達。
 
 把 Square class 換成這個 function：
 
@@ -613,7 +613,7 @@ function Square(props) {
 
 >注意
 >
->當我們把 Square 變成 function component 的時候，我們也把 `onClick={() => this.props.onClick()}` 變成了更簡短的 `onClick={props.onClick}`（請特別注意在箭頭的*兩側*，原本的括號現在都不見了）。在這個 class 中，我們用 arrow function 以取得 `this` 的正確值。但是在 function component 中，我們並不需要擔心 `this`。
+>當我們把 Square 變成 function component 的時候，我們也把 `onClick={() => this.props.onClick()}` 替換為更簡短的 `onClick={props.onClick}`（請特別注意在箭頭的*兩側*，原本的括號現在都不見了）。在這個 class 中，我們用 arrow function 以取得 `this` 的正確值。但是在 function component 中，我們並不需要擔心 `this` 是什麼。
 
 ### 輪流玩遊戲 {#taking-turns}
 
@@ -652,7 +652,7 @@ class Board extends React.Component {
     const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
-      // 以下不需要改變
+      // 以下不需改變
 ```
 
 在這些改變都完成後，你的 Board component 看起來應該會是這個樣子：
@@ -717,7 +717,7 @@ class Board extends React.Component {
 
 ### 決定勝負 {#declaring-a-winner}
 
-在我們能顯示下一次輪到哪個玩家之後，我們也應該能在勝負揭曉時宣布誰是贏家，並告知玩家接下來沒有動作。我們可以在這個檔案的最後加上一個 helper function 來決定勝負：
+在我們能顯示下一次輪到哪個玩家之後，我們也應該能在勝負揭曉時宣布誰是贏家，並告知玩家接下來沒有動作可出。我們可以在這個檔案的最後加上一個 helper function 來決定勝負：
 
 ```javascript
 function calculateWinner(squares) {
@@ -741,7 +741,7 @@ function calculateWinner(squares) {
 }
 ```
 
-我們會在 Board 的 `render` 方法中呼叫 `calculateWinner(squares)` 已確認是否有贏家產生。如果某個玩家贏了，我們可以顯示像「贏家：X」或「贏家：O」這樣的文字。接下來，讓我們把 Board 的 `render` function 中的 `status` 宣告換成以下的程式碼：
+我們會在 Board 的 `render` 方法中呼叫 `calculateWinner(squares)` 以確認是否有贏家產生。如果某個玩家贏了，我們可以顯示像「贏家：X」或「贏家：O」這樣的文字。接下來，讓我們把 Board 的 `render` function 中的 `status` 宣告換成以下的程式碼：
 
 ```javascript{2-8}
   render() {
@@ -754,7 +754,7 @@ function calculateWinner(squares) {
     }
 
     return (
-      // the rest has not changed
+      // 以下不需改變
 ```
 
 現在我們可以改變 Board 裡面的 `handleClick` function。如果勝負已經揭曉，或者某個 Square 已經被填滿了，這個 function 可以透過忽略點擊的方式來早點回傳。
@@ -775,7 +775,7 @@ function calculateWinner(squares) {
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
 
-恭喜！你現在有一個可行的圈圈叉叉小遊戲了。你也學到了 React 的基礎。所以，也許*你*才是真正的贏家。
+恭喜！你現在有一個可行的圈圈叉叉小遊戲了。你也學到了 React 的基礎。所以，也許*你*才是真正的贏家喔。
 
 ## 加上時間旅行 {#adding-time-travel}
 
@@ -787,11 +787,11 @@ function calculateWinner(squares) {
 
 然而，在每一個動作之後，我們使用了 `slice()` 來創造一個 `squares` array 的新的 copy，並[把它視為是不可變的](#why-immutability-is-important)。這讓我們能夠儲存每一個 `squares` array 過去的版本，並悠遊於這些已經發生的動作之中。
 
-接下來，我們將把過去的 `squares` array 們處存在另一個叫做 `history` 的 array 中。這個 `history` array 代表棋盤從第一個動作到最後一個動作所有的 state。它看起來會是這個樣子：
+接下來，我們將把過去的 `squares` array 們儲存在另一個叫做 `history` 的 array 中。這個 `history` array 代表棋盤從第一個動作到最後一個動作所有的 state。它看起來會是這個樣子：
 
 ```javascript
 history = [
-  // Before first move
+  // 第一個動作前
   {
     squares: [
       null, null, null,
@@ -799,7 +799,7 @@ history = [
       null, null, null,
     ]
   },
-  // After first move
+  // 第一個動作後
   {
     squares: [
       null, null, null,
@@ -807,7 +807,7 @@ history = [
       null, null, null,
     ]
   },
-  // After second move
+  // 第二個動作後
   {
     squares: [
       null, null, null,
@@ -823,9 +823,9 @@ history = [
 
 ### 再一次把 State 往上傳 {#lifting-state-up-again}
 
-我們會希望最頂層的 Game component 能展示過去一系列的動作。它需要能讀取 `history` 才能如此，所以我們會把 `history` state 放在最上層的 Game component 裡面。
+我們會希望最頂層的 Game component 能展示過去一系列的動作。它需要能讀取 `history` 才能做到如此，所以我們會把 `history` state 放在最上層的 Game component 裡面。
 
-把 `history` state 放在 Game component 裡面也讓我們能夠把 `squares` state 從它的 child Board component 中移除。如同我們把 state 從 Square component [「往上傳」](#lifting-state-up) 給 Board component ㄧ樣，我們現在也要把 state 從 Board 再度往上傳到最頂層的 Game component 中。這讓 Game component 能完全掌握 Board 的數據，並讓它能告訴 Board 何時該從 `history` 中 render 之前的動作。
+把 `history` state 放在 Game component 裡面也讓我們能夠把 `squares` 的 state 從它的 child Board component 中移除。如同我們把 state 從 Square component [「往上傳」](#lifting-state-up) 給 Board component ㄧ樣，我們現在也要把 state 從 Board 再度往上傳到最頂層的 Game component 中。這讓 Game component 能完全掌握 Board 的數據，並讓它能告訴 Board 何時該從 `history` 中 render 之前的動作。
 
 首先，我們會先在 Game component 的 constructor 中設定最初的 state：
 
@@ -857,7 +857,7 @@ class Game extends React.Component {
 }
 ```
 
-下一步，我們會讓 Board component 從 Game component 中接收 `squares` 和 `onClick` 這兩個 prop。因為我們現在在 Board 中有提供一個 click handler 給數個 Square 使用，我們需要把每一個 Square 的位置傳給 `onClick` handler 去告知它哪一個 Square 被點擊過了。下面是改變 Board component 的幾個步驟：
+下一步，我們會讓 Board component 從 Game component 中接收 `squares` 和 `onClick` 這兩個 prop。因為我們現在在 Board 中有提供一個 click handler 給數個 Square 使用，我們需要把每一個 Square 的位置傳給 `onClick` handler 去告知它哪一個 Square 已經被點擊過了。下面是改變 Board component 的幾個步驟：
 
 * 在 Board 中刪除 `constructor`。
 * 在 Board 的 `renderSquare` 裡把 `this.state.squares[i]` 換成 `this.props.squares[i]`。
@@ -1067,7 +1067,7 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-在圈圈叉叉小遊戲的歷史中的每個動作，我們都會創造一個列表元素 `<li>`，並在裡面加入 `<button>`。這個按鈕有一個會呼叫 `this.jumpTo()` 方法的 `onClick` handler。我們還沒實現 `jumpTo()` 方法。現在，我們應該能在開發者工作的 console 中看到一系列在遊戲中曾經發生過的動作以及一個警告：
+在圈圈叉叉小遊戲歷史中的每個動作，我們都會創造一個列表元素 `<li>`，並在裡面加入 `<button>`。這個按鈕有ㄧ個會呼叫 `this.jumpTo()` 方法的 `onClick` handler。我們還沒實現 `jumpTo()` 方法。現在，我們應該能在開發者工具的 console 中看到一系列在遊戲中曾經發生過的動作以及一個警告：
 
 >  警告：
 >  每一個 array 或 iterator 中的 child 必須要有一個獨特的「key」屬性。請參考 Game 的 render 方法。
@@ -1076,7 +1076,7 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 ### 選擇 key {#picking-a-key}
 
-當我們 render 一個列表時，React 會儲存每一個被 render 的項目的資訊。當我們更新列表時，React 需要決定什麼被改變過了。我們可以增加、移除、重新排序或更新列表中的項目。
+當我們 render 一個列表時，React 會儲存每一個被 render 的項目的資訊。當我們更新列表時，React 需要決定什麼被改變了。我們可以增加、移除、重新排序或更新列表中的項目。
 
 想像一下從這個
 
@@ -1093,19 +1093,19 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 <li>Alexa: 5 tasks left</li>
 ```
 
-除了數量的更新之外，如果讓一個人類來讀這個列表的話，他可你會說我們把 Alexa 和 Ben 的順序調換了，並把 Claudia 插入 Alexa 和 Ben 之中。然而， React 是一個電腦程式，且它不知道我們的意圖。正因為 React 並不知道我們的意圖，我們需要明確的為每一個列表中的東西加入一個 *key* 的屬性以確保 React 能清楚分辨每一個項目。一個可行的做法是使用 `alexa`、`ben`、`claudia` 等 string。如果我們是從數據庫來展示數據的話，Alexa、Ben 和 Claudia 的數據庫 ID 可以被用來當作 key。
+除了數量的更新之外，如果讓一個人類來閱讀這個列表的話，他可你會說我們把 Alexa 和 Ben 的順序調換了，並把 Claudia 插入 Alexa 和 Ben 之中。然而，React 是一個電腦程式，它並不知道我們的意圖。正因為 React 並不知道我們的意圖，我們需要明確的為每一個列表中的東西加入一個 *key* 的屬性以確保 React 能清楚分辨每一個項目。一個可行的做法是使用 `alexa`、`ben`、`claudia` 等 string。如果我們是從數據庫來展示數據的話，Alexa、Ben 和 Claudia 的數據庫 ID 可以被用來當作 key。
 
 ```html
 <li key={user.id}>{user.name}: {user.taskCount} tasks left</li>
 ```
 
-當一個列表被重新 render 的時候，React 會依據每一個列表項目的 key 搜尋前一個列表內項目相對應的 key。如果目前的列表有一個之前不存在的 key，那麼 React 就會創造一個 component。如果目前的列表缺少一個之前的列表有的 key，React 便會將上一個 component 摧毀。如果兩個 key 符合，那麼相對應的 component 就會被移動。Key 告訴 React 每個 component 的身份，這讓 React 能夠在每次的重新 render 之間維持 state。如果一個 component 的 key 改變了，那麼這個 component 就會被摧毀，再加以新的 state 重新被創造。
+當一個列表被重新 render 的時候，React 會依據每一個列表項目的 key 搜尋上一個列表內的所有項目，並尋找相對應的 key。如果目前的列表有一個之前不存在的 key，那麼 React 就會創造一個 component。如果目前的列表缺少一個之前的列表中有的 key，React 便會將上一個 component 摧毀。如果兩個 key 符合，那麼相對應的 component 就會被移動。Key 告訴 React 每個 component 的身份，這讓 React 能夠在每次重新 render 之間維持 state。如果一個 component 的 key 改變了，那麼這個 component 就會被摧毀，然後在被加上新的 state 後重新被創造。
 
-`Key` 是在 React 中一個特別的且被保留的屬性（跟 `ref` 這個比較進階的功能ㄧ樣）。當個元素被創造時，React 會取出 `key` 屬性，並直接將這個 key 儲存在回傳的元素內。雖然 `key` 可能看起來跟 `props` 很像是同類，但我們沒辦法用 `this.props.key` 來指涉 `key`。React 會自動使用 `key` 來決定哪一個 component 需要被更新。一個 component 無法得知自身的 `key` 是什麼。
+`Key` 是在 React 中一個特別的且被保留為關鍵字的屬性（跟 `ref` 這個較為進階的功能ㄧ樣）。當ㄧ個元素被創造時，React 會取出 `key` 屬性，並直接將這個 key 儲存在回傳的元素內。雖然 `key` 可能看起來跟 `props` 像是同一類的關鍵字，但我們沒辦法用 `this.props.key` 來指涉 `key`。React 會自動使用 `key` 來決定哪一個 component 需要被更新。一個 component 無法得知自身的 `key` 是什麼。
 
-**我們強力推薦你在建立動態列表時一律指定適當的 key。** 如果你沒有好好指定 key 的話，你可能要考慮重塑你數據的結構，讓你能夠使用 key。
+**我們極力推薦你在建立動態列表時一律指定適當的 key。** 如果你沒有好好指定 key 的話，你可能要考慮重塑你的數據結構，讓你能夠使用 key。
 
-如果 key 沒有被指定的話，React 會提出警告並使用 array 的索引作為 key 的預設值。但是使用 array 的索引作為 key 在重新排序一個列表中的項目或插入/移除項目時會有問題。明確的指定 `key={i}` 雖然能避開警告，卻還是會產生同樣的問題，因為在大多數的情況下，我們不建議你使用 array 的索引作為 key。
+如果 key 沒有被指定的話，React 會提出警告並使用 array 的索引作為 key 的預設值。但是使用 array 的索引作為 key 在重新排序一個列表中的項目或插入/移除項目時會有問題。明確的指定 `key={i}` 雖然能避開警告，卻還是會跟使用 array 的索引一樣產生同樣的問題。在大多數的情況下，我們不建議你這麼做。
 
 Key 不需要是全域內獨特的值。它們只需要是在 component 和它們的 sibling 間是獨特的即可。
 
@@ -1168,9 +1168,9 @@ class Game extends React.Component {
   }
 ```
 
-現在我們會在 Game 中每當一個方格被點擊就被觸發的 `handleClick` 方法中做一些修改。
+現在，我們會在 Game 中每當一個方格被點擊就被觸發的 `handleClick` 中做一些修改。
 
-我們剛剛加入的 `stepNumber` 的 state 反映了我們將會展示給玩家的動作。在我們做了一個新的動作後，我們需要將 `stepNumber: history.length` 加到 `this.setState` 的 argument 中，以更新 `stepNumber`。這確保了在新動作產生後，我們不會卡在展示一樣的動作。
+我們剛加入的 `stepNumber` 的 state 反映了我們將會展示給玩家的動作。在我們做了一個新的動作後，我們需要將 `stepNumber: history.length` 加到 `this.setState` 的 argument 中，以更新 `stepNumber`。這確保了在新動作產生後，我們不會卡在展示一樣的動作。
 
 我們也會將 `this.state.history` 換成 `this.state.history.slice(0, this.state.stepNumber + 1)`。假使我們「回到過去」的某個時刻，並做了一個跟過去不一樣的新動作，這將會確保我們會刪除從那一刻起所有屬於「未來」、但現在已不再正確的的歷史。
 
@@ -1193,7 +1193,7 @@ class Game extends React.Component {
   }
 ```
 
-最後，我們會修改 Game component 中的 `render` 方法，從總是 render最後一個動作到 render 目前根據 `stepNumber` 被選擇的動作：
+最後，我們會修改 Game component 中的 `render` 方法，從總是 render 最後一個動作，改為根據 `stepNumber` 來 render 目前正在被選取的動作：
 
 ```javascript{3}
   render() {
@@ -1217,16 +1217,16 @@ class Game extends React.Component {
 * 在遊戲進行的同時儲存遊戲歷史
 * 讓玩家回顧遊戲的歷史，並回到棋盤之前的版本
 
-做得好！希望你現在覺得你對 React 的運作有一定程度的理解。
+做得好！希望現在你覺得你對 React 的運作有相當程度的理解。
 
 按這裡看看最終的結果：**[完成結果](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**。
 
 如果你有額外的時間或想練習你的 React 新技巧，下面是一些你可以改進圈圈叉叉小遊戲的想法，依照程度逐漸增加困難度：
 
 1. 在歷史動作列表中，用（欄，列）的格式來顯示每個動作的位置。
-2. 在動作列表中，將現在被選取的項目加粗。
+2. 在動作列表中，將目前被選取的項目加粗。
 3. 改寫 Board，用兩個 loop 創造方格，而非使用 hardcode。
-4. 加上一個切換按鈕讓你可以根據動作由小到大、由大到小來排序。
+4. 加上一個切換按鈕讓你可以根據每個動作由小到大、由大到小來排序。
 5. 當勝負揭曉時，把連成一條線的那三個方格凸顯出來。
 6. 當沒有勝負時，顯示遊戲結果為平手。
 
