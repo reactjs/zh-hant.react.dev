@@ -551,7 +551,7 @@ class Board extends React.Component {
 
 在上一段程式碼的範例中，我們建議你使用 `.slice()` 運算子去創造一個 `squares` array 的 copy 並修改它，而不是修改已存在的 array。現在我們來討論什麼是不可變性以及為什麼學習不可變性是很重要的。
 
-一般來說，修改數據有兩種做法。第一種方法是透過改變數據的值來直接*修改*資料。 第二種方法是改變 copy 中的數據，並用這個新的 copy 取代原本的數據。
+一般來說，修改數據有兩種做法。第一種方法是透過改變數據的值來直接*修改*資料。第二種方法是改變 copy 中的數據，並用這個新的 copy 取代原本的數據。
 
 #### 透過修改來變更數據 {#data-change-with-mutation}
 ```javascript
@@ -585,7 +585,7 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 #### 決定在 React 中該何時 Re-render {#determining-when-to-re-render-in-react}
 
-不可變性最主要的優點在於它幫助你在 React 中建立 _pure component_。我們能很容易決定不可變的數據中是否有任何改變，這幫助 React 決定某個 component 是否需要 re-rendering。
+不可變性最主要的優點在於它幫助你在 React 中建立 _pure component_。我們能很容易決定不可變的數據中是否有任何改變，這幫助 React 決定某個 component 是否需要重新 render。
 
 在[性能優化](/docs/optimizing-performance.html#examples)中，你可以知道更多關於 `shouldComponentUpdate()` 以及你如何能夠建立 *pure component*。
 
@@ -613,7 +613,7 @@ function Square(props) {
 
 >注意
 >
->當我們把 Square 變成 function component 的時候，我們也把 `onClick={() => this.props.onClick()}` 變成了更簡短的 `onClick={props.onClick}`（請特別注意在箭頭的*兩邊*，原本的括號現在都不見了）。在這個 class 中，我們用 arrow function 以取得 `this` 的正確值。但是在 function component 中，我們並不需要擔心 `this`。
+>當我們把 Square 變成 function component 的時候，我們也把 `onClick={() => this.props.onClick()}` 變成了更簡短的 `onClick={props.onClick}`（請特別注意在箭頭的*兩側*，原本的括號現在都不見了）。在這個 class 中，我們用 arrow function 以取得 `this` 的正確值。但是在 function component 中，我們並不需要擔心 `this`。
 
 ### 輪流玩遊戲 {#taking-turns}
 
@@ -1007,22 +1007,22 @@ class Board extends React.Component {
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
 
-### Showing the Past Moves {#showing-the-past-moves}
+### 展示過去的動作 {#showing-the-past-moves}
 
-Since we are recording the tic-tac-toe game's history, we can now display it to the player as a list of past moves.
+既然我們記錄了圈圈叉叉小遊戲的歷史，我們現在可以向玩家展示過去一系列的動作。
 
-We learned earlier that React elements are first-class JavaScript objects; we can pass them around in our applications. To render multiple items in React, we can use an array of React elements.
+之前，我們學到 React 是 first-class JavaScript object。我們可以將這些 object 在我們的應用程式中傳遞。若是要在 React 中 render 數個項目，我們可以使用一個 array 的 React 元素。
 
-In JavaScript, arrays have a [`map()` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) that is commonly used for mapping data to other data, for example:
+在 JavaScript 中，array 有一個 [`map()` 方法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)常被用來對比並轉變數據，例如：
 
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 ``` 
 
-Using the `map` method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves.
+我們可以使用 `map` 方法將我們的歷史動作對比螢幕上代表按鈕的 React 元素，並展示一系列的按鈕以「跳回」過去的動作。
 
-Let's `map` over the `history` in the Game's `render` method:
+讓我們在 Game 的 `render` 方法中使用 `map` 在 `history` 上：
 
 ```javascript{6-15,34}
   render() {
@@ -1065,27 +1065,27 @@ Let's `map` over the `history` in the Game's `render` method:
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-For each move in the tic-tac-toes's game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+在圈圈叉叉小遊戲的歷史中的每個動作，我們都會創造一個列表元素 `<li>`，並在裡面加入 `<button>`。這個按鈕有一個會呼叫 `this.jumpTo()` 方法的 `onClick` handler。我們還沒實現 `jumpTo()` 方法。現在，我們應該能在開發者工作的 console 中看到一系列在遊戲中曾經發生過的動作以及一個警告：
 
->  Warning:
->  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
+>  警告：
+>  每一個 array 或 iterator 中的 child 必須要有一個獨特的「key」屬性。請參考 Game 的 render 方法。
 
-Let's discuss what the above warning means.
+我們來討論上述這個警告的意義為何。
 
-### Picking a Key {#picking-a-key}
+### 選擇 key {#picking-a-key}
 
-When we render a list, React stores some information about each rendered list item. When we update a list, React needs to determine what has changed. We could have added, removed, re-arranged, or updated the list's items.
+當我們 render 一個列表時，React 會儲存每一個被 render 的項目的資訊。當我們更新列表時，React 需要決定什麼被改變過了。我們可以增加、移除、重新排序或更新列表中的項目。
 
-Imagine transitioning from
+想像一下從這個
 
 ```html
 <li>Alexa: 7 tasks left</li>
 <li>Ben: 5 tasks left</li>
 ```
 
-to
+變成這個
 
 ```html
 <li>Ben: 9 tasks left</li>
@@ -1093,28 +1093,28 @@ to
 <li>Alexa: 5 tasks left</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that we swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what we intended. Because React cannot know our intentions, we need to specify a *key* property for each list item to differentiate each list item from its siblings. One option would be to use the strings `alexa`, `ben`, `claudia`. If we were displaying data from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+除了數量的更新之外，如果讓一個人類來讀這個列表的話，他可你會說我們把 Alexa 和 Ben 的順序調換了，並把 Claudia 插入 Alexa 和 Ben 之中。然而， React 是一個電腦程式，且它不知道我們的意圖。正因為 React 並不知道我們的意圖，我們需要明確的為每一個列表中的東西加入一個 *key* 的屬性以確保 React 能清楚分辨每一個項目。一個可行的做法是使用 `alexa`、`ben`、`claudia` 等 string。如果我們是從數據庫來展示數據的話，Alexa、Ben 和 Claudia 的數據庫 ID 可以被用來當作 key。
 
 ```html
 <li key={user.id}>{user.name}: {user.taskCount} tasks left</li>
 ```
 
-When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved. Keys tell React about the identity of each component which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
+當一個列表被重新 render 的時候，React 會依據每一個列表項目的 key 搜尋前一個列表內項目相對應的 key。如果目前的列表有一個之前不存在的 key，那麼 React 就會創造一個 component。如果目前的列表缺少一個之前的列表有的 key，React 便會將上一個 component 摧毀。如果兩個 key 符合，那麼相對應的 component 就會被移動。Key 告訴 React 每個 component 的身份，這讓 React 能夠在每次的重新 render 之間維持 state。如果一個 component 的 key 改變了，那麼這個 component 就會被摧毀，再加以新的 state 重新被創造。
 
-`key` is a special and reserved property in React (along with `ref`, a more advanced feature). When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it belongs in `props`, `key` cannot be referenced using `this.props.key`. React automatically uses `key` to decide which components to update. A component cannot inquire about its `key`.
+`Key` 是在 React 中一個特別的且被保留的屬性（跟 `ref` 這個比較進階的功能ㄧ樣）。當個元素被創造時，React 會取出 `key` 屬性，並直接將這個 key 儲存在回傳的元素內。雖然 `key` 可能看起來跟 `props` 很像是同類，但我們沒辦法用 `this.props.key` 來指涉 `key`。React 會自動使用 `key` 來決定哪一個 component 需要被更新。一個 component 無法得知自身的 `key` 是什麼。
 
-**It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
+**我們強力推薦你在建立動態列表時一律指定適當的 key。** 如果你沒有好好指定 key 的話，你可能要考慮重塑你數據的結構，讓你能夠使用 key。
 
-If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended in most cases.
+如果 key 沒有被指定的話，React 會提出警告並使用 array 的索引作為 key 的預設值。但是使用 array 的索引作為 key 在重新排序一個列表中的項目或插入/移除項目時會有問題。明確的指定 `key={i}` 雖然能避開警告，卻還是會產生同樣的問題，因為在大多數的情況下，我們不建議你使用 array 的索引作為 key。
 
-Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+Key 不需要是全域內獨特的值。它們只需要是在 component 和它們的 sibling 間是獨特的即可。
 
 
-### Implementing Time Travel {#implementing-time-travel}
+### 實現時間旅行 {#implementing-time-travel}
 
-In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+在圈圈叉叉小遊戲的歷史中，每個過去的動作都有一個獨特的 ID。這些是動作的序號。這些動作永遠不會被重新排序、刪除、或插入，所以我們可以放心使用每個動作的索引作為 key。
 
-In the Game component's `render` method, we can add the key as `<li key={move}>` and React's warning about keys should disappear:
+在 Game component 的 `render` 方法中，我們可以加入 `<li key={move}>` 作為我們的 key。如此一來 React 的警告應該就會消失了：
 
 ```js{6}
     const moves = history.map((step, move) => {
@@ -1129,11 +1129,11 @@ In the Game component's `render` method, we can add the key as `<li key={move}>`
     });
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
 
-Clicking any of the list item's buttons throws an error because the `jumpTo` method is undefined. Before we implement `jumpTo`, we'll add `stepNumber` to the Game component's state to indicate which step we're currently viewing.
+現在，當我們按列表中任何一個項目時，都會收到錯誤訊息，因為 `jumpTo` 方法還沒有被定義。在我們實現 `jumpTo` 之前，我們要先在 Game component 的 state 內加入 `stepNumber` 以指出我們現在正在看的是哪一步。
 
-First, add `stepNumber: 0` to the initial state in Game's `constructor`:
+首先，在 Game 的 `constructor` 裡面的初始 state 加入 `stepNumber: 0`：
 
 ```js{8}
 class Game extends React.Component {
@@ -1149,11 +1149,11 @@ class Game extends React.Component {
   }
 ```
 
-Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We also set `xIsNext` to true if the number that we're changing `stepNumber` to is even:
+接著，我們會定義 Game 中 `jumpTo` 這個方法以更新 `stepNumber`。如果 `stepNumber` 被改變後的值不是偶數的話，我們也會把 `xIsNext` 設定為 true：
 
 ```javascript{5-10}
   handleClick(i) {
-    // this method has not changed
+    // 這個方法不需改變
   }
 
   jumpTo(step) {
@@ -1164,15 +1164,15 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
   }
 
   render() {
-    // this method has not changed
+    // 這個方法不需改變
   }
 ```
 
-We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+現在我們會在 Game 中每當一個方格被點擊就被觸發的 `handleClick` 方法中做一些修改。
 
-The `stepNumber` state we've added reflects the move displayed to the user now. After we make a new move, we need to update `stepNumber` by adding `stepNumber: history.length` as part of the `this.setState` argument. This ensures we don't get stuck showing the same move after a new one has been made.
+我們剛剛加入的 `stepNumber` 的 state 反映了我們將會展示給玩家的動作。在我們做了一個新的動作後，我們需要將 `stepNumber: history.length` 加到 `this.setState` 的 argument 中，以更新 `stepNumber`。這確保了在新動作產生後，我們不會卡在展示一樣的動作。
 
-We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now become incorrect.
+我們也會將 `this.state.history` 換成 `this.state.history.slice(0, this.state.stepNumber + 1)`。假使我們「回到過去」的某個時刻，並做了一個跟過去不一樣的新動作，這將會確保我們會刪除從那一刻起所有屬於「未來」、但現在已不再正確的的歷史。
 
 ```javascript{2,13}
   handleClick(i) {
@@ -1193,7 +1193,7 @@ We will also replace reading `this.state.history` with `this.state.history.slice
   }
 ```
 
-Finally, we will modify the Game component's `render` method from always rendering the last move to rendering the currently selected move according to `stepNumber`:
+最後，我們會修改 Game component 中的 `render` 方法，從總是 render最後一個動作到 render 目前根據 `stepNumber` 被選擇的動作：
 
 ```javascript{3}
   render() {
@@ -1201,27 +1201,27 @@ Finally, we will modify the Game component's `render` method from always renderi
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
-    // the rest has not changed
+    // 以下不需要改變
 ```
 
-If we click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+現在，當我們點擊遊戲歷史中的任何一步，我們應該能夠立刻看到圈圈叉叉遊戲棋盤被更新，並顯示棋盤在那一步發生後的模樣。
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
+**[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
-### Wrapping Up {#wrapping-up}
+### 總結 {#wrapping-up}
 
-Congratulations! You've created a tic-tac-toe game that:
+恭喜！你現在已經創造了一個圈圈叉叉遊戲：
 
-* Lets you play tic-tac-toe,
-* Indicates when a player has won the game,
-* Stores a game's history as a game progresses,
-* Allows players to review a game's history and see previous versions of a game's board.
+* 讓你玩圈圈叉叉
+* 顯示哪一個玩家取得勝利
+* 在遊戲進行的同時儲存遊戲歷史
+* 讓玩家回顧遊戲的歷史，並回到棋盤之前的版本
 
-Nice work! We hope you now feel like you have a decent grasp on how React works.
+做得好！我們希望你現在覺得你對 React 的運作有一定的理解。
 
-Check out the final result here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
+按這裡看看最終的結果：**[完成結果](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**。
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game which are listed in order of increasing difficulty:
+如果你有額外的時間或想練習你的 React 新技巧，下面是一些你可以改進圈圈叉叉小遊戲的想法，依照難易程度逐漸：
 
 1. Display the location for each move in the format (col, row) in the move history list.
 2. Bold the currently selected item in the move list.
