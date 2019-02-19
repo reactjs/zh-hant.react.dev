@@ -16,7 +16,7 @@ next: components-and-props.html
 const element = <h1>Hello, world</h1>;
 ```
 
-與瀏覽器的 DOM element 不同，React element 是單純的 object，而且很容易的被建立。React DOM 負責更新 DOM 來符合 React element。
+與瀏覽器的 DOM element 不同，React element 是單純的 object，而且很容易被建立。React DOM 負責更新 DOM 來符合 React element。
 
 >**注意：**
 >
@@ -60,7 +60,7 @@ React element 是 [immutable](https://en.wikipedia.org/wiki/Immutable_object) �
 >
 >在實踐中，大部分 React 應用程式只呼叫 `ReactDOM.render()` 一次。在下一個章節中，我們將會學習如何將這些程式碼封裝到 [stateful component](/docs/state-and-lifecycle.html)。
 >
->我們建議你不要跳過這個主題，因為它們是彼此關聯的。
+>我們建議你不要跳著主題看，因為它們彼此間是環環相扣的。
 
 ## React 只更新必要的 Element {#react-only-updates-whats-necessary}
 
