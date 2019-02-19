@@ -138,7 +138,7 @@ const todoItems = todos.map((todo, index) =>
 
 Key 只有在周遭有 array 的情境中才有意義。
 
-例如，如果你要[提取](/docs/components-and-props.html#extracting-components)一個 `ListItem` component 的話，你應該把 key 放在 array 裡的 `<ListItem />` element 上，而不是它放在 `ListItem` 裡面的 `<li>` element 上。
+例如，如果你要[提取](/docs/components-and-props.html#extracting-components)一個 `ListItem` component 的話，你應該把 key 放在 array 裡的 `<ListItem />` element 上，而不是把它放在 `ListItem` 裡面的 `<li>` element 上。
 
 **範例：Key 的錯誤使用方式**
 
@@ -208,7 +208,7 @@ ReactDOM.render(
 
 ### Key 必須在 Sibling 中是獨特的 {#keys-must-only-be-unique-among-siblings}
 
-在 array 中使用的 key 應該要是獨特的值。然而，它們不必是在全域中獨特。當我們產生兩個不同的 array 時，我們仍然可以使用相同的 key：
+在 array 中使用的 key 應該要是獨特的值。然而，它們不必在全域中獨特。當我們產生兩個不同的 array 時，我們仍然可以使用相同的 key：
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
