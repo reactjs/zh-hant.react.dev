@@ -547,20 +547,20 @@ class Board extends React.Component {
 
 注意在 `handleClick` 中，我們呼叫 `.slice()` 以創造一個 `squares` array 的 copy 並修改它，而非直接修改現有的 array。在下一個段落，我們將會解釋為什麼我們要創造一個 `squares` array 的 copy。
 
-### 不可變性的重要性 {#why-immutability-is-important}
+### Immutability（不可變性）的重要性 {#why-immutability-is-important}
 
 在上一段程式碼的範例中，我們建議你使用 `.slice()` 運算子去創造一個 `squares` array 的 copy 並修改它，而不是修改已存在的 array。現在我們來討論什麼是不可變性以及為什麼學習不可變性是很重要的。
 
 一般來說，修改數據有兩種做法。第一種方法是透過改變數據的值來直接*修改*資料。第二種方法是改變 copy 中的數據，並用這個新的 copy 取代原本的數據。
 
-#### 透過修改來變更數據 {#data-change-with-mutation}
+#### 透過 Mutation（修改）來變更數據 {#data-change-with-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 player.score = 2;
 // 現在 player 是 {score: 2, name: 'Jeff'}
 ```
 
-#### 不透過修改來變更數據 {#data-change-without-mutation}
+#### 不透過 Mutation（修改）來變更數據 {#data-change-without-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 
