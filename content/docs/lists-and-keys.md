@@ -98,7 +98,7 @@ ReactDOM.render(
 
 ## Key {#keys}
 
-Key 幫助 React 分辨哪些項目被改變、增加或刪除。在 array 裡面的每個 element 都應該要有 Key ，如此才能給予每個 element 一個穩定的身份：
+Key 幫助 React 分辨哪些項目被改變、增加或刪除。在 array 裡面的每個 element 都應該要有一個 key ，如此才能給予每個 element 一個穩定的身份：
 
 ```js{3}
 const numbers = [1, 2, 3, 4, 5];
