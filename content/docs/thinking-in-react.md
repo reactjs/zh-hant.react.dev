@@ -12,13 +12,13 @@ prev: composition-vs-inheritance.html
 
 React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的應用程式。在這個章節中，我們會帶領你體會用 React 來建立一個可搜尋的產品數據表格的思考過程。
 
-## 從模擬開始 {#start-with-a-mock}
+## 從視覺稿開始 {#start-with-a-mock}
 
-Imagine that we already have a JSON API and a mock from our designer. The mock looks like this:
+想像一下我們已經有個 JSON API 和一個設計師給我們的產品視覺稿。這個視覺稿看起來像這樣：
 
 ![Mockup](../images/blog/thinking-in-react-mock.png)
 
-Our JSON API returns some data that looks like this:
+我們的 JSON API 則會回傳一些看起來像這樣的數據：
 
 ```
 [
@@ -31,7 +31,7 @@ Our JSON API returns some data that looks like this:
 ];
 ```
 
-## 第一步：Break The UI Into A Component Hierarchy {#step-1-break-the-ui-into-a-component-hierarchy}
+## 第一步：將 Break The UI Into A Component Hierarchy {#step-1-break-the-ui-into-a-component-hierarchy}
 
 The first thing you'll want to do is to draw boxes around every component (and subcomponent) in the mock and give them all names. If you're working with a designer, they may have already done this, so go talk to them! Their Photoshop layer names may end up being the names of your React components!
 
