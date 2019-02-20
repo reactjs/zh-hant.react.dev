@@ -179,7 +179,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               color: colors.subtleOnDark,
               paddingTop: 15,
             }}>
-            © 2018 Facebook Inc 版權所有
+            {`© ${new Date().getFullYear()} Facebook Inc 版權所有`}
           </p>
         </section>
       </div>
