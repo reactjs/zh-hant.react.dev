@@ -102,7 +102,6 @@ const element = <img src={user.avatarUrl}></img>;
 
 不要在嵌入 JavaScript expression 作為屬性的時候同時使用引號或是大括號。你應該要在使用字串屬性的時候使用引號，使用 expressions 的時候使用大括號，但不要同時使用。
 
-Don't put quotes around curly braces when embedding a JavaScript expression in an attribute. You should either use quotes (for string values) or curly braces (for expressions), but not both in the same attribute.
 
 >**注意：**
 >
