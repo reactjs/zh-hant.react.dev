@@ -9,11 +9,11 @@ class TodoApp extends React.Component {
   render() {
     return (
       <div>
-        <h3>待辦事項</h3>
+        <h3>TODO</h3>
         <TodoList items={this.state.items} />
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="new-todo">
-            有什麼要做的？
+            What needs to be done?
           </label>
           <input
             id="new-todo"
@@ -21,7 +21,7 @@ class TodoApp extends React.Component {
             value={this.state.text}
           />
           <button>
-            儲存第 {this.state.items.length + 1} 個事項
+            Add #{this.state.items.length + 1}
           </button>
         </form>
       </div>
