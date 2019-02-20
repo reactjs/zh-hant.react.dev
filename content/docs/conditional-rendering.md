@@ -1,6 +1,6 @@
 ---
 id: conditional-rendering
-title: 條件渲染
+title: 條件 rendering
 permalink: docs/conditional-rendering.html
 prev: handling-events.html
 next: lists-and-keys.html
@@ -8,9 +8,9 @@ redirect_from:
   - "tips/false-in-jsx.html"
 ---
 
-在 React 中，你可以創建不同的 component 來封裝你需要的行為。然後，你可以跟據應用程式的 state 來決定只 render 其中的一部份。
+在 React 中，你可以建立不同的 component 來封裝你需要的行為。接著，你可以根據你的應用程式的 state，來 render 其中的一部份。
 
-React 中的條件渲染跟 JavaScript 的一致。使用 JavaScript 中的運算子如 [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) 或者 [三元運算子](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 來創建表示當前 state 的 element，然後讓 React 跟據它們來更新 UI。
+React 中的條件 rendering 跟 JavaScript 一致。使用 JavaScript 中的運算子如 [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) 或者 [三元運算子](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 來建立表示當前 state 的 element，然後讓 React 根據它們來更新 UI。
 
 先看以下兩個 component：
 
@@ -24,7 +24,7 @@ function GuestGreeting(props) {
 }
 ```
 
-我們將會創建一個 `Greeting` component ，它會跟據用戶是否已登入來顯示其中之一：
+我們將會建立一個 `Greeting` component，它會根據使用者是否已登入來顯示其中之一：
 
 ```javascript{3-7,11,12}
 function Greeting(props) {
@@ -44,13 +44,13 @@ ReactDOM.render(
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
-這例子跟據`isLoggedIn` prop 的值來 render 不同的問候語。
+這範例根據`isLoggedIn` prop 的值來 render 不同的問候語。
 
 ### Element 變量 {#element-variables}
 
 你可以用變量來儲存 element，它可以幫助你有條件地 render 一部份的 component，而保持其他輸出不變。
 
-先看看以下兩個新的登出和登入按扭 component：
+思考這兩個新的登入和登出按鈕 component：
 
 ```js
 function LoginButton(props) {
@@ -70,9 +70,9 @@ function LogoutButton(props) {
 }
 ```
 
-在下列例子，我們將創建一個名為 `LoginControl` 的 [stateful component](/docs/state-and-lifecycle.html#adding-local-state-to-a-class)。
+在下列範例，我們將建立一個名為 `LoginControl` 的 [stateful component](/docs/state-and-lifecycle.html#adding-local-state-to-a-class)。
 
-它將跟據當前的 state 來 render `<LoginButton />` 或 `< LogoutButton />`。而且亦會 render 前面例子的 `<Greeting />`。
+它將根據目前的 state 來 render `<LoginButton />` 或 `< LogoutButton />`。而且也會 render 前面範例的 `<Greeting />`。
 
 ```javascript{20-25,29,30}
 class LoginControl extends React.Component {
@@ -156,7 +156,7 @@ ReactDOM.render(
 
 另一個有條件 render element 的方式是透過 JavaScript 的三元運算子 [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)。
 
-在下面的例子，我們會用它來有條件 render 一小段文字。
+在下面的範例，我們會用它來有條件 render 一小段文字。
 
 ```javascript{5}
 render() {
@@ -169,7 +169,7 @@ render() {
 }
 ```
 
-它亦可以用在較大的 expression 上，雖然不是太直觀：
+它也可以被用在較複雜的 expression 上，雖然不是太明顯：
 
 ```js{5,7,9}
 render() {
@@ -186,13 +186,13 @@ render() {
 }
 ```
 
-就跟在 JavaScript 中一樣，你可以跟據團隊習慣來選擇更合適的風格。還要記著如果條件變得過於複雜，也許是個好時機來[提取 component](docs/components-and-props.html#extracting-components) 了。
+就跟在 JavaScript 中一樣，你可以根據團隊習慣來選擇更合適的風格。還要記著如果條件變得過於複雜，也許是個好時機來[提取 component](docs/components-and-props.html#extracting-components) 了。
 
 ### 防止 component render {#preventing-component-from-rendering}
 
 在罕見的情況下，你可能希望把 component 隱藏，即使它已被其他 component render 了。回傳 `null` 而不是它 render 的輸出就可實現。
 
-在下列例子中，`<WarningBanner />` 會跟據 prop `warn` 的值來 render。若果 `warn` 是 `false`，它就不會 render 。
+在下面的範例中，`<WarningBanner />` 的 render 取決於 `warn` prop 的值。如果 prop 是 `false`，它就不會 render。
 
 ```javascript{2-4,29}
 function WarningBanner(props) {
