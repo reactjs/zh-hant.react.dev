@@ -102,7 +102,6 @@ const element = <img src={user.avatarUrl}></img>;
 
 不要在嵌入 JavaScript expression 作為屬性的時候同時使用引號或是大括號。你應該要在使用字串屬性的時候使用引號，使用 expressions 的時候使用大括號，但不要同時使用。
 
-
 >**注意：**
 >
 >由於 JSX 比較接近 JavaScript 而不是 HTML，React DOM 使用 `camelCase` 來命名屬性而不是使用慣有的 HTML 屬性名稱。
