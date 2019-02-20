@@ -48,12 +48,12 @@ ReactDOM.render(
 
 ```js{12}
 function formatName(user) {
-  return user.lastName + ' ' + user.firstName;
+  return user.firstName+ ' ' + user.lastName;
 }
 
 const user = {
-  firstName: '小明',
-  lastName: '王'
+  firstName: 'Harper',
+  lastName: 'Perez'
 };
 
 const element = (
@@ -165,7 +165,7 @@ const element = React.createElement(
 `React.createElement()` 會進行一些檢查以幫助你寫出沒有 bug 的程式，但基本上它會產生類似下面的物件：
 
 ```js
-// // 注意：這是簡化過的結構
+// 注意：這是簡化過的結構
 const element = {
   type: 'h1',
   props: {
