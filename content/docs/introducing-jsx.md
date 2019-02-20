@@ -104,7 +104,7 @@ const element = <img src={user.avatarUrl}></img>;
 
 Don't put quotes around curly braces when embedding a JavaScript expression in an attribute. You should either use quotes (for string values) or curly braces (for expressions), but not both in the same attribute.
 
->**注意:**
+>**注意：**
 >
 >由於 JSX 比較接近 JavaScript 而不是 HTML，React DOM 使用 `camelCase` 來命名屬性而不是使用慣有的 HTML 屬性名稱。
 >
@@ -135,7 +135,7 @@ const element = (
 
 ```js
 const title = response.potentiallyMaliciousInput;
-// This is safe:
+// 這是安全的：
 const element = <h1>{title}</h1>;
 ```
 
@@ -150,7 +150,7 @@ Babel 將 JSX 編譯為呼叫 `React.createElement()` 的程式。
 ```js
 const element = (
   <h1 className="greeting">
-    你好，世界!
+    Hello, World!
   </h1>
 );
 ```
@@ -159,14 +159,14 @@ const element = (
 const element = React.createElement(
   'h1',
   {className: 'greeting'},
-  '你好，世界!'
+  'Hello, World!'
 );
 ```
 
 `React.createElement()` 會進行一些檢查以幫助你寫出沒有 bug 的程式，但基本上它會產生類似下面的物件：
 
 ```js
-// Note: this structure is simplified
+// // 注意：這是簡化過的結構
 const element = {
   type: 'h1',
   props: {
@@ -180,6 +180,6 @@ const element = {
 
 我們會在下一個章節探討如何把 React element render 到 DOM 之中。
 
->**提示:**
+>**提示：**
 >
 > 我們推薦你在編輯器中使用 [「Babel」語法](http://babeljs.io/docs/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。這個網站使用的是一個相容的色彩主題 [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/)。
