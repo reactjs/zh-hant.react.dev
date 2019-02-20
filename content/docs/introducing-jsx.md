@@ -16,7 +16,7 @@ const element = <h1>你好，世界！</h1>;
 
 這個語法叫做 JSX，是一個 JavaScript 的語法擴充。我們推薦你在寫 React 的時候透過這個語法來描述使用者界面的外觀。 JSX 可能為讓你想到一些樣板語言，但不一樣的地方是 JSX 允許你使用 JavaScript 所有的功能。
 
-執行 JSX 會產生 React "element"。我們會在[下一個章節](/docs/rendering-elements.html)深入如何將這些輸出 render 到 DOM 裡頭。接下來，我們將帶您了解 JSX 的基礎。
+執行 JSX 會產生 React「element」。我們會在[下一個章節](/docs/rendering-elements.html)深入如何將這些輸出 render 到 DOM 裡頭。接下來，我們將帶您了解 JSX 的基礎。
 
 ### 為什麼要用 JSX? {#why-jsx}
 
@@ -174,7 +174,7 @@ const element = {
 };
 ```
 
-這種物件被稱呼為 "React element"。你可以想像他們描述的是你想要在螢幕上看到的東西，React 會讀取這些物件並用這些描述來產生 DOM 並保持他們在最新狀態。
+這種物件被稱呼為「React element」。你可以想像他們描述的是你想要在螢幕上看到的東西，React 會讀取這些物件並用這些描述來產生 DOM 並保持他們在最新狀態。
 
 我們會在下一個章節探討如何把 React element render 到 DOM 之中。
 
