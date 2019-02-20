@@ -1,8 +1,8 @@
 ---
-title: Component-Based
+title: 元件式開發
 order: 1
 ---
 
-Build encapsulated components that manage their own state, then compose them to make complex UIs.
+首先實作一個擁有 state 的獨立 component，然後組合他們建立複雜的使用者介面。
 
-Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.
+因為 component 的邏輯是用 JavaScript 寫的而不是使用其他樣板語言，你可以輕鬆的在你的程式中傳遞複雜的資料而不需將其藏在 DOM 之中。
