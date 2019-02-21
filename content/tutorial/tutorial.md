@@ -16,7 +16,7 @@ redirect_from:
 
 ## 在我們開始這份教學課程之前 {#before-we-start-the-tutorial}
 
-在這份學習指南中，我們會練習做一個小遊戲。**也許你會很想跳過這份指南，因為你不是遊戲開發者 -- 但請試著跟著做做看。** 在這份學習指南中，你所學到的技術是你做任何 React 應用程式的基礎，掌握基礎後會讓你對 React 有更深入的了解。
+在這份學習指南中，我們會練習做一個小遊戲。**也許你會很想跳過這份指南，因為你不是遊戲開發者 -- 但請試著跟著做做看。**在這份學習指南中，你所學到的技術是你做任何 React 應用程式的基礎，掌握基礎後會讓你對 React 有更深入的了解。
 
 >Tip
 >
@@ -41,11 +41,11 @@ redirect_from:
 
 我們建議你在往下看這份指南之前，先看看上面這個圈圈叉叉小遊戲。你會注意到遊戲格子的右邊有一個數字列表。這個列表將會列出遊戲中的所有動作的歷史，並在遊戲進行的同時更新。
 
-當你稍微了解這個圈圈叉叉小遊戲是怎麼玩的之後，你就可以把它關掉了。 在這份指南中，我們會從更簡單的模板開始。我們的下一步是進行設定以幫助你開始開發這個遊戲。
+當你稍微了解這個圈圈叉叉小遊戲是怎麼玩的之後，你就可以把它關掉了。在這份指南中，我們會從更簡單的模板開始。我們的下一步是進行設定以幫助你開始開發這個遊戲。
 
 ### 先決條件 {#prerequisites}
 
-我們假設你對 HTML 和 JavaScript 有一定的熟悉度，但即使你的背景是另一種程式語言，你應該也能游刃有餘地理解這份指南。我們也假設你對程式語言的中的某些概念，如 function、 object、array 以及（某種程度上）class，有一定的涉獵。
+我們假設你對 HTML 和 JavaScript 有一定的熟悉度，但即使你的背景是另一種程式語言，你應該也能游刃有餘地理解這份指南。我們也假設你對程式語言的中的某些概念，如 function、object、array 以及（某種程度上）class，有一定的涉獵。
 
 如果你需要複習 JavaScript，我們建議你閱讀這份[教學指南](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)。請注意我們也會用到一些 ES6，也就是 JavaScript 最新的版本之一。在這份指南中，我們將會使用 [arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)、[class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)、[`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)，和 [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) 等表達式。你也可以用 [Babel REPL](babel://es5-syntax-example) 看看 ES6 的程式碼是如何被編譯的。
 
@@ -114,7 +114,7 @@ import './index.css';
 
 現在如果你在專案資料夾執行 `npm start` 並在瀏覽器中打開 `http://localhost:3000`，你會看到一個空白的圈圈叉叉遊戲格。
 
-我們推薦你跟著[這份指南](https://babeljs.io/docs/editors/)來設定你的編輯器中的語法亮高。
+我們推薦你跟著[這份指南](https://babeljs.io/docs/editors/)來設定你的編輯器中的語法高亮。
 
 </details>
 
@@ -166,7 +166,7 @@ return React.createElement('div', {className: 'shopping-list'},
 
 [你可以按這裡看到完整版](babel://tutorial-expanded-version)
 
-如果你想了解更多 `createElement()`，在 [API 參考](/docs/react-api.html#createelement)中有更詳細的解釋，但我們不會在這份指南中用到它。我們會繼續使用 JSX。
+如果你想了解更多 `createElement()`，在 [API 參考指南](/docs/react-api.html#createelement)中有更詳細的解釋，但我們不會在這份指南中用到它。我們會繼續使用 JSX。
 
 JSX 就跟 JavaScript ㄧ樣強大。你可以在 JSX 中的括號中放入*任何* JavaScript 的表達式。每個 React element 都是一個 JavaScript 的 object，你可以把它存在一個變數中或在程式中互相傳遞。
 
@@ -227,9 +227,9 @@ class Square extends React.Component {
 
 ### 建立互動式的 Component {#making-an-interactive-component}
 
-讓我們在點擊 Square component 時，能在方格中填入ㄧ個 X。 
+讓我們在點擊 Square component 時，能在方格中填入ㄧ個 X。
 
-首先，把從 Square component 的 `render()` 中回傳的按鈕的標籤 ，修改成以下的程式：
+首先，把從 Square component 的 `render()` 中回傳的按鈕的標籤，修改成以下的程式：
 
 ```javascript{4}
 class Square extends React.Component {
@@ -261,7 +261,7 @@ class Square extends React.Component {
 >}
 >```
 >
->請注意在 `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。這個 function 只會在被點擊後觸發。 把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次重新 render 時都會觸發 alert。
+>請注意在 `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。這個 function 只會在被點擊後觸發。把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次重新 render 時都會觸發 alert。
 
 下一步，我們要讓 Square component 「記得」它被點擊了，並在方格中填入 X 這個記號。Component 使用 **state** 來保持狀態。
 
@@ -547,20 +547,20 @@ class Board extends React.Component {
 
 注意在 `handleClick` 中，我們呼叫 `.slice()` 以創造一個 `squares` array 的 copy 並修改它，而非直接修改現有的 array。在下一個段落，我們將會解釋為什麼我們要創造一個 `squares` array 的 copy。
 
-### 不可變性的重要性 {#why-immutability-is-important}
+### Immutability（不可變性）的重要性 {#why-immutability-is-important}
 
 在上一段程式碼的範例中，我們建議你使用 `.slice()` 運算子去創造一個 `squares` array 的 copy 並修改它，而不是修改已存在的 array。現在我們來討論什麼是不可變性以及為什麼學習不可變性是很重要的。
 
 一般來說，修改數據有兩種做法。第一種方法是透過改變數據的值來直接*修改*資料。第二種方法是改變 copy 中的數據，並用這個新的 copy 取代原本的數據。
 
-#### 透過修改來變更數據 {#data-change-with-mutation}
+#### 透過 Mutation（修改）來變更數據 {#data-change-with-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 player.score = 2;
 // 現在 player 是 {score: 2, name: 'Jeff'}
 ```
 
-#### 不透過修改來變更數據 {#data-change-without-mutation}
+#### 不透過 Mutation（修改）來變更數據 {#data-change-without-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 
@@ -825,7 +825,7 @@ history = [
 
 我們會希望最頂層的 Game component 能展示過去一系列的動作。它需要能讀取 `history` 才能做到如此，所以我們會把 `history` state 放在最上層的 Game component 裡面。
 
-把 `history` state 放在 Game component 裡面也讓我們能夠把 `squares` 的 state 從它的 child Board component 中移除。如同我們把 state 從 Square component [「往上傳」](#lifting-state-up) 給 Board component ㄧ樣，我們現在也要把 state 從 Board 再度往上傳到最頂層的 Game component 中。這讓 Game component 能完全掌握 Board 的數據，並讓它能告訴 Board 何時該從 `history` 中 render 之前的動作。
+把 `history` state 放在 Game component 裡面也讓我們能夠把 `squares` 的 state 從它的 child Board component 中移除。如同我們把 state 從 Square component [「往上傳」](#lifting-state-up)給 Board component ㄧ樣，我們現在也要把 state 從 Board 再度往上傳到最頂層的 Game component 中。這讓 Game component 能完全掌握 Board 的數據，並讓它能告訴 Board 何時該從 `history` 中 render 之前的動作。
 
 首先，我們會先在 Game component 的 constructor 中設定最初的 state：
 
@@ -1225,7 +1225,7 @@ class Game extends React.Component {
 
 1. 在歷史動作列表中，用（欄，列）的格式來顯示每個動作的位置。
 2. 在動作列表中，將目前被選取的項目加粗。
-3. 改寫 Board，用兩個 loop 創造方格，而非使用 hardcode。
+3. 改寫 Board，使用兩個 loop 創造方格而不是寫死它。
 4. 加上一個切換按鈕讓你可以根據每個動作由小到大、由大到小來排序。
 5. 當勝負揭曉時，把連成一條線的那三個方格凸顯出來。
 6. 當沒有勝負時，顯示遊戲結果為平手。

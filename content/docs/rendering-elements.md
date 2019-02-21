@@ -1,6 +1,6 @@
 ---
 id: rendering-elements
-title: Rendering Elements
+title: Render Element
 permalink: docs/rendering-elements.html
 redirect_from:
   - "docs/displaying-data.html"
@@ -8,68 +8,68 @@ prev: introducing-jsx.html
 next: components-and-props.html
 ---
 
-Elements are the smallest building blocks of React apps.
+建立 React 應用程式最小的單位是 element。
 
-An element describes what you want to see on the screen:
+一個 element 描述你想要在螢幕上所看到的：
 
 ```js
 const element = <h1>Hello, world</h1>;
 ```
 
-Unlike browser DOM elements, React elements are plain objects, and are cheap to create. React DOM takes care of updating the DOM to match the React elements.
+與瀏覽器的 DOM element 不同，React element 是單純的 object，而且很容易被建立。React DOM 負責更新 DOM 來符合 React element。
 
->**Note:**
+>**注意：**
 >
->One might confuse elements with a more widely known concept of "components". We will introduce components in the [next section](/docs/components-and-props.html). Elements are what components are "made of", and we encourage you to read this section before jumping ahead.
+>大家可能會將 element 與更廣為人知的「component」概念混淆。我們將會在[下一個章節](/docs/components-and-props.html)介紹 component。Element 是由 component 所「組成」的，我們建議你在開始之前閱讀本章節。
 
-## Rendering an Element into the DOM {#rendering-an-element-into-the-dom}
+## Render Element 到 DOM 內 {#rendering-an-element-into-the-dom}
 
-Let's say there is a `<div>` somewhere in your HTML file:
+假設你的 HTML 檔案內有一個 `<div>`：
 
 ```html
 <div id="root"></div>
 ```
 
-We call this a "root" DOM node because everything inside it will be managed by React DOM.
+我們稱為這是一個「root」DOM node，因為所有在內的 element 都會透過 React DOM 做管理。
 
-Applications built with just React usually have a single root DOM node. If you are integrating React into an existing app, you may have as many isolated root DOM nodes as you like.
+使用 React 建立應用程式時，通常會有一個單一的 root DOM node。如果你想要整合 React 到現有的應用程式時，你可以根據你的需求獨立出多個 root DOM node。
 
-To render a React element into a root DOM node, pass both to `ReactDOM.render()`:
+如果要 render 一個 React element 到 root DOM node，傳入兩者到 `ReactDOM.render()`：
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+[**在 CodePen 上試試看吧！**](codepen://rendering-elements/render-an-element)
 
-It displays "Hello, world" on the page.
+在網頁上你會看見顯示「Hello, world」。
 
-## Updating the Rendered Element {#updating-the-rendered-element}
+## 更新被 Render 的 Element {#updating-the-rendered-element}
 
-React elements are [immutable](https://en.wikipedia.org/wiki/Immutable_object). Once you create an element, you can't change its children or attributes. An element is like a single frame in a movie: it represents the UI at a certain point in time.
+React element 是 [immutable](https://en.wikipedia.org/wiki/Immutable_object) 的。一旦你建立一個 element，你不能改變它的 children 或是 attribute。Element 就像是電影中的一個幀：它代表特定時間點的 UI。
 
-With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `ReactDOM.render()`.
+憑藉我們迄今為止對 React 的認識，更新 UI 唯一的方式是建立一個新的 element，並且將它傳入到 `ReactDOM.render()`。
 
-Consider this ticking clock example:
+思考以下這個 ticking clock 的範例：
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+[**在 CodePen 上試試看吧！**](codepen://rendering-elements/update-rendered-element)
 
-It calls `ReactDOM.render()` every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+它從 [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback 每秒呼叫 `ReactDOM.render()`。
 
->**Note:**
+>**注意：**
 >
->In practice, most React apps only call `ReactDOM.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>在實踐中，大部分 React 應用程式只呼叫 `ReactDOM.render()` 一次。在下一個章節中，我們將會學習如何將這些程式碼封裝到 [stateful component](/docs/state-and-lifecycle.html)。
 >
->We recommend that you don't skip topics because they build on each other.
+>我們建議你不要跳著主題看，因為它們彼此間是環環相扣的。
 
-## React Only Updates What's Necessary {#react-only-updates-whats-necessary}
+## React 只更新必要的 Element {#react-only-updates-whats-necessary}
 
-React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
+React DOM 會將 element 和它的 children 與先前的狀態做比較，並且只更新必要的 DOM 達到理想的狀態。
 
-You can verify by inspecting the [last example](codepen://rendering-elements/update-rendered-element) with the browser tools:
+你可以透過瀏覽器工具來檢測[最後一個範例](codepen://rendering-elements/update-rendered-element)做驗證：
 
 ![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
 
-Even though we create an element describing the whole UI tree on every tick, only the text node whose contents has changed gets updated by React DOM.
+即使我們在每秒建立一個 element 描述整個 UI tree，只有內容更改的 text node 才會被 React DOM 更新。
 
-In our experience, thinking about how the UI should look at any given moment rather than how to change it over time eliminates a whole class of bugs.
+根據我們的經驗，應該思考 UI 在任何時候應該如何呈現，而不是隨著時間的推移去消除錯誤。
