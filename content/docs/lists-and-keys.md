@@ -22,7 +22,7 @@ console.log(doubled);
 
 ### Render 多個 Component {#rendering-multiple-components}
 
-你可以建立一系列的 element 並用括號 `{}` [將它們包含在JSX裡面](/docs/introducing-jsx.html#embedding-expressions-in-jsx)。
+你可以建立一系列的 element 並用大括號 `{}` [將它們包含在JSX裡面](/docs/introducing-jsx.html#embedding-expressions-in-jsx)。
 
 下面，我們會用 JavaScript [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 的 function 將 `numbers` 這個 array 裡的每個項目跑過一遍。每一個項目，我們會回傳一個 `<li>` element。最後，我們會把結果產生的 element array 設定為 `listItems`:
 
@@ -98,7 +98,7 @@ ReactDOM.render(
 
 ## Key {#keys}
 
-Key 幫助 React 分辨哪些項目被改變、增加或刪除。在 array 裡面的每個 element 都應該要有一個 key ，如此才能給予每個 element 一個穩定的身份：
+Key 幫助 React 分辨哪些項目被改變、增加或刪除。在 array 裡面的每個 element 都應該要有一個 key，如此才能給予每個 element 一個穩定的身份：
 
 ```js{3}
 const numbers = [1, 2, 3, 4, 5];
@@ -280,7 +280,7 @@ function NumberList(props) {
 }
 ```
 
-JSX 讓你在括號中[嵌入任何表達式](/docs/introducing-jsx.html#embedding-expressions-in-jsx)，所以我們能夠 inline `map()` 的結果：
+JSX 讓你在大括號中[嵌入任何表達式](/docs/introducing-jsx.html#embedding-expressions-in-jsx)，所以我們能夠 inline `map()` 的結果：
 
 ```js{5-8}
 function NumberList(props) {
