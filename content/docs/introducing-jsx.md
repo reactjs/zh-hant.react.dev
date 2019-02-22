@@ -22,7 +22,7 @@ const element = <h1>你好，世界！</h1>;
 
 React 擁抱了 render 邏輯從根本上就得跟其他 UI 邏輯綁在一起的事實：事件要怎麼處理？隨著時間經過 state 會如何變化？以及要怎麼將資料準備好用於顯示？
 
-與其刻意的將*技術*拆開，把標籤語法跟邏輯拆放於不同檔案之中，React [將*焦點*分散](https://en.wikipedia.org/wiki/Separation_of_concerns)的方法是將其拆分為很多同時包含 UI 與邏輯的 component，而彼此之間很少互相依賴。我們會在[之後的章節](/docs/components-and-props.html)中回來探討 component 這個主題，但如果你還沒被說服接受將標籤語法寫在 JS 裡頭，[這個演講](https://www.youtube.com/watch?v=x7cQ3mrcKaY)或許會說服你。
+與其刻意的將*技術*拆開，把標籤語法跟邏輯拆放於不同檔案之中，React [*關注點分離*](https://en.wikipedia.org/wiki/Separation_of_concerns)的方法是將其拆分為很多同時包含 UI 與邏輯的 component，而彼此之間很少互相依賴。我們會在[之後的章節](/docs/components-and-props.html)中回來探討 component 這個主題，但如果你還沒被說服接受將標籤語法寫在 JS 裡頭，[這個演講](https://www.youtube.com/watch?v=x7cQ3mrcKaY)或許會說服你。
 
 React [並不要求](/docs/react-without-jsx.html)使用 JSX，但大部分人覺得在 JavaScript 程式碼中撰寫使用者界面的同時，這是一個很好的視覺輔助。這也允許 React 顯示更有用的錯誤及警告訊息。
 

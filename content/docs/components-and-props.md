@@ -122,7 +122,7 @@ ReactDOM.render(
 
 通常來說，每個 React 應用程式都有一個最高層級的 `App` component。然而，如果你將 React 結合至現存的應用程式中，你可能需要使用像 `Button` 這樣的小型 component，並由下往上，逐步應用到畫面的最高層級。
 
-## 抽取 Component {#extracting-components}
+## 抽離 Component {#extracting-components}
 
 別害怕將 component 拆分成更小的 component。
 
