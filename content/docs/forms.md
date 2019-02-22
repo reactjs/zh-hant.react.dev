@@ -1,6 +1,6 @@
 ---
 id: forms
-title: Forms
+title: 表格
 permalink: docs/forms.html
 prev: lists-and-keys.html
 next: lifting-state-up.html
