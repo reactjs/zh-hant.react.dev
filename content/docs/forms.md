@@ -191,19 +191,19 @@ class FlavorForm extends React.Component {
 ><select multiple={true} value={['B', 'C']}>
 >```
 
-## The file input Tag {#the-file-input-tag}
+## 檔案 input 標籤 {#the-file-input-tag}
 
-In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+在 HTML 中，`<input type="file">` 讓使用者從他們的儲存裝置中選擇一個至多個檔案，並把它們上傳到伺服器或透過 [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) 被 JavaScript 處理。
 
 ```html
 <input type="file" />
 ```
 
-Because its value is read-only, it is an **uncontrolled** component in React. It is discussed together with other uncontrolled components [later in the documentation](/docs/uncontrolled-components.html#the-file-input-tag).
+由於它的值是唯讀，它在 React 中是一個 **uncontrolled** component。[在稍後的文件中](/docs/uncontrolled-components.html#the-file-input-tag)有其他關於它和其他 uncontrolled component 的討論。
 
-## Handling Multiple Inputs {#handling-multiple-inputs}
+## 處理多個輸入 {#handling-multiple-inputs}
 
-When you need to handle multiple controlled `input` elements, you can add a `name` attribute to each element and let the handler function choose what to do based on the value of `event.target.name`.
+當你需要處理多個 controlled `input` element，你可以在每個 element 中加入一個 `name` attribute，並讓 handler function 選擇基於 `event.target.name` 的值該怎麼做：
 
 For example:
 
@@ -257,7 +257,7 @@ class Reservation extends React.Component {
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
-Note how we used the ES6 [computed property name](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) syntax to update the state key corresponding to the given input name:
+注意我們使用了 ES6 的 [computed property name](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) 語法來更新與輸入中的 name 相對應的 state key：
 
 ```js{2}
 this.setState({
@@ -265,7 +265,7 @@ this.setState({
 });
 ```
 
-It is equivalent to this ES5 code:
+這和下面的 ES5 程式碼是ㄧ樣的：
 
 ```js{2}
 var partialState = {};
@@ -273,13 +273,13 @@ partialState[name] = value;
 this.setState(partialState);
 ```
 
-Also, since `setState()` automatically [merges a partial state into the current state](/docs/state-and-lifecycle.html#state-updates-are-merged), we only needed to call it with the changed parts.
+此外，由於 `setState()` 自動 [merge 一部分的 state 和現在的 state](/docs/state-and-lifecycle.html#state-updates-are-merged)，我們只需要在有改變的地方呼叫它即可。
 
-## Controlled Input Null Value {#controlled-input-null-value}
+## Controlled 輸入值為 Null {#controlled-input-null-value}
 
-Specifying the value prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
+在一個 [controlled component](/docs/forms.html#controlled-components) 上指明 value prop 可避免使用者改變輸入，除非你希望使用者這樣做。如果你已經指明了 `value` 但輸入仍然是可以被修改的，你很可能是不小心將 `value` 的值設定為 `undefined` 或 `null`。
 
-The following code demonstrates this. (The input is locked at first but becomes editable after a short delay.)
+下面的程式碼就是一個範例。（輸入原先是被鎖住的，但在短暫的延遲後，變得可以被修改了。）
 
 ```javascript
 ReactDOM.render(<input value="hi" />, mountNode);
@@ -290,10 +290,10 @@ setTimeout(function() {
 
 ```
 
-## Alternatives to Controlled Components {#alternatives-to-controlled-components}
+## Controlled component 的替代方案 {#alternatives-to-controlled-components}
 
-It can sometimes be tedious to use controlled components, because you need to write an event handler for every way your data can change and pipe all of the input state through a React component. This can become particularly annoying when you are converting a preexisting codebase to React, or integrating a React application with a non-React library. In these situations, you might want to check out [uncontrolled components](/docs/uncontrolled-components.html), an alternative technique for implementing input forms.
+有時候使用 controlled component 是很乏味的，因為你需要為每一個資訊可以改變的方式寫一個 event handler，並將所有的輸入 state 透過一個 React component 來傳遞。這在你將一個舊的程式庫改寫成 React 時或將一個 React 的應用程式與一個非 React 的函式庫整合時會變得特別麻煩。在這種情況中，你也許會想參考 uncontrolled component](/docs/uncontrolled-components.html)，也就是另一種取代輸入表格的方式。
 
-## Fully-Fledged Solutions {#fully-fledged-solutions}
+## 成熟的解決方案 {#fully-fledged-solutions}
 
-If you're looking for a complete solution including validation, keeping track of the visited fields, and handling form submission, [Formik](https://jaredpalmer.com/formik) is one of the popular choices. However, it is built on the same principles of controlled components and managing state — so don't neglect to learn them.
+如果你想找出一個完整的、包含驗證、可追蹤 visited field 並能處理遞交表格等功能的解決方案，[Formik](https://jaredpalmer.com/formik) 是一個很熱門的選擇。然而，它是在與 controlled component 和維持 state 相同的原則上所建立的，所以別忘了學習它。
