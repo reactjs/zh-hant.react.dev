@@ -227,9 +227,14 @@ class Square extends React.Component {
 
 ### 建立互動式的 Component {#making-an-interactive-component}
 
+<<<<<<< HEAD
 讓我們在點擊 Square component 時，能在方格中填入ㄧ個 X。
 
 首先，把從 Square component 的 `render()` 中回傳的按鈕的標籤，修改成以下的程式：
+=======
+Let's fill the Square component with an "X" when we click it.
+First, change the button tag that is returned from the Square component's `render()` function to this:
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ```javascript{4}
 class Square extends React.Component {
@@ -1018,7 +1023,7 @@ class Board extends React.Component {
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
-``` 
+```
 
 我們可以使用 `map` 方法將我們的歷史動作對比螢幕上代表按鈕的 React element，並展示一系列的按鈕以「跳回」過去的動作。
 
