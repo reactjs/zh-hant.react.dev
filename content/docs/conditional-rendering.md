@@ -44,7 +44,7 @@ ReactDOM.render(
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
-這範例根據`isLoggedIn` prop 的值來 render 不同的問候語。
+這範例根據 `isLoggedIn` prop 的值來 render 不同的問候語。
 
 ### Element 變量 {#element-variables}
 
