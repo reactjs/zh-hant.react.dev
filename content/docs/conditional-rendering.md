@@ -120,7 +120,7 @@ ReactDOM.render(
 
 雖然宣告變量並使用 `if` 語句來有條件 render component 是一個不錯的方式，但有時你也想使用更簡潔的語法。在 JSX 中有以下幾種方法：
 
-### Inline If 跟邏輯 && 運算子 {#inline-if-with-logical--operator}
+### Inline If 與 && 邏輯運算子 {#inline-if-with-logical--operator}
 
 你可以通過大括號[在 JSX 中嵌入任何的 expression](/docs/introducing-jsx.html#embedding-expressions-in-jsx)，包括 JavaScript 的邏輯 `&&` 運算子，可以方便地有條件地 render element。
 
