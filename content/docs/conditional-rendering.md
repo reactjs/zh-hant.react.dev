@@ -186,7 +186,7 @@ render() {
 }
 ```
 
-就跟在 JavaScript 中一樣，你可以根據團隊習慣來選擇更合適的風格。還要記著如果條件變得過於複雜，也許是個好時機來[提取 component](docs/components-and-props.html#extracting-components) 了。
+就跟在 JavaScript 中一樣，你可以根據團隊習慣來選擇更合適的風格。還要記著如果條件變得過於複雜，也許是個好時機來[抽離 component](docs/components-and-props.html#extracting-components) 了。
 
 ### 防止 component render {#preventing-component-from-rendering}
 
