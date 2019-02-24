@@ -122,7 +122,7 @@ ReactDOM.render(
 
 ### Inline If 與 && 邏輯運算子 {#inline-if-with-logical--operator}
 
-你可以通過大括號[在 JSX 中嵌入任何的 expression](/docs/introducing-jsx.html#embedding-expressions-in-jsx)，包括 JavaScript 的邏輯 `&&` 運算子，可以方便地有條件地 render element。
+你可以透過大括號[在 JSX 中嵌入任何的表達式](/docs/introducing-jsx.html#embedding-expressions-in-jsx)，包括 JavaScript 的 `&&` 邏輯運算子，可以方便 render 有條件的 element：
 
 ```js{6-10}
 function Mailbox(props) {
