@@ -152,7 +152,7 @@ ReactDOM.render(
 
 所以，當條件為 `true` 時，`&&` 右側的 element 會出現在輸出中，如果是 `false`，React 會忽略並跳過它。
 
-### Inline If-Else 跟三元運算子 {#inline-if-else-with-conditional-operator}
+### Inline If-Else 與三元運算子 {#inline-if-else-with-conditional-operator}
 
 另一個有條件 render element 的方式是透過 JavaScript 的三元運算子 [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)。
 
