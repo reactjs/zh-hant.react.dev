@@ -70,11 +70,7 @@ ReactDOM.render(
 
 [](codepen://introducing-jsx)
 
-<<<<<<< HEAD
 為了方便閱讀，我們將 JSX 拆成很多行表達。雖然這並不需要，我們建議將多行 JSX 包在括號中來避免遇到[自動分號補足](http://stackoverflow.com/q/2846283)的麻煩。
-=======
-We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](https://stackoverflow.com/q/2846283).
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ### JSX 本身也是 Expression {#jsx-is-an-expression-too}
 
@@ -141,11 +137,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-<<<<<<< HEAD
 React DOM 預設會在 render 之前 [escape](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) 所有嵌入在 JSX 中的變數。這保證你永遠不會不小心注入任何不是直接寫在你的應用程式中的東西。所有變數都會在 render 之前轉為字串，這可以避免 [XSS（跨網站指令碼）](https://en.wikipedia.org/wiki/Cross-site_scripting)攻擊。
-=======
-By default, React DOM [escapes](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ### JSX 表示物件 {#jsx-represents-objects}
 
@@ -188,8 +180,4 @@ const element = {
 
 >**提示：**
 >
-<<<<<<< HEAD
-> 我們推薦你在編輯器中使用 [「Babel」語法](http://babeljs.io/docs/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。這個網站使用的是一個相容的色彩主題 [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/)。
-=======
->We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+>我們推薦你在編輯器中使用 [「Babel」語法](http://babeljs.io/docs/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。這個網站使用的是一個相容的色彩主題 [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/)。

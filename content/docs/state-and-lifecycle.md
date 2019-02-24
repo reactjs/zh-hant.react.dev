@@ -29,11 +29,7 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-<<<<<<< HEAD
 [**在 CodePen 上試試看吧！**](http://codepen.io/gaearon/pen/gwoJZk?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwoJZk?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 在這個章節中，我們將會學習如何封裝 `Clock` component 讓它可以真正的被重複使用。它將會設定本身的 timer 並且每秒更新一次。
 
@@ -59,11 +55,7 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-<<<<<<< HEAD
-[**在 CodePen 上試試看吧！**](http://codepen.io/gaearon/pen/dpdoYR?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/dpdoYR?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/dpdoYR?editors=0010)
 
 然而，它缺少了一個重要的需求：`Clock` 設定 timer 並在每秒更新 UI 應該是 `Clock` 實作的細節的事實。
 
@@ -109,11 +101,7 @@ class Clock extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
-[**在 CodePen 上試試看吧！**](http://codepen.io/gaearon/pen/zKRGpo?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRGpo?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/zKRGpo?editors=0010)
 
 `Clock` 現在被定義成 class 而不是 function。
 
@@ -205,11 +193,7 @@ ReactDOM.render(
 );
 ```
 
-<<<<<<< HEAD
-[**在 CodePen 上試試看吧！**](http://codepen.io/gaearon/pen/KgQpJd?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
 
 接下來，我們會讓 `Clock` 設定它本身的 timer 並且每秒更新一次。
 
@@ -318,11 +302,7 @@ ReactDOM.render(
 );
 ```
 
-<<<<<<< HEAD
-[**在 CodePen 上試試看吧！**](http://codepen.io/gaearon/pen/amqdNA?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
 
 現在我們的 clock 每秒鐘都會滴答作響。
 
@@ -457,11 +437,7 @@ function FormattedDate(props) {
 }
 ```
 
-<<<<<<< HEAD
-[**在 CodePen 上試試看吧！**](http://codepen.io/gaearon/pen/zKRqNB?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
 
 這通常被稱作為「上至下」或「單向」的資料流。任何 state 總是由某個特地的 component 所擁有，任何從 state 得到的資料或 UI，state 只能影響在 tree「以下」的 component。
 
@@ -486,11 +462,7 @@ ReactDOM.render(
 );
 ```
 
-<<<<<<< HEAD
-[**在 CodePen 上試試看吧！**](http://codepen.io/gaearon/pen/vXdGmd?editors=0010)
-=======
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
 每個 `Clock` 設定它本身的 timer 並獨立的更新。
 
