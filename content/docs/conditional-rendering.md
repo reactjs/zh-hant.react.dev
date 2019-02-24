@@ -156,7 +156,7 @@ ReactDOM.render(
 
 另一個有條件 render element 的方式是透過 JavaScript 的三元運算子 [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)。
 
-在下面的範例，我們會用它來有條件 render 一小段文字。
+在下面的範例，我們會用它來有條件地 render 一小段文字。
 
 ```javascript{5}
 render() {
