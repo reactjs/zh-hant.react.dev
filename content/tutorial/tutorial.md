@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutorial: Intro to React"
+title: "學習指南：React 介紹"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
@@ -14,7 +14,7 @@ redirect_from:
 
 你不需要有任何 React 的基礎知識就能使用這份學習指南。
 
-## 在我們開始這份教學課程之前 {#before-we-start-the-tutorial}
+## 在我們開始這份學習指南之前 {#before-we-start-the-tutorial}
 
 在這份學習指南中，我們會練習做一個小遊戲。**也許你會很想跳過這份指南，因為你不是遊戲開發者 -- 但請試著跟著做做看。**在這份學習指南中，你所學到的技術是你做任何 React 應用程式的基礎，掌握基礎後會讓你對 React 有更深入的了解。
 
