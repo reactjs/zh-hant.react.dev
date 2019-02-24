@@ -190,7 +190,7 @@ render() {
 
 ### 防止 Component Render {#preventing-component-from-rendering}
 
-在罕見的情況下，你可能希望把 component 隱藏，即使它已被其他 component render 了。回傳 `null` 而不是它 render 的輸出就可實現。
+在少數的情況下，你可能希望 component 隱藏自己本身，即便它是由另一個 component 被 render。可以透過回傳 `null` 而不是它的 render 輸出。
 
 在下面的範例中，`<WarningBanner />` 的 render 取決於 `warn` prop 的值。如果 prop 是 `false`，它就不會 render。
 
