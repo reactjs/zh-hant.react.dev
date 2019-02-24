@@ -46,7 +46,7 @@ ReactDOM.render(
 
 這範例根據 `isLoggedIn` prop 的值來 render 不同的問候語。
 
-### Element 變量 {#element-variables}
+### Element 變數 {#element-variables}
 
 你可以用變數來儲存 element。它可以幫助你有條件地 render 一部份的 component，而保持其他輸出不變。
 
@@ -118,7 +118,7 @@ ReactDOM.render(
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
-雖然宣告變量並使用 `if` 語句來有條件 render component 是一個不錯的方式，但有時你也想使用更簡潔的語法。在 JSX 中有以下幾種方法：
+雖然宣告變數並使用 `if` 語句來有條件 render component 是一個不錯的方式，但有時你也想使用更簡潔的語法。在 JSX 中有以下幾種方法：
 
 ### Inline If 與 && 邏輯運算子 {#inline-if-with-logical--operator}
 
@@ -169,7 +169,7 @@ render() {
 }
 ```
 
-它也可以被用在較複雜的 expression 上，雖然不是太明顯：
+它也可以被用在較複雜的表達式上，雖然不是太明顯：
 
 ```js{5,7,9}
 render() {
