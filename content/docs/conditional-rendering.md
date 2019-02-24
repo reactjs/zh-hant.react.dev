@@ -48,7 +48,7 @@ ReactDOM.render(
 
 ### Element 變量 {#element-variables}
 
-你可以用變量來儲存 element，它可以幫助你有條件地 render 一部份的 component，而保持其他輸出不變。
+你可以用變數來儲存 element。它可以幫助你有條件地 render 一部份的 component，而保持其他輸出不變。
 
 思考這兩個新的登入和登出按鈕 component：
 
