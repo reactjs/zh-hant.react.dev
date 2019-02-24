@@ -188,7 +188,7 @@ render() {
 
 就跟在 JavaScript 中一樣，你可以根據團隊習慣來選擇更合適的風格。還要記著如果條件變得過於複雜，也許是個好時機來[抽離 component](docs/components-and-props.html#extracting-components) 了。
 
-### 防止 component render {#preventing-component-from-rendering}
+### 防止 Component Render {#preventing-component-from-rendering}
 
 在罕見的情況下，你可能希望把 component 隱藏，即使它已被其他 component render 了。回傳 `null` 而不是它 render 的輸出就可實現。
 
