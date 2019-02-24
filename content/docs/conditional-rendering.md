@@ -150,7 +150,7 @@ ReactDOM.render(
 
 能夠這樣做是因為在 JavaScript 中，`true && expression` 總是回傳 `expression` ，而 `false && expression` 總是回傳 `false`。
 
-所以，當條件為 `true`，`&&` 右則的 element 會出現在輸出中，如果是 `false`，React 會忽略並跳過它。
+所以，當條件為 `true` 時，`&&` 右側的 element 會出現在輸出中，如果是 `false`，React 會忽略並跳過它。
 
 ### Inline If-Else 跟三元運算子 {#inline-if-else-with-conditional-operator}
 
