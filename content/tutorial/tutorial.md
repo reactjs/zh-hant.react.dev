@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutorial: Intro to React"
+title: "學習指南：React 介紹"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
@@ -14,7 +14,7 @@ redirect_from:
 
 你不需要有任何 React 的基礎知識就能使用這份學習指南。
 
-## 在我們開始這份教學課程之前 {#before-we-start-the-tutorial}
+## 在我們開始這份學習指南之前 {#before-we-start-the-tutorial}
 
 在這份學習指南中，我們會練習做一個小遊戲。**也許你會很想跳過這份指南，因為你不是遊戲開發者 -- 但請試著跟著做做看。**在這份學習指南中，你所學到的技術是你做任何 React 應用程式的基礎，掌握基礎後會讓你對 React 有更深入的了解。
 
@@ -186,7 +186,7 @@ JSX 就跟 JavaScript ㄧ樣強大。你可以在 JSX 中的括號中放入*任�
 
 Square component 會 render 一個按鈕 `<button>`，而 Board 會 render 九個方格。Game component 則是 render 一個完整的遊戲格盤與 placeholder，這些值我們稍候會修改。目前為止，沒有一個 component 是互動式的。
 
-### 透過 Props 傳遞資料 {#passing-data-through-props}
+### 透過 Prop 傳遞資料 {#passing-data-through-props}
 
 做為暖身，讓我們試試看把一些資料從 Board component 傳給 Square component。
 
@@ -227,14 +227,8 @@ class Square extends React.Component {
 
 ### 建立互動式的 Component {#making-an-interactive-component}
 
-<<<<<<< HEAD
 讓我們在點擊 Square component 時，能在方格中填入ㄧ個 X。
-
 首先，把從 Square component 的 `render()` 中回傳的按鈕的標籤，修改成以下的程式：
-=======
-Let's fill the Square component with an "X" when we click it.
-First, change the button tag that is returned from the Square component's `render()` function to this:
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ```javascript{4}
 class Square extends React.Component {
