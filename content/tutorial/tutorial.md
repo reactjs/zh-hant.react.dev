@@ -31,13 +31,7 @@ redirect_from:
 
 你不需要一次就完成所有的部分才能從這份學習指南中獲益。試著練習越多越好 -- 即使只有一兩個部分。
 
-<<<<<<< HEAD
-當你在跟著指南練習時，複製貼上程式碼是沒關係的，但我們建議你把程式自己寫過一遍。這會幫助你訓練手感並加強理解。
-
 ### 我們要做什麼？ {#what-are-we-building}
-=======
-### What Are We Building? {#what-are-we-building}
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 在這份學習指南中，我們會教你如何用 React 做一個互動式的圈圈叉叉小遊戲。
 
@@ -192,13 +186,9 @@ Square component 會 render 一個按鈕 `<button>`，而 Board 會 render 九�
 
 ### 透過 Prop 傳遞資料 {#passing-data-through-props}
 
-<<<<<<< HEAD
 做為暖身，讓我們試試看把一些資料從 Board component 傳給 Square component。
-=======
-To get our feet wet, let's try passing some data from our Board component to our Square component.
 
-We strongly recommend typing code by hand as you're working through the tutorial and not using copy/paste. This will help you develop muscle memory and a stronger understanding.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+當你在練習這份指南時，我們建議你將程式碼自己寫過一遍，而不是複製貼上。這會幫助你訓練手感並加強理解。
 
 在 Board 的 `renderSquare` 方法中，請修改程式碼，並把名為 `value` 的 prop 傳給 Square：
 
@@ -252,11 +242,7 @@ class Square extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
-現在，當我們點擊任何一個 Square 時，我們應該能在瀏覽器中收到一個 alert。
-=======
-If you click on a Square now, you should see an alert in your browser.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+現在，當你點擊任何一個 Square 時，我們應該能在瀏覽器中收到一個 alert。
 
 >注意：
 >
@@ -274,11 +260,7 @@ If you click on a Square now, you should see an alert in your browser.
 >}
 >```
 >
-<<<<<<< HEAD
->請注意在 `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。這個 function 只會在被點擊後觸發。把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次重新 render 時都會觸發 alert。
-=======
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+>請注意在 `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。React 在點擊之後只會呼叫這個 function 。把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次重新 render 時都會觸發 alert。
 
 下一步，我們要讓 Square component 「記得」它被點擊了，並在方格中填入 X 這個記號。Component 使用 **state** 來保持狀態。
 
@@ -311,15 +293,9 @@ class Square extends React.Component {
 
 現在我們會改變 Square 的 `render` 方法以顯示當 Square 被點擊時當下的 state 的值是什麼：
 
-<<<<<<< HEAD
 * 把 `<button>` 標籤中的 `this.props.value` 換成 `this.state.value`。
-* 把 `() => alert()` 這個 event handler 換成 `() => this.setState({value: 'X'})`。
+* 把 `onClick={...}` 這個 event handler 換成 `onClick={() => this.setState({value: 'X'})}`。
 * 將 `className` 和 `onClick` 兩個 prop 放在不同行，以方便閱讀。
-=======
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `onClick={...}` event handler with `onClick={() => this.setState({value: 'X'})}`.
-* Put the `className` and `onClick` props on separate lines for better readability.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 在上述修改完成後，在 Square 的 `render` 方法中回傳的 `<button>` 標籤現在看起來是這樣：
 
@@ -380,13 +356,9 @@ React DevTools 讓你檢查你的 React component 中的 props 和 state。
 
 **為了從多個 children 中收集資料，或是讓兩個 child component 互相溝通，你需要在它們的 parent component 裡宣告一個共享的 state。這個 parent component 可以將 state 透過 props 向下傳給 children。這讓 child component 之間還有跟它們的 parent component 能隨時保持同步。**
 
-<<<<<<< HEAD
-在修改 React component 時，把 state 上傳到 parent component 裡面是很常見的。讓我們利用這個機會來試試看這該怎麼做。我們會在 Board 裡加一個 constructor，並將 Board 的初始 state 設定為一個包含九個 null 的 array。這九個 null 分別對應著九個 Square：
-=======
-Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out.
+在修改 React component 時，把 state 上傳到 parent component 裡面是很常見的。讓我們利用這個機會來試試看這該怎麼做。
 
-Add a constructor to the Board and set the Board's initial state to contain an array of 9 nulls corresponding to the 9 squares:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+我們會在 Board 裡加一個 constructor，並將 Board 的初始 state 設定為一個包含九個 null 的 array。這九個 null 分別對應著九個 Square：
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -402,11 +374,7 @@ class Board extends React.Component {
   }
 ```
 
-<<<<<<< HEAD
 當我們稍後填滿棋盤時，棋盤會看起來像這樣：
-=======
-When we fill the board in later, the `this.state.squares` array will look something like this:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 ```javascript
 [
@@ -441,11 +409,7 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
 
 接下來，我們需要改變當 Square 被點擊後會觸發的事件。Board component 現在決定了哪一個方格會被填滿。我們需要創造一個方法讓 Square 去更新 Board 的狀態。既然 state 對於定義它的 component 來說是 private 的，我們就不能直接從 Square 去更新 Board 的 state。
 
-<<<<<<< HEAD
-要能維持 Board 的 state 的私有性，我們需要從 Board 傳一個 function 給 Square。這個 function 將在 Square 被點擊的時候被呼叫。我們也會改變 Board 中 `renderSquare` 的方法：
-=======
-Instead, we'll pass down a function from the Board to the Square, and we'll have Square call that function when a square is clicked. We'll change the `renderSquare` method in Board to:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+我們反而需要從 Board 傳一個 function 給 Square。這個 function 將在 Square 被點擊的時候被 Square 呼叫。我們也會改變 Board 中 `renderSquare` 的方法：
 
 ```javascript{5}
   renderSquare(i) {
@@ -487,27 +451,15 @@ class Square extends React.Component {
 
 當一個 Square 被點擊時，`onClick` 這個 Board 所提供給它的 function 會被呼叫。我們來看一下這件事是如何做到的：
 
-<<<<<<< HEAD
 1. `onClick` prop 在內建的 DOM `<button>` component 告訴 React 要設定一個 click event listener。
 2. 當按鈕被點擊時，React 會呼叫 `onClick` 這個 Square 的 `render()` 方法中的 event handler。
 3. 這個 event handler 將會呼叫 `this.props.onClick()`。Square 中的 `onClick` prop 被 Board 選定。
 4. 因為 Board 把 `onClick={() => this.handleClick(i)}` 傳給 Square，Square 會在被點擊時呼叫 `this.handleClick(i)`。
-5. 我們尚未定義 `handleClick()`，所以我們的程式目前會崩潰。
-=======
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+5. 我們尚未定義 `handleClick()`，所以我們的程式目前會崩潰。如果你現在點擊 Square 的話，將會看到「this.handleClick is not a function」之類的紅色錯誤訊息。
 
 >注意
 >
-<<<<<<< HEAD
->DOM `<button>` element 的 `onClick` 屬性對 React 來說有特別的意義，因為它是一個內建的 component。對於像是 Square 這種客製的 components 來說，命名方式是看你的喜好。我們可以把 Square 的 `onClick` prop 或是 Board 的 `handleClick` 方法以完全不同的方式命名。然而，在 React 中，我們遵循的傳統通常是用 `on[Event]` 來命名那些代表 event 的 prop，用 `handle[Event]` 來命名那些 handle event 的方法。
-=======
->The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could give any name to the Square's `onClick` prop or Board's `handleClick` method, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+>DOM `<button>` element 的 `onClick` 屬性對 React 來說有特別的意義，因為它是一個內建的 component。對於像是 Square 這種客製的 components 來說，命名方式是看你的喜好。我們可以任意命名 Square 的 `onClick` prop 或是 Board 的 `handleClick` 方法，程式碼仍會正常運作。然而在 React 中，我們遵循的傳統通常是用 `on[Event]` 來命名那些代表 event 的 prop，用 `handle[Event]` 來命名那些 handle event 的方法。
 
 當我們試著點擊一個 Square，我們的程式應該會發生錯誤，因為我們尚未定義 `handleClick`。我們現在把 `handleClick` 加到 Board 的 class：
 
@@ -564,11 +516,7 @@ class Board extends React.Component {
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-<<<<<<< HEAD
-在這些修改完成後，我們現在又可以點擊 Squares 並填入內容了。然而，現在 state 是儲存在 Board component 而非個別的 Square component 中。當 Board 的 state 改變時，Square component 會自動 re-render。在 Board component 中維持所有方格的狀態將能使它在未來決定勝負。
-=======
-After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+在這些修改完成後，我們現在又可以像之前做過的一樣，點擊 Squares 並填入內容了。然而，現在 state 是儲存在 Board component 而非個別的 Square component 中。當 Board 的 state 改變時，Square component 會自動 re-render。在 Board component 中維持所有方格的狀態將能使它在未來決定勝負。
 
 因為 Square component 不再維持 state，Square component 從 Board component 接收 value 並在被點擊時通知 Board component 它的值。在 React 的詞彙中，Square component 現在是 **controlled component**。這意味著 Board 對其有完全的掌握。
 
@@ -610,11 +558,7 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 相較之下，在不可變更的 object 中偵測改變就容易多了。如果某個不可變更 object 和之前不ㄧ樣，那麼這個 object 就已經被改變了。
 
-<<<<<<< HEAD
-#### 決定在 React 中該何時重新 render {#determining-when-to-re-render-in-react}
-=======
-#### Determining When to Re-Render in React {#determining-when-to-re-render-in-react}
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+#### 決定在 React 中該何時重新 Render {#determining-when-to-re-render-in-react}
 
 不可變性最主要的優點在於它幫助你在 React 中建立 _pure component_。我們能很容易決定不可變的數據中是否有任何改變，這幫助 React 決定某個 component 是否需要重新 render。
 
@@ -644,11 +588,7 @@ function Square(props) {
 
 >注意
 >
-<<<<<<< HEAD
->當我們把 Square 變成 function component 的時候，我們也把 `onClick={() => this.props.onClick()}` 替換為更簡短的 `onClick={props.onClick}`（請特別注意在箭頭的*兩側*，原本的括號現在都不見了）。在這個 class 中，我們用 arrow function 以取得 `this` 的正確值。但是在 function component 中，我們並不需要擔心 `this` 是什麼。
-=======
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+>當我們把 Square 變成 function component 的時候，我們也把 `onClick={() => this.props.onClick()}` 替換為更簡短的 `onClick={props.onClick}`（請特別注意在箭頭的*兩側*，原本的括號現在都不見了）。
 
 ### 輪流玩遊戲 {#taking-turns}
 
@@ -680,13 +620,9 @@ class Board extends React.Component {
   }
 ```
 
-<<<<<<< HEAD
-這個改變會讓「X」和「O」輪流出現。我們也來更新一下 Board 的 `render` 中「status」的文字，讓它能顯示下ㄧ個玩家是誰：
-=======
-With this change, "X"s and "O"s can take turns. Try it!
+這個改變會讓「X」和「O」輪流出現，試試看吧！
 
-Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+我們也來更新一下 Board 的 `render` 中「status」的文字，讓它能顯示下ㄧ個玩家是誰：
 
 ```javascript{2}
   render() {
@@ -758,11 +694,7 @@ class Board extends React.Component {
 
 ### 決定勝負 {#declaring-a-winner}
 
-<<<<<<< HEAD
-在我們能顯示下一次輪到哪個玩家之後，我們也應該能在勝負揭曉時宣布誰是贏家，並告知玩家接下來沒有動作可出。我們可以在這個檔案的最後加上一個 helper function 來決定勝負：
-=======
-Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. Copy this helper function and paste it at the end of the file:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+在我們能顯示下一次輪到哪個玩家之後，我們也應該能在勝負揭曉時宣布誰是贏家，並告知玩家接下來沒有動作可出。在這個檔案的最後複製貼上這個 helper function：
 
 ```javascript
 function calculateWinner(squares) {
@@ -786,13 +718,9 @@ function calculateWinner(squares) {
 }
 ```
 
-<<<<<<< HEAD
-我們會在 Board 的 `render` 方法中呼叫 `calculateWinner(squares)` 以確認是否有贏家產生。如果某個玩家贏了，我們可以顯示像「贏家：X」或「贏家：O」這樣的文字。接下來，讓我們把 Board 的 `render` function 中的 `status` 宣告換成以下的程式碼：
-=======
-Given an array of 9 squares, this function will check for a winner and return `'X'`, `'O'`, or `null` as appropriate.
+給予這個 function 一個含有九個 square 的 array，它將會檢查贏家並根據需要回傳 `'X'`、`'O'` 或是 `null`。
 
-We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
+我們會在 Board 的 `render` 方法中呼叫 `calculateWinner(squares)` 以確認是否有贏家產生。如果某個玩家贏了，我們可以顯示像「贏家：X」或「贏家：O」這樣的文字。接下來，讓我們把 Board 的 `render` function 中的 `status` 宣告換成以下的程式碼：
 
 ```javascript{2-8}
   render() {
