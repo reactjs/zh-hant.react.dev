@@ -1,6 +1,6 @@
 ---
 id: conditional-rendering
-title: 條件 rendering
+title: 條件 Render
 permalink: docs/conditional-rendering.html
 prev: handling-events.html
 next: lists-and-keys.html
