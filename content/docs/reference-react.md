@@ -13,7 +13,7 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
-`React` 是 React 函式庫的進入點。 如果你使用 `<script>` 標籤載入 React, 這些頂層 API 可以在 `React` 全域變數使用。 如果你撰寫 ES6 並使用 npm，你可以寫 `import React from 'react'` 。如果你撰寫 ES5 並使用 npm，你可以寫 `var React = require('react')` 。
+`React` 是 React 函式庫的進入點。 如果你使用 `<script>` 標籤載入 React,這些頂層 API 可以在 `React` 全域變數使用。如果你使用 ES6 撰寫並使用 npm，你可以寫成 `import React from 'react'` 。如果你使用 ES5 撰寫並使用 npm，你可以寫成 `var React = require('react')` 。
 
 ## 概觀 {#overview}
 
@@ -26,7 +26,7 @@ React component 可以讓你把 UI 切分為獨立並可重複使用的單位，
 
 如果你沒有使用 ES6 class，你可以使用 `create-react-class` 模組。請參閱[使用 React 但不使用 ES6](/docs/react-without-es6.html) 取得更多資訊。
 
-React component 也可以定義為 function 並可以被 wrap：
+React component 也可以定義為 function 並可以被封裝：
 
 - [`React.memo`](#reactmemo)
 
@@ -60,7 +60,7 @@ React component 也可以定義為 function 並可以被 wrap：
 
 ### Suspense {#suspense}
 
-Suspense 讓元件在 render 之前可以「暫停」並等待其他事情。目前 Suspense 只支援一個情境：[使用 `React.lazy` 動態載入 component](/docs/code-splitting.html#reactlazy) 。在未來，我們也會支援像是抓取資料等更多的使用情境。
+Suspense 讓 components 在 render 之前可以「暫停」並等待其他事情。目前 Suspense 只支援一個情境：[使用 `React.lazy` 動態載入 component](/docs/code-splitting.html#reactlazy) 。在未來，我們也會支援像是抓取資料等更多的使用情境。
 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
@@ -146,7 +146,7 @@ export default React.memo(MyComponent, areEqual);
 
 > 備註
 >
-> 跟 class component 的 [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method 不同, `areEqual` function 當 prop 相等的時候回傳 `true`，不相等的時候回傳 `false`。 這跟 `shouldComponentUpdate` 剛好相反。
+> 與 class component 的 [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method 不同,`areEqual` function 當 prop 相等的時候回傳 `true`，不相等的時候回傳 `false`。 這跟 `shouldComponentUpdate` 剛好相反。
 
 * * *
 
@@ -228,7 +228,7 @@ React.Children.map(children, function[(thisArg)])
 
 > 備註
 >
-> 如果 `children` 是一個 `Fragment`，他將會被視為只有一個 child 而不會繼續深入列舉。
+> 如果 `children` 是一個 `Fragment`，它將會被視為只有一個 child 而不會繼續深入列舉。
 
 #### `React.Children.forEach` {#reactchildrenforeach}
 
@@ -252,7 +252,7 @@ React.Children.count(children)
 React.Children.only(children)
 ```
 
-確認 `children` 只有一個 child (一個 React element）並回傳他，不然這個 method 將會丟出錯誤。
+確認 `children` 只有一個 child (一個 React element）並回傳它，不然這個 method 將會拋出錯誤。
 
 > 備註
 >
@@ -264,17 +264,17 @@ React.Children.only(children)
 React.Children.toArray(children)
 ```
 
-將 `children` 這個不透明的資料結構轉為一個 flat array 並對每個 child 指定一個 key 。在你想要在你的 render 中操作 children 的時候很有用，特別是當你想要調整順序或是擷取一小塊 `this.props.children` 之後再往下傳的時候。
+將 `children` 這個不透明的資料結構轉為一個扁平的 array 並對每個 child 指定一個 key。如果你想要在你的 render method 中操作 children 的集合時非常有用，特別是當你想要在傳遞它們之前調整順序或是擷取一部份 `this.props.children` 的時候。
 
 > 備註
 >
-> `React.Children.toArray()` 將會為了保留 nested array 的語意在平坦化多層 children 的時候改變那些 element 的 key。也就是說 `toArray` 將會在每個 key 前面增加東西，保證每個 element 的 key 都在與他原本輸入 array 相關。
+> `React.Children.toArray()` 會改變 key 來保留巢狀 array 的語意。也就是說 `toArray` 將會在每個 key 前面加入前綴，確保每個 element 的 key 都在與它原本輸入的 array 相關。
 
 * * *
 
 ### `React.Fragment` {#reactfragment}
 
-`React.Fragment` 讓你可以在一個 `render()` method 中一次回傳多個 element 而不需要建立一個額外的 DOM element ：
+`React.Fragment` 讓你可以在一個 `render()` method 中一次回傳多個 element 而不需要建立一個額外的 DOM element：
 
 ```javascript
 render() {
