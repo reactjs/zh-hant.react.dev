@@ -11,7 +11,7 @@ next: hooks-overview.html
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // 宣告一個新的 state 變數，我們稱作為「count」。
   const [count, setCount] = useState(0);
 
   return (
