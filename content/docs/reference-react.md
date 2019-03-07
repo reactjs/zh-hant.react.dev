@@ -19,14 +19,14 @@ redirect_from:
 
 ### Component {#components}
 
-React component 可以讓你把 UI 切分為獨立並可重複使用的單位，並且每個單位可以抽出來獨立思考。 React component 可以透過繼承 `React.Component` 或是 `React.PureComponent` 定義。
+React component 可以讓你把 UI 切分為獨立並可重複使用的單位，並且每個單位可以抽出來獨立思考。React component 可以透過繼承 `React.Component` 或是 `React.PureComponent` 定義。
 
  - [`React.Component`](#reactcomponent)
  - [`React.PureComponent`](#reactpurecomponent)
 
 如果你沒有使用 ES6 class，你可以使用 `create-react-class` 模組。請參閱[使用 React 但不使用 ES6](/docs/react-without-es6.html) 取得更多資訊。
 
-React component 也可以定義成為 function 並可以被 wrap：
+React component 也可以定義為 function 並可以被 wrap：
 
 - [`React.memo`](#reactmemo)
 
@@ -47,7 +47,7 @@ React component 也可以定義成為 function 並可以被 wrap：
 - [`isValidElement()`](#isvalidelement)
 - [`React.Children`](#reactchildren)
 
-### Fragments {#fragments}
+### Fragment {#fragments}
 
 `React` 也提供了一個 component 讓你一次 render 多個 element 而不需要額外的 wrapper。
 
@@ -67,7 +67,7 @@ Suspense 讓元件在 render 之前可以「暫停」並等待其他事情。目
 
 ### Hooks {#hooks}
 
-*Hooks* 是 React 16.8 開始的新功能。這讓你可以使用 state 以及其他的 React 功能而不需要撰寫一個 class 。 Hooks 有一個專屬的[文件專區](/docs/hooks-intro.html) 和分開的 API 參考資料：
+*Hooks* 是 React 16.8 開始的新功能。這讓你可以使用 state 以及其他的 React 功能而不需要撰寫一個 class。Hooks 有一個專屬的[文件專區](/docs/hooks-intro.html) 和分開的 API 參考資料：
 
 - [基本 Hooks](/docs/hooks-reference.html#basic-hooks)
   - [`useState`](/docs/hooks-reference.html#usestate)
@@ -104,13 +104,13 @@ class Greeting extends React.Component {
 
 ### `React.PureComponent` {#reactpurecomponent}
 
-`React.PureComponent` 跟 [`React.Component`](#reactcomponent) 很相似。他們之間的差別是 [`React.Component`](#reactcomponent) 並沒有實作 [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), 但 `React.PureComponent` 提供了一個實做以對於 prop 及 state 進行 shallow compare。
+`React.PureComponent` 跟 [`React.Component`](#reactcomponent) 很相似。他們之間的差別是 [`React.Component`](#reactcomponent) 並沒有實作 [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate)，但 `React.PureComponent` 提供了一個實作以對於 prop 及 state 進行 shallow compare。
 
 > 備註
 >
-> `React.PureComponent` 的 `shouldComponentUpdate()` 只對 object 進行 shallow compare 。如果這些 object 包含複雜的資料結構，在深層的資料有所改變的時候將有可能回傳錯誤結果 (false-negative)。繼承 `PureComponent` 的時候，請確保你只有簡單的 prop 跟 state ，或在當你知道深層的資料有所改變的時候使用 [`forceUpdate()`](/docs/react-component.html#forceupdate)。你也可以考慮改用 [immutable object](https://facebook.github.io/immutable-js/) 進行快速的深層資料比較。
+> `React.PureComponent` 的 `shouldComponentUpdate()` 只對 object 進行 shallow compare。如果這些 object 包含複雜的資料結構，在深層的資料有所改變的時候將有可能回傳錯誤結果 (false-negative)。繼承 `PureComponent` 的時候，請確保你只有簡單的 prop 跟 state，或在當你知道深層的資料有所改變的時候使用 [`forceUpdate()`](/docs/react-component.html#forceupdate)。你也可以考慮改用 [immutable object](https://facebook.github.io/immutable-js/) 進行快速的深層資料比較。
 >
-> 此外，`React.PureComponent` 的 `shouldComponentUpdate()` 將會跳過整個 subtree 的 prop 更新。請確保所有 children component 也是 「pure」 的。
+> 此外，`React.PureComponent` 的 `shouldComponentUpdate()` 將會跳過整個 subtree 的 prop 更新。請確保所有 children component 也是「pure」的。
 
 * * *
 
@@ -122,9 +122,9 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-`React.memo` 是一個 [higher order component](/docs/higher-order-components.html)。 他跟 [`React.PureComponent`](#reactpurecomponent) 很類似，但是是使用在 function component 上而不是給 class 使用。
+`React.memo` 是一個 [higher order component](/docs/higher-order-components.html)。它跟 [`React.PureComponent`](#reactpurecomponent) 很類似，但是它是使用在 function component 上而不是給 class 使用。
 
-如果你的 function component 每次得到相同 prop 的時候都會 render 相同結果，你可以將其包在 `React.memo` 之中，透過快取 render 結果來在某些情況下加速。這表示 React 會跳過 render 這個元件，並直接重用上次的 render 結果。
+如果你的 function component 每次得到相同 prop 的時候都會 render 相同結果，你可以將其包在 `React.memo` 之中，透過快取 render 結果來在某些情況下加速。這表示 React 會跳過 render 這個 component，並直接重用上次的 render 結果。
 
 這預設只會對 prop 進行 shallow compare 。如果你需要控制比較的方法，你可以提供一個自訂的比較 function 作為第二個參數。
 
@@ -142,7 +142,7 @@ function areEqual(prevProps, nextProps) {
 export default React.memo(MyComponent, areEqual);
 ```
 
-這個 function 是用來作為 **[效能最佳化](/docs/optimizing-performance.html)** 所用。請勿依賴這個 function 來「避免」 render，這可能會產生 bug。
+這個 function 是用來作為 **[效能最佳化](/docs/optimizing-performance.html)** 所用。請勿依賴這個 function 來「避免」render，這可能會產生 bug。
 
 > 備註
 >
@@ -196,7 +196,7 @@ React.cloneElement(
 React.createFactory(type)
 ```
 
-會傳一個 function 可以產生指定 type 的 React element。跟 [`React.createElement()`](#createElement) 一樣，這個 type 參數可以是一個標籤名稱字串（像是 `'div'` 或是 `'span'`）、一個 [React component](/docs/components-and-props.html) type (class 或是 function) 或者是一個 [React fragment](#reactfragment) type。
+回傳一個 function 可以產生指定 type 的 React element。跟 [`React.createElement()`](#createElement) 一樣，這個 type 參數可以是一個標籤名稱字串（像是 `'div'` 或是 `'span'`）、一個 [React component](/docs/components-and-props.html) type (class 或是 function) 或者是一個 [React fragment](#reactfragment) type。
 
 這個 helper 已經被認定為過時，我們建議你使用 JSX 或是直接使用 `React.createElement()`。
 
@@ -287,11 +287,11 @@ render() {
 }
 ```
 
-你也可以使用 `<></>` 的精簡表示法。請參閱 [React v16.2.0： 更好的 Fragment 支援] 以獲得更多資訊。
+你也可以使用 `<></>` 的精簡表示法。請參閱 [React v16.2.0： 更好的 Fragment 支援](/blog/2017/11/28/react-v16.2.0-fragment-support.html)以獲得更多資訊。
 
 ### `React.createRef` {#reactcreateref}
 
-`React.createRef` 會建立一個 [ref](/docs/refs-and-the-dom.html) 以透過 ref attribute 夾帶在一個 Reat element 之上。
+`React.createRef` 會建立一個 [ref](/docs/refs-and-the-dom.html) 以透過 ref attribute 夾帶在一個 React element 之上。
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
@@ -301,21 +301,21 @@ render() {
 * [將 ref 轉交給 DOM component](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
 * [在 higher-order-component 之中轉交 ref](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
 
-`React.forwardRef` 接受一個 render function 作為參數。React會呼叫這個 function 並傳入兩個參數： `props` 以及 `ref` 。這個 function 應該要回傳一個 React node。
+`React.forwardRef` 接受一個 render function 作為參數。React 會呼叫這個 function 並傳入兩個參數： `props` 以及 `ref` 。這個 function 應該要回傳一個 React node。
 
 `embed:reference-react-forward-ref.js`
 
 在上面這個範例，React 會把給予 `<FancyButton ref={ref}>` 的 `ref` 轉交給傳入 `React.forwardRef` 的 function 作為其第二個參數。這個 render function 接著將這個 `ref` 轉交給 `<button ref={ref}>` element。
 
-結果，當 React 夾上這個 ref 的時候， `ref.current` 將會直接指到 `<button>` 這個 DOM element instance。
+結果，當 React 夾上這個 ref 的時候，`ref.current` 將會直接指到 `<button>` 這個 DOM element 實例。
 
-請參閱 [轉交 ref](/docs/forwarding-refs.html) 獲得更多資訊。
+請參閱[轉交 ref](/docs/forwarding-refs.html) 獲得更多資訊。
 
 ### `React.lazy` {#reactlazy}
 
-`React.lazy()` 讓你可以定義一個動態載入的 component。這可以幫助你透過延緩載入不是用於第一次 render 的元件來縮小 bundle size。
+`React.lazy()` 讓你可以定義一個動態載入的 component。這可以在初始 render 期間延緩載入沒有被用到的 component 來減少 bundle size。
 
-你可以閱讀我們的 [code splitting 文件](/docs/code-splitting.html#reactlazy) 來學習怎麼使用他。你可能也想要閱讀 [這篇文章](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) 更深入了解如何使用這個 function。
+你可以閱讀我們的 [code splitting 文件](/docs/code-splitting.html#reactlazy) 來學習怎麼使用它。你可能也想要閱讀[這篇文章](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) 更深入了解如何使用這個 function。
 
 ```js
 // This component is loaded dynamically
@@ -326,7 +326,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 > 備註
 >
-> 當你同時使用 `React.lazy` 以及動態 import 的時候，你的 JS 環境必須支援 Promise。 IE11 以下的瀏覽器將需要 polyfill。
+> 當你同時使用 `React.lazy` 以及動態 import 的時候，你的 JS 環境必須支援 Promise。IE11 以下的瀏覽器將需要 polyfill。
 
 ### `React.Suspense` {#reactsuspense}
 
@@ -354,4 +354,4 @@ function MyComponent() {
 
 > 備註
 >
-> `ReactDOMServer` 還沒支援 `React.lazy()` 與 `<React.Suspense>` 。這是一個目前已知的限制，並會在未來解決。
+> `ReactDOMServer` 還沒支援 `React.lazy()` 與 `<React.Suspense>`。這是一個目前已知的限制，並會在未來解決。
