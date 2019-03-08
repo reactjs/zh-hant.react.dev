@@ -1,17 +1,17 @@
 ---
 id: hooks-intro
-title: Introducing Hooks
+title: 隆重介紹 Hooks
 permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hooks* 是 React 16.8 新加的功能，他們讓你可以不用寫 class 就能使用 state 與其他 React 的功能。
 
 ```js{4,5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // 宣告一個新的 state 變數，我們稱作為「count」。
   const [count, setCount] = useState(0);
 
   return (
@@ -25,86 +25,86 @@ function Example() {
 }
 ```
 
-This new function `useState` is the first "Hook" we'll learn about, but this example is just a teaser. Don't worry if it doesn't make sense yet!
+這個新的 function `useState` 是我們將要學習的第一個「Hook」，但這個例子只是個預告，如果你看不懂，不用擔心！
 
-**You can start learning Hooks [on the next page](/docs/hooks-overview.html).** On this page, we'll continue by explaining why we're adding Hooks to React and how they can help you write great applications.
+**你可以[在下一頁](/docs/hooks-overview.html)開始學習 Hooks 。** 在這一頁，我們將解釋為什麼我們在 React 中加入 Hooks 與他們如何幫助你寫出更好的應用程式。 
 
->Note
+>補充
 >
->React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM. React Native will support Hooks in the next stable release.
+>React 16.8.0 是支援 Hooks 的第一版釋出。當你升級的時候，不要忘記更新所有的 package，包括 React DOM。React Native 將會在下一版穩定釋出的時候支援 Hooks。
 
-## Video Introduction {#video-introduction}
+## 影片介紹 {#video-introduction}
 
-At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by Ryan Florence demonstrating how to refactor an application to use them. Watch the video here:
+Sophie Alpert 與 Dan Abramov 在 React Conf 2018 隆重介紹 Hooks，Ryan Florence 接著展示如何使用他們重構一個應用程式。在這裡觀看影片：
 
 <br>
 
 <iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
 
-## No Breaking Changes {#no-breaking-changes}
+## 沒有 Breaking Change {#no-breaking-changes}
 
-Before we continue, note that Hooks are:
+在我們繼續之前，注意 Hooks 是：
 
-* **Completely opt-in.** You can try Hooks in a few components without rewriting any existing code. But you don't have to learn or use Hooks right now if you don't want to.
-* **100% backwards-compatible.** Hooks don't contain any breaking changes.
-* **Available now.** Hooks are now available with the release of v16.8.0.
+* **完全選擇在你。** 你可以在幾個 component 中試用 Hooks，不需要重寫任何現有的 code。不過如果你不想要，你不需要現在就學或使用 Hooks。
+* **100% 向後兼容。** Hooks 沒有任何 breaking change。
+* **現在就可以使用。** Hooks 在 v16.8.0 釋出中就可以使用。
 
-**There are no plans to remove classes from React.** You can read more about the gradual adoption strategy for Hooks in the [bottom section](#gradual-adoption-strategy) of this page.
+**沒有從 React 中移除 class 的計畫。** 你可以在本頁[下方](#gradual-adoption-strategy)閱讀更多 Hooks 逐步採用策略。
 
-**Hooks don't replace your knowledge of React concepts.** Instead, Hooks provide a more direct API to the React concepts you already know: props, state, context, refs, and lifecycle. As we will show later, Hooks also offer a new powerful way to combine them.
+**Hooks 不會取代你關於 React 概念的知識。** 相反地，Hooks 提供一個更直接的 API 給你已經會的 React 概念：props, state, context, refs, 與 lifecycle。我們之後將展示，Hooks 也提供一個新的強大的方式來結合他們。
 
-**If you just want to start learning Hooks, feel free to [jump directly to the next page!](/docs/hooks-overview.html)** You can also keep reading this page to learn more about why we're adding Hooks, and how we're going to start using them without rewriting our applications.
+**如果你只想要開始學習 Hooks，歡迎[直接跳到下一頁！](/docs/hooks-overview.html)** 你也可以繼續閱讀這一頁了解更多為什麼我們加入 Hooks，與我們將如何開始使用他們，不需要重寫我們的應用程式。
 
-## Motivation {#motivation}
+## 動機 {#motivation}
 
-Hooks solve a wide variety of seemingly unconnected problems in React that we've encountered over five years of writing and maintaining tens of thousands of components. Whether you're learning React, use it daily, or even prefer a different library with a similar component model, you might recognize some of these problems.
+Hooks 解決一連串看似無關的 React 的問題，那些我們過去五年中寫和維護的數以千計的 component 中的問題。無論你正在學習 React、日常使用、或甚至偏好一個不同但類似元件模型的函式庫，你也許會認得其中這些問題。
 
-### It's hard to reuse stateful logic between components {#its-hard-to-reuse-stateful-logic-between-components}
+### 很難在 component 之間重複使用 stateful 邏輯{#its-hard-to-reuse-stateful-logic-between-components}
 
-React doesn't offer a way to "attach" reusable behavior to a component (for example, connecting it to a store). If you've worked with React for a while, you may be familiar with patterns like [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html) that try to solve this. But these patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow. If you look at a typical React application in React DevTools, you will likely find a "wrapper hell" of components surrounded by layers of providers, consumers, higher-order components, render props, and other abstractions. While we could [filter them out in DevTools](https://github.com/facebook/react-devtools/pull/503), this points to a deeper underlying problem: React needs a better primitive for sharing stateful logic.
+React 沒有提供一個方式去「連接」可重複使用的邏輯在 component 上（例如，連接 store）。如果你已經使用 React 一陣子，你也許很熟悉一些 pattern 像是 [render props](/docs/render-props.html) 與 [higher-order components](/docs/higher-order-components.html) 都試著解決這個問題。但是這些 pattern 在你使用他們的時候，需要你重新架構你的 component，這會很麻煩並且讓 code 很難懂。如果你在 React DevTools 看一個典型的 React 應用程式，你很有機會看到「wrapper hell」，component 被一層層 provider、consumer、higher-order component、render prop 與其他抽象邏輯所圍繞。雖然我們可以[用 DevTools 過濾他們](https://github.com/facebook/react-devtools/pull/503)，這只出了一個很深層的問題：React 需要一個更好的基本型別來共享 statefule 邏輯。
 
-With Hooks, you can extract stateful logic from a component so it can be tested independently and reused. **Hooks allow you to reuse stateful logic without changing your component hierarchy.** This makes it easy to share Hooks among many components or with the community.
+有了 Hooks，你可以從 component 中抽離 stateful 邏輯，如此一來，他可以被獨立測試和重複使用。**Hooks 讓你不用改變你的 component hierarchy 就可以重複使用 stateful 邏輯。**這讓 component 或社群之間共享 Hooks 變得很容易。
 
-We'll discuss this more in [Building Your Own Hooks](/docs/hooks-custom.html).
+我們將在[打造你自己的 Hooks](/docs/hooks-custom.html) 討論更多。
 
-### Complex components become hard to understand {#complex-components-become-hard-to-understand}
+### 複雜的 component 變得很難懂 {#complex-components-become-hard-to-understand}
 
-We've often had to maintain components that started out simple but grew into an unmanageable mess of stateful logic and side effects. Each lifecycle method often contains a mix of unrelated logic. For example, components might perform some data fetching in `componentDidMount` and `componentDidUpdate`. However, the same `componentDidMount` method might also contain some unrelated logic that sets up event listeners, with cleanup performed in `componentWillUnmount`. Mutually related code that changes together gets split apart, but completely unrelated code ends up combined in a single method. This makes it too easy to introduce bugs and inconsistencies.
+我們過去常常必須維護一些 component，他們一開始很單純但慢慢演變成一堆不可管理的亂七八糟的 stateful 邏輯與 side effect。每一個 lifecycle 常常包含一堆沒有關聯的邏輯。例如，在「componentDidMount」與「componentDidUpdate」中 component 會 fetch 資料，然而同一個「componentDidMount」方法可能同時包含一些沒有關聯的邏輯用來設定 event listener，並在「componentWillUnmount」cleanup。彼此相關且需要一起更改的程式碼被分開了，但完全沒有關聯的程式碼最終合併在同一個方法之中。這麼做太容易導致 bug 和前後不一致。
 
-In many cases it's not possible to break these components into smaller ones because the stateful logic is all over the place. It's also difficult to test them. This is one of the reasons many people prefer to combine React with a separate state management library. However, that often introduces too much abstraction, requires you to jump between different files, and makes reusing components more difficult.
+很多情況下不可能將這些 component 拆成更小的 component 因為 stateful 邏輯散佈在各處，同時也很難測試他們。這也是其中一個理由為什麼很多人喜歡結合 React 和一個獨立的狀態管理函式庫。然而，這常常導致太多抽象邏輯，需要你在不同檔案間跳來跳去，且讓重複使用 component 變得更困難。
 
-To solve this, **Hooks let you split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data)**, rather than forcing a split based on lifecycle methods. You may also opt into managing the component's local state with a reducer to make it more predictable.
+為了解決這個問題，比起強迫根據 lifecycle 方法拆分，**Hooks 讓你根據相關的部分（像是設定訂閱或 fetch 資料）將一個 component 拆成許多更小的 function**。你也可以選擇透過 reducer 管理 component 的 local state 讓他更容易預測。
 
-We'll discuss this more in [Using the Effect Hook](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns).
+我們將在[使用 Effect Hook](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns) 討論更多。
 
-### Classes confuse both people and machines {#classes-confuse-both-people-and-machines}
+### class 讓人和電腦都很疑惑
 
-In addition to making code reuse and code organization more difficult, we've found that classes can be a large barrier to learning React. You have to understand how `this` works in JavaScript, which is very different from how it works in most languages. You have to remember to bind the event handlers. Without unstable [syntax proposals](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/), the code is very verbose. People can understand props, state, and top-down data flow perfectly well but still struggle with classes. The distinction between function and class components in React and when to use each one leads to disagreements even between experienced React developers.
+除了讓程式碼更難重複使用和管理之外，我們發現 class 是學習 React 的一個很大的障礙。你必須了解 `this` 在 JavaScript 中是怎麼運作的，這和他在大部份其他語言的運作方式不同，你必須記得 bind event handler。在 [syntax proposals](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/) 還不穩定的期間，程式碼會很冗長。大家能夠很好地理解 props，state 和 top-down data flow 但對於 class 還在努力地理解中。對於有經驗的 React 開發者來說，對於什麼時候使用 function 和 class component 和他們彼此之間的分別，都還存在著歧見。
 
-Additionally, React has been out for about five years, and we want to make sure it stays relevant in the next five years. As [Svelte](https://svelte.technology/), [Angular](https://angular.io/), [Glimmer](https://glimmerjs.com/), and others show, [ahead-of-time compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) of components has a lot of future potential. Especially if it's not limited to templates. Recently, we've been experimenting with [component folding](https://github.com/facebook/react/issues/7323) using [Prepack](https://prepack.io/), and we've seen promising early results. However, we found that class components can encourage unintentional patterns that make these optimizations fall back to a slower path. Classes present issues for today's tools, too. For example, classes don't minify very well, and they make hot reloading flaky and unreliable. We want to present an API that makes it more likely for code to stay on the optimizable path.
+此外，React 已經推出五年了，我們想要確保下一個五年他還有一席之地。像是 [Svelte](https://svelte.technology/)，[Angular](https://angular.io/)，[Glimmer](https://glimmerjs.com/)，和其他框架所顯示地，component [ahead-of-time compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) 未來有很多的潛力，特別是如果不只侷限在 template 的話。最近我們已經透過 [Prepack](https://prepack.io/) 實驗了 [component folding](https://github.com/facebook/react/issues/7323)，且我們看到很有展望的早期成果。然而，我們發現 class component 會鼓勵使用非刻意的 pattern 讓這些優化退化成更慢的路徑。class 在今天的工具上也造成了問題，例如，class 縮小檔案的效果不好，且他們讓 hot reloading 變得不可靠。我們想要提供一個 API 讓程式碼盡可能留在可優化的路徑。
 
-To solve these problems, **Hooks let you use more of React's features without classes.** Conceptually, React components have always been closer to functions. Hooks embrace functions, but without sacrificing the practical spirit of React. Hooks provide access to imperative escape hatches and don't require you to learn complex functional or reactive programming techniques.
+為了解決這些問題，**Hooks 讓你不用 class 就可以使用更多 React 的功能。**概念上，React component 一直和 function 比較接近。Hooks 擁抱 function，卻不犧牲 React 的實用精神。Hooks 讓你在不得已的時候可以使用命令式的方法，且不需要你學習複雜的 functional 或 reactive programming 技巧。
 
->Examples
+>範例
 >
->[Hooks at a Glance](/docs/hooks-overview.html) is a good place to start learning Hooks.
+>[第一眼 Hooks](/docs/hooks-overview.html) 是開始學習 Hooks 的好地方。
 
-## Gradual Adoption Strategy {#gradual-adoption-strategy}
+## 逐步採用策略 {#gradual-adoption-strategy}
 
->**TLDR: There are no plans to remove classes from React.**
+>**長話短說：沒有從 React 中移除 class 的計畫。**
 
-We know that React developers are focused on shipping products and don't have time to look into every new API that's being released. Hooks are very new, and it might be better to wait for more examples and tutorials before considering learning or adopting them.
+我們知道 React 開發者專注在開發產品且沒有時間細看每一個剛釋出的新的 API，Hooks 還很新，考慮學習或採用之前，可能等更多範例和教程釋出比較好。
 
-We also understand that the bar for adding a new primitive to React is extremely high. For curious readers, we have prepared a [detailed RFC](https://github.com/reactjs/rfcs/pull/68) that dives into motivation with more details, and provides extra perspective on the specific design decisions and related prior art.
+我們也理解在 React 中加入新的基本型別的門檻非常高。我們準備了[詳細的 RFC](https://github.com/reactjs/rfcs/pull/68) 給有好奇心的讀者，深入探討動機與對於某些設計決定的額外看法和相關的現有技術。
 
-**Crucially, Hooks work side-by-side with existing code so you can adopt them gradually.** There is no rush to migrate to Hooks. We recommend avoiding any "big rewrites", especially for existing, complex class components. It takes a bit of a mindshift to start "thinking in Hooks". In our experience, it's best to practice using Hooks in new and non-critical components first, and ensure that everybody on your team feels comfortable with them. After you give Hooks a try, please feel free to [send us feedback](https://github.com/facebook/react/issues/new), positive or negative.
+**很重要，Hooks 和現有的程式碼共同運作，讓你可以逐步採用。**不用急著轉移到 Hooks，我們建議避免任何「大重寫」，特別是現有的複雜的 class component。需要花點時間在想法上開始「用 Hooks 思考」。根據我們的經驗，最好的方式是先在新的且非關鍵的 component 練習使用 Hooks，且確保你的團隊裡的每個人都得心應手。在你試過 Hooks 之後，請大方[寄給我們回饋](https://github.com/facebook/react/issues/new)，好的或壞的都可以。
 
-We intend for Hooks to cover all existing use cases for classes, but **we will keep supporting class components for the foreseeable future.** At Facebook, we have tens of thousands of components written as classes, and we have absolutely no plans to rewrite them. Instead, we are starting to use Hooks in the new code side by side with classes.
+我們計畫用 Hooks 涵蓋所有現存的 class 使用案例，但是 **我們將在可預見的未來持續支援 class component。**在 Facebook，我們有數以千計的 component 用 class 寫成，且我們完全沒有計劃重寫他們。相反地，我們開始在新的程式碼一起使用 Hooks 和 class。
 
-## Frequently Asked Questions {#frequently-asked-questions}
+## 常見問題 {#frequently-asked-questions}
 
-We've prepared a [Hooks FAQ page](/docs/hooks-faq.html) that answers the most common questions about Hooks.
+我們準備了 [Hooks 常見問題頁](/docs/hooks-faq.html)用來回答有關 Hooks 的最常見的問題。
 
-## Next Steps {#next-steps}
+## 下一步 {#next-steps}
 
-By the end of this page, you should have a rough idea of what problems Hooks are solving, but many details are probably unclear. Don't worry! **Let's now go to [the next page](/docs/hooks-overview.html) where we start learning about Hooks by example.**
+在這一頁的最後，你應該有一個粗略的概念 Hooks 解決什麼樣的問題，但很多細節可能還不清楚。不用擔心，**讓我們現在前往[下一頁](/docs/hooks-overview.html)用範例開始學習 Hooks。**

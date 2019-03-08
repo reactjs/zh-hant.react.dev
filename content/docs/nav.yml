@@ -110,7 +110,7 @@
       - id: hooks-intro
         title: 隆重介紹 Hooks
       - id: hooks-overview
-        title: Hooks 第一眼
+        title: 第一眼 Hooks
       - id: hooks-state
         title: 使用 State Hook
       - id: hooks-effect
@@ -122,7 +122,7 @@
       - id: hooks-reference
         title: Hooks API Reference
       - id: hooks-faq
-        title: Hooks FAQ
+        title: Hooks 常見問題
 - title: Contributing
   items:
   - id: how-to-contribute
