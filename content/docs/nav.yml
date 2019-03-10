@@ -103,7 +103,7 @@
     - id: javascript-environment-requirements
       title: JS 環境要求
     - id: glossary
-      title: Glossary
+      title: 術語表
 - title: Hooks (New)
   isOrdered: true
   items:
