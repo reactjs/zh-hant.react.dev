@@ -101,7 +101,7 @@
     - id: test-renderer
       title: Test Renderer
     - id: javascript-environment-requirements
-      title: JS Environment Requirements
+      title: JS 環境要求
     - id: glossary
       title: Glossary
 - title: Hooks (New)
