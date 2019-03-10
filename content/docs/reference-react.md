@@ -1,6 +1,6 @@
 ---
 id: react-api
-title: React Top-Level API
+title: React 頂層 API
 layout: docs
 category: Reference
 permalink: docs/react-api.html
@@ -13,43 +13,43 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
-`React` is the entry point to the React library. If you load React from a `<script>` tag, these top-level APIs are available on the `React` global. If you use ES6 with npm, you can write `import React from 'react'`. If you use ES5 with npm, you can write `var React = require('react')`.
+`React` 是 React 函式庫的進入點。 如果你使用 `<script>` 標籤載入 React,這些頂層 API 可以在 `React` 全域變數使用。如果你使用 ES6 撰寫並使用 npm，你可以寫成 `import React from 'react'` 。如果你使用 ES5 撰寫並使用 npm，你可以寫成 `var React = require('react')` 。
 
-## Overview {#overview}
+## 概觀 {#overview}
 
-### Components {#components}
+### Component {#components}
 
-React components let you split the UI into independent, reusable pieces, and think about each piece in isolation. React components can be defined by subclassing `React.Component` or `React.PureComponent`.
+React component 可以讓你把 UI 切分為獨立並可重複使用的單位，並且每個單位可以抽出來獨立思考。React component 可以透過繼承 `React.Component` 或是 `React.PureComponent` 定義。
 
  - [`React.Component`](#reactcomponent)
  - [`React.PureComponent`](#reactpurecomponent)
 
-If you don't use ES6 classes, you may use the `create-react-class` module instead. See [Using React without ES6](/docs/react-without-es6.html) for more information.
+如果你沒有使用 ES6 class，你可以使用 `create-react-class` 模組。請參閱[使用 React 但不使用 ES6](/docs/react-without-es6.html) 取得更多資訊。
 
-React components can also be defined as functions which can be wrapped:
+React component 也可以定義為 function 並可以被封裝：
 
 - [`React.memo`](#reactmemo)
 
-### Creating React Elements {#creating-react-elements}
+### 建立 React Element {#creating-react-elements}
 
-We recommend [using JSX](/docs/introducing-jsx.html) to describe what your UI should look like. Each JSX element is just syntactic sugar for calling [`React.createElement()`](#createelement). You will not typically invoke the following methods directly if you are using JSX.
+我們推薦[使用 JSX](/docs/introducing-jsx.html) 來描述你的 UI 應該長成什麼樣子。 每個 JSX element 都只是呼叫 [`React.createElement()`](#createelement) 的語法糖。當你使用 JSX 的時候你將不需要直接呼叫以下的 method：
 
 - [`createElement()`](#createelement)
 - [`createFactory()`](#createfactory)
 
-See [Using React without JSX](/docs/react-without-jsx.html) for more information.
+參閱[使用 React 但不使用 JSX](/docs/react-without-jsx.html) 取得更多資訊。
 
-### Transforming Elements {#transforming-elements}
+### 操作 Element {#transforming-elements}
 
-`React` provides several APIs for manipulating elements:
+`React` 提供了多種 API 讓你可以操作 element：
 
 - [`cloneElement()`](#cloneelement)
 - [`isValidElement()`](#isvalidelement)
 - [`React.Children`](#reactchildren)
 
-### Fragments {#fragments}
+### Fragment {#fragments}
 
-`React` also provides a component for rendering multiple elements without a wrapper.
+`React` 也提供了一個 component 讓你一次 render 多個 element 而不需要額外的 wrapper。
 
 - [`React.Fragment`](#reactfragment)
 
@@ -60,20 +60,20 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 ### Suspense {#suspense}
 
-Suspense lets components "wait" for something before rendering. Today, Suspense only supports one use case: [loading components dynamically with `React.lazy`](/docs/code-splitting.html#reactlazy). In the future, it will support other use cases like data fetching.
+Suspense 讓 components 在 render 之前可以「暫停」並等待其他事情。目前 Suspense 只支援一個情境：[使用 `React.lazy` 動態載入 component](/docs/code-splitting.html#reactlazy) 。在未來，我們也會支援像是抓取資料等更多的使用情境。
 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
 ### Hooks {#hooks}
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks have a [dedicated docs section](/docs/hooks-intro.html) and a separate API reference:
+*Hooks* 是 React 16.8 開始的新功能。這讓你可以使用 state 以及其他的 React 功能而不需要撰寫一個 class。Hooks 有一個專屬的[文件專區](/docs/hooks-intro.html) 和分開的 API 參考資料：
 
-- [Basic Hooks](/docs/hooks-reference.html#basic-hooks)
+- [基本 Hooks](/docs/hooks-reference.html#basic-hooks)
   - [`useState`](/docs/hooks-reference.html#usestate)
   - [`useEffect`](/docs/hooks-reference.html#useeffect)
   - [`useContext`](/docs/hooks-reference.html#usecontext)
-- [Additional Hooks](/docs/hooks-reference.html#additional-hooks)
+- [進階 Hooks](/docs/hooks-reference.html#additional-hooks)
   - [`useReducer`](/docs/hooks-reference.html#usereducer)
   - [`useCallback`](/docs/hooks-reference.html#usecallback)
   - [`useMemo`](/docs/hooks-reference.html#usememo)
@@ -84,11 +84,11 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
 
 * * *
 
-## Reference {#reference}
+## 參考資料 {#reference}
 
 ### `React.Component` {#reactcomponent}
 
-`React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
+`React.Component` 是當你使用 [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) 定義 React component 時所用的 base class：
 
 ```javascript
 class Greeting extends React.Component {
@@ -98,21 +98,19 @@ class Greeting extends React.Component {
 }
 ```
 
-See the [React.Component API Reference](/docs/react-component.html) for a list of methods and properties related to the base `React.Component` class.
+參閱 [React.Component API 參考資料](/docs/react-component.html) 可查到跟 `React.Component` 相關的 method 及 properties。
 
 * * *
 
 ### `React.PureComponent` {#reactpurecomponent}
 
-`React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison. 
+`React.PureComponent` 跟 [`React.Component`](#reactcomponent) 很相似。他們之間的差別是 [`React.Component`](#reactcomponent) 並沒有實作 [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate)，但 `React.PureComponent` 提供了一個實作以對於 prop 及 state 進行 shallow compare。
 
-If your React component's `render()` function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases.
-
-> Note
+> 備註
 >
-> `React.PureComponent`'s `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend `PureComponent` when you expect to have simple props and state, or use [`forceUpdate()`](/docs/react-component.html#forceupdate) when you know deep data structures have changed. Or, consider using [immutable objects](https://facebook.github.io/immutable-js/) to facilitate fast comparisons of nested data.
+> `React.PureComponent` 的 `shouldComponentUpdate()` 只對 object 進行 shallow compare。如果這些 object 包含複雜的資料結構，在深層的資料有所改變的時候將有可能回傳錯誤結果 (false-negative)。繼承 `PureComponent` 的時候，請確保你只有簡單的 prop 跟 state，或在當你知道深層的資料有所改變的時候使用 [`forceUpdate()`](/docs/react-component.html#forceupdate)。你也可以考慮改用 [immutable object](https://facebook.github.io/immutable-js/) 進行快速的深層資料比較。
 >
-> Furthermore, `React.PureComponent`'s `shouldComponentUpdate()` skips prop updates for the whole component subtree. Make sure all the children components are also "pure".
+> 此外，`React.PureComponent` 的 `shouldComponentUpdate()` 將會跳過整個 subtree 的 prop 更新。請確保所有 children component 也是「pure」的。
 
 * * *
 
@@ -124,11 +122,11 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-`React.memo` is a [higher order component](/docs/higher-order-components.html). It's similar to [`React.PureComponent`](#reactpurecomponent) but for function components instead of classes.
+`React.memo` 是一個 [higher order component](/docs/higher-order-components.html)。它跟 [`React.PureComponent`](#reactpurecomponent) 很類似，但是它是使用在 function component 上而不是給 class 使用。
 
-If your function component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+如果你的 function component 每次得到相同 prop 的時候都會 render 相同結果，你可以將其包在 `React.memo` 之中，透過快取 render 結果來在某些情況下加速。這表示 React 會跳過 render 這個 component，並直接重用上次的 render 結果。
 
-By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
+這預設只會對 prop 進行 shallow compare 。如果你需要控制比較的方法，你可以提供一個自訂的比較 function 作為第二個參數。
 
 ```javascript
 function MyComponent(props) {
@@ -144,11 +142,11 @@ function areEqual(prevProps, nextProps) {
 export default React.memo(MyComponent, areEqual);
 ```
 
-This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a render, as this can lead to bugs.
+這個 function 是用來作為 **[效能最佳化](/docs/optimizing-performance.html)** 所用。請勿依賴這個 function 來「避免」render，這可能會產生 bug。
 
-> Note
+> 備註
 >
-> Unlike the [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method on class components, the `areEqual` function returns `true` if the props are equal and `false` if the props are not equal. This is the inverse from `shouldComponentUpdate`.
+> 與 class component 的 [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method 不同,`areEqual` function 當 prop 相等的時候回傳 `true`，不相等的時候回傳 `false`。 這跟 `shouldComponentUpdate` 剛好相反。
 
 * * *
 
@@ -162,9 +160,9 @@ React.createElement(
 )
 ```
 
-Create and return a new [React element](/docs/rendering-elements.html) of the given type. The type argument can be either a tag name string (such as `'div'` or `'span'`), a [React component](/docs/components-and-props.html) type (a class or a function), or a [React fragment](#reactfragment) type.
+建立並回傳一個新的 [React element](/docs/rendering-elements.html) 描述指定的 type。 Type 參數可以是一個標籤名稱字串（像是 `'div'` 或是 `'span'`）、一個 [React component](/docs/components-and-props.html) type (class 或是 function) 或者是一個 [React fragment](#reactfragment) type。
 
-Code written with [JSX](/docs/introducing-jsx.html) will be converted to use `React.createElement()`. You will not typically invoke `React.createElement()` directly if you are using JSX. See [React Without JSX](/docs/react-without-jsx.html) to learn more.
+使用 [JSX](/docs/introducing-jsx.html) 寫的程式將會被轉換使用 `React.createElement()`。如果使用 JSX，你通常不需要自己呼叫 `React.createElement()`。請參閱[使用 React 但不使用 JSX](/docs/react-without-jsx.html)。
 
 * * *
 
@@ -178,17 +176,17 @@ React.cloneElement(
 )
 ```
 
-Clone and return a new React element using `element` as the starting point. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved.
+複製並回傳一個基於 `element` 的新 React element。這個回傳的 element 的 prop 將會是原本 element 的 prop 與新的 prop 進行 shallow 合併之後的結果。新的 children 將會取代原先的 children。 原先 element 的 `key` 與 `ref` 將會被保留。
 
-`React.cloneElement()` is almost equivalent to:
+`React.cloneElement()` 幾乎等於：
 
 ```js
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element.
+但是，這同時也會保留 `ref`。如果你有一個 child 上有 `ref` 的時候，你將不會不小心從你的上層元件偷走 ref。你的新 element 會保留一樣的 `ref`。
 
-This API was introduced as a replacement of the deprecated `React.addons.cloneWithProps()`.
+這個 API 是用來取代目前已經過時的 `React.addons.cloneWithProps()`。
 
 * * *
 
@@ -198,11 +196,11 @@ This API was introduced as a replacement of the deprecated `React.addons.cloneWi
 React.createFactory(type)
 ```
 
-Return a function that produces React elements of a given type. Like [`React.createElement()`](#createElement), the type argument can be either a tag name string (such as `'div'` or `'span'`), a [React component](/docs/components-and-props.html) type (a class or a function), or a [React fragment](#reactfragment) type.
+回傳一個 function 可以產生指定 type 的 React element。跟 [`React.createElement()`](#createElement) 一樣，這個 type 參數可以是一個標籤名稱字串（像是 `'div'` 或是 `'span'`）、一個 [React component](/docs/components-and-props.html) type (class 或是 function) 或者是一個 [React fragment](#reactfragment) type。
 
-This helper is considered legacy, and we encourage you to either use JSX or use `React.createElement()` directly instead.
+這個 helper 已經被認定為過時，我們建議你使用 JSX 或是直接使用 `React.createElement()`。
 
-You will not typically invoke `React.createFactory()` directly if you are using JSX. See [React Without JSX](/docs/react-without-jsx.html) to learn more.
+如果使用 JSX，你通常不需要自己呼叫 `React.createFactory()`。請參閱[使用 React 但不使用 JSX](/docs/react-without-jsx.html)。
 
 * * *
 
@@ -212,13 +210,13 @@ You will not typically invoke `React.createFactory()` directly if you are using 
 React.isValidElement(object)
 ```
 
-Verifies the object is a React element. Returns `true` or `false`.
+檢查一個 object 是否為 React element。通常回傳 `true` 或是 `false`。
 
 * * *
 
 ### `React.Children` {#reactchildren}
 
-`React.Children` provides utilities for dealing with the `this.props.children` opaque data structure.
+`React.Children` 提供了一些工具可以將 `this.props.children` 作為不透明的資料結構處理。
 
 #### `React.Children.map` {#reactchildrenmap}
 
@@ -226,11 +224,11 @@ Verifies the object is a React element. Returns `true` or `false`.
 React.Children.map(children, function[(thisArg)])
 ```
 
-Invokes a function on every immediate child contained within `children` with `this` set to `thisArg`. If `children` is an array it will be traversed and the function will be called for each child in the array. If children is `null` or `undefined`, this method will return `null` or `undefined` rather than an array.
+對每一個列為 `children` 之中的直接 child 呼叫 function 並將 `this` 設定為 `thisArg`。如果 `children` 是一個 array，這將會列舉整個 array 並對每一個 child 呼叫這個 function。如果 children 是 `null` 或是 `undefined`，這個 method 將會回傳 `null` 或是 `undefined` 而不是一個 array。
 
-> Note
+> 備註
 >
-> If `children` is a `Fragment` it will be treated as a single child and not traversed.
+> 如果 `children` 是一個 `Fragment`，它將會被視為只有一個 child 而不會繼續深入列舉。
 
 #### `React.Children.forEach` {#reactchildrenforeach}
 
@@ -238,7 +236,7 @@ Invokes a function on every immediate child contained within `children` with `th
 React.Children.forEach(children, function[(thisArg)])
 ```
 
-Like [`React.Children.map()`](#reactchildrenmap) but does not return an array.
+跟 [`React.Children.map()`](#reactchildrenmap) 一樣，但不會回傳一個 array 。
 
 #### `React.Children.count` {#reactchildrencount}
 
@@ -246,7 +244,7 @@ Like [`React.Children.map()`](#reactchildrenmap) but does not return an array.
 React.Children.count(children)
 ```
 
-Returns the total number of components in `children`, equal to the number of times that a callback passed to `map` or `forEach` would be invoked.
+回傳 `children` 到底有幾個 child，跟傳入 `map` 或是 `forEach` 的 callback 會被呼叫的次數一致。
 
 #### `React.Children.only` {#reactchildrenonly}
 
@@ -254,11 +252,11 @@ Returns the total number of components in `children`, equal to the number of tim
 React.Children.only(children)
 ```
 
-Verifies that `children` has only one child (a React element) and returns it. Otherwise this method throws an error.
+確認 `children` 只有一個 child (一個 React element）並回傳它，不然這個 method 將會拋出錯誤。
 
-> Note:
+> 備註
 >
->`React.Children.only()` does not accept the return value of [`React.Children.map()`](#reactchildrenmap) because it is an array rather than a React element.
+>`React.Children.only()` 無法接受 [`React.Children.map()`](#reactchildrenmap) 的回傳值，因為那個回傳值將會是一個 array 而不是一個 React element 。
 
 #### `React.Children.toArray` {#reactchildrentoarray}
 
@@ -266,17 +264,17 @@ Verifies that `children` has only one child (a React element) and returns it. Ot
 React.Children.toArray(children)
 ```
 
-Returns the `children` opaque data structure as a flat array with keys assigned to each child. Useful if you want to manipulate collections of children in your render methods, especially if you want to reorder or slice `this.props.children` before passing it down.
+將 `children` 這個不透明的資料結構轉為一個扁平的 array 並對每個 child 指定一個 key。如果你想要在你的 render method 中操作 children 的集合時非常有用，特別是當你想要在傳遞它們之前調整順序或是擷取一部份 `this.props.children` 的時候。
 
-> Note:
+> 備註
 >
-> `React.Children.toArray()` changes keys to preserve the semantics of nested arrays when flattening lists of children. That is, `toArray` prefixes each key in the returned array so that each element's key is scoped to the input array containing it.
+> `React.Children.toArray()` 會改變 key 來保留巢狀 array 的語意。也就是說 `toArray` 將會在每個 key 前面加入前綴，確保每個 element 的 key 都在與它原本輸入的 array 相關。
 
 * * *
 
 ### `React.Fragment` {#reactfragment}
 
-The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element:
+`React.Fragment` 讓你可以在一個 `render()` method 中一次回傳多個 element 而不需要建立一個額外的 DOM element：
 
 ```javascript
 render() {
@@ -289,51 +287,50 @@ render() {
 }
 ```
 
-You can also use it with the shorthand `<></>` syntax. For more information, see [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html).
-
+你也可以使用 `<></>` 的精簡表示法。請參閱 [React v16.2.0： 更好的 Fragment 支援](/blog/2017/11/28/react-v16.2.0-fragment-support.html)以獲得更多資訊。
 
 ### `React.createRef` {#reactcreateref}
 
-`React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
+`React.createRef` 會建立一個 [ref](/docs/refs-and-the-dom.html) 以透過 ref attribute 夾帶在一個 React element 之上。
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
 
-`React.forwardRef` creates a React component that forwards the [ref](/docs/refs-and-the-dom.html) attribute it receives to another component below in the tree. This technique is not very common but is particularly useful in two scenarios:
+`React.forwardRef` 會建立一個 React component 並將 [ref](/docs/refs-and-the-dom.html) attribute 轉交給旗下的另外一個 component 。這個技巧不是很常被使用，但在以下兩個情況很適合：
 
-* [Forwarding refs to DOM components](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
-* [Forwarding refs in higher-order-components](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
+* [將 ref 轉交給 DOM component](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
+* [在 higher-order-component 之中轉交 ref](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
 
-`React.forwardRef` accepts a rendering function as an argument. React will call this function with `props` and `ref` as two arguments. This function should return a React node.
+`React.forwardRef` 接受一個 render function 作為參數。React 會呼叫這個 function 並傳入兩個參數： `props` 以及 `ref` 。這個 function 應該要回傳一個 React node。
 
 `embed:reference-react-forward-ref.js`
 
-In the above example, React passes a `ref` given to `<FancyButton ref={ref}>` element as a second argument to the rendering function inside the `React.forwardRef` call. This rendering function passes the `ref` to the `<button ref={ref}>` element.
+在上面這個範例，React 會把給予 `<FancyButton ref={ref}>` 的 `ref` 轉交給傳入 `React.forwardRef` 的 function 作為其第二個參數。這個 render function 接著將這個 `ref` 轉交給 `<button ref={ref}>` element。
 
-As a result, after React attaches the ref, `ref.current` will point directly to the `<button>` DOM element instance.
+結果，當 React 夾上這個 ref 的時候，`ref.current` 將會直接指到 `<button>` 這個 DOM element 實例。
 
-For more information, see [forwarding refs](/docs/forwarding-refs.html).
+請參閱[轉交 ref](/docs/forwarding-refs.html) 獲得更多資訊。
 
 ### `React.lazy` {#reactlazy}
 
-`React.lazy()` lets you define a component that is loaded dynamically. This helps reduce the bundle size to delay loading components that aren't used during the initial render.
+`React.lazy()` 讓你可以定義一個動態載入的 component。這可以在初始 render 期間延緩載入沒有被用到的 component 來減少 bundle size。
 
-You can learn how to use it from our [code splitting documentation](/docs/code-splitting.html#reactlazy). You might also want to check out [this article](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) explaining how to use it in more detail.
+你可以閱讀我們的 [code splitting 文件](/docs/code-splitting.html#reactlazy) 來學習怎麼使用它。你可能也想要閱讀[這篇文章](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) 更深入了解如何使用這個 function。
 
 ```js
 // This component is loaded dynamically
 const SomeComponent = React.lazy(() => import('./SomeComponent'));
 ```
 
-Note that rendering `lazy` components requires that there's a `<React.Suspense>` component higher in the rendering tree. This is how you specify a loading indicator.
+請注意當你使用 `lazy` component 的時候，你的 render tree 上層中必須包含一個 `<React.Suspense>` 來指定 loading indicator。
 
-> **Note**
+> 備註
 >
-> Using `React.lazy`with dynamic import requires Promises to be available in the JS environment. This requires a polyfill on IE11 and below.
+> 當你同時使用 `React.lazy` 以及動態 import 的時候，你的 JS 環境必須支援 Promise。IE11 以下的瀏覽器將需要 polyfill。
 
 ### `React.Suspense` {#reactsuspense}
 
-`React.Suspense` let you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
+`React.Suspense` 讓你指定當底下的 component 還沒準備好 render 的時候所用的 loading indicator。目前 `<React.Suspense>` **只支援** 動態載入的 component。
 
 ```js
 // This component is loaded dynamically
@@ -351,10 +348,10 @@ function MyComponent() {
 }
 ```
 
-It is documented in our [code splitting guide](/docs/code-splitting.html#reactlazy). Note that `lazy` components can be deep inside the `Suspense` tree -- it doesn't have to wrap every one of them. The best practice is to place `<Suspense>` where you want to see a loading indicator, but to use `lazy()` wherever you want to do code splitting.
+在我們的 [code splitting 文件](/docs/code-splitting.html#reactlazy) 有更多資訊。請注意 `lazy` component 可以在 `Suspense` tree 中底下很多層 ── 你不需要把每一個 `lazy` 元素包起來。最好的方法是將 `<Suspense>` 放在你想看到 loading indicator 的地方，而在所有你想進行 code splitting 的地方使用 `lazy()` 。
 
-While this is not supported today, in the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
+雖然目前還不支援其他情境，我們在未來會讓 `Suspense` 處理更多像是抓取資料的情境。你可以在[我們的未來計畫](/blog/2018/11/27/react-16-roadmap.html)中讀到更多資訊。
 
->Note:
+> 備註
 >
->`React.lazy()` and `<React.Suspense>` are not yet supported by `ReactDOMServer`. This is a known limitation that will be resolved in the future.
+> `ReactDOMServer` 還沒支援 `React.lazy()` 與 `<React.Suspense>`。這是一個目前已知的限制，並會在未來解決。
