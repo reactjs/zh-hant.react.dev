@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-React 也依賴於 `requestAnimationFrame`（甚至包括測驗環境）。
+React 也依賴 `requestAnimationFrame`（即使在測試環境）。
 你可以使用[raf](https://www.npmjs.com/package/raf) package 去 shim `requestAnimationFrame`：
 
 ```js
