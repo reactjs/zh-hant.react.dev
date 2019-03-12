@@ -6,7 +6,7 @@ category: Reference
 permalink: docs/javascript-environment-requirements.html
 ---
 
-React 16 依懶集合類型 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) 和 [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)。假若你需要支持舊式的瀏覽器和設備，而它們並沒有原生的支持（例如 IE < 11）或使用不合規格的做法（例如 IE 11），請考慮於應用程式加入一個全局的 polyfill，例如 [core-js](https://github.com/zloirock/core-js) 或 [babel-polyfill](https://babeljs.io/docs/usage/polyfill/)。
+React 16 依賴 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) 和 [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) 集合類型。如果你需要支援舊瀏覽器和設備，它們原生並沒有支援（例如 IE < 11）或是沒有兼容的實作（例如 IE 11），請考慮於應用程式加入一個全域的 polyfill，例如 [core-js](https://github.com/zloirock/core-js) 或 [babel-polyfill](https://babeljs.io/docs/usage/polyfill/)。
 
 一個使用 core-js 來支持舊式瀏覽器的 React 16 環境大致如下：
 
