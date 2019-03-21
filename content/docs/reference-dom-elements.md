@@ -14,9 +14,9 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-React 實踐了一個具有效能且跨瀏覽器兼容的 DOM system。並在實踐的過程中，優化 DOM 美中不足之處。
+為了能兼具跨瀏覽器相容與效能，React 實踐了一套獨立於瀏覽器的 DOM 系統，並把握機會優化了瀏覽器 DOM 美中不足之處。
 
-在 React 裡，所有 DOM property 和 attribute（包括 event handler）都應該以駝峰式命名。舉例來說，HTML 的 attribute `tabindex` 在 React 中對應到 `tabIndex`。`aria-*` 和 `data-*` attribute 則是例外，需要保持全部小寫。舉例來說，`aria-label` 保持原樣即可。
+在 React 裡，所有 DOM property 和 attribute（包括 event handler）都應該以小駝峰式命名。舉例來說，HTML 的 attribute `tabindex` 在 React 中對應到 `tabIndex`。`aria-*` 和 `data-*` attribute 則是例外，需要保持全部小寫。舉例來說，`aria-label` 保持原樣即可。
 
 ## Attributes 相異之處 {#differences-in-attributes}
 
@@ -28,9 +28,9 @@ React 實踐了一個具有效能且跨瀏覽器兼容的 DOM system。並在實
 
 ### className {#classname}
 
-要指定一個 CSS class 時，使用 `className` attribute。這在所有常規的 DOM 和 SVG element 像是 `<div>`、`<a>` 還有其他的都能適用。
+要指定一個 CSS class 時，使用 `className` attribute。這在所有標準的 DOM 和 SVG element 像是 `<div>`、`<a>` 或其他的都能適用。
 
-如果你在 React 裡使用 Web Component（這不是常見的狀況），則使用 `class`。
+如果你在 React 裡使用 Web Components（這不是常見的狀況），則使用 `class`。
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
@@ -48,11 +48,11 @@ function MyComponent() {
 
 ### htmlFor {#htmlfor}
 
-React element 使用 `htmlFor` 來替代 `for`，因為 `for` 在 JavaScript 是保留字詞。
+React element 使用 `htmlFor` 來替代 `for`，因為 `for` 在 JavaScript 是保留字。
 
 ### onChange {#onchange}
 
-`onChange` event 會表現的跟你預期一樣：當一個表格欄位改變，這個 event 會跟著發生。原先的 `onChange` 是個用詞不夠精確的行為，且 React 依靠這個 event 來處理使用者的即時輸入，所以我們表現出不同於瀏覽器的預設行為。
+`onChange` event 會表現的跟你預期一樣：每當表格欄位值改變，這個 event 跟著發生。原先的 `onChange` 是個用詞不夠精確的行為，且 React 依靠這個 event 來處理使用者的即時輸入，所以我們表現出不同於瀏覽器的預設行為。
 
 ### selected {#selected}
 
@@ -60,11 +60,11 @@ React element 使用 `htmlFor` 來替代 `for`，因為 `for` 在 JavaScript 是
 
 ### style {#style}
 
->筆記
+>注意
 >
->為了方便在文件裡某些範例會使用 `style`，但是 **基本上不推薦使用 `style` attribute 作為初步修飾 elements 的手段。** 在大部分的情形，應該使用[`className`](#classname) 來對應定義在外部 CSS stylesheet 的 class。`style` 通常在 React 應用中會被用做動態 style 的添加方式。也看看 [FAQ: Styling and CSS](/docs/faq-styling.html)。
+>為了方便在文件裡某些範例會使用 `style`，但是**基本上不推薦使用 `style` attribute 作為初步修飾 elements 的手段。**在大部分的情形，應該使用[`className`](#classname) 來對應定義在外部 CSS stylesheet 的 class。`style` 通常在 React 應用中會被用做動態 style 的添加方式。也看看 [FAQ: Styling and CSS](/docs/faq-styling.html)。
 
-`style` attribute 接收一個 JavaScript object 裡頭有駝峰式命名的 property，而不是 CSS string。這跟 DOM `style` JavaScript property 一致。
+`style` attribute 接收一個 JavaScript object 裡頭有小駝峰式命名的 property，而不是 CSS string。這跟 DOM `style` JavaScript property 一致。
 
 ```js
 const divStyle = {
@@ -90,7 +90,7 @@ function ComponentWithTransition() {
 }
 ```
 
-為了與使用 JavaScript 來存取 DOM node 一致，style key 也以駝峰式命名 (e.g. `node.style.backgroundImage`)。瀏覽器引擎前綴除了 [`ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) 都應該以一個大寫字母開頭。這就是 `WebkitTransition` 為什麼有一個大寫「W」的原因。
+為了與使用 JavaScript 來存取 DOM node 一致，style key 也以小駝峰式命名 (e.g. `node.style.backgroundImage`)。瀏覽器引擎前綴除了 [`ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) 都應該以一個大寫字母開頭。這就是 `WebkitTransition` 為什麼有一個大寫「W」的原因。
 
 React 會為某些數字型態的 style property 自動加上「px」。如果你想要使用其他單位，以 string 的形式加上單位。舉例來說：
 
@@ -110,23 +110,23 @@ React 會為某些數字型態的 style property 自動加上「px」。如果�
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
-通常當一個 element 的 children 設置 `contentEditable` 時會有警示訊息，因為這不會有作用。這個 attribute 會抑制警示訊息。除非你在建立一個 library 像是 [Draft.js](https://facebook.github.io/draft-js/)，不要使用它。
+通常當一個 element 的 children 設置 `contentEditable` 時，因為不會有作用，所以會有警示訊息。這個 attribute 會抑制警示訊息。不要使用它，除非你在建立一個像是 [Draft.js](https://facebook.github.io/draft-js/) 的 library。
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
 如果你在使用 server-side React rendering 時 server 和 client render 不同時，通常會有一個警示訊息。然而，在一些很少見的案例，很難去保證 server 和 client side 會完全符合。舉例來說，像是 timestamp 就無法保持相同。
 
-如果你設置了 `suppressHydrationWarning` 為 `true`，attribute 以及 element 內容不一樣時，React 就不會有警示訊息。這只有作用在一層深度，且要有計畫性地使用。請勿濫用。你可以在 [`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate) 讀到更多關於 hydration。
+如果你設置了 `suppressHydrationWarning` 為 `true`，attribute 以及 element 內容不一樣時，React 就不會有警示訊息。這只有作用在一層深度，且需要有計畫性地使用，請勿濫用。你可以在 [`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate) 讀到更多關於 hydration。
 
 ### value {#value}
 
 `value` attribute 可以使用在 `<input>` 和 `<textarea>` component。你可以使用它來設置 component value。這對建立 controlled component 很有幫助。`defaultValue` 則是使用在 uncontrolled component，當初始 mount 後設置 component 的 value。
 
-## 所有 HTML Attributes 皆可使用 {#all-supported-html-attributes}
+## 可以使用的 HTML Attribute {#all-supported-html-attributes}
 
 在 React 16 中，任何標準或是[自訂](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM attributes 都可以使用。
 
-React 對於 DOM 始終提供以 JavaScript 為中心的 API。因為 React component 通常會有自訂 prop，也會有跟 DOM 相關的 prop，React 使用像 DOM API 一樣的 `camelCase` 轉換。
+React 為 DOM 提供了一套以 JavaScript 為中心的 API。因為 React component 通常會有自訂或跟 DOM 相關的 prop，React 使用像 DOM API 一樣的 `小駝峰式命名`。
 
 ```js
 <div tabIndex="-1" />      // 就像 node.tabIndex DOM API
@@ -134,7 +134,7 @@ React 對於 DOM 始終提供以 JavaScript 為中心的 API。因為 React comp
 <input readOnly={true} />  // 就像 node.readOnly DOM API
 ```
 
-除了上述文件提到的，這些 prop 跟相對應的 HTML attribute 運作方式一樣。
+除了上述文件提到的，這些 prop 跟對應的 HTML attribute 運作方式一樣。
 
 React 中可以使用這些 DOM attributes：
 
