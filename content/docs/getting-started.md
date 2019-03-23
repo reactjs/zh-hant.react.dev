@@ -1,6 +1,6 @@
 ---
 id: getting-started
-title: Getting Started
+title: 開始
 permalink: docs/getting-started.html
 next: add-react-to-a-website.html
 redirect_from:
@@ -20,7 +20,7 @@ redirect_from:
 
 本章節是 React 文件與相關資訊的概覽。
 
-**React** 是一個建立用戶介面的 JavaScript 函式庫。請到我們的[主頁](/)或[教學](/tutorial/tutorial.html)中學習什麼是 React。
+**React** 是一個實作使用者界面的 JavaScript 函式庫。請到我們的[主頁](/)或[教學](/tutorial/tutorial.html)中學習什麼是 React。
 
 ---
 
@@ -32,27 +32,27 @@ redirect_from:
 
 ## 嘗試 React {#try-react}
 
-React 在剛推出的時候就容許被逐步採用，**你可以按自己所需可多可少的**採用 React。不管你是想嘗試 React、在簡單的 HTML 網頁上加入互動性、或是建立一個使用 React 驅動的複雜應用程式，這章節裏的連結會幫助你開始。
+React 在剛推出的時候就容許被逐步採用，**你可以按自己所需可多可少的**採用 React。不管你是想初步嘗試 React、在簡單的 HTML 網頁上加入互動性，或是實作一個使用 React 驅動的複雜應用程式，這章節裏的連結會幫助你開始。
 
-### 線上 Playgrounds {#online-playgrounds}
+### 線上體驗 {#online-playgrounds}
 
-如果你有興趣嘗試 React，你可以使用線上編輯器，包括 [CodePen](codepen://hello-world)、[CodeSandbox](https://codesandbox.io/s/new)、或 [Glitch](https://glitch.com/edit/#!/remix/starter-react-template)，建立一個 Hello World 的範例。
+如果你有興趣嘗試 React，你可以使用一些線上編輯器，包括 [CodePen](codepen://hello-world)、[CodeSandbox](https://codesandbox.io/s/new)，或 [Glitch](https://glitch.com/edit/#!/remix/starter-react-template)，實作一個 Hello World 的範例。
 
-如果你偏向使用自己的編輯器，你可以[下載此 HTML 文件](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)進行修改，並從本地檔案系統裏把它打開到瀏覽器。這會進行一個緩慢的 runtime 程式碼轉換，因此我們建議只把這文件用作簡單的示範。
+如果你偏向使用自己的編輯器，你可以[下載此 HTML 文件](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)進行修改，並從本地文件系統裏把它打開到瀏覽器。這會進行一個緩慢的 runtime 程式碼轉換，因此我們建議只把這文件用作簡單的示範。
 
 ### 將 React 加入到網頁 {#add-react-to-a-website}
 
-你可以[在一分鐘裏將 React 加入到一個 HTML 網頁上](/docs/add-react-to-a-website.html)。你可以選擇逐步擴展它的應用範圍，或是只使用在少部分的可變 widget 上。
+你可以[在一分鐘內將 React 加入到一個 HTML 網頁上](/docs/add-react-to-a-website.html)。你可以選擇逐步擴展它的應用範圍，或是只使用在少部分的可變 widget 上。
 
-### 創建全新的 React 應用程式 {#create-a-new-react-app}
+### 實作全新的 React 應用程式 {#create-a-new-react-app}
 
-當你剛創建全新的 React 應用程式時，[一個簡單的 HTML 網頁配上 script 標籤](/docs/add-react-to-a-website.html)或許依然是最好的選擇。這樣我們就可以在一分鐘內設定好。
+當你剛實作全新的 React 應用程式時，[一個簡單的 HTML 網頁配上 script 標籤](/docs/add-react-to-a-website.html)或許依然是最好的選擇。這樣我們就可以在一分鐘內設定好。
 
 當你的應用程式逐漸擴大，你或許要考慮使用一個比較綜合的設定方法。我們推薦使用[一些 JavaScript toolchains](/docs/create-a-new-react-app.html) 來設定大型的應用程式。它們只需要一點，甚至一點配置也不需要，就能讓我們充份使用豐富的 React ecosystem。
 
 ## 學習 React {#learn-react}
 
-學習 React 的人來至於不同的背景，以及不同的學習方式。無論你是偏向理論化或是實踐化的方式，我們希望本章節會對你有所幫助。
+學習 React 的人來至於不同的背景，以及不同的學習方式。無論你是偏向理論化，或是實踐化的方式，我們希望本章節會對你有所幫助。
 
 * 如果你喜歡**動手做**，請從我們的[實用指南](/tutorial/tutorial.html)開始。
 * 如果你喜歡**按部就班學習概念**，請從我們的[主要概念指南](/docs/hello-world.html)開始。
@@ -65,7 +65,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 ### 初學者的 React {#react-for-beginners}
 
-如果你覺得 React 官方文件學習節奏比較快，不太適應，請先看看 [Tania Rascia 所編寫的 React 概覽](https://www.taniarascia.com/getting-started-with-react/)。她會以初學者的角度，介紹 React 的主要概念。當你看完了，嘗試再回來繼續學習吧！
+如果你覺得 React 官方文件學習的節奏比較快，不太適應，請先看看 [Tania Rascia 所編寫的 React 概覽](https://www.taniarascia.com/getting-started-with-react/)。她會以初學者的角度，介紹 React 的主要概念。當你看完了，嘗試再回來繼續學習吧！
 
 ### 設計師的 React {#react-for-designers}
 
@@ -83,7 +83,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 ### 實用指南 {#practical-tutorial}
 
-如果你喜歡**動手做**，請參考我們的[實用指南](/tutorial/tutorial.html)。我們會利用 React 創建一個井字遊戲。你可能對遊戲開發不感興趣，因而很想跳過這個部份，但請給它一個機會。在這指南所學習的技巧，將會是創建*任何* React 應用程式的重要基礎，掌握到它們會讓你更了解 React。
+如果你喜歡**動手做**，請參考我們的[實用指南](/tutorial/tutorial.html)。我們會利用 React 實作一個井字遊戲。你可能對遊戲開發不感興趣，因而很想跳過這個部份，但請給它一個機會。在這指南所學習的技巧，將會是實作*任何* React 應用程式的重要基礎，掌握到它們會讓你更了解 React。
 
 ### 按部就班學習指南 {#step-by-step-guide}
 
@@ -103,7 +103,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 ### API 參考 {#api-reference}
 
-當你想了解更多有關特定 React API 的資訊時，這章節會非常有用。例如 [`React.Component` API 參考](/docs/react-component.html)會解構 `setState()` 是怎樣運作，以及介紹不同生命週期方式的使用方法。
+當你想了解更多有關特定 React API 的資訊時，這章節會非常有用。例如 [`React.Component` API 參考](/docs/react-component.html)會解構 `setState()` 是怎樣運作，以及介紹不同生命週期方法的使用方法。
 
 ### 術語表與常見問題 {#glossary-and-faq}
 
@@ -119,8 +119,8 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 ## 版本化文件 {#versioned-documentation}
 
-官方文件會一直與最新穩定版本的 React 保持同步。至 React 16 而來，你可以在這[另一頁](/versions)找到舊版本的 React 文件。注意，舊版本的文件是取至該版本發佈時的狀態，並不會有持續的更新。
+官方文件會一直與最新穩定版本的 React 保持同步。至 React 16 以來，你可以在這[另一頁](/versions)找到舊版本的 React 文件。注意，舊版本的文件是取至該版本發佈時的狀態，並不會有持續的更新。
 
 ## 找不到相關資訊？ {#something-missing}
 
-如果你找不到相關的資訊或是對部份的內容有疑惑，請連同你的建議，在[此文件倉庫提出 issue](https://github.com/reactjs/reactjs.org/issues/new)，或是在 Twitter 上提及 [@reactjs 帳號](https://twitter.com/reactjs)。我們樂意聆聽你的意見。
+如果你找不到相關的資訊，或是對部份的內容有疑惑，請連同你的建議，在[此文件倉庫提出 issue](https://github.com/reactjs/reactjs.org/issues/new) 或是在 Twitter 上提及 [@reactjs 帳號](https://twitter.com/reactjs)。我們樂意聆聽你的意見。
