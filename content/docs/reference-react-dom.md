@@ -10,7 +10,7 @@ permalink: docs/react-dom.html
 
 ## 概覽 {#overview}
 
-`react-dom` package 提供了 DOM 專用的方法可以在你的應用程式頂層被使用以及如果你需要的話也是個逃脫 React 模式的出口。大部分你的 component 不應該需要使用到這個模組。
+`react-dom` package 提供了特定於 DOM 的方法，可以被用在你的應用程式的頂層，也可以作為 React model 的出口。大部分你的 component 不應該需要使用到這個模組。
 
 - [`render()`](#render)
 - [`hydrate()`](#hydrate)
