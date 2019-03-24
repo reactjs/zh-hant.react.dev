@@ -70,7 +70,7 @@ React 預期在伺服器端和客戶端所 render 的內容是相同的。它可
 
 如果你刻意要在服務端和客戶端上 render 不同的內容，你可以進行兩次的 render。在客戶端上呈現不同內容的 component 可以透過讀取一個 state 變數像是 `this.state.isClient` 之後在 `componentDidMount()` 內把它設定成 `true`。這樣初始 render 將跟伺服器端 render 的內容一樣，從而避免不匹配，但在 hydrate 之後將會立即同步額外的程序。請注意，此方法會使你的 component 變慢，因為它必須被 render 兩次，因此請謹慎使用。
 
-請記得要留意慢網速的使用者體驗。JavaScript 載入顯然比 HTML 首次 render 要晚得多，因此，如果你只有在客戶端 render 一些不同的東西，則轉換可能會不穩定。然而，如果執行順利的話，在伺服器上 render 應用程式的「shell」可能是有幫助的，而且只顯示一些額外的插件在客戶端。要了解如何執行此操作而不會出現 markup 不匹配的問題，請參考上一個段落的說明。
+請記得要留意連線緩慢的使用者體驗。JavaScript 載入顯然比 HTML 首次 render 要晚得多，因此，如果你只有在客戶端 render 一些不同的東西，則轉換可能會不穩定。然而，如果執行順利的話，在伺服器上 render 應用程式的「shell」可能是有幫助的，而且只顯示一些額外的插件在客戶端。要了解如何執行此操作而不會出現 markup 不匹配的問題，請參考上一個段落的說明。
 
 * * *
 
@@ -88,7 +88,7 @@ ReactDOM.unmountComponentAtNode(container)
 
 > 注意：
 >
-> `findDOMNode` 是一個用來存取底層 DOM node 的解決辦法。在大多數情況下，不鼓勵使用這個解決辦法因為它會穿透 component 抽象化。[它已經在 `StrictMode` 中被棄用了。](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+> `findDOMNode` 是一個用來存取底層 DOM node 應急的做法。在大多數情況下，不鼓勵使用這個應急的做法因為它會穿透 component 抽象化。[它已經在 `StrictMode` 中被棄用了。](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 
 ```javascript
 ReactDOM.findDOMNode(component)
