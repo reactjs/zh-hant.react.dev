@@ -62,7 +62,7 @@ ReactDOM.render(element, container[, callback])
 ReactDOM.hydrate(element, container[, callback])
 ```
 
-與 [`render()`](#render) 相同，但用來 hydrate 其 HTML 內容由 [`ReactDOMServer`](/docs/react-dom-server.html) 所 render 的 container 。React 將會嘗試附加 event listeners 到現有的 markup。
+與 [`render()`](#render) 相同，但用來 hydrate 其 HTML 內容由 [`ReactDOMServer`](/docs/react-dom-server.html) 所 render 的 container 。React 將會嘗試附加 event listener 到現有的 markup。
 
 React 預期在伺服器端和客戶端所 render 的內容是相同的。它可以修補 text content 的差異，但你應該把不匹配的部分視為 bug 並且修正。在開發模式中，React 會警告關於 hydration 過程中的不匹配。在不匹配的情況下，將無法保證 attribute 的差異會被修補。這對於效能來說很重要，因為在大部分的應用程式中，不匹配的情況很少見，也因此驗證要所有 markup 的成本非常高。
 
