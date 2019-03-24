@@ -6,7 +6,7 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
-如果使用 `<script>` 標籤載入 React 這些頂層 API 就可以在全域 `ReactDOM` 使用。如果你使用 ES6 和 npm，你可以寫成 `import ReactDOM from 'react-dom'`。如果你使用 ES5 和 npm，你可以寫成 `var ReactDOM = require('react-dom')`。
+如果使用 `<script>` 標籤載入 React 這些頂層 API 就可以在全域 `ReactDOM` 上找到。如果你使用 ES6 和 npm，你可以寫成 `import ReactDOM from 'react-dom'`。如果你使用 ES5 和 npm，你可以寫成 `var ReactDOM = require('react-dom')`。
 
 ## 概覽 {#overview}
 
@@ -24,7 +24,7 @@ React 支援所有主流瀏覽器包含 IE 9 和以上，儘管舊版瀏覽器�
 
 > 注意：
 >
-> 我們不支援那些不支援 ES5 方法的瀏覽器，但如果頁面上包含了 [es5-shim 和 es5-sham](https://github.com/es-shims/es5-shim) 等 polyfill 你可能會發現你的應用程式在舊版瀏覽器上仍可使用。如果你選擇了這條不歸路你就只能靠你自己了。
+> 我們不支援那些較舊的不支援 ES5 方法的瀏覽器，但如果頁面上包含了像是 [es5-shim 和 es5-sham](https://github.com/es-shims/es5-shim) 等 polyfill 你可能會發現你的應用程式在較舊的瀏覽器上仍可使用。如果你選擇了這條不歸路你就只能靠你自己了。
 
 * * *
 
@@ -44,11 +44,11 @@ ReactDOM.render(element, container[, callback])
 
 > 注意：
 >
-> `ReactDOM.render()` 控制了你傳入到 container 內的 node 內容。當第一次被呼叫時，任何存在 container 的 DOM element 都會被替換。之後的呼叫會使用 React 的 DOM diffing 演算法進行高效率的更新。
+> `ReactDOM.render()` 控制了你傳入到 container 內的 node 內容。當第一次被呼叫時，任何存在於 container 的 DOM element 都會被替換。之後的呼叫會使用 React 的 DOM diffing 演算法進行高效率的更新。
 >
 > `ReactDOM.render()` 不修改 container 的 node（只修改 container 的 children）。它可以將 component 插入一個現有的 DOM node 而不用覆蓋已經存在的 children。
 >
-> `ReactDOM.render()` 目前回傳一個 reference 到 root `ReactComponent` instance。然而，使用這個回傳值是老舊的方式
+> `ReactDOM.render()` 目前回傳一個 reference 到 root `ReactComponent` instance。然而，使用這個回傳值是一個遺留的方式
 > 並且應該被避免，因為未來版本的 React 在某些情況下可能會非同步地 render component。如果你需要 reference 到 root `ReactComponent` instance，首選的解決方式是附加一個
 > [callback ref](/docs/more-about-refs.html#the-ref-callback-attribute) 在 root element 上。
 >
