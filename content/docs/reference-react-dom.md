@@ -66,7 +66,7 @@ ReactDOM.hydrate(element, container[, callback])
 
 React 預期在伺服器端和客戶端所 render 的內容是相同的。它可以修補 text content 的差異，但你應該把不匹配的部分視為 bug 並且修正。在開發模式中，React 會警告關於 hydration 過程中的不匹配。在不匹配的情況下，將無法保證 attribute 的差異會被修補。這對於效能來說很重要，因為在大部分的應用程式中，不匹配的情況很少見，也因此驗證要所有 markup 的成本非常高。
 
-如果在伺服器端和客戶端某個 element 的 attribute 或 text content 無可避免的不相同（例如，時間戳），你可以透過加入 `suppressHydrationWarning={true}` 到 element 來關閉警告。這個只有在第一層時有效並且傾向於違反設計原則。不要過度使用它。除非它是 text content 否則 React 仍然不會嘗試對其進行修補，所以在未來更新之前它可能會保持不一致。
+如果在伺服器端和客戶端某個 element 的 attribute 或 text content 無可避免的不相同（例如，時間戳），你可以透過加入 `suppressHydrationWarning={true}` 到 element 來關閉警告。這個只有在第一層時有效並且傾向於應急的做法。不要過度使用它。除非它是 text content 否則 React 仍然不會嘗試對其進行修補，所以在未來更新之前它可能會保持不一致。
 
 如果你刻意要在服務端和客戶端上 render 不同的內容，你可以進行兩次的 render。在客戶端上呈現不同內容的 component 可以透過讀取一個 state 變數像是 `this.state.isClient` 之後在 `componentDidMount()` 內把它設定成 `true`。這樣初始 render 將跟伺服器端 render 的內容一樣，從而避免不匹配，但在 hydrate 之後將會立即同步額外的程序。請注意，此方法會使你的 component 變慢，因為它必須被 render 兩次，因此請謹慎使用。
 
