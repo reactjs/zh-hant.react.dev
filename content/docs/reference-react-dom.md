@@ -48,7 +48,7 @@ ReactDOM.render(element, container[, callback])
 >
 > `ReactDOM.render()` 不修改 container 的 node（只修改 container 的 children）。它可以將 component 插入一個現有的 DOM node 而不用覆蓋已經存在的 children。
 >
-> `ReactDOM.render()` 目前回傳一個 reference 到 root `ReactComponent` instance。然而，使用這個回傳值是一個遺留的方式
+> `ReactDOM.render()` 目前回傳一個 reference 到 root `ReactComponent` instance。然而，使用這個回傳值是被遺留的方式
 > 並且應該被避免，因為未來版本的 React 在某些情況下可能會非同步地 render component。如果你需要 reference 到 root `ReactComponent` instance，首選的解決方式是附加一個
 > [callback ref](/docs/more-about-refs.html#the-ref-callback-attribute) 在 root element 上。
 >
@@ -64,7 +64,7 @@ ReactDOM.hydrate(element, container[, callback])
 
 與 [`render()`](#render) 相同，但用來 hydrate 其 HTML 內容由 [`ReactDOMServer`](/docs/react-dom-server.html) 所 render 的 container 。React 將會嘗試附加 event listeners 到現有的 markup。
 
-React 預期在伺服器端和客戶端所 render 的內容是相同的。它可以修補 text content 的差異，但你應該把不匹配的部分視為 bug 並且修正。在開發模式中，React 會警告關於 hydration 過程中的不匹配。在不匹配的情況下，將無法保證 attribute 的差異會被修補。這對於效能來說很重要，因為在大部分的應用程式中，不匹配的情況很少見，也因此驗證要所有的 markup 的成本非常高。
+React 預期在伺服器端和客戶端所 render 的內容是相同的。它可以修補 text content 的差異，但你應該把不匹配的部分視為 bug 並且修正。在開發模式中，React 會警告關於 hydration 過程中的不匹配。在不匹配的情況下，將無法保證 attribute 的差異會被修補。這對於效能來說很重要，因為在大部分的應用程式中，不匹配的情況很少見，也因此驗證要所有 markup 的成本非常高。
 
 如果在伺服器端和客戶端某個 element 的 attribute 或 text content 無可避免的不相同（例如，時間戳），你可以透過加入 `suppressHydrationWarning={true}` 到 element 來關閉警告。這個只有在第一層時有效並且傾向於違反設計原則。不要過度使用它。除非它是 text content 否則 React 仍然不會嘗試對其進行修補，所以在未來更新之前它可能會保持不一致。
 
