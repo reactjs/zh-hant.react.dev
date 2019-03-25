@@ -10,7 +10,11 @@ prev: composition-vs-inheritance.html
 
 在我們的意見中，React 是用 JavaScript 建立大型、快速的網路應用程式最首要的方式。它對於在 Facebook 和 Instagram 的我們來說能很有效的增加規模。
 
+<<<<<<< HEAD
 React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的應用程式。在這個章節中，我們會帶領你體會用 React 來建立一個可搜尋的產品資料表格的思考過程。
+=======
+React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的應用程式。在這個章節中，我們會帶領你走過一遍用 React 來建立一個可搜尋的產品資料表格的思考過程。
+>>>>>>> Fix typos
 
 ## 從視覺稿開始 {#start-with-a-mock}
 
@@ -37,7 +41,11 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
 
 但是你要怎麼知道哪一個東西應該是自己獨立一個 component 呢？就用和你決定建立一個新的 function 或 object 一樣的準則即可。其中一個技巧是[單一責任原則](https://en.wikipedia.org/wiki/Single_responsibility_principle)，它的意思是：在我們的理想中，一個 component應該只負責做一件事情。如果這個 component 最後變大了，你就需要再將它分成數個更小的 subcomponent 。
 
+<<<<<<< HEAD
 由於你常常會展示 JSON 的資料模型給使用者，你會發現，如果你的模式是正確地被建立的話，你的 UI（以及你的 component 結構）就會很好的對應起來。這是因為 UI 和資料模型通常是遵守相同的*資訊架構*，這意味著將你的 UI 拆成 component 通常是相當容易的。只要將 UI 分解成數個 component，每一個都明確代表著你的資料模型中的某一部份即可。
+=======
+由於你常常會展示 JSON 的資料模型給使用者，你會發現，如果你的模式是正確地被建立的話，你的 UI（以及你的 component 結構）會很好的相互對應。這是因為 UI 和資料模型通常是遵守同樣的*資訊架構*，這意味著將你的 UI 拆成 component 通常是相當容易的。只要將 UI 分解成數個 component，每一個都明確代表著你的資料模型中的某一部份即可。
+>>>>>>> Fix typos
 
 ![Component 架構圖](../images/blog/thinking-in-react-components.png)
 
@@ -49,7 +57,7 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
   4. **`ProductCategoryRow`（土耳其藍色）：** 為每個*列別*展示標題
   5. **`ProductRow`（紅色）：** 為每個*產品*展示一列
 
-如果你看看 `ProductTable`，你會發現表格的標題列（內含「Name」和「Price」標籤 ）並非獨立的 component。要不要把它們變成 component 這個議題完全是個人的喜好，正反意見都有。在這邊的例子裡面，我們把它當作 `ProductTable` 的一部分，因為它是 rendering *數據集* 的一部分，而這正是 `ProductTable` 這個 component 的責任。然而，如果標題欄之後變得越來越複雜（也就是如果我們要加上可以分類的 affordance 的話），那麼建立一個獨立的 `ProductTableHeader` component 就非常合理。
+如果你看看 `ProductTable`，你會發現表格的標題列（內含「Name」和「Price」標籤 ）並非獨立的 component。要不要把它們變成 component 這個議題完全是個人的喜好，正反意見都有。在這邊的例子裡面，我們把它當作 `ProductTable` 的一部分，因為它是 rendering *資料集* 的一部分，而這正是 `ProductTable` 這個 component 的責任。然而，如果標題欄之後變得越來越複雜（也就是如果我們要加上可以分類的直觀功能的話），那麼建立一個獨立的 `ProductTableHeader` component 就非常合理。
 
 既然我們已經找出視覺稿中的 component 了，讓我們來安排它們的層級。這很容易。在視覺稿中，在另一個 component 中出現的 component 就應該是 child：
 
@@ -82,13 +90,13 @@ React 中有兩種「模型」資料： props and state。理解兩者的差別�
 
 為了將你的 UI 變成有互動性，你需要有辦法觸發底層的資料模型做出改變。React 使用 **state** 把這件事變容易了。
 
-為了正確地建立你的應用程式，你首先需要思考你的應用程式最少需要哪些可變的 state。這裡的關鍵是 [DRY：*避免重複代碼原則*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)。請找出你的應用程式所需的最少的 representation，並在你遇到其他東西時再計算它們。例如，如果你在建立一個待辦清單，就先使用一個可以用來代表待辦事項的 array。不要另外用一個獨立的 state 變數來追蹤數量。當你要 render 代辦事項的數量時，讀取待辦事項 array 的長度即可。
+為了正確地建立你的應用程式，你首先需要思考你的應用程式最少需要哪些可變的 state。這裡的關鍵是 [DRY：*避免重複代碼原則*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)。請找出你的應用程式所需的最少的呈現方式，並在你遇到其他東西時再計算它們。例如，如果你在建立一個待辦清單，就先使用一個可以用來代表待辦事項的 array。不要另外用一個獨立的 state 變數來追蹤數量。當你要 render 代辦事項的數量時，讀取待辦事項 array 的長度即可。
 
 思考我們範例中應用程式的所有資料。我們現在有：
 
   * 原本的產品列表
   * 使用者輸入的搜尋關鍵字
-  * 複選框的值
+  * checkbox 的值
   * 篩選過後的產品列表
 
 讓我們來看一下每一個資料，並找出哪一個是 state。對於每一個資料，問你自己這三個問題：
@@ -97,12 +105,12 @@ React 中有兩種「模型」資料： props and state。理解兩者的差別�
   2. 這個資料是否一直保持不變呢？如果是的話，那它很可能不是 state。
   3. 你是否可以根據你的 component 中其他的 state 或 prop 來計算這個資料呢？如果是的話，那它一定不是 state。
 
-原本的產品列表是被當作 prop 往下傳的，所以它不是 state。搜尋關鍵字和複選框看起來可能是 state，因為它們會隨時間而改變，也不能從其他東西中被計算出來。最後，篩選過後的產品列表不是 state，因為它能透過結合原本的產品列表、搜尋關鍵字和複選框的值被計算出來。
+原本的產品列表是被當作 prop 往下傳的，所以它不是 state。搜尋關鍵字和 checkbox 看起來可能是 state，因為它們會隨時間而改變，也不能從其他東西中被計算出來。最後，篩選過後的產品列表不是 state，因為它能透過結合原本的產品列表、搜尋關鍵字和checkbox 的值被計算出來。
 
 所以，我們的 state 是：
 
   * 使用者輸入的搜尋關鍵字
-  * 複選框的值
+  * checkbox 的值
 
 ## 第四步：找出你的 State 應該在哪裡 {#step-4-identify-where-your-state-should-live}
 
@@ -121,7 +129,7 @@ OK，所以我們已經找出這個應用程式最少的 state 是哪些了。�
 
 讓我們來討論一下我們應用程式的這個策略：
 
-  * `ProductTable` 需要根據 state 來篩選產品列表，而 `SearchBar` 需要展示搜尋關鍵字和複選框的 state。
+  * `ProductTable` 需要根據 state 來篩選產品列表，而 `SearchBar` 需要展示搜尋關鍵字和 checkbox 的 state。
   * 這兩個 component 的共同擁有者 component 是 `FilterableProductTable`。
   * 概念上來說，篩選過的文字和復選框的值存在於 `FilterableProductTable` 中是合理的。
 
@@ -137,12 +145,12 @@ OK，所以我們已經找出這個應用程式最少的 state 是哪些了。�
 
 React 將這種資料流明確表示出來，以便讓你能更容易理解你的程式如何運作，但是這的確比傳統的雙向資料綁定需要打多一點字。
 
-如果你試著在範例目前的版本中印出或勾選複選框，你會看到 React 無視你的輸入。這是刻意的，因為我們把 `input` 的 `value` prop 設定為永遠和從 `FilterableProductTable` 傳下來的 `state` ㄧ樣。
+如果你試著在範例目前的版本中印出或勾選 checkbox，你會看到 React 無視你的輸入。這是刻意的，因為我們把 `input` 的 `value` prop 設定為永遠和從 `FilterableProductTable` 傳下來的 `state` ㄧ樣。
 
 讓我們思考一下我們想要做些什麼。我們想確保當使用者改變這個表格時，我們會更新 state 以反映使用者的輸入。既然 component 只應該更新它自己本身的 state， `FilterableProductTable` 將會把 callback 傳給 `SearchBar`，而它們則會在 state 該被更新的時候被觸發。我們可以在輸入上使用 `onChange` 這個 event 來
 接收通知。被 `FilterableProductTable` 傳下來的 callback 則會呼叫 `setState()`，之後應用程式就會被更新。
 
-雖然這聽起來負責，但實際上這所用的程式碼很少。而你的資料在應用程式中流動的方向是非常明確的。
+雖然這聽起來很複雜，但實際上這所用的程式碼很少。而你的資料在應用程式中流動的方向是非常明確的。
 
 ## 完成 {#and-thats-it}
 
