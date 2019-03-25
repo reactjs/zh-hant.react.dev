@@ -6,20 +6,20 @@ layout: docs
 category: Reference
 ---
 
-**Importing**
+**如何引入**
 
 ```javascript
 import TestRenderer from 'react-test-renderer'; // ES6
 const TestRenderer = require('react-test-renderer'); // ES5 with npm
 ```
 
-## Overview {#overview}
+## 概覽 {#overview}
 
-This package provides a React renderer that can be used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
+這個 package 提供了一個 React renderer，用於將 React component render 成單純的 JavaScript 物件，無需依賴 DOM 或原生的行動裝置環境。
 
-Essentially, this package makes it easy to grab a snapshot of the platform view hierarchy (similar to a DOM tree) rendered by a React DOM or React Native component without using a browser or [jsdom](https://github.com/tmpvar/jsdom).
+基本上，這個 package 提供的主要功能是在不依賴瀏覽器或 [jsdom](https://github.com/tmpvar/jsdom) 的情況下，返回某個時間點由 React DOM 或是 React Native 平臺 render 出的視圖結構（類似 DOM 樹）快照。
 
-Example:
+範例：
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -38,9 +38,9 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-You can use Jest's snapshot testing feature to automatically save a copy of the JSON tree to a file and check in your tests that it hasn't changed: [Learn more about it](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
+你可以使用 Jest 的快照測試功能來自動保存目前 JSON 的樹狀結構到一個文件中，並在測試中檢查它是否被修改：[瞭解更多](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html)。
 
-You can also traverse the output to find specific nodes and make assertions about them.
+你也可以通過遍歷輸出來查找特定節點，並對它們進行斷言。
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
