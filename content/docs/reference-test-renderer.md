@@ -15,9 +15,9 @@ const TestRenderer = require('react-test-renderer'); // ES5 with npm
 
 ## 概覽 {#overview}
 
-這個 package 提供了一個 React renderer，用於將 React component render 成單純的 JavaScript 物件，無需依賴 DOM 或原生的行動裝置環境。
+這個 package 提供了一個 React renderer，用於將 React component render 成單純的 JavaScript object，無需依賴 DOM 或原生的行動裝置環境。
 
-基本上，這個 package 提供的主要功能是在不依賴瀏覽器或 [jsdom](https://github.com/tmpvar/jsdom) 的情況下，返回某個時間點由 React DOM 或是 React Native 平臺 render 出的視圖結構（類似 DOM 樹）快照。
+基本上，這個 package 提供的主要功能是在不依賴瀏覽器或 [jsdom](https://github.com/tmpvar/jsdom) 的情況下，返回某個時間點由 React DOM 或是 React Native 平臺 render 出的視圖結構（類似 DOM tree）snapshot。
 
 範例：
 
@@ -38,9 +38,9 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-你可以使用 Jest 的快照測試功能來自動保存目前 JSON 的樹狀結構到一個文件中，並在測試中檢查它是否被修改：[瞭解更多](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html)。
+你可以使用 Jest 的 snapshot 測試功能來自動保存目前 JSON tree 到一個文件中，並在測試中檢查它是否被修改：[瞭解更多](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html)。
 
-你也可以通過遍歷輸出來查找特定節點，並對它們進行斷言。
+你也可以通過遍歷輸出來查找特定 node，並對它們進行斷言。
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
@@ -101,8 +101,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 ```javascript
 TestRenderer.create(element, options);
 ```
-
-Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. The returned instance has the following methods and properties.
+透過傳來的 React element 創建一個 `TestRenderer` 實例。 它不使用真實的 DOM，但是它依然將 component tree 完整地 render 到記憶體中，以便於你對它進行斷言。返回的實例擁有以下的方法和屬性。
 
 ### `testRenderer.toJSON()` {#testrenderertojson}
 
@@ -110,15 +109,14 @@ Create a `TestRenderer` instance with the passed React element. It doesn't use t
 testRenderer.toJSON()
 ```
 
-Return an object representing the rendered tree. This tree only contains the platform-specific nodes like `<div>` or `<View>` and their props, but doesn't contain any user-written components. This is handy for [snapshot testing](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest).
+返回一個已 render 的 tree object。該 tree 僅包含特定平台的 node，例如 <div> 或 <View> 和它們的 props，但並不包含任何人員編寫的 component。這對於 [snapshot 測試](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)非常方便。
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
 ```javascript
 testRenderer.toTree()
 ```
-
-Return an object representing the rendered tree. Unlike `toJSON()`, the representation is more detailed than the one provided by `toJSON()`, and includes the user-written components. You probably don't need this method unless you're writing your own assertion library on top of the test renderer.
+返回一個已 render 的 tree object。和 `toJSON()` 不同，它表示的內容比 `toJSON()` 提供的內容更加詳細，並且包含人員編寫的組件。除非你要在 test renderer 之上編寫自己的斷言庫，否則你可能不需要這個方法。
 
 ### `testRenderer.update()` {#testrendererupdate}
 
@@ -126,7 +124,7 @@ Return an object representing the rendered tree. Unlike `toJSON()`, the represen
 testRenderer.update(element)
 ```
 
-Re-render the in-memory tree with a new root element. This simulates a React update at the root. If the new element has the same type and key as the previous element, the tree will be updated; otherwise, it will re-mount a new tree.
+透過新的 root element 去重新 render 記憶體中的 tree。 它模擬在 root 的 React 更新。 如果新的 element 和之前的 element 有相同的 type 和 key，該 tree 將會被更新；否則，它將重新 mount 一個新的 tree。
 
 ### `testRenderer.unmount()` {#testrendererunmount}
 
@@ -134,7 +132,7 @@ Re-render the in-memory tree with a new root element. This simulates a React upd
 testRenderer.unmount()
 ```
 
-Unmount the in-memory tree, triggering the appropriate lifecycle events.
+Unmount 記憶體中的 tree，並觸發相對應的生命週期事件。
 
 ### `testRenderer.getInstance()` {#testrenderergetinstance}
 
@@ -142,7 +140,7 @@ Unmount the in-memory tree, triggering the appropriate lifecycle events.
 testRenderer.getInstance()
 ```
 
-Return the instance corresponding to the root element, if available. This will not work if the root element is a function component because they don't have instances.
+如果可以的話，返回與 root element 相對應的實例。如果 root element 是 function component，該方法無效，因為 function component 沒有實例。
 
 ### `testRenderer.root` {#testrendererroot}
 
@@ -150,7 +148,7 @@ Return the instance corresponding to the root element, if available. This will n
 testRenderer.root
 ```
 
-Returns the root "test instance" object that is useful for making assertions about specific nodes in the tree. You can use it to find other "test instances" deeper below.
+返回 root 『測試實例』object，它對於斷言 tree 中的特定 node 十分有用。你可以利用它來查找其他更深層的『測試實例』。
 
 ### `testInstance.find()` {#testinstancefind}
 
