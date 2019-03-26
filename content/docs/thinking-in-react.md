@@ -139,7 +139,7 @@ OK，所以我們已經找出這個應用程式最少的 state 是哪些了。�
 
 ## 第五步：加入相反的資料流 {#step-5-add-inverse-data-flow}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen"> 在 <a href="http://codepen.io">CodePen</a> 中看<a href="https://codepen.io/gaearon/pen/LzWZvb">用 React 思考：第四步</a>。</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen"> 在 <a href="http://codepen.io">CodePen</a> 中看<a href="https://codepen.io/gaearon/pen/LzWZvb">用 React 思考：第五步</a>。</p>
 
 到目前為止，我們已經建立了一個作為含有從層級由上往下傳 props 和 state 的、且可以正確 render 的 function 的應用程式。現在是時候支援另一種資料流的方向了：在層級深處的表格 component 需要更新 `FilterableProductTable` 的 state。
 
