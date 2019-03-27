@@ -38,11 +38,11 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 如果你有興趣嘗試 React，你可以使用一些線上編輯器，包括 [CodePen](codepen://hello-world)、[CodeSandbox](https://codesandbox.io/s/new)，或 [Glitch](https://glitch.com/edit/#!/remix/starter-react-template)，實作一個 Hello World 的範例。
 
-如果你偏向使用自己的編輯器，你可以[下載此 HTML 文件](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)進行修改，並從本地文件系統裏把它打開到瀏覽器。這會進行一個緩慢的 runtime 程式碼轉換，因此我們建議只把這文件用作簡單的示範。
+如果你偏向使用自己的編輯器，你可以[下載此 HTML 文件](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)進行修改，並從本機文件系統裡把它打開到瀏覽器。這會進行一個緩慢的 runtime 程式碼轉換，因此我們建議只把這文件用作簡單的示範。
 
 ### 將 React 加入到網頁 {#add-react-to-a-website}
 
-你可以[在一分鐘內將 React 加入到一個 HTML 網頁上](/docs/add-react-to-a-website.html)。你可以選擇逐步擴展它的應用範圍，或是只使用在少部分的可變 widget 上。
+你可以[在一分鐘內將 React 加入到一個 HTML 網頁上](/docs/add-react-to-a-website.html)。你可以選擇逐步擴大它的應用範圍，或是只使用在少部分的可變 widget 上。
 
 ### 實作全新的 React 應用程式 {#create-a-new-react-app}
 
@@ -79,7 +79,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 >提示
 >
->當你遇到 JavaScript 的困難時，[MDN](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript) 和 [javascript.info](https://javascript.info/) 會是非常好的查閱資源. 你也可以在[社群支援論壇](/community/support.html)上尋找幫助。
+>當你遇到 JavaScript 的困難時，[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) 和 [javascript.info](https://javascript.info/) 會是非常好的查閱資源。你也可以在[社群支援論壇](/community/support.html)上尋找幫助。
 
 ### 實用指南 {#practical-tutorial}
 
@@ -91,7 +91,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 ### 用 React 思考 {#thinking-in-react}
 
-許多 React 用家都表示在閱讀了[用 React 思考](/docs/thinking-in-react.html)後對 React 恍然大悟。它可能是最源遠流長的 React 指南，至今依然極具價值。
+許多 React 使用者都表示在閱讀了[用 React 思考](/docs/thinking-in-react.html)後對 React 恍然大悟。它可能是最源遠流長的 React 指南，至今依然極具價值。
 
 ### 課程推薦 {#recommended-courses}
 
