@@ -40,7 +40,7 @@ console.log(testRenderer.toJSON());
 
 你可以使用 Jest 的 snapshot 測試功能來自動儲存目前 JSON tree 到一個文件中，並在測試中檢查它是否被修改：[了解更多](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html)。
 
-你也可以通過遍歷輸出來查找特定 node，並對它們進行斷言。
+你也可以通過遍歷輸出來尋找特定的 node，並對它們進行 assert。
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
