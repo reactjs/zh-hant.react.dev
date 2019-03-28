@@ -6,7 +6,7 @@ layout: docs
 category: Reference
 ---
 
-**如何引入**
+**如何 import**
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
@@ -35,7 +35,7 @@ function MyComponent() {
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-// 測試程式:
+// in your test:
 const renderer = new ShallowRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
