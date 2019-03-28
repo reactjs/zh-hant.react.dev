@@ -109,7 +109,7 @@ TestRenderer.create(element, options);
 testRenderer.toJSON()
 ```
 
-返回一個已 render 的 tree object。該 tree 僅包含特定平台的 node，例如 <div> 或 <View> 和它們的 props，但並不包含任何人員編寫的 component。這對於 [snapshot 測試](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)非常方便。
+回傳一個被 render 的 tree object。該 tree 僅包含特定平台的 node，例如 `<div>` 或 `<View>` 和它們的 props，但並不包含任何人員撰寫的 component。這對於 [snapshot 測試](https://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest)非常方便。
 
 ### `testRenderer.toTree()` {#testrenderertotree}
 
