@@ -17,7 +17,7 @@ const TestRenderer = require('react-test-renderer'); // ES5 with npm
 
 這個 package 提供了一個 React renderer，用於將 React component render 成單純的 JavaScript object，無需依賴 DOM 或原生的行動裝置環境。
 
-基本上，這個 package 提供的主要功能是在不依賴瀏覽器或 [jsdom](https://github.com/tmpvar/jsdom) 的情況下，返回某個時間點由 React DOM 或是 React Native 平臺 render 出的視圖結構（類似 DOM tree）snapshot。
+基本上，這個 package 提供的主要功能是在不依賴瀏覽器或 [jsdom](https://github.com/tmpvar/jsdom) 的情況下，回傳某個時間點由 React DOM 或是 React Native component render 出的 view 結構（類似 DOM tree）snapshot。
 
 範例：
 
