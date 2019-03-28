@@ -6,7 +6,7 @@ layout: docs
 category: Reference
 ---
 
-**如何 import**
+**如何 Import**
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
