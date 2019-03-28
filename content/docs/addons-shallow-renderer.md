@@ -30,7 +30,7 @@ function MyComponent() {
 }
 ```
 
-你可以使用斷言：
+你可以使用 assert：
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
