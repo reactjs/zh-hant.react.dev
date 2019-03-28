@@ -6,7 +6,7 @@ layout: docs
 category: Reference
 ---
 
-**如何引入**
+**如何 Import**
 
 ```javascript
 import TestRenderer from 'react-test-renderer'; // ES6
@@ -148,7 +148,7 @@ testRenderer.getInstance()
 testRenderer.root
 ```
 
-返回 root 「測試實例」object，它對於斷言 tree 中的特定 node 十分有用。你可以利用它來查找其他更深層的「測試實例」。
+回傳 root 「測試 instance」object，它對於 assert tree 中的特定 node 十分有用。你可以利用它來尋找其他更深層的「測試 instance」。
 
 ### `testInstance.find()` {#testinstancefind}
 
@@ -267,7 +267,7 @@ TestRenderer.create(
   {
     createNodeMock: (element) => {
       if (element.type === 'input') {
-        // 模擬一個 focus function
+        // mock a focus function
         return {
           focus: () => {
             focused = true;
