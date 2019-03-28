@@ -15,7 +15,7 @@ var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
 
 ## 概觀 {#overview}
 
-在為 React 寫單元測試時，shallow rendering 十分有用。 Shallow rendering 可以只 render 「第一層」的 component，並且對 component 的 render 方法的返回值進行斷言，不必擔心 child component 的行為，child component並沒有被實例化或被 render。Shallow rendering 不依賴 DOM。
+當在為 React 寫單元測試時，shallow render 十分有用。Shallow render 可以只 render 「第一層」的 component，並且對 component 的 render 方法的回傳值進行 assert，不必擔心 child component 的行為，child component 並沒有被實例化或被 render。Shallow render 不依賴 DOM。
 
 例如，假設你有下列 component：
 
