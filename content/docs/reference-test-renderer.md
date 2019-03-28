@@ -124,7 +124,7 @@ testRenderer.toTree()
 testRenderer.update(element)
 ```
 
-透過新的 root element 去重新 render 記憶體中的 tree。 它模擬在 root 的 React 更新。 如果新的 element 和之前的 element 有相同的 type 和 key，該 tree 將會被更新；否則，它將重新 mount 一個新的 tree。
+透過新的 root element 去重新 render 記憶體中的 tree。它模擬在 root 的 React 更新。 如果新的 element 和之前的 element 有相同的 type 和 key，該 tree 將會被更新；否則，它將重新 mount 一個新的 tree。
 
 ### `testRenderer.unmount()` {#testrendererunmount}
 
