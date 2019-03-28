@@ -53,7 +53,7 @@ Shallow testing 目前有些限制，並不支援 refs。
 >
 > 我們建議你可以查看 Enzyme 的 [Shallow Rendering API](https://airbnb.io/enzyme/docs/api/shallow.html)。它在相同功能的基礎上提供更棒更高階的 API。
 
-## Reference {#reference}
+## 參考 {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}
 
