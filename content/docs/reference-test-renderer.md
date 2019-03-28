@@ -156,7 +156,7 @@ testRenderer.root
 testInstance.find(test)
 ```
 
-找到一個 descendant 測試實例，其 `test(testInstance)` 返回 true。 如果找到不只一個測試實例，將會拋出錯誤。
+找到一個 descendant 測試 instance，其 `test(testInstance)` 回傳 true。如果找到不只一個測試 instance，將會拋出錯誤。
 
 ### `testInstance.findByType()` {#testinstancefindbytype}
 
@@ -164,7 +164,7 @@ testInstance.find(test)
 testInstance.findByType(type)
 ```
 
-找到一個與指定 `type` 匹配的 descendant 測試實例。 如果不只有一個測試實例匹配指定的 `type`，將會拋出錯誤。
+找到一個與指定 `type` 匹配的 descendant 測試 instance。如果不只有一個測試 instance 匹配指定的 `type`，將會拋出錯誤。
 
 ### `testInstance.findByProps()` {#testinstancefindbyprops}
 
@@ -172,7 +172,7 @@ testInstance.findByType(type)
 testInstance.findByProps(props)
 ```
 
-找到一個與指定 `props` 匹配的 descendant 測試實例。 如果不只有一個測試實例匹配指定的 `props`，將會拋出錯誤。
+找到一個與指定 `props` 匹配的 descendant 測試 instance。如果不只有一個測試 instance 匹配指定的 `props`，將會拋出錯誤。
 
 ### `testInstance.findAll()` {#testinstancefindall}
 
@@ -180,7 +180,7 @@ testInstance.findByProps(props)
 testInstance.findAll(test)
 ```
 
-找到所有的 descendant 測試實例，其 `test(testInstance)` 返回 true。 
+找到所有的 descendant 測試 instance，其 `test(testInstance)` 回傳 true。 
 
 ### `testInstance.findAllByType()` {#testinstancefindallbytype}
 
@@ -188,7 +188,7 @@ testInstance.findAll(test)
 testInstance.findAllByType(type)
 ```
 
-找到所有與指定 `type` 匹配的 descendant 測試實例。
+找到所有與指定 `type` 匹配的 descendant 測試 instance。
 
 ### `testInstance.findAllByProps()` {#testinstancefindallbyprops}
 
@@ -204,7 +204,7 @@ testInstance.findAllByProps(props)
 testInstance.instance
 ```
 
-該測試實例相對應的 component 實例。它只能用於 class component，因為 function component 沒有實例。它與 component 內部的 `this` 值匹配。
+該測試 instance 相對應的 component instance。它只能用於 class component，因為 function component 沒有 instance。它與 component 內部的 `this` 值匹配。
 
 ### `testInstance.type` {#testinstancetype}
 
@@ -212,7 +212,7 @@ testInstance.instance
 testInstance.type
 ```
 
-該測試實例相對應的 component 類型。例如，一個 `<Button />` component 的類型為 `Button`。
+該測試 instance 相對應的 component 類型。例如，一個 `<Button />` component 的類型為 `Button`。
 The component type corresponding to this test instance. For example, a `<Button />` component has a type of `Button`.
 
 ### `testInstance.props` {#testinstanceprops}
@@ -221,7 +221,7 @@ The component type corresponding to this test instance. For example, a `<Button 
 testInstance.props
 ```
 
-該測試實例相對應的 component props。例如，一個 `<Button size="small" />` component 的 props 為 `{size: 'small'}`。
+該測試 instance 相對應的 component props。例如，一個 `<Button size="small" />` component 的 props 為 `{size: 'small'}`。
 
 ### `testInstance.parent` {#testinstanceparent}
 
@@ -229,7 +229,7 @@ testInstance.props
 testInstance.parent
 ```
 
-該測試實例的 parent 測試實例。
+該測試 instance 的 parent 測試 instance。
 
 ### `testInstance.children` {#testinstancechildren}
 
@@ -237,11 +237,13 @@ testInstance.parent
 testInstance.children
 ```
 
-該測試實例的 children 測試實例。
+該測試 instance 的 children 測試 instance。
 
 ## 概念 {#ideas}
 
-你可以把 `createNodeMock` function 當作第二個參數傳給 `TestRenderer.create`，做為自訂模擬的 refs。`createNodeMock` 接受當前 element 作為參數，並且返回一個模擬的 ref object。這十分有利於依賴 refs component 的測試。
+你可以把 `createNodeMock` function 當作第二個參數傳給 `TestRenderer.create`，做為自訂 mock 的 refs。
+
+`createNodeMock` 接受目前 element 作為參數，並且回傳一個 mock 的 ref object。這十分有利於依賴 refs component 的測試。
 
 ```javascript
 import TestRenderer from 'react-test-renderer';
