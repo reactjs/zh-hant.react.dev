@@ -63,6 +63,6 @@ Shallow testing 目前有些限制，並不支援 refs。
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
-在 `shallowRenderer.render()` 被呼叫後，你可以使用 `shallowRenderer.getRenderOutput()` 來獲取該 component 第一層的輸出內容。
+在 `shallowRenderer.render()` 被呼叫後，你可以使用 `shallowRenderer.getRenderOutput()` 來取得該 component 第一層的輸出內容。
 
 然後，就可以對輸出的內容進行 assert 操作。
