@@ -10,11 +10,7 @@ prev: composition-vs-inheritance.html
 
 在我們的意見中，React 是用 JavaScript 建立大型、快速的網路應用程式最首要的方式。它對於在 Facebook 和 Instagram 的我們來說能很有效的增加規模。
 
-<<<<<<< HEAD
-React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的應用程式。在這個章節中，我們會帶領你體會用 React 來建立一個可搜尋的產品資料表格的思考過程。
-=======
 React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的應用程式。在這個章節中，我們會帶領你走過一遍用 React 來建立一個可搜尋的產品資料表格的思考過程。
->>>>>>> Fix typos
 
 ## 從視覺稿開始 {#start-with-a-mock}
 
@@ -41,11 +37,7 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
 
 但是你要怎麼知道哪一個東西應該是自己獨立一個 component 呢？就用和你決定建立一個新的 function 或 object 一樣的準則即可。其中一個技巧是[單一責任原則](https://en.wikipedia.org/wiki/Single_responsibility_principle)，它的意思是：在我們的理想中，一個 component應該只負責做一件事情。如果這個 component 最後變大了，你就需要再將它分成數個更小的 subcomponent 。
 
-<<<<<<< HEAD
-由於你常常會展示 JSON 的資料模型給使用者，你會發現，如果你的模式是正確地被建立的話，你的 UI（以及你的 component 結構）就會很好的對應起來。這是因為 UI 和資料模型通常是遵守相同的*資訊架構*，這意味著將你的 UI 拆成 component 通常是相當容易的。只要將 UI 分解成數個 component，每一個都明確代表著你的資料模型中的某一部份即可。
-=======
 由於你常常會展示 JSON 的資料模型給使用者，你會發現，如果你的模式是正確地被建立的話，你的 UI（以及你的 component 結構）會很好的相互對應。這是因為 UI 和資料模型通常是遵守同樣的*資訊架構*，這意味著將你的 UI 拆成 component 通常是相當容易的。只要將 UI 分解成數個 component，每一個都明確代表著你的資料模型中的某一部份即可。
->>>>>>> Fix typos
 
 ![Component 架構圖](../images/blog/thinking-in-react-components.png)
 
