@@ -292,7 +292,7 @@ setTimeout(function() {
 
 ## Controlled component 的替代方案 {#alternatives-to-controlled-components}
 
-有時候使用 controlled component 是很乏味的，因為你需要為每一個資訊可以改變的方式寫一個 event handler，並將所有的輸入 state 透過一個 React component 來傳遞。這在你將一個舊的程式庫改寫成 React 時或將一個 React 的應用程式與一個非 React 的函式庫整合時會變得特別麻煩。在這種情況中，你也許會想參考 uncontrolled component](/docs/uncontrolled-components.html)，也就是另一種取代輸入表格的方式。
+有時候使用 controlled component 是很乏味的，因為你需要為每一個資訊可以改變的方式寫一個 event handler，並將所有的輸入 state 透過一個 React component 來傳遞。這在你將一個舊的程式庫改寫成 React 時或將一個 React 的應用程式與一個非 React 的函式庫整合時會變得特別麻煩。在這種情況中，你也許會想參考 uncontrolled component(/docs/uncontrolled-components.html)，也就是另一種取代輸入表格的方式。
 
 ## 成熟的解決方案 {#fully-fledged-solutions}
 
