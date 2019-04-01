@@ -25,9 +25,9 @@ HTML 表格的 element 和 React 中其他的 DOM element 不太一樣，因為�
 
 ## Controlled Component {#controlled-components}
 
-在 HTML 中，表格的 element，像是 `<input>`、`<textarea>` 和 `<select>` 通常會維持他們自身的 state，並根據使用者的輸入來更新 state。在 React 中，可變的 state 通常是被維持在 component 中的 state property，並只能以 [`setState()`](/docs/react-component.html#setstate) 來更新。
+在 HTML 中，表格的 element，像是 `<input>`、`<textarea>` 和 `<select>` 通常會維持它們自身的 state，並根據使用者的輸入來更新 state。在 React 中，可變的 state 通常是被維持在 component 中的 state property，並只能以 [`setState()`](/docs/react-component.html#setstate) 來更新。
 
-我們可以透過將 React 的 state 變成「唯一真相來源」來將這兩者結合。如此，render 表格的 React component 同時也掌握了後續使用者的輸入對表格帶來的改變。像這樣一個輸入表單的 element，被 React 用這樣的方式來控制他的值，就被稱為「controlled component」。
+我們可以透過將 React 的 state 變成「唯一真相來源」來將這兩者結合。如此，render 表格的 React component 同時也掌握了後續使用者的輸入對表格帶來的改變。像這樣一個輸入表單的 element，被 React 用這樣的方式來控制它的值，就被稱為「controlled component」。
 
 例如，如果我們想要讓上一個例子在一個名字被輸入表格時印出，我們可以把這個表格寫成一個 controlled component：
 
@@ -193,7 +193,7 @@ class FlavorForm extends React.Component {
 
 ## 檔案 input 標籤 {#the-file-input-tag}
 
-在 HTML 中，`<input type="file">` 讓使用者從他們的儲存裝置中選擇一個至多個檔案，並把它們上傳到伺服器或透過 [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) 被 JavaScript 處理。
+在 HTML 中，`<input type="file">` 讓使用者從它們的儲存裝置中選擇一個至多個檔案，並把它們上傳到伺服器或透過 [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) 被 JavaScript 處理。
 
 ```html
 <input type="file" />
