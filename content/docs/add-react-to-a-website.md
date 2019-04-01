@@ -10,7 +10,7 @@ next: create-a-new-react-app.html
 
 按自己所需可多可少的採用 React。
 
-React 在剛推出的時候就容許被逐步採用，**你可以按自己所需可多可少的**採用 React。 或許你只想在現存的網頁上添加一少量的互動性。採用 React component 會是個非常好的選擇。
+React 在剛推出的時候就容許被逐步採用，**你可以按自己所需可多可少的**採用 React。 或許你只想在現存的網頁上添加少量的互動性。採用 React component 會是個非常好的選擇。
 
 大部分的網頁不是，也不需要是 single-page 的應用程式。你只需要**幾行的程式碼，並且不需要任何建立工具**，就可以在你一少部分的網頁上嘗試採用 React。你可以選擇逐步擴大它的應用範圍，或是只使用在少部分的可變 widget 上。
 
@@ -52,12 +52,12 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 ```html{5,6,9}
   <!-- ... 其他 HTML ... -->
 
-  <!-- 載入 React. -->
+  <!-- 載入 React。 -->
   <!-- 注意：在發佈應用程式前，請把「development.js」替換成「production.min.js」。 -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
-  <!-- 載入我們的 React component. -->
+  <!-- 載入我們的 React component。-->
   <script src="like_button.js"></script>
 
 </body>
@@ -196,6 +196,6 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 如果你現在利用這個 **[JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)** 建立一個名為的 `src/like_button.js` 文件，監測器會建立一個預先處理過，由普通 JavaScript 程式碼組成，並且適合瀏覽器載入的 `like_button.js`。當你使用 JSX 來編輯文件時，轉換過程會自動重新執行。
 
-再者，這也容許我們在舊瀏覽器上，使用現代 JavaScript 的語法特性，例如 classes。我們剛加入的工具叫 Babel，你可以在[它的官方文件](https://babeljs.io/docs/en/babel-cli/)裏了解更多。
+再者，這也容許我們在舊瀏覽器上，使用現代 JavaScript 的語法特性，例如 class。我們剛加入的工具叫 Babel，你可以在[它的官方文件](https://babeljs.io/docs/en/babel-cli/)裏了解更多。
 
-如果你發現自己習慣了使用各種建立工具，而且希望它們為你做更多，[下一個章節](/docs/create-a-new-react-app.html)會介紹一些受歡迎和容易上手的 toolchains。相反的話，只利用 script 標籤也游刃有餘！
+如果你發現自己習慣了使用各種建立工具，而且希望它們為你做更多，[下一個章節](/docs/create-a-new-react-app.html)會介紹一些受歡迎和容易上手的 toolchains。不過，只利用 script 標籤也游刃有餘！
