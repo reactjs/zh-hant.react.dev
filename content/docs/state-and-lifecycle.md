@@ -72,9 +72,13 @@ ReactDOM.render(
 
 State 類似於 prop，但它是私有且由 component 完全控制的。
 
+<<<<<<< HEAD
 我們[在先前提到過](/docs/components-and-props.html#functional-and-class-components)，component 被定義為 class 有一些額外的特性。Local state 就是 class 其中的一個特性。
 
 ## 轉換 Function 成 Class {#converting-a-function-to-a-class}
+=======
+## Converting a Function to a Class {#converting-a-function-to-a-class}
+>>>>>>> 59c3c0a1551841cedfc8478524808492289e61f5
 
 你可以透過以下 5 個步驟轉換一個 function component 像是 `Clock` 成為 class：
 
