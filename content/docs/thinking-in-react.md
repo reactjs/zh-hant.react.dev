@@ -61,11 +61,7 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
 
 ## 第二步：在 React 中建立一個靜態版本 {#step-2-build-a-static-version-in-react}
 
-<<<<<<< HEAD
-<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> on <a href="https://codepen.io">CodePen</a>.</p>
-=======
 <p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">在 <a href="http://codepen.io">CodePen</a> 中看<a href="https://codepen.io/gaearon/pen/BwWzwm">用 React 思考：第二步</a>。</p>
->>>>>>> Complete thinking-in-react
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 在你有了 component 層級後，就可以開始實作你的應用程式了。最簡單的方式是為你的應用程式建立一個接收數據模型、render UI 且沒有互動性的版本。建立一個靜態版本需要打很多字，但不需要想很多，而加上互動性則相反，需要做很多的思考，打很少的字，所以最好的方式是把這幾個過程都分開來。接下來，我們會知道為什麼要這樣做。
@@ -110,11 +106,7 @@ React 中有兩種「模型」數據： props 和 state。理解兩者的差別�
 
 ## 第四步：找出你的 State 應該在哪裡 {#step-4-identify-where-your-state-should-live}
 
-<<<<<<< HEAD
-<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> on <a href="https://codepen.io">CodePen</a>.</p>
-=======
 <p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">在 <a href="http://codepen.io">CodePen</a> 中看<a href="https://codepen.io/gaearon/pen/qPrNQZ">用 React 思考：第四步</a>。</p>
->>>>>>> Complete thinking-in-react
 
 OK，所以我們已經找出這個應用程式最少的 state 是哪些了。下一步，我們需要找出哪幾個 component 會 mutate，或者*擁有*，這個 state。
 
@@ -139,11 +131,7 @@ OK，所以我們已經找出這個應用程式最少的 state 是哪些了。�
 
 ## 第五步：加入相反的數據流 {#step-5-add-inverse-data-flow}
 
-<<<<<<< HEAD
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> on <a href="https://codepen.io">CodePen</a>.</p>
-=======
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen"> 在 <a href="http://codepen.io">CodePen</a> 中看<a href="https://codepen.io/gaearon/pen/LzWZvb">用 React 思考：第四步</a>。</p>
->>>>>>> Complete thinking-in-react
+<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen"> 在 <a href="http://codepen.io">CodePen</a> 中看<a href="https://codepen.io/gaearon/pen/LzWZvb">用 React 思考：第五步</a>。</p>
 
 到目前為止，我們已經建立了一個作為含有從層級由上往下傳 props 和 state 的、且可以正確 render 的 function 的應用程式。現在是時候支援另一種數據流的方向了：在層級深處的表格 component 需要更新 `FilterableProductTable` 的 state。
 

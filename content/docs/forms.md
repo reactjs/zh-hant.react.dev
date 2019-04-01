@@ -205,7 +205,7 @@ class FlavorForm extends React.Component {
 
 當你需要處理多個 controlled `input` element，你可以在每個 element 中加入一個 `name` attribute，並讓 handler function 選擇基於 `event.target.name` 的值該怎麼做：
 
-For example:
+例如：
 
 ```javascript{15,18,28,37}
 class Reservation extends React.Component {
