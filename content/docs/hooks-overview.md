@@ -1,30 +1,30 @@
 ---
 id: hooks-overview
-title: Hooks at a Glance
+title: Hook 概論
 permalink: docs/hooks-overview.html
 next: hooks-state.html
 prev: hooks-intro.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hook* 是 React 16.8 新加的功能，他們讓你可以不用寫 class 就能使用 state 與其他 React 的功能。
 
-Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). This page provides an overview of Hooks for experienced React users. This is a fast-paced overview. If you get confused, look for a yellow box like this:
+Hook [向後兼容](/docs/hooks-intro.html#no-breaking-changes)。這一頁提供 Hook 的簡介給有經驗的 React 使用者們。這是一個快節奏的簡介，如果你有疑惑，看一下黃色框框如下：
 
->Detailed Explanation
+>詳細解釋
 >
->Read the [Motivation](/docs/hooks-intro.html#motivation) to learn why we're introducing Hooks to React.
+>讀[動機](/docs/hooks-intro.html#motivation)來了解為什麼我們將 Hook 加入 React。
 
-**↑↑↑ Each section ends with a yellow box like this.** They link to detailed explanations.
+**↑↑↑ 每一個章節結束都有一個黃色框框像這樣。** 他們連到詳細解釋。
 
 ## 📌 State Hook {#state-hook}
 
-This example renders a counter. When you click the button, it increments the value:
+這個範例 render 一個計數器。當你按下按鈕，他會增加數值：
 
 ```js{1,4,5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
+  // 宣告一個新的 state 變數，我們叫他「count」
   const [count, setCount] = useState(0);
 
   return (
@@ -38,17 +38,17 @@ function Example() {
 }
 ```
 
-Here, `useState` is a *Hook* (we'll talk about what this means in a moment). We call it inside a function component to add some local state to it. React will preserve this state between re-renders. `useState` returns a pair: the *current* state value and a function that lets you update it. You can call this function from an event handler or somewhere else. It's similar to `this.setState` in a class, except it doesn't merge the old and new state together. (We'll show an example comparing `useState` to `this.state` in [Using the State Hook](/docs/hooks-state.html).)
+這裡，useState 是一個 *Hook* （我們馬上會聊到他是什麼意思）。我們在 function component 中呼叫他們用來加入一些 local state。React 會在重新 render 的頁面之間保留這些 state。`useState` 回傳一組數值：*當前* state 數值和一個可以讓你更新 state 的 function。你可以從 event handler 或其他地方呼叫這個 function 來更新他。很類似 `this.setState` 在 class 當中的用法，除了他不會將舊的與新的 state 合併在一起。（我們將會在[使用 State Hook](/docs/hooks-state.html) 中展示一個範例比較 `useState` 與 `this.state`。）
 
-The only argument to `useState` is the initial state. In the example above, it is `0` because our counter starts from zero. Note that unlike `this.state`, the state here doesn't have to be an object -- although it can be if you want. The initial state argument is only used during the first render.
+`useState` 唯一的 argument 是初始狀態。在上面的例子中，他是 `0` 因為我們的計數器從零開始。注意不像 `this.state`，state 在這裡不需要一定是 object，雖然你要也可以。初始狀態 argument 只有在第一次 render 的時候會被用到。
 
-#### Declaring multiple state variables {#declaring-multiple-state-variables}
+#### 宣告多個 state 變數 {#declaring-multiple-state-variables}
 
-You can use the State Hook more than once in a single component:
+你可以在一個 component 中使用 State Hook 不只一次：
 
 ```js
 function ExampleWithManyStates() {
-  // Declare multiple state variables!
+  // 宣告多個 state 變數!
   const [age, setAge] = useState(42);
   const [fruit, setFruit] = useState('banana');
   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
@@ -56,25 +56,25 @@ function ExampleWithManyStates() {
 }
 ```
 
-The [array destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) syntax lets us give different names to the state variables we declared by calling `useState`. These names aren't a part of the `useState` API. Instead, React assumes that if you call `useState` many times, you do it in the same order during every render. We'll come back to why this works and when this is useful later.
+[Array destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) 語法讓我們可以給用呼叫 `useState` 宣告的 state 變數不同的名字，這些名字不是 `useState` API 的一部份。相反地，React 假設如果你呼叫 `useState` 多次，你在每次 render 用同樣的順序。我們之後將會回來討論為什麼可以這樣做與什麼時候他很有用。
 
-#### But what is a Hook? {#but-what-is-a-hook}
+#### 但是什麼是 Hook? {#but-what-is-a-hook}
 
-Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don't work inside classes -- they let you use React without classes. (We [don't recommend](/docs/hooks-intro.html#gradual-adoption-strategy) rewriting your existing components overnight but you can start using Hooks in the new ones if you'd like.)
+Hook 是 function，他讓你可以從 function component「hook into」React state 與 lifecycle 功能。Hook 在 class 裡面沒有辦法用——他們讓你不用 class 就能使用 React。（我們[不建議](/docs/hooks-intro.html#gradual-adoption-strategy)你通宵重寫現存的 component 但是如果你想要的話，你可以開始在新的 component 當中使用。）
 
-React provides a few built-in Hooks like `useState`. You can also create your own Hooks to reuse stateful behavior between different components. We'll look at the built-in Hooks first.
+React 提供一些內建 Hook 像是 `useState`。你也可以打造你自己的 Hook 用來在不同的 component 之間重複使用 stateful 邏輯。我們先來看看內建 Hook。
 
->Detailed Explanation
+>詳細解釋
 >
->You can learn more about the State Hook on a dedicated page: [Using the State Hook](/docs/hooks-state.html).
+>你可以在[使用 State Hook](/docs/hooks-state.html) 了解更多 State Hook。
 
 ## ⚡️ Effect Hook {#effect-hook}
 
-You've likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations "side effects" (or "effects" for short) because they can affect other components and can't be done during rendering.
+你從前可能在 React component 做過 fetch 資料、訂閱、或手動改變 DOM。我們稱這些操作「side effect」（或簡稱 effect）因為他們可以影響其他 component 且在 render 期間無法完成。
 
-The Effect Hook, `useEffect`, adds the ability to perform side effects from a function component. It serves the same purpose as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` in React classes, but unified into a single API. (We'll show examples comparing `useEffect` to these methods in [Using the Effect Hook](/docs/hooks-effect.html).)
+Effect Hook `useEffect` 在 function component 中加入運作 side effect 的能力。他和 `componentDidMount`， `componentDidUpdate`，與 `componentWillUnmount` 有著同樣的宗旨，但整合進一個單一的 API。（我們將在[使用 Effect Hook](/docs/hooks-effect.html) 中用範例比較 `useEffect` 和這些方法。）
 
-For example, this component sets the document title after React updates the DOM:
+舉例來說，這個 component 在 React 更新 DOM 之後設定文件標題：
 
 ```js{1,6-10}
 import React, { useState, useEffect } from 'react';
@@ -82,7 +82,7 @@ import React, { useState, useEffect } from 'react';
 function Example() {
   const [count, setCount] = useState(0);
 
-  // Similar to componentDidMount and componentDidUpdate:
+  // 與 componentDidMount 和 componentDidUpdate 類似：
   useEffect(() => {
     // Update the document title using the browser API
     document.title = `You clicked ${count} times`;
@@ -99,9 +99,9 @@ function Example() {
 }
 ```
 
-When you call `useEffect`, you're telling React to run your "effect" function after flushing changes to the DOM. Effects are declared inside the component so they have access to its props and state. By default, React runs the effects after every render -- *including* the first render. (We'll talk more about how this compares to class lifecycles in [Using the Effect Hook](/docs/hooks-effect.html).)
+當你呼叫 `useEffect` 時，你告訴 React 刷新 DOM 變動之後運行你的 「effect」。Effect 在 component 裡面被宣告所以他們有權限訪問他的 props 和 state。預設之下，React 在每一次 render 之後運行 effect —— *包括*第一次 render。（我們會在[使用 Effect Hook](/docs/hooks-effect.html) 做更多他和 class lifecycle 的比較。）
 
-Effects may also optionally specify how to "clean up" after them by returning a function. For example, this component uses an effect to subscribe to a friend's online status, and cleans up by unsubscribing from it:
+Effect 可以透過回傳一個 function 選擇性的定義如何「清理」。舉例來說，這個 component 使用 effect 來訂閱朋友的上線狀態，並在取消訂閱之後清理。
 
 ```js{10-16}
 import React, { useState, useEffect } from 'react';
@@ -128,9 +128,9 @@ function FriendStatus(props) {
 }
 ```
 
-In this example, React would unsubscribe from our `ChatAPI` when the component unmounts, as well as before re-running the effect due to a subsequent render. (If you want, there's a way to [tell React to skip re-subscribing](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects) if the `props.friend.id` we passed to `ChatAPI` didn’t change.)
+在這個例子中，當 component unmount 和重新運行 effect 的時候，React 會取消訂閱我們的 `ChatAPI` 因為一連串依序的 render。（如果你想的話，如果我們傳遞給 `ChatAPI` 的 `props.friend.id` 沒有改變，有辦法[告訴 React 跳過重新訂閱](/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects)。）
 
-Just like with `useState`, you can use more than a single effect in a component:
+就像是 `useState` 一樣，你可以在一個 component 中使用超過一個 effect：
 
 ```js{3,8}
 function FriendStatusWithCounter(props) {
@@ -153,32 +153,32 @@ function FriendStatusWithCounter(props) {
   // ...
 ```
 
-Hooks let you organize side effects in a component by what pieces are related (such as adding and removing a subscription), rather than forcing a split based on lifecycle methods.
+Hook 讓你在 component 中透過彼此相關的部分組織 side effect（像是加入或移除訂閱），而不是強迫根據 lifecycle 方法分散各處。
 
->Detailed Explanation
+>詳細解釋
 >
->You can learn more about `useEffect` on a dedicated page: [Using the Effect Hook](/docs/hooks-effect.html).
+>你可以在[使用 Effect Hook](/docs/hooks-effect.html) 了解更多 Effect Hook。
 
-## ✌️ Rules of Hooks {#rules-of-hooks}
+## ✌️ Hook 的規則 {#rules-of-hooks}
 
-Hooks are JavaScript functions, but they impose two additional rules:
+Hook 是 JavaScript function，但是他們強加了兩條額外的規則：
 
-* Only call Hooks **at the top level**. Don’t call Hooks inside loops, conditions, or nested functions.
-* Only call Hooks **from React function components**. Don’t call Hooks from regular JavaScript functions. (There is just one other valid place to call Hooks -- your own custom Hooks. We'll learn about them in a moment.)
+* 只在 **最上層** 呼叫 Hook。不要在迴圈、判斷式、或是嵌套 function 中呼叫 Hook。
+* 只在 **React function component** 呼叫 Hook。不要在一般 JavaScript function 中呼叫 Hook。（只有一個其他有效的地方可以呼叫 Hook——你自己的客製化 Hook。我們馬上會學到他們。）
 
-We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically. We understand these rules might seem limiting or confusing at first, but they are essential to making Hooks work well.
+我們提供了一個 [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) 自動強制套用這些規則。我們了解這些規則第一眼看起來很多限制或是很讓人疑惑，但是他們是讓 Hook 成功運作的必要條件。
 
->Detailed Explanation
+>詳細解釋
 >
->You can learn more about these rules on a dedicated page: [Rules of Hooks](/docs/hooks-rules.html).
+>你可以在 [Hook 的規則](/docs/hooks-rules.html)了解更多 Hook 的規則。
 
-## 💡 Building Your Own Hooks {#building-your-own-hooks}
+## 💡 打造你自己的 Hook {#building-your-own-hooks}
 
-Sometimes, we want to reuse some stateful logic between components. Traditionally, there were two popular solutions to this problem: [higher-order components](/docs/higher-order-components.html) and [render props](/docs/render-props.html). Custom Hooks let you do this, but without adding more components to your tree.
+有時候，我們想要在 component 之間重複使用某些 stateful 邏輯。傳統上，這個問題有兩種熱門的答案：[higher-order components](/docs/higher-order-components.html) 與 [render prop](/docs/render-props.html)。客製化 Hook 讓你不用在你的 tree 中加入更多 component 就能做到。
 
-Earlier on this page, we introduced a `FriendStatus` component that calls the `useState` and `useEffect` Hooks to subscribe to a friend's online status. Let's say we also want to reuse this subscription logic in another component.
+在這一頁前面，我們提到 `FriendStatus` component 呼叫 `useState` 與 `useEffect` Hook 來訂閱朋友的線上狀態。假如我們也想要在另一個 component 重複使用這個訂閱邏輯。
 
-First, we'll extract this logic into a custom Hook called `useFriendStatus`:
+首先，我們抽離這個邏輯到客製化 Hook `useFriendState` 之中：
 
 ```js{3}
 import React, { useState, useEffect } from 'react';
@@ -201,9 +201,9 @@ function useFriendStatus(friendID) {
 }
 ```
 
-It takes `friendID` as an argument, and returns whether our friend is online.
+他接收 `friendID` 做為 argument 且回傳我們的朋友是否在線上。
 
-Now we can use it from both components:
+現在我們在兩個 component 中都可以使用：
 
 
 ```js{2}
@@ -229,19 +229,19 @@ function FriendListItem(props) {
 }
 ```
 
-The state of these components is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
+這兩個 component 的 state 是完全獨立的。Hook 是一種重複使用 *stateful 邏輯* 的方式，不是 state 本身。實際上，每一次呼叫一個 Hook 都有一個完全獨立且隔離的 state —— 所以你甚至可以在一個 component 使用同一個客製化 Hook 兩次。
 
-Custom Hooks are more of a convention than a feature. If a function's name starts with "`use`" and it calls other Hooks, we say it is a custom Hook. The `useSomething` naming convention is how our linter plugin is able to find bugs in the code using Hooks.
+客製化 Hook 比較像慣例而不是功能，如果一個 function 的名字是「`use`」開頭且他呼叫其他 Hook，我們將他稱之為客製化 Hook。使用 Hook 時，`useSomething`的命名慣例是我們的 linter plugin 如何能夠在程式碼中找到 bug 的原因。
 
-You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven't considered. We are excited to see what custom Hooks the React community will come up with.
+你可以寫客製化 Hook 涵蓋廣泛地使用案例像是表單處理、動畫、宣告式訂閱、計時器和許多我們可能沒有想到的。我們很興奮看到 React 社群會想到什麼樣的 Hook。
 
->Detailed Explanation
+>詳細解釋
 >
->You can learn more about custom Hooks on a dedicated page: [Building Your Own Hooks](/docs/hooks-custom.html).
+>你可以在[打造你自己的 Hook](/docs/hooks-custom.html) 了解更多客製化 Hook。
 
-## 🔌 Other Hooks {#other-hooks}
+## 🔌 其他 Hook {#other-hooks}
 
-There are a few less commonly used built-in Hooks that you might find useful. For example, [`useContext`](/docs/hooks-reference.html#usecontext) lets you subscribe to React context without introducing nesting:
+還有一些比較少用的內建 Hook 你可能會覺得很有用。舉例來說，[`useContext`](/docs/hooks-reference.html#usecontext) 讓你不需要嵌套就可以訂閱 React context：
 
 ```js{2,3}
 function Example() {
@@ -251,7 +251,7 @@ function Example() {
 }
 ```
 
-And [`useReducer`](/docs/hooks-reference.html#usereducer) lets you manage local state of complex components with a reducer:
+[`useReducer`](/docs/hooks-reference.html#usereducer) 讓你在複雜的 component 中用 reducer 管理 local state：
 
 ```js{2}
 function Todos() {
@@ -259,14 +259,14 @@ function Todos() {
   // ...
 ```
 
->Detailed Explanation
+>詳細解釋
 >
->You can learn more about all the built-in Hooks on a dedicated page: [Hooks API Reference](/docs/hooks-reference.html).
+>你可以在 [Hook API Reference](/docs/hooks-reference.html) 了解更多所有的內建 Hook。
 
-## Next Steps {#next-steps}
+## 下一步 {#next-steps}
 
-Phew, that was fast! If some things didn't quite make sense or you'd like to learn more in detail, you can read the next pages, starting with the [State Hook](/docs/hooks-state.html) documentation.
+呼！講很快！如果有什麼讓你覺得沒道理或是你想了解更多細節，你可以閱讀下一頁，從 [State Hook](/docs/hooks-state.html) 文件開始。
 
-You can also check out the [Hooks API reference](/docs/hooks-reference.html) and the [Hooks FAQ](/docs/hooks-faq.html).
+你也可以看看 [Hook API reference](/docs/hooks-reference.html) 與 [Hook 常見問題](/docs/hooks-faq.html)。
 
-Finally, don't miss the [introduction page](/docs/hooks-intro.html) which explains *why* we're adding Hooks and how we'll start using them side by side with classes -- without rewriting our apps.
+最後，不要漏了[隆重介紹頁面](/docs/hooks-intro.html)，這裡解釋了 *為什麼* 我們加入了 Hook 與我們如何和 class 一起使用——不用重寫我們的應用程式。

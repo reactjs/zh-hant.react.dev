@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutorial: Intro to React"
+title: "學習指南：React 介紹"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
@@ -14,7 +14,7 @@ redirect_from:
 
 你不需要有任何 React 的基礎知識就能使用這份學習指南。
 
-## 在我們開始這份教學課程之前 {#before-we-start-the-tutorial}
+## 在我們開始這份學習指南之前 {#before-we-start-the-tutorial}
 
 在這份學習指南中，我們會練習做一個小遊戲。**也許你會很想跳過這份指南，因為你不是遊戲開發者 -- 但請試著跟著做做看。**在這份學習指南中，你所學到的技術是你做任何 React 應用程式的基礎，掌握基礎後會讓你對 React 有更深入的了解。
 
@@ -30,8 +30,6 @@ redirect_from:
 * [加入時間旅行](#adding-time-travel)會讓你對 React 獨特的優點有**更深的見解**。
 
 你不需要一次就完成所有的部分才能從這份學習指南中獲益。試著練習越多越好 -- 即使只有一兩個部分。
-
-當你在跟著指南練習時，複製貼上程式碼是沒關係的，但我們建議你把程式自己寫過一遍。這會幫助你訓練手感並加強理解。
 
 ### 我們要做什麼？ {#what-are-we-building}
 
@@ -186,9 +184,11 @@ JSX 就跟 JavaScript ㄧ樣強大。你可以在 JSX 中的括號中放入*任�
 
 Square component 會 render 一個按鈕 `<button>`，而 Board 會 render 九個方格。Game component 則是 render 一個完整的遊戲格盤與 placeholder，這些值我們稍候會修改。目前為止，沒有一個 component 是互動式的。
 
-### 透過 Props 傳遞資料 {#passing-data-through-props}
+### 透過 Prop 傳遞資料 {#passing-data-through-props}
 
 做為暖身，讓我們試試看把一些資料從 Board component 傳給 Square component。
+
+當你在練習這份指南時，我們建議你將程式碼自己寫過一遍，而不是複製貼上。這會幫助你訓練手感並加強理解。
 
 在 Board 的 `renderSquare` 方法中，請修改程式碼，並把名為 `value` 的 prop 傳給 Square：
 
@@ -227,14 +227,8 @@ class Square extends React.Component {
 
 ### 建立互動式的 Component {#making-an-interactive-component}
 
-<<<<<<< HEAD
 讓我們在點擊 Square component 時，能在方格中填入ㄧ個 X。
-
 首先，把從 Square component 的 `render()` 中回傳的按鈕的標籤，修改成以下的程式：
-=======
-Let's fill the Square component with an "X" when we click it.
-First, change the button tag that is returned from the Square component's `render()` function to this:
->>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ```javascript{4}
 class Square extends React.Component {
@@ -248,7 +242,7 @@ class Square extends React.Component {
 }
 ```
 
-現在，當我們點擊任何一個 Square 時，我們應該能在瀏覽器中收到一個 alert。
+現在，當你點擊任何一個 Square 時，我們應該能在瀏覽器中收到一個 alert。
 
 >注意：
 >
@@ -266,11 +260,11 @@ class Square extends React.Component {
 >}
 >```
 >
->請注意在 `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。這個 function 只會在被點擊後觸發。把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次重新 render 時都會觸發 alert。
+>請注意在 `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。React 在點擊之後只會呼叫這個 function 。把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次重新 render 時都會觸發 alert。
 
 下一步，我們要讓 Square component 「記得」它被點擊了，並在方格中填入 X 這個記號。Component 使用 **state** 來保持狀態。
 
-React 的 component 可以藉由在其 constructor 中設定 `this.state` 來維持一個 state。`this.state` 對於在其被定義的 React component 中來說應該要是 private 的。讓我們來把目前 Square 的值儲存在 `this.state` 中，並在 Square 被點擊後改變這個值：
+React 的 component 可以透過在 constructor 中設定 `this.state` 來維持一個 state。`this.state` 對於被定義的 React component 中來說應該要是 private 的。讓我們來把目前 Square 的值儲存在 `this.state` 中，並在 Square 被點擊後改變這個值：
 
 首先，我們要先加一個 constructor 在 class 中以初始化 state：
 
@@ -300,7 +294,7 @@ class Square extends React.Component {
 現在我們會改變 Square 的 `render` 方法以顯示當 Square 被點擊時當下的 state 的值是什麼：
 
 * 把 `<button>` 標籤中的 `this.props.value` 換成 `this.state.value`。
-* 把 `() => alert()` 這個 event handler 換成 `() => this.setState({value: 'X'})`。
+* 把 `onClick={...}` 這個 event handler 換成 `onClick={() => this.setState({value: 'X'})}`。
 * 將 `className` 和 `onClick` 兩個 prop 放在不同行，以方便閱讀。
 
 在上述修改完成後，在 Square 的 `render` 方法中回傳的 `<button>` 標籤現在看起來是這樣：
@@ -327,7 +321,7 @@ class Square extends React.Component {
 }
 ```
 
-藉由從 Square 的 `render` 方法中的 `onClick` handler 呼叫 `this.setState`，我們告訴 React：當該 Square 的 `<button>` 被點擊時，要 re-render。在這個修改後，Square 的 `this.state.value` 值將會變成 `'X'`，所以我們將會在遊戲格盤中看到 `'X'`。當你點擊任何一個方格，應該能看到 `'X'`。
+藉由從 Square 的 `render` 方法中的 `onClick` handler 呼叫 `this.setState`，我們告訴 React：當該 Square 的 `<button>` 被點擊時，要重新 render。在這個修改後，Square 的 `this.state.value` 值將會變成 `'X'`，所以我們將會在遊戲格盤中看到 `'X'`。當你點擊任何一個方格，應該能看到 `'X'`。
 
 當你在一個 component 中呼叫 `setState` 時，React 也會自動更新其中的 child component。
 
@@ -354,15 +348,15 @@ React DevTools 讓你檢查你的 React component 中的 props 和 state。
 
 現在我們已經為我們的圈圈叉叉遊戲準備好基本的要件了。為了要做出一個完整的遊戲，我們現在需要在遊戲格盤中交互地放入 X 和 O，我們也需要決定如何分出勝負。
 
-### 把 State 往上傳 {#lifting-state-up}
+### 提升 State {#lifting-state-up}
 
 目前，每個 Square component 都能更新這個遊戲的 state。如果要分出勝負的話，我們需要將這九個方格的值都紀錄在某處。
 
-也許我們會覺得 Board 應該從每個 Square 中確認該方格的狀態。雖然這個方法在 React 中是可行的，但我們並不鼓勵你這麼做，因為你的程式碼會變得很難懂，很容易有 bug，也很難重寫。最好的方式是把這整個遊戲的 state 存放在 parent Board component 中，而不是在每一個 Square 中。Board component 會藉由傳遞 props 的方式告訴每一個 Square 該顯示什麼值，[就如同我們剛開始先傳給每個 Square 一個數字是一樣的](#passing-data-through-props)。
+也許我們會覺得 Board 應該從每個 Square 中確認該方格的狀態。雖然這個方法在 React 中是可行的，但我們並不鼓勵你這麼做，因為你的程式碼會變得很難懂，很容易有 bug，也很難重寫。最好的方式是把這整個遊戲的 state 存放在 Board parent component 中，而不是在每一個 Square 中。Board component 會藉由傳遞 props 的方式告訴每一個 Square 該顯示什麼值，[就如同我們剛開始先傳給每個 Square 一個數字是一樣的](#passing-data-through-props)。
 
 **為了從多個 children 中收集資料，或是讓兩個 child component 互相溝通，你需要在它們的 parent component 裡宣告一個共享的 state。這個 parent component 可以將 state 透過 props 向下傳給 children。這讓 child component 之間還有跟它們的 parent component 能隨時保持同步。**
 
-在修改 React component 時，把 state 上傳到 parent component 裡面是很常見的。讓我們利用這個機會來試試看這該怎麼做。我們會在 Board 裡加一個 constructor，並將 Board 的初始 state 設定為一個包含九個 null 的 array。這九個 null 分別對應著九個 Square：
+在修改 React component 時，把 state 提升到 parent component 裡面是很常見的。讓我們利用這個機會來試試看這該怎麼做。我們會在 Board 裡加一個 constructor，並將 Board 的初始 state 設定為一個包含九個 null 的 array。這九個 null 分別對應著九個 Square：
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -376,32 +370,6 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
-
-  render() {
-    const status = 'Next player: X';
-
-    return (
-      <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
 ```
 
 當我們稍後填滿棋盤時，棋盤會看起來像這樣：
@@ -422,7 +390,7 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
   }
 ```
 
-一開始，我們從 Board [把 `value` 這個 prop 往下傳](#passing-data-through-props)並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們[根據 Square 本身的 state](#making-an-interactive-component) 把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
+一開始，我們從 Board [把 `value` 這個 prop 往下傳](#passing-data-through-props)，並在每一個 Square 中顯示數字 0 到 8。在之前的另一個步驟中，我們[根據 Square 本身的 state](#making-an-interactive-component) 把數字換成 Ｘ。這是為什麼 Square 目前會忽略 Board 傳給它的 `value` prop 的原因。
 
 我們現在又會再次使用傳遞 prop 的這個機制。我們會修改 Board 以告訴每個 Square 它現在的值（`'X'`，`'O'` 或 `null`）該是什麼。我們已經在 Board 的 constructor 中定義了 `squares` 這個 array，接下來，我們會修改 Board 的 `renderSquare` 方法以讀取這個 array：
 
@@ -437,9 +405,9 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
 
 每個 Square 將會接收一個 `value` prop，在空的方格中，它的值會是`'X'`，`'O'` 或 `null`。
 
-接下來，我們需要改變當 Square 被點擊後會觸發的事件。Board component 現在決定了哪一個方格會被填滿。我們需要創造一個方法讓 Square 去更新 Board 的狀態。既然 state 對於定義它的 component 來說是 private 的，我們就不能直接從 Square 去更新 Board 的 state。
+接下來，我們需要改變當 Square 被點擊後會觸發的事件。Board component 現在決定了哪一個方格會被填滿。我們需要建立一個方法讓 Square 去更新 Board 的狀態。既然 state 對於定義它的 component 來說是 private 的，我們就不能直接從 Square 去更新 Board 的 state。
 
-要能維持 Board 的 state 的私有性，我們需要從 Board 傳一個 function 給 Square。這個 function 將在 Square 被點擊的時候被呼叫。我們也會改變 Board 中 `renderSquare` 的方法：
+我們反而需要從 Board 傳一個 function 給 Square。這個 function 將在 Square 被點擊的時候被 Square 呼叫。我們也會改變 Board 中 `renderSquare` 的方法：
 
 ```javascript{5}
   renderSquare(i) {
@@ -458,8 +426,8 @@ Board 的 `renderSquare` 方法目前看起來是這樣：
 
 現在我們從 Board 傳兩個 prop 給 Square：`value` 和 `onClick`。`onClick` prop 是一個當 Square 被呼叫時可以點擊的 function。我們會在 Square 中做出如下的修改：
 
-* 把 Square 的 `render` 方法中的 `this.state.value` 換成 `this.props.value`。
-* 把 Square 的 `render` 方法中的 `this.setState()` 換成 `this.props.onClick()`。
+* 把 Square 的 `render` 方法中的 `this.state.value` 替換成 `this.props.value`。
+* 把 Square 的 `render` 方法中的 `this.setState()` 替換成 `this.props.onClick()`。
 * 把 `constructor` 從 Square 中刪除，因為 Square 已不再需要追蹤遊戲的狀態。
 
 在上述修改完成後，Square component 現在看起來是這樣：
@@ -481,15 +449,15 @@ class Square extends React.Component {
 
 當一個 Square 被點擊時，`onClick` 這個 Board 所提供給它的 function 會被呼叫。我們來看一下這件事是如何做到的：
 
-1. `onClick` prop 在內建的 DOM `<button>` component 告訴 React 要設定一個 click event listener。
-2. 當按鈕被點擊時，React 會呼叫 `onClick` 這個 Square 的 `render()` 方法中的 event handler。
-3. 這個 event handler 將會呼叫 `this.props.onClick()`。Square 中的 `onClick` prop 被 Board 選定。
+1. 在內建的 DOM `<button>` component 上的 `onClick` prop 告訴 React 要設定一個 click event listener。
+2. 當按鈕被點擊時，React 會呼叫在 Square `render()` 方法中被定義的 `onClick` event handler。
+3. 這個 event handler 將會呼叫 `this.props.onClick()`。Square 的 `onClick` prop 透過 Board 被指定。
 4. 因為 Board 把 `onClick={() => this.handleClick(i)}` 傳給 Square，Square 會在被點擊時呼叫 `this.handleClick(i)`。
-5. 我們尚未定義 `handleClick()`，所以我們的程式目前會崩潰。
+5. 我們尚未定義 `handleClick()`，所以我們的程式目前會崩潰。如果你現在點擊 Square 的話，將會看到「this.handleClick is not a function」之類的紅色錯誤訊息。
 
 >注意
 >
->DOM `<button>` element 的 `onClick` 屬性對 React 來說有特別的意義，因為它是一個內建的 component。對於像是 Square 這種客製的 components 來說，命名方式是看你的喜好。我們可以把 Square 的 `onClick` prop 或是 Board 的 `handleClick` 方法以完全不同的方式命名。然而，在 React 中，我們遵循的傳統通常是用 `on[Event]` 來命名那些代表 event 的 prop，用 `handle[Event]` 來命名那些 handle event 的方法。
+>DOM `<button>` element 的 `onClick` 屬性對 React 來說有特別的意義，因為它是一個內建的 component。對於像是 Square 這種客製的 components 來說，命名方式是看你的喜好。我們可以任意命名 Square 的 `onClick` prop 或是 Board 的 `handleClick` 方法，程式碼仍會正常運作。然而在 React 中，我們遵循的傳統通常是用 `on[Event]` 來命名那些代表 event 的 prop，用 `handle[Event]` 來命名那些 handle event 的方法。
 
 當我們試著點擊一個 Square，我們的程式應該會發生錯誤，因為我們尚未定義 `handleClick`。我們現在把 `handleClick` 加到 Board 的 class：
 
@@ -546,26 +514,26 @@ class Board extends React.Component {
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-在這些修改完成後，我們現在又可以點擊 Squares 並填入內容了。然而，現在 state 是儲存在 Board component 而非個別的 Square component 中。當 Board 的 state 改變時，Square component 會自動 re-render。在 Board component 中維持所有方格的狀態將能使它在未來決定勝負。
+在這些修改完成後，我們現在又可以點擊 Squares 並填入內容了。然而，現在 state 是儲存在 Board component 而非個別的 Square component 中。當 Board 的 state 改變時，Square component 會自動重新 render。在 Board component 中維持所有方格的狀態將能使它在未來決定勝負。
 
-因為 Square component 不再維持 state，Square component 從 Board component 接收 value 並在被點擊時通知 Board component 它的值。在 React 的詞彙中，Square component 現在是 **controlled component**。這意味著 Board 對其有完全的掌握。
+因為 Square component 不再維持 state，Square component 從 Board component 接收 value 並在被點擊時通知 Board component 它的值。在 React 的詞彙中，Square component 現在是**被控制的 component**。這意味著 Board 對其有完全的掌握。
 
-注意在 `handleClick` 中，我們呼叫 `.slice()` 以創造一個 `squares` array 的 copy 並修改它，而非直接修改現有的 array。在下一個段落，我們將會解釋為什麼我們要創造一個 `squares` array 的 copy。
+注意在 `handleClick` 中，我們呼叫 `.slice()` 以建立一個 `squares` array 的 copy 並修改它，而非直接修改現有的 array。在下一個段落，我們將會解釋為什麼我們要建立一個 `squares` array 的 copy。
 
 ### Immutability（不可變性）的重要性 {#why-immutability-is-important}
 
-在上一段程式碼的範例中，我們建議你使用 `.slice()` 運算子去創造一個 `squares` array 的 copy 並修改它，而不是修改已存在的 array。現在我們來討論什麼是不可變性以及為什麼學習不可變性是很重要的。
+在上一段程式碼的範例中，我們建議你使用 `.slice()` 運算子去建立一個 `squares` array 的 copy 並修改它，而不是修改已存在的 array。現在我們來討論什麼是不可變性以及為什麼學習不可變性是很重要的。
 
-一般來說，修改數據有兩種做法。第一種方法是透過改變數據的值來直接*修改*資料。第二種方法是改變 copy 中的數據，並用這個新的 copy 取代原本的數據。
+一般來說，修改資料有兩種做法。第一種方法是透過改變資料的值來直接*修改*資料。第二種方法是改變 copy 中的資料，並用這個新的 copy 取代原本的資料。
 
-#### 透過 Mutation（修改）來變更數據 {#data-change-with-mutation}
+#### 透過 Mutation（修改）來改變資料 {#data-change-with-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 player.score = 2;
 // 現在 player 是 {score: 2, name: 'Jeff'}
 ```
 
-#### 不透過 Mutation（修改）來變更數據 {#data-change-without-mutation}
+#### 不透過 Mutation（修改）來改變資料 {#data-change-without-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 
@@ -576,23 +544,23 @@ var newPlayer = Object.assign({}, player, {score: 2});
 // var newPlayer = {...player, score: 2};
 ```
 
-兩者的結果是相同的，但是藉由不直接修改數據（或直接更改底層數據 data），有下列幾個優點：
+兩者的結果是相同的，但是藉由不直接修改資料（或直接更改底層資料），有下列幾個優點：
 
 #### 簡化複雜功能 {#complex-features-become-simple}
 
-不可變性使得複雜的功能變得更容易實現。稍後在這份教學指南中，我們將會實現「時間旅行」的功能。這個功能讓我們能回顧關關叉叉小遊戲的歷史並「跳回」之前的動作。這個功能並非只適用於遊戲 -- 復原動作與取消復原動作的功能是應用程式中很常見的需求。避免直接修改數據讓我們能將遊戲歷史先前的版本完整的保留下來，並在之後重新使用它們。
+不可變性使得複雜的功能變得更容易實現。稍後在這份教學指南中，我們將會實現「時間旅行」的功能。這個功能讓我們能回顧關關叉叉小遊戲的歷史並「跳回」之前的動作。這個功能並非只適用於遊戲 -- 復原動作與取消復原動作的功能是應用程式中很常見的需求。避免直接修改資料讓我們能將遊戲歷史先前的版本完整的保留下來，並在之後重新使用它們。
 
 #### 偵測改變 {#detecting-changes}
 
-在可變更的 object 中偵測改變是很困難的，因為這些改變是直接的。如果要偵測改變的話，我們需要比較這個可變更的 object 和它之前的 copy，並且遍歷整個 object tree。
+在可變更的 object 中偵測改變是很困難的，因為這些改變是直接的。如果要偵測改變的話，我們需要比較這個可變更的 object 和它之前的 copy，並且走訪整個 object tree。
 
 相較之下，在不可變更的 object 中偵測改變就容易多了。如果某個不可變更 object 和之前不ㄧ樣，那麼這個 object 就已經被改變了。
 
-#### 決定在 React 中該何時重新 render {#determining-when-to-re-render-in-react}
+#### 在 React 中決定何時重新 render {#determining-when-to-re-render-in-react}
 
-不可變性最主要的優點在於它幫助你在 React 中建立 _pure component_。我們能很容易決定不可變的數據中是否有任何改變，這幫助 React 決定某個 component 是否需要重新 render。
+不可變性最主要的優點在於它幫助你在 React 中建立 _pure component_。我們能很容易決定不可變的資料中是否有任何改變，這幫助 React 決定某個 component 是否需要重新 render。
 
-在[性能優化](/docs/optimizing-performance.html#examples)中，你可以深入了解 `shouldComponentUpdate()` 以及如何建立 *pure component*。
+在[效能最佳化](/docs/optimizing-performance.html#examples)中，你可以深入了解 `shouldComponentUpdate()` 以及如何建立 *pure component*。
 
 ### Function Component {#function-components}
 
@@ -618,7 +586,7 @@ function Square(props) {
 
 >注意
 >
->當我們把 Square 變成 function component 的時候，我們也把 `onClick={() => this.props.onClick()}` 替換為更簡短的 `onClick={props.onClick}`（請特別注意在箭頭的*兩側*，原本的括號現在都不見了）。在這個 class 中，我們用 arrow function 以取得 `this` 的正確值。但是在 function component 中，我們並不需要擔心 `this` 是什麼。
+>當我們把 Square 變成 function component 的時候，我們也把 `onClick={() => this.props.onClick()}` 替換為更簡短的 `onClick={props.onClick}`（請特別注意在箭頭的*兩側*，原本的括號現在都不見了）。
 
 ### 輪流玩遊戲 {#taking-turns}
 
@@ -650,7 +618,9 @@ class Board extends React.Component {
   }
 ```
 
-這個改變會讓「X」和「O」輪流出現。我們也來更新一下 Board 的 `render` 中「status」的文字，讓它能顯示下ㄧ個玩家是誰：
+這個改變會讓「X」和「O」輪流出現，試試看吧！
+
+我們也來更新一下 Board 的 `render` 中「status」的文字，讓它能顯示下ㄧ個玩家是誰：
 
 ```javascript{2}
   render() {
@@ -722,7 +692,7 @@ class Board extends React.Component {
 
 ### 決定勝負 {#declaring-a-winner}
 
-在我們能顯示下一次輪到哪個玩家之後，我們也應該能在勝負揭曉時宣布誰是贏家，並告知玩家接下來沒有動作可出。我們可以在這個檔案的最後加上一個 helper function 來決定勝負：
+在我們能顯示下一次輪到哪個玩家之後，我們也應該能在勝負揭曉時宣布誰是贏家，並告知玩家接下來沒有動作可出。在這個檔案的最後複製貼上這個 helper function：
 
 ```javascript
 function calculateWinner(squares) {
@@ -746,6 +716,8 @@ function calculateWinner(squares) {
 }
 ```
 
+給予這個 function 一個含有九個 square 的 array，它將會檢查贏家並根據需要回傳 `'X'`、`'O'` 或是 `null`。
+
 我們會在 Board 的 `render` 方法中呼叫 `calculateWinner(squares)` 以確認是否有贏家產生。如果某個玩家贏了，我們可以顯示像「贏家：X」或「贏家：O」這樣的文字。接下來，讓我們把 Board 的 `render` function 中的 `status` 宣告換成以下的程式碼：
 
 ```javascript{2-8}
@@ -762,7 +734,7 @@ function calculateWinner(squares) {
       // 以下不需改變
 ```
 
-現在我們可以改變 Board 裡面的 `handleClick` function。如果勝負已經揭曉，或者某個 Square 已經被填滿了，這個 function 可以透過忽略點擊的方式來早點回傳。
+現在我們可以改變 Board 裡面的 `handleClick` function。如果勝負已經揭曉，或者某個 Square 已經被填滿了，這個 function 可以透過忽略點擊的方式來提早回傳。
 
 ```javascript{3-5}
   handleClick(i) {
@@ -790,7 +762,7 @@ function calculateWinner(squares) {
 
 如果我們修改 `squares` array 的話，時間旅行將會變得非常難以實現。
 
-然而，在每一個動作之後，我們使用了 `slice()` 來創造一個 `squares` array 的新的 copy，並[把它視為是不可變的](#why-immutability-is-important)。這讓我們能夠儲存每一個 `squares` array 過去的版本，並悠遊於這些已經發生的動作之中。
+然而，在每一個動作之後，我們使用了 `slice()` 來建立一個 `squares` array 的新的 copy，並[把它視為是不可變的](#why-immutability-is-important)。這讓我們能夠儲存每一個 `squares` array 過去的版本，並悠遊於這些已經發生的動作之中。
 
 接下來，我們將把過去的 `squares` array 們儲存在另一個叫做 `history` 的 array 中。這個 `history` array 代表棋盤從第一個動作到最後一個動作所有的 state。它看起來會是這個樣子：
 
@@ -826,11 +798,11 @@ history = [
 
 現在我們需要決定哪一個 component 應該擁有 `history` 的 state。
 
-### 再一次把 State 往上傳 {#lifting-state-up-again}
+### 再次提升 State {#lifting-state-up-again}
 
 我們會希望最頂層的 Game component 能展示過去一系列的動作。它需要能讀取 `history` 才能做到如此，所以我們會把 `history` state 放在最上層的 Game component 裡面。
 
-把 `history` state 放在 Game component 裡面也讓我們能夠把 `squares` 的 state 從它的 child Board component 中移除。如同我們把 state 從 Square component [「往上傳」](#lifting-state-up)給 Board component ㄧ樣，我們現在也要把 state 從 Board 再度往上傳到最頂層的 Game component 中。這讓 Game component 能完全掌握 Board 的數據，並讓它能告訴 Board 何時該從 `history` 中 render 之前的動作。
+把 `history` state 放在 Game component 裡面也讓我們能夠把 `squares` 的 state 從它的 child Board component 中移除。如同我們把 state 從 Square component [「提升」](#lifting-state-up)到 Board component ㄧ樣，我們現在也要把 state 從 Board 再度提升到最頂層的 Game component 中。這讓 Game component 能完全掌握 Board 的資料，並讓它能告訴 Board 何時該從 `history` 中 render 之前的動作。
 
 首先，我們會先在 Game component 的 constructor 中設定最初的 state：
 
@@ -1018,7 +990,7 @@ class Board extends React.Component {
 
 之前，我們學到 React 是 first-class JavaScript object。我們可以將這些 object 在我們的應用程式中傳遞。若是要在 React 中 render 數個項目，我們可以使用一個 array 的 React element。
 
-在 JavaScript 中，array 有一個 [`map()` 方法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)常被用來對比並轉變數據，例如：
+在 JavaScript 中，array 有一個 [`map()` 方法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)常被用來對比並轉變資料，例如：
 
 ```js
 const numbers = [1, 2, 3];
@@ -1072,7 +1044,7 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-在圈圈叉叉小遊戲歷史中的每個動作，我們都會創造一個列表元素 `<li>`，並在裡面加入 `<button>`。這個按鈕有ㄧ個會呼叫 `this.jumpTo()` 方法的 `onClick` handler。我們還沒實現 `jumpTo()` 方法。現在，我們應該能在開發者工具的 console 中看到一系列在遊戲中曾經發生過的動作以及一個警告：
+在圈圈叉叉小遊戲歷史中的每個動作，我們都會建立一個列表元素 `<li>`，並在裡面加入 `<button>`。這個按鈕有ㄧ個會呼叫 `this.jumpTo()` 方法的 `onClick` handler。我們還沒實作 `jumpTo()` 方法。現在，我們應該能在開發者工具的 console 中看到一系列在遊戲中曾經發生過的動作以及一個警告：
 
 >  警告：
 >  每一個 array 或 iterator 中的 child 必須要有一個獨特的「key」屬性。請參考 Game 的 render 方法。
@@ -1098,24 +1070,24 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 <li>Alexa: 5 tasks left</li>
 ```
 
-除了數量的更新之外，如果讓一個人類來閱讀這個列表的話，他可你會說我們把 Alexa 和 Ben 的順序調換了，並把 Claudia 插入 Alexa 和 Ben 之中。然而，React 是一個電腦程式，它並不知道我們的意圖。正因為 React 並不知道我們的意圖，我們需要明確的為每一個列表中的項目加入一個 *key* 的屬性，以確保 React 能清楚分辨每一個項目。一個可行的做法是使用 `alexa`、`ben`、`claudia` 等 string。如果我們是從數據庫來展示數據的話，Alexa、Ben 和 Claudia 的數據庫 ID 可以被用來當作 key。
+除了數量的更新之外，如果讓一個人類來閱讀這個列表的話，他可你會說我們把 Alexa 和 Ben 的順序調換了，並把 Claudia 插入 Alexa 和 Ben 之中。然而，React 是一個電腦程式，它並不知道我們的意圖。正因為 React 並不知道我們的意圖，我們需要明確的為每一個列表中的項目加入一個 *key* 的屬性，以確保 React 能清楚分辨每一個項目。一個可行的做法是使用 `alexa`、`ben`、`claudia` 等 string。如果我們是從資料庫來展示資料的話，Alexa、Ben 和 Claudia 的資料庫 ID 可以被用來當作 key。
 
 ```html
 <li key={user.id}>{user.name}: {user.taskCount} tasks left</li>
 ```
 
-當一個列表被重新 render 的時候，React 會依據每一個列表項目的 key 搜尋上一個列表內的所有項目，並尋找相對應的 key。如果目前的列表有一個之前不存在的 key，那麼 React 就會創造一個 component。如果目前的列表缺少一個之前的列表中有的 key，React 便會將上一個 component 摧毀。如果兩個 key 符合，那麼相對應的 component 就會被移動。Key 告訴 React 每個 component 的身份，這讓 React 能夠在每次重新 render 之間維持 state。如果一個 component 的 key 改變了，那麼這個 component 就會被摧毀，然後在被加上新的 state 後重新被創造。
+當一個列表被重新 render 的時候，React 會依據每一個列表項目的 key 搜尋上一個列表內的所有項目，並尋找相對應的 key。如果目前的列表有一個之前不存在的 key，那麼 React 就會建立一個 component。如果目前的列表缺少一個之前的列表中有的 key，React 便會將上一個 component 摧毀。如果兩個 key 符合，那麼相對應的 component 就會被移動。Key 告訴 React 每個 component 的身份，這讓 React 能夠在每次重新 render 之間維持 state。如果一個 component 的 key 改變了，那麼這個 component 就會被摧毀，然後在被加上新的 state 後重新被建立。
 
-`Key` 是在 React 中一個特別的且被保留為關鍵字的屬性（跟 `ref` 這個較為進階的功能ㄧ樣）。當ㄧ個元素被創造時，React 會取出 `key` 屬性，並直接將這個 key 儲存在回傳的 element 內。雖然 `key` 可能看起來跟 `props` 像是同一類的關鍵字，但我們沒辦法用 `this.props.key` 來指涉 `key`。React 會自動使用 `key` 來決定哪一個 component 需要被更新。一個 component 無法得知自身的 `key` 是什麼。
+`Key` 是在 React 中一個特別的且被保留為關鍵字的屬性（跟 `ref` 這個較為進階的功能ㄧ樣）。當ㄧ個元素被建立時，React 會取出 `key` 屬性，並直接將這個 key 儲存在回傳的 element 內。雖然 `key` 可能看起來跟 `props` 像是同一類的關鍵字，但我們沒辦法使用 `this.props.key` 來參考 `key`。React 會自動使用 `key` 來決定哪一個 component 需要被更新。一個 component 無法得知自身的 `key` 是什麼。
 
-**我們極力推薦你在建立動態列表時一律指定適當的 key。** 如果你沒有好好指定 key 的話，你可能要考慮重塑你的數據結構，讓你能夠使用 key。
+**我們極力推薦你在建立動態列表時一律指定適當的 key。** 如果你沒有好好指定 key 的話，你可能要考慮重塑你的資料結構，讓你能夠使用 key。
 
 如果 key 沒有被指定的話，React 會提出警告並使用 array 的索引作為 key 的預設值。但是使用 array 的索引作為 key 在重新排序一個列表中的項目或插入/移除項目時會有問題。明確的指定 `key={i}` 雖然能避開警告，卻還是會跟使用 array 的索引一樣產生同樣的問題。在大多數的情況下，我們不建議你這麼做。
 
 Key 不需要是全域內獨特的值。它們只需要是在 component 和它們的 sibling 間是獨特的即可。
 
 
-### 實現時間旅行 {#implementing-time-travel}
+### 實作時間旅行 {#implementing-time-travel}
 
 在圈圈叉叉小遊戲的歷史中，每個過去的動作都有一個獨特的 ID。這些是動作的序號。這些動作永遠不會被重新排序、刪除、或插入，所以我們可以放心使用每個動作的索引作為 key。
 
@@ -1136,7 +1108,7 @@ Key 不需要是全域內獨特的值。它們只需要是在 component 和它�
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
 
-現在，當我們按列表中任何一個項目時，都會收到錯誤訊息，因為 `jumpTo` 方法還沒有被定義。在我們實現 `jumpTo` 之前，我們要先在 Game component 的 state 內加入 `stepNumber` 以指出我們現在正在看的是哪一步。
+現在，當我們按列表中任何一個項目時，都會收到錯誤訊息，因為 `jumpTo` 方法還沒有被定義。在我們實作 `jumpTo` 之前，我們要先在 Game component 的 state 內加入 `stepNumber` 以指出我們現在正在看的是哪一步。
 
 首先，在 Game 的 `constructor` 裡面的初始 state 加入 `stepNumber: 0`：
 
@@ -1177,7 +1149,7 @@ class Game extends React.Component {
 
 我們剛加入的 `stepNumber` 的 state 反映了我們將會展示給玩家的動作。在我們做了一個新的動作後，我們需要將 `stepNumber: history.length` 加到 `this.setState` 的 argument 中，以更新 `stepNumber`。這確保了在新動作產生後，我們不會卡在展示一樣的動作。
 
-我們也會將 `this.state.history` 換成 `this.state.history.slice(0, this.state.stepNumber + 1)`。假使我們「回到過去」的某個時刻，並做了一個跟過去不一樣的新動作，這將會確保我們會刪除從那一刻起所有屬於「未來」、但現在已不再正確的的歷史。
+我們也會將 `this.state.history` 替換成 `this.state.history.slice(0, this.state.stepNumber + 1)`。假使我們「回到過去」的某個時刻，並做了一個跟過去不一樣的新動作，這將會確保我們會刪除從那一刻起所有屬於「未來」、但現在已不再正確的的歷史。
 
 ```javascript{2,13}
   handleClick(i) {
@@ -1215,7 +1187,7 @@ class Game extends React.Component {
 
 ### 總結 {#wrapping-up}
 
-恭喜！你現在已經創造了一個圈圈叉叉遊戲，它可以：
+恭喜！你現在已經建立了一個圈圈叉叉遊戲，它可以：
 
 * 讓你玩圈圈叉叉
 * 顯示哪一個玩家取得勝利
@@ -1230,9 +1202,9 @@ class Game extends React.Component {
 
 1. 在歷史動作列表中，用（欄，列）的格式來顯示每個動作的位置。
 2. 在動作列表中，將目前被選取的項目加粗。
-3. 改寫 Board，使用兩個 loop 創造方格而不是寫死它。
+3. 改寫 Board，使用兩個 loop 建立方格而不是寫死它。
 4. 加上一個切換按鈕讓你可以根據每個動作由小到大、由大到小來排序。
 5. 當勝負揭曉時，把連成一條線的那三個方格凸顯出來。
 6. 當沒有勝負時，顯示遊戲結果為平手。
 
-在這份教學指南中，我們討論了許多 React 的概念，如 element、component、prop 和 state。如果你想更深入了解這些概念的話，請參考[接下來的官方手冊](/docs/hello-world.html)。若想深入了解如何定義 component，請看[`React.Component` API 參考指南](/docs/react-component.html)。
+在這份教學指南中，我們討論了許多 React 的概念，如 element、component、prop 和 state。如果你想更深入了解這些概念的話，請參考[接下來的官方手冊](/docs/hello-world.html)。若想深入了解如何定義 component，請看 [`React.Component` API 參考指南](/docs/react-component.html)。
