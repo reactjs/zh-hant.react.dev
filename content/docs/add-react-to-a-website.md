@@ -108,9 +108,9 @@ ReactDOM.render(e(LikeButton), domContainer);
 >
 >當網頁上以 React 驅動的部分是互相獨立的時候，這種策略會非常有用。在 React 的程式碼裏，使用 [component composition](/docs/components-and-props.html#composing-components) 會反而比較容易。
 
-### 提示：為正式發佈壓縮 JavaScript  {#tip-minify-javascript-for-production}
+### 提示：為線上環境壓縮 JavaScript  {#tip-minify-javascript-for-production}
 
-在正式發佈你的網頁之前，要留意沒壓縮的 JavaScript 會明顯的減慢使用者載入網頁的速度。
+在部署你的網頁到線上環境之前，要留意沒壓縮的 JavaScript 會明顯的減慢使用者載入網頁的速度。
 
 如果你已經壓縮了應用程式的 scripts，而且確保了你發佈的 HTML 是載入了以 `production.min.js` 結尾的 React 版本，那麼**你的網頁已經發佈就緒**：
 
@@ -160,7 +160,7 @@ return (
 ```
 現在你就可以在任何 `<script>` 標籤裏使用 JSX，方法就是為它們加上 `type="text/babel"` 的 attribute。這裏是個 [HTML 文件與 JSX 的範例](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)，你可以下載來嘗試一下。
 
-這種方式最適合用來學習和建立簡單的示範。然而，它會令你的網頁變慢，而且並**不適合正式發佈**。當你準備好到下一步，請移除掉你剛加入的 `<script>` 標籤和 `type="text/babel"` attribute。在下一個章節，你會設定一個 JSX preprocessor 來自動轉換所有的 `<script>` 標籤。
+這種方式最適合用來學習和建立簡單的示範。然而，它會令你的網頁變慢，而且並**不適合發佈到線上環境**。當你準備好到下一步，請移除掉你剛加入的 `<script>` 標籤和 `type="text/babel"` attribute。在下一個章節，你會設定一個 JSX preprocessor 來自動轉換所有的 `<script>` 標籤。
 
 ### 將 JSX 加入到項目 {#add-jsx-to-a-project}
 
