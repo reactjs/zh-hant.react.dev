@@ -101,6 +101,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 ```javascript
 TestRenderer.create(element, options);
 ```
+
 透過傳來的 React element 建立一個 `TestRenderer` instance。它不使用真實的 DOM，但是它依然將 component tree 完整地 render 到記憶體中，以便於你對它進行 assert。回傳的 instance 擁有以下的方法和屬性。
 
 ### `testRenderer.toJSON()` {#testrenderertojson}
@@ -116,6 +117,7 @@ testRenderer.toJSON()
 ```javascript
 testRenderer.toTree()
 ```
+
 回傳一個被 render 的 tree object。和 `toJSON()` 不同，它表示的內容比 `toJSON()` 提供的內容更加詳細，並且包含人員撰寫的 component。除非你要在 test renderer 之上撰寫自己的 assertion library，否則你可能不需要這個方法。
 
 ### `testRenderer.update()` {#testrendererupdate}
@@ -196,7 +198,7 @@ testInstance.findAllByType(type)
 testInstance.findAllByProps(props)
 ```
 
-找到所有與指定 `props` 匹配的 descendant 測試實例。
+找到所有與指定 `props` 匹配的 descendant 測試 instance。
 
 ### `testInstance.instance` {#testinstanceinstance}
 
@@ -213,7 +215,6 @@ testInstance.type
 ```
 
 該測試 instance 相對應的 component 類型。例如，一個 `<Button />` component 的類型為 `Button`。
-The component type corresponding to this test instance. For example, a `<Button />` component has a type of `Button`.
 
 ### `testInstance.props` {#testinstanceprops}
 
@@ -242,7 +243,6 @@ testInstance.children
 ## 概念 {#ideas}
 
 你可以把 `createNodeMock` function 當作第二個參數傳給 `TestRenderer.create`，做為自訂 mock 的 refs。
-
 `createNodeMock` 接受目前 element 作為參數，並且回傳一個 mock 的 ref object。這十分有利於依賴 refs component 的測試。
 
 ```javascript
