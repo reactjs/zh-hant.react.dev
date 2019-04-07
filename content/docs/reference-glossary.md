@@ -21,9 +21,9 @@ permalink: docs/glossary.html
 
 JavaScript 編譯器接受 JavaScript 代碼，對其進行轉換並返回不同的格式的 JavaScript 代碼。最常見的使用例子是把 ES6 語法轉換為一些舊瀏覽器能夠辨識的語法。[Babel](https://babeljs.io/) 是 React 上最常用的編譯器。
 
-## 打包工具 {#bundlers}
+## Bundlers {#bundlers}
 
-打包工具將多個獨立的 JavaScript 及 CSS 模組（通常有數百個）組合成數個文件，針對瀏覽器作出優化。在 React 應用程式常用的打包工具包括 [Webpack](https://webpack.js.org/) 和 [Browserify](http://browserify.org/)。
+Bundlers 將 JavaScript 和 CSS 程式碼作為獨立的模組撰寫（通常有數百個），並將它們合併成數個檔案並針對瀏覽器進行最佳化。在 React 應用程式常用的 bundlers 包括 [Webpack](https://webpack.js.org/) 和 [Browserify](http://browserify.org/)。
 
 ## 套件管理工具 {#package-managers}
 
@@ -47,7 +47,7 @@ ReactDOM.render(
 );
 ```  
 
-## [Elements](/docs/rendering-elements.html) {#elements}
+## [Element](/docs/rendering-elements.html) {#elements}
 
 React element 是 React 應用程式的建構模塊。有人可能會將 element 跟更廣為人知的 component 概念混淆。element 描述你在屏幕上看到甚麼。React element 是不可變的。
 
