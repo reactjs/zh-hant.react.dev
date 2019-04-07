@@ -14,9 +14,9 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-為了能兼具跨瀏覽器相容與效能，React 實踐了一套獨立於瀏覽器的 DOM 系統，並把握機會優化了瀏覽器 DOM 美中不足之處。
+為了能兼具效能與跨瀏覽器的兼容性，React 實作了一套獨立於瀏覽器的 DOM 系統，我們藉由這個機會解決瀏覽器 DOM 的美中不足之處。
 
-在 React 裡，所有 DOM property 和 attribute（包括 event handler）都應該以小駝峰式命名。舉例來說，HTML 的 attribute `tabindex` 在 React 中對應到 `tabIndex`。`aria-*` 和 `data-*` attribute 則是例外，需要保持全部小寫。舉例來說，`aria-label` 保持原樣即可。
+在 React 裡，所有 DOM property 和 attribute（包括 event handler）都應該以 camelCase 命名。舉例來說，HTML 的 attribute `tabindex` 在 React 中對應到 `tabIndex`。`aria-*` 和 `data-*` attribute 則是例外，需要保持全部小寫。舉例來說，`aria-label` 保持原樣即可。
 
 ## Attributes 相異之處 {#differences-in-attributes}
 
@@ -24,7 +24,7 @@ redirect_from:
 
 ### checked {#checked}
 
-當 `<input>` 的 type 是 `checkbox` 或是 `radio` 時，可以使用 `checked` 這個 attribute 來設置 component 是否被選取。這對建立 controlled component 很有幫助。`defaultChecked` 則是使用在 uncontrolled component，當初始 mount 後設置 component 是否被選取。
+當 `<input>` 的 type 是 `checkbox` 或是 `radio` 時，可以使用 `checked` 這個 attribute 來設置 component 是否被選取。這對建立 controlled component 很有幫助。`defaultChecked` 則是使用在 uncontrolled component，在初始 mount 後設置 component 是否被選取。
 
 ### className {#classname}
 
@@ -34,7 +34,7 @@ redirect_from:
 
 ### dangerouslySetInnerHTML {#dangerouslysetinnerhtml}
 
-`dangerouslySetInnerHTML` 是 React 用來替代 DOM 的 `innerHTML`。普遍來說，從程式碼中注入 HTML 是個冒險的行為，你會很輕易地讓使用者暴露在 [cross-site scripting (XSS)](https://zh.wikipedia.org/wiki/跨網站指令碼) 風險之下。所以在 React 裡你還是可以直接注入 HTML，但是你必須使用 `dangerouslySetInnerHTML`，然後傳入一個有 `__html` 為 key 的 object，藉此來提醒你自己這樣做具有風險。例子如下：
+`dangerouslySetInnerHTML` 是 React 用來替代 DOM 的 `innerHTML`。普遍來說，從程式碼中注入 HTML 是個冒險的行為，你會很輕易地讓使用者暴露在 [cross-site scripting (XSS)](https://zh.wikipedia.org/wiki/跨網站指令碼) 攻擊風險之下。所以在 React 裡你還是可以直接注入 HTML，但是你必須使用 `dangerouslySetInnerHTML`，然後傳入一個有 `__html` 為 key 的 object，藉此來提醒你自己這樣做具有風險。例如：
 
 ```js
 function createMarkup() {
@@ -62,9 +62,9 @@ React element 使用 `htmlFor` 來替代 `for`，因為 `for` 在 JavaScript 是
 
 >注意
 >
->為了方便在文件裡某些範例會使用 `style`，但是**基本上不推薦使用 `style` attribute 作為初步修飾 elements 的手段。**在大部分的情形，應該使用[`className`](#classname) 來對應定義在外部 CSS stylesheet 的 class。`style` 通常在 React 應用中會被用做動態 style 的添加方式。也看看 [FAQ: Styling and CSS](/docs/faq-styling.html)。
+>為了方便在文件裡某些範例會使用 `style`，但是**基本上不推薦使用 `style` attribute 作為初步修飾 elements 的手段。**在大部分的情形，應該使用[`className`](#classname) 來對應定義在外部 CSS stylesheet 的 class。`style` 通常在 React 應用中會被用做動態 style 的增加方式。請參考 [FAQ: Styling and CSS](/docs/faq-styling.html)。
 
-`style` attribute 接收一個 JavaScript object 裡頭有小駝峰式命名的 property，而不是 CSS string。這跟 DOM `style` JavaScript property 一致。
+`style` attribute 接收一個 JavaScript object 內含以 camelCase 命名的 property，而不是 CSS string。這與 DOM `style` JavaScript property 一致，但效率更高，並且可以防止 XSS 安全漏洞。例如：
 
 ```js
 const divStyle = {
@@ -90,7 +90,7 @@ function ComponentWithTransition() {
 }
 ```
 
-為了與使用 JavaScript 來存取 DOM node 一致，style key 也以小駝峰式命名 (e.g. `node.style.backgroundImage`)。瀏覽器引擎前綴除了 [`ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) 都應該以一個大寫字母開頭。這就是 `WebkitTransition` 為什麼有一個大寫「W」的原因。
+為了與使用 JavaScript 來存取 DOM node 一致，style key 也以 camelCase 命名 (e.g. `node.style.backgroundImage`)。瀏覽器引擎前綴除了 [`ms`](https://www.andismith.com/blogs/2012/02/modernizr-prefixed/) 都應該以一個大寫字母開頭。這就是 `WebkitTransition` 為什麼有一個大寫「W」的原因。
 
 React 會為某些數字型態的 style property 自動加上「px」。如果你想要使用其他單位，以 string 的形式加上單位。舉例來說：
 
@@ -106,27 +106,27 @@ React 會為某些數字型態的 style property 自動加上「px」。如果�
 </div>
 ```
 
-注意所有 style property 都會轉換成 pixel string。只有某些會保持沒有單位，如 `zoom`、`order`、`flex`。沒有單位的 property 完整清單可以在[這裡](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59)查看。
+注意所有 style property 都會轉換成 pixel string。只有某些會保持沒有單位，如 `zoom`、`order`、`flex`。沒有單位的 property 完整列表可以在[這裡](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59)查看。
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
-通常當一個 element 的 children 設置 `contentEditable` 時，因為不會有作用，所以會有警示訊息。這個 attribute 會抑制警示訊息。不要使用它，除非你在建立一個像是 [Draft.js](https://facebook.github.io/draft-js/) 的 library。
+通常來說，當一個 element 的 children 設置 `contentEditable` 時，因為不會有作用，所以會有警示訊息。這個 attribute 會抑制警示訊息。除非你在建立一個像是 [Draft.js](https://facebook.github.io/draft-js/) 的 library，否則不要使用它。
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
-如果你在使用 server-side React rendering 時 server 和 client render 不同時，通常會有一個警示訊息。然而，在一些很少見的案例，很難去保證 server 和 client side 會完全符合。舉例來說，像是 timestamp 就無法保持相同。
+如果你使用 server-side React render 時，通常 server 和 client render 不同時，會有一個警示訊息。然而，在一些少數的案例，很難去保證 server 和 client side 會完全符合。例如，像是 timestamp 就無法在 server 和 client 保持相同。
 
-如果你設置了 `suppressHydrationWarning` 為 `true`，attribute 以及 element 內容不一樣時，React 就不會有警示訊息。這只有作用在一層深度，且需要有計畫性地使用，請勿濫用。你可以在 [`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate) 讀到更多關於 hydration。
+如果你設置了 `suppressHydrationWarning` 為 `true`，attribute 以及 element 內容不一樣時，React 就不會有警示訊息。這只作用在一層深度，且需要有計畫性地使用，請勿濫用。你可以在 [`ReactDOM.hydrate()` 文件](/docs/react-dom.html#hydrate) 讀到更多關於 hydration。
 
 ### value {#value}
 
-`value` attribute 可以使用在 `<input>` 和 `<textarea>` component。你可以使用它來設置 component value。這對建立 controlled component 很有幫助。`defaultValue` 則是使用在 uncontrolled component，當初始 mount 後設置 component 的 value。
+`value` attribute 可以使用在 `<input>` 和 `<textarea>` component。你可以使用它來設置 component value。這對建立 controlled component 很有幫助。`defaultValue` 則是使用在 uncontrolled component，在初始 mount 後設置 component 的 value。
 
 ## 可以使用的 HTML Attribute {#all-supported-html-attributes}
 
-在 React 16 中，任何標準或是[自訂](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM attributes 都可以使用。
+在 React 16 中，任何標準[或是自訂的](/blog/2017/09/08/dom-attributes-in-react-16.html) DOM attribute 都可以使用。
 
-React 為 DOM 提供了一套以 JavaScript 為中心的 API。因為 React component 通常會有自訂或跟 DOM 相關的 prop，React 使用像 DOM API 一樣的 `小駝峰式命名`。
+React 為 DOM 提供了一套以 JavaScript 為中心的 API。因為 React component 通常會有自訂或跟 DOM 相關的 prop，React 使用像 DOM API 一樣的 `camelCase`。
 
 ```js
 <div tabIndex="-1" />      // 就像 node.tabIndex DOM API
@@ -136,7 +136,7 @@ React 為 DOM 提供了一套以 JavaScript 為中心的 API。因為 React comp
 
 除了上述文件提到的，這些 prop 跟對應的 HTML attribute 運作方式一樣。
 
-React 中可以使用這些 DOM attributes：
+React 中可以使用這些 DOM attribute：
 
 ```
 accept acceptCharset accessKey action allowFullScreen alt async autoComplete
@@ -193,4 +193,4 @@ xlinkHref xlinkRole xlinkShow xlinkTitle xlinkType xmlns xmlnsXlink xmlBase
 xmlLang xmlSpace y y1 y2 yChannelSelector z zoomAndPan
 ```
 
-你也可以使用全部小寫表示自訂 attribute。
+你也可以使用自訂的 attribute，只要它們是完全小寫的。
