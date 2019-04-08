@@ -6,22 +6,22 @@ layout: docs
 category: Reference
 ---
 
-**Importing**
+**Import**
 
 ```javascript
 import ReactTestUtils from 'react-dom/test-utils'; // ES6
 var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 ```
 
-## Overview {#overview}
+## 概觀 {#overview}
 
-`ReactTestUtils` makes it easy to test React components in the testing framework of your choice. At Facebook we use [Jest](https://facebook.github.io/jest/) for painless JavaScript testing. Learn how to get started with Jest through the Jest website's [React Tutorial](https://jestjs.io/docs/tutorial-react).
+`ReactTestUtils` 使你可以輕鬆在你選擇的測試框架中測試 React component。在 Facebook，我們使用 [Jest](https://facebook.github.io/jest/) 以方便地進行 JavaScript 測試。你可以從 Jest 網站的 [React 教學](https://jestjs.io/docs/tutorial-react)學習如何使用 Jest。
 
-> Note:
+> 注意：
 >
-> We recommend using [`react-testing-library`](https://git.io/react-testing-library) which is designed to enable and encourage writing tests that use your components as the end users do.
+> 我們推薦使用 [`react-testing-library`](https://git.io/react-testing-library)，它促使你在測試撰寫中使用 component 時，就像使用者在使用它一樣。
 >
-> Alternatively, Airbnb has released a testing utility called [Enzyme](https://airbnb.io/enzyme/), which makes it easy to assert, manipulate, and traverse your React Components' output.
+> 此外，Airbnb 推出了名爲 [Enzyme](https://airbnb.io/enzyme/) 的測試工具，讓你能輕易地 assert、操作及遍歷 React component 的輸出。
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -40,17 +40,17 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
  - [`renderIntoDocument()`](#renderintodocument)
  - [`Simulate`](#simulate)
 
-## Reference {#reference}
+## 參考資料 {#reference}
 
 ### `act()` {#act}
 
-To prepare a component for assertions, wrap the code rendering it and performing updates inside an `act()` call. This makes your test run closer to how React works in the browser.
+爲了準備讓 component 進行 assert，將 render component 及執行更新的程式碼放在 `act()` 中。這讓你的測試更貼近 React 在瀏覽器中的運作方式。
 
->Note
+>注意
 >
->If you use `react-test-renderer`, it also provides an `act` export that behaves the same way.
+>如果你使用 `react-test-renderer`，它也提供行爲相同的 `act` function。
 
-For example, let's say we have this `Counter` component:
+舉例來說，假設我們有個 `Counter` component：
 
 ```js
 class Counter extends React.Component {
@@ -83,7 +83,7 @@ class Counter extends React.Component {
 }
 ```
 
-Here is how we can test it:
+我們可以這樣測試：
 
 ```js{3,20-22,29-31}
 import React from 'react';
@@ -104,7 +104,7 @@ afterEach(() => {
 });
 
 it('can render and update a counter', () => {
-  // Test first render and componentDidMount
+  // 測試第一個 render 和 componentDidMount
   act(() => {
     ReactDOM.render(<Counter />, container);
   });
@@ -113,7 +113,7 @@ it('can render and update a counter', () => {
   expect(label.textContent).toBe('You clicked 0 times');
   expect(document.title).toBe('You clicked 0 times');
 
-  // Test second render and componentDidUpdate
+  // 測試第二個 render 和 componentDidUpdate
   act(() => {
     button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
   });
@@ -122,7 +122,7 @@ it('can render and update a counter', () => {
 });
 ```
 
-Don't forget that dispatching DOM events only works when the DOM container is added to the `document`. You can use a helper like [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) to reduce the boilerplate code.
+不要忘記，只有在 DOM container 已加到 `document` 裡面時，dispatch DOM event 才有用。你可以使用如 [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) 的 helper 來減少 boilerplate code。
 
 * * *
 
@@ -149,7 +149,7 @@ Pass a mocked component module to this method to augment it with useful methods 
 isElement(element)
 ```
 
-Returns `true` if `element` is any React element.
+`element` 是 React element 的話就回傳 `true`。
 
 * * *
 
