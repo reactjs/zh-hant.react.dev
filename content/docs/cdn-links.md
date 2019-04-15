@@ -13,7 +13,7 @@ next: hello-world.html
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 ```
 
-以上的版本只適用於開發環境，並不適合用於線上環境。你可以在以下找到已壓縮和優化的 React 線上版本：
+以上的版本只適用於開發環境，並不適合用於線上環境。你可以在以下找到已壓縮和最佳化的 React 線上版本：
 
 ```html
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
