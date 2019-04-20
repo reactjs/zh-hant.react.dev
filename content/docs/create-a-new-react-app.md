@@ -8,7 +8,7 @@ prev: add-react-to-a-website.html
 next: cdn-links.html
 ---
 
-使用綜合的 toolchain 以得到最佳的使用者和開發者體驗。
+使用整合的 toolchain 以得到最佳的使用者和開發者體驗。
 
 本頁將介紹一些受歡迎的 React toolchain，它們有助於以下的工作：
 
@@ -51,7 +51,7 @@ npm start
 >
 >`npx` 不是拼寫錯誤 —— 它是一個 [npm 5.2+ 附帶的 package 執行器](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)。
 
-Create React App 並不會處理 backend 邏輯或數據庫；它只會建立一個 frontend build pipeline，以便你配合任何 backend 來使用。基本上，它是使用 [Babel](https://babeljs.io/) 和 [webpack](https://webpack.js.org/)，但你不需要了解任何關於它們的細節。
+Create React App 並不會處理 backend 邏輯或資料庫；它只會建立一個 frontend build pipeline，以便你配合任何 backend 來使用。基本上，它是使用 [Babel](https://babeljs.io/) 和 [webpack](https://webpack.js.org/)，但你不需要了解任何關於它們的細節。
 
 當你準備好發佈到線上環境，執行 `npm run build` 會在 `build` 文件夾裡建立一個你的應用程式的最佳化版本，你可以從 Create React App 的 [README](https://github.com/facebookincubator/create-react-app#create-react-app-) 和 [使用者指南](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents)了解更多資訊。
 
