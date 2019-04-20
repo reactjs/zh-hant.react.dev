@@ -1,6 +1,6 @@
 ---
 id: create-a-new-react-app
-title: Create a New React App
+title: 建立全新的 React 應用程式
 permalink: docs/create-a-new-react-app.html
 redirect_from:
   - "docs/add-react-to-a-new-app.html"
@@ -8,38 +8,38 @@ prev: add-react-to-a-website.html
 next: cdn-links.html
 ---
 
-Use an integrated toolchain for the best user and developer experience.
+使用整合的 toolchain 以得到最佳的使用者和開發者體驗。
 
-This page describes a few popular React toolchains which help with tasks like:
+本頁將介紹一些受歡迎的 React toolchain，它們有助於以下的工作：
 
-* Scaling to many files and components.
-* Using third-party libraries from npm.
-* Detecting common mistakes early.
-* Live-editing CSS and JS in development.
-* Optimizing the output for production.
+* 擴大文件和 component 的規模。
+* 使用來至 npm 的第三方函式庫。
+* 偵測早期常見的錯誤。
+* 實時在開發環境裡編輯 CSS 和 JS。
+* 最佳化線上環境輸出。
 
-The toolchains recommended on this page **don't require configuration to get started**.
+本頁所建議的 toolchain 都**不需要進行任何設定就能開始使用**。
 
-## You Might Not Need a Toolchain {#you-might-not-need-a-toolchain}
+## 你可能不需要 Toolchain {#you-might-not-need-a-toolchain}
 
-If you don't experience the problems described above or don't feel comfortable using JavaScript tools yet, consider [adding React as a plain `<script>` tag on an HTML page](/docs/add-react-to-a-website.html), optionally [with JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
+如果你沒有碰到以上所提到的問題，或者還沒有習慣使用 JavaScript 的工具，你可以考慮[在 HTML 網頁裡加上 `<script>` 標籤來使用 React](/docs/add-react-to-a-website.html)，以及[使用可選的 JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx)。
 
-This is also **the easiest way to integrate React into an existing website.** You can always add a larger toolchain if you find it helpful!
+這也是**將 React 加上到現存網頁裡最簡單的方法**。當你覺得使用大型的 toolchain 對你有幫助，你也可以隨時把它們加入！
 
-## Recommended Toolchains {#recommended-toolchains}
+## 推薦的 Toolchain {#recommended-toolchains}
 
-The React team primarily recommends these solutions:
+React 團隊主要推薦以下的方案：
 
-- If you're **learning React** or **creating a new [single-page](/docs/glossary.html#single-page-application) app,** use [Create React App](#create-react-app).
-- If you're building a **server-rendered website with Node.js,** try [Next.js](#nextjs).
-- If you're building a **static content-oriented website,** try [Gatsby](#gatsby).
-- If you're building a **component library** or **integrating with an existing codebase**, try [More Flexible Toolchains](#more-flexible-toolchains).
+- 如果你正在**學習 React** 或**建立全新的 single-page 應用程式**，請使用 [Create React App](#create-react-app)。
+- 如果你正在建立一個**使用 Node.js 的 server-rendered 網頁**，請使用 [Next.js](#nextjs)。
+- 如果你正在建立一個**靜態內容的網頁**，請使用 [Gatsby](#gatsby)。
+- 如果你正在建立一個 **component 函式庫**或**與現存程式碼倉庫進行接軌**，請使用[更靈活的 Toolchain](#more-flexible-toolchains)。
 
 ### Create React App {#create-react-app}
 
-[Create React App](https://github.com/facebookincubator/create-react-app) is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
+[Create React App](https://github.com/facebookincubator/create-react-app) 是一個適合**學習 React** 的環境，而且也是使用 React 建立一個**全新的 [single-page](/docs/glossary.html#single-page-application) 應用程式**的最佳方法。
 
-It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 6 and npm >= 5.2 on your machine. To create a project, run:
+它會為你設定好開發環境，以便你能夠使用最新的 JavaScript 特性，提供良好的開發者體驗，並且為線上環境最佳化你的應用程式。你需要在你的機器上安裝 Node >= 6 和 npm >= 5.2。要建立項目，請執行：
 
 ```bash
 npx create-react-app my-app
@@ -47,48 +47,48 @@ cd my-app
 npm start
 ```
 
->Note
+>提示
 >
->`npx` on the first line is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+>`npx` 不是拼寫錯誤 —— 它是一個 [npm 5.2+ 附帶的 package 執行器](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b)。
 
-Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. Under the hood, it uses [Babel](https://babeljs.io/) and [webpack](https://webpack.js.org/), but you don't need to know anything about them.
+Create React App 並不會處理 backend 邏輯或資料庫；它只會建立一個 frontend build pipeline，以便你配合任何 backend 來使用。基本上，它是使用 [Babel](https://babeljs.io/) 和 [webpack](https://webpack.js.org/)，但你不需要了解任何關於它們的細節。
 
-When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about Create React App [from its README](https://github.com/facebookincubator/create-react-app#create-react-app-) and the [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
+當你準備好發佈到線上環境，執行 `npm run build` 會在 `build` 文件夾裡建立一個你的應用程式的最佳化版本，你可以從 Create React App 的 [README](https://github.com/facebookincubator/create-react-app#create-react-app-) 和 [使用者指南](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents)了解更多資訊。
 
 ### Next.js {#nextjs}
 
-[Next.js](https://nextjs.org/) is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing solutions** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
+[Next.js](https://nextjs.org/) 是一個受歡迎和輕量的框架，用於使用 React 所建立的**靜態和 server-rendered 的應用程式**。它自身已包括了 **styling 和 routing 的方案**，而且它假設你在使用 [Node.js](https://nodejs.org/) 作為伺服器環境。
 
-Learn Next.js from [its official guide](https://nextjs.org/learn/).
+從 [Next.js 的官方指南](https://nextjs.org/learn/)了解更多。
 
 ### Gatsby {#gatsby}
 
-[Gatsby](https://www.gatsbyjs.org/) is the best way to create **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
+[Gatsby](https://www.gatsbyjs.org/) 是使用 React 建立**靜態網頁**的最佳方法。它讓你使用 React component，但會輸出 pre-rendered HTML 和 CSS 來保證最快的載入時間。
 
-Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [gallery of starter kits](https://www.gatsbyjs.org/docs/gatsby-starters/).
+從 [Gatsby 的官方指南](https://www.gatsbyjs.org/docs/)和 [starter kit 範例集](https://www.gatsbyjs.org/docs/gatsby-starters/)了解更多。
 
-### More Flexible Toolchains {#more-flexible-toolchains}
+### 更靈活的 Toolchain {#more-flexible-toolchains}
 
-The following toolchains offer more flexiblity and choice. We recommend them to more experienced users:
+以下的 toolchain 會提供更多的靈活性和選擇。我們推薦給比較有經驗的使用者：
 
-- **[Neutrino](https://neutrinojs.org/)** combines the power of [webpack](https://webpack.js.org/) with the simplicity of presets, and includes a preset for [React apps](https://neutrinojs.org/packages/react/) and [React components](https://neutrinojs.org/packages/react-components/).
+- **[Neutrino](https://neutrinojs.org/)** 結合了 [webpack](https://webpack.js.org/) 強大的功能與簡單的預設，並包括了 [React 應用程式](https://neutrinojs.org/packages/react/)和 [React component](https://neutrinojs.org/packages/react-components/) 的預設。
 
-- **[nwb](https://github.com/insin/nwb)** is particularly great for [publishing React components for npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). It [can be used](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) for creating React apps, too. 
+- **[nwb](https://github.com/insin/nwb)** 特別適合用作[將 React component 發佈到 npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb)。它也[可以用作](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb)建立 React 應用程式。
 
-- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react).
+- **[Parcel](https://parceljs.org/)** 是一個快速、零設定的網路應用程式 bundler，並且[可以配合 React](https://parceljs.org/recipes.html#react) 一起使用。
 
-- **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
+- **[Razzle](https://github.com/jaredpalmer/razzle)** 是一個不需要設定的 server-rendering 框架，但它比 Next.js 提供更多的靈活性。
 
-## Creating a Toolchain from Scratch {#creating-a-toolchain-from-scratch}
+## 從零開始建立 Toolchain {#creating-a-toolchain-from-scratch}
 
-A JavaScript build toolchain typically consists of:
+一個 JavaScript 的建立 toolchain 通常包括：
 
-* A **package manager**, such as [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/). It lets you take advantage of a vast ecosystem of third-party packages, and easily install or update them.
+* 一個 **package 管理員**，例如 [Yarn](https://yarnpkg.com/) 或 [npm](https://www.npmjs.com/)。它能讓你充分利用數量龐大的第三方 package，並且輕鬆的安裝或更新它們。
 
-* A **bundler**, such as [webpack](https://webpack.js.org/) or [Parcel](https://parceljs.org/). It lets you write modular code and bundle it together into small packages to optimize load time.
+* 一個 **bundler**，例如 [webpack](https://webpack.js.org/) 或 [Parcel](https://parceljs.org/)。它能讓你編寫模組化的程式碼，並將它們組合成小小的 package 以最佳化載入時間。
 
-* A **compiler** such as [Babel](https://babeljs.io/). It lets you write modern JavaScript code that still works in older browsers.
+* 一個 **compiler**，例如 [Babel](https://babeljs.io/)。它能讓你編寫現代 JavaScript 程式碼，並可以在舊版本的瀏覽器裡使用。
 
-If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality.
+如果你傾向從零開始設定屬於自己的 JavaScript toolchain，請[查看這指南](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)，它會重新建立一些 Create React App 的功能。
 
-Don't forget to ensure your custom toolchain [is correctly set up for production](/docs/optimizing-performance.html#use-the-production-build).
+別忘了確保你的自訂 toolchain 有[為線上環境進行正確的設定](/docs/optimizing-performance.html#use-the-production-build)。
