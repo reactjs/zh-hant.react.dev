@@ -196,7 +196,7 @@ React.cloneElement(
 React.createFactory(type)
 ```
 
-回傳一個 function 可以產生指定 type 的 React element。跟 [`React.createElement()`](#createElement) 一樣，這個 type 參數可以是一個標籤名稱字串（像是 `'div'` 或是 `'span'`）、一個 [React component](/docs/components-and-props.html) type (class 或是 function) 或者是一個 [React fragment](#reactfragment) type。
+回傳一個 function 可以產生指定 type 的 React element。跟 [`React.createElement()`](#createelement) 一樣，這個 type 參數可以是一個標籤名稱字串（像是 `'div'` 或是 `'span'`）、一個 [React component](/docs/components-and-props.html) type (class 或是 function) 或者是一個 [React fragment](#reactfragment) type。
 
 這個 helper 已經被認定為過時，我們建議你使用 JSX 或是直接使用 `React.createElement()`。
 
