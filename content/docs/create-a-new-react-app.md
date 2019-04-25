@@ -53,11 +53,7 @@ npm start
 
 Create React App 並不會處理 backend 邏輯或資料庫；它只會建立一個 frontend build pipeline，以便你配合任何 backend 來使用。基本上，它是使用 [Babel](https://babeljs.io/) 和 [webpack](https://webpack.js.org/)，但你不需要了解任何關於它們的細節。
 
-<<<<<<< HEAD
-當你準備好發佈到線上環境，執行 `npm run build` 會在 `build` 文件夾裡建立一個你的應用程式的最佳化版本，你可以從 Create React App 的 [README](https://github.com/facebookincubator/create-react-app#create-react-app-) 和 [使用者指南](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents)了解更多資訊。
-=======
-When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about Create React App [from its README](https://github.com/facebookincubator/create-react-app#create-react-app--) and the [User Guide](https://facebook.github.io/create-react-app/).
->>>>>>> 6bc6e7b1411d4befc3ecfbe45b898ca474116020
+當你準備好發佈到線上環境，執行 `npm run build` 會在 `build` 文件夾裡建立一個你的應用程式的最佳化版本，你可以從 Create React App 的 [README](https://github.com/facebookincubator/create-react-app#create-react-app--) 和 [使用者指南](https://facebook.github.io/create-react-app/)了解更多資訊。
 
 ### Next.js {#nextjs}
 
@@ -73,11 +69,7 @@ When you're ready to deploy to production, running `npm run build` will create a
 
 ### 更靈活的 Toolchain {#more-flexible-toolchains}
 
-<<<<<<< HEAD
 以下的 toolchain 會提供更多的靈活性和選擇。我們推薦給比較有經驗的使用者：
-=======
-The following toolchains offer more flexibility and choice. We recommend them to more experienced users:
->>>>>>> 6bc6e7b1411d4befc3ecfbe45b898ca474116020
 
 - **[Neutrino](https://neutrinojs.org/)** 結合了 [webpack](https://webpack.js.org/) 強大的功能與簡單的預設，並包括了 [React 應用程式](https://neutrinojs.org/packages/react/)和 [React component](https://neutrinojs.org/packages/react-components/) 的預設。
 

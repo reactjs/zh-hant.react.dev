@@ -115,11 +115,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 你也可以在 Twitter 追蹤 [@reactjs 帳號](https://twitter.com/reactjs)，只閱讀官方部落格也不會令你錯過重要消息。
 
-<<<<<<< HEAD
-並非所有 React 版本發佈值得我們在部落格裏發佈文章，但你可以在 React 的程式碼倉庫中的[`CHANGELOG.md` 文件](https://github.com/facebook/react/blob/master/CHANGELOG.md)或 [Releases](https://github.com/facebook/react) 頁面，找到每個版本發佈的詳細更新日誌。
-=======
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release [in the `CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
->>>>>>> 6bc6e7b1411d4befc3ecfbe45b898ca474116020
+並非所有 React 版本發佈值得我們在部落格裡發佈文章，但你可以[在 React 的程式碼倉庫中的 `CHANGELOG.md` 文件](https://github.com/facebook/react/blob/master/CHANGELOG.md)或 [Release](https://github.com/facebook/react/releases) 頁面，找到每個版本發佈的詳細更新日誌。
 
 ## 版本化文件 {#versioned-documentation}
 
