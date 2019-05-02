@@ -99,7 +99,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 ### 進階概念 {#advanced-concepts}
 
-當你對[主要概念](#main-concepts)有所掌握，並嘗試使用了一點 React，你可能會對比較進階的課題感興趣。進階指南會介紹一些強大但不常用的 React 特點，例如 [context](/docs/context.html) 和 [refs](/docs/refs-and-the-dom.html)。
+當你對[主要概念](/docs/hello-world.html)有所掌握，並嘗試使用了一點 React，你可能會對比較進階的課題感興趣。進階指南會介紹一些強大但不常用的 React 特點，例如 [context](/docs/context.html) 和 [refs](/docs/refs-and-the-dom.html)。
 
 ### API 參考 {#api-reference}
 
