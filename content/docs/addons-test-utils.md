@@ -6,7 +6,7 @@ layout: docs
 category: Reference
 ---
 
-**Import**
+**如何 Import**
 
 ```javascript
 import ReactTestUtils from 'react-dom/test-utils'; // ES6
@@ -21,7 +21,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 >
 > 我們推薦使用 [`react-testing-library`](https://git.io/react-testing-library)，它促使你在測試撰寫中使用 component 時，就像使用者在使用它一樣。
 >
-> 此外，Airbnb 推出了名爲 [Enzyme](https://airbnb.io/enzyme/) 的測試工具，讓你能輕易地 assert、操作及遍歷 React component 的輸出。
+> 此外，Airbnb 推出了名為 [Enzyme](https://airbnb.io/enzyme/) 的測試工具，讓你能輕易地 assert、操作及遍歷 React component 的輸出。
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -44,11 +44,11 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 ### `act()` {#act}
 
-爲了準備讓 component 進行 assert，將 render component 及執行更新的程式碼放在 `act()` 中。這讓你的測試更貼近 React 在瀏覽器中的運作方式。
+為了準備讓 component 進行 assert，將 render component 及執行更新的程式碼放在 `act()` 中。這讓你的測試更貼近 React 在瀏覽器中的運作方式。
 
 >注意
 >
->如果你使用 `react-test-renderer`，它也提供行爲相同的 `act` function。
+>如果你使用 `react-test-renderer`，它也提供行為相同的 `act` function。
 
 舉例來說，假設我們有個 `Counter` component：
 
@@ -135,11 +135,11 @@ mockComponent(
 )
 ```
 
-Pass a mocked component module to this method to augment it with useful methods that allow it to be used as a dummy React component. Instead of rendering as usual, the component will become a simple `<div>` (or other tag if `mockTagName` is provided) containing any provided children.
+傳遞一個模擬的 component module 到這個方法後，它會增加有用的方法，讓它能做為虛擬的 React component。component 不會像平常一樣 render，它會變成一個簡單的 `<div>`（或其他標籤，如果有提供 `mockTagName`），包含任何提供的 children。
 
-> Note:
+> 注意：
 >
-> `mockComponent()` is a legacy API. We recommend using [shallow rendering](/docs/shallow-renderer.html) or [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
+> `mockComponent()` 是老舊的 API。我們建議使用 [shallow render](/docs/shallow-renderer.html) 或 [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) 代替。
 
 * * *
 
@@ -162,7 +162,7 @@ isElementOfType(
 )
 ```
 
-Returns `true` if `element` is a React element whose type is of a React `componentClass`.
+如果 `element` 是類型為 `componentClass` 的 React element 就回傳 `true`。
 
 * * *
 
@@ -172,7 +172,7 @@ Returns `true` if `element` is a React element whose type is of a React `compone
 isDOMComponent(instance)
 ```
 
-Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
+如果 `instance` 是 DOM component（如 `<div>` 或 `<span>`）就回傳 `true`。
 
 * * *
 
@@ -182,7 +182,7 @@ Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
 isCompositeComponent(instance)
 ```
 
-Returns `true` if `instance` is a user-defined component, such as a class or a function.
+如果 `instance` 是使用者定義的 component，例如 class 或 function，就回傳 `true`。
 
 * * *
 
@@ -195,7 +195,7 @@ isCompositeComponentWithType(
 )
 ```
 
-Returns `true` if `instance` is a component whose type is of a React `componentClass`.
+如果 `instance` 是類型為 `componentClass` 的 component 就回傳 `true`。
 
 * * *
 
@@ -208,7 +208,7 @@ findAllInRenderedTree(
 )
 ```
 
-Traverse all components in `tree` and accumulate all components where `test(component)` is `true`. This is not that useful on its own, but it's used as a primitive for other test utils.
+遍歷 `tree` 中的所有 component，並收集 `test(component)` 為 `true` 的所有 component。這個方法本身不是那麼好用，但是它被其他測試工具做為基礎使用。
 
 * * *
 
@@ -221,7 +221,7 @@ scryRenderedDOMComponentsWithClass(
 )
 ```
 
-Finds all DOM elements of components in the rendered tree that are DOM components with the class name matching `className`.
+尋找已 render 的 tree 中 component 的所有 DOM element 裡，class 名稱符合 `className` 的 DOM component。
 
 * * *
 
@@ -234,7 +234,7 @@ findRenderedDOMComponentWithClass(
 )
 ```
 
-Like [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) but expects there to be one result, and returns that one result, or throws exception if there is any other number of matches besides one.
+與 [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) 相似，不過預期只有一個結果。如果符合預期則回傳那個結果，否則拋出例外。
 
 * * *
 
@@ -247,7 +247,7 @@ scryRenderedDOMComponentsWithTag(
 )
 ```
 
-Finds all DOM elements of components in the rendered tree that are DOM components with the tag name matching `tagName`.
+尋找已 render 的 tree 中 component 的所有 DOM element 裡，tag 名稱符合 `tagName` 的 DOM component。
 
 * * *
 
@@ -260,7 +260,7 @@ findRenderedDOMComponentWithTag(
 )
 ```
 
-Like [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) but expects there to be one result, and returns that one result, or throws exception if there is any other number of matches besides one.
+與 [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) 相似，不過預期只有一個結果。如果符合預期則回傳那個結果，否則拋出例外。
 
 * * *
 
@@ -273,7 +273,7 @@ scryRenderedComponentsWithType(
 )
 ```
 
-Finds all instances of components with type equal to `componentClass`.
+尋找所有 component type 與 `componentClass` 相同的 instance。
 
 * * *
 
@@ -286,7 +286,7 @@ findRenderedComponentWithType(
 )
 ```
 
-Same as [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) but expects there to be one result and returns that one result, or throws exception if there is any other number of matches besides one.
+與 [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) 相似，不過預期只有一個結果。如果符合預期則回傳那個結果，否則拋出例外。
 
 ***
 
@@ -296,20 +296,20 @@ Same as [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) bu
 renderIntoDocument(element)
 ```
 
-Render a React element into a detached DOM node in the document. **This function requires a DOM.** It is effectively equivalent to:
+Render React element 到 document 中獨立的 DOM node 裡。**這個 function 需要 DOM。**它等效於：
 
 ```js
 const domContainer = document.createElement('div');
 ReactDOM.render(element, domContainer);
 ```
 
-> Note:
+> 注意：
 >
-> You will need to have `window`, `window.document` and `window.document.createElement` globally available **before** you import `React`. Otherwise React will think it can't access the DOM and methods like `setState` won't work.
+> 在 import `React` **前**，你需要讓 `window`、`window.document` 和 `window.document.createElement` 在全域可以使用。否則 React 會認為它無法存取 DOM，像 `setState` 之類的方法也將無法運作。
 
 * * *
 
-## Other Utilities {#other-utilities}
+## 其他工具 {#other-utilities}
 
 ### `Simulate` {#simulate}
 
@@ -320,11 +320,11 @@ Simulate.{eventName}(
 )
 ```
 
-Simulate an event dispatch on a DOM node with optional `eventData` event data.
+在 DOM node 上用可選的 `eventData` 事件資料模擬 event dispatch。
 
-`Simulate` has a method for [every event that React understands](/docs/events.html#supported-events).
+[每一個 React 支援的事件](/docs/events.html#supported-events)在 `Simulate` 都有對應的方法。
 
-**Clicking an element**
+**點擊 element**
 
 ```javascript
 // <button ref={(node) => this.button = node}>...</button>
@@ -332,7 +332,7 @@ const node = this.button;
 ReactTestUtils.Simulate.click(node);
 ```
 
-**Changing the value of an input field and then pressing ENTER.**
+**更改 input field 的值，然後按 ENTER 鍵。**
 
 ```javascript
 // <input ref={(node) => this.textInput = node} />
@@ -342,8 +342,8 @@ ReactTestUtils.Simulate.change(node);
 ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 ```
 
-> Note
+> 注意：
 >
-> You will have to provide any event property that you're using in your component (e.g. keyCode, which, etc...) as React is not creating any of these for you.
+> 你需要提供所有在你的 component 中使用的事件屬性（如 keyCode、which……），因為 React 不會為你建立這些。
 
 * * *
