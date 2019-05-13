@@ -19,9 +19,9 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 > 注意：
 >
-> 我們推薦使用 [`react-testing-library`](https://git.io/react-testing-library)，它促使你在測試撰寫中使用 component 時，就像使用者在使用它一樣。
+> 我們推薦使用 [`react-testing-library`](https://git.io/react-testing-library)，它促使你寫出的測試能像使用者一樣地使用 component。
 >
-> 此外，Airbnb 推出了名為 [Enzyme](https://airbnb.io/enzyme/) 的測試工具，讓你能輕易地 assert、操作及遍歷 React component 的輸出。
+> 此外，Airbnb 推出了名為 [Enzyme](https://airbnb.io/enzyme/) 的測試工具，讓你能輕易 assert、操作及遍歷 React component 的輸出。
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -122,7 +122,7 @@ it('can render and update a counter', () => {
 });
 ```
 
-不要忘記，只有在 DOM container 已加到 `document` 裡面時，dispatch DOM event 才有用。你可以使用如 [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) 的 helper 來減少 boilerplate code。
+不要忘記，只有在 DOM container 已加到 `document` 裡面時，才可以 dispatch DOM event。你可以使用如 [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) 的 helper 來減少 boilerplate code。
 
 * * *
 
@@ -344,6 +344,6 @@ ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 
 > 注意：
 >
-> 你需要提供所有在你的 component 中使用的事件屬性（如 keyCode、which……），因為 React 不會為你建立這些。
+> 你需要提供所有在你的 component 中有使用的事件屬性（如 keyCode、which……），因為 React 不會為你建立這些東西。
 
 * * *
