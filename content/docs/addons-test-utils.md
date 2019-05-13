@@ -162,7 +162,7 @@ isElementOfType(
 )
 ```
 
-如果 `element` 是類型為 `componentClass` 的 React element 就回傳 `true`。
+如果 `element` 是 type 為 `componentClass` 的 React element 就回傳 `true`。
 
 * * *
 
@@ -195,7 +195,7 @@ isCompositeComponentWithType(
 )
 ```
 
-如果 `instance` 是類型為 `componentClass` 的 component 就回傳 `true`。
+如果 `instance` 是 type 為 `componentClass` 的 component 就回傳 `true`。
 
 * * *
 
