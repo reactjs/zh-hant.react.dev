@@ -122,7 +122,7 @@ it('can render and update a counter', () => {
 });
 ```
 
-不要忘記，只有在 DOM container 已加到 `document` 裡面時，才可以 dispatch DOM event。你可以使用如 [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) 的 helper 來減少 boilerplate code。
+不要忘記，只有在 DOM container 已加到 `document` 裡面時，才可以 dispatch DOM event。你可以使用如 [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) 的 helper 來減少 boilerplate 程式碼。
 
 * * *
 
@@ -135,7 +135,7 @@ mockComponent(
 )
 ```
 
-傳遞一個模擬的 component module 到這個方法後，它會增加有用的方法，讓它能做為虛擬的 React component。component 不會像平常一樣 render，它會變成一個簡單的 `<div>`（或其他標籤，如果有提供 `mockTagName`），包含任何提供的 children。
+傳遞一個被 mock 的 component module 到這個方法後，它會增加有用的方法，讓它能做為虛擬的 React component。component 不會像平常一樣 render，它會變成一個簡單的 `<div>`（或其他標籤，如果有提供 `mockTagName`），包含任何提供的 children。
 
 > 注意：
 >
@@ -149,7 +149,7 @@ mockComponent(
 isElement(element)
 ```
 
-`element` 是 React element 的話就回傳 `true`。
+如果 `element` 是 React element 的話就回傳 `true`。
 
 * * *
 
@@ -332,7 +332,7 @@ const node = this.button;
 ReactTestUtils.Simulate.click(node);
 ```
 
-**更改 input field 的值，然後按 ENTER 鍵。**
+**更改輸入欄位的值，然後按 ENTER 鍵。**
 
 ```javascript
 // <input ref={(node) => this.textInput = node} />
@@ -344,6 +344,6 @@ ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 
 > 注意：
 >
-> 你需要提供所有在你的 component 中有使用的事件屬性（如 keyCode、which……），因為 React 不會為你建立這些東西。
+> 你需要提供所有在你的 component 中有使用的事件屬性（如 keyCode、which 等等），因為 React 不會為你建立這些東西。
 
 * * *
