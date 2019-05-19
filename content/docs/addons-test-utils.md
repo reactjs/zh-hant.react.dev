@@ -139,7 +139,7 @@ mockComponent(
 
 > 注意：
 >
-> `mockComponent()` 是老舊的 API。我們建議使用 [shallow render](/docs/shallow-renderer.html) 或 [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) 代替。
+> `mockComponent()` 是 legacy API。我們建議以 [shallow render](/docs/shallow-renderer.html) 或 [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) 作為替代。
 
 * * *
 
@@ -221,7 +221,7 @@ scryRenderedDOMComponentsWithClass(
 )
 ```
 
-尋找已 render 的 tree 中 component 的所有 DOM element 裡，class 名稱符合 `className` 的 DOM component。
+在已經被 render 的 tree 中尋找所有 DOM element，回傳 class 名稱符合 `className` 的 DOM component。
 
 * * *
 
@@ -247,7 +247,7 @@ scryRenderedDOMComponentsWithTag(
 )
 ```
 
-尋找已 render 的 tree 中 component 的所有 DOM element 裡，tag 名稱符合 `tagName` 的 DOM component。
+在已經被 render 的 tree 中尋找所有 DOM element，回傳 tag 名稱符合 `tagName` 的 DOM component。
 
 * * *
 
