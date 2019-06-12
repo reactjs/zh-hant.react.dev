@@ -19,11 +19,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 > 注意：
 >
-<<<<<<< HEAD
-> 我們推薦使用 [`react-testing-library`](https://git.io/react-testing-library)，它促使你寫出的測試能像使用者一樣地使用 component。
-=======
-> We recommend using [React Testing Library](https://testing-library.com/react) which is designed to enable and encourage writing tests that use your components as the end users do.
->>>>>>> 5849f604ccd59b009f7f3e03d5460757bfc2ab34
+> 我們推薦使用 [React Testing Library](https://testing-library.com/react)，它促使你寫出的測試能像使用者一樣地使用 component。
 >
 > 此外，Airbnb 推出了名為 [Enzyme](https://airbnb.io/enzyme/) 的測試工具，讓你能輕易 assert、操作及遍歷 React component 的輸出。
 
