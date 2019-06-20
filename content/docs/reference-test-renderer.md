@@ -38,11 +38,7 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-<<<<<<< HEAD
-你可以使用 Jest 的 snapshot 測試功能來自動儲存目前 JSON tree 到一個文件中，並在測試中檢查它是否被修改：[了解更多](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html)。
-=======
-You can use Jest's snapshot testing feature to automatically save a copy of the JSON tree to a file and check in your tests that it hasn't changed: [Learn more about it](https://jestjs.io/docs/en/snapshot-testing).
->>>>>>> 899411236d5b1520ab8b8e7fad7d48c681abc69b
+你可以使用 Jest 的 snapshot 測試功能來自動儲存目前 JSON tree 到一個文件中，並在測試中檢查它是否被修改：[了解更多](https://jestjs.io/docs/en/snapshot-testing)。
 
 你也可以通過遍歷輸出來尋找特定的 node，並對它們進行 assert。
 
@@ -186,7 +182,7 @@ testInstance.findByProps(props)
 testInstance.findAll(test)
 ```
 
-找到所有的 descendant 測試 instance，其 `test(testInstance)` 回傳 true。 
+找到所有的 descendant 測試 instance，其 `test(testInstance)` 回傳 true。
 
 ### `testInstance.findAllByType()` {#testinstancefindallbytype}
 
