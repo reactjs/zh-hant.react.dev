@@ -86,7 +86,7 @@ handleChange(event) {
 </textarea>
 ```
 
-在 React 中，一個 `<textarea>` 則是使用一個 `value` 的 attribute。如此一來，一個使用 `<textarea>` 的表格和一個只寫一行 input 的表格可以用非常類似的方法來寫成：
+在 React 中，`<textarea>` 則是使用一個 `value` 的 attribute。如此一來，一個使用 `<textarea>` 的表單可以使用非常類似單行的 input 方法來寫成：
 
 ```javascript{4-6,12-14,26}
 class EssayForm extends React.Component {
