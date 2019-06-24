@@ -21,7 +21,7 @@ HTML 表單的 element 和 React 中其他的 DOM element 不太一樣，因為�
 </form>
 ```
 
-這個表格有 HTML 表格的預設行為，也就是在使用者提交一個表格的時候去瀏覽一個新頁面。如果你想要在 React 中也有這樣的行為的話，直接用 HTML 是可行的。但是在大多數的情況中，有一個 JavaScript function 來處理提交表格的功能並讀取使用者在表格中填入的資料是很方便的。要做到這樣，標準的方法是使用「controlled component」：
+當使用者提交表單時，此表單具有瀏覽到新頁面的預設 HTML 表單行為。如果你想要在 React 中也有這樣的行為的話，直接用 HTML 是可行的。但是在大多數的情況中，有一個 JavaScript function 來處理提交表單的功能並讀取使用者在表單中填入的資料是很方便的。要做到這樣，標準的方法是使用「controlled component」：
 
 ## Controlled Component {#controlled-components}
 
