@@ -157,7 +157,7 @@ function Example() {
 
 ## 讀取 State {#reading-state}
 
-在 class 中我們要秀出目前的計數，我們使用 `this.state.count`：
+在 class 中我們要顯示目前的計數，我們使用 `this.state.count`：
 
 ```js
   <p>You clicked {this.state.count} times</p>
