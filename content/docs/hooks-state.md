@@ -109,7 +109,7 @@ function Example() {
 
 ## 宣告一個 State 變數 {#declaring-a-state-variable}
 
-在 class 中，藉由在 constructor 設置 `this.state` 成 `{ count: 0 }` 把 `count` 這個 state 起始值設為 `0`。
+在 class 中，藉由在 constructor 設定 `this.state` 成 `{ count: 0 }` 把 `count` 這個 state 起始值設為 `0`。
 
 ```js{4-6}
 class Example extends React.Component {
