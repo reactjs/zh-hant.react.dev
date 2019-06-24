@@ -153,7 +153,7 @@ function Example() {
 >
 >你也許會好奇：為什麼 `useState` 不叫做 `createState`？
 >
->state 只會在第一次 render 時被建立，所以「Create」並不會比較精準。而在其後的 render，`useState` 只會給我們目前的 state。不然這就不叫做 state 啦！另外還有一個理由，為什麼 Hook *總是*以 `use` 起頭。我們稍後會在 [Hook 規則](/docs/hooks-rules.html)中瞭解。
+>state 只會在第一次 render 時被建立，所以「Create」並不會比較精準。而在其後的 render，`useState` 只會給我們目前的 state。不然這就不叫做 state 啦！另外還有一個理由，為什麼 Hook *總是*以 `use` 起頭。我們稍後會在 [Hook 規則](/docs/hooks-rules.html)中了解。
 
 ## 讀取 State {#reading-state}
 
