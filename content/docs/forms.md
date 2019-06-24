@@ -66,7 +66,7 @@ class NameForm extends React.Component {
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
-既然 `value` attribute 被放在我們的 form element 裡面，被展示的 value 便永遠會是 `this.state.value`，這使得 React 的 state 成為了資料來源（the source of truth）。由於 `handleChange` 在每一次鍵盤被敲擊時都會被執行，並更新 React 的 state，因此被展示的 value 將會在使用者打字的同時被更新。
+由於 `value` attribute 是被設定在我們的表單 element 上，顯示的 value 會永遠是 `this.state.value`，這使得 React 的 state 成為了資料來源。由於 `handleChange` 在每一次鍵盤被敲擊時都會被執行，並更新 React 的 state，因此被顯示的 value 將會在使用者打字的同時被更新。
 
 在這樣的 controlled component 中，每一個 state 的 mutation 都會有一個相對應的 handler function。這使得修改或驗證使用者輸入變得很容易。例如，如果我們想要確認名字全部都是用大寫字母寫成的話，我們可以把 `handleChange` 寫成：
 
