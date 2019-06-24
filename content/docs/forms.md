@@ -296,4 +296,4 @@ setTimeout(function() {
 
 ## 成熟的解決方案 {#fully-fledged-solutions}
 
-如果你想找出一個完整的、包含驗證、可追蹤 visited field 並能處理提交表格等功能的解決方案，[Formik](https://jaredpalmer.com/formik) 是一個很熱門的選擇。然而，它是在與 controlled component 和維持 state 相同的原則上所建立的，所以別忘了學習它。
+如果你想找出一個完整的、包含驗證、可追蹤拜訪欄位並能處理提交表單等功能的解決方案，[Formik](https://jaredpalmer.com/formik) 是一個很熱門的選擇。然而，它是在與 controlled component 和維持 state 相同的原則上所建立的，所以別忘了學習它。
