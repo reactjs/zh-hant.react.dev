@@ -278,4 +278,4 @@ function ExampleWithManyStates() {
 
 我們同時也瞭解了更多什麼是 Hook。Hook 是可以讓你在 function component 使用 React 各項功能的 function。還有更多 Hook 我們還沒認識，而 Hook 的名字都會以 `use` 起頭。
 
-**現在我們繼續[學習下個 Hook：`useEffect`](/docs/hooks-effect.html)。** 就像 class 的 lifecycle method，它讓你能夠在 component 使用 side effect。
+**現在我們繼續[學習下個 Hook：`useEffect`](/docs/hooks-effect.html)。** 就像 class 的生命週期方法，它讓你能夠在 component 使用 side effect。
