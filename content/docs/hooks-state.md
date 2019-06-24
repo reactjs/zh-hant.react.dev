@@ -133,7 +133,7 @@ function Example() {
 
 **呼叫 `useState` 做了什麼？**它宣告了一個「state 變數」。我們的變數叫做 `count`，也可以有其他稱呼，像是 `banana`。這是一個在 function 呼叫中「保留」變數的方法－`useState` 就像是 class 中 `this.state` 的功能一樣。一般情況下，變數會在 function 結束時「消失」，但 state 變數會被 React 保留起來。
 
-**我們傳入什麼參數給 `useState`？**唯一需要傳入 `useState()` Hook 的參數就是 state 起始值。不像 class state 不需要是一個 object。我們可以使用我們所需的 number 或是 string。在範例中，我們只需要一個 number 紀錄使用者點擊了多少次，所以我們傳入 `0` 來當作起始值。（如果要在 state 保存兩個不同的值，可以呼叫 `useState()` 兩次。）
+**我們傳入什麼參數給 `useState`？**唯一需要傳入 `useState()` Hook 的參數就是 state 起始值。不像 class state 不需要是一個 object。我們可以使用我們所需的 number 或是 string。在範例中，我們只需要一個 number 記錄使用者點擊了多少次，所以我們傳入 `0` 來當作起始值。（如果要在 state 儲存兩個不同的值，可以呼叫 `useState()` 兩次。）
 
 **`useState` 回傳了什麼？**它回傳了一對值：目前的 state 跟一個可以更新 state 的 function。這就是為什麼我們寫 `const [count, setCount] = useState()` 的原因。除了你是直接拿到一對，這跟 class 中的 `this.state.count` 和 `this.setState` 很類似。如果你對我們用的語法不熟悉，我們稍後會在[本頁的底部](/docs/hooks-state.html#tip-what-do-square-brackets-mean)討論它。
 
