@@ -99,7 +99,7 @@ function Example() {
 }
 ```
 
-**什麼是 Hook？**Hook 是一個讓你可以使用 React 各項功能的特殊 function。舉例來說，`useState` 是一個讓你添加 React state 到 function component 的 Hook。在後面的章節我們會學習其他 Hook。 
+**什麼是 Hook？**Hook 是一個讓你可以使用 React 各項功能的特殊 function。舉例來說，`useState` 是一個讓你增加 React state 到 function component 的 Hook。在後面的章節我們會學習其他 Hook。 
 
 **什麼時候該使用 Hook？**以前當你寫一個 function component 你需要增加一些 state 時，你必須轉換成 class。現在你可以直接在 function component 中使用 Hook。我們現在就來試試看吧！
 
