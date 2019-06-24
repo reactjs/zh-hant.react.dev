@@ -82,8 +82,7 @@ function Example(props) {
 }
 ```
 
-也許你知道它曾被稱作「stateless component」。但因為現在這些 component 也可以使用 React state 了，我們會
-比較喜歡「function component」這個稱呼。
+也許你知道它曾被稱作「stateless component」。但因為現在這些 component 也可以使用 React state 了，我們會比較喜歡「function component」這個稱呼。
 
 Hook **不會**在 class 裡運作。但你可以使用它來取代 class。
 
