@@ -29,7 +29,7 @@ HTML 表單的 element 和 React 中其他的 DOM element 不太一樣，因為�
 
 我們可以透過將 React 的 state 變成「唯一真相來源」來將這兩者結合。如此，render 表單的 React component 同時也掌握了後續使用者的輸入對表單帶來的改變。像這樣一個輸入表單的 element，被 React 用這樣的方式來控制它的值，就被稱為「controlled component」。
 
-例如，如果我們想要讓上一個例子在一個名字被輸入表格時印出，我們可以把這個表格寫成一個 controlled component：
+例如，如果我們想要讓上一個範例在一個名字被輸入表單時印出，我們可以把這個表單寫成一個 controlled component：
 
 ```javascript{4,10-12,24}
 class NameForm extends React.Component {
