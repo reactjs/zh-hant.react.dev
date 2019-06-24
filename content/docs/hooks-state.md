@@ -259,7 +259,7 @@ function ExampleWithManyStates() {
   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
 ```
 
-在上面的 component 中，我們的 local variable 有 `age`、`fruit` 和 `todos`，而且我們可以單獨更新它們。
+在上面的 component 中，我們的 local 變數有 `age`、`fruit` 和 `todos`，而且我們可以單獨更新它們。
 
 ```js
   function handleOrangeClick() {
