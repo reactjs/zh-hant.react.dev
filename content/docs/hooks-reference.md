@@ -1,22 +1,22 @@
 ---
 id: hooks-reference
-title: Hooks API Reference
+title: Hooks API 參考
 permalink: docs/hooks-reference.html
 prev: hooks-custom.html
 next: hooks-faq.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hook* 是 React 16.8 中增加的新功能。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
 
-This page describes the APIs for the built-in Hooks in React.
+本頁面描述 React 中內置 Hook 的 API。
 
-If you're new to Hooks, you might want to check out [the overview](/docs/hooks-overview.html) first. You may also find useful information in the [frequently asked questions](/docs/hooks-faq.html) section.
+如果你剛開始接觸 Hook，你可能會想先查閱 [Hook 概論](/docs/hooks-overview.html)。你也可以在 [Hook 常見問題](/docs/hooks-faq.html) 中獲取有用的資料。
 
-- [Basic Hooks](#basic-hooks)
+- [基礎的 Hook](#basic-hooks)
   - [`useState`](#usestate)
   - [`useEffect`](#useeffect)
   - [`useContext`](#usecontext)
-- [Additional Hooks](#additional-hooks)
+- [額外的 Hooks](#additional-hooks)
   - [`useReducer`](#usereducer)
   - [`useCallback`](#usecallback)
   - [`useMemo`](#usememo)
@@ -25,7 +25,7 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useLayoutEffect`](#uselayouteffect)
   - [`useDebugValue`](#usedebugvalue)
 
-## Basic Hooks {#basic-hooks}
+## 基礎的 Hook {#basic-hooks}
 
 ### `useState` {#usestate}
 
@@ -33,25 +33,25 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
 const [state, setState] = useState(initialState);
 ```
 
-Returns a stateful value, and a function to update it.
+返回一個 state，及更新 state 的 function。
 
-During the initial render, the returned state (`state`) is the same as the value passed as the first argument (`initialState`).
+在首次 render 時，返回的 `state` 的值會跟第一個參數（`initialState`）一樣。
 
-The `setState` function is used to update the state. It accepts a new state value and enqueues a re-render of the component.
+`setState` function 是用來更新 state。它接收一個新的 state 並將 component 的重新 render 排進隊列。
 
 ```js
 setState(newState);
 ```
 
-During subsequent re-renders, the first value returned by `useState` will always be the most recent state after applying updates.
+在後續的重新 render，`useState` 返回的第一個值必定會是最後更新的 state。
 
->Note
+>備注
 >
->React guarantees that `setState` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>React 確保 `setState` function 的標識是穩定的，而且不會在重新 render 時改變。這就為什麼可以安全地從 `useEffect` 或 `useCallback` 的依賴列表省略它。
 
-#### Functional updates {#functional-updates}
+#### 函數式更新 {#functional-updates}
 
-If the new state is computed using the previous state, you can pass a function to `setState`. The function will receive the previous value, and return an updated value. Here's an example of a counter component that uses both forms of `setState`:
+如果新的 state 是用先前的 state 計算出，你可以傳遞一個 function 到 `setState`。該 function 將接收先前的 state，並回傳一個已更新的值。下列的計算器 component 示例展示了 `setState` 的兩種用法。
 
 ```js
 function Counter({initialCount}) {
@@ -67,11 +67,11 @@ function Counter({initialCount}) {
 }
 ```
 
-The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to the initial value.
+「+」和「-」按鈕使用了函數式形式，因為被更新的值是基於先前的值。但是「Reset」按鈕則使用普通形式，因為它總是把 count 設置回初始值。
 
-> Note
+> 備注
 >
-> Unlike the `setState` method found in class components, `useState` does not automatically merge update objects. You can replicate this behavior by combining the function updater form with object spread syntax:
+> 與 class component 的 `setState` 方法不同，`useState` 不會自動合拼更新 object。你可以用函數式更新的形式結合 object spread 語法來達到相同效果：
 >
 > ```js
 > setState(prevState => {
@@ -80,11 +80,11 @@ The "+" and "-" buttons use the functional form, because the updated value is ba
 > });
 > ```
 >
-> Another option is `useReducer`, which is more suited for managing state objects that contain multiple sub-values.
+> 另一個選擇是 `useReducer`，它更適合用於管理有多個子數值的 state object。
 
-#### Lazy initial state {#lazy-initial-state}
+#### 惰性初始 state {#lazy-initial-state}
 
-The `initialState` argument is the state used during the initial render. In subsequent renders, it is disregarded. If the initial state is the result of an expensive computation, you may provide a function instead, which will be executed only on the initial render:
+`initialState` 參數只會在初始 render 時使用，在後續 render 時會被忽略。如果初始 state 需要通過複雜的計算來獲得，你可以傳入一個 function，該 function 只會在初始 render 時被調用：
 
 ```js
 const [state, setState] = useState(() => {
@@ -93,11 +93,11 @@ const [state, setState] = useState(() => {
 });
 ```
 
-#### Bailing out of a state update {#bailing-out-of-a-state-update}
+#### 跳過 state 更新 {#bailing-out-of-a-state-update}
 
-If you update a State Hook to the same value as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+如果你使用與當前 state 同值的值來更新 state hook，React 將會跳過子組件的 render 及 effect 的執行。（React 使用 [`Object.is` 比較算法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description)。）
 
-Note that React may still need to render that specific component again before bailing out. That shouldn't be a concern because React won't unnecessarily go "deeper" into the tree. If you're doing expensive calculations while rendering, you can optimize them with `useMemo`.
+請注意 React 可能仍需要在跳過 render 之前 render 該 component。這不應該是個問題，因為 React 不會不必要地「深入」到組件樹中。如果你在 render 當中執行了高昂的計算，你可以使用 `useMemo` 來優化。
 
 ### `useEffect` {#useeffect}
 
@@ -105,17 +105,17 @@ Note that React may still need to render that specific component again before ba
 useEffect(didUpdate);
 ```
 
-Accepts a function that contains imperative, possibly effectful code.
+接收一個包含指令式，且可能有副作用代碼的 function。
 
-Mutations, subscriptions, timers, logging, and other side effects are not allowed inside the main body of a function component (referred to as React's _render phase_). Doing so will lead to confusing bugs and inconsistencies in the UI.
+在 function component（指的是 React 的 render 階段）的主體內變異、添加訂閱、設置定時器、記錄日誌、以及其他副作用是不被允許的。因為這可能會導致容易混淆的 bug 和不一致的 UI。
 
-Instead, use `useEffect`. The function passed to `useEffect` will run after the render is committed to the screen. Think of effects as an escape hatch from React's purely functional world into the imperative world.
+反而，應使用 `useEffect`。傳到 `useEffect` 的 function 會在 render 到屏幕之後執行。可以把 effect 看作 React 從純函數世界通往指令式世界的逃生通道。
 
-By default, effects run after every completed render, but you can choose to fire it [only when certain values have changed](#conditionally-firing-an-effect).
+在默認情況下，effect 會在每一個完整 render 後執行，但你也可以選擇它在[某些值改變的時候](#conditionally-firing-an-effect)才執行。
 
-#### Cleaning up an effect {#cleaning-up-an-effect}
+#### 清除一個 effect {#cleaning-up-an-effect}
 
-Often, effects create resources that need to be cleaned up before the component leaves the screen, such as a subscription or timer ID. To do this, the function passed to `useEffect` may return a clean-up function. For example, to create a subscription:
+通常，在 component 於屏幕卸載前需要清除 effect 創建的資源，例如訂閱或定時器的 ID。要達到這一點，傳遞到 `useEffect` 的 function 可以回傳一個清除 function。例如，在創建訂閱：
 
 ```js
 useEffect(() => {
@@ -127,23 +127,23 @@ useEffect(() => {
 });
 ```
 
-The clean-up function runs before the component is removed from the UI to prevent memory leaks. Additionally, if a component renders multiple times (as they typically do), the **previous effect is cleaned up before executing the next effect**. In our example, this means a new subscription is created on every update. To avoid firing an effect on every update, refer to the next section.
+清除 function 會在 component 從 UI 卸載前執行，來防止內存泄漏。而且，若果 component render 了數次，在**執行下一個 effect 前，上一個 effect 就已被清除**。在上述的例子中，意味著每一次更新都會創造一個新訂閱。要避免每次更新都觸發 effect 的執行，請參閱下一個章節。
 
-#### Timing of effects {#timing-of-effects}
+#### Effect 的時機 {#timing-of-effects}
 
-Unlike `componentDidMount` and `componentDidUpdate`, the function passed to `useEffect` fires **after** layout and paint, during a deferred event. This makes it suitable for the many common side effects, like setting up subscriptions and event handlers, because most types of work shouldn't block the browser from updating the screen.
+與 `componentDidMount` 和 `componentDidUpdate` 不同的時，傳遞到 `useEffect` 的 function 會在布局和繪制**之後**，在延後事件中執行。 這使它適用於很多常見的副作用，例如設置訂閱和 event handler，因為絕大部份的工作都不應阻礙瀏覽器更新晝面。
 
-However, not all effects can be deferred. For example, a DOM mutation that is visible to the user must fire synchronously before the next paint so that the user does not perceive a visual inconsistency. (The distinction is conceptually similar to passive versus active event listeners.) For these types of effects, React provides one additional Hook called [`useLayoutEffect`](#uselayouteffect). It has the same signature as `useEffect`, and only differs in when it is fired.
+然而，不是所有的 effect 都可以被延後。例如，在瀏覽器下一次繪制前，用戶可視的 DOM 變更就必需同步執行，用戶才不會感覺到視覺上的不一致。（概念上類似被動和主動 event listener 的區別。）為這類別的 effect，React 提供了一個額外的 [`useLayoutEffect`](#uselayouteffect) hook。它和 `useEffect` 的結構相同，只是執行的時機不同而已。
 
-Although `useEffect` is deferred until after the browser has painted, it's guaranteed to fire before any new renders. React will always flush a previous render's effects before starting a new update.
+儘管 `useEffect` 會延後至瀏覽器繪制後，但會保證在任何新 render 前執行。React 會在開始新一個更新前刷新上一輪 render 的 effect。
 
-#### Conditionally firing an effect {#conditionally-firing-an-effect}
+#### 有條件地執行 effect {#conditionally-firing-an-effect}
 
-The default behavior for effects is to fire the effect after every completed render. That way an effect is always recreated if one of its dependencies changes.
+在默認情況下，effect 會在每一個完整的 render 後執行。這樣的話一旦 effect 的依賴有變化，它就會被重新創建。
 
-However, this may be overkill in some cases, like the subscription example from the previous section. We don't need to create a new subscription on every update, only if the `source` props has changed.
+然而，在某些情況下這可能矯枉過正，例如在上一章節的訂閱示例。我們只需要在 `source` prop 改變後才重新創建訂閱，不需要在每次更新後。
 
-To implement this, pass a second argument to `useEffect` that is the array of values that the effect depends on. Our updated example now looks like this:
+要實現這一點，可以向 `useEffect` 傳遞第二個參數，它是該 effect 所依賴的值 array。我們更新後的例子如下：
 
 ```js
 useEffect(
@@ -157,20 +157,20 @@ useEffect(
 );
 ```
 
-Now the subscription will only be recreated when `props.source` changes.
+現在只有當 `props.source` 改變時才會重新創建訂閱。
 
->Note
+>備注
 >
->If you use this optimization, make sure the array includes **all values from the component scope (such as props and state) that change over time and that are used by the effect**. Otherwise, your code will reference stale values from previous renders. Learn more about [how to deal with functions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) and what to do when the [array values change too often](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
+>若你要使用此優化方式，請確保該 array 包含了**所有在該 component 中會隨時間而變的值（例如 prop 和 state）以及在該 effect 使用的值。**否則，你的代碼會引用先前 render 的舊變量。了解更多[如何處理 function](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) 和當[array 的值頻繁變化時](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)的處理。
 >
->If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the dependencies array always works.
+>如果你想 effect 只執行和清除一次（於 mount 和 unmount），你可以傳遞一個空白的 array （`[]`）作為第二個參數。這告訢 React 你的 effect 沒有依賴*任何*在 prop 或 state 的值，所以它永遠不需被再次執行。這並不是一個特殊處理 -- 它依然遵循依賴 array 的運作方式。
 >
->If you pass an empty array (`[]`), the props and state as inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>如果你傳入了一個空白的 array（`[]`），effect 內部的 prop 和 state 就一直擁有其初始值。儘管傳入 `[]` 作為第二個參數有點類似 `componentDidMount` 和 `componentWillUnmount` 的思維模式，但其實有[更好的](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [方法](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)來避免過於頻繁地重複執行 effect。而且，不要忘記 React 會延後執行 `useEffect` 直至瀏覽器完成繪制，所以額外的工作也不會是太大問題。
 >
 >
->We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>我們建議使用 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) 中的 [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) 規則。它會在依賴錯誤時發出警告並提出修正建議。
 
-The array of dependencies is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+依賴 array 並不作為傳到 effect function 的參數。但從概念上來説，這是它所代表的：所有在 effect function 中引用的值都應該出現在依賴 array 中。在未來，一個足夠先進的編譯器可以自動創建這 array。
 
 ### `useContext` {#usecontext}
 
@@ -178,27 +178,27 @@ The array of dependencies is not passed as arguments to the effect function. Con
 const value = useContext(MyContext);
 ```
 
-Accepts a context object (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the `value` prop of the nearest `<MyContext.Provider>` above the calling component in the tree.
+接收一個 context object（`React.createContext` 的返回值）並返回該 context 的當前值。Context 的當前值是取決於由上層 component 距離最近的 `<MyContext.Provider>` 的 `value` prop。
 
-When the nearest `<MyContext.Provider>` above the component updates, this Hook will trigger a rerender with the latest context `value` passed to that `MyContext` provider.
+當 component 上層最近的 `<MyContext.Provider>` 更新時，該 hook 會觸發重新 render，並使用最新傳遞到 `MyContext` 的 context `value`。
 
-Don't forget that the argument to `useContext` must be the *context object itself*:
+不要忘記 `useContext` 的參數必需為 *context object 自己*：
 
- * **Correct:** `useContext(MyContext)`
- * **Incorrect:** `useContext(MyContext.Consumer)`
- * **Incorrect:** `useContext(MyContext.Provider)`
+ * **正確:** `useContext(MyContext)`
+ * **錯誤:** `useContext(MyContext.Consumer)`
+ * **錯誤:** `useContext(MyContext.Provider)`
 
-A component calling `useContext` will always re-render when the context value changes. If re-rendering the component is expensive, you can [optimize it by using memoization](https://github.com/facebook/react/issues/15156#issuecomment-474590693).
+調用了 `useContext` 的 component 總會在 context 值更新時重新 render。假若重新 render component 很昂貴，你可以[通過 memoization 來優化](https://github.com/facebook/react/issues/15156#issuecomment-474590693)。
 
->Tip
+>提示
 >
->If you're familiar with the context API before Hooks, `useContext(MyContext)` is equivalent to `static contextType = MyContext` in a class, or to `<MyContext.Consumer>`.
+>假若你在接觸 hook 前已熟悉 context API，`useContext(MyContext)` 就相等於 class 中的 `static contextType = MyContext` 或 `<MyContext.Consumer>`。
 >
->`useContext(MyContext)` only lets you *read* the context and subscribe to its changes. You still need a `<MyContext.Provider>` above in the tree to *provide* the value for this context.
+>`useContext(MyContext)` 只能讓你*讀取* context 及訂閱其變更。你仍然需要在樹的上層使用`<MyContext.Provider>` 來提供 context 的值。
 
-## Additional Hooks {#additional-hooks}
+## 額外的 Hooks {#additional-hooks}
 
-The following Hooks are either variants of the basic ones from the previous section, or only needed for specific edge cases. Don't stress about learning them up front.
+以下的 hook，有些是上一節中基礎的 hook 的變異，有些則是在特殊情況下使用。不用特地預先學習它們。
 
 ### `useReducer` {#usereducer}
 
@@ -206,11 +206,11 @@ The following Hooks are either variants of the basic ones from the previous sect
 const [state, dispatch] = useReducer(reducer, initialArg, init);
 ```
 
-An alternative to [`useState`](#usestate). Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method. (If you're familiar with Redux, you already know how this works.)
+[`useState`](#usestate) 的替代方案。接受一個 `(state, action) => newState` 的 reducer，然後返回現在的 state 以及其配套的 `dispatch` 方法。（如果你熟悉 Redux，你已經知道這如何運作。）
 
-`useReducer` is usually preferable to `useState` when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. `useReducer` also lets you optimize performance for components that trigger deep updates because [you can pass `dispatch` down instead of callbacks](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
+當你需要複雜的 state 邏輯而且包括多個子數值或下一個 state 依賴之前的 state，`useReducer` 會比 `useState` 更適用。而且 `useReducer` 可以讓你給會觸發深層更新的 component 作性能優化，因為[你可以傳遞 dispatch 而不是 callback](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down)。
 
-Here's the counter example from the [`useState`](#usestate) section, rewritten to use a reducer:
+以下是用 reducer 重寫 [`useState`](#usestate) 一節的例子：
 
 ```js
 const initialState = {count: 0};
@@ -238,13 +238,13 @@ function Counter() {
 }
 ```
 
->Note
+>備注
 >
->React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>React 確保 `dispatch` function 的標識是穩定的，而且不會在重新 render 時改變。這就為什麼可以安全地從 `useEffect` 或 `useCallback` 的依賴列表省略它。
 
-#### Specifying the initial state {#specifying-the-initial-state}
+#### 指定初始 state {#specifying-the-initial-state}
 
-There are two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way is to pass the initial state as a second argument:
+有兩種不同初始化 `useReducer` state 的方法。你可以跟據使用場景選擇任何一種。最簡單的方法就是把初始 state 作為第二個參數傳入：
 
 ```js{3}
   const [state, dispatch] = useReducer(
@@ -253,15 +253,15 @@ There are two different ways to initialize `useReducer` state. You may choose ei
   );
 ```
 
->Note
+>備注
 >
->React doesn’t use the `state = initialState` argument convention popularized by Redux. The initial value sometimes needs to depend on props and so is specified from the Hook call instead. If you feel strongly about this, you can call `useReducer(reducer, undefined, reducer)` to emulate the Redux behavior, but it's not encouraged.
+>React不使用 `state = initialState` 這個由 Redux 推廣開來的參數慣例。初始值有時需要依賴於 prop，因此需要在調用 hook 時指定。如果你較偏愛上述的慣例，你可以調用 `useReducer(reducer, undefined, reducer)` 來摸擬 Redux 的行為，但這是不鼓勵的。
 
-#### Lazy initialization {#lazy-initialization}
+#### 惰性初始化 {#lazy-initialization}
 
-You can also create the initial state lazily. To do this, you can pass an `init` function as the third argument. The initial state will be set to `init(initialArg)`.
+你地可以惰性地創建初始 state。為此，你可以傳入 `init` function 作為第三個參數。初始的 state 會被設定為 `init(initialArg)`。
 
-It lets you extract the logic for calculating the initial state outside the reducer. This is also handy for resetting the state later in response to an action:
+這樣令你可以將計算初始 state 的邏輯提取到 reducer 外。而且也方便了將來處理重置 state 的 action：
 
 ```js{1-3,11-12,19,24}
 function init(initialCount) {
@@ -297,11 +297,11 @@ function Counter({initialCount}) {
 }
 ```
 
-#### Bailing out of a dispatch {#bailing-out-of-a-dispatch}
+#### 跳過 dispatch {#bailing-out-of-a-dispatch}
 
-If you return the same value from a Reducer Hook as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+如果你在 reducer hook 返回的值與當前的 state 相同，React 將會跳過子組件的 render 及 effect 的執行。（React 使用 [`Object.is` 比較算法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description)。）
 
-Note that React may still need to render that specific component again before bailing out. That shouldn't be a concern because React won't unnecessarily go "deeper" into the tree. If you're doing expensive calculations while rendering, you can optimize them with `useMemo`.
+請注意 React 可能仍需要在跳過 render 之前 render 該 component。這不應該是個問題，因為 React 不會不必要地「深入」到組件樹中。如果你在 render 當中執行了高昂的計算，你可以使用 `useMemo` 來優化。
 
 ### `useCallback` {#usecallback}
 
@@ -314,17 +314,17 @@ const memoizedCallback = useCallback(
 );
 ```
 
-Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) callback.
+返回一個 [memoized](https://en.wikipedia.org/wiki/Memoization) 的 callback。
 
-Pass an inline callback and an array of dependencies. `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. `shouldComponentUpdate`).
+傳遞一個內聯 callback 及依賴 array。`useCallback` 會返回該 callback 的 memoized 版本，它僅在依賴改變時才會更新。當傳遞 callback 到已優化使用引用相等性來避免不必要 render （例如 `shouldComponentUpdate`）的子 component 時，它將非常有用。
 
-`useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
+`useCallback(fn, deps)` 相等於 `useMemo(() => fn, deps)`。
 
-> Note
+> 注意
 >
-> The array of dependencies is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+> 依賴 array 並不作為傳到 callback 的參數。但從概念上來説，這是它所代表的：所有在 callback 中引用的值都應該出現在依賴 array 中。在未來，一個足夠先進的編譯器可以自動創建這 array。
 >
-> We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+> 我們建議使用 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) 中的 [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) 規則。它會在依賴錯誤時發出警告並提出修正建議。
 
 ### `useMemo` {#usememo}
 
@@ -332,21 +332,21 @@ Pass an inline callback and an array of dependencies. `useCallback` will return 
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) value.
+返回一個 [memoized](https://en.wikipedia.org/wiki/Memoization) 的值。
 
-Pass a "create" function and an array of dependencies. `useMemo` will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
+傳遞一個「創建」function 及依賴 array。`useMemo` 只會在依賴改變時才重新計算 memoized 的值。這個優化可以避免在每次 render 都進行昂貴的計算。
 
-Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+要謹記傳到 `useMemo` 的 function 會在 render 期間執行。不要做一些通常不會在 render 期間做的事情。例如，處理副作用屬於 `useEffect`，而不是 `useMemo`。
 
-If no array is provided, a new value will be computed on every render.
+如果沒有提供 array，每次 render 時都會計算新的值。
 
-**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance.
+**你可以把 `useMemo` 作為性能優化的手段，但請不要把它當作成語意上的保證。**在將來，React 可能會選擇「忘記」某些之前已 memorized 的值並在下一次 render 時重新計算，例如為已離開屏幕的 component 釋放內存。先編寫沒有 `useMemo` 也可執行的代碼 — 然後再加入它來優化效能。
 
-> Note
+> 注意
 >
-> The array of dependencies is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+> 依賴 array 並不作為傳到 function 的參數。但從概念上來説，這是它所代表的：所有在 callback 中引用的值都應該出現在依賴 array 中。在未來，一個足夠先進的編譯器可以自動創建這 array。
 >
-> We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+> 我們建議使用 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) 中的 [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) 規則。它會在依賴錯誤時發出警告並提出修正建議。
 
 ### `useRef` {#useref}
 
@@ -354,9 +354,9 @@ If no array is provided, a new value will be computed on every render.
 const refContainer = useRef(initialValue);
 ```
 
-`useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument (`initialValue`). The returned object will persist for the full lifetime of the component.
+`useRef` 返回一個可變異的 ref object，其 `.current` 屬性被初始為傳入的參數（`initialValue`）。返回的 object 在 component 的生命週期將保持不變。
 
-A common use case is to access a child imperatively:
+一個常見的用例就是命令式地訪問子元件：
 
 ```js
 function TextInputWithFocusButton() {
@@ -374,15 +374,15 @@ function TextInputWithFocusButton() {
 }
 ```
 
-Essentially, `useRef` is like a "box" that can hold a mutable value in its `.current` property.
+本質上，`useRef` 就像一個保存可變異值於其 `.current` 屬性的「盒子」。
 
-You might be familiar with refs primarily as a way to [access the DOM](/docs/refs-and-the-dom.html). If you pass a ref object to React with `<div ref={myRef} />`, React will set its `.current` property to the corresponding DOM node whenever that node changes.
+你應該熟悉 ref 一種主要是用來[訪問 DOM](/docs/refs-and-the-dom.html)的方式。如果你在 React 中以 `<div ref={myRef} />` 傳入 ref object，無論節點如何改變，React 都會將其 `.current` 屬性設為相應的 DOM 節點。
 
-However, `useRef()` is useful for more than the `ref` attribute. It's [handy for keeping any mutable value around](/docs/hooks-faq.html#is-there-something-like-instance-variables) similar to how you'd use instance fields in classes.
+然而，`useRef()` 比 `ref` 屬性更有用。它可以[很方便地保存任何可變異的值](/docs/hooks-faq.html#is-there-something-like-instance-variables)，跟 class 中的實例字段類似。
 
-This works because `useRef()` creates a plain JavaScript object. The only difference between `useRef()` and creating a `{current: ...}` object yourself is that `useRef` will give you the same ref object on every render.
+這是因為 `useRef()` 會創建一個普通的 JavaScript object。`useRef()` 和自建一個 `{current: ...}` object 的唯一不同是 `useRef` 在每次 render 時都會給你同一個的 ref object。
 
-Keep in mind that `useRef` *doesn't* notify you when its content changes. Mutating the `.current` property doesn't cause a re-render. If you want to run some code when React attaches or detaches a ref to a DOM node, you may want to use a [callback ref](/docs/hooks-faq.html#how-can-i-measure-a-dom-node) instead.
+請記住 `useRef` 在其內容有變化時並*不會*通知你。變更 `.current` 屬性不會觸發重新 render。如果你想要在 React 綁定或解綁 DOM 節點的 ref 時執行代碼，你可能需要使用 [callback ref](/docs/hooks-faq.html#how-can-i-measure-a-dom-node) 來實現。
 
 
 ### `useImperativeHandle` {#useimperativehandle}
@@ -391,7 +391,7 @@ Keep in mind that `useRef` *doesn't* notify you when its content changes. Mutati
 useImperativeHandle(ref, createHandle, [deps])
 ```
 
-`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with `forwardRef`:
+`useImperativeHandle` 可以讓使用 `ref` 時能向父 component 暴露自訂義的實例值。一如既往，在大多數的情況下應避免使用 ref 的命令式代碼。`useImperativeHandle` 應與 `forwardRef`  一同使用：
 
 ```js
 function FancyInput(props, ref) {
@@ -406,21 +406,21 @@ function FancyInput(props, ref) {
 FancyInput = forwardRef(FancyInput);
 ```
 
-In this example, a parent component that renders `<FancyInput ref={fancyInputRef} />` would be able to call `fancyInputRef.current.focus()`.
+在這個例子，render `<FancyInput ref={fancyInputRef} />` 的父 component 能調用 `fancyInputRef.current.focus()`。
 
 ### `useLayoutEffect` {#uselayouteffect}
 
-The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
+其簽名與 `useEffect` 相同，但它會在所有 DOM 變異後同步調用。使用它來讀取 DOM 佈局並同步重新 render。在瀏覽器執行繪製之前，`useLayoutEffect` 內部的更新計劃將被同步刷新。
 
-Prefer the standard `useEffect` when possible to avoid blocking visual updates.
+盡可能使用標準的 `useEffect` 來避免阻礙視覺上的更新。
 
-> Tip
+> 提示
 >
-> If you're migrating code from a class component, note `useLayoutEffect` fires in the same phase as `componentDidMount` and `componentDidUpdate`. However, **we recommend starting with `useEffect` first** and only trying `useLayoutEffect` if that causes a problem.
+> 如果你是由 class component 遷移代碼，請注意 `useLayoutEffect` 與 `componentDidMount` 和 `componentDidUpdate` 的調用時機是一樣。不過，**我們建議先使用 `useEffect`**，只當它有問題時才嘗試使用 `useLayoutEffect`。
 >
->If you use server rendering, keep in mind that *neither* `useLayoutEffect` nor `useEffect` can run until the JavaScript is downloaded. This is why React warns when a server-rendered component contains `useLayoutEffect`. To fix this, either move that logic to `useEffect` (if it isn't necessary for the first render), or delay showing that component until after the client renders (if the HTML looks broken until `useLayoutEffect` runs).
+>如果你使用伺服器 render，請記著 `useLayoutEffect` 或 `useEffect` *均不會* 運行，直至 JavaScript 完成加載。這是為什麼在伺服器 render 的 component 包含 `useLayoutEffect` 時 React 會發出警告。要解決這問題，把該邏輯搬到 `useEffect` 裏（如果首次 render 不需要該邏輯），或把 component 廷遲到客戶端完成 render 後才出現（如果直到 `useLayoutEffect` 執行前 HTML 都會錯亂的情況下）。
 >
->To exclude a component that needs layout effects from the server-rendered HTML, render it conditionally with `showChild && <Child />` and defer showing it with `useEffect(() => { setShowChild(true); }, [])`. This way, the UI doesn't appear broken before hydration.
+>要在伺服器 render 的 HTML 排除需要 layout effect 的 component，可以利用 `showChild && <Child />` 進行條件 render，並使用 `useEffect(() => { setShowChild(true); }, [])` 來延遲展示。這樣，UI 就不會在完成 render 之前顯示錯亂了。
 
 ### `useDebugValue` {#usedebugvalue}
 
@@ -428,9 +428,9 @@ Prefer the standard `useEffect` when possible to avoid blocking visual updates.
 useDebugValue(value)
 ```
 
-`useDebugValue` can be used to display a label for custom hooks in React DevTools.
+`useDebugValue` 可以用來在 React DevTools 中顯示自訂義 hook 的標籤。
 
-For example, consider the `useFriendStatus` custom Hook described in ["Building Your Own Hooks"](/docs/hooks-custom.html):
+例如，在[「自定義 hook」](/docs/hooks-custom.html)中提及的 `useFriendStatus` 自定義 hook：
 
 ```js{6-8}
 function useFriendStatus(friendID) {
@@ -446,17 +446,17 @@ function useFriendStatus(friendID) {
 }
 ```
 
-> Tip
+> 提示
 >
-> We don't recommend adding debug values to every custom Hook. It's most valuable for custom Hooks that are part of shared libraries.
+> 我們不建議在每個自定義 hook 都加上 debug 值。它在自定義 hook 共享庫中才是最有價值的。
 
-#### Defer formatting debug values {#defer-formatting-debug-values}
+#### 延遲格式化 debug values {#defer-formatting-debug-values}
 
-In some cases formatting a value for display might be an expensive operation. It's also unnecessary unless a Hook is actually inspected.
+在某些情況下，格式化一個顯示值可能會是昂貴的操作。而且在直至檢查 hook 前是不必要的。
 
-For this reason `useDebugValue` accepts a formatting function as an optional second parameter. This function is only called if the Hooks are inspected. It receives the debug value as a parameter and should return a formatted display value.
+因此，`useDebugValue` 接受一個格式化 function 作為可選的第二個參數。該 function 只有在 hook 被檢查時才會被調用。它接受 debug 值作為參數，然後返回一個已格式化的顯示值。
 
-For example a custom Hook that returned a `Date` value could avoid calling the `toDateString` function unnecessarily by passing the following formatter:
+例如，一個返回 `Date` 值的自定義 hook 可以通過以下的格式化 function 來避免不必要地調用 `toDateString` function：
 
 ```js
 useDebugValue(date, date => date.toDateString());
