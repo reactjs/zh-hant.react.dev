@@ -1,16 +1,16 @@
 ---
 id: hooks-custom
-title: Building Your Own Hooks
+title: 打造你自己的 Hook
 permalink: docs/hooks-custom.html
 next: hooks-reference.html
 prev: hooks-rules.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hook* 是 React 16.8 中增加的新功能。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
 
-Building your own Hooks lets you extract component logic into reusable functions.
+打造你自己的 Hook 可以將 component 邏輯提取到可重複使用的 function 中。
 
-When we were learning about [using the Effect Hook](/docs/hooks-effect.html#example-using-hooks-1), we saw this component from a chat application that displays a message indicating whether a friend is online or offline:
+當我們在學習關於[使用 Effect Hook](/docs/hooks-effect.html#example-using-hooks-1) 時，我們從一個聊天應用程式看到這個 component ，顯示一條訊息說明朋友是否還在線上：
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
@@ -36,7 +36,7 @@ function FriendStatus(props) {
 }
 ```
 
-Now let's say that our chat application also has a contact list, and we want to render names of online users with a green color. We could copy and paste similar logic above into our `FriendListItem` component but it wouldn't be ideal:
+現在，讓我們的聊天應用程式也有一個聯繫列表，而且想要透過綠色來 render 在線上的使用者名稱。我們可以從上方複製並貼上相似的邏輯到 `FriendListItem` component ，但它並不理想：
 
 ```js{4-15}
 import React, { useState, useEffect } from 'react';
@@ -63,15 +63,15 @@ function FriendListItem(props) {
 }
 ```
 
-Instead, we'd like to share this logic between `FriendStatus` and `FriendListItem`.
+相反的，我們想要在 `FriendStatus` 和 `FriendListItem` 共享這個邏輯。
 
-Traditionally in React, we've had two popular ways to share stateful logic between components: [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html). We will now look at how Hooks solve many of the same problems without forcing you to add more components to the tree.
+習慣上，我們有兩種常用的方式在 component 來共享 stateful 邏輯：[render props](/docs/render-props.html) 和 [higher-order component](/docs/higher-order-components.html)。我們現在將看到 Hook 如何在不強迫 tree 加入更多 component 的情況下，解決許多相同的問題。
 
-## Extracting a Custom Hook {#extracting-a-custom-hook}
+## 提取一個自定義的 Hook {#extracting-a-custom-hook}
 
-When we want to share logic between two JavaScript functions, we extract it to a third function. Both components and Hooks are functions, so this works for them too!
+當我們想要共享邏輯在兩個 JavaScript function 之間時，我們提取它成為第三個 function。Componet 和 Hook 兩者都是 function，所以這也適用於它們！
 
-**A custom Hook is a JavaScript function whose name starts with "`use`" and that may call other Hooks.** For example, `useFriendStatus` below is our first custom Hook:
+**一個自定義的 Hook 是以「`use`」為開頭命名的 JavaScript function，而且它可能也呼叫其他的 Hook。**例如，以下是我們第一個字定義的 `useFriendStatus` Hook：
 
 ```js{3}
 import React, { useState, useEffect } from 'react';
@@ -94,11 +94,11 @@ function useFriendStatus(friendID) {
 }
 ```
 
-There's nothing new inside of it -- the logic is copied from the components above. Just like in a component, make sure to only call other Hooks unconditionally at the top level of your custom Hook.
+這裡沒有新加入的東西 -- 邏輯是複製於上方的 component。就像在 component 內一樣，確保只在自定義的 Hook 頂層無條件的呼叫其他 Hook。
 
-Unlike a React component, a custom Hook doesn't need to have a specific signature. We can decide what it takes as arguments, and what, if anything, it should return. In other words, it's just like a normal function. Its name should always start with `use` so that you can tell at a glance that the [rules of Hooks](/docs/hooks-rules.html) apply to it.
+不像 React component，一個自定義的 Hook 不需要一個特定的宣告。我們可以決定它需要接受什麼參數，以及它應該回傳什麼（如果有的話）。換句話說，它就像一個普通的 function。它的命名開頭應該總是為 `use`，所以你可以一眼就看出 [Hook 的規則](/docs/hooks-rules.html)適用於它。
 
-The purpose of our `useFriendStatus` Hook is to subscribe us to a friend's status. This is why it takes `friendID` as an argument, and returns whether this friend is online:
+我們的 `useFriendStatus` Hook 目的是訂閱我們朋友的狀態。這也是為什麼它接受 `friendID` 作為一個參數，並回傳朋友是否在線上：
 
 ```js
 function useFriendStatus(friendID) {
@@ -110,13 +110,13 @@ function useFriendStatus(friendID) {
 }
 ```
 
-Now let's see how we can use our custom Hook.
+現在，讓我們來看如何使用我們自定義的 Hook。
 
-## Using a Custom Hook {#using-a-custom-hook}
+## 使用一個自定義的 Hook {#using-a-custom-hook}
 
-In the beginning, our stated goal was to remove the duplicated logic from the `FriendStatus` and `FriendListItem` components. Both of them want to know whether a friend is online.
+在一開始的時候，我們的目標是從 `FriendStatus` 和 `FriendListItem` component 中移除重複的邏輯。這兩者都想要知道朋友是否在線上。
 
-Now that we've extracted this logic to a `useFriendStatus` hook, we can *just use it:*
+現在，我們提取了邏輯到 `useFriendStatus` hook，我們可以*使用它：*
 
 ```js{2}
 function FriendStatus(props) {
@@ -141,19 +141,19 @@ function FriendListItem(props) {
 }
 ```
 
-**Is this code equivalent to the original examples?** Yes, it works in exactly the same way. If you look closely, you'll notice we didn't make any changes to the behavior. All we did was to extract some common code between two functions into a separate function. **Custom Hooks are a convention that naturally follows from the design of Hooks, rather than a React feature.**
+**這個程式碼相等於原始的範例嗎？**是的，它們執行的方式是相同的。如果你仔細看的話，你會注意到我們沒有改變任何的行為。我們所做的只是在兩個 function 中提取共同的程式碼讓它成為一個獨立的 function。**自定義的 Hook 是自然遵循 Hook 設計的規範，而不是 React 的功能。**
 
-**Do I have to name my custom Hooks starting with “`use`”?** Please do. This convention is very important. Without it, we wouldn't be able to automatically check for violations of [rules of Hooks](/docs/hooks-rules.html) because we couldn't tell if a certain function contains calls to Hooks inside of it.
+**請問我必須以「`use`」開頭命名我自定義的 Hook 嗎？**請這麼做。這個規範非常的重要。沒有它的話，我們無法自動的檢查違反 [Hook 規則](/docs/hooks-rules.html)的行為，因為我們無法判斷某個 function 中是否包含對 Hook 的呼叫。
 
-**Do two components using the same Hook share state?** No. Custom Hooks are a mechanism to reuse *stateful logic* (such as setting up a subscription and remembering the current value), but every time you use a custom Hook, all state and effects inside of it are fully isolated.
+**請問兩個 component 使用相同的 Hook 是共享 state 的嗎？**不是的。自定義的 Hook 有一個機制重複使用 *stateful 邏輯*（例如設定訂閱並記住目前的值），但每次你使用自定義的 Hook 時，所有內部的 state 和 effect 都是完全獨立的
 
-**How does a custom Hook get isolated state?** Each *call* to a Hook gets isolated state. Because we call `useFriendStatus` directly, from React's point of view our component just calls `useState` and `useEffect`. And as we [learned](/docs/hooks-state.html#tip-using-multiple-state-variables) [earlier](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), we can call `useState` and `useEffect` many times in one component, and they will be completely independent.
+**自定義的 Hook 是如何隔離 state 的？** 每個*呼叫* Hook 的都會得到獨立的 state。因為我們直接呼叫 `useFriendStatus`，從 React 的角度來看，我們的 component 只呼叫 `useState` 和 `useEffect`。正如我們[之前](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns)所[理解](/docs/hooks-state.html#tip-using-multiple-state-variables)的，我們可以在一個 componnet 呼叫 `useState` 和 `useEffect` 多次，而且它們都是完全獨立的。
 
-### Tip: Pass Information Between Hooks {#tip-pass-information-between-hooks}
+### 提示：在 Hook 之間傳遞資訊 {#tip-pass-information-between-hooks}
 
-Since Hooks are functions, we can pass information between them.
+由於 Hook 是 function，我們可以在它們之間傳遞資訊。
 
-To illustrate this, we'll use another component from our hypothetical chat example. This is a chat message recipient picker that displays whether the currently selected friend is online:
+為了說明這點，我們將使用我們假設的聊天範例中的另一個 component。這是一個聊天訊息收件人的選擇器，顯示目前選擇的朋友是否在線上：
 
 ```js{8-9,13}
 const friendList = [
@@ -184,24 +184,24 @@ function ChatRecipientPicker() {
 }
 ```
 
-We keep the currently chosen friend ID in the `recipientID` state variable, and update it if the user chooses a different friend in the `<select>` picker.
+我們將目前選擇的朋友 ID 存在 `recipientID` state 變數中，如果使用者在 `<select>` 選擇器中選擇不同的使用者它將會更新。
 
-Because the `useState` Hook call gives us the latest value of the `recipientID` state variable, we can pass it to our custom `useFriendStatus` Hook as an argument:
+因為呼叫了 `useState` Hook 為我們提供了 `recipientID` state 變數的最新值，我們可以將它作為變數傳遞到我們自定義的 `useFriendStatus`：
 
 ```js
   const [recipientID, setRecipientID] = useState(1);
   const isRecipientOnline = useFriendStatus(recipientID);
 ```
 
-This lets us know whether the *currently selected* friend is online. If we pick a different friend and update the `recipientID` state variable, our `useFriendStatus` Hook will unsubscribe from the previously selected friend, and subscribe to the status of the newly selected one.
+這讓我們知道*目前選擇的*朋友是否在線上。如果我們選擇不同的朋友並更新 `recipientID` state 變數，我們的 `useFriendStatus` Hook 將會從先前選擇的朋友中取消訂閱，並訂閱最新選擇的狀態。
 
 ## `useYourImagination()` {#useyourimagination}
 
-Custom Hooks offer the flexibility of sharing logic that wasn't possible in React components before. You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven't considered. What's more, you can build Hooks that are just as easy to use as React's built-in features.
+自定義的 Hook 提供了共享邏輯的靈活性，這在以前的 React component 是不可能的。你可以撰寫自定義的 Hook 涵蓋廣泛的場景，想是表格處理、動畫、陳述式訂閱（Declarative Subscription）、計時器還有更多我們沒有考慮過的。更重要的是，你可以打造與 React 的內建一樣易於使用的 Hook。
 
-Try to resist adding abstraction too early. Now that function components can do more, it's likely that the average function component in your codebase will become longer. This is normal -- don't feel like you *have to* immediately split it into Hooks. But we also encourage you to start spotting cases where a custom Hook could hide complex logic behind a simple interface, or help untangle a messy component.
+盡量不要過早地加入抽象。現在 function component 可以做更多的事，在你 codebase 中的 function componnet 程式碼平均可能都會變得更長。這都是正常的 -- 不要覺得你*必須*馬上把它拆分成 Hook。但我們也鼓勵你開始發現自定義的 Hook 可以隱藏簡單 interface 背後的複雜邏輯情況，或者幫忙解開一個混亂的 component。
 
-For example, maybe you have a complex component that contains a lot of local state that is managed in an ad-hoc way. `useState` doesn't make centralizing the update logic any easier so you might prefer to write it as a [Redux](https://redux.js.org/) reducer:
+例如，你可能有一個複雜的 component，它包含許多以 ad-hoc 的方式來管理 local state。`useState` 沒辦法讓更新邏輯集中化，所以你可能更傾向將其寫為 [Redux](https://redux.js.org/) 的 reducer：
 
 ```js
 function todosReducer(state, action) {
@@ -211,16 +211,16 @@ function todosReducer(state, action) {
         text: action.text,
         completed: false
       }];
-    // ... other actions ...
+    // ... 其他 action ...
     default:
       return state;
   }
 }
 ```
 
-Reducers are very convenient to test in isolation, and scale to express complex update logic. You can further break them apart into smaller reducers if necessary. However, you might also enjoy the benefits of using React local state, or might not want to install another library.
+Redcer 是非常方便於獨立測試的，而且可以表達複雜的更新邏輯。如果有需要的話，你可以將它們拆成更小的 reducer。然而，你可能也喜歡使用 React local state 的好處，或者你不想要安裝其他的函式庫。
 
-So what if we could write a `useReducer` Hook that lets us manage the *local* state of our component with a reducer? A simplified version of it might look like this:
+那麼，如果我們可以撰寫一個 `useReducer` Hook，讓我們用 reducer 管理 component 的 *local* state 呢？ 它的簡化版本看起來如下：
 
 ```js
 function useReducer(reducer, initialState) {
@@ -235,7 +235,7 @@ function useReducer(reducer, initialState) {
 }
 ```
 
-Now we could use it in our component, and let the reducer drive its state management:
+現在我們在其他的 component 使用它，讓 reducer 驅動它的 state 管理：
 
 ```js{2}
 function Todos() {
@@ -249,4 +249,4 @@ function Todos() {
 }
 ```
 
-The need to manage local state with a reducer in a complex component is common enough that we've built the `useReducer` Hook right into React. You'll find it together with other built-in Hooks in the [Hooks API reference](/docs/hooks-reference.html).
+在複雜的 componnet 中使用 reducer 管理 local state 的需求很常見，我們已經將 `useReducer` Hook 內建在 React 中。你可以在 [Hooks API 參考](/docs/hooks-reference.html)中找到它與其他內建的 Hook。
