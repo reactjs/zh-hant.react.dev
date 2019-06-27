@@ -257,7 +257,7 @@ class Reservation extends React.Component {
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
-注意我們使用了 ES6 的 [computed property name](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) 語法來更新與輸入中的 name 相對應的 state key：
+注意我們使用了 ES6 的 [computed property name](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) 語法來更新與輸入中的 name 相對應的 state key：
 
 ```js{2}
 this.setState({
