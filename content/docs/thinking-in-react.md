@@ -35,23 +35,13 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
 
 首先，你要做的是將視覺稿中每一個 component （及 subcomponent）都圈起來，並幫它們命名。如果你在跟設計師合作的話，他們可能已經幫你做好這一步了，所以跟他們聊聊吧！他們在 Photoshop 中所用的圖層的名字可能可以作為你的 React component 的名字！
 
-<<<<<<< HEAD
 但是你要怎麼知道哪一個東西應該是自己獨立一個 component 呢？使用和你決定建立一個新的 function 或 object 一樣的準則即可。其中一個技巧是[單一職責原則](https://en.wikipedia.org/wiki/Single_responsibility_principle)，它的意思是：在我們的理想中，一個 component應該只負責做一件事情。如果這個 component 最後變大了，你就需要再將它分成數個更小的 subcomponent 。
 
 由於你常常會展示 JSON 的資料模型給使用者，你會發現，如果你的模式是正確地被建立的話，你的 UI（以及你的 component 結構）會很好的相互對應。這是因為 UI 和資料模型通常是遵守同樣的*資訊架構*，這意味著將你的 UI 拆成 component 通常是相當容易的。將 UI 分解成數個 component，每一個都明確代表著你的資料模型中的某一部份即可。
-=======
-But how do you know what should be its own component? Use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
-
-Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*. Separate your UI into components, where each component matches one piece of your data model.
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
 ![Component 架構圖](../images/blog/thinking-in-react-components.png)
 
-<<<<<<< HEAD
 你會看到在這裡我們應用程式中有五個 component。我們把每個 component 所代表的資料都斜體化了。
-=======
-You'll see here that we have five components in our app. We've italicized the data each component represents.
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
   1. **`FilterableProductTable`（橘色）：** 包含整個範例
   2. **`SearchBar`（藍色）：** 接收所有 *使用者的輸入*
@@ -61,11 +51,7 @@ You'll see here that we have five components in our app. We've italicized the da
 
 如果你看看 `ProductTable`，你會發現表格的標題列（內含「Name」和「Price」標籤 ）並非獨立的 component。要不要把它們變成 component 這個議題完全是個人的喜好，正反意見都有。在這邊的例子裡面，我們把它當作 `ProductTable` 的一部分，因為它是 rendering *資料集* 的一部分，而這正是 `ProductTable` 這個 component 的責任。然而，如果標題欄之後變得越來越複雜（也就是如果我們要加上可以分類的直觀功能的話），那麼建立一個獨立的 `ProductTableHeader` component 就非常合理。
 
-<<<<<<< HEAD
 既然我們已經找出視覺稿中的 component 了，讓我們來安排它們的層級。在視覺稿中，在另一個 component 中出現的 component 就應該是 child：
-=======
-Now that we've identified the components in our mock, let's arrange them into a hierarchy. Components that appear within another component in the mock should appear as a child in the hierarchy:
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
   * `FilterableProductTable`
     * `SearchBar`
@@ -84,15 +70,9 @@ Now that we've identified the components in our mock, let's arrange them into a 
 
 你可以從最上層開始，或從最下層開始。也就是說，你可以先從層級較高的 component 開始做起（也就是從 `FilterableProductTable` 開始），或者你也可以從比它低層級的（`ProductRow`）開始。在比較簡單的例子中，通常從上往下是比較簡單的。但在較為大型的專案中，從下往上、邊寫邊測試則比較容易。
 
-<<<<<<< HEAD
 在這一步的最後，你會有一個函式庫的可重複使用的 component 來 render 你的資料模型。這些 component 只會有 `render()` 方法，因為這是你應用程式的靜態版本。最高層級的 component (`FilterableProductTable`) 會接收你的資料模型作為 prop。如果你改變底層的資料模型並再次呼叫 `ReactDOM.render()` 的話，那麼 UI 就會被更新。你可以看到 UI 的更新方式以及更改的位置。React 的 **單向資料流**（也可稱為*單向綁定*）確保所有 component 都是模塊化且快速的。
 
 如果你需要幫助來執行這一步的話，請參考這份 [React 文件](/docs/)。
-=======
-At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `ReactDOM.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
-
-Refer to the [React docs](/docs/) if you need help executing this step.
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
 ### 簡短的插曲：Props 和 State {#a-brief-interlude-props-vs-state}
 
@@ -100,15 +80,9 @@ React 中有兩種「模型」資料： props and state。理解兩者的差別�
 
 ## 第三步：找出最少（但完整）的 UI State 的代表 {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
-<<<<<<< HEAD
 為了將你的 UI 變成有互動性，你需要有辦法觸發底層的資料模型做出改變。React 使用 **state** 把這件事實現了。
 
 為了正確地建立你的應用程式，你首先需要思考你的應用程式最少需要哪些可變的 state。這裡的關鍵是 [DRY：*避免重複代碼原則*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)。請找出你的應用程式所需的最少的呈現方式，並在你遇到其他東西時再計算它們。例如，如果你在建立一個待辦清單，使用一個可以用來代表待辦事項的 array。不要另外用一個獨立的 state 變數來追蹤數量。當你要 render 代辦事項的數量時，讀取待辦事項 array 的長度即可。
-=======
-To make your UI interactive, you need to be able to trigger changes to your underlying data model. React achieves this with **state**.
-
-To build your app correctly, you first need to think of the minimal set of mutable state that your app needs. The key here is [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Figure out the absolute minimal representation of the state your application needs and compute everything else you need on-demand. For example, if you're building a TODO list, keep an array of the TODO items around; don't keep a separate state variable for the count. Instead, when you want to render the TODO count, take the length of the TODO items array.
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
 思考我們範例中應用程式的所有資料。我們現在有：
 
@@ -117,11 +91,7 @@ To build your app correctly, you first need to think of the minimal set of mutab
   * checkbox 的值
   * 篩選過後的產品列表
 
-<<<<<<< HEAD
 讓我們來看一下每一個資料，並找出哪一個是 state。對於每一個資料，問你自己這三個問題：
-=======
-Let's go through each one and figure out which one is state. Ask three questions about each piece of data:
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
   1. 這個資料是從 parent 透過 props 傳下來的嗎？如果是的話，那它很可能不是 state。
   2. 這個資料是否一直保持不變呢？如果是的話，那它很可能不是 state。
@@ -144,17 +114,10 @@ OK，所以我們已經找出這個應用程式最少的 state 是哪些了。�
 
 在你的應用程式中的每個 state：
 
-<<<<<<< HEAD
   * 指出每個根據 state 來 render 某些東西的 component。
   * 找出一個共同擁有者 component（在層級中單一一個需要 state 的、在所有的 component 之上的 component）。
   * 應該擁有 state 的會是共同擁有者 component 或另一個更高層級的 component。
   * 如果你找不出一個應該擁有 state 的 component 的話，那就建立一個新的 component 來保持 state，並把它加到層級中共同擁有者 component 之上的某處。
-=======
-  * Identify every component that renders something based on that state.
-  * Find a common owner component (a single component above all the components that need the state in the hierarchy).
-  * Either the common owner or another component higher up in the hierarchy should own the state.
-  * If you can't find a component where it makes sense to own the state, create a new component solely for holding the state and add it somewhere in the hierarchy above the common owner component.
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
 讓我們來討論一下我們應用程式的這個策略：
 
@@ -172,23 +135,13 @@ OK，所以我們已經找出這個應用程式最少的 state 是哪些了。�
 
 到目前為止，我們已經建立了一個作為含有從層級由上往下傳 props 和 state 的、且可以正確 render 的 function 的應用程式。現在是時候支援另一種資料流的方向了：在層級深處的表格 component 需要更新 `FilterableProductTable` 的 state。
 
-<<<<<<< HEAD
 React 將這種資料流明確表示出來，以便讓你能更容易理解你的程式如何運作，但是這的確比傳統的雙向資料綁定需要打多一點字。
-=======
-React makes this data flow explicit to help you understand how your program works, but it does require a little more typing than traditional two-way data binding.
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
 如果你試著在範例目前的版本中印出或勾選 checkbox，你會看到 React 無視你的輸入。這是刻意的，因為我們把 `input` 的 `value` prop 設定為永遠和從 `FilterableProductTable` 傳下來的 `state` ㄧ樣。
 
 讓我們思考一下我們想要做些什麼。我們想確保當使用者改變這個表格時，我們會更新 state 以反映使用者的輸入。既然 component 只應該更新它自己本身的 state， `FilterableProductTable` 將會把 callback 傳給 `SearchBar`，而它們則會在 state 該被更新的時候被觸發。我們可以在輸入上使用 `onChange` 這個 event 來
 接收通知。被 `FilterableProductTable` 傳下來的 callback 則會呼叫 `setState()`，之後應用程式就會被更新。
 
-<<<<<<< HEAD
 ## 完成 {#and-thats-it}
 
 希望這幫助你理解如何用 React 建立 component 和應用程式。雖然這可能需要你比你習慣的多打一些程式碼，請記得閱讀程式碼比起寫程式碼更常發生，而閱讀這種模組化、清晰明確的程式碼是非常容易的。當你開始建立大型的 component 函式庫時，你會很感激有這樣的明確性和模組性，而當你開始重複使用程式碼時，你的程式的行數會開始減少。:)
-=======
-## And That's It {#and-thats-it}
-
-Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more than it's written, and it's less difficult to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
->>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
