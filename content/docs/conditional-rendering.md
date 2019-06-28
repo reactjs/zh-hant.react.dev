@@ -10,7 +10,7 @@ redirect_from:
 
 在 React 中，你可以建立不同的 component 來封裝你需要的行為。接著，你可以根據你的應用程式的 state，來 render 其中的一部份。
 
-React 中的條件 rendering 跟 JavaScript 一致。使用 JavaScript 中的運算子如 [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) 或者 [三元運算子](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 來建立表示當前 state 的 element，然後讓 React 根據它們來更新 UI。
+React 中的條件 rendering 跟 JavaScript 一致。使用 JavaScript 中的運算子如 [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) 或者 [三元運算子](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 來建立表示目前 state 的 element，然後讓 React 根據它們來更新 UI。
 
 先看以下兩個 component：
 

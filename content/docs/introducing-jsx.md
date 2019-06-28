@@ -1,6 +1,6 @@
 ---
 id: introducing-jsx
-title: 隆重介紹 JSX
+title: 介紹 JSX
 permalink: docs/introducing-jsx.html
 prev: hello-world.html
 next: rendering-elements.html
