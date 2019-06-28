@@ -1,13 +1,13 @@
 ---
 id: hooks-faq
-title: Hooks FAQ
+title: Hooks 常見問題
 permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hooks* 是 React 16.8 中增加的新功能。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
 
-This page answers some of the frequently asked questions about [Hooks](/docs/hooks-overview.html).
+這一頁會解答一些關於 [Hook](/docs/hooks-overview.html) 常見的問題。
 
 <!--
   if you ever need to regenerate this, this snippet in the devtools console might help:
@@ -18,48 +18,48 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
   ).join('\n')
 -->
 
-* **[Adoption Strategy](#adoption-strategy)**
-  * [Which versions of React include Hooks?](#which-versions-of-react-include-hooks)
-  * [Do I need to rewrite all my class components?](#do-i-need-to-rewrite-all-my-class-components)
-  * [What can I do with Hooks that I couldn't with classes?](#what-can-i-do-with-hooks-that-i-couldnt-with-classes)
-  * [How much of my React knowledge stays relevant?](#how-much-of-my-react-knowledge-stays-relevant)
-  * [Should I use Hooks, classes, or a mix of both?](#should-i-use-hooks-classes-or-a-mix-of-both)
-  * [Do Hooks cover all use cases for classes?](#do-hooks-cover-all-use-cases-for-classes)
-  * [Do Hooks replace render props and higher-order components?](#do-hooks-replace-render-props-and-higher-order-components)
-  * [What do Hooks mean for popular APIs like Redux connect() and React Router?](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
-  * [Do Hooks work with static typing?](#do-hooks-work-with-static-typing)
-  * [How to test components that use Hooks?](#how-to-test-components-that-use-hooks)
-  * [What exactly do the lint rules enforce?](#what-exactly-do-the-lint-rules-enforce)
-* **[From Classes to Hooks](#from-classes-to-hooks)**
-  * [How do lifecycle methods correspond to Hooks?](#how-do-lifecycle-methods-correspond-to-hooks)
-  * [How can I do data fetching with Hooks?](#how-can-i-do-data-fetching-with-hooks)
-  * [Is there something like instance variables?](#is-there-something-like-instance-variables)
-  * [Should I use one or many state variables?](#should-i-use-one-or-many-state-variables)
-  * [Can I run an effect only on updates?](#can-i-run-an-effect-only-on-updates)
-  * [How to get the previous props or state?](#how-to-get-the-previous-props-or-state)
-  * [Why am I seeing stale props or state inside my function?](#why-am-i-seeing-stale-props-or-state-inside-my-function)
-  * [How do I implement getDerivedStateFromProps?](#how-do-i-implement-getderivedstatefromprops)
-  * [Is there something like forceUpdate?](#is-there-something-like-forceupdate)
-  * [Can I make a ref to a function component?](#can-i-make-a-ref-to-a-function-component)
-  * [How can I measure a DOM node?](#how-can-i-measure-a-dom-node)
-  * [What does const [thing, setThing] = useState() mean?](#what-does-const-thing-setthing--usestate-mean)
-* **[Performance Optimizations](#performance-optimizations)**
-  * [Can I skip an effect on updates?](#can-i-skip-an-effect-on-updates)
-  * [Is it safe to omit functions from the list of dependencies?](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)
-  * [What can I do if my effect dependencies change too often?](#what-can-i-do-if-my-effect-dependencies-change-too-often)
-  * [How do I implement shouldComponentUpdate?](#how-do-i-implement-shouldcomponentupdate)
-  * [How to memoize calculations?](#how-to-memoize-calculations)
-  * [How to create expensive objects lazily?](#how-to-create-expensive-objects-lazily)
+* **[採用策略](#adoption-strategy)**
+  * [React 哪一個版本中包含 Hook？](#which-versions-of-react-include-hooks)
+  * [我需要重寫所有的 Class component 嗎？](#do-i-need-to-rewrite-all-my-class-components)
+  * [我可以在 Hook 做什麼是我在 Class 所不能做的？](#what-can-i-do-with-hooks-that-i-couldnt-with-classes)
+  * [Hook 與我的 React 知識有多少保持相關性？](#how-much-of-my-react-knowledge-stays-relevant)
+  * [我應該使用 Hook、Class，或是兩者兼具？](#should-i-use-hooks-classes-or-a-mix-of-both)
+  * [Hook 包含所有 Class 的使用情境嗎？](#do-hooks-cover-all-use-cases-for-classes)
+  * [Hook 可以取代 Render Props 和 Higher-Order Component 嗎？](#do-hooks-replace-render-props-and-higher-order-components)
+  * [Hook 對於 Redux connect() 和 React Router 等等其他流行的 API 意味著什麼？](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
+  * [Hook 可以使用靜態型別嗎？](#do-hooks-work-with-static-typing)
+  * [如何測試使用 Hook 的 component？](#how-to-test-components-that-use-hooks)
+  * [Lint 規則究竟強制了些什麼？](#what-exactly-do-the-lint-rules-enforce)
+* **[從 Class 到 Hook](#from-classes-to-hooks)**
+  * [生命週期方法與 Hook 如何對應？](#how-do-lifecycle-methods-correspond-to-hooks)
+  * [我如何使用 Hook fetch 資料？](#how-can-i-do-data-fetching-with-hooks)
+  * [是否有類似實例變數的東西？](#is-there-something-like-instance-variables)
+  * [我應該使用一個或是多個 state 變數？](#should-i-use-one-or-many-state-variables)
+  * [我可以只在更新時執行 effect 嗎？](#can-i-run-an-effect-only-on-updates)
+  * [如何取得先前的 prop 或 state？](#how-to-get-the-previous-props-or-state)
+  * [為什麼我在 function 內看到舊的 prop 或 state？](#why-am-i-seeing-stale-props-or-state-inside-my-function)
+  * [我該如何實作 getDerivedStateFromProps？](#how-do-i-implement-getderivedstatefromprops)
+  * [有類似 forceUpdate 的東西嗎？](#is-there-something-like-forceupdate)
+  * [我可以對 function component 建立一個 ref 嗎？](#can-i-make-a-ref-to-a-function-component)
+  * [我該如何測量一個 DOM node？](#how-can-i-measure-a-dom-node)
+  * [const [thing, setThing] = useState() 是什麼意思？](#what-does-const-thing-setthing--usestate-mean)
+* **[效能最佳化](#performance-optimizations)**
+  * [我可以在更新時忽略 effect 嗎？](#can-i-skip-an-effect-on-updates)
+  * [在依賴項目的列表中忽略 function 是安全的嗎？](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)
+  * [如果我的 effect 依賴項目經常變化的話該怎麼辦？](#what-can-i-do-if-my-effect-dependencies-change-too-often)
+  * [我該如何實作 shouldComponentUpdate？](#how-do-i-implement-shouldcomponentupdate)
+  * [如何 memoize 計算？](#how-to-memoize-calculations)
+  * [如何延遲建立 expensive 的 object？](#how-to-create-expensive-objects-lazily)
   * [Are Hooks slow because of creating functions in render?](#are-hooks-slow-because-of-creating-functions-in-render)
-  * [How to avoid passing callbacks down?](#how-to-avoid-passing-callbacks-down)
-  * [How to read an often-changing value from useCallback?](#how-to-read-an-often-changing-value-from-usecallback)
-* **[Under the Hood](#under-the-hood)**
-  * [How does React associate Hook calls with components?](#how-does-react-associate-hook-calls-with-components)
-  * [What is the prior art for Hooks?](#what-is-the-prior-art-for-hooks)
+  * [如何避免向下傳遞 callback？](#how-to-avoid-passing-callbacks-down)
+  * [如何從 useCallback 讀取一個經常變化的值？](#how-to-read-an-often-changing-value-from-usecallback)
+* **[深入理解](#under-the-hood)**
+  * [React 如何將 Hook 呼叫與 component 關聯？](#how-does-react-associate-hook-calls-with-components)
+  * [Hook 現有的技術是什麼？](#what-is-the-prior-art-for-hooks)
 
-## Adoption Strategy {#adoption-strategy}
+## 採用策略 {#adoption-strategy}
 
-### Which versions of React include Hooks? {#which-versions-of-react-include-hooks}
+### React 哪一個版本中包含 Hook？ {#which-versions-of-react-include-hooks}
 
 Starting with 16.8.0, React includes a stable implementation of React Hooks for:
 
@@ -73,37 +73,37 @@ Note that **to enable Hooks, all React packages need to be 16.8.0 or higher**. H
 
 [React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) and above support Hooks.
 
-### Do I need to rewrite all my class components? {#do-i-need-to-rewrite-all-my-class-components}
+### 我需要重寫所有的 Class component 嗎？ {#do-i-need-to-rewrite-all-my-class-components}
 
 No. There are [no plans](/docs/hooks-intro.html#gradual-adoption-strategy) to remove classes from React -- we all need to keep shipping products and can't afford rewrites. We recommend trying Hooks in new code.
 
-### What can I do with Hooks that I couldn't with classes? {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
+### 我可以在 Hook 做什麼是我在 Class 所不能做的？ {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
 
 Hooks offer a powerful and expressive new way to reuse functionality between components. ["Building Your Own Hooks"](/docs/hooks-custom.html) provides a glimpse of what's possible. [This article](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889) by a React core team member dives deeper into the new capabilities unlocked by Hooks.
 
-### How much of my React knowledge stays relevant? {#how-much-of-my-react-knowledge-stays-relevant}
+### Hook 與我的 React 知識有多少保持相關性？ {#how-much-of-my-react-knowledge-stays-relevant}
 
 Hooks are a more direct way to use the React features you already know -- such as state, lifecycle, context, and refs. They don't fundamentally change how React works, and your knowledge of components, props, and top-down data flow is just as relevant.
 
 Hooks do have a learning curve of their own. If there's something missing in this documentation, [raise an issue](https://github.com/reactjs/reactjs.org/issues/new) and we'll try to help.
 
-### Should I use Hooks, classes, or a mix of both? {#should-i-use-hooks-classes-or-a-mix-of-both}
+### 我應該使用 Hook、Class，或是兩者兼具？ {#should-i-use-hooks-classes-or-a-mix-of-both}
 
 When you're ready, we'd encourage you to start trying Hooks in new components you write. Make sure everyone on your team is on board with using them and familiar with this documentation. We don't recommend rewriting your existing classes to Hooks unless you planned to rewrite them anyway (e.g. to fix bugs).
 
 You can't use Hooks *inside* of a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
 
-### Do Hooks cover all use cases for classes? {#do-hooks-cover-all-use-cases-for-classes}
+### Hook 包含所有 Class 的使用情境嗎？ {#do-hooks-cover-all-use-cases-for-classes}
 
 Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
 
 It is an early time for Hooks, and some third-party libraries might not be compatible with Hooks at the moment.
 
-### Do Hooks replace render props and higher-order components? {#do-hooks-replace-render-props-and-higher-order-components}
+### Hook 可以取代 Render Props 和 Higher-Order Component 嗎？ {#do-hooks-replace-render-props-and-higher-order-components}
 
 Often, render props and higher-order components render only a single child. We think Hooks are a simpler way to serve this use case. There is still a place for both patterns (for example, a virtual scroller component might have a `renderItem` prop, or a visual container component might have its own DOM structure). But in most cases, Hooks will be sufficient and can help reduce nesting in your tree.
 
-### What do Hooks mean for popular APIs like Redux `connect()` and React Router? {#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router}
+### Hook 對於 Redux `connect()` 和 React Router 等等其他流行的 API 意味著什麼？ {#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router}
 
 You can continue to use the exact same APIs as you always have; they'll continue to work.
 
@@ -113,13 +113,13 @@ React Router [supports hooks](https://reacttraining.com/react-router/web/api/Hoo
 
 Other libraries might support hooks in the future too.
 
-### Do Hooks work with static typing? {#do-hooks-work-with-static-typing}
+### Hook 可以使用靜態型別嗎？ {#do-hooks-work-with-static-typing}
 
 Hooks were designed with static typing in mind. Because they're functions, they are easier to type correctly than patterns like higher-order components. The latest Flow and TypeScript React definitions include support for React Hooks.
 
 Importantly, custom Hooks give you the power to constrain React API if you'd like to type them more strictly in some way. React gives you the primitives, but you can combine them in different ways than what we provide out of the box.
 
-### How to test components that use Hooks? {#how-to-test-components-that-use-hooks}
+### 如何測試使用 Hook 的 component？ {#how-to-test-components-that-use-hooks}
 
 From React's point of view, a component using Hooks is just a regular component. If your testing solution doesn't rely on React internals, testing components with Hooks shouldn't be different from how you normally test components.
 
@@ -193,7 +193,7 @@ To reduce the boilerplate, we recommend using [React Testing Library](https://te
 
 For more information, check out [Testing Recipes](/docs/testing-recipes.html).
 
-### What exactly do the [lint rules](https://www.npmjs.com/package/eslint-plugin-react-hooks) enforce? {#what-exactly-do-the-lint-rules-enforce}
+### [Lint 規則]((https://www.npmjs.com/package/eslint-plugin-react-hooks))究竟強制了些什麼？ {#what-exactly-do-the-lint-rules-enforce}
 
 We provide an [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces [rules of Hooks](/docs/hooks-rules.html) to avoid bugs. It assumes that any function starting with "`use`" and a capital letter right after it is a Hook. We recognize this heuristic isn't perfect and there may be some false positives, but without an ecosystem-wide convention there is just no way to make Hooks work well -- and longer names will discourage people from either adopting Hooks or following the convention.
 
@@ -204,9 +204,9 @@ In particular, the rule enforces that:
 
 There are a few more heuristics, and they might change over time as we fine-tune the rule to balance finding bugs with avoiding false positives.
 
-## From Classes to Hooks {#from-classes-to-hooks}
+## 從 Class 到 Hook {#from-classes-to-hooks}
 
-### How do lifecycle methods correspond to Hooks? {#how-do-lifecycle-methods-correspond-to-hooks}
+### 生命週期方法與 Hook 如何對應？ {#how-do-lifecycle-methods-correspond-to-hooks}
 
 * `constructor`: Function components don't need a constructor. You can initialize the state in the [`useState`](/docs/hooks-reference.html#usestate) call. If computing the initial state is expensive, you can pass a function to `useState`.
 
@@ -220,11 +220,11 @@ There are a few more heuristics, and they might change over time as we fine-tune
 
 * `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
 
-### How can I do data fetching with Hooks? {#how-can-i-do-data-fetching-with-hooks}
+### 我如何使用 Hook fetch 資料？ {#how-can-i-do-data-fetching-with-hooks}
 
 Here is a [small demo](https://codesandbox.io/s/jvvkoo8pq3) to get you started. To learn more, check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) about data fetching with Hooks.
 
-### Is there something like instance variables? {#is-there-something-like-instance-variables}
+### 是否有類似實例變數的東西？ {#is-there-something-like-instance-variables}
 
 Yes! The [`useRef()`](/docs/hooks-reference.html#useref) Hook isn't just for DOM refs. The "ref" object is a generic container whose `current` property is mutable and can hold any value, similar to an instance property on a class.
 
@@ -260,7 +260,7 @@ If we just wanted to set an interval, we wouldn't need the ref (`id` could be lo
 
 Conceptually, you can think of refs as similar to instance variables in a class. Unless you're doing [lazy initialization](#how-to-create-expensive-objects-lazily), avoid setting refs during rendering -- this can lead to surprising behavior. Instead, typically you want to modify refs in event handlers and effects.
 
-### Should I use one or many state variables? {#should-i-use-one-or-many-state-variables}
+### 我應該使用一個或是多個 state 變數？ {#should-i-use-one-or-many-state-variables}
 
 If you're coming from classes, you might be tempted to always call `useState()` once and put all state into a single object. You can do it if you'd like. Here is an example of a component that follows the mouse movement. We keep its position and size in the local state:
 
@@ -327,11 +327,11 @@ Note how we were able to move the `useState` call for the `position` state varia
 
 Both putting all state in a single `useState` call, and having a `useState` call per each field can work. Components tend to be most readable when you find a balance between these two extremes, and group related state into a few independent state variables. If the state logic becomes complex, we recommend [managing it with a reducer](/docs/hooks-reference.html#usereducer) or a custom Hook.
 
-### Can I run an effect only on updates? {#can-i-run-an-effect-only-on-updates}
+### 我可以只在更新時執行 effect 嗎？ {#can-i-run-an-effect-only-on-updates}
 
 This is a rare use case. If you need it, you can [use a mutable ref](#is-there-something-like-instance-variables) to manually store a boolean value corresponding to whether you are on the first or a subsequent render, then check that flag in your effect. (If you find yourself doing this often, you could create a custom Hook for it.)
 
-### How to get the previous props or state? {#how-to-get-the-previous-props-or-state}
+### 如何取得先前的 prop 或 state？ {#how-to-get-the-previous-props-or-state}
 
 Currently, you can do it manually [with a ref](#is-there-something-like-instance-variables):
 
@@ -382,7 +382,7 @@ It's possible that in the future React will provide a `usePrevious` Hook out of 
 
 See also [the recommended pattern for derived state](#how-do-i-implement-getderivedstatefromprops).
 
-### Why am I seeing stale props or state inside my function? {#why-am-i-seeing-stale-props-or-state-inside-my-function}
+### 為什麼我在 function 內看到舊的 prop 或 state？ {#why-am-i-seeing-stale-props-or-state-inside-my-function}
 
 Any function inside a component, including event handlers and effects, "sees" the props and state from the render it was created in. For example, consider code like this:
 
@@ -420,7 +420,7 @@ Finally, another possible reason you're seeing stale props or state is if you us
 >
 >We provide an [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ESLint rule as a part of the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
 
-### How do I implement `getDerivedStateFromProps`? {#how-do-i-implement-getderivedstatefromprops}
+### 我該如何實作 getDerivedStateFromProps？ {#how-do-i-implement-getderivedstatefromprops}
 
 While you probably [don't need it](/blog/2018/06/07/you-probably-dont-need-derived-state.html), in rare cases that you do (such as implementing a `<Transition>` component), you can update the state right during rendering. React will re-run the component with updated state immediately after exiting the first render so it wouldn't be expensive.
 
@@ -443,7 +443,7 @@ function ScrollView({row}) {
 
 This might look strange at first, but an update during rendering is exactly what `getDerivedStateFromProps` has always been like conceptually.
 
-### Is there something like forceUpdate? {#is-there-something-like-forceupdate}
+### 有類似 forceUpdate 的東西嗎？ {#is-there-something-like-forceupdate}
 
 Both `useState` and `useReducer` Hooks [bail out of updates](/docs/hooks-reference.html#bailing-out-of-a-state-update) if the next value is the same as the previous one. Mutating state in place and calling `setState` will not cause a re-render.
 
@@ -459,11 +459,11 @@ Normally, you shouldn't mutate local state in React. However, as an escape hatch
 
 Try to avoid this pattern if possible.
 
-### Can I make a ref to a function component? {#can-i-make-a-ref-to-a-function-component}
+### 我可以對 function component 建立一個 ref 嗎？ {#can-i-make-a-ref-to-a-function-component}
 
 While you shouldn't need this often, you may expose some imperative methods to a parent component with the [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) Hook.
 
-### How can I measure a DOM node? {#how-can-i-measure-a-dom-node}
+### 我該如何測量一個 DOM node？ {#how-can-i-measure-a-dom-node}
 
 In order to measure the position or size of a DOM node, you can use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
 
@@ -517,18 +517,18 @@ function useClientRect() {
 ```
 
 
-### What does `const [thing, setThing] = useState()` mean? {#what-does-const-thing-setthing--usestate-mean}
+### `const [thing, setThing] = useState()` 是什麼意思？ {#what-does-const-thing-setthing--usestate-mean}
 
 If you're not familiar with this syntax, check out the [explanation](/docs/hooks-state.html#tip-what-do-square-brackets-mean) in the State Hook documentation.
 
 
-## Performance Optimizations {#performance-optimizations}
+## 效能最佳化 {#performance-optimizations}
 
-### Can I skip an effect on updates? {#can-i-skip-an-effect-on-updates}
+### 我可以在更新時忽略 effect 嗎？ {#can-i-skip-an-effect-on-updates}
 
 Yes. See [conditionally firing an effect](/docs/hooks-reference.html#conditionally-firing-an-effect). Note that forgetting to handle updates often [introduces bugs](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update), which is why this isn't the default behavior.
 
-### Is it safe to omit functions from the list of dependencies? {#is-it-safe-to-omit-functions-from-the-list-of-dependencies}
+### 在依賴項目的列表中忽略 function 是安全的嗎？ {#is-it-safe-to-omit-functions-from-the-list-of-dependencies}
 
 Generally speaking, no.
 
@@ -667,7 +667,7 @@ function ProductDetails({ fetchProduct }) {
 
 Note that in the above example we **need** to keep the function in the dependencies list. This ensures that a change in the `productId` prop of `ProductPage` automatically triggers a refetch in the `ProductDetails` component.
 
-### What can I do if my effect dependencies change too often? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
+### 如果我的 effect 依賴項目經常變化的話該怎麼辦？ {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
 Sometimes, your effect may be using state that changes too often. You might be tempted to omit that state from a list of dependencies, but that usually leads to bugs:
 
@@ -735,7 +735,7 @@ function Example(props) {
 
 Only do this if you couldn't find a better alternative, as relying on mutation makes components less predictable. If there's a specific pattern that doesn't translate well, [file an issue](https://github.com/facebook/react/issues/new) with a runnable example code and we can try to help.
 
-### How do I implement `shouldComponentUpdate`? {#how-do-i-implement-shouldcomponentupdate}
+### 我該如何實作 shouldComponentUpdate？ {#how-do-i-implement-shouldcomponentupdate}
 
 You can wrap a function component with `React.memo` to shallowly compare its props:
 
@@ -749,7 +749,7 @@ It's not a Hook because it doesn't compose like Hooks do. `React.memo` is equiva
 
 `React.memo` doesn't compare state because there is no single state object to compare. But you can make children pure too, or even [optimize individual children with `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations).
 
-### How to memoize calculations? {#how-to-memoize-calculations}
+### 如何 memoize 計算？ {#how-to-memoize-calculations}
 
 The [`useMemo`](/docs/hooks-reference.html#usememo) Hook lets you cache calculations between multiple renders by "remembering" the previous computation:
 
@@ -782,7 +782,7 @@ function Parent({ a, b }) {
 
 Note that this approach won't work in a loop because Hook calls [can't](/docs/hooks-rules.html) be placed inside loops. But you can extract a separate component for the list item, and call `useMemo` there.
 
-### How to create expensive objects lazily? {#how-to-create-expensive-objects-lazily}
+### 如何延遲建立 expensive 的 object？ {#how-to-create-expensive-objects-lazily}
 
 `useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the dependencies are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes you need to be sure an object is only created once.
 
@@ -865,7 +865,7 @@ Traditionally, performance concerns around inline functions in React have been r
 
 * Finally, the [`useReducer`](/docs/hooks-reference.html#usereducer) Hook reduces the need to pass callbacks deeply, as explained below.
 
-### How to avoid passing callbacks down? {#how-to-avoid-passing-callbacks-down}
+### 如何避免向下傳遞 callback？ {#how-to-avoid-passing-callbacks-down}
 
 We've found that most people don't enjoy manually passing callbacks through every level of a component tree. Even though it is more explicit, it can feel like a lot of "plumbing".
 
@@ -907,7 +907,7 @@ This is both more convenient from the maintenance perspective (no need to keep f
 
 Note that you can still choose whether to pass the application *state* down as props (more explicit) or as context (more convenient for very deep updates). If you use context to pass down the state too, use two different context types -- the `dispatch` context never changes, so components that read it don't need to rerender unless they also need the application state.
 
-### How to read an often-changing value from `useCallback`? {#how-to-read-an-often-changing-value-from-usecallback}
+### 如何從 `useCallback` 讀取一個經常變化的值？ {#how-to-read-an-often-changing-value-from-usecallback}
 
 >Note
 >
@@ -977,15 +977,15 @@ function useEventCallback(fn, dependencies) {
 In either case, we **don't recommend this pattern** and only show it here for completeness. Instead, it is preferable to [avoid passing callbacks deep down](#how-to-avoid-passing-callbacks-down).
 
 
-## Under the Hood {#under-the-hood}
+## 深入理解 {#under-the-hood}
 
-### How does React associate Hook calls with components? {#how-does-react-associate-hook-calls-with-components}
+### React 如何將 Hook 呼叫與 component 關聯？ {#how-does-react-associate-hook-calls-with-components}
 
 React keeps track of the currently rendering component. Thanks to the [Rules of Hooks](/docs/hooks-rules.html), we know that Hooks are only called from React components (or custom Hooks -- which are also only called from React components).
 
 There is an internal list of "memory cells" associated with each component. They're just JavaScript objects where we can put some data. When you call a Hook like `useState()`, it reads the current cell (or initializes it during the first render), and then moves the pointer to the next one. This is how multiple `useState()` calls each get independent local state.
 
-### What is the prior art for Hooks? {#what-is-the-prior-art-for-hooks}
+### Hook 現有的技術是什麼？ {#what-is-the-prior-art-for-hooks}
 
 Hooks synthesize ideas from several different sources:
 
