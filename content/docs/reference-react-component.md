@@ -19,7 +19,7 @@ redirect_from:
 
 ## 概觀 {#overview}
 
-在 React 中，你可以將 component 定義成 class 或 function。目前，被定義為 class 的 component 提供更多了功能，我們將會在本章節中逐一介紹。要定義一個 React component class，你需要繼承（extend）`React.Component`：
+在 React 中，你可以將 component 定義成 class 或 function。目前，被定義為 class 的 component 提供了更多功能，我們將會在本章節中逐一介紹。要定義一個 React component class，你需要繼承（extend）`React.Component`：
 
 ```js
 class Welcome extends React.Component {
@@ -143,47 +143,47 @@ render()
 constructor(props)
 ```
 
-**If you don't initialize state and you don't bind methods, you don't need to implement a constructor for your React component.**
+**如果你沒有初始化 state 也不綁定方法的話，你的 React component 就不需要 constructor。**
 
-The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs.
+一個 React component 的 constructor 會在其被 mount 之前被呼叫。當你為一個 `React.Component` subclass 建立 constructor 時，你應該在其他任何宣告之前呼叫 `super(props)`。否則，`this.props` 在 constructor 中的值會出現 undefined 的 bug。
 
 Typically, in React constructors are only used for two purposes:
 
-* Initializing [local state](/docs/state-and-lifecycle.html) by assigning an object to `this.state`.
-* Binding [event handler](/docs/handling-events.html) methods to an instance.
+* 透過指定（assign） `this.state`為一個物件來初始化[內部 state](/docs/state-and-lifecycle.html)。
+* 為[event handler](/docs/handling-events.html) 方法綁定實例。
 
-You **should not call `setState()`** in the `constructor()`. Instead, if your component needs to use local state, **assign the initial state to `this.state`** directly in the constructor:
+請**不要在 `constructor()` 中呼叫`setState()`**。如果你的 component 需要使用內部 state，請在 constructor 中**將其最初的 state 指定為 `this.state`**：
 
 ```js
 constructor(props) {
   super(props);
-  // Don't call this.setState() here!
+  // 不要在這裏呼叫 this.setState()！
   this.state = { counter: 0 };
   this.handleClick = this.handleClick.bind(this);
 }
 ```
 
-Constructor is the only place where you should assign `this.state` directly. In all other methods, you need to use `this.setState()` instead.
+Constructor 是唯一一個你應該直接指定 `this.state` 的地方。在所有其他的方法中，你則需要使用 `this.setState()`。
 
-Avoid introducing any side-effects or subscriptions in the constructor. For those use cases, use `componentDidMount()` instead.
+請避免在 constructor 中產生任何副作用或 subscription。如果你需要它們的話，請使用 `componentDidMount()`。
 
->Note
+>注意：
 >
->**Avoid copying props into state! This is a common mistake:**
+>**請避免複製 prop 在 state 之中！這是一個很常見的錯誤：**
 >
 >```js
 >constructor(props) {
 >  super(props);
->  // Don't do this!
+>  // 請不要這樣做！
 >  this.state = { color: props.color };
 >}
 >```
 >
->The problem is that it's both unnecessary (you can use `this.props.color` directly instead), and creates bugs (updates to the `color` prop won't be reflected in the state).
+>這樣做的問題是：一來這毫無必要（你可以直接用 `this.props.color`），二來這會產生 bug（任何改變對 `color` prop 所產生的更新都不會出現在 state 中）。
 >
->**Only use this pattern if you intentionally want to ignore prop updates.** In that case, it makes sense to rename the prop to be called `initialColor` or `defaultColor`. You can then force a component to "reset" its internal state by [changing its `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) when necessary.
+>**請在只有在你刻意要忽略 prop 更新的情況下才使用這個模式。** 在這種情況下，比較合理的做法是將 prop 重新命名為 `initialColor` 或 `defaultColor`。如此一來，你可以在必要的情況下透過[修改一個 component 的 `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) 來強迫它「重置」其初始的 state。
 >
->Read our [blog post on avoiding derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html) to learn about what to do if you think you need some state to depend on the props.
+>若想知道如何處理 state 依賴 prop 的情況，請參考我們 [關於避免 derived state 的部落格文章](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
 
 * * *
