@@ -15,9 +15,9 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
+本頁包含了 React component class 的詳細 API 參考。我們假設你對 React 的基本概念已十分熟悉，例如 [Component 和 Prop](/docs/components-and-props.html) 以及 [State 和 生命週期](/docs/state-and-lifecycle.html)。如果你對這些概念還不清楚，請先閱讀相關文件。
 
-## Overview {#overview}
+## 概觀 {#overview}
 
 React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
 
