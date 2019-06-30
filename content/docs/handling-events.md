@@ -66,7 +66,7 @@ class Toggle extends React.Component {
     super(props);
     this.state = {isToggleOn: true};
 
-    // 為了讓 `this` 能在 callback 中被使用，這裡的 binding 是必要的：
+    // 為了讓 `this` 能在 callback 中被使用，這裡的綁定是必要的：
     this.handleClick = this.handleClick.bind(this);
   }
 
