@@ -29,7 +29,7 @@ class Welcome extends React.Component {
 }
 ```
 
-在 `React.Component` 的 subclass 中唯一一個你*必須*定義的方法是[`render()`](#render)。本章節中所有其他的方法都並非強制性的。
+在 `React.Component` 的 subclass 中唯一一個你*必須*定義的方法是[`render()`](#render)。本章節中所有其他的方法都並非絕對必要。
 
 **我們強烈建議你不要建立自己的 base component class。** 在 React component 中，[程式的重複使用性主要是透過組合而非繼承來完成的](/docs/composition-vs-inheritance.html)。
 
@@ -105,11 +105,11 @@ class Welcome extends React.Component {
 
 * * *
 
-## Reference {#reference}
+## 參考指南 {#reference}
 
-### Commonly Used Lifecycle Methods {#commonly-used-lifecycle-methods}
+### 常用的生命周期方法 {#commonly-used-lifecycle-methods}
 
-The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+此段落將會介紹你在建立 React component 時最可能會使用到的幾種方法。**想更深入了解生命週期方法，請參考[生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)。**
 
 ### `render()` {#render}
 
@@ -117,23 +117,23 @@ The methods in this section cover the vast majority of use cases you'll encounte
 render()
 ```
 
-The `render()` method is the only required method in a class component.
+`render()` 是 class component 中唯一必要的方法。
 
-When called, it should examine `this.props` and `this.state` and return one of the following types:
+當 render 被呼叫時，它將會檢視 `this.props` 和 `this.state` 中的變化，並返回以下類別之一：
 
-- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). For example, `<div />` and `<MyComponent />` are React elements that instruct React to render a DOM node, or another user-defined component, respectively.
-- **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
-- **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
-- **String and numbers.** These are rendered as text nodes in the DOM.
-- **Booleans or `null`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean.)
+- **React elements。** 通常是透過 [JSX](/docs/introducing-jsx.html) 創立的。例如，`<div />`和`<MyComponent />`這兩個 React element 會告訴 React 要 render 一個 DOM node 和一個使用者定義的 component。
+- **Arrays and fragments。** 它們會從 render 中返回數個 element。細節請參考[fragments](/docs/fragments.html)。
+- **Portals**。它們讓你將 children render 到不同的 DOM 子樹中。細節請參考[portals](/docs/portals.html)。
+- **String and numbers。** 這些在 DOM 中將會被 render 為文本 node。
+- **Booleans or `null`**。什麼都不 render。（此類型主要是支援 `返回 test && <Child />` 的模式，這裡的 `test` 是一個 boolean 值）。
 
-The `render()` function should be pure, meaning that it does not modify component state, it returns the same result each time it's invoked, and it does not directly interact with the browser.
+`render()` function 應為純函數（pure function），這表示：它並不會改變 component 的 state，它在每次呼叫時都會返回同樣的結果，它並不會直接和瀏覽器有所互動。
 
-If you need to interact with the browser, perform your work in `componentDidMount()` or the other lifecycle methods instead. Keeping `render()` pure makes components easier to think about.
+如果你需要和瀏覽器互動，請在 `componentDidMount()` 或其他的生命週期方法內運行你的程序。將 `render()` 維持在純函式的狀態有助於你對 component 的理解。
 
-> Note
+> 注意：
 >
-> `render()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> 若  [`shouldComponentUpdate()`](#shouldcomponentupdate) 返回的值為 `false` 的話，`render()`將不會被呼叫。
 
 * * *
 
