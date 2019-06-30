@@ -15,11 +15,11 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-本頁包含了 React component class 的詳細 API 參考。我們假設你對 React 的基本概念已十分熟悉，例如 [Component 和 Prop](/docs/components-and-props.html) 以及 [State 和 生命週期](/docs/state-and-lifecycle.html)。如果你對這些概念還不清楚，請先閱讀相關文件。
+本章節包含了 React component class 的詳細 API 參考。我們假設你對 React 的基本概念已十分熟悉，例如 [Component 和 Prop](/docs/components-and-props.html) 以及 [State 和 生命週期](/docs/state-and-lifecycle.html)。如果你對這些概念還不清楚，請先閱讀相關文件。
 
 ## 概觀 {#overview}
 
-React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
+在 React 中，你可以將 component 定義成 class 或 function。目前，被定義為 class 的 component 提供更多了功能，我們將會在本章節中逐一介紹。要定義一個 React component class，你需要繼承（extend）`React.Component`：
 
 ```js
 class Welcome extends React.Component {
@@ -29,30 +29,30 @@ class Welcome extends React.Component {
 }
 ```
 
-The only method you *must* define in a `React.Component` subclass is called [`render()`](#render). All the other methods described on this page are optional.
+在 `React.Component` 的 subclass 中唯一一個你*必須*定義的方法是[`render()`](#render)。本章節中所有其他的方法都並非強制性的。
 
-**We strongly recommend against creating your own base component classes.** In React components, [code reuse is primarily achieved through composition rather than inheritance](/docs/composition-vs-inheritance.html).
+**我們強烈建議你不要建立自己的 base component class。** 在 React component 中，[程式的重複使用性主要是透過組合而非繼承來完成的](/docs/composition-vs-inheritance.html)。
 
->Note:
+>注意：
 >
->React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
+>React 並不會強迫你使用 ES6 class 語法。如果你想避免它的話，你可以使用 `create-react-class` 或一個類似的客製化的 abstraction。想了解更多詳情，請參考[如何在 React 中不使用 ES6](/docs/react-without-es6.html)一文。
 
-### The Component Lifecycle {#the-component-lifecycle}
+### Component 生命週期 {#the-component-lifecycle}
 
-Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+每一個 component 都有數個 「生命週期方法」，你可以[覆蓋（override）](https://en.wikipedia.org/wiki/Method_overriding)這些方法，以便在開發過程中某些特定的時刻運行某些程式。 **你可以使用[這個生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)作為速查表。** 以下，常用的生命週期方法將會以粗體表達。其餘的生命週期方法則相對罕見。
 
 #### Mounting {#mounting}
 
-These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
+當一個 component 的實例被建立且加入 DOM 中時，其生命週期將會依照下列的順序呼叫這些方法：
 
 - [**`constructor()`**](#constructor)
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [**`render()`**](#render)
 - [**`componentDidMount()`**](#componentdidmount)
 
->Note:
+>注意：
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>下列方法已過時，你在寫新程式是應[避免使用](/blog/2018/03/27/update-on-async-rendering.html)：
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
