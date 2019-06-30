@@ -52,13 +52,13 @@ class Welcome extends React.Component {
 
 >注意：
 >
->下列方法已過時，你在寫新程式是應[避免使用](/blog/2018/03/27/update-on-async-rendering.html)：
+>下列方法已過時，你在寫新程式應[避免使用](/blog/2018/03/27/update-on-async-rendering.html)：
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
-#### Updating {#updating}
+#### 更新 {#updating}
 
-An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
+當 prop 或 state 有變化時，就會產生更新。當一個 component 被重新 render 時，其生命週期將會依照下列的順序呼叫這些方法：
 
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [`shouldComponentUpdate()`](#shouldcomponentupdate)
@@ -66,39 +66,39 @@ An update can be caused by changes to props or state. These methods are called i
 - [`getSnapshotBeforeUpdate()`](#getsnapshotbeforeupdate)
 - [**`componentDidUpdate()`**](#componentdidupdate)
 
->Note:
+>注意：
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>下列方法已過時，你在寫新程式應[避免使用](/blog/2018/03/27/update-on-async-rendering.html)：
 >
 >- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
 >- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
 #### Unmounting {#unmounting}
 
-This method is called when a component is being removed from the DOM:
+當一個 component 被從 DOM 中移除時，這個方法將會被呼叫：
 
 - [**`componentWillUnmount()`**](#componentwillunmount)
 
-#### Error Handling {#error-handling}
+#### 錯誤處理 {#error-handling}
 
-These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+當一個 component 在 render 的過程、生命週期、或在某個子 component 的 constructor 中發生錯誤時，這些方法會被呼叫：
 
 - [`static getDerivedStateFromError()`](#static-getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
 
-### Other APIs {#other-apis}
+### 其他 APIs {#other-apis}
 
-Each component also provides some other APIs:
+每個 component 也提供了其他 API：
 
   - [`setState()`](#setstate)
   - [`forceUpdate()`](#forceupdate)
 
-### Class Properties {#class-properties}
+### Class 屬性 {#class-properties}
 
   - [`defaultProps`](#defaultprops)
   - [`displayName`](#displayname)
 
-### Instance Properties {#instance-properties}
+### Instance 屬性 {#instance-properties}
 
   - [`props`](#props)
   - [`state`](#state)
