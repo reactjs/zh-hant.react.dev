@@ -8,7 +8,7 @@ prev: hooks-effect.html
 
 *Hook* 是 React 16.8 新加入的功能，它們讓你可以不用寫 class 就能使用 state 與其他 React 的功能。
 
-Hook 是 JavaScript function，但你在使用他們時需要遵守兩個規則。 我們提供了一個 [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) 來自動化地實行這些規則：
+Hook 是 JavaScript function，當你使用它們時需要遵守兩個規則。 我們提供了一個 [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) 來自動化地實行這些規則：
 
 ### 只在最上層呼叫 Hook {#only-call-hooks-at-the-top-level}
 
