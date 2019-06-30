@@ -1,6 +1,6 @@
 ---
 id: hooks-rules
-title: Hook 規則
+title: Hook 的規則
 permalink: docs/hooks-rules.html
 next: hooks-custom.html
 prev: hooks-effect.html
