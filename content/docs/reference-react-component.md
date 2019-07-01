@@ -194,9 +194,9 @@ Constructor 是唯一一個你應該直接指定 `this.state` 的地方。在所
 componentDidMount()
 ```
 
-在一個 component 被 mounted（加入 DOM tree 中）後，`componentDidMount()` 會馬上被呼叫。需要 DOM node 的初始化應該寫在這個方法裡面。如果你需要從遠端終端點（remote endpoint）請求資料的話, 這裡是實例化網路請求（network request）的好地方。
+在一個 component 被 mounted（加入 DOM tree 中）後，`componentDidMount()` 會馬上被呼叫。需要 DOM node 的初始化應該寫在這個方法裡面。如果你需要從遠端終端點（remote endpoint）請求資料的話, 此處非常適合進行實例化網路請求（network request）。
 
-這個方法是一個設立任何 subscription 的好地方。設立完 subscription 後，別忘了在 `componentWillUnmount()` 內取消 subscription。
+這個方法適合設立任何 subscription。設立完 subscription 後，別忘了在 `componentWillUnmount()` 內取消 subscription。
 
 你 **可以馬上在 `componentDidMount()` 內呼叫 `setState()`。** 這會觸發一次額外的 render，但這會在瀏覽器更新螢幕之前發生。在這個情況下，即使 `render()` 被呼叫兩次，這確保使用者不會看見中間的 state。請謹慎使用這個模式，因為這經常會導致性能問題。在大多數情況下，你應該能夠在  `constructor()` 內指定初始 state 的值。不過，在某些情況下，像是在使用 modal 和 tooltip 的時候，你所 render 的 component 若是依賴某個 DOM node 的大小或位置時，這種模式有時候可能是有必要的。
 
@@ -208,26 +208,26 @@ componentDidMount()
 componentDidUpdate(prevProps, prevState, snapshot)
 ```
 
-`componentDidUpdate()` is invoked immediately after updating occurs. This method is not called for the initial render.
+`componentDidUpdate()` 會在更新後馬上被呼叫。這個方法並不會在初次 render 時被呼叫。
 
-Use this as an opportunity to operate on the DOM when the component has been updated. This is also a good place to do network requests as long as you compare the current props to previous props (e.g. a network request may not be necessary if the props have not changed).
+在 component 更新之後，可以在此處對 DOM 進行運作。此處也適合做網路請求，如果你有比較目前的 prop 和之前的 prop 的話（如果 prop 沒有改變的話，網路請求可能並非必要）。
 
 ```js
 componentDidUpdate(prevProps) {
-  // Typical usage (don't forget to compare props):
+  // 常見用法（別忘了比較 prop）：
   if (this.props.userID !== prevProps.userID) {
     this.fetchData(this.props.userID);
   }
 }
 ```
 
-You **may call `setState()` immediately** in `componentDidUpdate()` but note that **it must be wrapped in a condition** like in the example above, or you'll cause an infinite loop. It would also cause an extra re-rendering which, while not visible to the user, can affect the component performance. If you're trying to "mirror" some state to a prop coming from above, consider using the prop directly instead. Read more about [why copying props into state causes bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+你 **可以馬上在 `componentDidUpdate()` 內呼叫 `setState()`**，但注意這必須要被包圍在一個類似上述範例的條件語句內，否則你會進入一個無限迴圈。這也會導致額外的重新 render。雖然使用者看不見，但這可能會影響 component 的性能。如果你想試著將某些 state 複製到由上往下傳的 prop 的話，請考慮直接使用 prop。請參考[為何複製 prop 到 state 中會產生 bug](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
-If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is rare), the value it returns will be passed as a third "snapshot" parameter to `componentDidUpdate()`. Otherwise this parameter will be undefined.
+如果你的 component 裡面有 `getSnapshotBeforeUpdate()` 這個很少見的生命週期方法，其返回的值將會被當作第三個 「snapshot」 參數傳給 `componentDidUpdate()`。否則這個參數會是 undefined。
 
-> Note
+> 注意：
 >
-> `componentDidUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> 如果 [`shouldComponentUpdate()`](#shouldcomponentupdate) 返回的值為 false 的話，`componentDidUpdate()` 將不會被呼叫。
 
 * * *
 
