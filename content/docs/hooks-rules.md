@@ -8,7 +8,7 @@ prev: hooks-effect.html
 
 *Hook* 是 React 16.8 新加入的功能，它們讓你可以不用寫 class 就能使用 state 與其他 React 的功能。
 
-Hook 是 JavaScript function，當你使用它們時需要遵守兩個規則。 我們提供了一個 [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) 來自動化地實行這些規則：
+Hook 是 JavaScript function，當你使用它們時需要遵守兩個規則。我們提供了一個 [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) 來自動化地實行這些規則：
 
 ### 只在最上層呼叫 Hook {#only-call-hooks-at-the-top-level}
 
@@ -48,7 +48,7 @@ npm install eslint-plugin-react-hooks --save-dev
 
 在未來，我們打算在 Create React App 和相關的 toolkit 中將這個套件設為預設。
 
-**你現在可以先跳過，下一頁將解釋如何撰寫[你自己的 Hooks](/docs/hooks-custom.html)。** 在這頁，我們將會繼續解釋這些規則背後的原因。
+**你現在可以先跳過，下一頁將解釋如何打造[你自己的 Hook](/docs/hooks-custom.html)。**在這頁，我們將會繼續解釋這些規則背後的原因。
 
 ## 解說 {#explanation}
 
@@ -67,7 +67,7 @@ function Form() {
   // 3. 使用 surname state 變數
   const [surname, setSurname] = useState('Poppins');
 
-  // 4. 使用一個 effect 來更新 title
+  // 4. 使用一個 effect 來更新標題
   useEffect(function updateTitle() {
     document.title = name + ' ' + surname;
   });
@@ -85,7 +85,7 @@ function Form() {
 useState('Mary')           // 1. 用 'Mary' 來初始化 name state 變數 
 useEffect(persistForm)     // 2. 增加一個 effect 來保存表單
 useState('Poppins')        // 3. 用 'Poppins' 來初始化 surname state 變數
-useEffect(updateTitle)     // 4. 增加一個 effect 來更新 title
+useEffect(updateTitle)     // 4. 增加一個 effect 來更新標題
 
 // -------------
 // 第二次 render
@@ -93,7 +93,7 @@ useEffect(updateTitle)     // 4. 增加一個 effect 來更新 title
 useState('Mary')           // 1. 讀取 name state 變數 (參數被忽略了)
 useEffect(persistForm)     // 2. 替換了用來保存表單的 effect
 useState('Poppins')        // 3. 讀取 surname state 變數 (參數被忽略了)
-useEffect(updateTitle)     // 4. 替換了用來更新 title 的 effect
+useEffect(updateTitle)     // 4. 替換了用來更新標題的 effect
 
 // ...
 ```
@@ -101,7 +101,7 @@ useEffect(updateTitle)     // 4. 替換了用來更新 title 的 effect
 只要 Hook 在 render 時被呼叫的順序是一致的，React 可以將一些 local state 和它們一一聯繫在一起。但如果我們把一個 Hook 呼叫（例如，`persistForm` effect）放在條件式中會發生什麼事呢？
 
 ```js
-  // 🔴 我們違反了第一個規則，在 condition 中使用 Hook
+  // 🔴 我們違反了第一個規則，在條件式中使用 Hook
   if (name !== '') {
     useEffect(function persistForm() {
       localStorage.setItem('formData', name);
