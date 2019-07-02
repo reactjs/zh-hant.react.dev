@@ -149,6 +149,6 @@ class LoggingButton extends React.Component {
 <button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
 ```
 
-以上這兩行程式是相同的。一個使用 [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，另一個則使用了[`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind)。
+以上這兩行程式是相同的。一個使用 [arrow functions](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，另一個則使用了[`Function.prototype.bind`](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_objects/Function/bind)。
 
 以這兩個例子來說，`e` 這個 argument 所代表的 React 事件將會被當作 ID 之後的第二個 argument 被傳遞下去。在使用 arrow function 時，我們必須明確地將它傳遞下去，但若使用 `bind` 語法，未來任何的 argument 都將會自動被傳遞下去。
