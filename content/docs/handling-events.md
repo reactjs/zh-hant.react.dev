@@ -142,7 +142,7 @@ class LoggingButton extends React.Component {
 
 ## 將 Argument 傳給 Event Handler {#passing-arguments-to-event-handlers}
 
-在一個 loop 中，我們常常會需要傳遞一個額外的參數給 event handler。例如，如果 `id` 是每一行的 ID 的話，下面兩種語法都可行：
+在一個迴圈中，我們常常會需要傳遞一個額外的參數給 event handler。例如，如果 `id` 是每一行的 ID 的話，下面兩種語法都可行：
 
 ```js
 <button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
