@@ -93,7 +93,7 @@ ReactDOM.render(
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
 
-請特別注意 `this` 在 JSX callback 中的意義。在 JavaScript 中，class 的方法在預設上是沒有被綁定（[bound](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind)）的（譯註：也就是說 `handleClick` 內的 `this` 在預設上是沒有綁定任何物件的）。如果你忘了綁定 `this.handleClick` 並把它傳遞給 `onClick` 的話，`this` 的值將會在該 function 被呼叫時變成 `undefined`。
+請特別注意 `this` 在 JSX callback 中的意義。在 JavaScript 中，class 的方法在預設上是沒有被綁定（[bound](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_objects/Function/bind)）的。如果你忘了綁定 `this.handleClick` 並把它傳遞給 `onClick` 的話，`this` 的值將會在該 function 被呼叫時變成 `undefined`。
 
 這並非是 React 才有的行為，而是 [function 在 JavaScript 中的運作模式](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/)。總之，當你使用一個方法，卻沒有在後面加上 `()` 之時（例如當你使用 `onClick={this.handleClick}` 時），你應該要綁定這個方法。
 
