@@ -1,6 +1,6 @@
 ---
 id: composition-vs-inheritance
-title: Composition vs Inheritance
+title: Composition vs 繼承
 permalink: docs/composition-vs-inheritance.html
 redirect_from:
   - "docs/multiple-components.html"
@@ -8,15 +8,15 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
-React has a powerful composition model, and we recommend using composition instead of inheritance to reuse code between components.
+React 具有強大的 composition 模型，我們建議你在 component 之間使用 composition 來複用你的程式碼，而不是使用繼承。
 
-In this section, we will consider a few problems where developers new to React often reach for inheritance, and show how we can solve them with composition.
+在這個章節中，我們將考慮一些新 React 開發者常常遇到的繼承問題，並示範如何透過 composition 來解決它們。
 
-## Containment {#containment}
+## 包含 {#containment}
 
-Some components don't know their children ahead of time. This is especially common for components like `Sidebar` or `Dialog` that represent generic "boxes".
+有些 component 不會提早知道它們的 children 有些什麼。對於像是 `Sidebar` 或 `Dialog` 這類通用的「box」component 特別常見。
 
-We recommend that such components use the special `children` prop to pass children elements directly into their output:
+我們建議這些 component 使用特殊的 `children` prop 將 children element 直接傳入到它們的輸出：
 
 ```js{4}
 function FancyBorder(props) {
@@ -28,7 +28,7 @@ function FancyBorder(props) {
 }
 ```
 
-This lets other components pass arbitrary children to them by nesting the JSX:
+這讓其他的 component 透過巢狀的 JSX 將任意的 children 傳遞給它們：
 
 ```js{4-9}
 function WelcomeDialog() {
@@ -45,11 +45,11 @@ function WelcomeDialog() {
 }
 ```
 
-**[Try it on CodePen](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
+**[在 CodePen 試試看吧！](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
 
-Anything inside the `<FancyBorder>` JSX tag gets passed into the `FancyBorder` component as a `children` prop. Since `FancyBorder` renders `{props.children}` inside a `<div>`, the passed elements appear in the final output.
+任何在 `<FancyBorder>` JSX tag 內的內容都被作為 `children` prop 被傳遞給 `FancyBorder` component。由於 `FancyBorder` 在 `<div>` 內 render `{props.children}`，被傳遞的 element 會在最終的輸出出現。
 
-While this is less common, sometimes you might need multiple "holes" in a component. In such cases you may come up with your own convention instead of using `children`:
+雖然這個情況不常見，但有時候你可能需要在 component 中使用多個「hole」。在這種情況下，你可以使用你慣用的方法，而不是使用 `children`：
 
 ```js{5,8,18,21}
 function SplitPane(props) {
@@ -78,15 +78,15 @@ function App() {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
+[**在 CodePen 上試試吧！**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
 
-React elements like `<Contacts />` and `<Chat />` are just objects, so you can pass them as props like any other data. This approach may remind you of "slots" in other libraries but there are no limitations on what you can pass as props in React.
+React 的 element 像是 `<Contacts />` 和 `<Chat />` 都只是 object，所以你可以像其它任何的資料一樣，將它們作為 props 傳遞。這種方法可能會提醒你其他函式庫中的「slot」，但對於你可以在 React 中作為 prop 傳遞的內容沒有限制。
 
-## Specialization {#specialization}
+## 特別化 {#specialization}
 
-Sometimes we think about components as being "special cases" of other components. For example, we might say that a `WelcomeDialog` is a special case of `Dialog`.
+有時候，我們需要考慮 component 會不會是其他 component 的「特別情況」。例如，我們可能會說 `WelcomeDialog` 是 `Dialog` 的一個特定情況。
 
-In React, this is also achieved by composition, where a more "specific" component renders a more "generic" one and configures it with props:
+在 React 中，這也可以透過 composition 被實現，其中更「特別」的 component render 更多「通用」的 component，並使用 prop 對其進行設定：
 
 ```js{5,8,16-18}
 function Dialog(props) {
@@ -111,9 +111,9 @@ function WelcomeDialog() {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
 
-Composition works equally well for components defined as classes:
+對於使用 class 定義的 component，composition 一樣有效：
 
 ```js{10,27-31}
 function Dialog(props) {
@@ -161,12 +161,12 @@ class SignUpDialog extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
 
-## So What About Inheritance? {#so-what-about-inheritance}
+## 那麼關於繼承呢？ {#so-what-about-inheritance}
 
-At Facebook, we use React in thousands of components, and we haven't found any use cases where we would recommend creating component inheritance hierarchies.
+在 Facebook 中，我們使用 React 在成千上萬個 component，我們找不到任何使用案例來推薦你建立繼承結構的 component。
 
-Props and composition give you all the flexibility you need to customize a component's look and behavior in an explicit and safe way. Remember that components may accept arbitrary props, including primitive values, React elements, or functions.
+Prop 和 composition 提供你明確和安全的方式來自訂 component 的外觀和行為所需的靈活性。請記得，component 可以接受任意的 prop，包含 primitive value、React element，或者是 function。
 
-If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or a class, without extending it.
+如果你想要在 component 之間複用非 UI 的功能，我們建議抽離它到一個獨立的 JavaScript 模組。Component 可以 import 並使用它的 function、object，或者是 class，而不需要繼承它。

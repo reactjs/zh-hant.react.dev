@@ -1,6 +1,6 @@
 ---
 id: forms
-title: Forms
+title: 表單
 permalink: docs/forms.html
 prev: lists-and-keys.html
 next: lifting-state-up.html
@@ -9,7 +9,7 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
-HTML form elements work a little bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+HTML 表單的 element 和 React 中其他的 DOM element 不太一樣，因為表單的 element 很自然地有一些內部的 state。例如，這個表單在下面簡單的 HTML 中接受一個名稱：
 
 ```html
 <form>
@@ -21,15 +21,15 @@ HTML form elements work a little bit differently from other DOM elements in Reac
 </form>
 ```
 
-This form has the default HTML form behavior of browsing to a new page when the user submits the form. If you want this behavior in React, it just works. But in most cases, it's convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called "controlled components".
+當使用者提交表單時，此表單具有瀏覽到新頁面的預設 HTML 表單行為。如果你想要在 React 中也有這樣的行為的話，直接用 HTML 是可行的。但是在大多數的情況中，有一個 JavaScript function 來處理提交表單的功能並讀取使用者在表單中填入的資料是很方便的。要做到這樣，標準的方法是使用「controlled component」：
 
-## Controlled Components {#controlled-components}
+## Controlled Component {#controlled-components}
 
-In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input. In React, mutable state is typically kept in the state property of components, and only updated with [`setState()`](/docs/react-component.html#setstate).
+在 HTML 中，表單的 element 像是 `<input>`、`<textarea>` 和 `<select>` 通常會維持它們自身的 state，並根據使用者的輸入來更新 state。在 React 中，可變的 state 通常是被維持在 component 中的 state property，並只能以 [`setState()`](/docs/react-component.html#setstate) 來更新。
 
-We can combine the two by making the React state be the "single source of truth". Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a "controlled component".
+我們可以透過將 React 的 state 變成「唯一真相來源」來將這兩者結合。如此，render 表單的 React component 同時也掌握了後續使用者的輸入對表單帶來的改變。像這樣一個輸入表單的 element，被 React 用這樣的方式來控制它的值，就被稱為「controlled component」。
 
-For example, if we want to make the previous example log the name when it is submitted, we can write the form as a controlled component:
+例如，如果我們想要讓上一個範例在一個名字被輸入表單時印出，我們可以把這個表單寫成一個 controlled component：
 
 ```javascript{4,10-12,24}
 class NameForm extends React.Component {
@@ -64,11 +64,11 @@ class NameForm extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
-Since the `value` attribute is set on our form element, the displayed value will always be `this.state.value`, making the React state the source of truth. Since `handleChange` runs on every keystroke to update the React state, the displayed value will update as the user types.
+由於 `value` attribute 是被設定在我們的表單 element 上，顯示的 value 會永遠是 `this.state.value`，這使得 React 的 state 成為了資料來源。由於 `handleChange` 在每一次鍵盤被敲擊時都會被執行，並更新 React 的 state，因此被顯示的 value 將會在使用者打字的同時被更新。
 
-With a controlled component, every state mutation will have an associated handler function. This makes it straightforward to modify or validate user input. For example, if we wanted to enforce that names are written with all uppercase letters, we could write `handleChange` as:
+在這樣的 controlled component 中，每一個 state 的 mutation 都會有一個相對應的 handler function。這使得修改或驗證使用者輸入變得很容易。例如，如果我們想要確認名字全部都是用大寫字母寫成的話，我們可以把 `handleChange` 寫成：
 
 ```javascript{2}
 handleChange(event) {
@@ -76,9 +76,9 @@ handleChange(event) {
 }
 ```
 
-## The textarea Tag {#the-textarea-tag}
+## Textarea 標籤 {#the-textarea-tag}
 
-In HTML, a `<textarea>` element defines its text by its children:
+在 HTML 中，一個 `<textarea>` 的 element 是經由它的 children 來定義它的文字：
 
 ```html
 <textarea>
@@ -86,7 +86,7 @@ In HTML, a `<textarea>` element defines its text by its children:
 </textarea>
 ```
 
-In React, a `<textarea>` uses a `value` attribute instead. This way, a form using a `<textarea>` can be written very similarly to a form that uses a single-line input:
+在 React 中，`<textarea>` 則是使用一個 `value` 的 attribute。如此一來，一個使用 `<textarea>` 的表單可以使用非常類似單行的 input 方法來寫成：
 
 ```javascript{4-6,12-14,26}
 class EssayForm extends React.Component {
@@ -123,11 +123,11 @@ class EssayForm extends React.Component {
 }
 ```
 
-Notice that `this.state.value` is initialized in the constructor, so that the text area starts off with some text in it.
+請注意 `this.state.value` 是在 constructor 內被初始化的，所以上述的 text area 一開始會有一些文字。
 
-## The select Tag {#the-select-tag}
+## Select 標籤 {#the-select-tag}
 
-In HTML, `<select>` creates a drop-down list. For example, this HTML creates a drop-down list of flavors:
+在 HTML 中，`<select>` 會建立一個下拉式選單。例如，這個 HTML 會建立一個有各種水果的下拉式選單：
 
 ```html
 <select>
@@ -138,7 +138,8 @@ In HTML, `<select>` creates a drop-down list. For example, this HTML creates a d
 </select>
 ```
 
-Note that the Coconut option is initially selected, because of the `selected` attribute. React, instead of using this `selected` attribute, uses a `value` attribute on the root `select` tag. This is more convenient in a controlled component because you only need to update it in one place. For example:
+請注意在這裡，椰子的選項是一開始就被選定的，因為它有一個 `selected` attribute。但是在 React 中並不是用 `selected` attribute，而是在 `select` 的標籤上用一個 `value` attribute。對一個 controlled component 來說這是比較方便的，因為你只需要在一個地方更新它。例如：
+
 
 ```javascript{4,10-12,24}
 class FlavorForm extends React.Component {
@@ -178,33 +179,33 @@ class FlavorForm extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
 
-Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select>` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
+整體來說，這使得 `<input type="text">`，`<textarea>` 和 `<select>` 使用起來都很類似。它們全都會接收一個你在實作一個 controlled component 時會使用到的 `value` attribute。
 
-> Note
+> 注意
 >
-> You can pass an array into the `value` attribute, allowing you to select multiple options in a `select` tag:
+> 你可以將一個 array 傳給 `value` 這個 attribute，這使得你可以在一個 `select` 中選取多個選項：
 >
 >```js
 ><select multiple={true} value={['B', 'C']}>
 >```
 
-## The file input Tag {#the-file-input-tag}
+## 檔案 input 標籤 {#the-file-input-tag}
 
-In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+在 HTML 中，`<input type="file">` 讓使用者從它們的儲存裝置中選擇一個至多個檔案，並把它們上傳到伺服器或透過 [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) 被 JavaScript 處理。
 
 ```html
 <input type="file" />
 ```
 
-Because its value is read-only, it is an **uncontrolled** component in React. It is discussed together with other uncontrolled components [later in the documentation](/docs/uncontrolled-components.html#the-file-input-tag).
+由於它的值是唯讀，它在 React 中是一個 **uncontrolled** component。[在稍後的文件中](/docs/uncontrolled-components.html#the-file-input-tag)有其他關於它和其他 uncontrolled component 的討論。
 
-## Handling Multiple Inputs {#handling-multiple-inputs}
+## 處理多個輸入 {#handling-multiple-inputs}
 
-When you need to handle multiple controlled `input` elements, you can add a `name` attribute to each element and let the handler function choose what to do based on the value of `event.target.name`.
+當你需要處理多個 controlled `input` element，你可以在每個 element 中加入一個 `name` attribute，並讓 handler function 選擇基於 `event.target.name` 的值該怎麼做：
 
-For example:
+例如：
 
 ```javascript{15,18,28,37}
 class Reservation extends React.Component {
@@ -254,9 +255,9 @@ class Reservation extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
+[**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
-Note how we used the ES6 [computed property name](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) syntax to update the state key corresponding to the given input name:
+注意我們使用了 ES6 的 [computed property name](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) 語法來更新與輸入中的 name 相對應的 state key：
 
 ```js{2}
 this.setState({
@@ -264,7 +265,7 @@ this.setState({
 });
 ```
 
-It is equivalent to this ES5 code:
+這和下面的 ES5 程式碼是ㄧ樣的：
 
 ```js{2}
 var partialState = {};
@@ -272,13 +273,13 @@ partialState[name] = value;
 this.setState(partialState);
 ```
 
-Also, since `setState()` automatically [merges a partial state into the current state](/docs/state-and-lifecycle.html#state-updates-are-merged), we only needed to call it with the changed parts.
+此外，由於 `setState()` 自動 [merge 一部分的 state 和現在的 state](/docs/state-and-lifecycle.html#state-updates-are-merged)，我們只需要在有改變的地方呼叫它即可。
 
-## Controlled Input Null Value {#controlled-input-null-value}
+## Controlled 輸入值為 Null {#controlled-input-null-value}
 
-Specifying the value prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
+在一個 [controlled component](/docs/forms.html#controlled-components) 上指明 value prop 可避免使用者改變輸入，除非你希望使用者這樣做。如果你已經指明了 `value` 但輸入仍然是可以被修改的，你很可能是不小心將 `value` 的值設定為 `undefined` 或 `null`。
 
-The following code demonstrates this. (The input is locked at first but becomes editable after a short delay.)
+下面的程式碼就是一個範例。（輸入原先是被鎖住的，但在短暫的延遲後，變得可以被修改了。）
 
 ```javascript
 ReactDOM.render(<input value="hi" />, mountNode);
@@ -289,10 +290,10 @@ setTimeout(function() {
 
 ```
 
-## Alternatives to Controlled Components {#alternatives-to-controlled-components}
+## Controlled component 的替代方案 {#alternatives-to-controlled-components}
 
-It can sometimes be tedious to use controlled components, because you need to write an event handler for every way your data can change and pipe all of the input state through a React component. This can become particularly annoying when you are converting a preexisting codebase to React, or integrating a React application with a non-React library. In these situations, you might want to check out [uncontrolled components](/docs/uncontrolled-components.html), an alternative technique for implementing input forms.
+有時候使用 controlled component 是很乏味的，因為你需要為每一個資訊可以改變的方式寫一個 event handler，並將所有的輸入 state 透過一個 React component 來傳遞。這在你將一個舊的 codebase 改寫成 React 時或將一個 React 的應用程式與一個非 React 的函式庫整合時會變得特別麻煩。在這種情況中，你也許會想參考 [uncontrolled component](/docs/uncontrolled-components.html)，也就是另一種取代輸入表格的方式。
 
-## Fully-Fledged Solutions {#fully-fledged-solutions}
+## 成熟的解決方案 {#fully-fledged-solutions}
 
-If you're looking for a complete solution including validation, keeping track of the visited fields, and handling form submission, [Formik](https://jaredpalmer.com/formik) is one of the popular choices. However, it is built on the same principles of controlled components and managing state — so don't neglect to learn them.
+如果你想找出一個完整的、包含驗證、可追蹤拜訪欄位並能處理提交表單等功能的解決方案，[Formik](https://jaredpalmer.com/formik) 是一個很熱門的選擇。然而，它是在與 controlled component 和維持 state 相同的原則上所建立的，所以別忘了學習它。
