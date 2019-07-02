@@ -140,7 +140,7 @@ class LoggingButton extends React.Component {
 
 這個語法的問題是每一次 `LoggingButton` render 的時候，就會建立一個不同的 callback。大多時候，這是無所謂的。然而，如果這個 callback 被當作一個 prop 傳給下層的 component 的話，其他的 component 也許會做些多餘的 re-render。原則上來說，我們建議在 constructor 內綁定，或使用 class field 語法，以避免這類的性能問題。
 
-## 將 Argument 傳給 Event Handler {#passing-arguments-to-event-handlers}
+## 將參數傳給 Event Handler {#passing-arguments-to-event-handlers}
 
 在一個迴圈中，我們常常會需要傳遞一個額外的參數給 event handler。例如，如果 `id` 是每一行的 ID 的話，下面兩種語法都可行：
 
@@ -151,4 +151,4 @@ class LoggingButton extends React.Component {
 
 以上這兩行程式是相同的。一個使用 [arrow functions](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，另一個則使用了[`Function.prototype.bind`](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_objects/Function/bind)。
 
-以這兩個例子來說，`e` 這個 argument 所代表的 React 事件將會被當作 ID 之後的第二個 argument 被傳遞下去。在使用 arrow function 時，我們必須明確地將它傳遞下去，但若使用 `bind` 語法，未來任何的 argument 都將會自動被傳遞下去。
+以這兩個例子來說，`e` 這個參數所代表的 React 事件將會被當作 ID 之後的第二個參數被傳遞下去。在使用 arrow function 時，我們必須明確地將它傳遞下去，但若使用 `bind` 語法，未來任何的參數都將會自動被傳遞下去。
