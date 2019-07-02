@@ -237,15 +237,15 @@ componentDidUpdate(prevProps) {
 componentWillUnmount()
 ```
 
-當一個 component 被 unmount 被摧毀時，`componentWillUnmount()` 會立刻被呼叫。你可以在這個方法內進行任何清理操作，例如清除 timer，取消網絡請求，或清理任何在 `componentDidMount()` 中建立的 subscription。
+`componentWillUnmount()` is invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in `componentDidMount()`.
 
-你 **不應該在 `componentWillUnmount()` 中呼叫 `setState()`**，因為該 component 永遠不會被重新 render。當一個 component 實例被 unmount 後，它將永遠不會再被 mount。
+You **should not call `setState()`** in `componentWillUnmount()` because the component will never be re-rendered. Once a component instance is unmounted, it will never be mounted again.
 
 * * *
 
-### 不常使用的生命週期方法 {#rarely-used-lifecycle-methods}
+### Rarely Used Lifecycle Methods {#rarely-used-lifecycle-methods}
 
-此段落中介紹的方法通常並不常見。它們偶爾很方便，但絕大多數的時候，你的 component 並不需要它們。**你可以在這個[生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)上方點選「較不常見的生命週期」並看到下列這些方法。**
+The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -254,17 +254,17 @@ componentWillUnmount()
 shouldComponentUpdate(nextProps, nextState)
 ```
 
-`shouldComponentUpdate()` 是一個用來讓 React 知道一個 component 的 output 是否有受到目前 state 或 prop 中的改變所影響的方法。React 的預設行為是每一次 state 有所改變時都重新 render。在絕大多數的情況下，你應該依賴這個預設行為。
+Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.
 
-`shouldComponentUpdate()` 會在 component 被 render 前被呼叫，也就是在新的 prop 或 state 被接受之前。其預設值是 `true`。這個方法在初次 render 時或當 `forceUpdate()` 被使用時並不會被呼叫。
+`shouldComponentUpdate()` is invoked before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
 
-這個方法的存在主要是為了 **[性能優化](/docs/optimizing-performance.html)**。請勿依賴此方法來避免 render，否則可能會導致 bug。**請考慮使用 React 內建的 [`PureComponent`](/docs/react-api.html#reactpurecomponent)** 而不要自己手寫 `shouldComponentUpdate()`。`PureComponent` 會為 prop 和 state 做一個淺層比較（shallow comparison）並減低你忽略必要更新的機會。
+This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a rendering, as this can lead to bugs. **Consider using the built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent)** instead of writing `shouldComponentUpdate()` by hand. `PureComponent` performs a shallow comparison of props and state, and reduces the chance that you'll skip a necessary update.
 
-如果你很確定你要手寫這個方法的話，你可以將 `this.props` 和 `nextProps` 以及 `this.state` 和 `nextState` 做比較，並返回 `false` 以告知 React 這次的更新是可以被忽略的。請注意，返回 `false` 並不會避免子 component 在它們的 state 改變時重新 render。
+If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped. Note that returning `false` does not prevent child components from re-rendering when *their* state changes.
 
-我們並不推薦你做深度比較（deep equality check）或在 `shouldComponentUpdate()` 內中使用 `JSON.stringify()`。這非常沒效率，且會影響性能。
+We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
 
-目前，如果 `shouldComponentUpdate()` 返回的值為 `false`，那麼 [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)、 [`render()`](#render) 和 [`componentDidUpdate()`](#componentdidupdate) 都不會被呼叫。未來，React 也許會把`shouldComponentUpdate()` 當作一個提示而非一個嚴格的指令（directive），而返回 `false` 可能仍然會導致該 component 重新 render。
+Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. In the future React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
 
 * * *
 
@@ -274,11 +274,11 @@ shouldComponentUpdate(nextProps, nextState)
 static getDerivedStateFromProps(props, state)
 ```
 
-不管是在初次 mount 一個 componenet 或做後續的更新，`getDerivedStateFromProps` 都會在 render 被呼叫之前馬上被呼叫。它應該返回一個物件以更新 state，或返回 null 值以讓 React 知道不用做任何更新。
+`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or null to update nothing.
 
-這個方法的的存在是為了某些[少見的例子](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)，如當 state 需要依賴 prop 在一段時間後所產生的改變。例如，建立一個叫做 `<Transition>` 的 component 來比較其之前與之後的 children，並決定哪一個應該 animate in 或 out。 where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
+This method exists for [rare use cases](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
 
-繼承 state 會導致冗長的程式碼，並使你的 component 難以理解。請確保你熟悉這些較為簡易的替代方案： Deriving state leads to verbose code and makes your components difficult to think about.  
+Deriving state leads to verbose code and makes your components difficult to think about.  
 [Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
 * If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
