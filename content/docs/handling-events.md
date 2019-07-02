@@ -29,7 +29,7 @@ redirect_from:
 </button>
 ```
 
-另外一個差異是，在 React 中，你不能夠在像在 HTML DOM 中使用 `return false` 來避免瀏覽器預設行為。你必須明確地呼叫 `preventDefault`。例如，在純 HTML 中，若要避免連結（link）開啟新頁的預設功能，你可以這樣寫：
+另外一個差異是，在 React 中，你不能夠在像在 HTML DOM 中使用 `return false` 來避免瀏覽器預設行為。你必須明確地呼叫 `preventDefault`。例如，在純 HTML 中，若要避免連結開啟新頁的預設功能，你可以這樣寫：
 
 ```html
 <a href="#" onclick="console.log('The link was clicked.'); return false">
