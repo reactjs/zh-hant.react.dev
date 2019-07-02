@@ -102,7 +102,7 @@ ReactDOM.render(
 ```js{2-6}
 class LoggingButton extends React.Component {
   // 這個語法確保 `this` 是在 handleClick 中被綁定：
-  // 警告：這是一個還在 *測試中* 的語法：
+  // 警告：這是一個還在*測試中*的語法：
   handleClick = () => {
     console.log('this is:', this);
   }
