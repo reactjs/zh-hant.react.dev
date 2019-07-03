@@ -1,6 +1,6 @@
 ---
 id: hooks-intro
-title: 隆重介紹 Hook
+title: 介紹 Hook
 permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
