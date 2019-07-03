@@ -108,7 +108,7 @@
   isOrdered: true
   items:
       - id: hooks-intro
-        title: 隆重介紹 Hook
+        title: Hook 介紹
       - id: hooks-overview
         title: Hook 概觀
       - id: hooks-state
