@@ -342,7 +342,7 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // 更新 state，如此，下次 render 時 React 才能展示備用 UI
+    // 更新 state，如此下次 render 時 React 才能展示備用 UI
     return { hasError: true };
   }
 
@@ -370,15 +370,15 @@ class ErrorBoundary extends React.Component {
 componentDidCatch(error, info)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives two parameters:
+這個生命週期方法會在某個錯誤被一個 descendant component 提出後被呼叫。
+它接受兩個參數：
 
-1. `error` - The error that was thrown.
-2. `info` - An object with a `componentStack` key containing [information about which component threw the error](/docs/error-boundaries.html#component-stack-traces).
+1. `error` - 被提出的錯誤。
+2. `info` - 一個有 `componentStack` key 的 object，這個 key 內含有[哪一個 component 提出錯誤的資訊](/docs/error-boundaries.html#component-stack-traces)。
 
 
-`componentDidCatch()` is called during the "commit" phase, so side-effects are permitted.
-It should be used for things like logging errors:
+`componentDidCatch()` 會在「提交」期間被呼叫，所以副作用是允許的。
+這個方法應該被用來做類似紀錄錯誤這類的事情：
 
 ```js{12-19}
 class ErrorBoundary extends React.Component {
@@ -388,12 +388,12 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // 更新 state，如此下次 render 時 React 才能展示備用 UI
     return { hasError: true };
   }
 
   componentDidCatch(error, info) {
-    // Example "componentStack":
+    // ComponentStack 的範例：
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
@@ -403,7 +403,7 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // 你可以展示任何備用 UI
       return <h1>Something went wrong.</h1>;
     }
 
@@ -412,10 +412,10 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Note
+> 注意：
 > 
-> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
-> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+> 在有錯誤的情況下，你可以透過呼叫 `setState` 來展示一個含有 `componentDidCatch()` 的 備用 UI，但這個方法會在未來的發佈中被棄用。
+> 請使用 `static getDerivedStateFromError()` 來處理備用 render。
 
 * * *
 
