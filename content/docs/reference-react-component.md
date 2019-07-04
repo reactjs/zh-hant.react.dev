@@ -198,7 +198,7 @@ componentDidMount()
 
 這個方法適合設立任何 subscription。設立完 subscription 後，別忘了在 `componentWillUnmount()` 內取消 subscription。
 
-你 **可以馬上在 `componentDidMount()` 內呼叫 `setState()`。** 這會觸發一次額外的 render，但這會在瀏覽器更新螢幕之前發生。在這個情況下，即使 `render()` 被呼叫兩次，這確保使用者不會看見中間的 state。請謹慎使用這個模式，因為這經常會導致性能問題。在大多數情況下，你應該能夠在  `constructor()` 內指定初始 state 的值。不過，在某些情況下，像是在使用 modal 和 tooltip 的時候，你所 render 的 component 若是依賴某個 DOM node 的大小或位置時，這種模式有時候可能是有必要的。
+你 **可以馬上在 `componentDidMount()` 內呼叫 `setState()`。** 這會觸發一次額外的 render，但這會在瀏覽器更新螢幕之前發生。在這個情況下，即使 `render()` 被呼叫兩次，這確保使用者不會看見這兩次 render 中過渡時期的 state。請謹慎使用這個模式，因為這經常會導致性能問題。在大多數情況下，你應該能夠在  `constructor()` 內指定初始 state 的值。不過，在某些情況下，像是在使用 modal 和 tooltip 的時候，你所 render 的 component 若是依賴某個 DOM node 的大小或位置時，這種模式有時候可能是有必要的。
 
 * * *
 
@@ -262,7 +262,7 @@ shouldComponentUpdate(nextProps, nextState)
 
 如果你很確定你想要手寫這個方法的話，你可以將 `this.props` 和 `nextProps` 以及 `this.state` 和 `nextState` 做比較並返回 `false` 以告知 React 這次的更新可以被略過。 請注意，返回 `false` 並不會避免子 component 在*它們的* state 改變時重新 render。
 
-我們並不建議你做深度比較（deep equality check）或在 `shouldComponentUpdate()` 內使用 `JSON.stringify()`。它們效率不佳且或造成性能問題。
+我們並不建議你做深度比較（deep equality check）或在 `shouldComponentUpdate()` 內使用 `JSON.stringify()`。它們效率不佳且會造成性能問題。
 
 目前，如果 `shouldComponentUpdate()` 返回 `false` 的話，[`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)、[`render()`](#render) 和 [`componentDidUpdate()`](#componentdidupdate) 都不會被呼叫。在未來，React 可能會把 `shouldComponentUpdate()` 當作一個提示而非一個嚴格指令，而返回 `false` 可能還是會造成 component 重新 render。
 
@@ -282,7 +282,7 @@ static getDerivedStateFromProps(props, state)
 
 * 如果你需要在某個 prop 改變時產生相對的**副作用**（例如，資料提取或使用動畫），請使用 [`componentDidUpdate`](#componentdidupdate)。
 
-* 如果你想要 **在某個 prop 改變時重新計算某些資料**， [請使用 memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)。
+* 如果你想要 **在某個 prop 改變時重新計算某些資料**，[請使用 memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)。
 
 * 如果你想要 **在某個 prop 改變時「重置」某個 state**，請考慮建立一個[完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) 的 component 或[帶有 `key` 的完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) component。
 
@@ -298,41 +298,41 @@ static getDerivedStateFromProps(props, state)
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
-`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle will be passed as a parameter to `componentDidUpdate()`.
+`getSnapshotBeforeUpdate()` 會在最近一次 render 的 output 被提交給 DOM 時被呼叫。它讓你在 DOM 改變之前先從其中抓取一些資訊（例如滾動軸的位置）。這個生命週期方法返回的值會被當作一個參數傳遞給 `componentDidUpdate()`。
 
-This use case is not common, but it may occur in UIs like a chat thread that need to handle scroll position in a special way.
+這個方法並不常見，但它可能會在像是對話串這類需要以某種特殊方始處理滾動軸位置的 UI 中出現。
 
-A snapshot value (or `null`) should be returned.
+一個快照（snapshot）的值（或 `null`）應該被返回。
 
-For example:
+例如：
 
 `embed:react-component-reference/get-snapshot-before-update.js`
 
-In the above examples, it is important to read the `scrollHeight` property in `getSnapshotBeforeUpdate` because there may be delays between "render" phase lifecycles (like `render`) and "commit" phase lifecycles (like `getSnapshotBeforeUpdate` and `componentDidUpdate`).
+在上面這個例子中，讀取 `getSnapshotBeforeUpdate` 內的 `scrollHeight` property 是很重要的，因為「render」階段的生命週期方法（如 `render`）和「提交」階段的生命週期方法（像是 `getSnapshotBeforeUpdate` 和 `componentDidUpdate`）兩者之間可能會有一些延遲。
 
 * * *
 
-### Error boundaries {#error-boundaries}
+### 錯誤邊界 {#error-boundaries}
 
-[Error boundaries](/docs/error-boundaries.html) are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+[錯誤邊界](/docs/error-boundaries.html) 是用於截取子 component tree 中 JavaScript 錯誤、紀錄錯誤、並展示一個備用 UI 而非故障的 component tree 的一群 React component。錯誤邊界會在 render 期間、生命週期方法、以及其下整個 tree 群組所有的 constructor 內截取錯誤。
 
-A class component becomes an error boundary if it defines either (or both) of the lifecycle methods `static getDerivedStateFromError()` or `componentDidCatch()`. Updating state from these lifecycles lets you capture an unhandled JavaScript error in the below tree and display a fallback UI.
+一個 class component 會變成錯誤邊界，如果其定義了 `static getDerivedStateFromError()` 和 `componentDidCatch()` 兩種或其中之一的生命週期方法。 從這些生命週期方法中更新 state 讓你截取在其下的 tree 內未被處理的 JavaScript 錯誤，並展示一個備用 UI。
 
-Only use error boundaries for recovering from unexpected exceptions; **don't try to use them for control flow.**
+請只在從意料之外的異常中使用錯誤邊界。**請不要用它來控制流程。**
 
-For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
+想了解更多，請參考[*React 16 中的錯誤邊界*](/blog/2017/07/26/error-handling-in-react-16.html)一文。
 
-> Note
+> 注意：
 > 
-> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+> 錯誤邊界只會截取在 tree 中、自身**以下**的 component 中的錯誤。錯誤邊界無法截取自身內的錯誤。
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
 static getDerivedStateFromError(error)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives the error that was thrown as a parameter and should return a value to update state.
+這個生命週期方法會在某個錯誤被一個 descendant component 提出後被呼叫。
+它會接收該錯誤為其參數並返回一個值以更新 state。
 
 ```js{7-10,13-16}
 class ErrorBoundary extends React.Component {
@@ -342,13 +342,13 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // 更新 state，如此，下次 render 時 React 才能展示備用 UI
     return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // 你可以展示任何備用 UI
       return <h1>Something went wrong.</h1>;
     }
 
@@ -357,10 +357,10 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-> Note
+> 注意：
 >
-> `getDerivedStateFromError()` is called during the "render" phase, so side-effects are not permitted.
-For those use cases, use `componentDidCatch()` instead.
+> `getDerivedStateFromError()` 會在「render」期間被呼叫，所以副作用是不被允許的。
+如果你想要使用副作用的話，請使用 `componentDidCatch()`。
 
 * * *
 
