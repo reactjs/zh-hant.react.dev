@@ -574,11 +574,11 @@ this.setState((state) => {
 component.forceUpdate(callback)
 ```
 
-By default, when your component's state or props change, your component will re-render. If your `render()` method depends on some other data, you can tell React that the component needs re-rendering by calling `forceUpdate()`.
+當你的 component 的 state 或 prop 改變的時候，你的 component 的預設行為是會重新 render。如果你的 `render()` 方法還需要其他資料的話，你可以藉由呼叫 `forceUpdate()` 來告訴 React 這個 component 需要重新 render。
 
-Calling `forceUpdate()` will cause `render()` to be called on the component, skipping `shouldComponentUpdate()`. This will trigger the normal lifecycle methods for child components, including the `shouldComponentUpdate()` method of each child. React will still only update the DOM if the markup changes.
+呼叫 `forceUpdate()` 會導致  `render()` 被呼叫於該 component 並跳過 `shouldComponentUpdate()`。這會觸發子 component 正常的生命週期方法，包含每個 child 的 `shouldComponentUpdate()` 方法。React 依然只會在標示（markup）改變時更新 DOM。
 
-Normally you should try to avoid all uses of `forceUpdate()` and only read from `this.props` and `this.state` in `render()`.
+正常情況來說你應該避免使用 `forceUpdate()` 並只從 `render()` 中的 `this.props` 和 `this.state` 讀取。
 
 * * *
 
