@@ -280,7 +280,7 @@ static getDerivedStateFromProps(props, state)
 
 繼承 state 會導致冗長的程式碼並使你的 component 很難理解。[請確認你知道這些較為簡單的替代方案](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
-* 如果你需要在某個 prop 改變時產生相對的**副作用**（例如，資料提取或使用動畫），請使用 [`componentDidUpdate`](#componentdidupdate)。
+* 如果你需要在某個 prop 改變時產生相對應的**副作用**（例如，資料提取或使用動畫），請使用 [`componentDidUpdate`](#componentdidupdate)。
 
 * 如果你想要 **在某個 prop 改變時重新計算某些資料**，[請使用 memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)。
 
@@ -419,9 +419,9 @@ class ErrorBoundary extends React.Component {
 
 * * *
 
-### Legacy Lifecycle Methods {#legacy-lifecycle-methods}
+### 過時的生命週期方法 {#legacy-lifecycle-methods}
 
-The lifecycle methods below are marked as "legacy". They still work, but we don't recommend using them in the new code. You can learn more about migrating away from legacy lifecycle methods in [this blog post](/blog/2018/03/27/update-on-async-rendering.html).
+以下介紹的幾個生命週期方法是「過時」的。它們仍然能運作，但我們並不建議你在新的程式碼內使用這些方法。你可以[在這篇文章中](/blog/2018/03/27/update-on-async-rendering.html)了解如何從過時的方法遷移至我們建議的方法。
 
 ### `UNSAFE_componentWillMount()` {#unsafe_componentwillmount}
 
@@ -429,15 +429,15 @@ The lifecycle methods below are marked as "legacy". They still work, but we don'
 UNSAFE_componentWillMount()
 ```
 
-> Note
+> 注意：
 >
-> This lifecycle was previously named `componentWillMount`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> 這個生命週期方法先前的命名是 `componentWillMount`。這個命名直到第 17 版仍然能繼續運作。請使用[`重新命名不安全的生命週期方法` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) 來自動更新你的 component。
 
-`UNSAFE_componentWillMount()` is invoked just before mounting occurs. It is called before `render()`, therefore calling `setState()` synchronously in this method will not trigger an extra rendering. Generally, we recommend using the `constructor()` instead for initializing state.
+`UNSAFE_componentWillMount()` 會在 mounting 發生前被呼叫。它會在 `render()` 前被呼叫，因此在這個方法內同步呼叫 `setState()` 並不會觸發額外的 render。不過，一般情況來說，我們建議你使用 `constructor()` 來初始化 state。
 
-Avoid introducing any side-effects or subscriptions in this method. For those use cases, use `componentDidMount()` instead.
+請避免在這個方法中帶入任何的副作用或 subscription。如果你需要那樣做的話，請使用 `componentDidMount()`。
 
-This is the only lifecycle method called on server rendering.
+這是唯一一個在伺服器端 render 時被呼叫的生命週期方法。
 
 * * *
 
@@ -447,25 +447,25 @@ This is the only lifecycle method called on server rendering.
 UNSAFE_componentWillReceiveProps(nextProps)
 ```
 
-> Note
+> 注意：
 >
-> This lifecycle was previously named `componentWillReceiveProps`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> 這個生命週期方法先前的命名是 `componentWillReceiveProps`。這個命名直到第 17 版仍然能繼續運作。請使用[`重新命名不安全的生命週期方法` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) 來自動更新你的 component。
 
-> Note:
+> 注意：
 >
-> Using this lifecycle method often leads to bugs and inconsistencies
+> 這個生命週期方法常常會導致 bug 和程式碼的不一致。
 >
-> * If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
-> * If you used `componentWillReceiveProps` for **re-computing some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
-> * If you used `componentWillReceiveProps` to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+> * 如果你需要在某個 prop 改變時 **執行一個相對應的副作用** （例如資料提取或使用動畫），請使用[`componentDidUpdate`](#componentdidupdate) 這個生命週期方法。
+> * 如果你想要 **只在某個 prop 改變時重新計算某些資料**，[請使用 memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)。
+> * 如果你想要 **在某個 prop 改變時「重置」某個 state**，請考慮建立一個[完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) 的 component 或[帶有 `key` 的完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) component。
 >
-> For other use cases, [follow the recommendations in this blog post about derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+> 針對以上這些用例，請[遵照這篇文章內推薦的方法來處理繼承的 state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
-`UNSAFE_componentWillReceiveProps()` is invoked before a mounted component receives new props. If you need to update the state in response to prop changes (for example, to reset it), you may compare `this.props` and `nextProps` and perform state transitions using `this.setState()` in this method.
+`UNSAFE_componentWillReceiveProps()` 會在一個被 mount 的 component 接收新的 prop 前被呼叫。如果你需要在某個 prop 改變時更新 state 的話（例如，重置 state），你可以在這個生命週期方法裡面比較 `this.props` 和`nextProps`，並使用 `this.setState()` 進行 state 的轉移。
 
-Note that if a parent component causes your component to re-render, this method will be called even if props have not changed. Make sure to compare the current and next values if you only want to handle changes.
+請注意如果一個 parent component 導致你的 component 重新 render 的話，即使 prop 沒有改變，這個方法仍然會被呼叫。如果你不想要有這些改變的話，請確認你有比較目前和之後的 prop 的值。
 
-React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props during [mounting](#mounting). It only calls this method if some of component's props may update. Calling `this.setState()` generally doesn't trigger `UNSAFE_componentWillReceiveProps()`.
+React 並不會在初次 [mounting](#mounting) 時使用初始化的 propr 來呼叫 `UNSAFE_componentWillReceiveProps()`。它只會在 component 某些 prop 可能會更新時呼叫這個方法。一般來說，呼叫 `this.setState()` 並不會觸發 `UNSAFE_componentWillReceiveProps()`。
 
 * * *
 
