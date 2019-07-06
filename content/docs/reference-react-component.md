@@ -475,19 +475,19 @@ React 並不會在初次 [mounting](#mounting) 時使用初始化的 propr 來�
 UNSAFE_componentWillUpdate(nextProps, nextState)
 ```
 
-> Note
+> 注意：
 >
-> This lifecycle was previously named `componentWillUpdate`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+> 這個生命週期方法先前的命名是 `componentWillUpdate`。這個命名直到第 17 版仍然能繼續運作。請使用[`重新命名不安全的生命週期方法` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) 來自動更新你的 component。
 
-`UNSAFE_componentWillUpdate()` is invoked just before rendering when new props or state are being received. Use this as an opportunity to perform preparation before an update occurs. This method is not called for the initial render.
+`UNSAFE_componentWillUpdate()` 會在 render 發生之前、當新的 prop 或 state 正在被接收時被呼叫。請將這個方法作為更新發生之前做準備的一個機會。這個方法並不會在初次 render 時被呼叫。
 
-Note that you cannot call `this.setState()` here; nor should you do anything else (e.g. dispatch a Redux action) that would trigger an update to a React component before `UNSAFE_componentWillUpdate()` returns.
+請注意你不能在這裡呼叫 `this.setState()`，你也不應該在這裡進行其他任何在 `UNSAFE_componentWillUpdate()` 返回之前會觸發 React component 更新的行為（例如 dispatch 一個 Redux action）。
 
-Typically, this method can be replaced by `componentDidUpdate()`. If you were reading from the DOM in this method (e.g. to save a scroll position), you can move that logic to `getSnapshotBeforeUpdate()`.
+通常，這個方法可以被 `componentDidUpdate()` 取代。如果你在這個方法內從 DOM 中讀取資料（例如儲存滾動軸的位置），你可以將那部分的邏輯移到 `getSnapshotBeforeUpdate()` 裡面。
 
-> Note
+> 注意：
 >
-> `UNSAFE_componentWillUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> 如果 [`shouldComponentUpdate()`](#shouldcomponentupdate) 返回 false 的話，`UNSAFE_componentWillUpdate()` 將不會被呼叫。
 
 * * *
 
