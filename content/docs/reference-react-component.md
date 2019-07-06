@@ -491,11 +491,11 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 
 * * *
 
-## Other APIs {#other-apis-1}
+## 其他的 API {#other-apis-1}
 
-Unlike the lifecycle methods above (which React calls for you), the methods below are the methods *you* can call from your components.
+和上述那些由 React 替你呼叫的生命週期方法不同，以下介紹的方法是*你*可以從你的 component 呼叫的。
 
-There are just two of them: `setState()` and `forceUpdate()`.
+只有兩個方法： `setState()` 和 `forceUpdate()`。
 
 ### `setState()` {#setstate}
 
@@ -503,21 +503,21 @@ There are just two of them: `setState()` and `forceUpdate()`.
 setState(updater[, callback])
 ```
 
-`setState()` enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state. This is the primary method you use to update the user interface in response to event handlers and server responses.
+`setState()` 會將改變排進一個 queue 中，並告知 React 這個 component 以及它的 children 需要用更新後的 state 重新 render。這是你會在事件處理和伺服器回應用來更新使用者介面最主要的方法。
 
-Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. React does not guarantee that the state changes are applied immediately.
+請把 `setState()` 想成一個*請求*而非一個馬上對 component 進行更新的指令。為了達到更好的性能，React 也許會延遲這個請求，然後一次更新數個 component。React 並不保證 state 的改變會馬上發生。
 
-`setState()` does not always immediately update the component. It may batch or defer the update until later. This makes reading `this.state` right after calling `setState()` a potential pitfall. Instead, use `componentDidUpdate` or a `setState` callback (`setState(updater, callback)`), either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, read about the `updater` argument below.
+`setState()` 並不會總是馬上更新 component。它有可能會將更新分批處理更新或延遲到稍後才更新。這使得在呼叫 `setState()` 後讀取 `this.state` 成為一個潛在的問題。因此請不要這麼做，相反的，請使用 `componentDidUpdate` 或一個 `setState` callback（`setState(updater, callback)`）。不論你使用哪一個，React 都保證它會在更新後被觸發。如果你需要基於先前的 state 來設定 state 的話，請閱讀以下關於 `updater` 的參數。
 
-`setState()` will always lead to a re-render unless `shouldComponentUpdate()` returns `false`. If mutable objects are being used and conditional rendering logic cannot be implemented in `shouldComponentUpdate()`, calling `setState()` only when the new state differs from the previous state will avoid unnecessary re-renders.
+除非 `shouldComponentUpdate()` 返回 `false`，`setState()` 一定會導致重新 render。如果你有使用 mutable object，或者你無法在 `shouldComponentUpdate()` 裡面建立條件式 render 的邏輯的話，只在新的 state 和先前的 state 不同時呼叫 `setState()` 將會避免不必要的重新 render。
 
-The first argument is an `updater` function with the signature:
+這個方法的第一個參數是一個帶有如下的 signature 的 `updater` function：
 
 ```javascript
 (state, props) => stateChange
 ```
 
-`state` is a reference to the component state at the time the change is being applied. It should not be directly mutated. Instead, changes should be represented by building a new object based on the input from `state` and `props`. For instance, suppose we wanted to increment a value in state by `props.step`:
+`state` 是當某個改變正在被應用時對 component state 的一個參考（reference）。它不應該直接被 mutate。相反的，任何改變都應該用一個基於 `state` 和 `props` 的 input 所建立的新的 object 來表示。例如，假設我們想要使用 `props.step` 來增加 state 中的某個值的話：
 
 ```javascript
 this.setState((state, props) => {
@@ -525,23 +525,23 @@ this.setState((state, props) => {
 });
 ```
 
-Both `state` and `props` received by the updater function are guaranteed to be up-to-date. The output of the updater is shallowly merged with `state`.
+被 updater function 所接受的 `state` 和 `props` 兩者都保證一定會被更新到最新的狀態。Updater 的 output 會被和 `state` 淺層合併。
 
-The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally we recommend using `componentDidUpdate()` for such logic instead.
+`setState()` 的第二個參數是一個非必要、選擇性的 callback function。它會在 `setState` 完成且 component 被重新 render 後被執行。一般來說如果你要使用這樣的邏輯的話，我們比較推薦你使用 `componentDidUpdate()`。
 
-You may optionally pass an object as the first argument to `setState()` instead of a function:
+你可以選擇將一個 object（而非 function）作為第一個參數傳給 `setState()`：
 
 ```javascript
 setState(stateChange[, callback])
 ```
 
-This performs a shallow merge of `stateChange` into the new state, e.g., to adjust a shopping cart item quantity:
+這會將 `stateChange` 淺層合併至新的 state 中。舉個例子，假設你想調整購物車中物品的數量：
 
 ```javascript
 this.setState({quantity: 2})
 ```
 
-This form of `setState()` is also asynchronous, and multiple calls during the same cycle may be batched together. For example, if you attempt to increment an item quantity more than once in the same cycle, that will result in the equivalent of:
+這種形式的 `setState()` 也是同步的，而同樣一個週期中的多次呼叫有可能會被結合成一批做處理。例如，假設你想在同一個週期中增加某個物品的數量超過一次的話，這樣做的結果會和以下程式碼相同：
 
 ```javaScript
 Object.assign(
@@ -552,7 +552,7 @@ Object.assign(
 )
 ```
 
-Subsequent calls will override values from previous calls in the same cycle, so the quantity will only be incremented once. If the next state depends on the current state, we recommend using the updater function form, instead:
+在同一個週期中，後續的呼叫會覆蓋之前的呼叫所產生的值，所以物品的數量只會被增加一次。如果下個 state 是根據目前的 state 而決定的話，我們比較建議你用 updater function 來更新 state：
 
 ```js
 this.setState((state) => {
@@ -560,11 +560,11 @@ this.setState((state) => {
 });
 ```
 
-For more detail, see:
+想了解更多細節，請參考：
 
-* [State and Lifecycle guide](/docs/state-and-lifecycle.html)
-* [In depth: When and why are `setState()` calls batched?](https://stackoverflow.com/a/48610973/458193)
-* [In depth: Why isn't `this.state` updated immediately?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
+* [State 和生命週期指南](/docs/state-and-lifecycle.html)
+* [深入解析： 為什麼 `setState()` 的呼叫會分批處理？什麼時候會如此？](https://stackoverflow.com/a/48610973/458193)
+* [深入解析： 為什麼 `this.state` 不會馬上被更新？](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 
 * * *
 
