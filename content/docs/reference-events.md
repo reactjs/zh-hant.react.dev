@@ -8,11 +8,11 @@ category: Reference
 
 這份參考指南紀錄了 `SyntheticEvent` 這個形成 React 事件系統的 wrapper。想了解更多，請參考[事件處理](/docs/handling-events.html)。
 
-## Overview {#overview}
+## 概觀 {#overview}
 
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
+你的事件處理函式將會是 `SyntheticEvent` 被傳遞的實例，`SyntheticEvent` 是一個跨瀏覽器的、瀏覽器原生事件的 wrapper。它和瀏覽器原生事件有相同的介面，包含 `stopPropagation()` 和 `preventDefault()`，除了原生事件在所有的瀏覽器都以相同的方式運作這點以外。
 
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. Every `SyntheticEvent` object has the following attributes:
+如果你發現因為某些原因你需要使用瀏覽器的底層事件，你只需要使用 `nativeEvent` 這個 attribute 即可。每個 `SyntheticEvent` object 都有下列的 attribute：
 
 ```javascript
 boolean bubbles
@@ -31,19 +31,19 @@ number timeStamp
 string type
 ```
 
-> Note:
+> 注意：
 >
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
+> 截至 v0.14 為止，從事件處理函式返回 `false` 並不會停止事件冒泡（event propagation）。因此你可以選擇是情況手寫觸發 `e.stopPropagation()` 或 `e.preventDefault()`。
 
-### Event Pooling {#event-pooling}
+### 事件結合 {#event-pooling}
 
-The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
-This is for performance reasons.
-As such, you cannot access the event in an asynchronous way.
+`SyntheticEvent` 是透過結合事件而來的。這表示 `SyntheticEvent` 這個 object 會被重複使用，且所有的屬性都會在事件的 callback 被呼叫後變成無效。
+事件的結合是出於效能考量。
+因此，你不能用同步的方式讀取這些事件：
 
 ```javascript
 function onClick(event) {
-  console.log(event); // => nullified object.
+  console.log(event); // => 無效的 object。
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
@@ -52,17 +52,17 @@ function onClick(event) {
     console.log(eventType); // => "click"
   }, 0);
 
-  // Won't work. this.state.clickEvent will only contain null values.
+  // 不會產生任何作用，this.state.clickEvent 只會包含 null
   this.setState({clickEvent: event});
 
-  // You can still export event properties.
+  // 你仍可以導出事件屬性
   this.setState({eventType: event.type});
 }
 ```
 
-> Note:
+> 注意：
 >
-> If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+> 如果你想要用同步的方式讀取這些事件，你應該在該事件上呼叫 `event.persist()`。此方法將會把該合成事件從事件組合中移出，並允許使用者程式保留對該事件的引用。
 
 ## Supported Events {#supported-events}
 
