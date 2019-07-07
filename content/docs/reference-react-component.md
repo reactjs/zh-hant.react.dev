@@ -618,7 +618,7 @@ CustomButton.defaultProps = {
 
 ### `displayName` {#displayname}
 
-`displayName` string 是用來 debug 的。通常，你不需要明確的設定這個屬性，因為它可以根據定義該 component 的 function 或 class 的名稱推斷這個值為何。當你為了 debug 或建立一個 higher-order component 而需要展示一個不同的名字時，你可能會想要明確的設定這個值，請參考[如何包覆 Display Name 並輕鬆 debug](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
+`displayName` string 是用來 debug 的。通常，你不需要明確的設定這個屬性，因為它可以根據定義該 component 的 function 或 class 的名稱推斷這個值為何。當你為了 debug 或建立一個 higher-order component 而需要展示一個不同的名字時，你可能會想要明確的設定這個值，請參考[如何包覆 Display Name 並輕鬆 debug](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging)。
 
 * * *
 
@@ -634,7 +634,7 @@ CustomButton.defaultProps = {
 
 State 包含了某個 component 內特定的、會隨時間改變的資料，。這個 state 是由使用者定義的。它應是一個簡單的 JavaScript object。
 
-如果某個值並沒有在 render 或資料流中被使用（例如計時器的 ID），你不需要將它放在 state 內。這類的 value 可以在 component 實例上被定義為 field。
+如果某個值並沒有在 render 或資料流中被使用（例如計時器的 ID），你不需要將它放在 state 內。這類的值可以在 component 實例上被定義為 field。
 
 想更了解 state 如何運作，請參考 [State 和生命週期](/docs/state-and-lifecycle.html)。
 
