@@ -33,7 +33,7 @@ string type
 
 > 注意：
 >
-> 截至 v0.14 為止，從事件處理函式返回 `false` 並不會停止事件冒泡（event propagation）。因此你可以選擇是情況手寫觸發 `e.stopPropagation()` 或 `e.preventDefault()`。
+> 截至 v0.14 為止，從事件處理函式回傳 `false` 並不會停止事件冒泡（event propagation）。因此你可以選擇是情況手寫觸發 `e.stopPropagation()` 或 `e.preventDefault()`。
 
 ### 事件結合 {#event-pooling}
 
@@ -64,11 +64,11 @@ function onClick(event) {
 >
 > 如果你想要用同步的方式讀取這些事件，你應該在該事件上呼叫 `event.persist()`。此方法將會把該合成事件從事件組合中移出，並允許使用者程式保留對該事件的引用。
 
-## Supported Events {#supported-events}
+## 支持的事件 {#supported-events}
 
-React normalizes events so that they have consistent properties across different browsers.
+React 將事件規格化，已讓它們在不同的瀏覽器中有ㄧ致的屬性。
 
-The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
+以下的事件處理函式會在冒泡階段時被一個事件觸發。如果你想註冊捕獲階段的事件處理函式，請在事件名稱的後面加上 `Capture`。例如，假設你想在捕獲階段捕捉 click 事件的話，你需要用 `onClickCapture` 而不是 `onClick`：
 
 - [Clipboard Events](#clipboard-events)
 - [Composition Events](#composition-events)
