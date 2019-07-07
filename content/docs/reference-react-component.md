@@ -119,21 +119,21 @@ render()
 
 `render()` 是 class component 中唯一必要的方法。
 
-當 render 被呼叫時，它將會檢視 `this.props` 和 `this.state` 中的變化，並返回以下類別之一：
+當 render 被呼叫時，它將會檢視 `this.props` 和 `this.state` 中的變化，並回傳以下類別之一：
 
 - **React elements。** 通常是透過 [JSX](/docs/introducing-jsx.html) 創立的。例如，`<div />`和`<MyComponent />`這兩個 React element 會告訴 React 要 render 一個 DOM node 和一個使用者定義的 component。
-- **Arrays and fragments。** 它們會從 render 中返回數個 element。細節請參考[fragments](/docs/fragments.html)。
+- **Arrays and fragments。** 它們會從 render 中回傳數個 element。細節請參考[fragments](/docs/fragments.html)。
 - **Portals**。它們讓你將 children render 到不同的 DOM subtree 中。細節請參考[portals](/docs/portals.html)。
 - **String and numbers。** 這些在 DOM 中將會被 render 為文本 node。
-- **Booleans or `null`**。什麼都不 render。（此類型主要是支援 `返回 test && <Child />` 的模式，這裡的 `test` 是一個 boolean 值）。
+- **Booleans or `null`**。什麼都不 render。（此類型主要是支援 `回傳 test && <Child />` 的模式，這裡的 `test` 是一個 boolean 值）。
 
-`render()` function 應為純函數（pure function），這表示：它並不會改變 component 的 state，它在每次呼叫時都會返回同樣的結果，它並不會直接和瀏覽器有所互動。
+`render()` function 應為純函數（pure function），這表示：它並不會改變 component 的 state，它在每次呼叫時都會回傳同樣的結果，它並不會直接和瀏覽器有所互動。
 
 如果你需要和瀏覽器互動，請在 `componentDidMount()` 或其他的生命週期方法內運行你的程序。將 `render()` 維持在純函式的狀態有助於你對 component 的理解。
 
 > 注意：
 >
-> 若  [`shouldComponentUpdate()`](#shouldcomponentupdate) 返回的值為 `false` 的話，`render()`將不會被呼叫。
+> 若  [`shouldComponentUpdate()`](#shouldcomponentupdate) 回傳的值為 `false` 的話，`render()`將不會被呼叫。
 
 * * *
 
@@ -223,11 +223,11 @@ componentDidUpdate(prevProps) {
 
 你 **可以馬上在 `componentDidUpdate()` 內呼叫 `setState()`**，但注意這必須要被包圍在一個類似上述範例的條件語句內，否則你會進入一個無限迴圈。這也會導致額外的重新 render。雖然使用者看不見，但這可能會影響 component 的效能。如果你想試著將某些 state 複製到由上往下傳的 prop 的話，請考慮直接使用 prop。請參考[為何複製 prop 到 state 中會產生 bug](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
-如果你的 component 裡面有 `getSnapshotBeforeUpdate()` 這個很少見的生命週期方法，其返回的值將會被當作第三個 「snapshot」 參數傳給 `componentDidUpdate()`。否則這個參數會是 undefined。
+如果你的 component 裡面有 `getSnapshotBeforeUpdate()` 這個很少見的生命週期方法，其回傳的值將會被當作第三個 「snapshot」 參數傳給 `componentDidUpdate()`。否則這個參數會是 undefined。
 
 > 注意：
 >
-> 如果 [`shouldComponentUpdate()`](#shouldcomponentupdate) 返回的值為 false 的話，`componentDidUpdate()` 將不會被呼叫。
+> 如果 [`shouldComponentUpdate()`](#shouldcomponentupdate) 回傳的值為 false 的話，`componentDidUpdate()` 將不會被呼叫。
 
 * * *
 
@@ -260,11 +260,11 @@ shouldComponentUpdate(nextProps, nextState)
 
 這個方法的存在著要是為了 **[效能優化](/docs/optimizing-performance.html)**。請不要依賴這個方法來「避免」 render，因為這很有可能會導致 bug。**請考慮使用 React 內建的 [`PureComponent`](/docs/react-api.html#reactpurecomponent)** 並避免手寫 `shouldComponentUpdate()`。`PureComponent` 會為 prop 和 state 做一個淺層比較（Shallow comparison）並減低你錯過必要更新的機會。
 
-如果你很確定你想要手寫這個方法的話，你可以將 `this.props` 和 `nextProps` 以及 `this.state` 和 `nextState` 做比較並返回 `false` 以告知 React 這次的更新可以被略過。 請注意，返回 `false` 並不會避免 child component 在*它們的* state 改變時重新 render。
+如果你很確定你想要手寫這個方法的話，你可以將 `this.props` 和 `nextProps` 以及 `this.state` 和 `nextState` 做比較並回傳 `false` 以告知 React 這次的更新可以被略過。 請注意，回傳 `false` 並不會避免 child component 在*它們的* state 改變時重新 render。
 
 我們並不建議你做深度比較（deep equality check）或在 `shouldComponentUpdate()` 內使用 `JSON.stringify()`。它們效率不佳且會造成效能問題。
 
-目前，如果 `shouldComponentUpdate()` 返回 `false` 的話，[`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)、[`render()`](#render) 和 [`componentDidUpdate()`](#componentdidupdate) 都不會被呼叫。在未來，React 可能會把 `shouldComponentUpdate()` 當作一個提示而非一個嚴格指令，而返回 `false` 可能還是會造成 component 重新 render。
+目前，如果 `shouldComponentUpdate()` 回傳 `false` 的話，[`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)、[`render()`](#render) 和 [`componentDidUpdate()`](#componentdidupdate) 都不會被呼叫。在未來，React 可能會把 `shouldComponentUpdate()` 當作一個提示而非一個嚴格指令，而回傳 `false` 可能還是會造成 component 重新 render。
 
 * * *
 
@@ -274,7 +274,7 @@ shouldComponentUpdate(nextProps, nextState)
 static getDerivedStateFromProps(props, state)
 ```
 
-`getDerivedStateFromProps` 會在一個 component 被 render 前被呼叫，不管是在首次 mount 時或後續的更新時。它應該返回一個 object 以更新 state，或返回 null 以表示不需要更新任何 state。
+`getDerivedStateFromProps` 會在一個 component 被 render 前被呼叫，不管是在首次 mount 時或後續的更新時。它應該回傳一個 object 以更新 state，或回傳 null 以表示不需要更新任何 state。
 
 這個方法是為了某些[很少見的例子](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)而存在的，像是有時 state 會依賴 prop 在一段時間過後所產生的改變。例如，也許建立一個 `<Transition>` component 是很方便的，我們可以用它來比較其之前與之後的 children，並決定我們要 animate in and out 哪一個 child。
 
@@ -298,11 +298,11 @@ static getDerivedStateFromProps(props, state)
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
-`getSnapshotBeforeUpdate()` 會在最近一次 render 的 output 被提交給 DOM 時被呼叫。它讓你在 DOM 改變之前先從其中抓取一些資訊（例如滾動軸的位置）。這個生命週期方法返回的值會被當作一個參數傳遞給 `componentDidUpdate()`。
+`getSnapshotBeforeUpdate()` 會在最近一次 render 的 output 被提交給 DOM 時被呼叫。它讓你在 DOM 改變之前先從其中抓取一些資訊（例如滾動軸的位置）。這個生命週期方法回傳的值會被當作一個參數傳遞給 `componentDidUpdate()`。
 
 這個方法並不常見，但它可能會在像是對話串這類需要以某種特殊方始處理滾動軸位置的 UI 中出現。
 
-一個快照（snapshot）的值（或 `null`）應該被返回。
+一個快照（snapshot）的值（或 `null`）應該被回傳。
 
 例如：
 
@@ -332,7 +332,7 @@ static getDerivedStateFromError(error)
 ```
 
 這個生命週期方法會在某個錯誤被一個 descendant component 提出後被呼叫。
-它會接收該錯誤為其參數並返回一個值以更新 state。
+它會接收該錯誤為其參數並回傳一個值以更新 state。
 
 ```js{7-10,13-16}
 class ErrorBoundary extends React.Component {
@@ -481,13 +481,13 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 
 `UNSAFE_componentWillUpdate()` 會在 render 發生之前、當新的 prop 或 state 正在被接收時被呼叫。請將這個方法作為更新發生之前做準備的一個機會。這個方法並不會在初次 render 時被呼叫。
 
-請注意你不能在這裡呼叫 `this.setState()`，你也不應該在這裡進行其他任何在 `UNSAFE_componentWillUpdate()` 返回之前會觸發 React component 更新的行為（例如 dispatch 一個 Redux action）。
+請注意你不能在這裡呼叫 `this.setState()`，你也不應該在這裡進行其他任何在 `UNSAFE_componentWillUpdate()` 回傳之前會觸發 React component 更新的行為（例如 dispatch 一個 Redux action）。
 
 通常，這個方法可以被 `componentDidUpdate()` 取代。如果你在這個方法內從 DOM 中讀取資料（例如儲存滾動軸的位置），你可以將那部分的邏輯移到 `getSnapshotBeforeUpdate()` 裡面。
 
 > 注意：
 >
-> 如果 [`shouldComponentUpdate()`](#shouldcomponentupdate) 返回 false 的話，`UNSAFE_componentWillUpdate()` 將不會被呼叫。
+> 如果 [`shouldComponentUpdate()`](#shouldcomponentupdate) 回傳 false 的話，`UNSAFE_componentWillUpdate()` 將不會被呼叫。
 
 * * *
 
@@ -509,7 +509,7 @@ setState(updater[, callback])
 
 `setState()` 並不會總是馬上更新 component。它有可能會將更新分批處理更新或延遲到稍後才更新。這使得在呼叫 `setState()` 後讀取 `this.state` 成為一個潛在的問題。因此請不要這麼做。相反的，請使用 `componentDidUpdate` 或一個 `setState` callback（`setState(updater, callback)`）。不論你使用哪一個，React 都保證它會在更新後被觸發。如果你需要基於先前的 state 來設定 state 的話，請閱讀以下關於 `updater` 的參數。
 
-除非 `shouldComponentUpdate()` 返回 `false`，`setState()` 一定會導致重新 render。如果你有使用 mutable object，或者你無法在 `shouldComponentUpdate()` 裡面建立條件式 render 的邏輯的話，只在新的 state 和先前的 state 不同時呼叫 `setState()` 將會避免不必要的重新 render。
+除非 `shouldComponentUpdate()` 回傳 `false`，`setState()` 一定會導致重新 render。如果你有使用 mutable object，或者你無法在 `shouldComponentUpdate()` 裡面建立條件式 render 的邏輯的話，只在新的 state 和先前的 state 不同時呼叫 `setState()` 將會避免不必要的重新 render。
 
 這個方法的第一個參數是一個帶有如下的 signature 的 `updater` function：
 
