@@ -81,7 +81,7 @@ class Welcome extends React.Component {
 
 #### 錯誤處理 {#error-handling}
 
-當一個 component 在 render 的過程、生命週期、或在某個子 component 的 constructor 中發生錯誤時，這些方法會被呼叫：
+當一個 component 在 render 的過程、生命週期、或在某個 child component 的 constructor 中發生錯誤時，這些方法會被呼叫：
 
 - [`static getDerivedStateFromError()`](#static-getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
@@ -123,7 +123,7 @@ render()
 
 - **React elements。** 通常是透過 [JSX](/docs/introducing-jsx.html) 創立的。例如，`<div />`和`<MyComponent />`這兩個 React element 會告訴 React 要 render 一個 DOM node 和一個使用者定義的 component。
 - **Arrays and fragments。** 它們會從 render 中返回數個 element。細節請參考[fragments](/docs/fragments.html)。
-- **Portals**。它們讓你將 children render 到不同的 DOM 子樹中。細節請參考[portals](/docs/portals.html)。
+- **Portals**。它們讓你將 children render 到不同的 DOM subtree 中。細節請參考[portals](/docs/portals.html)。
 - **String and numbers。** 這些在 DOM 中將會被 render 為文本 node。
 - **Booleans or `null`**。什麼都不 render。（此類型主要是支援 `返回 test && <Child />` 的模式，這裡的 `test` 是一個 boolean 值）。
 
@@ -198,7 +198,7 @@ componentDidMount()
 
 這個方法適合設立任何 subscription。設立完 subscription 後，別忘了在 `componentWillUnmount()` 內取消 subscription。
 
-你 **可以馬上在 `componentDidMount()` 內呼叫 `setState()`。** 這會觸發一次額外的 render，但這會在瀏覽器更新螢幕之前發生。在這個情況下，即使 `render()` 被呼叫兩次，這確保使用者不會看見這兩次 render 中過渡時期的 state。請謹慎使用這個模式，因為這經常會導致性能問題。在大多數情況下，你應該能夠在  `constructor()` 內指定初始 state 的值。不過，在某些情況下，像是在使用 modal 和 tooltip 的時候，你所 render 的 component 若是依賴某個 DOM node 的大小或位置時，這種模式有時候可能是有必要的。
+你 **可以馬上在 `componentDidMount()` 內呼叫 `setState()`。** 這會觸發一次額外的 render，但這會在瀏覽器更新螢幕之前發生。在這個情況下，即使 `render()` 被呼叫兩次，這確保使用者不會看見這兩次 render 中過渡時期的 state。請謹慎使用這個模式，因為這經常會導致效能問題。在大多數情況下，你應該能夠在  `constructor()` 內指定初始 state 的值。不過，在某些情況下，像是在使用 modal 和 tooltip 的時候，你所 render 的 component 若是依賴某個 DOM node 的大小或位置時，這種模式有時候可能是有必要的。
 
 * * *
 
@@ -221,7 +221,7 @@ componentDidUpdate(prevProps) {
 }
 ```
 
-你 **可以馬上在 `componentDidUpdate()` 內呼叫 `setState()`**，但注意這必須要被包圍在一個類似上述範例的條件語句內，否則你會進入一個無限迴圈。這也會導致額外的重新 render。雖然使用者看不見，但這可能會影響 component 的性能。如果你想試著將某些 state 複製到由上往下傳的 prop 的話，請考慮直接使用 prop。請參考[為何複製 prop 到 state 中會產生 bug](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
+你 **可以馬上在 `componentDidUpdate()` 內呼叫 `setState()`**，但注意這必須要被包圍在一個類似上述範例的條件語句內，否則你會進入一個無限迴圈。這也會導致額外的重新 render。雖然使用者看不見，但這可能會影響 component 的效能。如果你想試著將某些 state 複製到由上往下傳的 prop 的話，請考慮直接使用 prop。請參考[為何複製 prop 到 state 中會產生 bug](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
 如果你的 component 裡面有 `getSnapshotBeforeUpdate()` 這個很少見的生命週期方法，其返回的值將會被當作第三個 「snapshot」 參數傳給 `componentDidUpdate()`。否則這個參數會是 undefined。
 
@@ -237,7 +237,7 @@ componentDidUpdate(prevProps) {
 componentWillUnmount()
 ```
 
-`componentWillUnmount()` 會在ㄧ個 component 被 unmount 和摧毀後馬上被呼叫。你可以在這個方法內進行任何清理，像是取消 timer 和網路請求或是移除任何在 `componentDidMount()` 內建立的  subscription。
+`componentWillUnmount()` 會在ㄧ個 component 被 unmount 和摧毀後馬上被呼叫。你可以在這個方法內進行任何清理，像是取消計時器和網路請求或是移除任何在 `componentDidMount()` 內建立的  subscription。
 
 你 **不應該在 `componentDidUpdate()` 內呼叫 `setState()`**，因為這個 component 永遠不會在重新 render。當一個 component 實例被 unmount 後，它就永遠不會再被 mount。
 
@@ -258,11 +258,11 @@ shouldComponentUpdate(nextProps, nextState)
 
 `shouldComponentUpdate()` 會在新的 prop 或 state 被接收之後並在該 component 被 render 之前被呼叫。其預設值是 `true`。這個方法並不會 component 初次 render 時或使用 `forceUpdate()` 時被呼叫。
 
-這個方法的存在著要是為了 **[性能優化](/docs/optimizing-performance.html)**。請不要依賴這個方法來「避免」 render，因為這很有可能會導致 bug。**請考慮使用 React 內建的 [`PureComponent`](/docs/react-api.html#reactpurecomponent)** 並避免手寫 `shouldComponentUpdate()`。`PureComponent` 會為 prop 和 state 做一個淺層比較（Shallow comparison）並減低你錯過必要更新的機會。
+這個方法的存在著要是為了 **[效能優化](/docs/optimizing-performance.html)**。請不要依賴這個方法來「避免」 render，因為這很有可能會導致 bug。**請考慮使用 React 內建的 [`PureComponent`](/docs/react-api.html#reactpurecomponent)** 並避免手寫 `shouldComponentUpdate()`。`PureComponent` 會為 prop 和 state 做一個淺層比較（Shallow comparison）並減低你錯過必要更新的機會。
 
-如果你很確定你想要手寫這個方法的話，你可以將 `this.props` 和 `nextProps` 以及 `this.state` 和 `nextState` 做比較並返回 `false` 以告知 React 這次的更新可以被略過。 請注意，返回 `false` 並不會避免子 component 在*它們的* state 改變時重新 render。
+如果你很確定你想要手寫這個方法的話，你可以將 `this.props` 和 `nextProps` 以及 `this.state` 和 `nextState` 做比較並返回 `false` 以告知 React 這次的更新可以被略過。 請注意，返回 `false` 並不會避免 child component 在*它們的* state 改變時重新 render。
 
-我們並不建議你做深度比較（deep equality check）或在 `shouldComponentUpdate()` 內使用 `JSON.stringify()`。它們效率不佳且會造成性能問題。
+我們並不建議你做深度比較（deep equality check）或在 `shouldComponentUpdate()` 內使用 `JSON.stringify()`。它們效率不佳且會造成效能問題。
 
 目前，如果 `shouldComponentUpdate()` 返回 `false` 的話，[`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)、[`render()`](#render) 和 [`componentDidUpdate()`](#componentdidupdate) 都不會被呼叫。在未來，React 可能會把 `shouldComponentUpdate()` 當作一個提示而非一個嚴格指令，而返回 `false` 可能還是會造成 component 重新 render。
 
@@ -314,7 +314,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 ### 錯誤邊界 {#error-boundaries}
 
-[錯誤邊界](/docs/error-boundaries.html) 是用於截取子 component tree 中 JavaScript 錯誤、紀錄錯誤、並展示一個備用 UI 而非故障的 component tree 的一群 React component。錯誤邊界會在 render 期間、生命週期方法、以及其下整個 tree 群組所有的 constructor 內截取錯誤。
+[錯誤邊界](/docs/error-boundaries.html) 是用於截取 child component tree 中 JavaScript 錯誤、紀錄錯誤、並展示一個備用 UI 而非故障的 component tree 的一群 React component。錯誤邊界會在 render 期間、生命週期方法、以及其下整個 tree 群組所有的 constructor 內截取錯誤。
 
 一個 class component 會變成錯誤邊界，如果其定義了 `static getDerivedStateFromError()` 和 `componentDidCatch()` 兩種或其中之一的生命週期方法。 從這些生命週期方法中更新 state 讓你截取在其下的 tree 內未被處理的 JavaScript 錯誤，並展示一個備用 UI。
 
@@ -377,7 +377,7 @@ componentDidCatch(error, info)
 2. `info` - 一個有 `componentStack` key 的 object，這個 key 內含有[哪一個 component 提出錯誤的資訊](/docs/error-boundaries.html#component-stack-traces)。
 
 
-`componentDidCatch()` 會在「提交」期間被呼叫，所以副作用是允許的。
+`componentDidCatch()` 會在「提交」期間被呼叫，所以副作用是被允許的。
 這個方法應該被用來做類似紀錄錯誤這類的事情：
 
 ```js{12-19}
@@ -505,9 +505,9 @@ setState(updater[, callback])
 
 `setState()` 會將改變排進一個 queue 中，並告知 React 這個 component 以及它的 children 需要用更新後的 state 重新 render。這是你會在事件處理和伺服器回應用來更新使用者介面最主要的方法。
 
-請把 `setState()` 想成一個*請求*而非一個馬上對 component 進行更新的指令。為了達到更好的性能，React 也許會延遲這個請求，然後一次更新數個 component。React 並不保證 state 的改變會馬上發生。
+請把 `setState()` 想成一個*請求*而非一個馬上對 component 進行更新的指令。為了達到更好的效能，React 也許會延遲這個請求，然後一次更新數個 component。React 並不保證 state 的改變會馬上發生。
 
-`setState()` 並不會總是馬上更新 component。它有可能會將更新分批處理更新或延遲到稍後才更新。這使得在呼叫 `setState()` 後讀取 `this.state` 成為一個潛在的問題。因此請不要這麼做，相反的，請使用 `componentDidUpdate` 或一個 `setState` callback（`setState(updater, callback)`）。不論你使用哪一個，React 都保證它會在更新後被觸發。如果你需要基於先前的 state 來設定 state 的話，請閱讀以下關於 `updater` 的參數。
+`setState()` 並不會總是馬上更新 component。它有可能會將更新分批處理更新或延遲到稍後才更新。這使得在呼叫 `setState()` 後讀取 `this.state` 成為一個潛在的問題。因此請不要這麼做。相反的，請使用 `componentDidUpdate` 或一個 `setState` callback（`setState(updater, callback)`）。不論你使用哪一個，React 都保證它會在更新後被觸發。如果你需要基於先前的 state 來設定 state 的話，請閱讀以下關於 `updater` 的參數。
 
 除非 `shouldComponentUpdate()` 返回 `false`，`setState()` 一定會導致重新 render。如果你有使用 mutable object，或者你無法在 `shouldComponentUpdate()` 裡面建立條件式 render 的邏輯的話，只在新的 state 和先前的 state 不同時呼叫 `setState()` 將會避免不必要的重新 render。
 
@@ -576,17 +576,17 @@ component.forceUpdate(callback)
 
 當你的 component 的 state 或 prop 改變的時候，你的 component 的預設行為是會重新 render。如果你的 `render()` 方法還需要其他資料的話，你可以藉由呼叫 `forceUpdate()` 來告訴 React 這個 component 需要重新 render。
 
-呼叫 `forceUpdate()` 會導致  `render()` 被呼叫於該 component 並跳過 `shouldComponentUpdate()`。這會觸發子 component 正常的生命週期方法，包含每個 child 的 `shouldComponentUpdate()` 方法。React 依然只會在標示（markup）改變時更新 DOM。
+呼叫 `forceUpdate()` 會導致  `render()` 被呼叫於該 component 並跳過 `shouldComponentUpdate()`。這會觸發 children component 正常的生命週期方法，包含每個 child 的 `shouldComponentUpdate()` 方法。React 依然只會在標示（markup）改變時更新 DOM。
 
 正常情況來說你應該避免使用 `forceUpdate()` 並只從 `render()` 中的 `this.props` 和 `this.state` 讀取。
 
 * * *
 
-## Class Properties {#class-properties-1}
+## Class 屬性 {#class-properties-1}
 
 ### `defaultProps` {#defaultprops}
 
-`defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for undefined props, but not for null props. For example:
+`defaultProps` 可以在一個 component class 自身被定義為一個屬性，它被用來設定該 class 的預設 propr。它是為了 undefined（而非 null） 的 prop 使用的。例如：
 
 ```js
 class CustomButton extends React.Component {
@@ -598,19 +598,19 @@ CustomButton.defaultProps = {
 };
 ```
 
-If `props.color` is not provided, it will be set by default to `'blue'`:
+如果 `props.color` 的值沒有被提供的話，它會被預設為 `'blue'`：
 
 ```js
   render() {
-    return <CustomButton /> ; // props.color will be set to blue
+    return <CustomButton /> ; // props.color 被預設為 `'blue'`
   }
 ```
 
-If `props.color` is set to null, it will remain null:
+如果 `props.color` 的值被設為 null，其值會繼續為 null：
 
 ```js
   render() {
-    return <CustomButton color={null} /> ; // props.color will remain null
+    return <CustomButton color={null} /> ; // props.color 繼續為 null
   }
 ```
 
@@ -618,24 +618,24 @@ If `props.color` is set to null, it will remain null:
 
 ### `displayName` {#displayname}
 
-The `displayName` string is used in debugging messages. Usually, you don't need to set it explicitly because it's inferred from the name of the function or class that defines the component. You might want to set it explicitly if you want to display a different name for debugging purposes or when you create a higher-order component, see [Wrap the Display Name for Easy Debugging](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
+`displayName` string 是用來 debug 的。通常，你不需要明確的設定這個屬性，因為它可以根據定義該 component 的 function 或 class 的名稱推斷這個值為何。當你為了 debug 或建立一個 higher-order component 而需要展示一個不同的名字時，你可能會想要明確的設定這個值，請參考[如何包覆 Display Name 並輕鬆 debug](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
 
 * * *
 
-## Instance Properties {#instance-properties-1}
+## 實例屬性 {#instance-properties-1}
 
 ### `props` {#props}
 
-`this.props` contains the props that were defined by the caller of this component. See [Components and Props](/docs/components-and-props.html) for an introduction to props.
+`this.props` 包含了該 component 的呼叫者所定義的 prop。想了解 prop 的基礎概念，請參考 [Components and Props](/docs/components-and-props.html) 一文。
 
-In particular, `this.props.children` is a special prop, typically defined by the child tags in the JSX expression rather than in the tag itself.
+值得注意的是，`this.props.children` 是一個特別的 prop，通常在 JSX 表達式內的 child tag 內所定義，而不是其自身的 tag。
 
 ### `state` {#state}
 
-The state contains data specific to this component that may change over time. The state is user-defined, and it should be a plain JavaScript object.
+State 包含了某個 component 內特定的、會隨時間改變的資料，。這個 state 是由使用者定義的。它應是一個簡單的 JavaScript object。
 
-If some value isn't used for rendering or data flow (for example, a timer ID), you don't have to put it in the state. Such values can be defined as fields on the component instance.
+如果某個值並沒有在 render 或資料流中被使用（例如計時器的 ID），你不需要將它放在 state 內。這類的 value 可以在 component 實例上被定義為 field。
 
-See [State and Lifecycle](/docs/state-and-lifecycle.html) for more information about the state.
+想更了解 state 如何運作，請參考 [State 和生命週期](/docs/state-and-lifecycle.html)。
 
-Never mutate `this.state` directly, as calling `setState()` afterwards may replace the mutation you made. Treat `this.state` as if it were immutable.
+請永遠不要直接 mutate `this.state`，因為後續的 `setState()` 會替換掉你的 mutation。請將 `this.state` 視為不可變的。
