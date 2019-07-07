@@ -1,12 +1,12 @@
 ---
 id: events
-title: SyntheticEvent
+title: 合成事件
 permalink: docs/events.html
 layout: docs
 category: Reference
 ---
 
-This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
+這份參考指南紀錄了 `SyntheticEvent` 這個形成 React 事件系統的 wrapper。想了解更多，請參考[事件處理](/docs/handling-events.html)。
 
 ## Overview {#overview}
 
