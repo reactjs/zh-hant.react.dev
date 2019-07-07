@@ -86,8 +86,8 @@ ReactDOMServer.renderToStaticNodeStream(element)
 
 如果你打算在前端使用 React 以使得標記有互動性的話，請不要使用這個方法。請在伺服器端使用 [`renderToNodeStream`](#rendertonodestream) 並在前端使用 [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate)。
 
-> Note:
+> 注意：
 >
-> Server-only. This API is not available in the browser.
+> 這個 API 只在伺服器端有用。你無法在瀏覽器中使用此 API。
 >
-> The stream returned from this method will return a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+> 這個方法返回的流將會返回一個由 utf-8 編碼的位元組流。 如果你需要另一種編碼的流，請參考像是 [iconv-lite](https://www.npmjs.com/package/iconv-lite) 這種為轉換文本提供轉換流的專案。
