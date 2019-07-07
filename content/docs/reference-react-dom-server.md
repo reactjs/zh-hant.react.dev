@@ -37,9 +37,9 @@ var ReactDOMServer = require('react-dom/server');
 ReactDOMServer.renderToString(element)
 ```
 
-將一個 React element render 至其初始的 HTML。React 將會返回一個 HTML string。你可以使用這個方法在伺服器端生成 HTML 並在初次請求時將標記下傳，以加快頁面下載速度，並讓搜尋引擎爬取你的頁面以達到 SEO 優化的效果。
+這個方法將一個 React element render 至其初始的 HTML。React 將會返回一個 HTML string。你可以使用這個方法在伺服器端生成 HTML，並在初次請求時將標記下傳，以加快頁面下載速度，並讓搜尋引擎爬取你的頁面以達到 SEO 優化的效果。
 
-如果你在一個已經有伺服器端 render 標誌的 node 上呼叫 [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate)，React 將會保留這個 node 並只附上事件處理，這使你能有一個高效能的初次下載體驗。
+如果你在一個已經有伺服器端 render 標記的 node 上呼叫 [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate)，React 將會保留這個 node 並只附上事件處理，這使你能有一個高效能的初次下載體驗。
 
 * * *
 
@@ -49,9 +49,9 @@ ReactDOMServer.renderToString(element)
 ReactDOMServer.renderToStaticMarkup(element)
 ```
 
-Similar to [`renderToString`](#rendertostring), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.
+這個方法和 [`renderToString`](#rendertostring) 很相似，不過這個方法不會建立那些額外的、React 內部使用的 DOM attribute，像是 `data-reactroot`。這個方法在你想要用 React 作為一個簡單的靜態頁面生成器時很有用，因為去除一些額外的 attribute 可以省去一些位元組。
 
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToString`](#rendertostring) on the server and [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on the client.
+如果你打算在前端使用 React 以使得標記有互動性的話，請不要使用這個方法。請在伺服器端使用 [`renderToString`](#rendertostring) 並在前端使用 [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate)。
 
 * * *
 
@@ -61,15 +61,16 @@ If you plan to use React on the client to make the markup interactive, do not us
 ReactDOMServer.renderToNodeStream(element)
 ```
 
-Render a React element to its initial HTML. Returns a [Readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) that outputs an HTML string. The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToString`](#rendertostring) would return. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+這個方法會將一個 React element render 至其初始的 HTML。它會返回一個[可讀流](https://nodejs.org/api/stream.html#stream_readable_streams)並輸出為一個 HTML string。通過可讀流輸出的 HTML 和 [`ReactDOMServer.renderToString`](#rendertostring) 返回的 HTML 完全相同。你可以使用這個方法在伺服器端生成 HTML，並在初次請求時將標記下傳，以加快頁面下載速度，並讓搜尋引擎爬取你的頁面以達到 SEO 優化的效果。
 
-If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+如果你在一個已經有伺服器端 render 標記的 node 上呼叫 [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate)，React 將會保留這個 node 並只附上事件處理，這使你能有一個高效能的初次下載體驗。
 
-> Note:
+
+> 注意：
 >
-> Server-only. This API is not available in the browser.
+> 這個 API 只在伺服器端有用。你無法在瀏覽器中使用此 API。
 >
-> The stream returned from this method will return a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+> 這個方法返回的流將會返回一個由 utf-8 編碼的位元組流。 如果你需要另一種編碼的流，請參考像是 [iconv-lite](https://www.npmjs.com/package/iconv-lite) 這種為轉換文本提供轉換流的專案。
 
 * * *
 
@@ -79,11 +80,11 @@ If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that 
 ReactDOMServer.renderToStaticNodeStream(element)
 ```
 
-Similar to [`renderToNodeStream`](#rendertonodestream), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.
+這個方法和 [`renderToNodeStream`](#rendertonodestream) 很相似，不過這個方法不會建立那些額外的、React 內部使用的 DOM attribute，像是 `data-reactroot`。這個方法在你想要用 React 作為一個簡單的靜態頁面生成器時很有用，因為去除一些額外的 attribute 可以省去一些位元組。
 
-The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup) would return.
+通過這個可讀流輸出的 HTML 和 [`ReactDOMServer.renderToStaticMarkup`](#rendertostaticmarkup) 會返回的 HTML 完全相同。
 
-If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToNodeStream`](#rendertonodestream) on the server and [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on the client.
+如果你打算在前端使用 React 以使得標記有互動性的話，請不要使用這個方法。請在伺服器端使用 [`renderToNodeStream`](#rendertonodestream) 並在前端使用 [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate)。
 
 > Note:
 >
