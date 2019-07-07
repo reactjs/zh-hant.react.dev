@@ -91,15 +91,15 @@ React 將事件規格化，已讓它們在不同的瀏覽器中有ㄧ致的屬�
 
 ## Reference {#reference}
 
-### Clipboard Events {#clipboard-events}
+### 剪貼板事件 {#clipboard-events}
 
-Event names:
+事件名：
 
 ```
 onCopy onCut onPaste
 ```
 
-Properties:
+屬性：
 
 ```javascript
 DOMDataTransfer clipboardData
@@ -107,15 +107,15 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### Composition Events {#composition-events}
+### 複合事件 {#composition-events}
 
-Event names:
+事件名：
 
 ```
 onCompositionEnd onCompositionStart onCompositionUpdate
 ```
 
-Properties:
+屬性：
 
 ```javascript
 string data
@@ -124,15 +124,15 @@ string data
 
 * * *
 
-### Keyboard Events {#keyboard-events}
+### 鍵盤事件 {#keyboard-events}
 
-Event names:
+事件名：
 
 ```
 onKeyDown onKeyPress onKeyUp
 ```
 
-Properties:
+屬性：
 
 ```javascript
 boolean altKey
@@ -149,21 +149,21 @@ boolean shiftKey
 number which
 ```
 
-The `key` property can take any of the values documented in the [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
+`key` 屬性可以接受[DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values)內記錄的任意值。
 
 * * *
 
-### Focus Events {#focus-events}
+### 焦點事件 {#focus-events}
 
-Event names:
+事件名：
 
 ```
 onFocus onBlur
 ```
 
-These focus events work on all elements in the React DOM, not just form elements.
+這些焦點事件在 React DOM 中所有的 element 上都可以使用，不限於表單 element。
 
-Properties:
+屬性：
 
 ```javascript
 DOMEventTarget relatedTarget
@@ -171,21 +171,21 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Form Events {#form-events}
+### 表單事件 {#form-events}
 
-Event names:
+事件名：
 
 ```
 onChange onInput onInvalid onSubmit
 ```
 
-For more information about the onChange event, see [Forms](/docs/forms.html).
+想了解關於 onChange 事件的資訊，請參考[表單](/docs/forms.html)。
 
 * * *
 
-### Mouse Events {#mouse-events}
+### 滑鼠事件 {#mouse-events}
 
-Event names:
+事件名：
 
 ```
 onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
@@ -193,9 +193,9 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-The `onMouseEnter` and `onMouseLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+`onMouseEnter` 和 `onMouseLeave` 事件從離開的 element 向正在進入的 element 傳播，而不是正常的冒泡，也沒有捕獲階段。
 
-Properties:
+屬性：
 
 ```javascript
 boolean altKey
@@ -216,20 +216,20 @@ boolean shiftKey
 
 * * *
 
-### Pointer Events {#pointer-events}
+### 指標事件 {#pointer-events}
 
-Event names:
+事件名：
 
 ```
 onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-The `onPointerEnter` and `onPointerLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+`onPointerEnter` 和 `onPointerLeave` 事件從離開的 element 向正在進入的 element 傳播，而不是正常的冒泡，也沒有捕獲階段。
 
-Properties:
+屬性：
 
-As defined in the [W3 spec](https://www.w3.org/TR/pointerevents/), pointer events extend [Mouse Events](#mouse-events) with the following properties:
+如同在 [W3 spec](https://www.w3.org/TR/pointerevents/) 內定義的，指標事件是[滑鼠事件](#mouse-events)的延伸，並帶有以下屬性：
 
 ```javascript
 number pointerId
@@ -244,17 +244,17 @@ string pointerType
 boolean isPrimary
 ```
 
-A note on cross-browser support:
+關於跨瀏覽器支持的說明：
 
-Pointer events are not yet supported in every browser (at the time of writing this article, supported browsers include: Chrome, Firefox, Edge, and Internet Explorer). React deliberately does not polyfill support for other browsers because a standard-conform polyfill would significantly increase the bundle size of `react-dom`.
+目前為止，並非所有的瀏覽器都支持指標事件（在這篇文章書寫之時，支持該事件的瀏覽器有：Chrome, Firefox, Edge, and Internet Explorer）。 React 刻意不通過 polyfill 的方式支持其他瀏覽器，因為符合標準的 polyfill 會顯著地增加 `react-dom` 的 bundle 大小。
 
-If your application requires pointer events, we recommend adding a third party pointer event polyfill.
+如果你的應用程式需要指針事件，我們建議你加上第三方的指針事件 polyfill。
 
 * * *
 
-### Selection Events {#selection-events}
+### 選擇事件 {#selection-events}
 
-Event names:
+事件名：
 
 ```
 onSelect
@@ -262,15 +262,15 @@ onSelect
 
 * * *
 
-### Touch Events {#touch-events}
+### 觸摸事件 {#touch-events}
 
-Event names:
+事件名：
 
 ```
 onTouchCancel onTouchEnd onTouchMove onTouchStart
 ```
 
-Properties:
+屬性：
 
 ```javascript
 boolean altKey
@@ -285,15 +285,15 @@ DOMTouchList touches
 
 * * *
 
-### UI Events {#ui-events}
+### UI 事件 {#ui-events}
 
-Event names:
+事件名：
 
 ```
 onScroll
 ```
 
-Properties:
+屬性：
 
 ```javascript
 number detail
@@ -302,15 +302,15 @@ DOMAbstractView view
 
 * * *
 
-### Wheel Events {#wheel-events}
+### 滾輪事件 {#wheel-events}
 
-Event names:
+事件名：
 
 ```
 onWheel
 ```
 
-Properties:
+屬性：
 
 ```javascript
 number deltaMode
@@ -321,9 +321,9 @@ number deltaZ
 
 * * *
 
-### Media Events {#media-events}
+### 媒體事件 {#media-events}
 
-Event names:
+事件名：
 
 ```
 onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
@@ -334,9 +334,9 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### Image Events {#image-events}
+### 圖片事件 {#image-events}
 
-Event names:
+事件名：
 
 ```
 onLoad onError
@@ -344,15 +344,15 @@ onLoad onError
 
 * * *
 
-### Animation Events {#animation-events}
+### 動畫事件 {#animation-events}
 
-Event names:
+事件名：
 
 ```
 onAnimationStart onAnimationEnd onAnimationIteration
 ```
 
-Properties:
+屬性：
 
 ```javascript
 string animationName
@@ -362,15 +362,15 @@ float elapsedTime
 
 * * *
 
-### Transition Events {#transition-events}
+### 過渡事件 {#transition-events}
 
-Event names:
+事件名：
 
 ```
 onTransitionEnd
 ```
 
-Properties:
+屬性：
 
 ```javascript
 string propertyName
@@ -380,9 +380,9 @@ float elapsedTime
 
 * * *
 
-### Other Events {#other-events}
+### 其他事件 {#other-events}
 
-Event names:
+事件名：
 
 ```
 onToggle
