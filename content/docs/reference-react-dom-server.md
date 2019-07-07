@@ -6,7 +6,7 @@ category: Reference
 permalink: docs/react-dom-server.html
 ---
 
-The `ReactDOMServer` object enables you to render components to static markup. Typically, it's used on a Node server:
+`ReactDOMServer` object 使你能將 component render 至靜態標記（markup）。它通常是用在 Node 伺服器上：
 
 ```js
 // ES modules
