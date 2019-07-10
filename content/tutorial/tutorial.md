@@ -16,11 +16,7 @@ redirect_from:
 
 ## 在我們開始這份學習指南之前 {#before-we-start-the-tutorial}
 
-<<<<<<< HEAD
 在這份學習指南中，我們會練習做一個小遊戲。**也許你會很想跳過這份指南，因為你不是遊戲開發者 -- 但請試著跟著做做看。**在這份學習指南中，你所學到的技術是你做任何 React 應用程式的基礎，掌握基礎後會讓你對 React 有更深入的了解。
-=======
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
->>>>>>> 06a029d53d7ee7e5e717dd39450ac6af1ff554e5
 
 >Tip
 >
