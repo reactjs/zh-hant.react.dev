@@ -61,7 +61,7 @@ ReactDOMServer.renderToStaticMarkup(element)
 ReactDOMServer.renderToNodeStream(element)
 ```
 
-這個方法會將一個 React element render 至其初始的 HTML。它會回傳一個 [Readable Stream](https://nodejs.org/api/stream.html#stream_readable_streams)並輸出為一個 HTML string。通過 Readable Stream 輸出的 HTML 和 [`ReactDOMServer.renderToString`](#rendertostring) 回傳的 HTML 完全相同。你可以使用這個方法在伺服器端生成 HTML，並在初次請求時傳遞 markup ，以加快頁面載入速度，並讓搜尋引擎爬取你的頁面以達到 SEO 最佳化的效果。
+這個方法會將一個 React element render 至其初始的 HTML。它會回傳一個 [Readable Stream](https://nodejs.org/api/stream.html#stream_readable_streams)並輸出為一個 HTML string。通過 Readable Stream 輸出的 HTML 和 [`ReactDOMServer.renderToString`](#rendertostring) 回傳的 HTML 完全相同。你可以使用這個方法在伺服器端產生 HTML，並在初次請求時傳遞 markup ，以加快頁面載入速度，並讓搜尋引擎爬取你的頁面以達到 SEO 最佳化的效果。
 
 如果你在一個已經有伺服器端 render markup 的 node 上呼叫 [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate)，React 將會保留這個 node 並只附上事件處理，這使你能有一個高效能的初次載入體驗。
 
