@@ -69,7 +69,7 @@ function FriendListItem(props) {
 
 ## 提取一個自定義的 Hook {#extracting-a-custom-hook}
 
-當我們想要共享邏輯在兩個 JavaScript function 之間時，我們提取它成為第三個 function。Componet 和 Hook 兩者都是 function，所以這也適用於它們！
+當我們想要共享邏輯在兩個 JavaScript function 之間時，我們提取它成為第三個 function。Component 和 Hook 兩者都是 function，所以這也適用於它們！
 
 **一個自定義的 Hook 是以「`use`」為開頭命名的 JavaScript function，而且它可能也呼叫其他的 Hook。**例如，以下是我們第一個字定義的 `useFriendStatus` Hook：
 
@@ -199,7 +199,7 @@ function ChatRecipientPicker() {
 
 自定義的 Hook 提供了共享邏輯的靈活性，這在以前的 React component 是不可能的。你可以撰寫自定義的 Hook 涵蓋廣泛的場景，想是表格處理、動畫、陳述式訂閱（Declarative Subscription）、計時器還有更多我們沒有考慮過的。更重要的是，你可以打造與 React 的內建一樣易於使用的 Hook。
 
-盡量不要過早地加入抽象。現在 function component 可以做更多的事，在你 codebase 中的 function componnet 程式碼平均可能都會變得更長。這都是正常的 -- 不要覺得你*必須*馬上把它拆分成 Hook。但我們也鼓勵你開始發現自定義的 Hook 可以隱藏簡單 interface 背後的複雜邏輯情況，或者幫忙解開一個混亂的 component。
+盡量不要過早地加入抽象。現在 function component 可以做更多的事，在你 codebase 中的 function component 程式碼平均可能都會變得更長。這都是正常的 -- 不要覺得你*必須*馬上把它拆分成 Hook。但我們也鼓勵你開始發現自定義的 Hook 可以隱藏簡單 interface 背後的複雜邏輯情況，或者幫忙解開一個混亂的 component。
 
 例如，你可能有一個複雜的 component，它包含許多以 ad-hoc 的方式來管理 local state。`useState` 沒辦法讓更新邏輯集中化，所以你可能更傾向將其寫為 [Redux](https://redux.js.org/) 的 reducer：
 
