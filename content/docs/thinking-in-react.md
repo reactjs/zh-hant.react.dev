@@ -76,11 +76,7 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
 
 ### 簡短的插曲：Props 和 State {#a-brief-interlude-props-vs-state}
 
-<<<<<<< HEAD
-React 中有兩種「模型」資料： props and state。理解兩者的差別至關重要。若你不確定兩者的差別，請瀏覽 [React 的官方文件](/docs/interactivity-and-dynamic-uis.html)。
-=======
-There are two types of "model" data in React: props and state. It's important to understand the distinction between the two; skim [the official React docs](/docs/state-and-lifecycle.html) if you aren't sure what the difference is. See also [FAQ: What is the difference between state and props?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
->>>>>>> eef56ffdcfa995e3478f85cd9d02f4be01f65b79
+React 中有兩種「模型」資料： props and state。理解兩者的差別至關重要。若你不確定兩者的差別，請瀏覽 [React 的官方文件](/docs/state-and-lifecycle.html)以及 [FAQ：props 和 state 有何不同？](/docs/faq-state.html#what-is-the-difference-between-state-and-props)。
 
 ## 第三步：找出最少（但完整）的 UI State 的代表 {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
