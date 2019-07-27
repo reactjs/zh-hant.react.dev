@@ -632,7 +632,7 @@ CustomButton.defaultProps = {
 
 ### `state` {#state}
 
-State 包含了某個 component 內特定的、會隨時間改變的資料，。這個 state 是由使用者定義的。它應是一個簡單的 JavaScript object。
+State 包含了某個 component 內特定的、會隨時間改變的資料，這個 state 是由使用者定義的。它應是一個簡單的 JavaScript object。
 
 如果某個值並沒有在 render 或資料流中被使用（例如計時器的 ID），你不需要將它放在 state 內。這類的值可以在 component 實例上被定義為 field。
 
