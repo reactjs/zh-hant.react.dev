@@ -33,7 +33,7 @@ string type
 
 > 注意：
 >
-> 截至 v0.14 為止，從事件處理函式回傳 `false` 並不會停止事件冒泡（event propagation）。因此你可以選擇是情況手寫觸發 `e.stopPropagation()` 或 `e.preventDefault()`。
+> 截至 v0.14 為止，從 event handler 回傳 `false` 並不會停止事件冒泡（event propagation）。因此你可以選擇是情況手寫觸發 `e.stopPropagation()` 或 `e.preventDefault()`。
 
 ### 事件結合 {#event-pooling}
 
