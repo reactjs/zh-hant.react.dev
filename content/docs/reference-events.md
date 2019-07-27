@@ -39,7 +39,7 @@ string type
 
 `SyntheticEvent` 是透過結合事件而來的。這表示 `SyntheticEvent` 這個 object 會被重複使用，且所有的屬性都會在事件的 callback 被呼叫後變成無效。
 這是出於效能考量。
-因此，你不能用同步的方式讀取這些事件：
+因此，你不能用非同步的方式讀取這些事件：
 
 ```javascript
 function onClick(event) {
