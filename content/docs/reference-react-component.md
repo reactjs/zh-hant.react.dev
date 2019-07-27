@@ -586,7 +586,7 @@ component.forceUpdate(callback)
 
 ### `defaultProps` {#defaultprops}
 
-`defaultProps` 可以在一個 component class 自身被定義為一個屬性，它被用來設定該 class 的預設 propr。它是為了 undefined（而非 null） 的 prop 使用的。例如：
+`defaultProps` 可以在一個 component class 自身被定義為一個屬性，它被用來設定該 class 的預設 props。它是為了 undefined（而非 null） 的 prop 使用的。例如：
 
 ```js
 class CustomButton extends React.Component {
