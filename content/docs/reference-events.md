@@ -109,7 +109,7 @@ DOMDataTransfer clipboardData
 
 ### 複合事件 {#composition-events}
 
-事件名：
+事件名稱：
 
 ```
 onCompositionEnd onCompositionStart onCompositionUpdate
