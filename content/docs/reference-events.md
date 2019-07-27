@@ -254,7 +254,7 @@ boolean isPrimary
 
 ### 選擇事件 {#selection-events}
 
-事件名：
+事件名稱：
 
 ```
 onSelect
