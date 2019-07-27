@@ -602,7 +602,7 @@ CustomButton.defaultProps = {
 
 ```js
   render() {
-    return <CustomButton /> ; // props.color 被預設為 `'blue'`
+    return <CustomButton /> ; // props.color 被預設為 blue
   }
 ```
 
