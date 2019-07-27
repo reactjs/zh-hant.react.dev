@@ -286,7 +286,7 @@ static getDerivedStateFromProps(props, state)
 
 * 如果你想要 **在某個 prop 改變時「重置」某個 state**，請考慮建立一個[完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) 的 component 或[帶有 `key` 的完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) component。
 
-這個方法無法觸及一個 component 的實例。如果你想要這麼做的話，你可以把一個 component 的 prop 和 state 提取出來變成 pure funtion，並寫在該 class definition 之外，並透過這樣的方式在 `getDerivedStateFromProps()` 和其他 class 方法之間重複使用某些程式碼。
+這個方法無法觸及一個 component 的實例。如果你想要這麼做的話，你可以把一個 component 的 prop 和 state 提取出來變成純函數，並寫在該 class definition 之外，並透過這樣的方式在 `getDerivedStateFromProps()` 和其他 class 方法之間重複使用某些程式碼。
 
 請注意這個方法在*每一次* render 時都會被觸發，不論原因為何。這和 `UNSAFE_componentWillReceiveProps` 有所不同，這個方法只有在 parent 導致重新 render 時被觸發，而非在本地的 `setState` 導致重新 render 時被觸發。
 
