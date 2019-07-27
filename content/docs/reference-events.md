@@ -246,7 +246,7 @@ boolean isPrimary
 
 關於跨瀏覽器支援的說明：
 
-目前為止，並非所有的瀏覽器都支持指標事件（在這篇文章書寫之時，支持該事件的瀏覽器有：Chrome, Firefox, Edge, and Internet Explorer）。 React 刻意不通過 polyfill 的方式支持其他瀏覽器，因為符合標準的 polyfill 會顯著地增加 `react-dom` 的 bundle 大小。
+目前為止，並非所有的瀏覽器都支援指標事件（在這篇文章撰寫的時候，支援該事件的瀏覽器有：Chrome、Firefox、Edge 以及 Internet Explorer）。React 刻意不通過 polyfill 的方式支援其他瀏覽器，因為符合標準的 polyfill 會明顯地增加 `react-dom` 的 bundle 大小。
 
 如果你的應用程式需要指針事件，我們建議你加上第三方的指針事件 polyfill。
 
