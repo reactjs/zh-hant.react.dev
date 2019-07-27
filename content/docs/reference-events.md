@@ -149,7 +149,7 @@ boolean shiftKey
 number which
 ```
 
-`key` 屬性可以接受[DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values)內記錄的任意值。
+`key` 屬性可以接受 [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values) 內記錄的任意值。
 
 * * *
 
