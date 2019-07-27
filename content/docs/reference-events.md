@@ -68,7 +68,7 @@ function onClick(event) {
 
 React 將事件規格化，已讓它們在不同的瀏覽器中有ㄧ致的屬性。
 
-以下的事件處理函式會在冒泡階段時被一個事件觸發。如果你想註冊捕獲階段的事件處理函式，請在事件名稱的後面加上 `Capture`。例如，假設你想在捕獲階段捕捉 click 事件的話，你需要用 `onClickCapture` 而不是 `onClick`：
+以下的 event handler 會在冒泡階段時被一個事件觸發。如果你想註冊捕獲階段的 event handler，請在事件名稱的後面加上 `Capture`。例如，假設你想在捕獲階段捕捉 click 事件的話，你需要用 `onClickCapture` 而不是 `onClick`：
 
 - [Clipboard Events](#clipboard-events)
 - [Composition Events](#composition-events)
