@@ -1,6 +1,6 @@
 ---
 id: events
-title: 合成事件
+title: SyntheticEvent
 permalink: docs/events.html
 layout: docs
 category: Reference
@@ -89,7 +89,7 @@ React 將事件規格化，已讓它們在不同的瀏覽器中有ㄧ致的屬�
 
 * * *
 
-## Reference {#reference}
+## 參考 {#reference}
 
 ### 剪貼板事件 {#clipboard-events}
 
@@ -107,7 +107,7 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### 複合事件 {#composition-events}
+### 組合事件 {#composition-events}
 
 事件名稱：
 
@@ -248,7 +248,7 @@ boolean isPrimary
 
 目前為止，並非所有的瀏覽器都支援指標事件（在這篇文章撰寫的時候，支援該事件的瀏覽器有：Chrome、Firefox、Edge 以及 Internet Explorer）。React 刻意不通過 polyfill 的方式支援其他瀏覽器，因為符合標準的 polyfill 會明顯地增加 `react-dom` 的 bundle 大小。
 
-如果你的應用程式需要指針事件，我們建議你加上第三方的指針事件 polyfill。
+如果你的應用程式需要指標事件，我們建議你加上第三方的指針事件 polyfill。
 
 * * *
 
@@ -264,7 +264,7 @@ onSelect
 
 ### 觸摸事件 {#touch-events}
 
-事件名：
+事件名稱：
 
 ```
 onTouchCancel onTouchEnd onTouchMove onTouchStart
