@@ -93,7 +93,7 @@ React 將事件規格化，已讓它們在不同的瀏覽器中有ㄧ致的屬�
 
 ### 剪貼板事件 {#clipboard-events}
 
-事件名：
+事件名稱：
 
 ```
 onCopy onCut onPaste
