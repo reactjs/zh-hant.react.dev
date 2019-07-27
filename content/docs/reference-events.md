@@ -346,7 +346,7 @@ onLoad onError
 
 ### 動畫事件 {#animation-events}
 
-事件名：
+事件名稱：
 
 ```
 onAnimationStart onAnimationEnd onAnimationIteration
