@@ -264,7 +264,7 @@ onSelect
 
 ### 觸摸事件 {#touch-events}
 
-事件名：
+事件名稱：
 
 ```
 onTouchCancel onTouchEnd onTouchMove onTouchStart
