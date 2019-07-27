@@ -364,7 +364,7 @@ float elapsedTime
 
 ### 過渡事件 {#transition-events}
 
-事件名：
+事件名稱：
 
 ```
 onTransitionEnd
