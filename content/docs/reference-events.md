@@ -126,7 +126,7 @@ string data
 
 ### 鍵盤事件 {#keyboard-events}
 
-事件名：
+事件名稱：
 
 ```
 onKeyDown onKeyPress onKeyUp
