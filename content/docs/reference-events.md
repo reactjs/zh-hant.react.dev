@@ -323,7 +323,7 @@ number deltaZ
 
 ### 媒體事件 {#media-events}
 
-事件名：
+事件名稱：
 
 ```
 onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
