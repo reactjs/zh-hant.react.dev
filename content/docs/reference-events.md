@@ -336,7 +336,7 @@ onTimeUpdate onVolumeChange onWaiting
 
 ### 圖片事件 {#image-events}
 
-事件名：
+事件名稱：
 
 ```
 onLoad onError
