@@ -287,7 +287,7 @@ DOMTouchList touches
 
 ### UI 事件 {#ui-events}
 
-事件名：
+事件名稱：
 
 ```
 onScroll
