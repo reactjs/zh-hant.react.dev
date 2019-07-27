@@ -6,13 +6,13 @@ layout: docs
 category: Reference
 ---
 
-This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
+這份參考指南紀錄了 `SyntheticEvent` 這個形成 React 事件系統的 wrapper。想了解更多，請參考[事件處理](/docs/handling-events.html)。
 
-## Overview {#overview}
+## 概觀 {#overview}
 
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
+你的 event handler 將會是 `SyntheticEvent` 被傳遞的 instance，它是一個跨瀏覽器的、瀏覽器原生事件的 wrapper。它和瀏覽器原生事件有相同的介面，包含 `stopPropagation()` 和 `preventDefault()`，除了原生事件在所有的瀏覽器都以相同的方式運作這點以外。
 
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. Every `SyntheticEvent` object has the following attributes:
+如果你發現因為某些原因你需要使用瀏覽器的底層事件，你只需要使用 `nativeEvent` 這個 attribute 即可。每個 `SyntheticEvent` object 都有下列的 attribute：
 
 ```javascript
 boolean bubbles
@@ -31,19 +31,19 @@ number timeStamp
 string type
 ```
 
-> Note:
+> 注意：
 >
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
+> 截至 v0.14 為止，從 event handler 回傳 `false` 並不會停止事件冒泡（event propagation）。因此你可以選擇是情況手寫觸發 `e.stopPropagation()` 或 `e.preventDefault()`。
 
-### Event Pooling {#event-pooling}
+### 事件結合 {#event-pooling}
 
-The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
-This is for performance reasons.
-As such, you cannot access the event in an asynchronous way.
+`SyntheticEvent` 是透過結合事件而來的。這表示 `SyntheticEvent` 這個 object 會被重複使用，且所有的屬性都會在事件的 callback 被呼叫後變成無效。
+這是出於效能考量。
+因此，你不能用非同步的方式讀取這些事件：
 
 ```javascript
 function onClick(event) {
-  console.log(event); // => nullified object.
+  console.log(event); // => 無效的 object。
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
@@ -52,23 +52,23 @@ function onClick(event) {
     console.log(eventType); // => "click"
   }, 0);
 
-  // Won't work. this.state.clickEvent will only contain null values.
+  // 不會產生任何作用，this.state.clickEvent 只會包含 null
   this.setState({clickEvent: event});
 
-  // You can still export event properties.
+  // 你仍可以導出事件屬性
   this.setState({eventType: event.type});
 }
 ```
 
-> Note:
+> 注意：
 >
-> If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+> 如果你想要用非同步的方式讀取這些事件，你應該在該事件上呼叫 `event.persist()`。此方法將會把該合成事件從事件組合中移出，並允許使用者程式保留對該事件的引用。
 
-## Supported Events {#supported-events}
+## 支援的事件 {#supported-events}
 
-React normalizes events so that they have consistent properties across different browsers.
+React 將事件規格化，已讓它們在不同的瀏覽器中有ㄧ致的屬性。
 
-The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
+以下的 event handler 會在冒泡階段時被一個事件觸發。如果你想註冊捕獲階段的 event handler，請在事件名稱的後面加上 `Capture`。例如，假設你想在捕獲階段捕捉 click 事件的話，你需要用 `onClickCapture` 而不是 `onClick`：
 
 - [Clipboard Events](#clipboard-events)
 - [Composition Events](#composition-events)
@@ -89,17 +89,17 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 
 * * *
 
-## Reference {#reference}
+## 參考 {#reference}
 
-### Clipboard Events {#clipboard-events}
+### 剪貼板事件 {#clipboard-events}
 
-Event names:
+事件名稱：
 
 ```
 onCopy onCut onPaste
 ```
 
-Properties:
+屬性：
 
 ```javascript
 DOMDataTransfer clipboardData
@@ -107,15 +107,15 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### Composition Events {#composition-events}
+### 組合事件 {#composition-events}
 
-Event names:
+事件名稱：
 
 ```
 onCompositionEnd onCompositionStart onCompositionUpdate
 ```
 
-Properties:
+屬性：
 
 ```javascript
 string data
@@ -124,15 +124,15 @@ string data
 
 * * *
 
-### Keyboard Events {#keyboard-events}
+### 鍵盤事件 {#keyboard-events}
 
-Event names:
+事件名稱：
 
 ```
 onKeyDown onKeyPress onKeyUp
 ```
 
-Properties:
+屬性：
 
 ```javascript
 boolean altKey
@@ -149,21 +149,21 @@ boolean shiftKey
 number which
 ```
 
-The `key` property can take any of the values documented in the [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
+`key` 屬性可以接受 [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values) 內記錄的任意值。
 
 * * *
 
-### Focus Events {#focus-events}
+### 焦點事件 {#focus-events}
 
-Event names:
+事件名稱：
 
 ```
 onFocus onBlur
 ```
 
-These focus events work on all elements in the React DOM, not just form elements.
+這些焦點事件在 React DOM 中所有的 element 上都可以使用，不限於表單 element。
 
-Properties:
+屬性：
 
 ```javascript
 DOMEventTarget relatedTarget
@@ -171,21 +171,21 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Form Events {#form-events}
+### 表單事件 {#form-events}
 
-Event names:
+事件名稱：
 
 ```
 onChange onInput onInvalid onSubmit
 ```
 
-For more information about the onChange event, see [Forms](/docs/forms.html).
+想了解關於 onChange 事件的資訊，請參考[表單](/docs/forms.html)。
 
 * * *
 
-### Mouse Events {#mouse-events}
+### 滑鼠事件 {#mouse-events}
 
-Event names:
+事件名稱：
 
 ```
 onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
@@ -193,9 +193,9 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-The `onMouseEnter` and `onMouseLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+`onMouseEnter` 和 `onMouseLeave` 事件從離開的 element 向正在進入的 element 傳播，而不是正常的冒泡，也沒有捕獲階段。
 
-Properties:
+屬性：
 
 ```javascript
 boolean altKey
@@ -216,20 +216,20 @@ boolean shiftKey
 
 * * *
 
-### Pointer Events {#pointer-events}
+### 指標事件 {#pointer-events}
 
-Event names:
+事件名稱：
 
 ```
 onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-The `onPointerEnter` and `onPointerLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+`onPointerEnter` 和 `onPointerLeave` 事件從離開的 element 向正在進入的 element 傳播，而不是正常的冒泡，也沒有捕獲階段。
 
-Properties:
+屬性：
 
-As defined in the [W3 spec](https://www.w3.org/TR/pointerevents/), pointer events extend [Mouse Events](#mouse-events) with the following properties:
+如同在 [W3 spec](https://www.w3.org/TR/pointerevents/) 內定義的，指標事件是[滑鼠事件](#mouse-events)的延伸，並帶有以下屬性：
 
 ```javascript
 number pointerId
@@ -244,17 +244,17 @@ string pointerType
 boolean isPrimary
 ```
 
-A note on cross-browser support:
+關於跨瀏覽器支援的說明：
 
-Pointer events are not yet supported in every browser (at the time of writing this article, supported browsers include: Chrome, Firefox, Edge, and Internet Explorer). React deliberately does not polyfill support for other browsers because a standard-conform polyfill would significantly increase the bundle size of `react-dom`.
+目前為止，並非所有的瀏覽器都支援指標事件（在這篇文章撰寫的時候，支援該事件的瀏覽器有：Chrome、Firefox、Edge 以及 Internet Explorer）。React 刻意不通過 polyfill 的方式支援其他瀏覽器，因為符合標準的 polyfill 會明顯地增加 `react-dom` 的 bundle 大小。
 
-If your application requires pointer events, we recommend adding a third party pointer event polyfill.
+如果你的應用程式需要指標事件，我們建議你加上第三方的指針事件 polyfill。
 
 * * *
 
-### Selection Events {#selection-events}
+### 選擇事件 {#selection-events}
 
-Event names:
+事件名稱：
 
 ```
 onSelect
@@ -262,15 +262,15 @@ onSelect
 
 * * *
 
-### Touch Events {#touch-events}
+### 觸摸事件 {#touch-events}
 
-Event names:
+事件名稱：
 
 ```
 onTouchCancel onTouchEnd onTouchMove onTouchStart
 ```
 
-Properties:
+屬性：
 
 ```javascript
 boolean altKey
@@ -285,15 +285,15 @@ DOMTouchList touches
 
 * * *
 
-### UI Events {#ui-events}
+### UI 事件 {#ui-events}
 
-Event names:
+事件名稱：
 
 ```
 onScroll
 ```
 
-Properties:
+屬性：
 
 ```javascript
 number detail
@@ -302,15 +302,15 @@ DOMAbstractView view
 
 * * *
 
-### Wheel Events {#wheel-events}
+### 滾輪事件 {#wheel-events}
 
-Event names:
+事件名稱：
 
 ```
 onWheel
 ```
 
-Properties:
+屬性：
 
 ```javascript
 number deltaMode
@@ -321,9 +321,9 @@ number deltaZ
 
 * * *
 
-### Media Events {#media-events}
+### 媒體事件 {#media-events}
 
-Event names:
+事件名稱：
 
 ```
 onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
@@ -334,9 +334,9 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### Image Events {#image-events}
+### 圖片事件 {#image-events}
 
-Event names:
+事件名稱：
 
 ```
 onLoad onError
@@ -344,15 +344,15 @@ onLoad onError
 
 * * *
 
-### Animation Events {#animation-events}
+### 動畫事件 {#animation-events}
 
-Event names:
+事件名稱：
 
 ```
 onAnimationStart onAnimationEnd onAnimationIteration
 ```
 
-Properties:
+屬性：
 
 ```javascript
 string animationName
@@ -362,15 +362,15 @@ float elapsedTime
 
 * * *
 
-### Transition Events {#transition-events}
+### 過渡事件 {#transition-events}
 
-Event names:
+事件名稱：
 
 ```
 onTransitionEnd
 ```
 
-Properties:
+屬性：
 
 ```javascript
 string propertyName
@@ -380,9 +380,9 @@ float elapsedTime
 
 * * *
 
-### Other Events {#other-events}
+### 其他事件 {#other-events}
 
-Event names:
+事件名稱：
 
 ```
 onToggle
