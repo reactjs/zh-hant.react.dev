@@ -173,7 +173,7 @@ DOMEventTarget relatedTarget
 
 ### 表單事件 {#form-events}
 
-事件名：
+事件名稱：
 
 ```
 onChange onInput onInvalid onSubmit
