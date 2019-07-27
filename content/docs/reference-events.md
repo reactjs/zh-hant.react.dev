@@ -64,7 +64,7 @@ function onClick(event) {
 >
 > 如果你想要用同步的方式讀取這些事件，你應該在該事件上呼叫 `event.persist()`。此方法將會把該合成事件從事件組合中移出，並允許使用者程式保留對該事件的引用。
 
-## 支持的事件 {#supported-events}
+## 支援的事件 {#supported-events}
 
 React 將事件規格化，已讓它們在不同的瀏覽器中有ㄧ致的屬性。
 
