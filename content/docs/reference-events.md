@@ -185,7 +185,7 @@ onChange onInput onInvalid onSubmit
 
 ### 滑鼠事件 {#mouse-events}
 
-事件名：
+事件名稱：
 
 ```
 onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
