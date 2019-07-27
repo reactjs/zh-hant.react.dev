@@ -304,7 +304,7 @@ DOMAbstractView view
 
 ### 滾輪事件 {#wheel-events}
 
-事件名：
+事件名稱：
 
 ```
 onWheel
