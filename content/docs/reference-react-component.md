@@ -465,7 +465,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 
 請注意如果一個 parent component 導致你的 component 重新 render 的話，即使 prop 沒有改變，這個方法仍然會被呼叫。如果你不想要有這些改變的話，請確認你有比較目前和之後的 prop 的值。
 
-React 並不會在初次 [mounting](#mounting) 時使用初始化的 propr 來呼叫 `UNSAFE_componentWillReceiveProps()`。它只會在 component 某些 prop 可能會更新時呼叫這個方法。一般來說，呼叫 `this.setState()` 並不會觸發 `UNSAFE_componentWillReceiveProps()`。
+React 並不會在初次 [mounting](#mounting) 時使用初始化的 props 來呼叫 `UNSAFE_componentWillReceiveProps()`。它只會在 component 某些 prop 可能會更新時呼叫這個方法。一般來說，呼叫 `this.setState()` 並不會觸發 `UNSAFE_componentWillReceiveProps()`。
 
 * * *
 
