@@ -218,7 +218,7 @@ boolean shiftKey
 
 ### 指標事件 {#pointer-events}
 
-事件名：
+事件名稱：
 
 ```
 onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
