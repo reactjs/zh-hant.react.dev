@@ -244,7 +244,7 @@ string pointerType
 boolean isPrimary
 ```
 
-關於跨瀏覽器支持的說明：
+關於跨瀏覽器支援的說明：
 
 目前為止，並非所有的瀏覽器都支持指標事件（在這篇文章書寫之時，支持該事件的瀏覽器有：Chrome, Firefox, Edge, and Internet Explorer）。 React 刻意不通過 polyfill 的方式支持其他瀏覽器，因為符合標準的 polyfill 會顯著地增加 `react-dom` 的 bundle 大小。
 
