@@ -155,7 +155,7 @@ number which
 
 ### 焦點事件 {#focus-events}
 
-事件名：
+事件名稱：
 
 ```
 onFocus onBlur
