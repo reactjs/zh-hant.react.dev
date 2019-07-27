@@ -382,7 +382,7 @@ float elapsedTime
 
 ### 其他事件 {#other-events}
 
-事件名：
+事件名稱：
 
 ```
 onToggle
