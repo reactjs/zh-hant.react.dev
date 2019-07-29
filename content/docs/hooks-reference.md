@@ -33,7 +33,7 @@ next: hooks-faq.html
 const [state, setState] = useState(initialState);
 ```
 
-返回一個 state，及更新 state 的 function。
+回傳一個 state 的值，以及更新 state 的 function。
 
 在首次 render 時，返回的 `state` 的值會跟第一個參數（`initialState`）一樣。
 
