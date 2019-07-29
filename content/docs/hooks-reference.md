@@ -8,7 +8,7 @@ next: hooks-faq.html
 
 *Hook* 是 React 16.8 中增加的新功能。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
 
-本頁面描述 React 中內置 Hook 的 API。
+本頁面描述 React 中內建 Hook 的 API。
 
 如果你剛開始接觸 Hook，你可能會想先查閱 [Hook 概論](/docs/hooks-overview.html)。你也可以在 [Hook 常見問題](/docs/hooks-faq.html) 中獲取有用的資料。
 
