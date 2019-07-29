@@ -45,7 +45,7 @@ setState(newState);
 
 在後續的重新 render，`useState` 回傳的第一個值必定會是最後更新的 state。
 
->備注
+>注意
 >
 >React 確保 `setState` function 的本身是穩定的，而且不會在重新 render 時改變。這就是為什麼可以安全地從 `useEffect` 或 `useCallback` 的依賴列表省略它。
 
@@ -75,7 +75,7 @@ function Counter({initialCount}) {
 >
 > ```js
 > setState(prevState => {
->   // Object.assign would also work
+>   // 也可以使用 Object.assign
 >   return {...prevState, ...updatedValues};
 > });
 > ```
