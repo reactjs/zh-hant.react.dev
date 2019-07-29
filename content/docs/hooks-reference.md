@@ -10,7 +10,7 @@ next: hooks-faq.html
 
 本頁面描述 React 中內建 Hook 的 API。
 
-如果你剛開始接觸 Hook，你可能會想先查閱 [Hook 概論](/docs/hooks-overview.html)。你也可以在 [Hook 常見問題](/docs/hooks-faq.html) 中獲取有用的資料。
+如果你剛開始接觸 Hook，你可能會想先查閱 [Hook 概論](/docs/hooks-overview.html)。你也可以在 [Hook 常見問題](/docs/hooks-faq.html) 中找到有用的資訊。
 
 - [基礎的 Hook](#basic-hooks)
   - [`useState`](#usestate)
