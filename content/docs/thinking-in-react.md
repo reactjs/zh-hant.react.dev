@@ -49,11 +49,7 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
   4. **`ProductCategoryRow`（土耳其藍色）：** 為每個*列別*展示標題
   5. **`ProductRow`（紅色）：** 為每個*產品*展示一列
 
-<<<<<<< HEAD
-如果你看看 `ProductTable`，你會發現表格的標題列（內含「Name」和「Price」標籤 ）並非獨立的 component。要不要把它們變成 component 這個議題完全是個人的喜好，正反意見都有。在這邊的例子裡面，我們把它當作 `ProductTable` 的一部分，因為它是 rendering *資料集* 的一部分，而這正是 `ProductTable` 這個 component 的責任。然而，如果標題欄之後變得越來越複雜（也就是如果我們要加上可以分類的直觀功能的話），那麼建立一個獨立的 `ProductTableHeader` component 就非常合理。
-=======
-If you look at `ProductTable`, you'll see that the table header (containing the "Name" and "Price" labels) isn't its own component. This is a matter of preference, and there's an argument to be made either way. For this example, we left it as part of `ProductTable` because it is part of rendering the *data collection* which is `ProductTable`'s responsibility. However, if this header grows to be complex (e.g., if we were to add affordances for sorting), it would certainly make sense to make this its own `ProductTableHeader` component.
->>>>>>> 986381c56879983269c52863d9c205c7a7ba0174
+如果你看看 `ProductTable`，你會發現表格的標題列（內含「Name」和「Price」標籤 ）並非獨立的 component。要不要把它們變成 component 這個議題完全是個人的喜好，正反意見都有。在這邊的例子裡面，我們把它當作 `ProductTable` 的一部分，因為它是 rendering *資料集* 的一部分，而這正是 `ProductTable` 這個 component 的責任。然而，如果標題欄之後變得越來越複雜（假如我們要加上可以分類的直觀功能的話），那麼建立一個獨立的 `ProductTableHeader` component 就非常合理。
 
 既然我們已經找出視覺稿中的 component 了，讓我們來安排它們的層級。在視覺稿中，在另一個 component 中出現的 component 就應該是 child：
 
