@@ -10,13 +10,13 @@ next: hooks-faq.html
 
 本頁面描述 React 中內建 Hook 的 API。
 
-如果你剛開始接觸 Hook，你可能會想先查閱 [Hook 概論](/docs/hooks-overview.html)。你也可以在 [Hook 常見問題](/docs/hooks-faq.html) 中找到有用的資訊。
+如果你剛開始接觸 Hook，你可能會想先查閱 [Hook 概論](/docs/hooks-overview.html)。你也可以在 [Hook 常見問題](/docs/hooks-faq.html)中找到有用的資訊。
 
 - [基礎的 Hook](#basic-hooks)
   - [`useState`](#usestate)
   - [`useEffect`](#useeffect)
   - [`useContext`](#usecontext)
-- [額外的 Hooks](#additional-hooks)
+- [額外的 Hook](#additional-hooks)
   - [`useReducer`](#usereducer)
   - [`useCallback`](#usecallback)
   - [`useMemo`](#usememo)
@@ -47,7 +47,7 @@ setState(newState);
 
 >注意
 >
->React 確保 `setState` function 的本身是穩定的，而且不會在重新 render 時改變。這就是為什麼可以安全地從 `useEffect` 或 `useCallback` 的依賴列表省略它。
+>React 確保 `setState` function 本身是穩定的，而且不會在重新 render 時改變。這就是為什麼可以安全地從 `useEffect` 或 `useCallback` 的依賴列表省略它。
 
 #### 函數式更新 {#functional-updates}
 
