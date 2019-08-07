@@ -49,7 +49,7 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
   4. **`ProductCategoryRow`（土耳其藍色）：** 為每個*列別*展示標題
   5. **`ProductRow`（紅色）：** 為每個*產品*展示一列
 
-如果你看看 `ProductTable`，你會發現表格的標題列（內含「Name」和「Price」標籤 ）並非獨立的 component。要不要把它們變成 component 這個議題完全是個人的喜好，正反意見都有。在這邊的例子裡面，我們把它當作 `ProductTable` 的一部分，因為它是 rendering *資料集* 的一部分，而這正是 `ProductTable` 這個 component 的責任。然而，如果標題欄之後變得越來越複雜（也就是如果我們要加上可以分類的直觀功能的話），那麼建立一個獨立的 `ProductTableHeader` component 就非常合理。
+如果你看看 `ProductTable`，你會發現表格的標題列（內含「Name」和「Price」標籤 ）並非獨立的 component。要不要把它們變成 component 這個議題完全是個人的喜好，正反意見都有。在這邊的例子裡面，我們把它當作 `ProductTable` 的一部分，因為它是 rendering *資料集* 的一部分，而這正是 `ProductTable` 這個 component 的責任。然而，如果標題欄之後變得越來越複雜（假如我們要加上可以分類的直觀功能的話），那麼建立一個獨立的 `ProductTableHeader` component 就非常合理。
 
 既然我們已經找出視覺稿中的 component 了，讓我們來安排它們的層級。在視覺稿中，在另一個 component 中出現的 component 就應該是 child：
 
