@@ -6,7 +6,16 @@ permalink: docs/code-splitting.html
 
 ## Bundling {#bundling}
 
+<<<<<<< HEAD
 大部分 React 應用程式會使用像是 [Webpack](https://webpack.js.org/) 或 [Browserify](http://browserify.org/) 的工具來 bundle 它們的檔案。
+=======
+Most React apps will have their files "bundled" using tools like
+[Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) or 
+[Browserify](http://browserify.org/).
+Bundling is the process of following imported files and merging them into a
+single file: a "bundle". This bundle can then be included on a webpage to load
+an entire app at once.
+>>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 
 Bundle 是將被 import 的檔案合併成一個單一的檔案：「bundle」。這個 bundle 檔案可以被引入到網頁內來載入整個應用程式。
 
