@@ -23,7 +23,7 @@ prev: hooks-reference.html
   * [我需要重寫所有的 Class component 嗎？](#do-i-need-to-rewrite-all-my-class-components)
   * [我可以在 Hook 做什麼是我在 Class 所不能做的？](#what-can-i-do-with-hooks-that-i-couldnt-with-classes)
   * [Hook 與我的 React 知識有多少保持相關性？](#how-much-of-my-react-knowledge-stays-relevant)
-  * [我應該使用 Hook、Class，或是兩者兼具？](#should-i-use-hooks-classes-or-a-mix-of-both)
+  * [我應該使用 Hook、Class 或是兩者兼具？](#should-i-use-hooks-classes-or-a-mix-of-both)
   * [Hook 包含所有 Class 的使用情境嗎？](#do-hooks-cover-all-use-cases-for-classes)
   * [Hook 可以取代 Render Props 和 Higher-Order Component 嗎？](#do-hooks-replace-render-props-and-higher-order-components)
   * [Hook 對於 Redux connect() 和 React Router 等等其他流行的 API 意味著什麼？](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
@@ -33,7 +33,7 @@ prev: hooks-reference.html
 * **[從 Class 到 Hook](#from-classes-to-hooks)**
   * [生命週期方法與 Hook 如何對應？](#how-do-lifecycle-methods-correspond-to-hooks)
   * [我如何使用 Hook fetch 資料？](#how-can-i-do-data-fetching-with-hooks)
-  * [是否有類似實例變數的東西？](#is-there-something-like-instance-variables)
+  * [是否有類似 Instance 變數的東西？](#is-there-something-like-instance-variables)
   * [我應該使用一個或是多個 state 變數？](#should-i-use-one-or-many-state-variables)
   * [我可以只在更新時執行 effect 嗎？](#can-i-run-an-effect-only-on-updates)
   * [如何取得先前的 prop 或 state？](#how-to-get-the-previous-props-or-state)
@@ -49,8 +49,8 @@ prev: hooks-reference.html
   * [如果我的 effect 依賴項目經常變化的話該怎麼辦？](#what-can-i-do-if-my-effect-dependencies-change-too-often)
   * [我該如何實作 shouldComponentUpdate？](#how-do-i-implement-shouldcomponentupdate)
   * [如何 memoize 計算？](#how-to-memoize-calculations)
-  * [如何延遲建立 expensive 的 object？](#how-to-create-expensive-objects-lazily)
-  * [Are Hooks slow because of creating functions in render?](#are-hooks-slow-because-of-creating-functions-in-render)
+  * [如何延遲建立昂貴的 object？](#how-to-create-expensive-objects-lazily)
+  * [在 render 時建立 function，Hooks 會變慢嗎？](#are-hooks-slow-because-of-creating-functions-in-render)
   * [如何避免向下傳遞 callback？](#how-to-avoid-passing-callbacks-down)
   * [如何從 useCallback 讀取一個經常變化的值？](#how-to-read-an-often-changing-value-from-usecallback)
 * **[深入理解](#under-the-hood)**
@@ -61,7 +61,7 @@ prev: hooks-reference.html
 
 ### React 哪一個版本中包含 Hook？ {#which-versions-of-react-include-hooks}
 
-Starting with 16.8.0, React includes a stable implementation of React Hooks for:
+從 16.8.0 開始，React 包含一個穩定的 React Hooks 實作：
 
 * React DOM
 * React Native
@@ -69,65 +69,65 @@ Starting with 16.8.0, React includes a stable implementation of React Hooks for:
 * React Test Renderer
 * React Shallow Renderer
 
-Note that **to enable Hooks, all React packages need to be 16.8.0 or higher**. Hooks won't work if you forget to update, for example, React DOM.
+注意，若要**啟動 Hook，所有 React package 需要升級到 16.8.0 或是更高的版本**。例如你忘了升級 React DOM，Hook 將無法正常執行。
 
-[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) and above support Hooks.
+React Native 0.59 以上的版本支援 Hooks。
 
 ### 我需要重寫所有的 Class component 嗎？ {#do-i-need-to-rewrite-all-my-class-components}
 
-No. There are [no plans](/docs/hooks-intro.html#gradual-adoption-strategy) to remove classes from React -- we all need to keep shipping products and can't afford rewrites. We recommend trying Hooks in new code.
+不需要。React [沒有計劃](/docs/hooks-intro.html#gradual-adoption-strategy)移除 class -- 我們需要讓產品保持運作，不能承受重寫這件事。我們建議你在新的程式碼中嘗試 Hook。
 
 ### 我可以在 Hook 做什麼是我在 Class 所不能做的？ {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
 
-Hooks offer a powerful and expressive new way to reuse functionality between components. ["Building Your Own Hooks"](/docs/hooks-custom.html) provides a glimpse of what's possible. [This article](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889) by a React core team member dives deeper into the new capabilities unlocked by Hooks.
+Hook 在 component 之間提供強大而富有表現力的新方式來重複使用功能。在[「打造你的 Hook」](/docs/hooks-custom.html) 提供了一個可行的方式。[這篇文章](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889)是由 React 核心團隊成員深入研究 Hook 解鎖的新功能。
 
 ### Hook 與我的 React 知識有多少保持相關性？ {#how-much-of-my-react-knowledge-stays-relevant}
 
-Hooks are a more direct way to use the React features you already know -- such as state, lifecycle, context, and refs. They don't fundamentally change how React works, and your knowledge of components, props, and top-down data flow is just as relevant.
+Hook 已經有許多你知道的方式可以直接使用 React 的功能 -- 像是 state、lifecycle、context 以及 ref。基本上它們並沒有改變 React 的運作方式，而且你對於 component、prop 以及上至下的資料流了解也一樣重要。
 
-Hooks do have a learning curve of their own. If there's something missing in this documentation, [raise an issue](https://github.com/reactjs/reactjs.org/issues/new) and we'll try to help.
+Hook 的確有它本身的學習曲線。如果在這份文件中缺漏了些什麼，[發起一個 issue](https://github.com/reactjs/reactjs.org/issues/new)，我們將會嘗試幫助你。
 
-### 我應該使用 Hook、Class，或是兩者兼具？ {#should-i-use-hooks-classes-or-a-mix-of-both}
+### 我應該使用 Hook、Class 或是兩者兼具？ {#should-i-use-hooks-classes-or-a-mix-of-both}
 
-When you're ready, we'd encourage you to start trying Hooks in new components you write. Make sure everyone on your team is on board with using them and familiar with this documentation. We don't recommend rewriting your existing classes to Hooks unless you planned to rewrite them anyway (e.g. to fix bugs).
+當你準備好時，我們鼓勵開始使用 Hook 撰寫你新的 component。確保你團隊的成員們使用 Hook 並熟悉本文件。我們並不鼓勵你重寫現有的 class component 成 Hook，除非你已經計劃重寫它們（例如：修正 bug）。
 
-You can't use Hooks *inside* of a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
+你不可以在 class component 內使用 Hook，但你絕對可以在 single tree *內*混合使用 class 和帶有 Hook 的 function component。無論是 class 或 function component，使用 Hook 是該 component 實作的細節。從長遠來看，我們期待 Hook 可以是大家撰寫 React component 的主要方式。
 
 ### Hook 包含所有 Class 的使用情境嗎？ {#do-hooks-cover-all-use-cases-for-classes}
 
-Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
+對於不常見的 `getSnapshotBeforeUpdate` 和 `componentDidCatch` 的生命週期並沒有等價的 Hook 方式，但我們計劃很快會加入它們。
 
-It is an early time for Hooks, and some third-party libraries might not be compatible with Hooks at the moment.
+這是早期的 Hook，目前一些第三方函式庫可能與 Hook 不相容。
 
 ### Hook 可以取代 Render Props 和 Higher-Order Component 嗎？ {#do-hooks-replace-render-props-and-higher-order-components}
 
-Often, render props and higher-order components render only a single child. We think Hooks are a simpler way to serve this use case. There is still a place for both patterns (for example, a virtual scroller component might have a `renderItem` prop, or a visual container component might have its own DOM structure). But in most cases, Hooks will be sufficient and can help reduce nesting in your tree.
+我們思考 Hook 是一個更簡單的方式來提供這個使用情境。這兩種模式仍然有它的用處（例如：一個 virtual scroller component 可能有一個 `renderItem` prop，或是一個 virtual container component 可能有它本身的 DOM 結構）。但在大部分的情況下，Hook 就可以滿足了，而且可以幫助你減少在 tree 內的巢狀 component。
 
 ### Hook 對於 Redux `connect()` 和 React Router 等等其他流行的 API 意味著什麼？ {#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router}
 
-You can continue to use the exact same APIs as you always have; they'll continue to work.
+你可以繼續使用與以往完全相同的 API；它們依然可以正常使用。
 
-React Redux since v7.1.0 [supports Hooks API](https://react-redux.js.org/api/hooks) and exposes hooks like `useDispatch` or `useSelector`.
+React Redux 從 v7.1.0 [支援 Hooks API](https://react-redux.js.org/api/hooks) 並提供像是 `useDispatch` 或 `useSelector` 的 hooks。
 
-React Router [supports hooks](https://reacttraining.com/react-router/web/api/Hooks) since v5.1.
+React Router 從 v5.1 版本後[支援 Hooks](https://reacttraining.com/react-router/web/api/Hooks)。
 
-Other libraries might support hooks in the future too.
+其他像是 React Router 可能在未來會支援 Hooks。
 
 ### Hook 可以使用靜態型別嗎？ {#do-hooks-work-with-static-typing}
 
-Hooks were designed with static typing in mind. Because they're functions, they are easier to type correctly than patterns like higher-order components. The latest Flow and TypeScript React definitions include support for React Hooks.
+Hook 的設計考慮到了靜態型別。因為它們是函式，比 higher-order component 等其他模式的 component 更容易正確的定義。最新的 Flow 和 TypeScript 定義包含對 React Hook 的支援。
 
-Importantly, custom Hooks give you the power to constrain React API if you'd like to type them more strictly in some way. React gives you the primitives, but you can combine them in different ways than what we provide out of the box.
+重要的是，如果你想要以某種嚴格的方式定義 React API，自訂的 Hook 讓你有權利限制。React 為你提供了 primitive，但你可以將它與我們提供的方式，用不同的方式組合在一起。
 
 ### 如何測試使用 Hook 的 component？ {#how-to-test-components-that-use-hooks}
 
-From React's point of view, a component using Hooks is just a regular component. If your testing solution doesn't rely on React internals, testing components with Hooks shouldn't be different from how you normally test components.
+從 React 的角度來看，使用 Hook 的 component 就只是一個正常的 component。如果你的測試方案不依賴在 React 內部，測試使用 Hook 的 component 通常與你測試 component 的方式不同。
 
->Note
+>注意
 >
->[Testing Recipes](/docs/testing-recipes.html) include many examples that you can copy and paste.
+>[測試方法](/docs/testing-recipes.html)包含許多範例，讓你可以複製貼上。
 
-For example, let's say we have this counter component:
+例如，如果我們有一個計數器 component：
 
 ```js
 function Example() {
@@ -146,7 +146,7 @@ function Example() {
 }
 ```
 
-We'll test it using React DOM. To make sure that the behavior matches what happens in the browser, we'll wrap the code rendering and updating it into [`ReactTestUtils.act()`](/docs/test-utils.html#act) calls:
+我們將會使用 React DOM 測試它。為了確保它在瀏覽器發生的行為，我們將會把程式碼透過呼叫  `ReactTestUtils.act()` 來 render 和更新：
 
 ```js{3,20-22,29-31}
 import React from 'react';
@@ -167,7 +167,7 @@ afterEach(() => {
 });
 
 it('can render and update a counter', () => {
-  // Test first render and effect
+  // 第一次測試 render 和 effect
   act(() => {
     ReactDOM.render(<Counter />, container);
   });
@@ -176,7 +176,7 @@ it('can render and update a counter', () => {
   expect(label.textContent).toBe('You clicked 0 times');
   expect(document.title).toBe('You clicked 0 times');
 
-  // Test second render and effect
+  // 第二次測試 render 和 effect
   act(() => {
     button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
   });
@@ -185,50 +185,50 @@ it('can render and update a counter', () => {
 });
 ```
 
-The calls to `act()` will also flush the effects inside of them.
+對  `act()`的呼叫也會更新它內部的 effect。
 
-If you need to test a custom Hook, you can do so by creating a component in your test, and using your Hook from it. Then you can test the component you wrote.
+如果你需要測試自定義的 Hook，你可以透過在測試中建立你的 component，並從中使用 Hook。接著你可以測試你撰寫的 component。
 
-To reduce the boilerplate, we recommend using [React Testing Library](https://testing-library.com/react) which is designed to encourage writing tests that use your components as the end users do.
+為了減少 boilerplate，我們推薦使用 [`react-testing-library`](https://testing-library.com/react)，它的設計理念是鼓勵你撰寫像使用者在使用 component 的測試。
 
-For more information, check out [Testing Recipes](/docs/testing-recipes.html).
+更多資訊，請參考[測試方法](/docs/testing-recipes.html)。
 
 ### [Lint 規則]((https://www.npmjs.com/package/eslint-plugin-react-hooks))究竟強制了些什麼？ {#what-exactly-do-the-lint-rules-enforce}
 
-We provide an [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces [rules of Hooks](/docs/hooks-rules.html) to avoid bugs. It assumes that any function starting with "`use`" and a capital letter right after it is a Hook. We recognize this heuristic isn't perfect and there may be some false positives, but without an ecosystem-wide convention there is just no way to make Hooks work well -- and longer names will discourage people from either adopting Hooks or following the convention.
+我們提供一個 [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) 強制 [Hook 的規則](/docs/hooks-rules.html) 來避免 bug。它假設任何以「`use`」為開頭的 function 和緊跟在它之後的大寫字母是 Hook。我們認知到這個啟發式的搜尋不是完美而且可能有一些誤判，但是如果沒有一個全生態系統的慣例，就沒有辦法讓 Hook 良好的運作 -- 而且，較長的命名會阻礙人們採用 Hook 或是遵循慣例。
 
-In particular, the rule enforces that:
+特別是，該規範強制執行：
 
-* Calls to Hooks are either inside a `PascalCase` function (assumed to be a component) or another `useSomething` function (assumed to be a custom Hook).
-* Hooks are called in the same order on every render.
+* 呼叫 Hook 要麼是在一個 `PascalCase` 函式（假設是一個 component）內，或者是其他 `useSomething` 函式（假設是一個字定義的 Hook）。
+* 在每次的 render 上以相同的順序呼叫 Hook。
 
-There are a few more heuristics, and they might change over time as we fine-tune the rule to balance finding bugs with avoiding false positives.
+這裡還有一些啟發式的方法，當我們發現錯誤並微調規則以平衡避免誤判時，這些規則可能會隨著時間而改變。
 
 ## 從 Class 到 Hook {#from-classes-to-hooks}
 
 ### 生命週期方法與 Hook 如何對應？ {#how-do-lifecycle-methods-correspond-to-hooks}
 
-* `constructor`: Function components don't need a constructor. You can initialize the state in the [`useState`](/docs/hooks-reference.html#usestate) call. If computing the initial state is expensive, you can pass a function to `useState`.
+* `constructor`：Function component 不需要 constructor。你可以在呼叫 [`useState`](/docs/hooks-reference.html#usestate) 時初始化 state。如果初始化 state 的操作代價很高，你可以傳遞一個函式到 `useState`。
 
-* `getDerivedStateFromProps`: Schedule an update [while rendering](#how-do-i-implement-getderivedstatefromprops) instead.
+* `getDerivedStateFromProps`：改為[在 render](#how-do-i-implement-getderivedstatefromprops) 時安排更新。
 
-* `shouldComponentUpdate`: See `React.memo` [below](#how-do-i-implement-shouldcomponentupdate).
+* `shouldComponentUpdate`：參考 `React.memo` [如下](#how-do-i-implement-shouldcomponentupdate)。
 
-* `render`: This is the function component body itself.
+* `render`：這是 function component body 本身。
 
-* `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: The [`useEffect` Hook](/docs/hooks-reference.html#useeffect) can express all combinations of these (including [less](#can-i-skip-an-effect-on-updates) [common](#can-i-run-an-effect-only-on-updates) cases).
+* `componentDidMount`、`componentDidUpdate`、`componentWillUnmount`：[`useEffect` Hook](/docs/hooks-reference.html#useeffect) 可以表達這些所有的組合（包含[少見](#can-i-skip-an-effect-on-updates)和[常見](#can-i-run-an-effect-only-on-updates)）的情況
 
-* `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
+* `componentDidCatch` 和 `getDerivedStateFromError`：現在沒有 Hook 等價於這些方法，，但是它們未來很快會被加入。
 
 ### 我如何使用 Hook fetch 資料？ {#how-can-i-do-data-fetching-with-hooks}
 
-Here is a [small demo](https://codesandbox.io/s/jvvkoo8pq3) to get you started. To learn more, check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) about data fetching with Hooks.
+這裡有一個[範例](https://codesandbox.io/s/jvvkoo8pq3)讓你可以開始。想要學習更多，閱讀這篇關於使用 Hook fetch 資料的[文章](https://www.robinwieruch.de/react-hooks-fetch-data/)。
 
-### 是否有類似實例變數的東西？ {#is-there-something-like-instance-variables}
+### 是否有類似 Instance 變數的東西？ {#is-there-something-like-instance-variables}
 
-Yes! The [`useRef()`](/docs/hooks-reference.html#useref) Hook isn't just for DOM refs. The "ref" object is a generic container whose `current` property is mutable and can hold any value, similar to an instance property on a class.
+是的！[`useRef()`](/docs/hooks-reference.html#useref) Hook 不只是針對 DOM 的 ref。「ref」object 是一個 generic container，其 `current` 屬性是可變的，可以保存任何值，類似於 class 上的 instance 屬性。
 
-You can write to it from inside `useEffect`:
+你可以從 `useEffect` 內撰寫它：
 
 ```js{2,8}
 function Timer() {
@@ -248,7 +248,7 @@ function Timer() {
 }
 ```
 
-If we just wanted to set an interval, we wouldn't need the ref (`id` could be local to the effect), but it's useful if we want to clear the interval from an event handler:
+如果我們想要設定一個計時器，我們不需要 ref（`id` 可能是在 effect），但是如果我們想要從一個 event handler 清除定時器它會很有幫助：
 
 ```js{3}
   // ...
@@ -258,11 +258,11 @@ If we just wanted to set an interval, we wouldn't need the ref (`id` could be lo
   // ...
 ```
 
-Conceptually, you can think of refs as similar to instance variables in a class. Unless you're doing [lazy initialization](#how-to-create-expensive-objects-lazily), avoid setting refs during rendering -- this can lead to surprising behavior. Instead, typically you want to modify refs in event handlers and effects.
+概念上，你可以將 ref 視為類似於 class 中 instance 的變數。除非你正在做[延遲初始化](#how-to-create-expensive-objects-lazily)，避免在 render 時設定 ref -- 這可能會造成非預期的行為。相反的，通常你會在 event handler 和 effect 中修改 ref。
 
 ### 我應該使用一個或是多個 state 變數？ {#should-i-use-one-or-many-state-variables}
 
-If you're coming from classes, you might be tempted to always call `useState()` once and put all state into a single object. You can do it if you'd like. Here is an example of a component that follows the mouse movement. We keep its position and size in the local state:
+如果你原來是使用 class component，你可能會想要呼叫 `useState()` 並一次放入所有的 state 到一個 object，你想要的話可以這麼做。這裡是一個隨著滑鼠移動的 component 範例。我們保持它的位置和大小在 local state 內：
 
 ```js
 function Box() {
@@ -271,27 +271,27 @@ function Box() {
 }
 ```
 
-Now let's say we want to write some logic that changes `left` and `top` when the user moves their mouse. Note how we have to merge these fields into the previous state object manually:
+現在我們想要撰寫一些邏輯，當使用者移動滑鼠時，改變 `left` 和 `top`。注意我們如何手動合併這些欄位至先前的 state object：
 
 ```js{4,5}
   // ...
   useEffect(() => {
     function handleWindowMouseMove(e) {
-      // Spreading "...state" ensures we don't "lose" width and height
+      // 使用展開運算子「...state」確保我們不會「漏掉」width 和 height
       setState(state => ({ ...state, left: e.pageX, top: e.pageY }));
     }
-    // Note: this implementation is a bit simplified
+    // 注意：這個實作是相當簡化的
     window.addEventListener('mousemove', handleWindowMouseMove);
     return () => window.removeEventListener('mousemove', handleWindowMouseMove);
   }, []);
   // ...
 ```
 
-This is because when we update a state variable, we *replace* its value. This is different from `this.setState` in a class, which *merges* the updated fields into the object.
+這是因為當我們更新 state 變數時，我們*替換*它的值。這與 class 中的`this.setState`不同，將被更新的欄位*合併*到 object 中。
 
-If you miss automatic merging, you can write a custom `useLegacyState` Hook that merges object state updates. However, instead **we recommend to split state into multiple state variables based on which values tend to change together.**
+如果你漏掉了自動合併，你可以撰寫一個自訂的 `useLegacyState` Hook 來合併 object state 的更新。然而，**我們建議根據哪些值是趨於一起變化的，拆分為多個 state 變數**
 
-For example, we could split our component state into `position` and `size` objects, and always replace the `position` with no need for merging:
+例如，我們可以拆分 component state 成 `position` 和 `size` object，並總是替換 `position` 而不需要合併：
 
 ```js{2,7}
 function Box() {
@@ -305,7 +305,7 @@ function Box() {
     // ...
 ```
 
-Separating independent state variables also has another benefit. It makes it easy to later extract some related logic into a custom Hook, for example:
+分離獨立的 state 變數也有另一個好處。稍後可以輕鬆地將一些相關邏輯提取到自定義的 Hook 中，例如：
 
 ```js{2,7}
 function Box() {
@@ -323,17 +323,17 @@ function useWindowPosition() {
 }
 ```
 
-Note how we were able to move the `useState` call for the `position` state variable and the related effect into a custom Hook without changing their code. If all state was in a single object, extracting it would be more difficult.
+注意我們是如何移動 `position` state 變數的 `useState` 呼叫，並且在不改變我們程式碼的情況下，將相關 effect 寫到自定義的 Hook。如果所有的 state 在一個單一的 object，提取它會變得困難。
 
-Both putting all state in a single `useState` call, and having a `useState` call per each field can work. Components tend to be most readable when you find a balance between these two extremes, and group related state into a few independent state variables. If the state logic becomes complex, we recommend [managing it with a reducer](/docs/hooks-reference.html#usereducer) or a custom Hook.
+以上兩者都將所有 state 放到各自的 `useState`，並可以被呼叫。當你在這兩個極端之間找到平衡時，component 往往最具可讀性，並且將相關 state 變成一些獨立的 state 變數。如果 state 邏輯變得複雜，我們推薦[用 reducer 管理](/docs/hooks-reference.html#usereducer)或者是一個自定義的 Hook。
 
 ### 我可以只在更新時執行 effect 嗎？ {#can-i-run-an-effect-only-on-updates}
 
-This is a rare use case. If you need it, you can [use a mutable ref](#is-there-something-like-instance-variables) to manually store a boolean value corresponding to whether you are on the first or a subsequent render, then check that flag in your effect. (If you find yourself doing this often, you could create a custom Hook for it.)
+這是一個特殊的情況，如果你有需要的話，可以[使用 mutable ref](#is-there-something-like-instance-variables) 來手動的儲存對應於第一次或是後續的 render，然後檢查在你 effect 內的 flag。（如果你發現自己經常這樣做，可以為其建立一個自定義的 Hook。）
 
 ### 如何取得先前的 prop 或 state？ {#how-to-get-the-previous-props-or-state}
 
-Currently, you can do it manually [with a ref](#is-there-something-like-instance-variables):
+目前來說，你可以手動的[藉由 ref](#is-there-something-like-instance-variables)：
 
 ```js{6,8}
 function Counter() {
@@ -349,7 +349,7 @@ function Counter() {
 }
 ```
 
-This might be a bit convoluted but you can extract it into a custom Hook:
+這可能有點複雜，但你可以將它提取到自定義的 Hook 中：
 
 ```js{3,7}
 function Counter() {
@@ -367,7 +367,7 @@ function usePrevious(value) {
 }
 ```
 
-Note how this would work for props, state, or any other calculated value.
+請注意這對於 props、state 或任何其他被計算值是如何工作的。
 
 ```js{5}
 function Counter() {
@@ -378,13 +378,13 @@ function Counter() {
   // ...
 ```
 
-It's possible that in the future React will provide a `usePrevious` Hook out of the box since it's a relatively common use case.
+未來 React 可能將會內建提供 `usePrevious` Hook，因為它是一個相對常見的使用。
 
-See also [the recommended pattern for derived state](#how-do-i-implement-getderivedstatefromprops).
+另外請參考 [derived state 的推薦模式](#how-do-i-implement-getderivedstatefromprops)。
 
 ### 為什麼我在 function 內看到舊的 prop 或 state？ {#why-am-i-seeing-stale-props-or-state-inside-my-function}
 
-Any function inside a component, including event handlers and effects, "sees" the props and state from the render it was created in. For example, consider code like this:
+任何在 component 內的 function，包括 event handler 和 effect，從被建立的 render 中「看見」props 和 state。例如，思考一下這個程式碼：
 
 ```js
 function Example() {
@@ -410,21 +410,21 @@ function Example() {
 }
 ```
 
-If you first click "Show alert" and then increment the counter, the alert will show the `count` variable **at the time you clicked the "Show alert" button**. This prevents bugs caused by the code assuming props and state don't change.
+如果你第一次點擊「Show alret」counter 會遞增，**在你點擊「Show alert」按鈕**時，alert 將會顯示 `count` 變數。
 
-If you intentionally want to read the *latest* state from some asynchronous callback, you could keep it in [a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables), mutate it, and read from it.
+如果你想要從一些非同步的 callback 讀取*最新的* state，你可以把它保留在 [ref](/docs/hooks-faq.html#is-there-something-like-instance-variables)，mutate 它，並從中讀取。
 
-Finally, another possible reason you're seeing stale props or state is if you use the "dependency array" optimization but didn't correctly specify all the dependencies. For example, if an effect specifies `[]` as the second argument but reads `someProp` inside, it will keep "seeing" the initial value of `someProp`. The solution is to either remove the dependency array, or to fix it. Here's [how you can deal with functions](#is-it-safe-to-omit-functions-from-the-list-of-dependencies), and here's [other common strategies](#what-can-i-do-if-my-effect-dependencies-change-too-often) to run effects less often without incorrectly skipping dependencies.
+最後，如果你使用「dependency array」做最佳化，但沒有正確的指定所有的依賴，你可能會看到舊的 props 或是 state。例如，如果在 effect 指定 `[]` 作為第二個參數，但是在內部讀取 `someProp`，它將只會「看到」`someProp` 的初始值。解決方式是移除 dependency array 或者是修正它。這裡是[你如何處理這些 function](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)，以及[其他常見的策略](#what-can-i-do-if-my-effect-dependencies-change-too-often)在不錯誤地跳過依賴項的情況下減少執行 effect。
 
->Note
+>注意
 >
->We provide an [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ESLint rule as a part of the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>我們提供了一個 [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) 的 ESLint 規則作為 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package 的一部份。它會在指定錯誤的依賴時，發出警告並提供建議修復。
 
 ### 我該如何實作 getDerivedStateFromProps？ {#how-do-i-implement-getderivedstatefromprops}
 
-While you probably [don't need it](/blog/2018/06/07/you-probably-dont-need-derived-state.html), in rare cases that you do (such as implementing a `<Transition>` component), you can update the state right during rendering. React will re-run the component with updated state immediately after exiting the first render so it wouldn't be expensive.
+雖然你可能[不需要它](/blog/2018/06/07/you-probably-dont-need-derived-state.html)，但在極少數情況下（例如實作`<Transition>` component），你可以在 render 期間更新 state。React 將會在第一次的 redner 退出後，重新執行 component 並且立即更新 state，這個操作代價不會很昂貴。
 
-Here, we store the previous value of the `row` prop in a state variable so that we can compare:
+在這裡，我們將 `row` prop 先前的值存儲在 state 變數中，讓我們可以方便的比較：
 
 ```js
 function ScrollView({row}) {
@@ -432,7 +432,7 @@ function ScrollView({row}) {
   let [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
-    // Row changed since last render. Update isScrollingDown.
+    // Row 在最後一次 render 被改變。更新 isScrollingDown
     setIsScrollingDown(prevRow !== null && row > prevRow);
     setPrevRow(row);
   }
@@ -441,13 +441,13 @@ function ScrollView({row}) {
 }
 ```
 
-This might look strange at first, but an update during rendering is exactly what `getDerivedStateFromProps` has always been like conceptually.
+這個第一眼看起來可能很奇怪，但是 render 過程中的更新正是 `getDerivedStateFromProps` 的概念。
 
 ### 有類似 forceUpdate 的東西嗎？ {#is-there-something-like-forceupdate}
 
-Both `useState` and `useReducer` Hooks [bail out of updates](/docs/hooks-reference.html#bailing-out-of-a-state-update) if the next value is the same as the previous one. Mutating state in place and calling `setState` will not cause a re-render.
+如果新的值與先前相同的話，`useState` 和 `useReducer` Hook 兩者都可以從[更新中跳脫](/docs/hooks-reference.html#bailing-out-of-a-state-update)。
 
-Normally, you shouldn't mutate local state in React. However, as an escape hatch, you can use an incrementing counter to force a re-render even if the state has not changed:
+通常來說，你不應該在 React 內 mutate local state，然而，你可以使用一個 increment couter 來作為跳脫方式，強迫重新 render，即使 state 沒有改變。
 
 ```js
   const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
@@ -457,15 +457,15 @@ Normally, you shouldn't mutate local state in React. However, as an escape hatch
   }
 ```
 
-Try to avoid this pattern if possible.
+如果可以的話，盡量避免使用這個方式。
 
 ### 我可以對 function component 建立一個 ref 嗎？ {#can-i-make-a-ref-to-a-function-component}
 
-While you shouldn't need this often, you may expose some imperative methods to a parent component with the [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) Hook.
+雖然你不應該經常這樣做，但是你可以使用 [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) Hook expose 一些 imperative 方法給 parent component。
 
 ### 我該如何測量一個 DOM node？ {#how-can-i-measure-a-dom-node}
 
-In order to measure the position or size of a DOM node, you can use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
+為了測量 DOM node 的位置或是大小，你可以使用 [callback ref](/docs/refs-and-the-dom.html#callback-refs)。只要 ref 被 attach 到不同的 node，React 將會呼叫這個 callback。這裡是一個[簡易的範例](https://codesandbox.io/s/l7m0v5x4v9)：
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -486,11 +486,11 @@ function MeasureExample() {
 }
 ```
 
-We didn't choose `useRef` in this example because an object ref doesn't notify us about *changes* to the current ref value. Using a callback ref ensures that [even if a child component displays the measured node later](https://codesandbox.io/s/818zzk8m78) (e.g. in response to a click), we still get notified about it in the parent component and can update the measurements.
+在這個範例我們不選擇 `useRef` 是因為一個 object 的 ref 不會通知我們目前的 ref 值的*改變*。使用一個 callback ref 確保[即使 child component 延遲顯示測量的 node](https://codesandbox.io/s/818zzk8m78) （例如：在 response click），我們仍然會在 parent component 中收到有關它的通知，並可以更新測量結果。
 
-Note that we pass `[]` as a dependency array to `useCallback`. This ensures that our ref callback doesn't change between the re-renders, and so React won't call it unnecessarily.
+這確保我們的 ref callback 不會在 re-render 時改變，因此 React 不需要呼叫它。
 
-If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
+如果你希望呼叫它的話，你可以[抽出這個邏輯](https://codesandbox.io/s/m5o42082xy)變成一個可重複使用的 Hook：
 
 ```js{2}
 function MeasureExample() {
@@ -519,18 +519,18 @@ function useClientRect() {
 
 ### `const [thing, setThing] = useState()` 是什麼意思？ {#what-does-const-thing-setthing--usestate-mean}
 
-If you're not familiar with this syntax, check out the [explanation](/docs/hooks-state.html#tip-what-do-square-brackets-mean) in the State Hook documentation.
+如果你不熟悉這個語法的話，可以參考在 State Hook 文件的[解釋](/docs/hooks-state.html#tip-what-do-square-brackets-mean)。
 
 
 ## 效能最佳化 {#performance-optimizations}
 
 ### 我可以在更新時忽略 effect 嗎？ {#can-i-skip-an-effect-on-updates}
 
-Yes. See [conditionally firing an effect](/docs/hooks-reference.html#conditionally-firing-an-effect). Note that forgetting to handle updates often [introduces bugs](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update), which is why this isn't the default behavior.
+可以的。請參考[條件是觸發 effect](/docs/hooks-reference.html#conditionally-firing-an-effect)。請注意，忘記處理更新通常[導致 bug](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update)，這就是為什麼這不是預設行為。
 
 ### 在依賴項目的列表中忽略 function 是安全的嗎？ {#is-it-safe-to-omit-functions-from-the-list-of-dependencies}
 
-Generally speaking, no.
+一般來說，不是。
 
 ```js{3,8}
 function Example({ someProp }) {
@@ -540,11 +540,11 @@ function Example({ someProp }) {
 
   useEffect(() => {
     doSomething();
-  }, []); // 🔴 This is not safe (it calls `doSomething` which uses `someProp`)
+  }, []); // 🔴 這個不安全（它呼叫 `doSomething` 使用了 `someProp`）
 }
 ```
 
-It's difficult to remember which props or state are used by functions outside of the effect. This is why **usually you'll want to declare functions needed by an effect *inside* of it.** Then it's easy to see what values from the component scope that effect depends on:
+要記住 effect 之外的函式使用了哪些 props 或 state 是很困難的。這也是為什麼**通常你需要在 effect *內*宣告所需要的 function。**然後可以很容易的看出 effect 依賴了 component 範圍內的值：
 
 ```js{4,8}
 function Example({ someProp }) {
@@ -554,11 +554,11 @@ function Example({ someProp }) {
     }
 
     doSomething();
-  }, [someProp]); // ✅ OK (our effect only uses `someProp`)
+  }, [someProp]); // ✅ OK（我們的 effect 只使用 `someProp`）
 }
 ```
 
-If after that we still don't use any values from the component scope, it's safe to specify `[]`:
+如果之後我們仍然不使用 component 範圍內的任何值，則可以安全的指定為 `[]`：
 
 ```js{7}
 useEffect(() => {
@@ -567,46 +567,46 @@ useEffect(() => {
   }
 
   doSomething();
-}, []); // ✅ OK in this example because we don't use *any* values from component scope
+}, []); // ✅ OK，在這個範例中，因為我們不使用 component 範圍中的*任何*值
 ```
 
-Depending on your use case, there are a few more options described below.
+根據你的使用情境，還有一些選項如下所述。
 
->Note
+>注意
 >
->We provide the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ESLint rule as a part of the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It helps you find components that don't handle updates consistently.
+>我們提供了 [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ESLint 規則作為 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package 的一部份。它可以幫助你找到不一致的處理更新的 component。
 
-Let's see why this matters.
+讓我們看看這個為什麼很重要。
 
-If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values used inside that participate in the React data flow. That includes props, state, and anything derived from them.
+如果你在 `useEffect`、`useMemo`、`useCallback` 或是 `useImperativeHandle` 的最後指定了[依賴項目的列表](/docs/hooks-reference.html#conditionally-firing-an-effect)，它必須包含參與 React 資料流的所有內部的值。包含了 props、state 和從他們取得的任何值。
 
-It is **only** safe to omit a function from the dependency list if nothing in it (or the functions called by it) references props, state, or values derived from them. This example has a bug:
+如果沒有任何內容（或由它呼叫的函式）reference 到 props、state 或是從它們取得的值，那麼從依賴項目中省略一個函式是*唯一*安全的。這個範例有一個 bug：
 
 ```js{5,12}
 function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
   async function fetchProduct() {
-    const response = await fetch('http://myapi/product' + productId); // Uses productId prop
+    const response = await fetch('http://myapi/product' + productId); // 使用 productId prop
     const json = await response.json();
     setProduct(json);
   }
 
   useEffect(() => {
     fetchProduct();
-  }, []); // 🔴 Invalid because `fetchProduct` uses `productId`
+  }, []); // 🔴 無效，因為 `fetchProduct` 使用 `productId`
   // ...
 }
 ```
 
-**The recommended fix is to move that function _inside_ of your effect**. That makes it easy to see which props or state your effect uses, and to ensure they're all declared:
+**推薦修正的方法是將函式移動到你的 effect _內部_。**這樣可以很容易地看到你的 effect 使用了哪些 props 或 state，並確保他們都被宣告：
 
 ```js{5-10,13}
 function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    // By moving this function inside the effect, we can clearly see the values it uses.
+    // 透過將這個函式移動到 effect 內部，我們可以清楚地看到值的使用。
     async function fetchProduct() {
       const response = await fetch('http://myapi/product' + productId);
       const json = await response.json();
@@ -614,12 +614,12 @@ function ProductPage({ productId }) {
     }
 
     fetchProduct();
-  }, [productId]); // ✅ Valid because our effect only uses productId
+  }, [productId]); // ✅ 有效，因為我們的 effect 只使用 productId
   // ...
 }
 ```
 
-This also allows you to handle out-of-order responses with a local variable inside the effect:
+這也可以允許你處理在 effect 內使用 local 變數處理無序的 response：
 
 ```js{2,6,10}
   useEffect(() => {
@@ -635,41 +635,41 @@ This also allows you to handle out-of-order responses with a local variable insi
   }, [productId]);
 ```
 
-We moved the function inside the effect so it doesn't need to be in its dependency list.
+我們搬移函式到 effect 內部，所以它不需要被加入在依賴列表。
 
 >Tip
 >
->Check out [this small demo](https://codesandbox.io/s/jvvkoo8pq3) and [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) to learn more about data fetching with Hooks.
+>查看[這個簡易的範例](https://codesandbox.io/s/jvvkoo8pq3)以及[這篇文章](https://www.robinwieruch.de/react-hooks-fetch-data/)來學習關於如何使用 Hooks 來取得資料。
 
-**If for some reason you _can't_ move a function inside an effect, there are a few more options:**
+**如果有一些因素讓你_不能_搬移函式到 effect 內，這裡有一些其他的選項：**
 
-* **You can try moving that function outside of your component**. In that case, the function is guaranteed to not reference any props or state, and also doesn't need to be in the list of dependencies.
-* If the function you're calling is a pure computation and is safe to call while rendering, you may **call it outside of the effect instead,** and make the effect depend on the returned value.
-* As a last resort, you can **add a function to effect dependencies but _wrap its definition_** into the [`useCallback`](/docs/hooks-reference.html#usecallback) Hook. This ensures it doesn't change on every render unless *its own* dependencies also change:
+* **你可以嘗試將函式搬移到 component 之外**。在這個情況下，函式可以保證不 reference 到任何的 props 或 state，而且也不需要在依賴項目的列表中。
+* 如果你正在呼叫的函式是 pure 的計算，而且可以在 render 時被安全的呼叫，**你可以在 effect 外呼叫它，**並讓 effect 取決於回傳的值。
+* 作為最後的手段，你可以**加入一個函式到 effect 依賴項目，但是 _封裝它的定義_**成 [`useCallback`](/docs/hooks-reference.html#usecallback) Hook。這可以確保它不會在每次 render 時改變，除非*它自己*的依賴項目也改變：
 
 ```js{2-5}
 function ProductPage({ productId }) {
-  // ✅ Wrap with useCallback to avoid change on every render
+  // ✅ 藉由 useCallback 封裝可以避免在每次 redner 時改變
   const fetchProduct = useCallback(() => {
     // ... Does something with productId ...
-  }, [productId]); // ✅ All useCallback dependencies are specified
+  }, [productId]); // ✅ 所有 useCallback 依賴已經被指定
 
   return <ProductDetails fetchProduct={fetchProduct} />;
 }
 
-function ProductDetails({ fetchProduct }) {
+function ProductDetails({ fetchProduct })
   useEffect(() => {
     fetchProduct();
-  }, [fetchProduct]); // ✅ All useEffect dependencies are specified
+  }, [fetchProduct]); // ✅ 所有 useEffect 依賴已經被指定
   // ...
 }
 ```
 
-Note that in the above example we **need** to keep the function in the dependencies list. This ensures that a change in the `productId` prop of `ProductPage` automatically triggers a refetch in the `ProductDetails` component.
+注意，在上面的範例中，我們*需要*保持 function 在依賴列表內。這可以確保 `ProductPage` 中的 `productId` 改變自動會觸發 `ProductDetails` component 的 refetch。
 
 ### 如果我的 effect 依賴項目經常變化的話該怎麼辦？ {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
-Sometimes, your effect may be using state that changes too often. You might be tempted to omit that state from a list of dependencies, but that usually leads to bugs:
+有時候，你的 effect 可能使用 state 而且它經常改變。你可能想從依賴的項目列表中省略該 state，但這通常會導致 bug：
 
 ```js{6,9}
 function Counter() {
@@ -677,18 +677,18 @@ function Counter() {
 
   useEffect(() => {
     const id = setInterval(() => {
-      setCount(count + 1); // This effect depends on the `count` state
+      setCount(count + 1); // 這個 effect 依賴於 `count` state
     }, 1000);
     return () => clearInterval(id);
-  }, []); // 🔴 Bug: `count` is not specified as a dependency
+  }, []); // 🔴 Bug：`count` 沒有被指定作為一個依賴
 
   return <h1>{count}</h1>;
 }
 ```
 
-The empty set of dependencies, `[]`, means that the effect will only run once when the component mounts, and not on every re-render. The problem is that inside the `setInterval` callback, the value of `count` does not change, because we've created a closure with the value of `count` set to `0` as it was when the effect callback ran. Every second, this callback then calls `setCount(0 + 1)`, so the count never goes above 1.
+設定空的依賴 `[]`，意味著 effect 將只會在 component mount 的時候只執行一次，而不是在每次 re-render。問題在於內部的 `setInterval` callback，`count` 值並不會改變，因為我們已經建立一個 closure 並且設定 `count` 為 `0`，就像執行 effect callback 時一樣。在每秒鐘，這個 callback  呼叫 `setCount(0 + 1)`，所以 count 永遠不會大於 1。
 
-Specifying `[count]` as a list of dependencies would fix the bug, but would cause the interval to be reset on every change. Effectively, each `setInterval` would get one chance to execute before being cleared (similar to a `setTimeout`.) That may not be desirable. To fix this, we can use the [functional update form of `setState`](/docs/hooks-reference.html#functional-updates). It lets us specify *how* the state needs to change without referencing the *current* state:
+指定 `[count]` 作為依賴項目可以修正這個 bug，但會導致每次更改時重置間隔。實際上，每個 `setInterval` 在被清除之前都有一次機會執行（類似於 `setTimeout`。）這可能並不理想。要修正這個問題，我們可以使用 [`setState` 的 functional 更新的形式](/docs/hooks-reference.html#functional-updates)。它允許我們指定*如何* state 需要改變而不引用*目前*的 state：
 
 ```js{6,9}
 function Counter() {
@@ -696,26 +696,26 @@ function Counter() {
 
   useEffect(() => {
     const id = setInterval(() => {
-      setCount(c => c + 1); // ✅ This doesn't depend on `count` variable outside
+      setCount(c => c + 1); // ✅ 這不會依賴於外部的 `count` 變數
     }, 1000);
     return () => clearInterval(id);
-  }, []); // ✅ Our effect doesn't use any variables in the component scope
+  }, []); // ✅ 我們的 effect 不使用 component 範圍內的任何變數
 
   return <h1>{count}</h1>;
 }
 ```
 
-(The identity of the `setCount` function is guaranteed to be stable so it's safe to omit.)
+（`setCount` 函式的 identity 的保證是穩定的，因此省略它是安全的。）
 
-Now, the `setInterval` callback executes once a second, but each time the inner call to `setCount` can use an up-to-date value for `count` (called `c` in the callback here.)
+現在，`setInterval` callback 每秒執行一次，但每次對 `setCount` 內部的呼叫都可以使用 `count` 最新的值（在 callback 中被呼叫的 `c`。）
 
-In more complex cases (such as if one state depends on another state), try moving the state update logic outside the effect with the [`useReducer` Hook](/docs/hooks-reference.html#usereducer). [This article](https://adamrackis.dev/state-and-use-reducer/) offers an example of how you can do this. **The identity of the `dispatch` function from `useReducer` is always stable** — even if the reducer function is declared inside the component and reads its props.
+在許多複雜的情況下（例如，一個 state 依賴另一個 state），嘗試使用 [`useReducer` Hook](/docs/hooks-reference.html#usereducer) 將 state 的更新邏輯搬移到 effect 外。[這篇文章](https://adamrackis.dev/state-and-use-reducer/)提供了一個如何做到的範例。**`useReducer` 中的 `dispatch` function 的 identity 是穩定的** — 即使 reducer function 被宣告在 component 內並讀取它的 props。
 
-As a last resort, if you want something like `this` in a class, you can [use a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) to hold a mutable variable. Then you can write and read to it. For example:
+作為最後的手段，如果你需要像是 class 內的 `this`，你可以[使用 ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) 來持有一個 mutable 變數。然後你可以寫入和讀取它。例如：
 
 ```js{2-6,10-11,16}
 function Example(props) {
-  // Keep latest props in a ref.
+  // 保持最新的 props 在 ref。
   let latestProps = useRef(props);
   useEffect(() => {
     latestProps.current = props;
@@ -723,53 +723,53 @@ function Example(props) {
 
   useEffect(() => {
     function tick() {
-      // Read latest props at any time
+      // 在任何時候讀取最新的 props
       console.log(latestProps.current);
     }
 
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, []); // This effect never re-runs
+  }, []); // 這個 effect 永遠不會重新執行
 }
 ```
 
-Only do this if you couldn't find a better alternative, as relying on mutation makes components less predictable. If there's a specific pattern that doesn't translate well, [file an issue](https://github.com/facebook/react/issues/new) with a runnable example code and we can try to help.
+如果你真的找不到其他更好的方式才這麼做，因為依賴 mutation 會讓 component 的可預測性降低。如果有一個特定的模式不能很好地轉換，請[提出 issue](https://github.com/facebook/react/issues/new) 並附上可執行的範例程式碼，我們可以嘗試提供幫助。
 
 ### 我該如何實作 shouldComponentUpdate？ {#how-do-i-implement-shouldcomponentupdate}
 
-You can wrap a function component with `React.memo` to shallowly compare its props:
+你可以藉由 `React.memo` 封裝函式來對它的 props 進行淺比較：
 
 ```js
 const Button = React.memo((props) => {
-  // your component
+  // 你的 component
 });
 ```
 
-It's not a Hook because it doesn't compose like Hooks do. `React.memo` is equivalent to `PureComponent`, but it only compares props. (You can also add a second argument to specify a custom comparison function that takes the old and new props. If it returns true, the update is skipped.)
+它不是一個 Hook，因為它並不像 Hooks 那樣的組成。`React.memo` 相等於 `PureComponent`，但是它只比較 props。（你也可以加入第二參數，指定一個舊 props 和新 props 的比較 function 。如果它回傳 true，則跳過更新。）
 
-`React.memo` doesn't compare state because there is no single state object to compare. But you can make children pure too, or even [optimize individual children with `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations).
+`React.memo` 不比較 state，因為沒有單一的 state object 可以比較。但你也可以讓 children 變成 pure，甚至可以[透過 `useMemo` 來最佳化個別的 children](/docs/hooks-faq.html#how-to-memoize-calculations)。
 
 ### 如何 memoize 計算？ {#how-to-memoize-calculations}
 
-The [`useMemo`](/docs/hooks-reference.html#usememo) Hook lets you cache calculations between multiple renders by "remembering" the previous computation:
+[`useMemo`](/docs/hooks-reference.html#usememo) Hook 讓你可以透過「記住」先前的計算來快取多個 render 之間的計算：
 
 ```js
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-This code calls `computeExpensiveValue(a, b)`. But if the dependencies `[a, b]` haven't changed since the last value, `useMemo` skips calling it a second time and simply reuses the last value it returned.
+這個程式碼呼叫 `computeExpensiveValue(a, b)`。但是如果 `[a, b]` 依賴自上一個值沒有改變，那麼 `useMemo` 會跳過第二次的呼叫並只重複使用它回傳的最後一個值。
 
-Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+記住，被傳到 `useMemo` 的 function 會在 render 期間執行。不要在 render 期間做一些通常不會做的事情。例如，side effects 屬於在 `useEffect` 被處理，而不是 `useMemo`。
 
-**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance. (For rare cases when a value must *never* be recomputed, you can [lazily initialize](#how-to-create-expensive-objects-lazily) a ref.)
+**你可以依賴 `useMemo` 作為效能的最佳化，而不是依賴語意的保證。** 未來 React 可能會選擇「忘記」一些先前 memoize 的值，並在下一次 render 重新計算，例如，釋放螢幕以外的 component 記憶體。撰寫你的程式碼，讓它在沒有 `useMemo` 的狀況下依然可以執行 - 並且加上它來最佳化效能。（對於極少數的情況，值*永遠*不會被重新計算，你可以[延遲初始化](#how-to-create-expensive-objects-lazily) ref。）
 
-Conveniently, `useMemo` also lets you skip an expensive re-render of a child:
+方便的是，`useMemo` 也可以讓你跳過一個 child 昂貴的 re-render：
 
 ```js
 function Parent({ a, b }) {
-  // Only re-rendered if `a` changes:
+  // 只會在 `a` 改變時 re-render：
   const child1 = useMemo(() => <Child1 a={a} />, [a]);
-  // Only re-rendered if `b` changes:
+  // 只會在 `b` 改變時 re-render：
   const child2 = useMemo(() => <Child2 b={b} />, [b]);
   return (
     <>
@@ -780,51 +780,51 @@ function Parent({ a, b }) {
 }
 ```
 
-Note that this approach won't work in a loop because Hook calls [can't](/docs/hooks-rules.html) be placed inside loops. But you can extract a separate component for the list item, and call `useMemo` there.
+注意，這個方法在一個迴圈中無法執行，因為 Hook [不能](/docs/hooks-rules.html)被放在迴圈內。但是你可以提取一個清單列表的獨立 component，並在這裡呼叫 `useMemo`。
 
-### 如何延遲建立 expensive 的 object？ {#how-to-create-expensive-objects-lazily}
+### 如何延遲建立昂貴的 object？ {#how-to-create-expensive-objects-lazily}
 
-`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the dependencies are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes you need to be sure an object is only created once.
+如果依賴相同的話，`useMemo` 讓你可以 [memoize 一個昂貴的計算](#how-to-memoize-calculations)。然而，它只是個提示，並不能*保證*計算不會重新執行。但有時候你需要確保一個 object 只被建立一次。
 
-**The first common use case is when creating the initial state is expensive:**
+**第一個常見的情況是建立昂貴的初始 state：**
 
 ```js
 function Table(props) {
-  // ⚠️ createRows() is called on every render
+  // ⚠️ createRows() 在每次 render 被呼叫
   const [rows, setRows] = useState(createRows(props.count));
   // ...
 }
 ```
 
-To avoid re-creating the ignored initial state, we can pass a **function** to `useState`:
+為了避免重新建立初始 state，我們可以傳遞一個 **function** 給 `useState`：
 
 ```js
 function Table(props) {
-  // ✅ createRows() is only called once
+  // ✅ createRows() 只會被呼叫一次
   const [rows, setRows] = useState(() => createRows(props.count));
   // ...
 }
 ```
 
-React will only call this function during the first render. See the [`useState` API reference](/docs/hooks-reference.html#usestate).
+React 只會在第一次 render 時呼叫這個 function。參考 [`useState` API](/docs/hooks-reference.html#usestate)。
 
-**You might also occasionally want to avoid re-creating the `useRef()` initial value.** For example, maybe you want to ensure some imperative class instance only gets created once:
+**你偶爾可能也想要避免重新建立 `useRef()` 初始值。**例如，或許你想要確保某些 imperative class 只被建立一次：
 
 ```js
 function Image(props) {
-  // ⚠️ IntersectionObserver is created on every render
+  // ⚠️ IntersectionObserver 在每次 render 時被建立
   const ref = useRef(new IntersectionObserver(onIntersect));
   // ...
 }
 ```
 
-`useRef` **does not** accept a special function overload like `useState`. Instead, you can write your own function that creates and sets it lazily:
+`useRef` **不**接受像 `useState` 這樣的特殊重載函式。你可以撰寫你自己的函式來建立並延遲設定：
 
 ```js
 function Image(props) {
   const ref = useRef(null);
 
-  // ✅ IntersectionObserver is created lazily once
+  // ✅ IntersectionObserver 會延遲被建立一次
   function getObserver() {
     if (ref.current === null) {
       ref.current = new IntersectionObserver(onIntersect);
@@ -832,50 +832,50 @@ function Image(props) {
     return ref.current;
   }
 
-  // When you need it, call getObserver()
+  // 當你需要它的時候，呼叫 getObserver()
   // ...
 }
 ```
 
-This avoids creating an expensive object until it's truly needed for the first time. If you use Flow or TypeScript, you can also give `getObserver()` a non-nullable type for convenience.
+這是避免了在第一次真正需要之前建立昂貴的 object。如果你使用 Flow 或者是 TypeScript，為了方便你也可以給定 `getObserver()` 一個 non-nullable 的型別。
 
 
-### Are Hooks slow because of creating functions in render? {#are-hooks-slow-because-of-creating-functions-in-render}
+### 在 render 時建立 function，Hooks 會變慢嗎？ {#are-hooks-slow-because-of-creating-functions-in-render}
 
-No. In modern browsers, the raw performance of closures compared to classes doesn't differ significantly except in extreme scenarios.
+不會，在現代瀏覽器中，除了在極端情況下，closure 的原生效能與 class 相較之下沒有明顯的差異。
 
-In addition, consider that the design of Hooks is more efficient in a couple ways:
+此外，考慮到 Hooks 的設計在以下幾個方面很有效：
 
-* Hooks avoid a lot of the overhead that classes require, like the cost of creating class instances and binding event handlers in the constructor.
+* Hook 可以避免 class 的大量開銷，像是建立 class instance 並在 constructor 綁定 event hanlder。
 
-* **Idiomatic code using Hooks doesn't need the deep component tree nesting** that is prevalent in codebases that use higher-order components, render props, and context. With smaller component trees, React has less work to do.
+* **習慣使用 Hooks 的程式碼後，就不需要深層的巢狀 component**，這在 higher-order component、render props 和 context 等其他流行函式庫中普遍存在，使用較小的 component tree，React 可以減少更多的工作量。
 
-Traditionally, performance concerns around inline functions in React have been related to how passing new callbacks on each render breaks `shouldComponentUpdate` optimizations in child components. Hooks approach this problem from three sides.
+傳統上，在 React inline function 的效能問題與如何在 child component 中，在每個 render 打破 `shouldComponentUpdate` 最佳化傳遞新的 callback 有關。Hooks 從三個方面來處理這個問題。
 
-* The [`useCallback`](/docs/hooks-reference.html#usecallback) Hook lets you keep the same callback reference between re-renders so that `shouldComponentUpdate` continues to work:
+* The [`useCallback`](/docs/hooks-reference.html#usecallback) Hook 讓你可以在重新 render 之間保持相同的 callback，所以 `shouldComponentUpdate` 依然可以運作：
 
     ```js{2}
-    // Will not change unless `a` or `b` changes
+    // 除非 `a` 或 `b` 改變，否則不改變
     const memoizedCallback = useCallback(() => {
       doSomething(a, b);
     }, [a, b]);
     ```
 
-* The [`useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) Hook makes it easier to control when individual children update, reducing the need for pure components.
+* [`useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) Hook 讓獨立的 children 更新時，可以更容易的被控制，減少對 pure component 的需求。
 
-* Finally, the [`useReducer`](/docs/hooks-reference.html#usereducer) Hook reduces the need to pass callbacks deeply, as explained below.
+* 最後，[`useReducer`](/docs/hooks-reference.html#usereducer) Hook 減少傳遞深層的 callback 需要，我們將會在下面解釋。
 
 ### 如何避免向下傳遞 callback？ {#how-to-avoid-passing-callbacks-down}
 
-We've found that most people don't enjoy manually passing callbacks through every level of a component tree. Even though it is more explicit, it can feel like a lot of "plumbing".
+我們發現大部分的人不喜歡透過 component tree 的每一層手動傳遞 callback。即使它是更明確，它可以感覺像是有許多「管道」。
 
-In large component trees, an alternative we recommend is to pass down a `dispatch` function from [`useReducer`](/docs/hooks-reference.html#usereducer) via context:
+在大型的 component tree 中，我們推薦另一個方法是透過 context 從 [`useReducer`](/docs/hooks-reference.html#usereducer) 傳遞一個 `dispatch` function：
 
 ```js{4,5}
 const TodosDispatch = React.createContext(null);
 
 function TodosApp() {
-  // Note: `dispatch` won't change between re-renders
+  // 注意：`dispatch` 在 re-render 之間不會改變
   const [todos, dispatch] = useReducer(todosReducer);
 
   return (
@@ -886,11 +886,11 @@ function TodosApp() {
 }
 ```
 
-Any child in the tree inside `TodosApp` can use the `dispatch` function to pass actions up to `TodosApp`:
+任何在 `TodosApps` 內的 child component 可以使用 `dispatch` function 來傳遞 action 到 `TodosApp`：
 
 ```js{2,3}
 function DeepChild(props) {
-  // If we want to perform an action, we can get dispatch from context.
+  // 如果我們想要執行一個 action，我們可以從 context 取得 dispatch。
   const dispatch = useContext(TodosDispatch);
 
   function handleClick() {
@@ -903,19 +903,19 @@ function DeepChild(props) {
 }
 ```
 
-This is both more convenient from the maintenance perspective (no need to keep forwarding callbacks), and avoids the callback problem altogether. Passing `dispatch` down like this is the recommended pattern for deep updates.
+從維護的角度來看更方便（不需要持有轉發 callback），並且完全避免了 callback 問題。像這樣傳遞 `dispatch` 是深度更新的推薦模式。
 
-Note that you can still choose whether to pass the application *state* down as props (more explicit) or as context (more convenient for very deep updates). If you use context to pass down the state too, use two different context types -- the `dispatch` context never changes, so components that read it don't need to rerender unless they also need the application state.
+請注意，你仍然可以選擇是否將應用程式的 *state* 向下傳遞為 props（更明確）還是作為 context（對於非常深的更新更方便）。如果你也使用 context 傳遞 state，使用兩個不同的 context type -- `dispatch` context 永遠不會改變，因此讀取它的 component 不需要重新 render，除非它們也需要應用程式的 state。
 
 ### 如何從 `useCallback` 讀取一個經常變化的值？ {#how-to-read-an-often-changing-value-from-usecallback}
 
->Note
+>注意
 >
->We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
+>我們建議[在 context 中傳遞 `dispatch`](#how-to-avoid-passing-callbacks-down)，而不是在 props 中傳遞單獨的 callback。下面的方法僅在此處提及完整性和跳脫方法。
 >
->Also note that this pattern might cause problems in the [concurrent mode](/blog/2018/03/27/update-on-async-rendering.html). We plan to provide more ergonomic alternatives in the future, but the safest solution right now is to always invalidate the callback if some value it depends on changes.
+>另外請注意，在這個模式可能會導致 [concurrent 模式](/blog/2018/03/27/update-on-async-rendering.html)出現問題。我們計畫在未來提供更多解決方案，但目前最安全的解決方式是，如果有些值取決於更改，則會使 callback 無效。
 
-In some rare cases you might need to memoize a callback with [`useCallback`](/docs/hooks-reference.html#usecallback) but the memoization doesn't work very well because the inner function has to be re-created too often. If the function you're memoizing is an event handler and isn't used during rendering, you can use [ref as an instance variable](#is-there-something-like-instance-variables), and save the last committed value into it manually:
+在極少數的情況下你可能會透過 [`useCallback`](/docs/hooks-reference.html#usecallback) memoize 一個 callback，但是因為內部函式必須常常被重新建立，所以 memoize 沒有辦法很好個運作。如果你要 memoize 的函式是一個 event hanlder，而且它不會被在 render 時被使用，你可以使用 [ref 作為一個 instance 變數](#is-there-something-like-instance-variables)，並手動儲存最後被 commit 的值：
 
 ```js{6,10}
 function Form() {
@@ -923,13 +923,13 @@ function Form() {
   const textRef = useRef();
 
   useEffect(() => {
-    textRef.current = text; // Write it to the ref
+    textRef.current = text; // 將它寫到 ref
   });
 
   const handleSubmit = useCallback(() => {
-    const currentText = textRef.current; // Read it from the ref
+    const currentText = textRef.current; // 從 ref 讀取它
     alert(currentText);
-  }, [textRef]); // Don't recreate handleSubmit like [text] would do
+  }, [textRef]); // 不要像 [text] 那樣重新建立 handleSubmit
 
   return (
     <>
@@ -940,12 +940,12 @@ function Form() {
 }
 ```
 
-This is a rather convoluted pattern but it shows that you can do this escape hatch optimization if you need it. It's more bearable if you extract it to a custom Hook:
+這是一個相當複雜的模式，但如果你需要，可以執行這個跳脫最佳化。如果你提取它到自訂的 Hook：
 
 ```js{4,16}
 function Form() {
   const [text, updateText] = useState('');
-  // Will be memoized even if `text` changes:
+  // 如果 `text` 改變，將會被 memoize：
   const handleSubmit = useEventCallback(() => {
     alert(text);
   }, [text]);
@@ -974,27 +974,27 @@ function useEventCallback(fn, dependencies) {
 }
 ```
 
-In either case, we **don't recommend this pattern** and only show it here for completeness. Instead, it is preferable to [avoid passing callbacks deep down](#how-to-avoid-passing-callbacks-down).
+在任何一種情況下，我們**都不推薦這種模式**，僅在此呈現完整性。相反的，最好[避免在深處傳遞 callback](#how-to-avoid-passing-callbacks-down)。
 
 
 ## 深入理解 {#under-the-hood}
 
 ### React 如何將 Hook 呼叫與 component 關聯？ {#how-does-react-associate-hook-calls-with-components}
 
-React keeps track of the currently rendering component. Thanks to the [Rules of Hooks](/docs/hooks-rules.html), we know that Hooks are only called from React components (or custom Hooks -- which are also only called from React components).
+React 會持續追蹤目前 render 的 component。感謝 [Hooks 的規則](/docs/hooks-rules.html)，我們知道 Hook 只能從 React component（或自訂的 Hook -- 它們也只能從 React component 中被呼叫）被呼叫。
 
-There is an internal list of "memory cells" associated with each component. They're just JavaScript objects where we can put some data. When you call a Hook like `useState()`, it reads the current cell (or initializes it during the first render), and then moves the pointer to the next one. This is how multiple `useState()` calls each get independent local state.
+每一個 component 有一個「memory cell」的內部列表。它們只是我們可以放入一些資料的 JavaScript object。當你呼叫像是  `useState()` 的 Hook，它會讀取目前的 cell（或在第一次 render 時初始化它），並將指標移動到下一個。這就是多個 `useState()` 的呼叫，取得每個獨立的 local state。
 
 ### Hook 現有的技術是什麼？ {#what-is-the-prior-art-for-hooks}
 
-Hooks synthesize ideas from several different sources:
+Hooks 綜合了幾個不同來源的想法：
 
-* Our old experiments with functional APIs in the [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) repository.
-* React community's experiments with render prop APIs, including [Ryan Florence](https://github.com/ryanflorence)'s [Reactions Component](https://github.com/reactions/component).
-* [Dominic Gannaway](https://github.com/trueadm)'s [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) proposal as a sugar syntax for render props.
-* State variables and state cells in [DisplayScript](http://displayscript.org/introduction.html).
-* [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html) in ReasonReact.
-* [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html) in Rx.
-* [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting) in Multicore OCaml.
+* 在 [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) repository 中，我們使用 functional APIs 的舊實驗。
+* React 社群使用 render props APIs 的實驗，包括 [Ryan Florence](https://github.com/ryanflorence) 的 [Reactions Component](https://github.com/reactions/component)。
+* [Dominic Gannaway](https://github.com/trueadm) 的 [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) 提案作為 render props 的語法糖。
+* [DisplayScript](http://displayscript.org/introduction.html) 中的 state 變數以及 state 單元。
+* ReasonReact 中的 [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html)。
+* Rx 中的 [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html)。
+* Multicore OCaml 中的 [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting)。
 
-[Sebastian Markbåge](https://github.com/sebmarkbage) came up with the original design for Hooks, later refined by [Andrew Clark](https://github.com/acdlite), [Sophie Alpert](https://github.com/sophiebits), [Dominic Gannaway](https://github.com/trueadm), and other members of the React team.
+[Sebastian Markbåge](https://github.com/sebmarkbage) 想出了 Hook 的原始設計，之後由 [Andrew Clark](https://github.com/acdlite)、[Sophie Alpert](https://github.com/sophiebits)、[Dominic Gannaway](https://github.com/trueadm) 以及其他 React 團隊的成員加以完善。
