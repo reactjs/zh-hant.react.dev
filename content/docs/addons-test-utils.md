@@ -122,7 +122,9 @@ it('can render and update a counter', () => {
 });
 ```
 
-不要忘記，只有在 DOM container 已加到 `document` 裡面時，才可以 dispatch DOM event。你可以使用如 [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) 的 helper 來減少 boilerplate 程式碼。
+- 不要忘記，只有在 DOM container 已加到 `document` 裡面時，才可以 dispatch DOM event。你可以使用如 [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) 的 helper 來減少 boilerplate 程式碼。
+
+- [`recipes`](/docs/recipes.html) 說明文件內包含了 `act()` 的詳細資訊，包含範例以及用法。
 
 * * *
 
@@ -139,7 +141,7 @@ mockComponent(
 
 > 注意：
 >
-> `mockComponent()` 是 legacy API。我們建議以 [shallow render](/docs/shallow-renderer.html) 或 [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) 作為替代。
+> `mockComponent()` 是 legacy API。我們建議以 [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) 作為替代。
 
 * * *
 

@@ -59,6 +59,8 @@
       title: 最佳化效能
     - id: portals
       title: Portals
+    - id: profiler
+      title: Profiler
     - id: react-without-es6
       title: 沒有 ES6 的 React
     - id: react-without-jsx
@@ -123,6 +125,14 @@
         title: Hook API 參考
       - id: hooks-faq
         title: Hook 常見問題
+- title: 測試
+  items:
+    - id: testing
+      title: 測試概觀
+    - id: testing-recipes
+      title: 測試方法
+    - id: testing-environments
+      title: 測試環境
 - title: 貢獻
   items:
   - id: how-to-contribute
