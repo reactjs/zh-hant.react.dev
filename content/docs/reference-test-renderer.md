@@ -111,7 +111,7 @@ TestRenderer.create(element, options);
 TestRenderer.act(callback);
 ```
 
-Similar to the [`act()` helper from `react-dom/test-utils`](/docs/test-utils.html#act), `TestRenderer.act` prepares a component for assertions. Use this version of `act()` to wrap calls to `TestRenderer.create` and `testRenderer.update`.
+近似於 [`測試工具` 中的 `act()` helper](/docs/test-utils.html#act)，`TestRenderer.act` 會為了 assertions 準備一個 component。使用這個版本的 `act()` 來統合 `TestRenderer.create` 和 `testRenderer.update` 的使用。
 
 ```javascript
 import {create, act} from 'react-test-renderer';

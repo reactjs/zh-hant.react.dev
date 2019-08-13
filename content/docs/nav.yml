@@ -124,21 +124,16 @@
       - id: hooks-reference
         title: Hook API 參考
       - id: hooks-faq
-<<<<<<< HEAD
         title: Hook 常見問題
-- title: 貢獻
-=======
-        title: Hooks FAQ
-- title: Testing
+- title: 測試
   items:
-    - id: testing 
-      title: Testing Overview
+    - id: testing
+      title: 測試概觀
     - id: testing-recipes
-      title: Testing Recipes
+      title: 測試方法
     - id: testing-environments
-      title: Testing Environments
-- title: Contributing
->>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
+      title: 測試環境
+- title: 貢獻
   items:
   - id: how-to-contribute
     title: 如何貢獻
