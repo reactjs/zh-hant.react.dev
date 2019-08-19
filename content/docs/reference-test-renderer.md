@@ -103,11 +103,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 TestRenderer.create(element, options);
 ```
 
-<<<<<<< HEAD
-透過傳來的 React element 建立一個 `TestRenderer` instance。它不使用真實的 DOM，但是它依然將 component tree 完整地 render 到記憶體中，以便於你對它進行 assert。回傳的 instance 擁有以下的方法和屬性。
-=======
-Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. Returns a [TestRenderer instance](#testrenderer-instance).
->>>>>>> de497e250340ff597ce4964279369f16315b8b4b
+透過傳來的 React element 建立一個 `TestRenderer` instance。它不使用真實的 DOM，但是它依然將 component tree 完整地 render 到記憶體中，以便於你對它進行 assert。回傳為一個 [`TestRenderer` instance](#testrenderer-instance)。
 
 ### `TestRenderer.act()` {#testrendereract}
 
