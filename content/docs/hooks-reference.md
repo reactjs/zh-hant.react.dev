@@ -376,7 +376,7 @@ function TextInputWithFocusButton() {
 
 本質上，`useRef` 就像一個可以持有 mutable 的值在 `.current` 屬性的「盒子」。
 
-你應該熟悉 ref，它一種主要是用來[訪問 DOM](/docs/refs-and-the-dom.html)的方式。如果你在 React 中以 `<div ref={myRef} />` 傳入 ref object，無論節點如何改變，React 都會將其 `.current` 屬性設為相應的 DOM 節點。
+你應該熟悉 ref，它一種主要是用來[訪問 DOM](/docs/refs-and-the-dom.html) 的方式。如果你在 React 中以 `<div ref={myRef} />` 傳入 ref object，無論節點如何改變，React 都會將其 `.current` 屬性設為相應的 DOM 節點。
 
 然而，`useRef()` 比 `ref` 屬性更有用。它可以[很方便地持有任何 mutable 的值](/docs/hooks-faq.html#is-there-something-like-instance-variables)，跟 class 中的 instance field 類似。
 
