@@ -1,13 +1,13 @@
 items:
-  - title: Docs
+  - title: 文件
     to: /docs/getting-started.html
     activeSelector: /docs/
-  - title: Tutorial
+  - title: 教學
     to: /tutorial/tutorial.html
     activeSelector: /tutorial
-  - title: Blog
+  - title: 部落格
     to: /blog/
     activeSelector: /blog
-  - title: Community
+  - title: 社群
     to: /community/support.html
     activeSelector: /community

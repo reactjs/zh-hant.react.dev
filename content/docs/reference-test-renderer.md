@@ -149,11 +149,7 @@ testRenderer.toJSON()
 testRenderer.toTree()
 ```
 
-<<<<<<< HEAD
-回傳一個被 render 的 tree object。和 `toJSON()` 不同，它表示的內容比 `toJSON()` 提供的內容更加詳細，並且包含人員撰寫的 component。除非你要在 test renderer 之上撰寫自己的 assertion library，否則你可能不需要這個方法。
-=======
-Return an object representing the rendered tree. The representation is more detailed than the one provided by `toJSON()`, and includes the user-written components. You probably don't need this method unless you're writing your own assertion library on top of the test renderer.
->>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
+回傳一個被 render 的 tree object。它表示的內容比 `toJSON()` 提供的內容更加詳細，並且包含人員撰寫的 component。除非你要在 test renderer 之上撰寫自己的 assertion library，否則你可能不需要這個方法。
 
 ### `testRenderer.update()` {#testrendererupdate}
 

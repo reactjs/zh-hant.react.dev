@@ -1,24 +1,24 @@
 community:
-  title: Community
+  title: 社群
 
 docs:
-  title: Docs
+  title: 文件
 
 more:
-  title: More
+  title: 其他
   items:
-    - title: Tutorial
+    - title: 教學
       to: /tutorial/tutorial.html
     - title: Blog
       to: /blog
-    - title: Acknowledgements
+    - title: 致謝
       to: /acknowledgements.html
     - title: React Native
       to: https://facebook.github.io/react-native/
       external: true
 
 channels:
-  title: Channels
+  title: 溝通管道
   items:
     - title: Github
       to: https://github.com/facebook/react
@@ -26,13 +26,13 @@ channels:
     - title: Stack Overflow
       to: https://stackoverflow.com/questions/tagged/reactjs
       external: true
-    - title: Discussion Forums
+    - title: 討論區
       to: https://reactjs.org/community/support.html#popular-discussion-forums
       external: true
-    - title: Reactiflux Chat
+    - title: Reactiflux 聊天室
       to: https://discord.gg/0ZcbPKXt5bZjGY5n
       external: true
-    - title: DEV Community
+    - title: DEV 社群
       to: https://dev.to/t/react
       external: true
     - title: Facebook
