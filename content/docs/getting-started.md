@@ -119,7 +119,11 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 ## 版本化文件 {#versioned-documentation}
 
+<<<<<<< HEAD
 官方文件會一直與最新穩定版本的 React 保持同步。至 React 16 以來，你可以在這[另一頁](/versions)找到舊版本的 React 文件。注意，舊版本的文件是取至該版本發佈時的狀態，並不會有持續的更新。
+=======
+This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation on a [separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release, and isn't being continuously updated.
+>>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
 
 ## 找不到相關資訊？ {#something-missing}
 
