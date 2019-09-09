@@ -20,7 +20,7 @@ more:
 channels:
   title: 溝通管道
   items:
-    - title: Github
+    - title: GitHub
       to: https://github.com/facebook/react
       external: true
     - title: Stack Overflow

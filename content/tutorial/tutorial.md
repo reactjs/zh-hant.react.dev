@@ -335,7 +335,11 @@ React 在 [Chrome](https://chrome.google.com/webstore/detail/react-developer-too
 
 React DevTools 讓你檢查你的 React component 中的 props 和 state。
 
+<<<<<<< HEAD
 在安裝 React DevTools 後，你在網頁上對任何元素按右鍵，之後按 Inspect 開啟開發者工具，React 的 tab 會是右邊數來第一個。
+=======
+After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tabs ("⚛️ Components" and "⚛️ Profiler") will appear as the last tabs to the right. Use "⚛️ Components" to inspect the component tree.
+>>>>>>> 8b30ae43439818009213da86eca872a3d869c5eb
 
 **然而，請注意在 CodePen 中使用開發者工具需要一些額外的步驟：**
 
