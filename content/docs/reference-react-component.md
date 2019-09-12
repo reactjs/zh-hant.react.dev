@@ -342,7 +342,7 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // 更新 state，如此下次 render 時 React 才能展示備用 UI
+    // 更新 state，如此下次 render 時 React 才能顯示 fallback UI
     return { hasError: true };
   }
 
