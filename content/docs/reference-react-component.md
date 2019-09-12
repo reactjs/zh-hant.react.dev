@@ -316,7 +316,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 [錯誤邊界](/docs/error-boundaries.html) 是用於截取 child component tree 中 JavaScript 錯誤、記錄錯誤、並顯示一個 fallback UI 而非故障的 component tree 的一群 React component。錯誤邊界會在 render 期間、生命週期方法、以及其下整個 tree 群組所有的 constructor 內截取錯誤。
 
-一個 class component 會變成錯誤邊界，如果其定義了 `static getDerivedStateFromError()` 和 `componentDidCatch()` 兩種或其中之一的生命週期方法。 從這些生命週期方法中更新 state 讓你截取在其下的 tree 內未被處理的 JavaScript 錯誤，並展示一個備用 UI。
+一個 class component 會變成錯誤邊界，如果其定義了 `static getDerivedStateFromError()` 和 `componentDidCatch()` 兩種或其中之一的生命週期方法。 從這些生命週期方法中更新 state 讓你截取在其下的 tree 內未被處理的 JavaScript 錯誤，並顯示一個 fallback UI。
 
 請只在從意料之外的異常中使用錯誤邊界。**請不要用它來控制流程。**
 
