@@ -198,7 +198,7 @@ componentDidMount()
 
 這個方法適合設立任何 subscription。設立完 subscription 後，別忘了在 `componentWillUnmount()` 內取消 subscription。
 
-你 **可以馬上在 `componentDidMount()` 內呼叫 `setState()`。** 這會觸發一次額外的 render，但這會在瀏覽器更新螢幕之前發生。在這個情況下，即使 `render()` 被呼叫兩次，這確保使用者不會看見這兩次 render 中過渡時期的 state。請謹慎使用這個模式，因為這經常會導致效能問題。在大多數情況下，你應該能夠在  `constructor()` 內指定初始 state 的值。不過，在某些情況下，像是在使用 modal 和 tooltip 的時候，你所 render 的 component 若是依賴某個 DOM node 的大小或位置時，這種模式有時候可能是有必要的。
+你**可以馬上在 `componentDidMount()` 內呼叫 `setState()`。**這會觸發一次額外的 render，但這會在瀏覽器更新螢幕之前發生。在這個情況下，即使 `render()` 被呼叫兩次，這確保使用者不會看見這兩次 render 中過渡時期的 state。請謹慎使用這個模式，因為這經常會導致效能問題。在大多數情況下，你應該能夠在  `constructor()` 內指定初始 state 的值。不過，在某些情況下，像是在使用 modal 和 tooltip 的時候，你所 render 的 component 若是依賴某個 DOM node 的大小或位置時，這種模式有時候可能是有必要的。
 
 * * *
 
