@@ -320,7 +320,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 請只在從意料之外的異常中使用錯誤邊界。**請不要用它來控制流程。**
 
-想了解更多，請參考[*React 16 中的錯誤邊界*](/blog/2017/07/26/error-handling-in-react-16.html)一文。
+想了解更多，請參考 [*React 16 中的錯誤邊界*](/blog/2017/07/26/error-handling-in-react-16.html)一文。
 
 > 注意：
 > 
