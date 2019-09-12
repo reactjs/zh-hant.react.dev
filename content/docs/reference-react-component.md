@@ -165,7 +165,7 @@ constructor(props) {
 
 Constructor 是唯一一個你應該直接指定 `this.state` 的地方。在所有其他的方法中，你則需要使用 `this.setState()`。
 
-請避免在 constructor 中產生任何副作用或 subscription。如果你需要它們的話，請使用 `componentDidMount()`。
+請避免在 constructor 中產生任何 side effect 或 subscription。如果你需要它們的話，請使用 `componentDidMount()`。
 
 >注意：
 >
