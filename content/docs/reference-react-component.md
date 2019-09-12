@@ -150,7 +150,7 @@ constructor(props)
 Typically, in React constructors are only used for two purposes:
 
 * 透過指定一個 `this.state` 物件來初始化[內部 state](/docs/state-and-lifecycle.html)。
-* 為[event handler](/docs/handling-events.html) 方法綁定實例。
+* 為 [event handler](/docs/handling-events.html) 方法綁定 instance。
 
 請**不要在 `constructor()` 中呼叫`setState()`**。如果你的 component 需要使用內部 state，請在 constructor 中**將其最初的 state 指定為 `this.state`**：
 
