@@ -370,7 +370,7 @@ class ErrorBoundary extends React.Component {
 componentDidCatch(error, info)
 ```
 
-這個生命週期方法會在某個錯誤被一個 descendant component 提出後被呼叫。
+這個生命週期方法會在某個錯誤被一個 descendant component 拋出後被呼叫。
 它接受兩個參數：
 
 1. `error` - 被提出的錯誤。
