@@ -35,7 +35,7 @@ class Welcome extends React.Component {
 
 >注意：
 >
->React 並不會強迫你使用 ES6 class 語法。如果你想避免它的話，你可以使用 `create-react-class` 或一個類似的客製化的 abstraction。想了解更多詳情，請參考[如何在 React 中不使用 ES6](/docs/react-without-es6.html)一文。
+>React 並不會強迫你使用 ES6 class 語法。如果你想避免它的話，你可以使用 `create-react-class` 或一個類似的自訂抽象。想了解更多詳情，請參考[如何在 React 中不使用 ES6](/docs/react-without-es6.html)一文。
 
 ### Component 生命週期 {#the-component-lifecycle}
 
