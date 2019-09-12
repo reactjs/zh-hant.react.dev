@@ -576,7 +576,7 @@ component.forceUpdate(callback)
 
 當你的 component 的 state 或 prop 改變的時候，你的 component 的預設行為是會重新 render。如果你的 `render()` 方法還需要其他資料的話，你可以藉由呼叫 `forceUpdate()` 來告訴 React 這個 component 需要重新 render。
 
-呼叫 `forceUpdate()` 會導致  `render()` 被呼叫於該 component 並跳過 `shouldComponentUpdate()`。這會觸發 children component 正常的生命週期方法，包含每個 child 的 `shouldComponentUpdate()` 方法。React 依然只會在標示（markup）改變時更新 DOM。
+呼叫 `forceUpdate()` 會導致  `render()` 被呼叫於該 component 並跳過 `shouldComponentUpdate()`。這會觸發 children component 正常的生命週期方法，包含每個 child 的 `shouldComponentUpdate()` 方法。React 依然只會在 markup 改變時更新 DOM。
 
 正常情況來說你應該避免使用 `forceUpdate()` 並只從 `render()` 中的 `this.props` 和 `this.state` 讀取。
 
