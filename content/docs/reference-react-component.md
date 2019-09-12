@@ -564,7 +564,7 @@ this.setState((state) => {
 
 * [State 和生命週期指南](/docs/state-and-lifecycle.html)
 * [深入解析：為什麼 `setState()` 的呼叫會批次處理？什麼時候會如此？](https://stackoverflow.com/a/48610973/458193)
-* [深入解析： 為什麼 `this.state` 不會馬上被更新？](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
+* [深入解析：為什麼 `this.state` 不會馬上被更新？](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 
 * * *
 
