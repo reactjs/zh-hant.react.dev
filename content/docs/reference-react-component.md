@@ -378,7 +378,7 @@ componentDidCatch(error, info)
 
 
 `componentDidCatch()` 會在「commit」期間被呼叫，所以 side effect 是被允許的。
-這個方法應該被用來做類似紀錄錯誤這類的事情：
+這個方法應該被用來做類似記錄錯誤這類的事情：
 
 ```js{12-19}
 class ErrorBoundary extends React.Component {
