@@ -421,7 +421,7 @@ class ErrorBoundary extends React.Component {
 
 ### 過時的生命週期方法 {#legacy-lifecycle-methods}
 
-以下介紹的幾個生命週期方法是「過時」的。它們仍然能運作，但我們並不建議你在新的程式碼內使用這些方法。你可以[在這篇文章中](/blog/2018/03/27/update-on-async-rendering.html)了解如何從過時的方法遷移至我們建議的方法。
+以下介紹的幾個生命週期方法是「過時」的。它們仍然能運作，但我們並不建議你在新的程式碼內使用這些方法。你可以[在這篇文章中](/blog/2018/03/27/update-on-async-rendering.html)了解如何從過時的方法 migrate 到我們建議的方法。
 
 ### `UNSAFE_componentWillMount()` {#unsafe_componentwillmount}
 
