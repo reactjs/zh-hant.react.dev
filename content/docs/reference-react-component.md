@@ -260,7 +260,7 @@ shouldComponentUpdate(nextProps, nextState)
 
 這個方法的存在著要是為了 **[效能最佳化](/docs/optimizing-performance.html)**。請不要依賴這個方法來「避免」 render，因為這很有可能會導致 bug。**請考慮使用 React 內建的 [`PureComponent`](/docs/react-api.html#reactpurecomponent)** 並避免手寫 `shouldComponentUpdate()`。`PureComponent` 會為 prop 和 state 做一個淺層比較（shallow comparison）並減低你錯過必要更新的機會。
 
-如果你很確定你想要手寫這個方法的話，你可以將 `this.props` 和 `nextProps` 以及 `this.state` 和 `nextState` 做比較並回傳 `false` 以告知 React 這次的更新可以被略過。 請注意，回傳 `false` 並不會避免 child component 在*它們的* state 改變時重新 render。
+如果你很確定你想要手寫這個方法的話，你可以將 `this.props` 和 `nextProps` 以及 `this.state` 和 `nextState` 做比較並回傳 `false` 以告知 React 這次的更新可以被略過。請注意，回傳 `false` 並不會避免 child component 在*它們的* state 改變時重新 render。
 
 我們並不建議你做深度比較（deep equality check）或在 `shouldComponentUpdate()` 內使用 `JSON.stringify()`。它們效率不佳且會造成效能問題。
 
