@@ -123,7 +123,7 @@ render()
 
 - **React element。** 通常是透過 [JSX](/docs/introducing-jsx.html) 建立的。例如，`<div />`和`<MyComponent />`這兩個 React element 會告訴 React 要 render 一個 DOM node 和一個使用者定義的 component。
 - **Array 和 fragment。** 它們會從 render 中回傳數個 element。細節請參考 [fragment](/docs/fragments.html)。
-- **Portal**。它們讓你將 children render 到不同的 DOM subtree 中。細節請參考[portals](/docs/portals.html)。
+- **Portal**。它們讓你將 children render 到不同的 DOM subtree 中。細節請參考 [portal](/docs/portals.html)。
 - **String 和 number。** 這些在 DOM 中將會被 render 為文本 node。
 - **Boolean 或 `null`。** 什麼都不 render。（此類型主要是支援 `回傳 test && <Child />` 的模式，這裡的 `test` 是一個 boolean 值）。
 
