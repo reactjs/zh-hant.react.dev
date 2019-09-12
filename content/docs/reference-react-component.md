@@ -622,7 +622,7 @@ CustomButton.defaultProps = {
 
 * * *
 
-## 實例屬性 {#instance-properties-1}
+## Instance 屬性 {#instance-properties-1}
 
 ### `props` {#props}
 
