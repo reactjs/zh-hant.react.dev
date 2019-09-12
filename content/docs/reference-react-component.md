@@ -223,7 +223,7 @@ componentDidUpdate(prevProps) {
 
 你**可以馬上在 `componentDidUpdate()` 內呼叫 `setState()`**，但注意這必須要被包圍在一個類似上述範例的條件語句內，否則你會進入一個無限迴圈。這也會導致額外的重新 render。雖然使用者看不見，但這可能會影響 component 的效能。如果你想試著將某些 state 複製到由上往下傳的 prop 的話，請考慮直接使用 prop。請參考[為何複製 prop 到 state 中會產生 bug](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
-如果你的 component 裡面有 `getSnapshotBeforeUpdate()` 這個很少見的生命週期方法，其回傳的值將會被當作第三個 「快照（snapshot）」 參數傳給 `componentDidUpdate()`。否則這個參數會是 undefined。
+如果你的 component 裡面有 `getSnapshotBeforeUpdate()` 這個很少見的生命週期方法，其回傳的值將會被當作第三個「snapshot」參數傳給 `componentDidUpdate()`。否則這個參數會是 undefined。
 
 > 注意：
 >
