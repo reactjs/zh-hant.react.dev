@@ -43,7 +43,7 @@ class Welcome extends React.Component {
 
 #### Mounting {#mounting}
 
-當一個 component 的實例被建立且加入 DOM 中時，其生命週期將會依照下列的順序呼叫這些方法：
+當一個 component 的 instance 被建立且加入 DOM 中時，其生命週期將會依照下列的順序呼叫這些方法：
 
 - [**`constructor()`**](#constructor)
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
