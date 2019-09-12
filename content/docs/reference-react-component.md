@@ -39,7 +39,7 @@ class Welcome extends React.Component {
 
 ### Component 生命週期 {#the-component-lifecycle}
 
-每一個 component 都有數個 「生命週期方法」，你可以[覆蓋（override）](https://en.wikipedia.org/wiki/Method_overriding)這些方法，以便在開發過程中某些特定的時刻運行某些程式。 **你可以使用[這個生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)作為速查表。** 以下，常用的生命週期方法將會以粗體表達。其餘的生命週期方法則相對罕見。
+每一個 component 都有數個 「生命週期方法」，你可以 [override](https://en.wikipedia.org/wiki/Method_overriding) 這些方法，以便在開發過程中某些特定的時刻執行某些程式。**你可以使用[這個生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)作為速查表。** 以下，常用的生命週期方法將會以粗體表達。其餘的生命週期方法則相對較少。
 
 #### Mounting {#mounting}
 
