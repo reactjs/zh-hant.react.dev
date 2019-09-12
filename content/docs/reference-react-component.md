@@ -331,7 +331,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 static getDerivedStateFromError(error)
 ```
 
-這個生命週期方法會在某個錯誤被一個 descendant component 提出後被呼叫。
+這個生命週期方法會在某個錯誤被一個 descendant component 拋出後被呼叫。
 它會接收該錯誤為其參數並回傳一個值以更新 state。
 
 ```js{7-10,13-16}
