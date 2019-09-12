@@ -308,7 +308,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 `embed:react-component-reference/get-snapshot-before-update.js`
 
-在上面這個例子中，讀取 `getSnapshotBeforeUpdate` 內的 `scrollHeight` property 是很重要的，因為「render」階段的生命週期方法（如 `render`）和「提交」階段的生命週期方法（像是 `getSnapshotBeforeUpdate` 和 `componentDidUpdate`）兩者之間可能會有一些延遲。
+在上面這個例子中，讀取 `getSnapshotBeforeUpdate` 內的 `scrollHeight` property 是很重要的，因為「render」階段的生命週期方法（如 `render`）和「commit」階段的生命週期方法（像是 `getSnapshotBeforeUpdate` 和 `componentDidUpdate`）兩者之間可能會有一些延遲。
 
 * * *
 
