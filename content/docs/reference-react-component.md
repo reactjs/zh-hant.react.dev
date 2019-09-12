@@ -374,7 +374,7 @@ componentDidCatch(error, info)
 它接受兩個參數：
 
 1. `error` - 被拋出的錯誤。
-2. `info` - 一個有 `componentStack` key 的 object，這個 key 內含有[哪一個 component 提出錯誤的資訊](/docs/error-boundaries.html#component-stack-traces)。
+2. `info` - 一個有 `componentStack` key 的 object，這個 key 包含有[那一個 component 拋出錯誤的資訊](/docs/error-boundaries.html#component-stack-traces)。
 
 
 `componentDidCatch()` 會在「提交」期間被呼叫，所以副作用是被允許的。
