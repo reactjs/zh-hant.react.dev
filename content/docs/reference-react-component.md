@@ -237,7 +237,7 @@ componentDidUpdate(prevProps) {
 componentWillUnmount()
 ```
 
-`componentWillUnmount()` 會在ㄧ個 component 被 unmount 和摧毀後馬上被呼叫。你可以在這個方法內進行任何清理，像是取消計時器和網路請求或是移除任何在 `componentDidMount()` 內建立的  subscription。
+`componentWillUnmount()` 會在ㄧ個 component 被 unmount 和 destroy 後馬上被呼叫。你可以在這個方法內進行任何清理，像是取消計時器和網路請求或是移除任何在 `componentDidMount()` 內建立的  subscription。
 
 你**不應該在 `componentDidUpdate()` 內呼叫 `setState()`**，因為這個 component 永遠不會在重新 render。當一個 component instance 被 unmount 後，它就永遠不會再被 mount。
 
