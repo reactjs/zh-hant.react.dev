@@ -459,7 +459,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 > * 如果你想要 **只在某個 prop 改變時重新計算某些資料**，[請使用 memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)。
 > * 如果你想要 **在某個 prop 改變時「重置」某個 state**，請考慮建立一個[完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) 的 component 或[帶有 `key` 的完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) component。
 >
-> 針對以上這些用例，請[遵照這篇文章內推薦的方法來處理繼承的 state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
+> 針對以上這些使用情境，請[遵照這篇文章內推薦的方法來處理繼承的 state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
 `UNSAFE_componentWillReceiveProps()` 會在一個被 mount 的 component 接收新的 prop 前被呼叫。如果你需要在某個 prop 改變時更新 state 的話（例如，重置 state），你可以在這個生命週期方法裡面比較 `this.props` 和`nextProps`，並使用 `this.setState()` 進行 state 的轉移。
 
