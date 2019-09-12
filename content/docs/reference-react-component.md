@@ -435,7 +435,7 @@ UNSAFE_componentWillMount()
 
 `UNSAFE_componentWillMount()` 會在 mounting 發生前被呼叫。它會在 `render()` 前被呼叫，因此在這個方法內同步呼叫 `setState()` 並不會觸發額外的 render。不過，一般情況來說，我們建議你使用 `constructor()` 來初始化 state。
 
-請避免在這個方法中帶入任何的副作用或 subscription。如果你需要那樣做的話，請使用 `componentDidMount()`。
+請避免在這個方法中帶入任何的 side effect 或 subscription。如果你需要那樣做的話，請使用 `componentDidMount()`。
 
 這是唯一一個在伺服器端 render 時被呼叫的生命週期方法。
 
