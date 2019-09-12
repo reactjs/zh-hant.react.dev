@@ -133,7 +133,7 @@ render()
 
 > 注意：
 >
-> 若  [`shouldComponentUpdate()`](#shouldcomponentupdate) 回傳的值為 `false` 的話，`render()`將不會被呼叫。
+> 若 [`shouldComponentUpdate()`](#shouldcomponentupdate) 回傳的值為 `false` 的話，`render()`將不會被呼叫。
 
 * * *
 
