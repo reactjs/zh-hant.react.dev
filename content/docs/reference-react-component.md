@@ -302,7 +302,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 這個方法並不常見，但它可能會在像是對話串這類需要以某種特殊方始處理滾動軸位置的 UI 中出現。
 
-一個快照（snapshot）的值（或 `null`）應該被回傳。
+一個 snapshot 的值（或 `null`）應該被回傳。
 
 例如：
 
