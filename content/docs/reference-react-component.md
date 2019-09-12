@@ -373,7 +373,7 @@ componentDidCatch(error, info)
 這個生命週期方法會在某個錯誤被一個 descendant component 拋出後被呼叫。
 它接受兩個參數：
 
-1. `error` - 被提出的錯誤。
+1. `error` - 被拋出的錯誤。
 2. `info` - 一個有 `componentStack` key 的 object，這個 key 內含有[哪一個 component 提出錯誤的資訊](/docs/error-boundaries.html#component-stack-traces)。
 
 
