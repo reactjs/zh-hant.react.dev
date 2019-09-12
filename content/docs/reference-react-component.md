@@ -157,7 +157,7 @@ Typically, in React constructors are only used for two purposes:
 ```js
 constructor(props) {
   super(props);
-  // 不要在這裏呼叫 this.setState()！
+  // 不要在這裡呼叫 this.setState()！
   this.state = { counter: 0 };
   this.handleClick = this.handleClick.bind(this);
 }
