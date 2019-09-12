@@ -626,7 +626,7 @@ CustomButton.defaultProps = {
 
 ### `props` {#props}
 
-`this.props` 包含了該 component 的呼叫者所定義的 prop。想了解 prop 的基礎概念，請參考 [Components and Props](/docs/components-and-props.html) 一文。
+`this.props` 包含了該 component 的呼叫者所定義的 prop。想了解 prop 的基礎概念，請參考 [Components 和 Props](/docs/components-and-props.html)文件。
 
 值得注意的是，`this.props.children` 是一個特別的 prop，通常在 JSX 表達式內的 child tag 內所定義，而不是其自身的 tag。
 
