@@ -348,7 +348,7 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // 你可以展示任何備用 UI
+      // 你可以 render 任何自訂的 fallback UI
       return <h1>Something went wrong.</h1>;
     }
 
