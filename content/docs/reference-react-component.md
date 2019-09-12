@@ -280,7 +280,7 @@ static getDerivedStateFromProps(props, state)
 
 繼承 state 會導致冗長的程式碼並使你的 component 很難理解。[請確認你知道這些較為簡單的替代方案](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
 
-* 如果你需要在某個 prop 改變時產生相對應的**副作用**（例如，資料提取或使用動畫），請使用 [`componentDidUpdate`](#componentdidupdate)。
+* 如果你需要在某個 prop 改變時產生相對應的**side effect**（例如，資料提取或使用動畫），請使用 [`componentDidUpdate`](#componentdidupdate)。
 
 * 如果你想要 **在某個 prop 改變時重新計算某些資料**，[請使用 memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)。
 
