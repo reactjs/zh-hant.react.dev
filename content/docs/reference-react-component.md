@@ -414,7 +414,7 @@ class ErrorBoundary extends React.Component {
 
 > 注意：
 > 
-> 在有錯誤的情況下，你可以透過呼叫 `setState` 來展示一個含有 `componentDidCatch()` 的 備用 UI，但這個方法會在未來的發佈中被棄用。
+> 在有錯誤的情況下，你可以透過呼叫 `setState` 來 render 一個含有 `componentDidCatch()` 的 fallback UI，但這個方法會在未來的版本中會被棄用。
 > 請使用 `static getDerivedStateFromError()` 來處理備用 render。
 
 * * *
