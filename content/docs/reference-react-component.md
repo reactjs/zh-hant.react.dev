@@ -360,7 +360,7 @@ class ErrorBoundary extends React.Component {
 > 注意：
 >
 > `getDerivedStateFromError()` 會在「render」期間被呼叫，所以 side effect 是不被允許的。
-如果你想要使用副作用的話，請使用 `componentDidCatch()`。
+如果你想要使用 side effect 的話，請使用 `componentDidCatch()`。
 
 * * *
 
