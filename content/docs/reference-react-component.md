@@ -29,7 +29,7 @@ class Welcome extends React.Component {
 }
 ```
 
-在 `React.Component` 的 subclass 中唯一一個你*必須*定義的方法是[`render()`](#render)。本章節中所有其他的方法都並非絕對必要。
+在 `React.Component` 的 subclass 中唯一一個你*必須*定義的方法是 [`render()`](#render)。本章節中所有其他的方法都並非絕對必要。
 
 **我們強烈建議你不要建立自己的 base component class。** 在 React component 中，[程式的重複使用性主要是透過組合而非繼承來完成的](/docs/composition-vs-inheritance.html)。
 
