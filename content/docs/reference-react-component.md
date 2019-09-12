@@ -169,7 +169,7 @@ Constructor 是唯一一個你應該直接指定 `this.state` 的地方。在所
 
 >注意：
 >
->**請避免複製 prop 在 state 之中！這是一個很常見的錯誤：**
+>**請避免複製 prop 到 state 之中！這是一個很常見的錯誤：**
 >
 >```js
 >constructor(props) {
