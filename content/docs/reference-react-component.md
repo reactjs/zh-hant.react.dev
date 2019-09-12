@@ -129,7 +129,7 @@ render()
 
 `render()` function 應該是 pure 的，這表示：它並不會改變 component 的 state，它在每次呼叫時都會回傳同樣的結果，它並不會直接和瀏覽器有所互動。
 
-如果你需要和瀏覽器互動，請在 `componentDidMount()` 或其他的生命週期方法內運行你的程序。將 `render()` 維持在純函式的狀態有助於你對 component 的理解。
+如果你需要和瀏覽器互動，請在 `componentDidMount()` 或其他的生命週期方法內執行你的程式。將 `render()` 維持在 pure 的狀態有助於你對 component 的理解。
 
 > 注意：
 >
