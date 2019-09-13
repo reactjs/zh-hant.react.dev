@@ -147,7 +147,7 @@ constructor(props)
 
 一個 React component 的 constructor 會在其被 mount 之前被呼叫。當你為一個 `React.Component` subclass 建立 constructor 時，你應該在其他任何宣告之前呼叫 `super(props)`。否則，`this.props` 在 constructor 中的值會出現 undefined 的 bug。
 
-Typically, in React constructors are only used for two purposes:
+通常在 React 中 constructor 只會有兩種用途：
 
 * 透過指定一個 `this.state` 物件來初始化[內部 state](/docs/state-and-lifecycle.html)。
 * 為 [event handler](/docs/handling-events.html) 方法綁定 instance。
