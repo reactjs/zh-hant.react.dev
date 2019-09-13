@@ -511,7 +511,7 @@ setState(updater[, callback])
 
 除非 `shouldComponentUpdate()` 回傳 `false`，`setState()` 一定會導致重新 render。如果你有使用 mutable object，或者你無法在 `shouldComponentUpdate()` 裡面建立條件式 render 的邏輯的話，只在新的 state 和先前的 state 不同時呼叫 `setState()` 將會避免不必要的重新 render。
 
-這個方法的第一個參數是一個帶有如下的 signature 的 `updater` function：
+這個方法的第一個參數是一個帶有如下的形式的 `updater` function：
 
 ```javascript
 (state, props) => stateChange
