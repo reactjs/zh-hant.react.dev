@@ -517,7 +517,7 @@ setState(updater[, callback])
 (state, props) => stateChange
 ```
 
-`state` 是當某個改變正在被應用時對 component state 的一個參考（reference）。它不應該直接被 mutate。相反的，任何改變都應該用一個基於 `state` 和 `props` 的 input 所建立的新的 object 來表示。例如，假設我們想要使用 `props.step` 來增加 state 中的某個值的話：
+`state` 是當某個改變正在被應用時對 component state 的一個參考。它不應該直接被 mutate。相反的，任何改變都應該用一個基於 `state` 和 `props` 的 input 所建立的新的 object 來表示。例如，假設我們想要使用 `props.step` 來增加 state 中的某個值的話：
 
 ```javascript
 this.setState((state, props) => {
