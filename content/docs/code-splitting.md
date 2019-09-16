@@ -97,37 +97,19 @@ import("./math").then(math => {
 
 ```js
 import OtherComponent from './OtherComponent';
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
 **加入後：**
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
-當 render 這個 component 時，將會自動的載入包含 `OtherComponent` 的 bundle。
+當首次 render 這個 component 時，將會自動的載入包含 `OtherComponent` 的 bundle。
 
 `React.lazy` 接受一個必須呼叫一個動態 `import()` 的 function。它必須回傳一個 `Promise`，resolve 一個包含 React component 的 `default` export 的 module。
 
-### Suspense {#suspense}
-
-如果在 `MyComponent` render 時，尚未載入包含 `OtherComponent` 的 module，我們必須在等待載入時，顯示一些 fallback 內容 - 像是一個載入的符號。這是使用 `Suspense` component 完成的。
+lazy component 應在 `Suspense` component 內 render，這使我們可以在等待 lazy component 載入時，顯示一些 fallback 內容（像是一個載入的符號）。
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
