@@ -105,21 +105,11 @@ import OtherComponent from './OtherComponent';
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 ```
 
-<<<<<<< HEAD
-當 render 這個 component 時，將會自動的載入包含 `OtherComponent` 的 bundle。
-=======
-This will automatically load the bundle containing the `OtherComponent` when this component is first rendered.
->>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
+當首次 render 這個 component 時，將會自動的載入包含 `OtherComponent` 的 bundle。
 
 `React.lazy` 接受一個必須呼叫一個動態 `import()` 的 function。它必須回傳一個 `Promise`，resolve 一個包含 React component 的 `default` export 的 module。
 
-<<<<<<< HEAD
-### Suspense {#suspense}
-
-如果在 `MyComponent` render 時，尚未載入包含 `OtherComponent` 的 module，我們必須在等待載入時，顯示一些 fallback 內容 - 像是一個載入的符號。這是使用 `Suspense` component 完成的。
-=======
-The lazy component should then be rendered inside a `Suspense` component, which allows us to show some fallback content (such as a loading indicator) while we're waiting for the lazy component to load.
->>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
+lazy component 應在 `Suspense` component 內 render，這使我們可以在等待 lazy component 載入時，顯示一些 fallback 內容（像是一個載入的符號）。
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
