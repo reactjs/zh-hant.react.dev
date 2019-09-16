@@ -165,7 +165,11 @@ useEffect(
 >
 >如果你想 effect 只執行和清除一次（在 mount 和 unmount），你可以傳遞一個空的 array （`[]`）作為第二個參數。這告訢 React 你的 effect 沒有依賴*任何*在 props 或 state 的值，所以它永遠不需被再次執行。這並不是一個特殊處理 -- 它依然遵循依賴 array 的運作方式。
 >
+<<<<<<< HEAD
 >如果你傳入了一個空的 array（`[]`），effect 內部的 props 和 state 就一直擁有其初始值。儘管傳入 `[]` 作為第二個參數有點類似 `componentDidMount` 和 `componentWillUnmount` 的思維模式，但其實有[更好的](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies)[方法](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)來避免過於頻繁地重複執行 effect。而且，不要忘記 React 會延後執行 `useEffect` 直至瀏覽器完成繪制，所以額外的工作也不會是太大問題。
+=======
+>If you pass an empty array (`[]`), the props and state inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
 >
 >
 >我們建議使用 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) 中的 [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) 規則。它會在依賴錯誤時發出警告並提出修正建議。
