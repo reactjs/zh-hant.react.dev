@@ -23,7 +23,7 @@ render() {
 
 ## 動機 {#motivation}
 
-常見的情況是 component 回傳一連串的 child element，看看這個 React 的程式碼片段：
+常見的情況是在 component 裡回傳一連串的 child element，看看這個 React 的程式碼片段：
 
 ```jsx
 class Table extends React.Component {
@@ -39,7 +39,7 @@ class Table extends React.Component {
 }
 ```
 
-為了使 render 出來的 HTML 是有效的，`<Columns />` 需要回傳多個 `<td>` element 。 但如果將 parent div 元素放在 `<Columns />`中的`render()`區塊，將會使生成的 HTML 無效。
+為了使 render 出來的 HTML 是有效的，`<Columns />` 需要回傳多個 `<td>` element 。 但如果將 parent div 元素放在 `<Columns />` 中的 `render()` 區塊，將會使生成的 HTML 無效。
 
 ```jsx
 class Columns extends React.Component {
@@ -111,11 +111,11 @@ class Columns extends React.Component {
   }
 }
 ```
-你可以像使用其他元素一樣使用`<></>`，但值得注意的是它並不支援 key 和 attribute。
+你可以像使用其他元素一樣使用 `<></>`，但值得注意的是它並不支援 key 和 attribute。
 
 ### Keyed Fragments {#keyed-fragments}
 
-透過明確宣告`<React.Fragment>`的 Fragment 可能會遇到帶有 key 的情況。一個使用案例是將它 mapping 到 Fragment array。舉例來說，如下方程式碼一樣建立一個 description list。 
+透過明確宣告 `<React.Fragment>` 的 Fragment 可能會遇到帶有 key 的情況。一個使用案例是將它 mapping 到 Fragment array。舉例來說，像下方程式碼一樣建立一個敘述列表。 
 
 ```jsx
 function Glossary(props) {
