@@ -4,7 +4,7 @@ title: Fragments
 permalink: docs/fragments.html
 ---
 
-React其中一種常見的使用情況是在一個component中回傳多個element，Fragements讓你能夠在不用增加額外DOM節點的情況下，重新組合child componenet。
+React 其中一種常見的使用情況是在一個 component 中回傳多個 element，Fragement 讓你能夠在不用增加額外 DOM 節點的情況下，重新組合  child componenet。
 
 ```js
 render() {
@@ -18,12 +18,12 @@ render() {
 }
 ```
 
-還有一種更[簡短的語法](#short-syntax)可以用來宣告。
+還有一種更[簡短的語法](#short-syntax)可以用來宣告 Fragment。
 <!-- There is also a new [short syntax](#short-syntax) for declaring them. -->
 
 ## 動機 {#motivation}
 
-常見的情況是component回傳一連串的child element，看看這個React的程式碼片段:
+常見的情況是 component 回傳一連串的 child element，看看這個 React 的程式碼片段：
 
 ```jsx
 class Table extends React.Component {
@@ -39,7 +39,7 @@ class Table extends React.Component {
 }
 ```
 
-為了使render出來的HTML是有效的，`<Columns />` 需要回傳多個 `<td>` element 。 但如果將parent div 元素放在 `<Columns />`中的`render()`區塊，將會使生成的HTML無效。
+為了使 render 出來的 HTML 是有效的，`<Columns />` 需要回傳多個 `<td>` element 。 但如果將 parent div 元素放在 `<Columns />`中的`render()`區塊，將會使生成的 HTML 無效。
 
 ```jsx
 class Columns extends React.Component {
@@ -54,7 +54,7 @@ class Columns extends React.Component {
 }
 ```
 
-在 `<Table />` 內的輸出如下:
+在 `<Table />` 內的輸出如下：
 
 ```jsx
 <table>
@@ -67,7 +67,7 @@ class Columns extends React.Component {
 </table>
 ```
 
-這個問題交給Fragments解決。
+這個問題交給 Fragment 解決。
 
 ## 用法 {#usage}
 
@@ -84,7 +84,7 @@ class Columns extends React.Component {
 }
 ```
 
-會讓 `<Table />` 得到一個正確的輸出:
+會讓 `<Table />` 得到一個正確的輸出：
 
 ```jsx
 <table>
@@ -97,7 +97,7 @@ class Columns extends React.Component {
 
 ### 更簡短的語法 {#short-syntax}
 
-你可以用更簡潔的語法來宣告fragments，它看起來就像空標籤:
+你可以用更簡潔的語法來宣告 Fragment，它看起來就像空標籤：
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -111,11 +111,11 @@ class Columns extends React.Component {
   }
 }
 ```
-你可以像使用其他元素一樣使用`<></>`，但值得注意的是它並不支援key和attributes。
+你可以像使用其他元素一樣使用`<></>`，但值得注意的是它並不支援 key 和 attribute。
 
 ### Keyed Fragments {#keyed-fragments}
 
-透過明確宣告`<React.Fragment>`的Fragments可能會遇到帶有key的情況。一個使用案例是將它mapping到Fragments陣列。舉例來說，如下方程式碼一樣建立一個description list。 
+透過明確宣告`<React.Fragment>`的 Fragment 可能會遇到帶有 key 的情況。一個使用案例是將它 mapping 到 Fragment array。舉例來說，如下方程式碼一樣建立一個 description list。 
 
 ```jsx
 function Glossary(props) {
@@ -133,8 +133,8 @@ function Glossary(props) {
 }
 ```
 
-目前 `key` 是唯一可以傳遞給 `Fragment` 的attribute。之後我們可能會支援更多的attribute，像是event handlers。
+目前 `key` 是唯一可以傳遞給 `Fragment` 的 attribute 。之後我們可能會支援更多的 attribute，像是 event handlers。
 
 ### 線上展示 {#live-demo}
 
-你可以透過 [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000) 嘗試新的JSX fragment語法。
+你可以透過 [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000) 嘗試新的 JSX fragment 語法。
