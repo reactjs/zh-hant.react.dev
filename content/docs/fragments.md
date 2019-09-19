@@ -18,7 +18,7 @@ render() {
 }
 ```
 
-還有一種更[簡短的語法](#short-syntax)可以用來宣告 Fragment。
+還有一種[簡寫語法](#short-syntax)可以用來宣告 fragment。
 <!-- There is also a new [short syntax](#short-syntax) for declaring them. -->
 
 ## 動機 {#motivation}
