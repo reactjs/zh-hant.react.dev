@@ -39,7 +39,7 @@ class Table extends React.Component {
 }
 ```
 
-為了使 render 出來的 HTML 是有效的，`<Columns />` 需要回傳多個 `<td>` element 。 但如果將 parent div 元素放在 `<Columns />` 中的 `render()` 區塊，將會使生成的 HTML 無效。
+為了使 render 出來的 HTML 是有效的，`<Columns />` 需要回傳多個 `<td>` element。如果將 parent div 元素放在 `<Columns />` 中的 `render()` 區塊，將會使生成的 HTML 無效。
 
 ```jsx
 class Columns extends React.Component {
