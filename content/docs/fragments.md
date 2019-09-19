@@ -97,7 +97,7 @@ class Columns extends React.Component {
 
 ### 更簡短的語法 {#short-syntax}
 
-你可以用更簡潔的語法來宣告 Fragment，它看起來就像空標籤：
+你可以用新的簡寫語法來宣告 fragment，它看起來就像空標籤：
 
 ```jsx{4,7}
 class Columns extends React.Component {
