@@ -67,7 +67,7 @@ class Columns extends React.Component {
 </table>
 ```
 
-這個問題交給 Fragment 解決。
+這個問題交給 fragment 解決。
 
 ## 用法 {#usage}
 
