@@ -4,7 +4,7 @@ title: Fragments
 permalink: docs/fragments.html
 ---
 
-React 其中一種常見的使用情況是在一個 component 中回傳多個 element，Fragement 讓你能夠在不用增加額外 DOM 節點的情況下，重新組合  child componenet。
+React 其中一種常見的使用情況是在一個 component 中回傳多個 element，Fragement 讓你能夠在不用增加額外 DOM 節點的情況下，重新組合 child component。
 
 ```js
 render() {
