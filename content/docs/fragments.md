@@ -4,7 +4,7 @@ title: Fragments
 permalink: docs/fragments.html
 ---
 
-React 其中一種常見的使用情況是在一個 component 中回傳多個 element，Fragement 讓你能夠在不用增加額外 DOM 節點的情況下，重新組合 child component。
+React 其中一種常見的使用情況是在一個 component 中回傳多個 element，fragment 讓你能夠在不用增加額外 DOM 節點的情況下，重新組合 child component。
 
 ```js
 render() {
@@ -69,7 +69,7 @@ class Columns extends React.Component {
 
 這個問題交給 fragment 解決。
 
-## 用法 {#usage}
+## 使用方式 {#usage}
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -95,7 +95,7 @@ class Columns extends React.Component {
 </table>
 ```
 
-### 更簡短的語法 {#short-syntax}
+### 簡寫語法 {#short-syntax}
 
 你可以用新的簡寫語法來宣告 fragment，它看起來就像空標籤：
 
@@ -135,6 +135,6 @@ function Glossary(props) {
 
 目前 `key` 是唯一可以傳遞給 `Fragment` 的 attribute。之後我們可能會支援更多的 attribute，像是 event handler。
 
-### 線上展示 {#live-demo}
+### Live Demo {#live-demo}
 
 你可以透過 [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000) 嘗試新的 JSX fragment 語法。
