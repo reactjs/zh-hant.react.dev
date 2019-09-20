@@ -133,7 +133,7 @@ function Glossary(props) {
 }
 ```
 
-目前 `key` 是唯一可以傳遞給 `Fragment` 的 attribute 。之後我們可能會支援更多的 attribute，像是 event handlers。
+目前 `key` 是唯一可以傳遞給 `Fragment` 的 attribute。之後我們可能會支援更多的 attribute，像是 event handler。
 
 ### 線上展示 {#live-demo}
 
