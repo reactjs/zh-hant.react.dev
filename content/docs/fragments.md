@@ -115,7 +115,7 @@ class Columns extends React.Component {
 
 ### Keyed Fragments {#keyed-fragments}
 
-透過明確宣告 `<React.Fragment>` 的 Fragment 可能會遇到帶有 key 的情況。一個使用案例是將它 mapping 到 Fragment array。舉例來說，像下方程式碼一樣建立一個敘述列表。 
+透過明確宣告 `<React.Fragment>` 的 fragment 可能會遇到帶有 key 的情況。一個使用案例是將它 mapping 到 fragment array。舉例來說，像下方程式碼一樣建立一個敘述列表：
 
 ```jsx
 function Glossary(props) {
