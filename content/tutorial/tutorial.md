@@ -118,7 +118,11 @@ import './index.css';
 
 ### 救命呀，我卡住了！ {#help-im-stuck}
 
+<<<<<<< HEAD
 如果你卡住了，請參考[社群資源](/community/support.html)。其中[Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n)可以讓你很快得到幫助。如果沒人回覆，或者你依然無法解決，請填寫一個 issue，我們會提供協助。
+=======
+If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/reactiflux) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
+>>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
 
 ## 概論 {#overview}
 
