@@ -69,13 +69,13 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 在你的 HTML 網頁旁邊，建立一個名為 `like_button.js` 的文件
 
-打開**[這個 starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**，然後把它貼上到你剛建立的文件裡。
+打開**[這個 starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**，然後把它貼上到你剛建立的文件裡。
 
 >提示
 >
 >這程式碼定立了一個名為 `LikeButton` 的 React component。請別擔心如果你還沒明白它 —— 我們會在[實用指南](/tutorial/tutorial.html)和[主要概念指南](/docs/hello-world.html)裡解構 React 的基礎。目前，我們就先讓它展示在畫面上吧！
 
-在 **[starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** 之後，請在 `like_button.js` 的底部加上以下兩行的程式碼:
+在 **[starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** 之後，請在 `like_button.js` 的底部加上以下兩行的程式碼:
 
 ```js{3,4}
 // ... 你貼上的 starter code ...
@@ -194,7 +194,7 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 請不要等待它完成 —— 這個指令會啟動一個 JSX 自動監測器。
 
-如果你現在利用這個 **[JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)** 建立一個名為的 `src/like_button.js` 文件，監測器會建立一個預先處理過，由普通 JavaScript 程式碼組成，並且適合瀏覽器載入的 `like_button.js`。當你使用 JSX 來編輯文件時，轉換過程會自動重新執行。
+如果你現在利用這個 **[JSX starter code](https://gist.github.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)** 建立一個名為的 `src/like_button.js` 文件，監測器會建立一個預先處理過，由普通 JavaScript 程式碼組成，並且適合瀏覽器載入的 `like_button.js`。當你使用 JSX 來編輯文件時，轉換過程會自動重新執行。
 
 再者，這也容許我們在舊瀏覽器上，使用現代 JavaScript 的語法特性，例如 class。我們剛加入的工具叫 Babel，你可以在[它的官方文件](https://babeljs.io/docs/en/babel-cli/)裡了解更多。
 
