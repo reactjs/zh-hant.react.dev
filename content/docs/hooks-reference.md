@@ -111,11 +111,7 @@ useEffect(didUpdate);
 
 相反的，使用 `useEffect`。傳遞到 `useEffect` 的 function 會在 render 到螢幕之後執行。可以把 effect 看作 React 從純函式世界通往指令式世界的跳脫方式。
 
-<<<<<<< HEAD
-在預設情況下，effect 會在每一個完整 render 後執行，但你也可以選擇它在[某些值改變的時候](#conditionally-firing-an-effect)才執行。
-=======
-By default, effects run after every completed render, but you can choose to fire them [only when certain values have changed](#conditionally-firing-an-effect).
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+在預設情況下，effect 會在每一個完整 render 後執行，但你也可以選擇它們在[某些值改變的時候](#conditionally-firing-an-effect)才執行。
 
 #### 清除一個 effect {#cleaning-up-an-effect}
 

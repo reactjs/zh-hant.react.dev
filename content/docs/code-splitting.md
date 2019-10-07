@@ -51,16 +51,11 @@ console.log(add(16, 26)); // 42
 Bundle 非常棒，但隨著你的應用程式成長，你的 bundle 也將會隨著增長。特別是你引入了大量的第三方函式庫。
 你需要隨時留意 bundle 後的程式碼，這樣你就不會得意外的讓 bundle 檔案變得太大，以至於你的應用程式需要很長的時間才能被載入。
 
-<<<<<<< HEAD
-為了避免 bundle 的結果過大，最好的解決問題的方式是開始「split」你的 bundle。[Code-Splitting](https://webpack.js.org/guides/code-splitting/) 是透過由像是 Webpack 和 Browserify 的 bundler 所支援的功能，它會建立多個 bundle，可以在 runtime 時動態的被載入。
-=======
-To avoid winding up with a large bundle, it's good to get ahead of the problem
-and start "splitting" your bundle.
-Code-Splitting is a feature
-supported by bundlers like [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) and Browserify (via
-[factor-bundle](https://github.com/browserify/factor-bundle)) which can create
-multiple bundles that can be dynamically loaded at runtime.
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
+為了避免 bundle 的結果過大，最好的解決問題的方式是開始「split」你的 bundle。
+Code-Splitting 是透過由像是 [Webpack](https://webpack.js.org/guides/code-splitting/)、
+[Rollup](https://rollupjs.org/guide/en/#code-splitting) 和
+Browserify（經由 [factor-bundle](https://github.com/browserify/factor-bundle)）的 bundler 所支援的功能，
+它會建立多個 bundle，可以在 runtime 時動態的被載入。
 
 Code-splitting 可以幫助你「延遲載入」目前使用者所需要的東西，這可以大幅提供你的應用程式效能。雖然你還沒有減少應用程式的程式碼總數量，但你可以避免載入使用者目前使用不到的程式碼，來減少初始載入應用程式的時間。
 
