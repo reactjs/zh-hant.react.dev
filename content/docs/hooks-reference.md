@@ -196,10 +196,7 @@ const value = useContext(MyContext);
 >
 >`useContext(MyContext)` 只能讓你*讀取* context 及訂閱其變更。你仍然需要在 tree 的上層使用`<MyContext.Provider>` 來提供 context 的值。
 
-<<<<<<< HEAD
-## 額外的 Hooks {#additional-hooks}
-=======
-**Putting it together with Context.Provider**
+**與 Context.Provider 放在一起**
 ```js{31-36}
 const themes = {
   light: {
@@ -240,11 +237,10 @@ function ThemedButton() {
   );
 }
 ```
-This example is modified for hooks from a previous example in the [Context Advanced Guide](/docs/context.html), where you can find more information about when and how to use Context.
+此為使用 Hook 修改之前 [Context Advanced Guide](/docs/context.html) 中的範例，你可以在那裡了解更多 Context 的資訊，像是何時以及如何使用 Context。
 
 
-## Additional Hooks {#additional-hooks}
->>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
+## 額外的 Hooks {#additional-hooks}
 
 以下的 Hook，有些是上一節中基礎的 Hook 的變異，有些則是在特殊情況下使用。不用特地預先學習它們。
 

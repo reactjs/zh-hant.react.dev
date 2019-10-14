@@ -330,11 +330,7 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 ### `React.Suspense` {#reactsuspense}
 
-<<<<<<< HEAD
 `React.Suspense` 讓你指定當底下的 component 還沒準備好 render 的時候所用的 loading indicator。目前 `<React.Suspense>` **只支援** 動態載入的 component。
-=======
-`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
->>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
 
 ```js
 // This component is loaded dynamically
