@@ -196,6 +196,50 @@ const value = useContext(MyContext);
 >
 >`useContext(MyContext)` 只能讓你*讀取* context 及訂閱其變更。你仍然需要在 tree 的上層使用`<MyContext.Provider>` 來提供 context 的值。
 
+**與 Context.Provider 放在一起**
+```js{31-36}
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App() {
+  return (
+    <ThemeContext.Provider value={themes.dark}>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  );
+}
+```
+此為使用 Hook 修改之前 [Context Advanced Guide](/docs/context.html) 中的範例，你可以在那裡了解更多 Context 的資訊，像是何時以及如何使用 Context。
+
+
 ## 額外的 Hooks {#additional-hooks}
 
 以下的 Hook，有些是上一節中基礎的 Hook 的變異，有些則是在特殊情況下使用。不用特地預先學習它們。
