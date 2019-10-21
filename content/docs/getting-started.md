@@ -46,11 +46,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 ### 實作全新的 React 應用程式 {#create-a-new-react-app}
 
-<<<<<<< HEAD
-當你剛實作全新的 React 應用程式時，[一個簡單的 HTML 網頁配上 script 標籤](/docs/add-react-to-a-website.html)或許依然是最好的選擇。這樣我們就可以在一分鐘內設定好。
-=======
-When starting a React project, a [simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option. It only takes a minute to set up!
->>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
+當你剛實作全新的 React 應用程式時，一個[簡單的 HTML 網頁配上 script 標籤](/docs/add-react-to-a-website.html)或許依然是最好的選擇。這樣我們就可以在一分鐘內設定好。
 
 當你的應用程式逐漸擴大，你或許要考慮使用一個比較綜合的設定方法。我們推薦使用[一些 JavaScript toolchains](/docs/create-a-new-react-app.html) 來設定大型的應用程式。它們只需要一點，甚至一點配置也不需要，就能讓我們充份使用豐富的 React ecosystem。
 
@@ -119,11 +115,7 @@ When starting a React project, a [simple HTML page with script tags](/docs/add-r
 
 你也可以在 Twitter 追蹤 [@reactjs 帳號](https://twitter.com/reactjs)，只閱讀官方部落格也不會令你錯過重要消息。
 
-<<<<<<< HEAD
-並非所有 React 版本發佈值得我們在部落格裡發佈文章，但你可以[在 React 的程式碼倉庫中的 `CHANGELOG.md` 文件](https://github.com/facebook/react/blob/master/CHANGELOG.md)或 [Release](https://github.com/facebook/react/releases) 頁面，找到每個版本發佈的詳細更新日誌。
-=======
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
->>>>>>> d2ade76cce133af47ab198188fa2de03fa51834b
+並非所有 React 版本發佈值得我們在部落格裡發佈文章，但你可以在 [React 的程式碼倉庫中的 `CHANGELOG.md` 文件](https://github.com/facebook/react/blob/master/CHANGELOG.md)或 [Release](https://github.com/facebook/react/releases) 頁面，找到每個版本發佈的詳細更新日誌。
 
 ## 版本化文件 {#versioned-documentation}
 
