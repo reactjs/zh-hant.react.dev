@@ -6,10 +6,12 @@ next: hooks-rules.html
 prev: hooks-state.html
 ---
 
-_Effect Hook_ 讓你可以使用 function component 中的 side effect：
+*Hook* 是 React 16.8 中增加的新功能。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
+
+*Effect Hook* 讓你可以使用 function component 中的 side effect：
 
 ```js{1,6-10}
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 function Example() {
   const [count, setCount] = useState(0);
@@ -23,7 +25,9 @@ function Example() {
   return (
     <div>
       <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
     </div>
   );
 }
@@ -90,7 +94,7 @@ class Example extends React.Component {
 我們已經在本頁頂部看到了這個例子，但讓我們來仔細看看它：
 
 ```js{1,6-8}
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 function Example() {
   const [count, setCount] = useState(0);
@@ -102,7 +106,9 @@ function Example() {
   return (
     <div>
       <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
     </div>
   );
 }
@@ -125,15 +131,16 @@ function Example() {
   useEffect(() => {
     document.title = `You clicked ${count} times`;
   });
+}
 ```
 
 我們宣告 `count` state 變數，然後告訴 React 我們需要使用一個 effect。我們將一個 function 傳入給 `useEffect` Hook。我們傳入的這個 function *就是*我們的 effect。在 effect 內部，我們使用瀏覽器 API `document.title` 設置了文件標題。我們可以讀取 effect 中最新的 `count`，因為它在我們 function 的範圍內。當 React render 我們的 component 時，它會記住我們使用的 effect，然後在更新 DOM 後運行我們的 effect。每次 render 都是這樣，包括第一次。
 
 有經驗的 JavaScript 開發人員可能會注意到，傳遞給 `useEffect` 的 function 在每次 render 時都會有所不同。這是刻意的。實際上，這是讓我們可以從 effect 內部讀取 `count` 數值，且不必擔心數值過時的原因。每次重新 render 時，我們都會安排一個 _different_ effect 來替代上一個。在某種程度上，這使 effect 的行為更像是 render 結果的一部分 — 每個 effect 都「屬於」特定的 render。我們將[在本頁稍後](#explanation-why-effects-run-on-each-update)更清楚地看到為什麼這很有用。
 
-> 提示
+>提示
 >
-> 與 `componentDidMount` 或 `componentDidUpdate` 不同，使用 `useEffect` 安排的 effect 不會阻止瀏覽器更新螢幕。這使你的應用程式感覺起來響應更快。大多數 effect 不需要同步發生。在少見的需要同步發生的情況下（例如測量 layout），有另外一個 [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect) Hook，它的 API 與 `useEffect` 相同。
+>與 `componentDidMount` 或 `componentDidUpdate` 不同，使用 `useEffect` 安排的 effect 不會阻止瀏覽器更新螢幕。這使你的應用程式感覺起來響應更快。大多數 effect 不需要同步發生。在少見的需要同步發生的情況下（例如測量 layout），有另外一個 [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect) Hook，它的 API 與 `useEffect` 相同。
 
 ## 需要清除的 Effect {#effects-with-cleanup}
 
@@ -173,18 +180,18 @@ class FriendStatus extends React.Component {
 
   render() {
     if (this.state.isOnline === null) {
-      return "Loading...";
+      return 'Loading...';
     }
-    return this.state.isOnline ? "Online" : "Offline";
+    return this.state.isOnline ? 'Online' : 'Offline';
   }
 }
 ```
 
 請注意 `componentDidMount` 和 `componentWillUnmount` 需要如何相互呼應。生命週期方法迫使我們拆開這個邏輯，即使概念上它們的程式碼都與同一個 effect 相關。
 
-> 注意
+>注意
 >
-> 敏銳的讀者可能會注意到，要做到完全正確，這個範例還需要 `componentDidUpdate`。我們現在將暫時忽略這一點，但在這頁的[稍後部分](#explanation-why-effects-run-on-each-update)我們會再次討論這點。
+>敏銳的讀者可能會注意到，要做到完全正確，這個範例還需要 `componentDidUpdate`。我們現在將暫時忽略這一點，但在這頁的[稍後部分](#explanation-why-effects-run-on-each-update)我們會再次討論這點。
 
 ### 使用 Hook 的範例 {#example-using-hooks-1}
 
@@ -193,7 +200,7 @@ class FriendStatus extends React.Component {
 你可能會認為我們需要一個單獨的 effect 來執行清除。但是添加和移除 subscription 的程式碼緊密相關，因此 `useEffect` 旨在將其保持在一起。如果你的 effect 回傳了一個 function，React 將在需要清除時執行它：
 
 ```js{6-16}
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 function FriendStatus(props) {
   const [isOnline, setIsOnline] = useState(null);
@@ -211,9 +218,9 @@ function FriendStatus(props) {
   });
 
   if (isOnline === null) {
-    return "Loading...";
+    return 'Loading...';
   }
-  return isOnline ? "Online" : "Offline";
+  return isOnline ? 'Online' : 'Offline';
 }
 ```
 
@@ -221,33 +228,33 @@ function FriendStatus(props) {
 
 **React 到底什麼時候會清除 effect？** 在 component unmount 時，React 會執行清除。但是，正如我們之前看到的，effect 會在每個 render 中執行，而不僅僅是一次。這是為什麼 React *還*可以在下次運行 effect 之前清除前一個 render 的 effect 的原因。我們會在下面討論[為什麼這有助於避免 bug](#explanation-why-effects-run-on-each-update) 以及[如果出現效能問題，如何選擇退出此行為](#tip-optimizing-performance-by-skipping-effects)。
 
-> 注意
+>注意
 >
-> 我們不必從 effect 中回傳命名了的 function。我們在這裡將其稱為 `cleanup` 以明確它的目的，但是你可以回傳 arrow function 或者叫它別的名字。
+>我們不必從 effect 中回傳命名了的 function。我們在這裡將其稱為 `cleanup` 以明確它的目的，但是你可以回傳 arrow function 或者叫它別的名字。
 
 ## 總結 {#recap}
 
 我們看到了 `useEffect` 可以讓我們在 component render 後表達不同類型的 side effect。某些 effect 可能需要進行清除，因此它們回傳一個 function：
 
 ```js
-useEffect(() => {
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
+  useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
 
-  ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
-  return () => {
-    ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
-  };
-});
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
 ```
 
 其他 effect 可能沒有清除的階段，並且不回傳任何內容。
 
 ```js
-useEffect(() => {
-  document.title = `You clicked ${count} times`;
-});
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
 ```
 
 Effect Hook 通過單個 API 統一了這兩種用例。
@@ -406,15 +413,15 @@ function FriendStatus(props) {
 
 ```js
 // Mount with { friend: { id: 100 } } props
-ChatAPI.subscribeToFriendStatus(100, handleStatusChange); // 運行第一個 effect
+ChatAPI.subscribeToFriendStatus(100, handleStatusChange);    // 運行第一個 effect
 
 // Update with { friend: { id: 200 } } props
 ChatAPI.unsubscribeFromFriendStatus(100, handleStatusChange); // 清除前一個 effect
-ChatAPI.subscribeToFriendStatus(200, handleStatusChange); // 運行下一個 effect
+ChatAPI.subscribeToFriendStatus(200, handleStatusChange);     // 運行下一個 effect
 
 // Update with { friend: { id: 300 } } props
 ChatAPI.unsubscribeFromFriendStatus(200, handleStatusChange); // 清除前一個 effect
-ChatAPI.subscribeToFriendStatus(300, handleStatusChange); // 運行下一個 effect
+ChatAPI.subscribeToFriendStatus(300, handleStatusChange);     // 運行下一個 effect
 
 // Unmount
 ChatAPI.unsubscribeFromFriendStatus(300, handleStatusChange); // 清除最後一個 effect
