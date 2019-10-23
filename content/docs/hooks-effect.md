@@ -37,9 +37,9 @@ fetch 資料、設置 subscription、或手動改變 React component 中的 DOM 
 >
 > 如果你熟悉 React class 的生命週期方法，你可以把 `useEffect` 視為 `componentDidMount`，`componentDidUpdate` 和 `componentWillUnmount` 的組合。
 
-React component 有兩種常見的 side effect：一種不需要清除，另一種則需要。讓我們仔細看看這一區別。
+React component 有兩種常見的 side effect：一種不需要執行清除，另一種則需要。讓我們仔細看看這一區別。
 
-## 無需清理 的 Effect {#effects-without-cleanup}
+## 無需清除 的 Effect {#effects-without-cleanup}
 
 有時，我們希望**在 React 更新 DOM 之後運行一些額外的程式碼。**網路請求、手動 DOM 變更、和 logging 是無需清除的 effect 的常見範例。我們這樣說是因為我們可以運行它們並立即忘記它們。讓我們比較一下 class 和 Hooks 如何讓我們表達這樣的 side effect。
 
@@ -81,7 +81,7 @@ class Example extends React.Component {
 
 注意**我們如何必須在 class 中復制這兩個生命週期方法之間的程式碼。**
 
-這是因為在許多情況下，我們希望運行相同的 side effect，無論 component 是剛剛 mounted 還是已經更新。從概念上講，我們希望它在每次 render 之後發生 — 但是 React class component 沒有這樣的方法。我們可以提取一個單獨的方法，但我們仍然需要在兩個地方呼叫它。
+這是因為在許多情況下，我們希望運行相同的 side effect，無論 component 是剛剛 mount 還是已經更新。從概念上講，我們希望它在每次 render 之後發生 — 但是 React class component 沒有這樣的方法。我們可以提取一個單獨的方法，但我們仍然需要在兩個地方呼叫它。
 
 現在來看看我們可以如何使用 `useEffect` Hook 做同樣的事情。
 
