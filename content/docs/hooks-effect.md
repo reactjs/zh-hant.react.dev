@@ -37,9 +37,9 @@ function Example() {
 
 fetch 資料、設置 subscription、或手動改變 React component 中的 DOM 都是 side effect 的範例。無論你是否習慣將這些操作稱為「side effect」（或簡稱 「effect」），你之前可能已經在 component 中執行了這些操作。
 
-> 提示
+>提示
 >
-> 如果你熟悉 React class 的生命週期方法，你可以把 `useEffect` 視為 `componentDidMount`，`componentDidUpdate` 和 `componentWillUnmount` 的組合。
+>如果你熟悉 React class 的生命週期方法，你可以把 `useEffect` 視為 `componentDidMount`，`componentDidUpdate` 和 `componentWillUnmount` 的組合。
 
 React component 有兩種常見的 side effect：一種不需要執行清除，另一種則需要。讓我們仔細看看這一區別。
 
@@ -259,11 +259,11 @@ function FriendStatus(props) {
 
 Effect Hook 通過單個 API 統一了這兩種用例。
 
----
+-------------
 
 **如果你對 Effect Hook 的運行方式有不錯的理解，或者感到不知所措，你可以立即跳到 [下一頁有關 Hook 的規則](/docs/hooks-rules.html)。**
 
----
+-------------
 
 ## 使用 Effect 的提示 {#tips-for-using-effects}
 
@@ -413,7 +413,7 @@ function FriendStatus(props) {
 
 ```js
 // Mount with { friend: { id: 100 } } props
-ChatAPI.subscribeToFriendStatus(100, handleStatusChange);    // 運行第一個 effect
+ChatAPI.subscribeToFriendStatus(100, handleStatusChange);     // 運行第一個 effect
 
 // Update with { friend: { id: 200 } } props
 ChatAPI.unsubscribeFromFriendStatus(100, handleStatusChange); // 清除前一個 effect
@@ -470,15 +470,15 @@ useEffect(() => {
 
 將來，第二個參數可能會通過 build-time transformation 自動添加。
 
-> 注意
+>注意
 >
-> 如果你使用此優化，請確保 array 包括了 **component 範圍內隨時間變化並被 effect 用到的所有值（例如 props 和 state）**。否則，你的程式碼將引用先前 render 中的舊值。了解更多 [如何處理 functions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) 和 [如果 array 經常變化的話該怎麼辦](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
+>如果你使用此優化，請確保 array 包括了 **component 範圍內隨時間變化並被 effect 用到的所有值（例如 props 和 state）**。否則，你的程式碼將引用先前 render 中的舊值。了解更多 [如何處理 functions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) 和 [如果 array 經常變化的話該怎麼辦](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
 >
-> 如果你想運行一個 effect 並且僅（在 mount 和 unmount 時）將其清除一次，則可以傳遞一個空 array（`[]`）作為第二個參數。這告訴 React 你的 effect 不依賴於 _任何_ props 或 state 的值，因此它不需要重新運行。這不屬於特殊情況 — 依賴項目 array 一直這樣工作。
+>如果你想運行一個 effect 並且僅（在 mount 和 unmount 時）將其清除一次，則可以傳遞一個空 array（`[]`）作為第二個參數。這告訴 React 你的 effect 不依賴於 _任何_ props 或 state 的值，因此它不需要重新運行。這不屬於特殊情況 — 依賴項目 array 一直這樣工作。
 >
-> 如果你傳遞一個空 array（`[]`）， effect 中的 props 和 state 始終具有其初始值。儘管將`[]`作為第二個參數傳遞更接近於我們熟悉的 `componentDidMount` 和 `componentWillUnmount` 的模式，但通常有[更好的](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies)[解決方案](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)可以避免過於頻繁地重新運行 effect。另外，別忘了 React 在瀏覽器繪製完成之後才推遲運行 `useEffect`，所以做額外的工作沒有很大的問題。
+>如果你傳遞一個空 array（`[]`）， effect 中的 props 和 state 始終具有其初始值。儘管將`[]`作為第二個參數傳遞更接近於我們熟悉的 `componentDidMount` 和 `componentWillUnmount` 的模式，但通常有[更好的](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies)[解決方案](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often)可以避免過於頻繁地重新運行 effect。另外，別忘了 React 在瀏覽器繪製完成之後才推遲運行 `useEffect`，所以做額外的工作沒有很大的問題。
 >
-> 我們建議使用 [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) 規則作為我們 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package 的一部分。當不正確地指定依賴項時，它會發出警告，並提出修復建議。
+>我們建議使用 [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) 規則作為我們 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package 的一部分。當不正確地指定依賴項時，它會發出警告，並提出修復建議。
 
 ## 下一步 {#next-steps}
 
