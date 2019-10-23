@@ -327,7 +327,7 @@ function FriendStatusWithCounter(props) {
 }
 ```
 
-**Hook 讓我 ​​ 們根據程式碼的作用來拆分程式碼**，而不是用生命週期方法的名字。 React 將按照指定的順序運行 component 所使用的*每一個* effect。
+**Hook 讓我 ​們根據程式碼的作用來拆分程式碼**，而不是用生命週期方法的名字。React 將按照指定的順序運行 component 所使用的*每一個* effect。
 
 ### 解說: 為什麼 Effect 在每次更新時運行 {#explanation-why-effects-run-on-each-update}
 
