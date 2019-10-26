@@ -6,11 +6,11 @@ redirect_from:
   - "docs/webcomponents.html"
 ---
 
-React and [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) are built to solve different problems.  Web Components provide strong encapsulation for reusable components, while React provides a declarative library that keeps the DOM in sync with your data. The two goals are complementary. As a developer, you are free to use React in your Web Components, or to use Web Components in React, or both.
+React 和 [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) 是為了解決不同的問題所建立的。Web Components 為了可重複使用的元件提供了強大的封裝，而 React 提供了一個宣告式函式庫，使 DOM 與你的資料保持同步。這兩個目標是相輔相成的。作為開發人員，你可以自由地在 Web Components 中使用 React，或在 React 中使用 Web Components，或兩者都是。
 
-Most people who use React don't use Web Components, but you may want to, especially if you are using third-party UI components that are written using Web Components.
+大部分使用 React 的人沒有使用 Web Components，但你可能會想要使用，尤其是你用到了使用 Web Components 所寫的第三方介面的元件。
 
-## Using Web Components in React {#using-web-components-in-react}
+## 在 React 裡使用 Web Components {#using-web-components-in-react}
 
 ```javascript
 class HelloMessage extends React.Component {
@@ -20,14 +20,14 @@ class HelloMessage extends React.Component {
 }
 ```
 
-> Note:
+> 注意：
 >
-> Web Components often expose an imperative API. For instance, a `video` Web Component might expose `play()` and `pause()` functions. To access the imperative APIs of a Web Component, you will need to use a ref to interact with the DOM node directly. If you are using third-party Web Components, the best solution is to write a React component that behaves as a wrapper for your Web Component.
+> Web Components 通常會公開命令式的 API。例如，一個 `video` Web Component 可能會公開 `play()` 和 `pause()` 函式。為了能夠使用 Web Component 的命令式 API，你會需要使用 ref 來跟 DOM 節點直接互動。如果你使用第三方的 Web Components，最好的解法是寫一個 React 元件來包住你的 Web Component。
 >
-> Events emitted by a Web Component may not properly propagate through a React render tree.
-> You will need to manually attach event handlers to handle these events within your React components.
+> Web Component 所發出的事件可能不會被正確的傳遞到 React 的 render 樹。
+> 你將會需要手動把event handlers 附上來處理在你的 React 元件裡的事件。
 
-One common confusion is that Web Components use "class" instead of "className".
+一個常見的困惑是 Web Components 使用 "class" 而不是 "className"。
 
 ```javascript
 function BrickFlipbox() {
@@ -40,7 +40,7 @@ function BrickFlipbox() {
 }
 ```
 
-## Using React in your Web Components {#using-react-in-your-web-components}
+## 在你的 Web Components 裡使用 React  {#using-react-in-your-web-components}
 
 ```javascript
 class XSearch extends HTMLElement {
@@ -56,7 +56,7 @@ class XSearch extends HTMLElement {
 customElements.define('x-search', XSearch);
 ```
 
->Note:
+>注意：
 >
->This code **will not** work if you transform classes with Babel. See [this issue](https://github.com/w3c/webcomponents/issues/587) for the discussion.
->Include the [custom-elements-es5-adapter](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs) before you load your web components to fix this issue.
+>如果你用 Babel 轉換了 classes，這段程式碼 **將不會** 正常運作。看[這個 issue](https://github.com/w3c/webcomponents/issues/587) 裡面的討論。
+>在加載 web components 之前引入 [custom-elements-es5-adapter](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs)來解決這個問題。
