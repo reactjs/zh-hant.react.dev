@@ -1,28 +1,28 @@
 ---
 id: error-boundaries
-title: Error Boundaries
+title: 錯誤邊界
 permalink: docs/error-boundaries.html
 ---
 
-In the past, JavaScript errors inside components used to corrupt React’s internal state and cause it to [emit](https://github.com/facebook/react/issues/4026) [cryptic](https://github.com/facebook/react/issues/6895) [errors](https://github.com/facebook/react/issues/8579) on next renders. These errors were always caused by an earlier error in the application code, but React did not provide a way to handle them gracefully in components, and could not recover from them.
+在過去，元件裡 JavaScript 的錯誤常常會敗壞 React 的內部 state，並使它在下次 render 的時候[發生](https://github.com/facebook/react/issues/4026) [神秘的](https://github.com/facebook/react/issues/6895) [錯誤](https://github.com/facebook/react/issues/8579)。這些錯誤總是被應用程式的程式碼裡更早發生的錯誤所導致，但 React 並沒有提供在元件裡優雅處理它們的方式，而且也無法從錯誤中恢復。
 
 
-## Introducing Error Boundaries {#introducing-error-boundaries}
+## 引入錯誤邊界 {#introducing-error-boundaries}
 
-A JavaScript error in a part of the UI shouldn’t break the whole app. To solve this problem for React users, React 16 introduces a new concept of an “error boundary”.
+一個介面裡 JavaScript 的錯誤不應該毀了整個應用。為了替 React 使用者解決這個問題，React 16 引入了一個新的概念：「錯誤邊界」。
 
-Error boundaries are React components that **catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI** instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+錯誤邊界是一個 React 元件，它 **捕捉了任何在它的子元件樹裡發生的 JavaScript 的錯誤，紀錄那些錯誤，然後顯示在一個備用的使用介面**，而非讓整個元件樹崩壞。錯誤邊界在整個底下的元件樹的 render 的時候、生命週期函式、以及 constructors 裡捕捉錯誤。
 
-> Note
+> 注意
 >
-> Error boundaries do **not** catch errors for:
+> 錯誤邊界 **不會** 在以下情況捕捉錯誤：
 >
 > * Event handlers ([learn more](#how-about-event-handlers))
-> * Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks)
+> * 非同步的程式碼 (e.g. `setTimeout` or `requestAnimationFrame` callbacks)
 > * Server side rendering
-> * Errors thrown in the error boundary itself (rather than its children)
+> * 在錯誤邊界裡丟出的錯誤（而不是在它底下的 children）
 
-A class component becomes an error boundary if it defines either (or both) of the lifecycle methods [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) or [`componentDidCatch()`](/docs/react-component.html#componentdidcatch). Use `static getDerivedStateFromError()` to render a fallback UI after an error has been thrown. Use `componentDidCatch()` to log error information.
+一個 class component 如果定義了[`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) 或 [`componentDidCatch()`](/docs/react-component.html#componentdidcatch) 其中一種（或兩種都有）生命週期，它就會變成錯誤邊界。在錯誤被丟出去之後，我們使用 `static getDerivedStateFromError()` 來 render 備用的使用者介面，以及使用 `componentDidCatch()` 來記錄錯誤的資訊。
 
 ```js{7-10,12-15,18-21}
 class ErrorBoundary extends React.Component {
@@ -32,18 +32,18 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // 更新 state 以至於下一個 render 會顯示備用的介面
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
-    // You can also log the error to an error reporting service
+    // 你也可以把錯誤記錄到一個錯誤回報系統服務
     logErrorToMyService(error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
+      // 你可以 render 任何客製化的備用介面
       return <h1>Something went wrong.</h1>;
     }
 
@@ -52,7 +52,7 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-Then you can use it as a regular component:
+然後你就可以把它當成一般的元件來使用：
 
 ```js
 <ErrorBoundary>
@@ -60,53 +60,51 @@ Then you can use it as a regular component:
 </ErrorBoundary>
 ```
 
-Error boundaries work like a JavaScript `catch {}` block, but for components. Only class components can be error boundaries. In practice, most of the time you’ll want to declare an error boundary component once and use it throughout your application.
+錯誤邊界就如同 JavaScript 的 `catch {}`，但它是給元件使用的。只有 class components 可以成為錯誤邊界。實務上，大部分的時間你只會想要宣告錯誤邊界元件一次，然後在你的應用程式裡重複使用它。
 
-Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how catch {} block works in JavaScript.
+要注意 **錯誤邊界只會捕捉它底下元件樹裡的元件的錯誤**。錯誤邊界無法捕捉它自己本身的錯誤。如果一個錯誤邊界在 render 錯誤訊息的時候失敗了，這個錯誤會被傳遞到在它之上最近的錯誤邊界。這個也與 JavaScript 的 catch {} 的運作方式類似。
 
 ## Live Demo {#live-demo}
 
-Check out [this example of declaring and using an error boundary](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) with [React 16](/blog/2017/09/26/react-v16.0.html).
+看看 [React 16](/blog/2017/09/26/react-v16.0.html)[這個宣告與使用錯誤邊界的範例](https://codepen.io/gaearon/pen/wqvxGa?editors=0010)。
+
+## 該把錯誤邊界放在哪裡 {#where-to-place-error-boundaries}
+
+錯誤邊界的顆粒度取決於你自己。你可以把它包在最上層的 route 元件藉以顯示「發生了一些錯誤」的訊息給使用者，就如同 server-side frameworks 裡常常處理錯誤的方式。你也可以把它包在個別的小工具外，藉以保護它們不受應用程式裡發生的其他錯誤的影響。
+
+## 對於未捕捉到的錯誤的新行為 {#new-behavior-for-uncaught-errors}
+
+這個改變有重要的意義。**在 React 16，沒有被錯誤邊界所捕捉到的錯誤會導致 unmount 整個 React 元件樹。**
+
+我們為了這個決定辯論過，但在我們的經驗裡，留下被敗壞的介面比完全移除它更糟。舉例來說，在像 Messenger 一樣的產品裡，留下壞掉的介面可能會導致某人傳送訊息給錯誤的對象。相似地，在支付軟體裡，顯示錯誤的金額比 render 空白畫面來得更糟。
+
+這個改變代表著，如果你遷移到 React 16，你有可能會發掘出應用程式裡以前沒注意過但已經存在的錯誤。加上錯誤邊界使你在錯誤發生時能夠提供更好的使用者體驗。
+
+例如，Facebook Messenger 用分開的錯誤邊界包住了側欄位的內容、資訊面板、對話紀錄、和訊息輸入欄。如果某個在其中一個介面裡的元件壞了，其他的部分仍會保持能夠互動的狀態。
+
+我們也鼓勵你使用 JS 的錯誤回報服務（或建立一個你自己的服務），這樣你可以從上線的程式裡學習未處理的 exception 並修理它們。
 
 
-## Where to Place Error Boundaries {#where-to-place-error-boundaries}
+## 元件堆疊追蹤（Stack Traces） {#component-stack-traces}
 
-The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+React 16 把所有發生在 render 時的錯誤在開發時印出在 console 裡，即使應用程式不小心吞掉了這些錯誤。除了錯誤訊息和 JavaScript 的堆疊以外，它也提供了元件的堆疊追蹤。現在你可以看到錯誤在哪個元件裡發生的確切位置：
 
+<img src="../images/docs/error-boundaries-stack-trace.png" style="max-width:100%" alt="被錯誤邊界元件捕捉到的錯誤">
 
-## New Behavior for Uncaught Errors {#new-behavior-for-uncaught-errors}
+你也可以在元件堆疊追蹤裡看見檔案名稱和行數。這個在 [Create React App](https://github.com/facebookincubator/create-react-app) 裡是預設行為：
 
-This change has an important implication. **As of React 16, errors that were not caught by any error boundary will result in unmounting of the whole React component tree.**
+<img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="被錯誤邊界元件捕捉到的錯誤與行數">
 
-We debated this decision, but in our experience it is worse to leave corrupted UI in place than to completely remove it. For example, in a product like Messenger leaving the broken UI visible could lead to somebody sending a message to the wrong person. Similarly, it is worse for a payments app to display a wrong amount than to render nothing.
+如果你沒有使用 Create React App, 你可以手動在 Babel configuration 加上 [這個外掛](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source)。注意它是被設計用來在開發模式使用的，且 **必須在線上模式被關掉**。
 
-This change means that as you migrate to React 16, you will likely uncover existing crashes in your application that have been unnoticed before. Adding error boundaries lets you provide better user experience when something goes wrong.
-
-For example, Facebook Messenger wraps content of the sidebar, the info panel, the conversation log, and the message input into separate error boundaries. If some component in one of these UI areas crashes, the rest of them remain interactive.
-
-We also encourage you to use JS error reporting services (or build your own) so that you can learn about unhandled exceptions as they happen in production, and fix them.
-
-
-## Component Stack Traces {#component-stack-traces}
-
-React 16 prints all errors that occurred during rendering to the console in development, even if the application accidentally swallows them. In addition to the error message and the JavaScript stack, it also provides component stack traces. Now you can see where exactly in the component tree the failure has happened:
-
-<img src="../images/docs/error-boundaries-stack-trace.png" style="max-width:100%" alt="Error caught by Error Boundary component">
-
-You can also see the filenames and line numbers in the component stack trace. This works by default in [Create React App](https://github.com/facebookincubator/create-react-app) projects:
-
-<img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Error caught by Error Boundary component with line numbers">
-
-If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
-
-> Note
+> 注意
 >
-> Component names displayed in the stack traces depend on the [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) property. If you support older browsers and devices which may not yet provide this natively (e.g. IE 11), consider including a `Function.name` polyfill in your bundled application, such as [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name). Alternatively, you may explicitly set the [`displayName`](/docs/react-component.html#displayname) property on all your components.
+> 在堆疊追蹤裡顯示的元件名稱是由 [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) 屬性所決定的。如果你支援沒有原生提供它的舊瀏覽器和裝置（例如 IE 11），試著考慮把 `Function.name` polyfill 到你的應用程式，例如 [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name)。或著，你可以另外在你所有的元件裡設定[`displayName`](/docs/react-component.html#displayname)屬性。
 
 
-## How About try/catch? {#how-about-trycatch}
+## 那 try/catch 呢？ {#how-about-trycatch}
 
-`try` / `catch` is great but it only works for imperative code:
+`try` / `catch` 很棒，但它只作用在命令式程式碼（imperative code）：
 
 ```js
 try {
@@ -116,21 +114,21 @@ try {
 }
 ```
 
-However, React components are declarative and specify *what* should be rendered:
+然而，React 元件是宣告式（declarative）的，且指明了*什麼*必須被 render：
 
 ```js
 <Button />
 ```
 
-Error boundaries preserve the declarative nature of React, and behave as you would expect. For example, even if an error occurs in a `componentDidUpdate` method caused by a `setState` somewhere deep in the tree, it will still correctly propagate to the closest error boundary.
+錯誤邊界保有了 React 宣告式的天性，且如你所預期的運行。例如，即使在某個樹裡很深的地方被 `setState` 所導致的 `componentDidUpdate` 的錯誤，它仍然會正確的被傳遞到最近的錯誤邊界。
 
-## How About Event Handlers? {#how-about-event-handlers}
+## 那 Event Handlers 呢？ {#how-about-event-handlers}
 
-Error boundaries **do not** catch errors inside event handlers.
+錯誤邊界 **不會** 捕捉 event handlers 裡所發生的錯誤。
 
-React doesn't need error boundaries to recover from errors in event handlers. Unlike the render method and lifecycle methods, the event handlers don't happen during rendering. So if they throw, React still knows what to display on the screen.
+React 不需要從 event handlers 裡發生的錯誤恢復。不像 render 和其他生命週期的函式一樣，event handlers 不會發生在 render 的時候。所以如果它們丟出錯誤，React 仍然知道該顯示什麼在畫面上。
 
-If you need to catch an error inside event handler, use the regular JavaScript `try` / `catch` statement:
+如果你需要捕捉 event handler 裡的錯誤，只要使用一般 JavaScript 的 `try` / `catch` 就可以了：
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {
@@ -142,7 +140,7 @@ class MyComponent extends React.Component {
 
   handleClick() {
     try {
-      // Do something that could throw
+      // 做某些可以丟出錯誤的事情
     } catch (error) {
       this.setState({ error });
     }
@@ -157,10 +155,10 @@ class MyComponent extends React.Component {
 }
 ```
 
-Note that the above example is demonstrating regular JavaScript behavior and doesn't use error boundaries.
+注意以上的範例是用來示範一般 JavaScript 的行為，並沒有用到錯誤邊界。
 
-## Naming Changes from React 15 {#naming-changes-from-react-15}
+## 從 React 15 發生的名稱改變 {#naming-changes-from-react-15}
 
-React 15 included a very limited support for error boundaries under a different method name: `unstable_handleError`. This method no longer works, and you will need to change it to `componentDidCatch` in your code starting from the first 16 beta release.
+React 15 用不同的函式名稱支援了非常有限的錯誤邊界功能：`unstable_handleError`。這個函式不能用了，而且從 16 beta 開始，你需要將它改成 `componentDidCatch`。
 
-For this change, we’ve provided a [codemod](https://github.com/reactjs/react-codemod#error-boundaries) to automatically migrate your code.
+我們為這個改變提供了 [codemod](https://github.com/reactjs/react-codemod#error-boundaries) 來自動遷移你的程式碼。
