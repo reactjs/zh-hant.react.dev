@@ -47,7 +47,7 @@ React.createElement(
 )
 ```
 
-如果你想試試某些特定的 JSX 會轉換成什麼樣的 JavaScript，你可以參考 [線上 Babel 編譯器](babel://jsx-simple-example).
+如果你想測試某些特定的 JSX 會轉換成什麼樣的 JavaScript，你可以在[線上 Babel 編譯器]進行測試(babel://jsx-simple-example)。
 
 ## 指定 React Element 類型 {#specifying-the-react-element-type}
 
