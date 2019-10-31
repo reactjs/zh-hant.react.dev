@@ -51,7 +51,7 @@ React.createElement(
 
 ## 指定 React Element 類型 {#specifying-the-react-element-type}
 
-一個 JSX 標籤的第一個部分決定 React element 的類型。
+JSX 標籤的第一個部分決定 React element 的類型。
 
 大寫字母的 JSX 標籤代表它們是 React Component。這些標籤會編譯成指向命名變數的 reference，所以當你使用 JSX `<Foo />` 表達式時，`Foo` 就必須在作用域內。
 
@@ -97,7 +97,7 @@ function BlueDatePicker() {
 
 我們建議以大寫字母開頭來命名 component。如果你有一個小寫字母開頭的 component，請在 JSX 裡使用之前把它賦值給一個大寫字母開頭的變數。
 
-例如，以下代碼並不會按照預期運行：
+例如，以下程式碼並不會按照預期運行：
 
 ```js{3,4,10,11}
 import React from 'react';
@@ -196,11 +196,11 @@ function NumberDescriber(props) {
 }
 ```
 
-你可以在對應的段落中了解更多關於 [條件式 render](/docs/conditional-rendering.html) 與 [迴圈](/docs/lists-and-keys.html)。
+你可以在對應的段落中了解更多關於[條件式 render](/docs/conditional-rendering.html) 與[迴圈](/docs/lists-and-keys.html)。
 
-### String Literals {#string-literals}
+### 字串字面值 {#string-literals}
 
-你可以傳遞一個 string literal 作為 prop。以下兩個 JSX 表達式是相等的：
+你可以傳遞一個字串字面值作為 prop。以下兩個 JSX 表達式是相等的：
 
 ```js
 <MyComponent message="hello world" />
@@ -208,7 +208,7 @@ function NumberDescriber(props) {
 <MyComponent message={'hello world'} />
 ```
 
-當你傳遞一個 string literal 時，它的值是未經 HTML 轉義的。所以以下兩個 JSX 表達式是相等的：
+當你傳遞一個字串字面值時，它的值是未經 HTML 轉義的。所以以下兩個 JSX 表達式是相等的：
 
 ```js
 <MyComponent message="&lt;3" />
@@ -228,11 +228,11 @@ function NumberDescriber(props) {
 <MyTextBox autocomplete={true} />
 ```
 
-一般來說，我們因為容易把它跟 [ES6 object shorthand](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) 混淆，`{foo}` 是 `{foo: foo}` 的簡寫而不是 `{foo: true}`，所以並不建議這樣使用。這種行為存在只是為了相配 HTML 的行為。
+一般來說，我們因為容易把它跟 [ES6 object shorthand](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) 混淆，`{foo}` 是 `{foo: foo}` 的簡寫而不是 `{foo: true}`，所以並不建議這樣使用。這種行為存在只是為了相配 HTML 的行為。
 
-### Spread 屬性 {#spread-attributes}
+### 展開屬性 {#spread-attributes}
 
-如果你已經有了一個 `props` 的 object，並且想把它傳遞進 JSX，你可以使用 `...` 作為「spread」運作符來傳遞整個 props object。以下兩個 component 是相等的：
+如果你已經有了一個 `props` 的 object，並且想把它傳遞進 JSX，你可以使用 `...` 作為展開運算子來傳遞整個 props object。以下兩個 component 是相等的：
 
 ```js{7}
 function App1() {
@@ -245,7 +245,7 @@ function App2() {
 }
 ```
 
-你也可以使用 spread 運算符來分開並挑選 component 所需的 props。
+你也可以使用展開運算子來分開並挑選 component 所需的 props。
 
 ```js{2}
 const Button = props => {
@@ -268,13 +268,13 @@ const App = () => {
 在以上的範例中，`kind` prop 被安全地挑出並且*不會*被傳遞進 DOM 中的 `<button>` element。
 所有其它的 props 藉由 `...other` object 被傳遞，讓 component 的應用非常具有彈性。你可以看見它傳遞一個 `onClick` 與 `children` props。
 
-Spread 運算符不但可以如此靈活地使用，它能讓我們輕易挑選出對於 component 不重要且多餘的 props，也能讓我們傳遞無效的 HTML 屬性到 DOM 裡。
+展開運算子不但可以如此靈活地使用，它能讓我們輕易挑選出對於 component 不重要且多餘的 props，也能讓我們傳遞無效的 HTML 屬性到 DOM 裡。
 
 ## JSX 中的 Children {#children-in-jsx}
 
 在 JSX 表達式有包含開始與結束標籤的情形下，夾在兩者之間的內容會被傳遞為特別的 prop：`props.children`。有幾種不同的方法來傳遞 children：
 
-### String Literals {#string-literals-1}
+### 展開屬性 {#string-literals-1}
 
 你可以在兩個標籤之間放置 string，而 `props.children` 就會是那個 string。這對許多內建的 HTML element 是很有用的。例如：
 
@@ -310,7 +310,7 @@ JSX 會把開頭與結尾的空白去除，也會去除空行。與標籤相鄰�
 
 ### JSX Children {#jsx-children}
 
-你可以提供許多 JSX element 作為 children。這在顯示 nested components 時是非常實用的：
+你可以提供許多 JSX element 作為 children。這在顯示巢狀 component 時是非常實用的：
 
 ```js
 <MyContainer>
@@ -331,11 +331,11 @@ JSX 會把開頭與結尾的空白去除，也會去除空行。與標籤相鄰�
 </div>
 ```
 
-一個 React component 也能夠回傳一個 array of elements：
+一個 React component 也能夠回傳一個陣列 element：
 
 ```js
 render() {
-  // 沒有必要多餘地把 list items 包在 element 裡頭！
+  // 沒有必要把多餘的 list items 包在 element 裡頭！
   return [
     // 別忘了加 keys :)
     <li key="A">First item</li>,
@@ -432,7 +432,7 @@ function ListOfTenThings() {
 </div>
 ```
 
-值得注意的是有一些像是數字 `0` 的 [「falsy」 values](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) 仍然會被 React 給 render。舉例來說，以下的程式碼可能不會如同你預期般地運作，因為當 `props.messages` 是一個空 array 時， `0` 會被印出：
+值得注意的是有一些像是數字 `0` 的 [「falsy」值](https://developer.mozilla.org/zh-TW/docs/Glossary/Falsy) 仍然會被 React 給 render。舉例來說，以下的程式碼可能不會如同你預期般地運作，因為當 `props.messages` 是一個空 array 時， `0` 會被印出：
 
 ```js{2}
 <div>
@@ -452,7 +452,7 @@ function ListOfTenThings() {
 </div>
 ```
 
-相反地，如果你想要印出 `false`、`true`、`null` 或者 `undefined` 時，你必須要先把它[轉換成一個 string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion)：
+相反地，如果你想要印出 `false`、`true`、`null` 或者 `undefined` 時，你必須要先把它[轉換成一個 string](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion)：
 
 ```js{2}
 <div>
