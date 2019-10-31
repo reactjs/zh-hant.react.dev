@@ -31,7 +31,7 @@ React.createElement(
 )
 ```
 
-如果沒有 children 的話你也可以使用自我閉合的標籤形式。如：
+如果沒有 children 的話你也可以使用閉合的標籤形式。例如：
 
 ```js
 <div className="sidebar" />
@@ -71,11 +71,11 @@ function WarningButton() {
 }
 ```
 
-如果你不使用任何 JavaScript bundler 並以 `<script>` 標籤來導入 React，那麼它就已經以 `React` 存在於作用域中了。
+如果你不使用任何 JavaScript bundler 並從 `<script>` 標籤來載入 React，那麼它就已經以 `React` 存在於作用域中了。
 
-### 在 JSX 類型中使用 Dot Notation {#using-dot-notation-for-jsx-type}
+### 在 JSX 類型中使用點記法 {#using-dot-notation-for-jsx-type}
 
-你也可以在 JSX 中使用 dot-notation 來指向一個 React Component。這對當你有一個會導出許多 React component 的 module 來講是十分方便的。舉例來說，如果 `MyComponents.DatePicker` 是一個 component，那麼你可以在 JSX 中直接這樣使用：
+你也可以在 JSX 中使用點記法來指向一個 React Component。這對當你有一個會導出許多 React component 的 module 來講是十分方便的。舉例來說，如果 `MyComponents.DatePicker` 是一個 component，那麼你可以在 JSX 中直接這樣使用：
 
 ```js{10}
 import React from 'react';
@@ -274,9 +274,9 @@ const App = () => {
 
 在 JSX 表達式有包含開始與結束標籤的情形下，夾在兩者之間的內容會被傳遞為特別的 prop：`props.children`。有幾種不同的方法來傳遞 children：
 
-### 展開屬性 {#string-literals-1}
+### 字串字面值 {#string-literals-1}
 
-你可以在兩個標籤之間放置 string，而 `props.children` 就會是那個 string。這對許多內建的 HTML element 是很有用的。例如：
+你可以在兩個標籤之間放置字串，而 `props.children` 就會是那個字串。這對許多內建的 HTML element 是很有用的。例如：
 
 ```js
 <MyComponent>Hello world!</MyComponent>
@@ -288,7 +288,7 @@ const App = () => {
 <div>This is valid HTML &amp; JSX at the same time.</div>
 ```
 
-JSX 會把開頭與結尾的空白去除，也會去除空行。與標籤相鄰的新行會去除；在 string literals 中間的新行則會被壓縮成單一空格。所以以下都會 render 同樣的結果：
+JSX 會把開頭與結尾的空白去除，也會去除空行。與標籤相鄰的新行會去除；在字串字面值中間的新行則會被壓縮成單一空格。所以以下都會 render 同樣的結果：
 
 ```js
 <div>Hello World</div>
@@ -319,7 +319,7 @@ JSX 會把開頭與結尾的空白去除，也會去除空行。與標籤相鄰�
 </MyContainer>
 ```
 
-你可以混合不同類型的 children，所以你也能夠同時使用 string literals 與 JSX children。這也是 JSX 與 HTML 另一相似的點，而以下是有效的 JSX 同時也是有效的 HTML：
+你可以混合不同類型的 children，所以你也能夠同時使用字串字面值與 JSX children。這也是 JSX 與 HTML 另一相似的點，而以下是有效的 JSX 同時也是有效的 HTML：
 
 ```html
 <div>
@@ -372,7 +372,7 @@ function TodoList() {
 }
 ```
 
-JavaScript 表達式可以與不同類型的 children 混合。這在不使用 string templates 時非常實用：
+JavaScript 表達式可以與不同類型的 children 混合。這在不使用樣板字串時非常實用：
 
 ```js{2}
 function Hello(props) {
@@ -382,7 +382,7 @@ function Hello(props) {
 
 ### Functions 作為 Children {#functions-as-children}
 
-正常來說，在 JSX 中的 JavaScript 表達式會被轉換成 string、React element、或者包含這些的列表。不過，`props.children` 就像其它 prop 一樣可以傳遞任何類型的資料，而並不局限於只有 React 知道如何 render 的資料。舉例來說，假如你有一個自訂 component，你可以把 callback 作為 `props.children` 傳遞：
+正常來說，在 JSX 中的 JavaScript 表達式會被轉換成字串、React element、或者包含這些的列表。不過，`props.children` 就像其它 prop 一樣可以傳遞任何類型的資料，而並不局限於只有 React 知道如何 render 的資料。舉例來說，假如你有一個自訂 component，你可以把 callback 作為 `props.children` 傳遞：
 
 ```js{4,13}
 // numTimes 次呼叫 children callback 來重複生成 component
@@ -452,7 +452,7 @@ function ListOfTenThings() {
 </div>
 ```
 
-相反地，如果你想要印出 `false`、`true`、`null` 或者 `undefined` 時，你必須要先把它[轉換成一個 string](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion)：
+相反地，如果你想要印出 `false`、`true`、`null` 或者 `undefined` 時，你必須要先把它[轉換成一個字串](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion)：
 
 ```js{2}
 <div>
