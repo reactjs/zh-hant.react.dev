@@ -1,6 +1,6 @@
 ---
 id: jsx-in-depth
-title: JSX In Depth
+title: 深入 JSX
 permalink: docs/jsx-in-depth.html
 redirect_from:
   - "docs/jsx-spread.html"
@@ -13,7 +13,7 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
-Fundamentally, JSX just provides syntactic sugar for the `React.createElement(component, props, ...children)` function. The JSX code:
+基本上，JSX 單純只是 `React.createElement(component, props, ...children)` function 的一個語法糖。以下 JSX 程式碼：
 
 ```js
 <MyButton color="blue" shadowSize={2}>
@@ -21,7 +21,7 @@ Fundamentally, JSX just provides syntactic sugar for the `React.createElement(co
 </MyButton>
 ```
 
-compiles into:
+會編譯成：
 
 ```js
 React.createElement(
@@ -31,13 +31,13 @@ React.createElement(
 )
 ```
 
-You can also use the self-closing form of the tag if there are no children. So:
+如果沒有 children 的話你也可以使用閉合的標籤形式。例如：
 
 ```js
 <div className="sidebar" />
 ```
 
-compiles into:
+會編譯成：
 
 ```js
 React.createElement(
@@ -47,19 +47,19 @@ React.createElement(
 )
 ```
 
-If you want to test out how some specific JSX is converted into JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
+如果你想測試某些特定的 JSX 會轉換成什麼樣的 JavaScript，你可以在[線上 Babel 編譯器]進行測試(babel://jsx-simple-example)。
 
-## Specifying The React Element Type {#specifying-the-react-element-type}
+## 指定 React Element 類型 {#specifying-the-react-element-type}
 
-The first part of a JSX tag determines the type of the React element.
+JSX 標籤的第一個部分決定 React element 的類型。
 
-Capitalized types indicate that the JSX tag is referring to a React component. These tags get compiled into a direct reference to the named variable, so if you use the JSX `<Foo />` expression, `Foo` must be in scope.
+大寫字母的 JSX 標籤代表它們是 React Component。這些標籤會編譯成指向命名變數的 reference，所以當你使用 JSX `<Foo />` 表達式時，`Foo` 就必須在作用域內。
 
-### React Must Be in Scope {#react-must-be-in-scope}
+### React 必須在作用域內 {#react-must-be-in-scope}
 
-Since JSX compiles into calls to `React.createElement`, the `React` library must also always be in scope from your JSX code.
+因為 JSX 會編譯成呼叫 `React.createElement` 的形式，`React` 函式庫必須同時與你的 JSX 程式碼在相同的作用域內。
 
-For example, both of the imports are necessary in this code, even though `React` and `CustomButton` are not directly referenced from JavaScript:
+舉例來說，雖然 `React` 與 `CustomButton` 並沒有在 JavaScript 中被直接使用，但是在此程式碼中它們必須被導入：
 
 ```js{1,2,5}
 import React from 'react';
@@ -71,11 +71,11 @@ function WarningButton() {
 }
 ```
 
-If you don't use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the `React` global.
+如果你不使用任何 JavaScript bundler 並從 `<script>` 標籤來載入 React，那麼它就已經以 `React` 存在於作用域中了。
 
-### Using Dot Notation for JSX Type {#using-dot-notation-for-jsx-type}
+### 在 JSX 類型中使用點記法 {#using-dot-notation-for-jsx-type}
 
-You can also refer to a React component using dot-notation from within JSX. This is convenient if you have a single module that exports many React components. For example, if `MyComponents.DatePicker` is a component, you can use it directly from JSX with:
+你也可以在 JSX 中使用點記法來指向一個 React Component。這對當你有一個會導出許多 React component 的 module 來講是十分方便的。舉例來說，如果 `MyComponents.DatePicker` 是一個 component，那麼你可以在 JSX 中直接這樣使用：
 
 ```js{10}
 import React from 'react';
@@ -91,49 +91,49 @@ function BlueDatePicker() {
 }
 ```
 
-### User-Defined Components Must Be Capitalized {#user-defined-components-must-be-capitalized}
+### 使用者定義的 Component 必須由大寫字母開頭 {#user-defined-components-must-be-capitalized}
 
-When an element type starts with a lowercase letter, it refers to a built-in component like `<div>` or `<span>` and results in a string `'div'` or `'span'` passed to `React.createElement`. Types that start with a capital letter like `<Foo />` compile to `React.createElement(Foo)` and correspond to a component defined or imported in your JavaScript file.
+當一個 element 為小寫字母開頭時，它就會指向內建的 component，例如 `<div>` 或 `<span>` 會生產成字串 `'div'` 或 `'span'` 並傳遞給 `React.createElement`。像 `<Foo />` 大寫字母開頭的 element 會編譯成 `React.createElement(Foo)` 並且在你的 JavaScript 檔案裡對應自定義或導入的 component。
 
-We recommend naming components with a capital letter. If you do have a component that starts with a lowercase letter, assign it to a capitalized variable before using it in JSX.
+我們建議以大寫字母開頭來命名 component。如果你有一個小寫字母開頭的 component，請在 JSX 裡使用之前把它賦值給一個大寫字母開頭的變數。
 
-For example, this code will not run as expected:
+例如，以下程式碼並不會按照預期運行：
 
 ```js{3,4,10,11}
 import React from 'react';
 
-// Wrong! This is a component and should have been capitalized:
+// 錯誤！這是一個 component 並且應該由大寫字母開頭：
 function hello(props) {
-  // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+  // 正確！因為 div 是一個有效的 HTML 標籤，所以使用<div> 是可行的：
   return <div>Hello {props.toWhat}</div>;
 }
 
 function HelloWorld() {
-  // Wrong! React thinks <hello /> is an HTML tag because it's not capitalized:
+  // 錯誤！React 會因為非大寫字母開頭而認為 <hello /> 是一個 HTML 標籤：
   return <hello toWhat="World" />;
 }
 ```
 
-To fix this, we will rename `hello` to `Hello` and use `<Hello />` when referring to it:
+為了解決這個問題，我們將重新命名 `hello` 成 `Hello` 並且以 `<Hello />` 來使用它：
 
 ```js{3,4,10,11}
 import React from 'react';
 
-// Correct! This is a component and should be capitalized:
+// 正確！這是一個 component 並且應該由大寫字母開頭：
 function Hello(props) {
-  // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+  // 正確！因為 div 是一個有效的 HTML 標籤，所以使用 <div> 是可行的：
   return <div>Hello {props.toWhat}</div>;
 }
 
 function HelloWorld() {
-  // Correct! React knows <Hello /> is a component because it's capitalized.
+  // 正確！React 會因為大寫字母開頭而了解 <Hello /> 是一個 component。
   return <Hello toWhat="World" />;
 }
 ```
 
-### Choosing the Type at Runtime {#choosing-the-type-at-runtime}
+### 在 Runtime 時選擇類型 {#choosing-the-type-at-runtime}
 
-You cannot use a general expression as the React element type. If you do want to use a general expression to indicate the type of the element, just assign it to a capitalized variable first. This often comes up when you want to render a different component based on a prop:
+你不能用通用表達式當作 React element 的類型。如果你想要用通用表達式來表示 element 的類型，你可以先把它賦值給一個大寫字母開頭的變數。這是在當你想要根據一個 prop 來決定 render 不同 component 時常常發生的：
 
 ```js{10,11}
 import React from 'react';
@@ -145,12 +145,12 @@ const components = {
 };
 
 function Story(props) {
-  // Wrong! JSX type can't be an expression.
+  // 錯誤！JSX 不能是表達式。
   return <components[props.storyType] story={props.story} />;
 }
 ```
 
-To fix this, we will assign the type to a capitalized variable first:
+為了解決這個問題，我們首先將類型賦值給一個大寫字母開頭的變數：
 
 ```js{10-12}
 import React from 'react';
@@ -162,27 +162,27 @@ const components = {
 };
 
 function Story(props) {
-  // Correct! JSX type can be a capitalized variable.
+  // 正確！JSX 類型可以是大寫字母開頭的變數。
   const SpecificStory = components[props.storyType];
   return <SpecificStory story={props.story} />;
 }
 ```
 
-## Props in JSX {#props-in-jsx}
+## JSX 中的 Props {#props-in-jsx}
 
-There are several different ways to specify props in JSX.
+在 JSX 中有不同的方式可以指定 props。
 
-### JavaScript Expressions as Props {#javascript-expressions-as-props}
+### JavaScript 表達式作為 Props {#javascript-expressions-as-props}
 
-You can pass any JavaScript expression as a prop, by surrounding it with `{}`. For example, in this JSX:
+你可以用 `{}` 包住任何 JavaScript 表達式作為一個 prop 傳遞。例如，在以下 JSX 中：
 
 ```js
 <MyComponent foo={1 + 2 + 3 + 4} />
 ```
 
-For `MyComponent`, the value of `props.foo` will be `10` because the expression `1 + 2 + 3 + 4` gets evaluated.
+對 `MyComponent` 來說，因為 `1 + 2 + 3 + 4` 會被解讀，所以 `props.foo` 的值會是 `10`。
 
-`if` statements and `for` loops are not expressions in JavaScript, so they can't be used in JSX directly. Instead, you can put these in the surrounding code. For example:
+因為 `if` 語法與 `for` 迴圈都不屬於 JavaScript 表達式，所以它們並不能在 JSX 中被直接使用。不過，你可以在它周圍外的程式碼中使用。例如：
 
 ```js{3-7}
 function NumberDescriber(props) {
@@ -196,11 +196,11 @@ function NumberDescriber(props) {
 }
 ```
 
-You can learn more about [conditional rendering](/docs/conditional-rendering.html) and [loops](/docs/lists-and-keys.html) in the corresponding sections.
+你可以在對應的段落中了解更多關於[條件式 render](/docs/conditional-rendering.html) 與[迴圈](/docs/lists-and-keys.html)。
 
-### String Literals {#string-literals}
+### 字串字面值 {#string-literals}
 
-You can pass a string literal as a prop. These two JSX expressions are equivalent:
+你可以傳遞一個字串字面值作為 prop。以下兩個 JSX 表達式是相等的：
 
 ```js
 <MyComponent message="hello world" />
@@ -208,7 +208,7 @@ You can pass a string literal as a prop. These two JSX expressions are equivalen
 <MyComponent message={'hello world'} />
 ```
 
-When you pass a string literal, its value is HTML-unescaped. So these two JSX expressions are equivalent:
+當你傳遞一個字串字面值時，它的值是未經 HTML 轉義的。所以以下兩個 JSX 表達式是相等的：
 
 ```js
 <MyComponent message="&lt;3" />
@@ -216,11 +216,11 @@ When you pass a string literal, its value is HTML-unescaped. So these two JSX ex
 <MyComponent message={'<3'} />
 ```
 
-This behavior is usually not relevant. It's only mentioned here for completeness.
+這種行為通常是無關緊要的。在此只是為了完整性而提及。
 
-### Props Default to "True" {#props-default-to-true}
+### Props 預設為 「True」 {#props-default-to-true}
 
-If you pass no value for a prop, it defaults to `true`. These two JSX expressions are equivalent:
+如果你沒給 prop 賦值，那麼它的預設值就是 `true`。以下兩個 JSX 表達式是相等的：
 
 ```js
 <MyTextBox autocomplete />
@@ -228,11 +228,11 @@ If you pass no value for a prop, it defaults to `true`. These two JSX expression
 <MyTextBox autocomplete={true} />
 ```
 
-In general, we don't recommend using this because it can be confused with the [ES6 object shorthand](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` which is short for `{foo: foo}` rather than `{foo: true}`. This behavior is just there so that it matches the behavior of HTML.
+一般來說，我們因為容易把它跟 [ES6 object shorthand](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) 混淆，`{foo}` 是 `{foo: foo}` 的簡寫而不是 `{foo: true}`，所以並不建議這樣使用。這種行為存在只是為了相配 HTML 的行為。
 
-### Spread Attributes {#spread-attributes}
+### 展開屬性 {#spread-attributes}
 
-If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" operator to pass the whole props object. These two components are equivalent:
+如果你已經有了一個 `props` 的 object，並且想把它傳遞進 JSX，你可以使用 `...` 作為展開運算子來傳遞整個 props object。以下兩個 component 是相等的：
 
 ```js{7}
 function App1() {
@@ -245,7 +245,7 @@ function App2() {
 }
 ```
 
-You can also pick specific props that your component will consume while passing all other props using the spread operator.
+你也可以使用展開運算子來分開並挑選 component 所需的 props。
 
 ```js{2}
 const Button = props => {
@@ -265,30 +265,30 @@ const App = () => {
 };
 ```
 
-In the example above, the `kind` prop is safely consumed and *is not* passed on to the `<button>` element in the DOM.
-All other props are passed via the `...other` object making this component really flexible. You can see that it passes an `onClick` and `children` props.
+在以上的範例中，`kind` prop 被安全地挑出並且*不會*被傳遞進 DOM 中的 `<button>` element。
+所有其它的 props 藉由 `...other` object 被傳遞，讓 component 的應用非常具有彈性。你可以看見它傳遞一個 `onClick` 與 `children` props。
 
-Spread attributes can be useful but they also make it easy to pass unnecessary props to components that don't care about them or to pass invalid HTML attributes to the DOM. We recommend using this syntax sparingly.  
+展開運算子不但可以如此靈活地使用，它能讓我們輕易挑選出對於 component 不重要且多餘的 props，也能讓我們傳遞無效的 HTML 屬性到 DOM 裡。
 
-## Children in JSX {#children-in-jsx}
+## JSX 中的 Children {#children-in-jsx}
 
-In JSX expressions that contain both an opening tag and a closing tag, the content between those tags is passed as a special prop: `props.children`. There are several different ways to pass children:
+在 JSX 表達式有包含開始與結束標籤的情形下，夾在兩者之間的內容會被傳遞為特別的 prop：`props.children`。有幾種不同的方法來傳遞 children：
 
-### String Literals {#string-literals-1}
+### 字串字面值 {#string-literals-1}
 
-You can put a string between the opening and closing tags and `props.children` will just be that string. This is useful for many of the built-in HTML elements. For example:
+你可以在兩個標籤之間放置字串，而 `props.children` 就會是那個字串。這對許多內建的 HTML element 是很有用的。例如：
 
 ```js
 <MyComponent>Hello world!</MyComponent>
 ```
 
-This is valid JSX, and `props.children` in `MyComponent` will simply be the string `"Hello world!"`. HTML is unescaped, so you can generally write JSX just like you would write HTML in this way:
+這是有效的 JSX，而 `props.children` 在 `MyComponent` 中單純就會是 `"Hello world!"`。HTML 是未經轉義的，所以你可以這樣如同 HTML 來寫 JSX：
 
 ```html
 <div>This is valid HTML &amp; JSX at the same time.</div>
 ```
 
-JSX removes whitespace at the beginning and ending of a line. It also removes blank lines. New lines adjacent to tags are removed; new lines that occur in the middle of string literals are condensed into a single space. So these all render to the same thing:
+JSX 會把開頭與結尾的空白去除，也會去除空行。與標籤相鄰的新行會去除；在字串字面值中間的新行則會被壓縮成單一空格。所以以下都會 render 同樣的結果：
 
 ```js
 <div>Hello World</div>
@@ -310,7 +310,7 @@ JSX removes whitespace at the beginning and ending of a line. It also removes bl
 
 ### JSX Children {#jsx-children}
 
-You can provide more JSX elements as the children. This is useful for displaying nested components:
+你可以提供許多 JSX element 作為 children。這在顯示巢狀 component 時是非常實用的：
 
 ```js
 <MyContainer>
@@ -319,7 +319,7 @@ You can provide more JSX elements as the children. This is useful for displaying
 </MyContainer>
 ```
 
-You can mix together different types of children, so you can use string literals together with JSX children. This is another way in which JSX is like HTML, so that this is both valid JSX and valid HTML:
+你可以混合不同類型的 children，所以你也能夠同時使用字串字面值與 JSX children。這也是 JSX 與 HTML 另一相似的點，而以下是有效的 JSX 同時也是有效的 HTML：
 
 ```html
 <div>
@@ -331,13 +331,13 @@ You can mix together different types of children, so you can use string literals
 </div>
 ```
 
-A React component can also return an array of elements:
+一個 React component 也能夠回傳一個陣列 element：
 
 ```js
 render() {
-  // No need to wrap list items in an extra element!
+  // 沒有必要把多餘的 list items 包在 element 裡頭！
   return [
-    // Don't forget the keys :)
+    // 別忘了加 keys :)
     <li key="A">First item</li>,
     <li key="B">Second item</li>,
     <li key="C">Third item</li>,
@@ -345,9 +345,9 @@ render() {
 }
 ```
 
-### JavaScript Expressions as Children {#javascript-expressions-as-children}
+### JavaScript 表達式作為 Children {#javascript-expressions-as-children}
 
-You can pass any JavaScript expression as children, by enclosing it within `{}`. For example, these expressions are equivalent:
+你可以傳遞任何封裝在 `{}` 內的 JavaScript 表達式作為 children。例如，以下表達式皆相等：
 
 ```js
 <MyComponent>foo</MyComponent>
@@ -355,7 +355,7 @@ You can pass any JavaScript expression as children, by enclosing it within `{}`.
 <MyComponent>{'foo'}</MyComponent>
 ```
 
-This is often useful for rendering a list of JSX expressions of arbitrary length. For example, this renders an HTML list:
+這在要 render 任意長度的 JSX 表達式列表時是非常實用的。例如，這會 render 一個 HTML 列表：
 
 ```js{2,9}
 function Item(props) {
@@ -372,7 +372,7 @@ function TodoList() {
 }
 ```
 
-JavaScript expressions can be mixed with other types of children. This is often useful in lieu of string templates:
+JavaScript 表達式可以與不同類型的 children 混合。這在不使用樣板字串時非常實用：
 
 ```js{2}
 function Hello(props) {
@@ -380,12 +380,12 @@ function Hello(props) {
 }
 ```
 
-### Functions as Children {#functions-as-children}
+### Functions 作為 Children {#functions-as-children}
 
-Normally, JavaScript expressions inserted in JSX will evaluate to a string, a React element, or a list of those things. However, `props.children` works just like any other prop in that it can pass any sort of data, not just the sorts that React knows how to render. For example, if you have a custom component, you could have it take a callback as `props.children`:
+正常來說，在 JSX 中的 JavaScript 表達式會被轉換成字串、React element、或者包含這些的列表。不過，`props.children` 就像其它 prop 一樣可以傳遞任何類型的資料，而並不局限於只有 React 知道如何 render 的資料。舉例來說，假如你有一個自訂 component，你可以把 callback 作為 `props.children` 傳遞：
 
 ```js{4,13}
-// Calls the children callback numTimes to produce a repeated component
+// numTimes 次呼叫 children callback 來重複生成 component
 function Repeat(props) {
   let items = [];
   for (let i = 0; i < props.numTimes; i++) {
@@ -403,11 +403,11 @@ function ListOfTenThings() {
 }
 ```
 
-Children passed to a custom component can be anything, as long as that component transforms them into something React can understand before rendering. This usage is not common, but it works if you want to stretch what JSX is capable of.
+被傳遞進自訂 component 的 children 可以是任何東西，只要 component 能夠在 render 之前把它轉換成 React 能夠理解的東西就可以了。這種用法並不普遍，但能夠顯示出 JSX 的延伸性。
 
-### Booleans, Null, and Undefined Are Ignored {#booleans-null-and-undefined-are-ignored}
+### Booleans, Null, 與 Undefined 會被忽略 {#booleans-null-and-undefined-are-ignored}
 
-`false`, `null`, `undefined`, and `true` are valid children. They simply don't render. These JSX expressions will all render to the same thing:
+`false`, `null`, `undefined`, 與 `true` 都是有效的 children。它們只是單純不會被 render。以下 JSX 表達式皆會 render 相同的結果：
 
 ```js
 <div />
@@ -423,7 +423,7 @@ Children passed to a custom component can be anything, as long as that component
 <div>{true}</div>
 ```
 
-This can be useful to conditionally render React elements. This JSX renders the `<Header />` component only if `showHeader` is `true`:
+這在需要條件式 render 不同 React elements 時非常方便。以下 JSX 只會在 `showHeader` 為 `true` 時 render `<Header />`：
 
 ```js{2}
 <div>
@@ -432,7 +432,7 @@ This can be useful to conditionally render React elements. This JSX renders the 
 </div>
 ```
 
-One caveat is that some ["falsy" values](https://developer.mozilla.org/en-US/docs/Glossary/Falsy), such as the `0` number, are still rendered by React. For example, this code will not behave as you might expect because `0` will be printed when `props.messages` is an empty array:
+值得注意的是有一些像是數字 `0` 的 [「falsy」值](https://developer.mozilla.org/zh-TW/docs/Glossary/Falsy) 仍然會被 React 給 render。舉例來說，以下的程式碼可能不會如同你預期般地運作，因為當 `props.messages` 是一個空 array 時， `0` 會被印出：
 
 ```js{2}
 <div>
@@ -442,7 +442,7 @@ One caveat is that some ["falsy" values](https://developer.mozilla.org/en-US/doc
 </div>
 ```
 
-To fix this, make sure that the expression before `&&` is always boolean:
+為了解決這個問題，確保在 `&&` 之前的表達式為 boolean：
 
 ```js{2}
 <div>
@@ -452,7 +452,7 @@ To fix this, make sure that the expression before `&&` is always boolean:
 </div>
 ```
 
-Conversely, if you want a value like `false`, `true`, `null`, or `undefined` to appear in the output, you have to [convert it to a string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion) first:
+相反地，如果你想要印出 `false`、`true`、`null` 或者 `undefined` 時，你必須要先把它[轉換成一個字串](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion)：
 
 ```js{2}
 <div>
