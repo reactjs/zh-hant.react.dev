@@ -17,7 +17,7 @@ ReactDOM.render(
 
 在頁面上顯示「Hello, world!」。
 
-[](codepen://hello-world)
+[在 CodePen 上試試看吧！](codepen://hello-world)
 
 點擊上方連結開啟線上編輯器。請隨意的變更程式碼並觀察它們的輸出變化。大部分的文件頁面都有像這樣可以編輯的範例。
 

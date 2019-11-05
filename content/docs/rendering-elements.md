@@ -38,7 +38,7 @@ const element = <h1>Hello, world</h1>;
 
 `embed:rendering-elements/render-an-element.js`
 
-[**在 CodePen 上試試看吧！**](codepen://rendering-elements/render-an-element)
+[在 CodePen 上試試看吧！](codepen://rendering-elements/render-an-element)
 
 在網頁上你會看見顯示「Hello, world」。
 
@@ -52,7 +52,7 @@ React element 是 [immutable](https://en.wikipedia.org/wiki/Immutable_object) �
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[**在 CodePen 上試試看吧！**](codepen://rendering-elements/update-rendered-element)
+[在 CodePen 上試試看吧！](codepen://rendering-elements/update-rendered-element)
 
 它從 [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback 每秒呼叫 `ReactDOM.render()`。
 
