@@ -1,14 +1,14 @@
 ---
 id: uncontrolled-components
-title: Uncontrolled Components
+title: Uncontrolled Component
 permalink: docs/uncontrolled-components.html
 ---
 
-In most cases, we recommend using [controlled components](/docs/forms.html#controlled-components) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
+在大多數的情況下，我們推薦使用[controlled component](/docs/forms.html#controlled-components)來實作表單。在控制元件裡，表單的資料是被 React component 所處理。另一個選擇是 uncontrolled component，表單的資料是由 DOM 本身所處理的。
 
-To write an uncontrolled component, instead of writing an event handler for every state update, you can [use a ref](/docs/refs-and-the-dom.html) to get form values from the DOM.
+如果要寫一個 uncontrolled component，你可以[使用 ref](/docs/refs-and-the-dom.html) 來從 DOM 取得表單的資料，而不是為了每個 state 的更新寫 event handler。
 
-For example, this code accepts a single name in an uncontrolled component:
+舉例來說，這段程式碼在 uncontrolled component 裡接受一個名字：
 
 ```javascript{5,9,18}
 class NameForm extends React.Component {
@@ -37,15 +37,15 @@ class NameForm extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
+[**在 CodePen 上試試看！**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
-Since an uncontrolled component keeps the source of truth in the DOM, it is sometimes easier to integrate React and non-React code when using uncontrolled components. It can also be slightly less code if you want to be quick and dirty. Otherwise, you should usually use controlled components.
+由於 uncontrolled component 保持了 DOM 裡的唯一的真相來源，有的時候使用 uncontrolled component 時更容易整合 React 和非 React 的程式碼。如果你想有個又快又髒的方法，它也可以減少一些程式碼。否則，通常應使用 controlled component。。
 
-If it's still not clear which type of component you should use for a particular situation, you might find [this article on controlled versus uncontrolled inputs](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) to be helpful.
+如果仍不清楚在特定情況下應使用哪種類型的 component，你可能會覺得[這篇關於控制與不可控制輸入的文章](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)有所幫助。
 
-### Default Values {#default-values}
+### 預設值 {#default-values}
 
-In the React rendering lifecycle, the `value` attribute on form elements will override the value in the DOM. With an uncontrolled component, you often want React to specify the initial value, but leave subsequent updates uncontrolled. To handle this case, you can specify a `defaultValue` attribute instead of `value`.
+在 React 的 render 生命週期裡，表單上的 `value` attribute 會覆寫掉 DOM 的值。在 uncontrolled component 裡，你常常會希望 React 去指定初始值，但讓之後的更新保持不可控制的。為了處理這種情況，你可以指定 `defaultValue` attribute 而非 `value`。
 
 ```javascript{7}
 render() {
@@ -64,21 +64,21 @@ render() {
 }
 ```
 
-Likewise, `<input type="checkbox">` and `<input type="radio">` support `defaultChecked`, and `<select>` and `<textarea>` supports `defaultValue`.
+相同地， `<input type="checkbox">` 和 `<input type="radio">` 支援 `defaultChecked`，而 `<select>` 和 `<textarea>` 支援 `defaultValue`。
 
-## The file input Tag {#the-file-input-tag}
+## 檔案輸入標籤 {#the-file-input-tag}
 
-In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+在 HTML 裡，`<input type="file">` 讓使用者能夠選擇從他們的裝置儲存來上傳一個或多個檔案到伺服器，或由 JavaScript 透過 [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications) 來處理。
 
 ```html
 <input type="file" />
 ```
 
-In React, an `<input type="file" />` is always an uncontrolled component because its value can only be set by a user, and not programmatically.
+在 React 裡，`<input type="file" />` 永遠都是 uncontrolled component，因為它的值只能被使用者設定，而無法由程式碼來設定。
 
-You should use the File API to interact with the files. The following example shows how to create a [ref to the DOM node](/docs/refs-and-the-dom.html) to access file(s) in a submit handler:
+你應該使用 File API 來與檔案之間互動。以下範例顯示如何建立一個 [ref 到 DOM 節點上](/docs/refs-and-the-dom.html) 來取得在送出的 handler 的檔案：
 
 `embed:uncontrolled-components/input-type-file.js`
 
-[](codepen://uncontrolled-components/input-type-file)
+[在 CodePen 上試試看！](codepen://uncontrolled-components/input-type-file)
 
