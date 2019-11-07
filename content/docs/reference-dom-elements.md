@@ -18,13 +18,13 @@ redirect_from:
 
 在 React 裡，所有 DOM property 和 attribute（包括 event handler）都應該以 camelCase 命名。舉例來說，HTML 的 attribute `tabindex` 在 React 中對應到 `tabIndex`。`aria-*` 和 `data-*` attribute 則是例外，需要保持全部小寫。舉例來說，`aria-label` 保持原樣即可。
 
-## Attributes 相異之處 {#differences-in-attributes}
+## Attribute 相異之處 {#differences-in-attributes}
 
 有些 attribute 在 React 和 HTML 之間運作的方式略為不同：
 
 ### checked {#checked}
 
-當 `<input>` 的 type 是 `checkbox` 或是 `radio` 時，可以使用 `checked` 這個 attribute 來設置 component 是否被選取。這對建立 controlled component 很有幫助。`defaultChecked` 則是使用在 uncontrolled component，在初始 mount 後設置 component 是否被選取。
+當 `<input>` 的 type 是 `checkbox` 或是 `radio` 時，可以使用 `checked` 這個 attribute 來設定 component 是否被選取。這對建立 controlled component 很有幫助。`defaultChecked` 則是使用在 uncontrolled component，在初始 mount 設定 component 是否被選取。
 
 ### className {#classname}
 
@@ -56,7 +56,7 @@ React element 使用 `htmlFor` 來替代 `for`，因為 `for` 在 JavaScript 是
 
 ### selected {#selected}
 
-`selected` 這個 attribute 可以使用在 `<option>` 裡面，用來設置 component 是否已被選取。這對建立 controlled component 很有幫助。
+`selected` 這個 attribute 可以使用在 `<option>` 裡面，用來設定 component 是否已被選取。這對建立 controlled component 很有幫助。
 
 ### style {#style}
 
@@ -110,17 +110,17 @@ React 會為某些數字型態的 style property 自動加上「px」。如果�
 
 ### suppressContentEditableWarning {#suppresscontenteditablewarning}
 
-通常來說，當一個 element 的 children 設置 `contentEditable` 時，因為不會有作用，所以會有警示訊息。這個 attribute 會抑制警示訊息。除非你在建立一個像是 [Draft.js](https://facebook.github.io/draft-js/) 的 library，否則不要使用它。
+通常來說，當一個 element 的 children 設定 `contentEditable` 時，因為不會有作用，所以會有警示訊息。這個 attribute 會抑制警示訊息。除非你在建立一個像是 [Draft.js](https://facebook.github.io/draft-js/) 的 library，否則不要使用它。
 
 ### suppressHydrationWarning {#suppresshydrationwarning}
 
 如果你使用 server-side React render 時，通常 server 和 client render 不同時，會有一個警示訊息。然而，在一些少數的案例，很難去保證 server 和 client side 會完全符合。例如，像是 timestamp 就無法在 server 和 client 保持相同。
 
-如果你設置了 `suppressHydrationWarning` 為 `true`，attribute 以及 element 內容不一樣時，React 就不會有警示訊息。這只作用在一層深度，且需要有計畫性地使用，請勿濫用。你可以在 [`ReactDOM.hydrate()` 文件](/docs/react-dom.html#hydrate) 讀到更多關於 hydration。
+如果你設定了 `suppressHydrationWarning` 為 `true`，attribute 以及 element 內容不一樣時，React 就不會有警示訊息。這只作用在一層深度，且需要有計畫性地使用，請勿濫用。你可以在 [`ReactDOM.hydrate()` 文件](/docs/react-dom.html#hydrate) 讀到更多關於 hydration。
 
 ### value {#value}
 
-`value` attribute 可以使用在 `<input>` 和 `<textarea>` component。你可以使用它來設置 component value。這對建立 controlled component 很有幫助。`defaultValue` 則是使用在 uncontrolled component，在初始 mount 後設置 component 的 value。
+`value` attribute 可以使用在 `<input>` 和 `<textarea>` component。你可以使用它來設定 component value。這對建立 controlled component 很有幫助。`defaultValue` 則是使用在 uncontrolled component，在初始 mount 後設定 component 的 value。
 
 ## 可以使用的 HTML Attribute {#all-supported-html-attributes}
 
