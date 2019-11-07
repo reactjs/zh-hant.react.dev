@@ -4,7 +4,7 @@ title: 嚴格模式
 permalink: docs/strict-mode.html
 ---
 
-`嚴格模式（Strict Mode）` 是一個用來突顯應用程式裡潛在問題的工具。如同 `Fragment` 一樣，`嚴格模式`不會 render 任何可見的介面。它為了它底下的所有子元件們啟動了額外的檢查和警告。
+`嚴格模式（Strict Mode）` 是一個用來突顯應用程式裡潛在問題的工具。如同 `Fragment` 一樣，`嚴格模式`不會 render 任何可見的 UI。它為了它底下的所有子元件們啟動了額外的檢查和警告。
 
 > 注意：
 >
@@ -15,7 +15,7 @@ permalink: docs/strict-mode.html
 在上面的例子裡，嚴格模式檢查將*不會*跑在 `Header` 和 `Footer` 元件上。然而 `ComponentOne` 和 `ComponentTwo`，以及它們底下的所有子元件，都會被檢查。
 
 `嚴格模式` 目前幫助了：
-* [發現擁有不安全生命週期的元件](#identifying-unsafe-lifecycles)
+* [發現擁有不安全生命週期的 component](#identifying-unsafe-lifecycles)
 * [警告使用到了既有的 string ref API](#warning-about-legacy-string-ref-api-usage)
 * [警告使用到了被棄用的 findDOMNode](#warning-about-deprecated-finddomnode-usage)
 * [偵測意想不到的副作用](#detecting-unexpected-side-effects)
@@ -27,7 +27,7 @@ permalink: docs/strict-mode.html
 
 如[這篇文章](/blog/2018/03/27/update-on-async-rendering.html)所述，某些遺留的生命週期在非同步的 React 應用程式裡使用是不安全的。然而，如果你的應用程式使用到第三方套件，確認這些生命週期有沒有被使用到是很困難的。幸好嚴格模式可以在這點幫助我們！
 
-當嚴格模式被打開的時候，React 編譯了一整串用到這些不安全生命週期的 class components，然後記錄了這些元件的警告訊息，例如：
+當嚴格模式被打開的時候，React 編譯了一整串用到這些不安全生命週期的 class component，然後記錄了這些 component 的警告訊息，例如：
 
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
@@ -35,30 +35,30 @@ _現在_ 就關注這些被嚴格模式所發現的問題，會幫助你在 Reac
 
 ### 警告使用到了既有的 string ref API {#warning-about-legacy-string-ref-api-usage}
 
-以前 React 提供了兩種管理 refs 的方式：既有的 string ref API 和 callback API。雖然 string ref API 在兩者之間是比較方便的，但它有很多[缺點](https://github.com/facebook/react/issues/1373)，所以我們的官方推薦是[使用 callback form](/docs/refs-and-the-dom.html#legacy-api-string-refs).
+以前 React 提供了兩種管理 ref 的方式：既有的 string ref API 和 callback API。雖然 string ref API 在兩者之間是比較方便的，但它有很多[缺點](https://github.com/facebook/react/issues/1373)，所以我們的官方推薦是[使用 callback form](/docs/refs-and-the-dom.html#legacy-api-string-refs).
 
 React 16.3 加上了第三種選擇，提供了 string ref 的便利性且免除了那些缺點：
 `embed:16-3-release-blog-post/create-ref-example.js`
 
-因為 object refs 已經大量取代了 string refs，嚴格模式現在會在你使用 string refs 的時候警告你。
+因為 object ref 已經大量取代了 string ref，嚴格模式現在會在你使用 string ref 的時候警告你。
 
 > **注意：**
 >
-> 除了新的 `createRef` API 以外，callback refs 會持續被支援。
+> 除了新的 `createRef` API 以外，callback ref 會持續被支援。
 >
-> 你不需要改掉你元件裡的 callback refs。它們稍微更有彈性，所以它們會持續是一個進階性的功能。
+> 你不需要改掉你 component 裡的 callback ref。它們稍微更有彈性，所以它們會持續是一個進階性的功能。
 
 [學習更多關於新的 `createRef` API。](/docs/refs-and-the-dom.html)
 
 ### 警告使用到了被棄用的 findDOMNode {#warning-about-deprecated-finddomnode-usage}
 
-React 過去支援了 `findDOMNode` 來用 class instance 搜尋樹裡面的 DOM 節點。通常你不需要這個，因為你可以 [直接把一個 ref 附到你的 DOM 節點](/docs/refs-and-the-dom.html#creating-refs)。
+React 過去支援了 `findDOMNode` 來用 class instance 搜尋 tree 裡面的 DOM 節點。通常你不需要這個，因為你可以 [直接把一個 ref 附到你的 DOM 節點](/docs/refs-and-the-dom.html#creating-refs)。
 
-`findDOMNode` 也可以被使用在 class components 上，但這是一個破壞抽象層的用法，它允許了 parent 來要求 render 某個特定的 children。它產生了重構的風險，因為 parent 可能會進入到某個 DOM 節點，所以你不能隨意改變元件的實作細節。`findDOMNode` 只會回傳第一個 child，但如果使用了 Fragments，有可能某個元件會 render 多個 DOM 節點。`findDOMNode` 是一個只能讀一次的 API。它只在你要求的時候告訴你答案。如果一個子元件 render 了不同的節點，沒有任何方法可以處理這樣的改變。所以 `findDOMNode` 只在元件永遠回傳一個單一且永遠不改變的 DOM 節點時有用。
+`findDOMNode` 也可以被使用在 class component 上，但這是一個破壞抽象層的用法，它允許了 parent 來要求 render 某個特定的 children。它產生了重構的風險，因為 parent 可能會進入到某個 DOM 節點，所以你不能隨意改變 component 的實作細節。`findDOMNode` 只會回傳第一個 child，但如果使用了 Fragment，有可能某個 component 會 render 多個 DOM 節點。`findDOMNode` 是一個只能讀一次的 API。它只在你要求的時候告訴你答案。如果一個 child component render 了不同的節點，沒有任何方法可以處理這樣的改變。所以 `findDOMNode` 只在元件永遠回傳一個單一且永遠不改變的 DOM 節點時有用。
 
-你可以藉由傳遞 ref 到你的客製化元件，且把它傳到使用 [ref forwarding](/docs/forwarding-refs.html#forwarding-refs-to-dom-components) 的 DOM，使它變得明顯。
+你可以藉由傳遞 ref 到你的客製化 component，且把它傳到使用 [ref forwarding](/docs/forwarding-refs.html#forwarding-refs-to-dom-components) 的 DOM，使它變得明顯。
 
-你也可以在你的元件加上一個包裹的 DOM 節點，然後把 ref 直接附在它上面。
+你也可以在你的 component 加上一個包裹的 DOM 節點，然後把 ref 直接附在它上面。
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -74,7 +74,7 @@ class MyComponent extends React.Component {
 
 > 注意：
 >
-> 在 CSS 裡，如果你不想要某個節點成為 layout 的一部份，[`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) 屬性可以被使用。
+> 在 CSS 裡，如果你不想要某個節點成為 layout 的一部份，[`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) attribute 可以被使用。
 
 ### 偵測意想不到的副作用 {#detecting-unexpected-side-effects}
 
@@ -110,7 +110,7 @@ Render 面相的生命週期包含了以下 class component 函式:
 例如，考慮以下程式碼：
 `embed:strict-mode/side-effects-in-constructor.js`
 
-第一眼看這段程式碼，可能不會覺得它有問題。但如果 `SharedApplicationState.recordEvent` 不是 [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) 的話，多次實體化這個元件可能會導致不合法的應用程式 state。這種細微的錯誤可能在開發期間不會出現，或者會不一致地出現，因此被忽略了。
+第一眼看這段程式碼，可能不會覺得它有問題。但如果 `SharedApplicationState.recordEvent` 不是 [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) 的話，多次實體化這個 component 可能會導致不合法的應用程式 state。這種細微的錯誤可能在開發期間不會出現，或者會不一致地出現，因此被忽略了。
 
 通過有意地雙重調用如 component constructor，嚴格模式使這種模式更容易被發現。
 
