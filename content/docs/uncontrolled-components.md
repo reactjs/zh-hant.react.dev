@@ -1,14 +1,14 @@
 ---
 id: uncontrolled-components
-title: 不可控制元件
+title: Uncontrolled Component
 permalink: docs/uncontrolled-components.html
 ---
 
-在大多數的情況下，我們推薦使用[控制元件](/docs/forms.html#controlled-components)來實作表單。在控制元件裡，表單的資料是被 React 元件所處理。另一個選擇是非控制元件，表單的資料是由 DOM 本身所處理的。
+在大多數的情況下，我們推薦使用[controlled component](/docs/forms.html#controlled-components)來實作表單。在控制元件裡，表單的資料是被 React component 所處理。另一個選擇是 uncontrolled component，表單的資料是由 DOM 本身所處理的。
 
-如果要寫一個不可控制元件，你可以[使用 ref](/docs/refs-and-the-dom.html) 來從 DOM 取得表單的資料，而不是為了每個 state 的更新寫 event handler。
+如果要寫一個 uncontrolled component，你可以[使用 ref](/docs/refs-and-the-dom.html) 來從 DOM 取得表單的資料，而不是為了每個 state 的更新寫 event handler。
 
-舉例來說，這段程式碼在不可控制元件裡接受一個名字：
+舉例來說，這段程式碼在 uncontrolled component 裡接受一個名字：
 
 ```javascript{5,9,18}
 class NameForm extends React.Component {
@@ -37,16 +37,15 @@ class NameForm extends React.Component {
 }
 ```
 
-[**在 CodePen 試試看**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
+[**在 CodePen 上試試看！**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
-因為不可控制元件保持了 DOM 裡的真理源頭，有的時候使用不可控制元件時更容易整合 React 和非 React 的程式碼。如果你想有個又快又髒的方法，它也可以減少一些程式碼。否則，通常應使用控制元件。
+由於 uncontrolled component 保持了 DOM 裡的唯一的真相來源，有的時候使用 uncontrolled component 時更容易整合 React 和非 React 的程式碼。如果你想有個又快又髒的方法，它也可以減少一些程式碼。否則，通常應使用 controlled component。。
 
-如果仍不清楚在特定情況下應使用哪種類型的元件，你可能會覺得
-[這篇關於控制與不可控制輸入的文章](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)有所幫助。
+如果仍不清楚在特定情況下應使用哪種類型的 component，你可能會覺得[這篇關於控制與不可控制輸入的文章](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)有所幫助。
 
 ### 預設值 {#default-values}
 
-在 React 的 rendering 生命週期裡，表單上的 `value` 屬性會覆寫掉 DOM 的值。在不可控制元件裡，你常常會希望 React 去指定初始值，但讓之後的更新保持不可控制的。為了處理這種情況，你可以指定 `defaultValue` 屬性而非 `value`。
+在 React 的 render 生命週期裡，表單上的 `value` attribute 會覆寫掉 DOM 的值。在 uncontrolled component 裡，你常常會希望 React 去指定初始值，但讓之後的更新保持不可控制的。為了處理這種情況，你可以指定 `defaultValue` attribute 而非 `value`。
 
 ```javascript{7}
 render() {
@@ -75,11 +74,11 @@ render() {
 <input type="file" />
 ```
 
-在 React 裡，`<input type="file" />` 永遠都是不可控制元件，因為它的值只能被使用者設定，而無法由程式碼來設定。
+在 React 裡，`<input type="file" />` 永遠都是 uncontrolled component，因為它的值只能被使用者設定，而無法由程式碼來設定。
 
 你應該使用 File API 來與檔案之間互動。以下範例顯示如何建立一個 [ref 到 DOM 節點上](/docs/refs-and-the-dom.html) 來取得在送出的 handler 的檔案：
 
 `embed:uncontrolled-components/input-type-file.js`
 
-[在 CodePen 試試看](codepen://uncontrolled-components/input-type-file)
+[在 CodePen 上試試看！](codepen://uncontrolled-components/input-type-file)
 
