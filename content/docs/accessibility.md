@@ -1,22 +1,22 @@
 ---
 id: accessibility
-title: Accessibility
+title: 無障礙功能
 permalink: docs/accessibility.html
 ---
 
 ## Why Accessibility? {#why-accessibility}
 
-Web accessibility (also referred to as [**a11y**](https://en.wiktionary.org/wiki/a11y)) is the design and creation of websites that can be used by everyone. Accessibility support is necessary to allow assistive technology to interpret web pages.
+網路無障礙功能（又稱為 [**a11y**](https://en.wiktionary.org/wiki/a11y)）的概念是設計並創造所有人都能使用的網站。我們必須支援無障礙功能，才能使用協助式科技解讀網頁。
 
-React fully supports building accessible websites, often by using standard HTML techniques.
+React 能完整支援無障礙網站的建構。這些網站通常都使用標準的 HTML 技術。
 
-## Standards and Guidelines {#standards-and-guidelines}
+## 標準及規範 {#standards-and-guidelines}
 
 ### WCAG {#wcag}
 
-The [Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) provides guidelines for creating accessible web sites.
+[網路內容無障礙規範](https://www.w3.org/WAI/intro/wcag)（WCAG）提供了創造無障礙網頁的規範。
 
-The following WCAG checklists provide an overview:
+以下的 WCAG checklists 提供概觀：
 
 - [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
 - [WCAG checklist from WebAIM](https://webaim.org/standards/wcag/checklist)
@@ -24,9 +24,9 @@ The following WCAG checklists provide an overview:
 
 ### WAI-ARIA {#wai-aria}
 
-The [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) document contains techniques for building fully accessible JavaScript widgets.
+這個[網路無障礙 Initiative - 無障礙網路應用程式](https://www.w3.org/WAI/intro/aria)文件包含了許多架設無障礙功能 JavaScript 的小工具。
 
-Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most DOM properties and attributes in React are camelCased, these attributes should be hyphen-cased (also known as kebab-case, lisp-case, etc) as they are in plain HTML:
+請注意，所有的 `aria-*` HTML attribute 在 JSX 中都是支援的。相較於 React 中大部分  camelCased 的 DOM property 和 attribute，這些 attribute 則應該像在純 HTML 中一樣使用 hyphen-cased（又稱為 kebab-case，lisp-case 等）：
 
 ```javascript{3,4}
 <input
@@ -40,15 +40,14 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 ```
 
 ## Semantic HTML {#semantic-html}
-Semantic HTML is the foundation of accessibility in a web application. Using the various HTML elements to reinforce the meaning of information
-in our websites will often give us accessibility for free.
+Semantic HTML 是無障礙網頁應用程式的基礎。使用不同的 HTML element 來加強網站中資訊的意義通常可以給我們更多的無障礙功能。
 
-- [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+- [MDN HTML element 參考](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 
-Sometimes we break HTML semantics when we add `<div>` elements to our JSX to make our React code work, especially when working with lists (`<ol>`, `<ul>` and `<dl>`) and the HTML `<table>`.
-In these cases we should rather use [React Fragments](/docs/fragments.html) to group together multiple elements.
+有時當我們增加 `<div>` element 到 JSX 以使我們的 React 程式運作時，我們會違反 HTML 的語法規定，尤其是當我們在處理列表（`<ol>`，`<ul>` 和 `<dl>`）以及 HTML 表格 `<table>` 的時候。
+在這些情況下我們應該使用 [React Fragment](/docs/fragments.html) 將數個 element 組織在一起。
 
-For example,
+例如：
 
 ```javascript{1,5,8}
 import React, { Fragment } from 'react';
@@ -73,14 +72,14 @@ function Glossary(props) {
 }
 ```
 
-You can map a collection of items to an array of fragments as you would any other type of element as well:
+你可以使用 map 將一個 collection 中的每一個 item 與一個 fragment 相對應，就如同處理其他的 element ㄧ樣：
 
 ```javascript{6,9}
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Fragments should also have a `key` prop when mapping collections
+        // 當你 map 一個 collection 時，Fragment 也應該要有一個 `key` prop 
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -91,7 +90,7 @@ function Glossary(props) {
 }
 ```
 
-When you don't need any props on the Fragment tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
+如果你的 Fragment tag 不需要任何 prop，你也可以使用[短語法](/docs/fragments.html#short-syntax)，如果你的工具支援這個語法的話：
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -104,9 +103,9 @@ function ListItem({ item }) {
 }
 ```
 
-For more info, see [the Fragments documentation](/docs/fragments.html).
+請參考[Fragment 文檔](/docs/fragments.html)了解更多詳情。
 
-## Accessible Forms {#accessible-forms}
+## 無障礙表格 {#accessible-forms}
 
 ### Labeling {#labeling}
 Every HTML form control, such as `<input>` and `<textarea>`, needs to be labeled accessibly. We need to provide descriptive labels that are also exposed to screen readers.
