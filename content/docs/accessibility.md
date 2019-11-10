@@ -45,7 +45,7 @@ Semantic HTML 是無障礙網頁應用程式的基礎。使用不同的 HTML ele
 - [MDN HTML element 參考](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 
 有時當我們增加 `<div>` element 到 JSX 以使我們的 React 程式運作時，我們會違反 HTML 的語法規定，尤其是當我們在處理列表（`<ol>`，`<ul>` 和 `<dl>`）以及 HTML 表格 `<table>` 的時候。
-在這些情況下我們應該使用 [React Fragment](zh-hant.reactjs.org/docs/fragments.html) 將數個 element 組織在一起。
+在這些情況下我們應該使用 [React Fragment](/docs/fragments.html) 將數個 element 組織在一起。
 
 例如：
 
@@ -90,7 +90,7 @@ function Glossary(props) {
 }
 ```
 
-如果你的 Fragment tag 不需要任何 prop，你也可以使用[短語法](zh-hant.reactjs.org/docs/fragments.html#short-syntax)，如果你的工具支援這個語法的話：
+如果你的 Fragment tag 不需要任何 prop，你也可以使用[短語法](/docs/fragments.html#short-syntax)，如果你的工具支援這個語法的話：
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -103,7 +103,7 @@ function ListItem({ item }) {
 }
 ```
 
-請參考[Fragment 文檔](zh-hant.reactjs.org/docs/fragments.html)了解更多詳情。
+請參考[Fragment 文檔](/docs/fragments.html)了解更多詳情。
 
 ## 無障礙表格 {#accessible-forms}
 
