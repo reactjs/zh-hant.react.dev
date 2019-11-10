@@ -6,7 +6,7 @@ permalink: docs/accessibility.html
 
 ## Why Accessibility? {#why-accessibility}
 
-網路無障礙功能（又稱為 [**a11y**](https://en.wiktionary.org/wiki/a11y)）的概念是設計並創造所有人都能使用的網站。我們必須支援無障礙功能，才能使用協助式科技解讀網頁。
+網路無障礙功能（又稱為 [**a11y**](https://en.wiktionary.org/wiki/a11y)）的概念是設計並創造所有人都能使用的網站。我們必須支援無障礙功能，才能使用輔助科技解讀網頁。
 
 React 能完整支援無障礙網站的建構。這些網站通常都使用標準的 HTML 技術。
 
@@ -123,40 +123,40 @@ function ListItem({ item }) {
 <input id="namedInput" type="text" name="name"/>
 ```
 
-### Notifying the user of errors {#notifying-the-user-of-errors}
+### 通知用戶錯誤訊息 {#notifying-the-user-of-errors}
 
-Error situations need to be understood by all users. The following link shows us how to expose error texts to screen readers as well:
+錯誤發生的狀況需要被所有使用者了解。以下連結解釋如何讓螢幕閱讀器也能識別錯誤訊息：
 
-- [The W3C demonstrates user notifications](https://www.w3.org/WAI/tutorials/forms/notifications/)
-- [WebAIM looks at form validation](https://webaim.org/techniques/formvalidation/)
+- [W3C 解釋用戶通知](https://www.w3.org/WAI/tutorials/forms/notifications/)
+- [WebAIM 解釋表格驗證](https://webaim.org/techniques/formvalidation/)
 
-## Focus Control {#focus-control}
+## 焦點控制 {#focus-control}
 
-Ensure that your web application can be fully operated with the keyboard only:
+確保你的網路應用程式能完全只用鍵盤操作：
 
-- [WebAIM talks about keyboard accessibility](https://webaim.org/techniques/keyboard/)
+- [WebAIM 談鍵盤無障礙功能](https://webaim.org/techniques/keyboard/)
 
-### Keyboard focus and focus outline {#keyboard-focus-and-focus-outline}
+### 鍵盤焦點和焦點輪廓 {#keyboard-focus-and-focus-outline}
 
-Keyboard focus refers to the current element in the DOM that is selected to accept input from the keyboard. We see it everywhere as a focus outline similar to that shown in the following image:
+鍵盤焦點指的是目前在 DOM 中的 element 被選取以接受來自鍵盤的輸入。我們到處可以見到類似下面這張圖示內的焦點輪廓：
 
 <img src="../images/docs/keyboard-focus.png" alt="Blue keyboard focus outline around a selected link." />
 
-Only ever use CSS that removes this outline, for example by setting `outline: 0`, if you are replacing it with another focus outline implementation.
+如果你打算用另一種方式做焦點輪廓，請使用 CSS 來移除這個輪廓，例如設定 `outline: 0`。
 
-### Mechanisms to skip to desired content {#mechanisms-to-skip-to-desired-content}
+### 跳到指定內容的方式 {#mechanisms-to-skip-to-desired-content}
 
-Provide a mechanism to allow users to skip past navigation sections in your application as this assists and speeds up keyboard navigation.
+請提供某種方式讓使用者可以跳過應用程式中的導覽部分，因為這樣可以協助加速鍵盤導覽。
 
-Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with internal page anchors and some styling:
+跳過連結或跳過導覽連結是隱藏式的導覽連結，只有在鍵盤使用者與網頁互動時才會顯現。它們十分容易用內部頁面錨和一些 styling 做出來：
 
-- [WebAIM - Skip Navigation Links](https://webaim.org/techniques/skipnav/)
+- [WebAIM - 跳過導覽連結](https://webaim.org/techniques/skipnav/)
 
-Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarcate page regions as assistive technology allow the user to quickly navigate to these sections.
+你也可以使用像 `<main>` 和 `<aside>` 這樣的 landmark element 和 role 來標記頁面上的區域，因為輔助科技會快速導覽使用者到這些區域。
 
-Read more about the use of these elements to enhance accessibility here:
+在這裡你可以閱讀更多關於這些 element 增加無障礙功能的用法：
 
-- [Accessible Landmarks](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
+- [無障礙的 Landmark](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
 ### Programmatically managing focus {#programmatically-managing-focus}
 
