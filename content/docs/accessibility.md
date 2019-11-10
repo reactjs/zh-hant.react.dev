@@ -14,19 +14,19 @@ React 能完整支援無障礙網站的建構。這些網站通常都使用標�
 
 ### WCAG {#wcag}
 
-[網路內容無障礙規範](https://www.w3.org/WAI/intro/wcag)（WCAG）提供了創造無障礙網頁的規範。
+[網路內容無障礙功能指南](https://www.w3.org/WAI/intro/wcag)（WCAG）提供了創造無障礙網頁的規範。
 
-以下的 WCAG checklists 提供概觀：
+以下的 WCAG 檢查清單提供了概觀：
 
-- [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
-- [WCAG checklist from WebAIM](https://webaim.org/standards/wcag/checklist)
-- [Checklist from The A11Y Project](https://a11yproject.com/checklist.html)
+- [Wuhcag 的 WCAG 檢查清單](https://www.wuhcag.com/wcag-checklist/)
+- [WebAIM 的 WCAG 檢查清單](https://webaim.org/standards/wcag/checklist)
+- [The A11Y Project 的檢查清單](https://a11yproject.com/checklist.html)
 
 ### WAI-ARIA {#wai-aria}
 
-這個[網路無障礙 Initiative - 無障礙網路應用程式](https://www.w3.org/WAI/intro/aria)文件包含了許多架設無障礙功能 JavaScript 的小工具。
+這份[網路無障礙功能倡議 - 無障礙網路應用程式](https://www.w3.org/WAI/intro/aria)文件包含了許多架設無障礙功能 JavaScript 的小工具。
 
-請注意，所有的 `aria-*` HTML attribute 在 JSX 中都是支援的。相較於 React 中大部分  camelCased 的 DOM property 和 attribute，這些 attribute 則應該像在純 HTML 中一樣使用 hyphen-cased（又稱為 kebab-case，lisp-case 等）：
+請注意，所有的 `aria-*` HTML attribute 在 JSX 中都是支援的。相較於 React 中大部分駝峰式大小寫的 DOM property 和 attribute，這些 attribute 則應該像在純 HTML 中一樣使用帶連字符式寫法（又稱為 kebab-case，lisp-case 等）：
 
 ```javascript{3,4}
 <input
@@ -40,7 +40,7 @@ React 能完整支援無障礙網站的建構。這些網站通常都使用標�
 ```
 
 ## Semantic HTML {#semantic-html}
-Semantic HTML 是無障礙網頁應用程式的基礎。使用不同的 HTML element 來加強網站中資訊的意義通常可以給我們更多的無障礙功能。
+Semantic HTML 是無障礙網頁應用程式的基礎。使用不同的 HTML element 來加強網站中資訊的意義可以在不用花費的情況下讓所有人造訪你的網站。
 
 - [MDN HTML element 參考](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 
@@ -107,16 +107,16 @@ function ListItem({ item }) {
 
 ## 無障礙表格 {#accessible-forms}
 
-### Labeling {#labeling}
-Every HTML form control, such as `<input>` and `<textarea>`, needs to be labeled accessibly. We need to provide descriptive labels that are also exposed to screen readers.
+### 標記 {#labeling}
+每一個 HTML 的表格控制，例如 `<input>` 和 `<textarea>`，都需要無障礙標記。我們需要提供敘述性的、能讓螢幕閱讀器識別的標記。
 
-The following resources show us how to do this:
+以下的資源讓我們知道如何標記：
 
-- [The W3C shows us how to label elements](https://www.w3.org/WAI/tutorials/forms/labels/)
-- [WebAIM shows us how to label elements](https://webaim.org/techniques/forms/controls)
-- [The Paciello Group explains accessible names](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+- [W3C 解釋如何標記 element](https://www.w3.org/WAI/tutorials/forms/labels/)
+- [WebAIM 解釋如何標記 element](https://webaim.org/techniques/forms/controls)
+- [Paciello Group 解釋無障礙名稱](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
 
-Although these standard HTML practices can be directly used in React, note that the `for` attribute is written as `htmlFor` in JSX:
+雖然這些標準的 HTML 用法能直接在 React 中使用，請注意 `for` attribute 在 JSX 中是寫作 `htmlFor`：
 
 ```javascript{1}
 <label htmlFor="namedInput">Name:</label>
