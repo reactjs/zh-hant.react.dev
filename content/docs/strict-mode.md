@@ -19,7 +19,7 @@ permalink: docs/strict-mode.html
 * [警告使用了 legacy string ref API](#warning-about-legacy-string-ref-api-usage)
 * [警告使用到了被棄用的 findDOMNode](#warning-about-deprecated-finddomnode-usage)
 * [偵測意想不到的副作用](#detecting-unexpected-side-effects)
-* [偵測既有的 context API](#detecting-legacy-context-api)
+* [偵測 legacy context API](#detecting-legacy-context-api)
 
 其他功能會在未來版本的 React 釋出時被加進去。
 
@@ -33,9 +33,9 @@ permalink: docs/strict-mode.html
 
 _現在_ 就關注這些被嚴格模式所發現的問題，會幫助你在 React 將來的版本裡處理非同步 render 的時候更容易。
 
-### 警告使用到了既有的 string ref API {#warning-about-legacy-string-ref-api-usage}
+### 警告使用到了 legacy string ref API {#warning-about-legacy-string-ref-api-usage}
 
-以前 React 提供了兩種管理 ref 的方式：既有的 string ref API 和 callback API。雖然 string ref API 在兩者之間是比較方便的，但它有很多[缺點](https://github.com/facebook/react/issues/1373)，所以我們的官方推薦是[使用 callback form](/docs/refs-and-the-dom.html#legacy-api-string-refs).
+以前 React 提供了兩種管理 ref 的方式：legacy string ref API 和 callback API。雖然 string ref API 在兩者之間是比較方便的，但它有很多[缺點](https://github.com/facebook/react/issues/1373)，所以我們的官方推薦是[使用 callback form](/docs/refs-and-the-dom.html#legacy-api-string-refs).
 
 React 16.3 加上了第三種選擇，提供了 string ref 的便利性且免除了那些缺點：
 `embed:16-3-release-blog-post/create-ref-example.js`
