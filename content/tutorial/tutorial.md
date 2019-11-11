@@ -197,6 +197,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return <Square value={i} />;
   }
+}
 ```
 
 接著請改變 Square 中的 `render` 方法，將 `{/* TODO */}` 替換成 `{this.props.value}`，以顯示 value 的值：
