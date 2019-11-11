@@ -9,9 +9,9 @@ permalink: docs/error-boundaries.html
 
 ## 引入錯誤邊界 {#introducing-error-boundaries}
 
-一個介面裡 JavaScript 的錯誤不應該毀了整個應用。為了替 React 使用者解決這個問題，React 16 引入了一個新的概念：「錯誤邊界」。
+一個介面裡的某一個 JavaScript 的錯誤不應該毀了整個應用程式。為了替 React 使用者解決這個問題，React 16 引入了一個新的概念：「錯誤邊界」。
 
-錯誤邊界是一個 React component，它 **捕捉了任何在它的 child component tree 裡發生的 JavaScript 的錯誤，紀錄那些錯誤，然後顯示在一個備用的使用介面**，而非讓整個 component tree 崩壞。錯誤邊界在整個底下的 component tree 在 render 的時候、生命週期函式、以及 constructors 裡捕捉錯誤。
+錯誤邊界是一個 React component，它 **捕捉了任何在它的 child component tree 裡發生的 JavaScript 的錯誤，記錄那些錯誤，然後顯示在一個備用的使用介面**，而非讓整個 component tree 崩壞。錯誤邊界會在 render 的時候、在生命週期函式內、以及底下一整個 component tree 裡的 constructor 內捕捉錯誤。
 
 > 注意
 >
@@ -70,13 +70,13 @@ class ErrorBoundary extends React.Component {
 
 ## 該把錯誤邊界放在哪裡 {#where-to-place-error-boundaries}
 
-錯誤邊界的顆粒度取決於你自己。你可以把它包在最上層的 route component 藉以顯示「發生了一些錯誤」的訊息給使用者，就如同 server-side frameworks 裡常常處理錯誤的方式。你也可以把它包在個別的小工具外，藉以保護它們不受應用程式裡發生的其他錯誤的影響。
+錯誤邊界的精確度取決於你自己。你可以把它包在最上層的 route component 藉以顯示「發生了一些錯誤」的訊息給使用者，就如同 server-side framework 裡常常處理錯誤的方式。你也可以把它包在個別的小工具外，藉以保護它們不受應用程式裡發生的其他錯誤的影響。
 
 ## 對於未捕捉到的錯誤的新行為 {#new-behavior-for-uncaught-errors}
 
-這個改變有重要的意義。**在 React 16，沒有被錯誤邊界所捕捉到的錯誤會導致 unmount 整個 React component tree。**
+這個改變有重要的意義。**在 React 16，沒有被錯誤邊界所捕捉到的錯誤會 unmount 整個 React component tree。**
 
-我們為了這個決定辯論過，但在我們的經驗裡，留下被敗壞的 UI 比完全移除它更糟。舉例來說，在像 Messenger 一樣的產品裡，留下壞掉的 UI 可能會導致某人傳送訊息給錯誤的對象。相似地，在支付軟體裡，顯示錯誤的金額比 render 空白畫面來得更糟。
+我們為了這個決定辯論過，但在我們的經驗裡，留下壞掉的 UI 比完全移除它更糟。舉例來說，在像 Messenger 一樣的產品裡，留下壞掉的 UI 可能會導致某人傳送訊息給錯誤的對象。相似地，在支付軟體裡，顯示錯誤的金額比 render 空白畫面來得更糟。
 
 這個改變代表著，如果你遷移到 React 16，你有可能會發掘出應用程式裡以前沒注意過但已經存在的錯誤。加上錯誤邊界使你在錯誤發生時能夠提供更好的使用者體驗。
 
