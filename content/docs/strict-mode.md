@@ -4,19 +4,19 @@ title: 嚴格模式
 permalink: docs/strict-mode.html
 ---
 
-`嚴格模式（Strict Mode）` 是一個用來突顯應用程式裡潛在問題的工具。如同 `Fragment` 一樣，`嚴格模式`不會 render 任何可見的 UI。它為了它底下的所有子元件們啟動了額外的檢查和警告。
+`嚴格模式`是一個用來突顯應用程式裡潛在問題的工具。如同 `Fragment` 一樣，`嚴格模式`不會 render 任何可見的 UI。它為了底下的所有的依賴們啟動了額外的檢查和警告。
 
 > 注意：
 >
-> 嚴格模式檢查只會在開發模式中執行；_它們不應該影響線上的應用程式_。
+> 嚴格模式檢查只會在開發模式中執行；_它們不應該影響正式環境_。
 
 你可以在應用程式的任何地方打開嚴格模式。例如：`embed:strict-mode/enabling-strict-mode.js`
 
-在上面的例子裡，嚴格模式檢查將*不會*跑在 `Header` 和 `Footer` 元件上。然而 `ComponentOne` 和 `ComponentTwo`，以及它們底下的所有子元件，都會被檢查。
+在上面的範例裡，嚴格模式檢查將*不會*跑在 `Header` 和 `Footer` 元件上。然而 `ComponentOne` 和 `ComponentTwo`，以及它們底下的所有子依賴，都會被檢查。
 
-`嚴格模式` 目前幫助了：
+`嚴格模式`目前可以幫助：
 * [發現擁有不安全生命週期的 component](#identifying-unsafe-lifecycles)
-* [警告使用到了既有的 string ref API](#warning-about-legacy-string-ref-api-usage)
+* [警告使用了 legacy string ref API](#warning-about-legacy-string-ref-api-usage)
 * [警告使用到了被棄用的 findDOMNode](#warning-about-deprecated-finddomnode-usage)
 * [偵測意想不到的副作用](#detecting-unexpected-side-effects)
 * [偵測既有的 context API](#detecting-legacy-context-api)
@@ -96,7 +96,7 @@ Render 面相的生命週期包含了以下 class component 函式:
 
 因為以上函式可能會被呼叫不只一次，不包含副作用是很重要的。忽視這個規則可能會導致各種問題，包含記憶體滲漏，和不合法的應用程式 state。不幸的是，偵測這些問題很困難，因為它們通常是 [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm)。
 
-嚴格模式無法自動偵測副作用，但它可以藉由使這些副作用變得更有確定性，來幫助你發現它們。它藉由故意調用兩次下面的函式來完成這個功能：
+嚴格模式無法自動檢測 side effect，但它可以藉由使這些 side effect 變得更有確定性，來幫助你發現它們。它藉由故意調用兩次下面的函式來完成這個功能：
 
 * Class component `constructor` method
 * The `render` method
@@ -105,7 +105,7 @@ Render 面相的生命週期包含了以下 class component 函式:
 
 > 注意：
 >
-> 這個只在開發模式發生。 _生命週期不會被重複調用在線上模式。_
+> 這個只在開發模式發生。_生命週期不會被重複調用在正式環境。_
 
 例如，考慮以下程式碼：
 `embed:strict-mode/side-effects-in-constructor.js`
@@ -114,10 +114,10 @@ Render 面相的生命週期包含了以下 class component 函式:
 
 通過有意地雙重調用如 component constructor，嚴格模式使這種模式更容易被發現。
 
-### 偵測既有的 context API {#detecting-legacy-context-api}
+### 檢測 legacy context API {#detecting-legacy-context-api}
 
-既有的 context API 是容易出錯的，並將在以後的主要版本中刪除。它仍然適用於所有 16.x 版本，但將在嚴格模式下顯示以下警告訊息：
+Legacy context API 是容易出錯的，並將在以後的主要版本中刪除。它仍然適用於所有 16.x 版本，但將在嚴格模式下顯示以下警告訊息：
 
 ![](../images/blog/warn-legacy-context-in-strict-mode.png)
 
-閱讀[新的 context API文檔](/docs/context.html)，以幫助遷移到新版本。
+閱讀[新的 context API 文件](/docs/context.html)，以助於遷移到新版本。
