@@ -32,7 +32,7 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // 更新 state 以至於下一個 render 會顯示備用的 UI
+    // 更新 state 以至於下一個 render 會顯示 fallback UI
     return { hasError: true };
   }
 
@@ -43,7 +43,7 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // 你可以 render 任何客製化的備用 UI
+      // 你可以 render 任何客製化的 fallback UI
       return <h1>Something went wrong.</h1>;
     }
 
@@ -62,7 +62,7 @@ class ErrorBoundary extends React.Component {
 
 錯誤邊界就如同 JavaScript 的 `catch {}`，但它是給 component 使用的。只有 class component 可以成為錯誤邊界。實務上，大部分的時間你只會想要宣告錯誤邊界 component 一次，然後在你的應用程式裡重複使用它。
 
-要注意 **錯誤邊界只會捕捉它底下 component tree 裡的 component 的錯誤**。錯誤邊界無法捕捉它自己本身的錯誤。如果一個錯誤邊界在 render 錯誤訊息的時候失敗了，這個錯誤會被傳遞到在它之上最近的錯誤邊界。這個也與 JavaScript 的 catch {} 的運作方式類似。
+要注意**錯誤邊界只會捕捉它底下 component tree 裡的 component 的錯誤**。錯誤邊界無法捕捉它自己本身的錯誤。如果一個錯誤邊界在 render 錯誤訊息的時候失敗了，這個錯誤會被傳遞到在它之上最近的錯誤邊界。這個也與 JavaScript 的 catch {} 的運作方式類似。
 
 ## Live Demo {#live-demo}
 
@@ -72,6 +72,7 @@ class ErrorBoundary extends React.Component {
 ## 該把錯誤邊界放在哪裡 {#where-to-place-error-boundaries}
 
 錯誤邊界的精確度取決於你自己。你可以把它包在最上層的 route component 藉以顯示「發生了一些錯誤」的訊息給使用者，就如同 server-side framework 裡常常處理錯誤的方式。你也可以把它包在個別的小工具外，藉以保護它們不受應用程式裡發生的其他錯誤的影響。
+
 
 ## 對於未捕捉到的錯誤的新行為 {#new-behavior-for-uncaught-errors}
 
@@ -141,7 +142,7 @@ class MyComponent extends React.Component {
 
   handleClick() {
     try {
-      // 做某些可以丟出錯誤的事情
+      // 做某些可以拋出錯誤的事情
     } catch (error) {
       this.setState({ error });
     }
