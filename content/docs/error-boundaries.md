@@ -4,25 +4,25 @@ title: 錯誤邊界
 permalink: docs/error-boundaries.html
 ---
 
-在過去，component 裡 JavaScript 的錯誤常常會敗壞 React 的內部 state，並使它在下次 render 的時候[發生](https://github.com/facebook/react/issues/4026) [神秘的](https://github.com/facebook/react/issues/6895) [錯誤](https://github.com/facebook/react/issues/8579)。這些錯誤總是被應用程式的程式碼裡更早發生的錯誤所導致，但 React 並沒有提供在 component 裡優雅處理它們的方式，而且也無法從錯誤中恢復。
+在過去，component 裡 JavaScript 的錯誤常常會破壞 React 的內部 state，並使它在下次 render 的時候[發生](https://github.com/facebook/react/issues/4026) [神秘的](https://github.com/facebook/react/issues/6895) [錯誤](https://github.com/facebook/react/issues/8579)。這些錯誤總是被應用程式的程式碼裡更早發生的錯誤所導致，但 React 並沒有提供在 component 裡優雅處理它們的方式，而且也無法從錯誤中恢復。
 
 
 ## 引入錯誤邊界 {#introducing-error-boundaries}
 
 一個介面裡的某一個 JavaScript 的錯誤不應該毀了整個應用程式。為了替 React 使用者解決這個問題，React 16 引入了一個新的概念：「錯誤邊界」。
 
-錯誤邊界是一個 React component，它 **捕捉了任何在它的 child component tree 裡發生的 JavaScript 的錯誤，記錄那些錯誤，然後顯示在一個備用的使用介面**，而非讓整個 component tree 崩壞。錯誤邊界會在 render 的時候、在生命週期函式內、以及底下一整個 component tree 裡的 constructor 內捕捉錯誤。
+錯誤邊界是一個 React component，它**捕捉了任何在它的 child component tree 裡發生的 JavaScript 的錯誤，記錄那些錯誤，然後顯示在一個 fallback 的使用介面**，而非讓整個 component tree 崩壞。錯誤邊界會在 render 的時候、在生命週期函式內、以及底下一整個 component tree 裡的 constructor 內捕捉錯誤。
 
 > 注意
 >
-> 錯誤邊界 **不會** 在以下情況捕捉錯誤：
+> 錯誤邊界**不會**在以下情況捕捉錯誤：
 >
-> * Event handlers ([learn more](#how-about-event-handlers))
-> * 非同步的程式碼 (e.g. `setTimeout` or `requestAnimationFrame` callbacks)
+> * Event handlers ([學習更多](#how-about-event-handlers))
+> * 非同步的程式碼 (例如 `setTimeout` 或 `requestAnimationFrame` callback)
 > * Server side rendering
 > * 在錯誤邊界裡丟出的錯誤（而不是在它底下的 children）
 
-一個 class component 如果定義了[`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) 或 [`componentDidCatch()`](/docs/react-component.html#componentdidcatch) 其中一種（或兩種都有）生命週期，它就會變成錯誤邊界。在錯誤被丟出去之後，我們使用 `static getDerivedStateFromError()` 來 render 備用的 UI，以及使用 `componentDidCatch()` 來記錄錯誤的資訊。
+一個 class component 如果定義了 [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) 或 [`componentDidCatch()`](/docs/react-component.html#componentdidcatch) 其中一種（或兩種都有）生命週期，它就會變成錯誤邊界。在錯誤被丟出去之後，我們使用 `static getDerivedStateFromError()` 來 render fallback 的 UI，以及使用 `componentDidCatch()` 來記錄錯誤的資訊。
 
 ```js{7-10,12-15,18-21}
 class ErrorBoundary extends React.Component {
@@ -66,7 +66,8 @@ class ErrorBoundary extends React.Component {
 
 ## Live Demo {#live-demo}
 
-看看 [React 16](/blog/2017/09/26/react-v16.0.html)[這個宣告與使用錯誤邊界的範例](https://codepen.io/gaearon/pen/wqvxGa?editors=0010)。
+查看 [React 16](/blog/2017/09/26/react-v16.0.html) [這個宣告與使用錯誤邊界的範例](https://codepen.io/gaearon/pen/wqvxGa?editors=0010)。
+
 
 ## 該把錯誤邊界放在哪裡 {#where-to-place-error-boundaries}
 
@@ -95,11 +96,11 @@ React 16 把所有發生在 render 時的錯誤在開發時印出在 console 裡
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="被錯誤邊界 component 捕捉到的錯誤與行數">
 
-如果你沒有使用 Create React App, 你可以手動在 Babel configuration 加上 [這個外掛](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source)。注意它是被設計用來在開發模式使用的，且 **必須在線上模式被關掉**。
+如果你沒有使用 Create React App, 你可以手動在 Babel 設定加上[這個 plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source)。注意它是被設計用來在開發模式使用的，且**必須在正式環境被關掉**。
 
 > 注意
 >
-> 在 stack trace 裡顯示的 component 名稱是由 [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) attribute 所決定的。如果你支援沒有原生提供它的舊瀏覽器和裝置（例如 IE 11），試著考慮把 `Function.name` polyfill 到你的應用程式，例如 [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name)。或著，你可以另外在你所有的 component 裡設定[`displayName`](/docs/react-component.html#displayname) attribute。
+> 在 stack trace 裡顯示的 component 名稱是由 [`Function.name`](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Function/name) attribute 所決定的。如果你支援沒有原生提供它的舊瀏覽器和裝置（例如 IE 11），試著考慮把 `Function.name` polyfill 到你的應用程式，例如 [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name)。或著，你可以另外在你所有的 component 裡設定 [`displayName`](/docs/react-component.html#displayname) attribute。
 
 
 ## 那 try/catch 呢？ {#how-about-trycatch}
@@ -124,7 +125,7 @@ try {
 
 ## 那 Event Handler 呢？ {#how-about-event-handlers}
 
-錯誤邊界 **不會** 捕捉 event handler 裡所發生的錯誤。
+錯誤邊界**不會**捕捉 event handler 裡所發生的錯誤。
 
 React 不需要從 event handler 裡發生的錯誤恢復。不像 render 和其他生命週期的函式一樣，event handler 不會發生在 render 的時候。所以如果它們丟出錯誤，React 仍然知道該顯示什麼在畫面上。
 
