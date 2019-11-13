@@ -75,11 +75,11 @@ React Native 0.59 以上的版本支援 Hooks。
 
 ### 我需要重寫所有的 Class component 嗎？ {#do-i-need-to-rewrite-all-my-class-components}
 
-不需要。React [沒有計劃](/docs/hooks-intro.html#gradual-adoption-strategy)移除 class -- 我們需要讓產品保持運作，不能承受重寫這件事。我們建議你在新的程式碼中嘗試 Hook。
+不需要。React [沒有計劃](/docs/hooks-intro.html#gradual-adoption-strategy)移除 class -- 我們需要讓產品保持運作，重寫的成本很高，我們建議你在新的程式碼中嘗試 Hook。
 
 ### 我可以在 Hook 做什麼是我在 Class 所不能做的？ {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
 
-Hook 在 component 之間提供強大而富有表現力的新方式來重複使用功能。在[「打造你的 Hook」](/docs/hooks-custom.html) 提供了一個可行的方式。[這篇文章](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889)是由 React 核心團隊成員深入研究 Hook 解鎖的新功能。
+Hook 在 component 之間提供強大而富有表現力的新方式來重複使用功能。在[「打造你的 Hook」](/docs/hooks-custom.html)提供了一個可行的方式。[這篇文章](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889)是由 React 核心團隊成員深入研究 Hook 解鎖的新功能。
 
 ### Hook 與我的 React 知識有多少保持相關性？ {#how-much-of-my-react-knowledge-stays-relevant}
 
@@ -115,7 +115,7 @@ React Router 從 v5.1 版本後[支援 Hooks](https://reacttraining.com/react-ro
 
 ### Hook 可以使用靜態型別嗎？ {#do-hooks-work-with-static-typing}
 
-Hook 的設計考慮到了靜態型別。因為它們是函式，比 higher-order component 等其他模式的 component 更容易正確的定義。最新的 Flow 和 TypeScript 定義包含對 React Hook 的支援。
+Hook 的設計考慮到了靜態型別。因為它們是函式，比 Higher-Order Component 等其他模式的 component 更容易正確的定義。最新的 Flow 和 TypeScript 定義包含對 React Hook 的支援。
 
 重要的是，如果你想要以某種嚴格的方式定義 React API，自訂的 Hook 讓你有權利限制。React 為你提供了 primitive，但你可以將它與我們提供的方式，用不同的方式組合在一起。
 
