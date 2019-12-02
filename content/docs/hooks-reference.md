@@ -450,7 +450,7 @@ function FancyInput(props, ref) {
 FancyInput = forwardRef(FancyInput);
 ```
 
-在這個範例中，render `<FancyInput ref={fancyInputRef} />` 的父 component 能呼叫 `fancyInputRef.current.focus()`。
+在這個範例中，render `<FancyInput ref={inputRef} />` 的父 component 能呼叫 `inputRef.current.focus()`。
 
 ### `useLayoutEffect` {#uselayouteffect}
 
