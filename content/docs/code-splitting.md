@@ -89,7 +89,7 @@ import("./math").then(math => {
 
 > 注意：
 >
-> `React.lazy` 和 Suspense 還無法在 server-side render 使用。如果你想要在 server render 應用程式做 code-splitting，我們推薦 [Loadable Components](https://github.com/smooth-code/loadable-components)。它有一個用於 server-side render 的 [bundle splitting 的指南](https://www.smooth-code.com/open-source/loadable-components/docs/server-side-rendering/)。
+> `React.lazy` 和 Suspense 還無法在 server-side render 使用。如果你想要在 server render 應用程式做 code-splitting，我們推薦 [Loadable Components](https://github.com/gregberge/loadable-components)。它有一個用於 server-side render 的 [bundle splitting 的指南](https://loadable-components.com/docs/server-side-rendering/)。
 
 `React.lazy` 讓你 render 一個動態 import 的 component 作為正常的 component。
 
