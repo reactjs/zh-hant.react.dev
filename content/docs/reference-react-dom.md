@@ -36,7 +36,11 @@ React 支援所有主流瀏覽器包含 IE 9 和以上，儘管舊版瀏覽器�
 ReactDOM.render(element, container[, callback])
 ```
 
+<<<<<<< HEAD
 在 `container` 內 render 一個 React element 並回傳一個 [reference](/docs/more-about-refs.html) 到 component（或者是 [stateless components](/docs/components-and-props.html#functional-and-class-components) 則回傳 `null`）。
+=======
+Render a React element into the DOM in the supplied `container` and return a [reference](/docs/more-about-refs.html) to the component (or returns `null` for [stateless components](/docs/components-and-props.html#function-and-class-components)).
+>>>>>>> 1dd4e325f070ce198aed69fd9cc5467563679e54
 
 如果 React element 之前已經在 `container` 內被 render，它只會執行更新並 mutate 必要的 DOM，來呈現最新的 React element。
 
