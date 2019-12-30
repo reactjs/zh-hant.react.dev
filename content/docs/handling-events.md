@@ -56,7 +56,11 @@ function ActionLink() {
 
 在這裡，`e` 是一個綜合事件（synthetic event）。React 根據 [W3C 規範](https://www.w3.org/TR/DOM-Level-3-Events/)來定義這些綜合事件，所以，你不需要煩惱跨瀏覽器相容性（cross-browser compatibility）的問題。若想了解更多這方面的資訊，請參考 [`SyntheticEvent`](/docs/events.html)。
 
+<<<<<<< HEAD
 當使用 React 時，你不需要在建立一個 DOM element 後再使用 `addEventListener` 來加上 listener。你只需要在這個 element 剛開始被 render 時就提供一個 listener。
+=======
+When using React, you generally don't need to call `addEventListener` to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.
+>>>>>>> 5b6ad388804aaa5cf5504ccd04329f52960e17ae
 
 當你使用 [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) 來定義 Component 時，常見的慣例是把 event handler 當成那個 class 的方法。例如，這個 `Toggle` Component 會 render 一個按鈕，讓使用者可以轉換 state 中的「開」與「關」：
 
@@ -142,7 +146,11 @@ class LoggingButton extends React.Component {
 
 ## 將參數傳給 Event Handler {#passing-arguments-to-event-handlers}
 
+<<<<<<< HEAD
 在一個迴圈中，我們常常會需要傳遞一個額外的參數給 event handler。例如，如果 `id` 是每一行的 ID 的話，下面兩種語法都可行：
+=======
+Inside a loop, it is common to want to pass an extra parameter to an event handler. For example, if `id` is the row ID, either of the following would work:
+>>>>>>> 5b6ad388804aaa5cf5504ccd04329f52960e17ae
 
 ```js
 <button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
