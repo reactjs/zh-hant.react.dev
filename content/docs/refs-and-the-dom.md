@@ -11,15 +11,15 @@ redirect_from:
 permalink: docs/refs-and-the-dom.html
 ---
 
-Ref 提供了一種可以取得 DOM 結點或在 render 裡產生的 React element 的方式。
+Ref 提供了一種可以取得 DOM 節點或在 render 方法內建立 React element 的方式。
 
-在典型的 React 資料流裡，[props](/docs/components-and-props.html) 是唯一 parent component 可以和它底下的 child component 互動的方式。你會藉由使用新的 prop 重新 render 來改變你的 child。然而，有些情況下你需要在典型的資料流以外更改你的 child。這個被更改的 child 可能是 React component 的其中一個 instance，或他可能是個 DOM element。在這兩種情況下，React 提供了「逃生口」。
+在典型的 React 資料流裡，[props](/docs/components-and-props.html) 是 parent component 和 child component 唯一的互動方式。你會藉由使用新的 prop 重新 render 來改變你的 child。然而，有些情況下你需要在典型的資料流以外更改你的 child。這個被更改的 child 可能是 React component 的其中一個 instance，或他可能是個 DOM element。在這兩種情況下，React 提供了「逃生口」。
 
 ### 什麼時候該使用 Ref {#when-to-use-refs}
 
 有幾種適合使用 ref 的情況：
 
-* 管理 focus、選擇文字、或 media playback。
+* 管理 focus、選擇文字、或影音播放。
 * 觸發即時的動畫。
 * 與第三方 DOM 函式庫整合。
 
@@ -29,15 +29,15 @@ Ref 提供了一種可以取得 DOM 結點或在 render 裡產生的 React eleme
 
 ### 不要過度使用 Ref {#dont-overuse-refs}
 
-你一開始可能會傾向於在應用程式裡使用 ref「讓事情發生」。如果這是你的情形，花點時間認真思考一下 state 應該在 component 的層級的哪裡被持有。通常你會清楚發現，持有在高一個層級的地方是比較合適的位置。請參閱[把 state 往上提](/docs/lifting-state-up.html)這篇指南裡面的範例。
+你一開始可能會傾向於在應用程式裡使用 ref「讓事情發生」。如果這是你的情形，花點時間認真思考一下 state 應該在哪個 component 的層級被持有。通常你會清楚發現，在高層級的地方持有是比較合適的位置。請參閱[提升 State](/docs/lifting-state-up.html)這篇指南裡面的範例。
 
 > 注意
 >
 > 以下的範例已經被更新為使用 React 16.3 所引入的 `React.createRef()` API。如果你是利用比較舊版本的 React，我們推薦使用 [callback refs](#callback-refs)。
 
-### 產生 Ref {#creating-refs}
+### 建立 Ref {#creating-refs}
 
-Ref 是藉由使用 `React.createRef()` 所產生的，他藉由 `ref` 參數被依附在 React element。Ref 常常會在一個 component 被建立出來的時候，被賦值在某個 instance 屬性，這樣一來他們就可以在整個 component 裡面被參照。
+Ref 是藉由使用 `React.createRef()` 所產生的，它藉由 `ref` 參數被依附在 React element。Ref 常常會在一個 component 被建立出來的時候，被賦值在某個 instance 屬性，這樣一來他們就可以在整個 component 裡面被參考。
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -51,9 +51,9 @@ class MyComponent extends React.Component {
 }
 ```
 
-### 取得 Ref {#accessing-refs}
+### 存取 Ref {#accessing-refs}
 
-當 ref 在 `render` 裡被傳到一個 element 的時候，一個指向節點、對 ref 的 `current` 參數的參考會變得可以取得。
+當 ref 在 `render` 裡被傳到一個 element 的時候，一個指向節點對 ref 的 `current` 參數的參考會變得可以取得。
 
 ```javascript
 const node = this.myRef.current;
@@ -61,8 +61,8 @@ const node = this.myRef.current;
 
 Ref 的值會根據節點的類型而有所不同：
 
-- 當在 HTML element 上使用 `ref` 參數時，使用 `React.createRef()` 建造 `ref` 會取得他底下的 DOM element 來當作他的 `current` 屬性。
-- 當在客製化的 class component 使用 `ref` 參數時，`ref` 取得被安裝的 component 上的 instance 來當作他的 `current`。
+- 當在 HTML element 上使用 `ref` 參數時，使用 `React.createRef()` 建立 `ref` 會取得它底下的 DOM element 來做為它的 `current` 屬性。
+- 當在客製化的 class component 使用 `ref` 參數時，`ref` 取得被 mount 的 component 上的 instance 來當作他的 `current`。
 - **你不能在 function component 上使用 `ref`**，因為他們沒有 instance。
 
 下面的範例示範了差異。
@@ -105,11 +105,11 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React 會在 component 安裝的時候將 DOM element 賦值到 `current` 屬性，並在卸裝時將他清空回 `null`。`ref` 的更新發生在生命週期 `componentDidMount` 或 `componentDidUpdate` 之前。
+React 會在 component mount 的時候將 DOM element 賦值到 `current` 屬性，並在 unmount 時將它清空回 `null`。`ref` 的更新發生在生命週期 `componentDidMount` 或 `componentDidUpdate` 之前。
 
 #### 在 Class Component 加上 Ref {#adding-a-ref-to-a-class-component}
 
-如果我們想要把上面的 `CustomTextInput` 包起來然後模擬它在被安裝之後馬上被點擊，我們可以使用 ref 來獲得客製化的 input 併手動呼叫他的 `focusTextInput` 函式：
+如果我們想要把上面的 `CustomTextInput` 包起來然後模擬它在被 mount 之後馬上被點擊，我們可以使用 ref 來獲得客製化的 input 併手動呼叫他的 `focusTextInput` 函式：
 
 ```javascript{4,8,13}
 class AutoFocusTextInput extends React.Component {
@@ -205,7 +205,7 @@ function CustomTextInput(props) {
 
 React 也支援另一種設定 ref 的方式，這種方法叫做「callback refs」，它提供了對 ref 的設定上更細緻的控制。
 
-不是將 `createRef()` 所產生的 `ref` 傳遞下去，而是把一個函式往下傳。這個函式會將 React component 的 instance 或 HTML DOM 作為他的參數，然後可以被儲存之後在別的地方使用。 
+不是將 `createRef()` 所產生的 `ref` 傳遞下去，而是把一個 function 往下傳。這個 function 會將 React component 的 instance 或 HTML DOM 作為他的參數，然後可以被儲存之後在別的地方使用。
 
 下面的例子實作了一個常見的模式：利用 `ref` 的 callback 來儲存一個在 instance 屬性裡 DOM 節點的參考。
 
@@ -227,7 +227,7 @@ class CustomTextInput extends React.Component {
   }
 
   componentDidMount() {
-    // 自動在安裝的時候 focus 輸入
+    // 在 mount 的時候自動 focus 輸入
     this.focusTextInput();
   }
 
@@ -251,7 +251,7 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React 會在 component 安裝時用 DOM element 呼叫 `ref` callback，然後在卸裝時用 `null` 呼叫他。Ref 被保證在 `componentDidMount` 或 `componentDidUpdate` 觸發時能夠維持在最新的狀態。
+React 會在 component 安裝時用 DOM element 呼叫 `ref` callback，然後在 unmount 時用 `null` 呼叫他。Ref 被保證在 `componentDidMount` 或 `componentDidUpdate` 觸發時能夠維持在最新的狀態。
 
 你可以將 callback ref 在 component 之間傳遞，就像你可以用一樣的方式在 `React.createRef()` 所產生的 object ref 一樣。
 
@@ -275,7 +275,7 @@ class Parent extends React.Component {
 }
 ```
 
-在上面的範例裡，`Parent` 將他的 ref callback 當作一個 `inputRef` prop 來傳到 `CustomTextInput`，然後 `CustomTextInput` 將一樣的函式當作特別的 `ref` 屬性來傳給 `<input>`。因此，在 `Parent` 的 `this.inputElement` 會被設為與在 `CustomTextInput` 裡 `<input>` element 相關的 DOM 節點。
+在上面的範例裡，`Parent` 將他的 ref callback 做為一個 `inputRef` prop 傳到 `CustomTextInput`，然後 `CustomTextInput` 將一樣的 function 當作特別的 `ref` 屬性來傳給 `<input>`。因此，在 `Parent` 的 `this.inputElement` 會被設為與在 `CustomTextInput` 裡 `<input>` element 相關的 DOM 節點。
 
 ### Legacy API: String Refs {#legacy-api-string-refs}
 
@@ -287,4 +287,4 @@ class Parent extends React.Component {
 
 ### 對 callback ref 的警告 {#caveats-with-callback-refs}
 
-如果 `ref` callback 是被 inline function 所定義的，他會在更新的時候被呼叫兩次，第一次用 `null` 然後再用 DOM element 呼叫一次。這是因為新的函式的 instance 是在每次 render 的時候被產生，所以 React 需要將舊的 ref 清掉然後設定新的。你可以藉由定義 `ref` callback 為 class 上的一個 bound method 來避免這種情形，但在大多情況下他並沒有任何影響。
+如果 `ref` callback 是被 inline function 所定義的，他會在更新的時候被呼叫兩次，第一次用 `null` 然後再用 DOM element 呼叫一次。這是因為新的 function 的 instance 是在每次 render 的時候被產生，所以 React 需要將舊的 ref 清掉然後設定新的。你可以藉由定義 `ref` callback 為 class 上的一個 bound method 來避免這種情形，但在大多情況下他並沒有任何影響。
