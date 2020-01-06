@@ -55,4 +55,4 @@ ReactDOM.render(
 
 如果你使用這個`React.createElement`縮寫的格式，他可以跟沒有 JSX 的 React一樣方便。
 
-此外，你也可以參考社群專案像是[`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) 和 [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) ，這些專案提供了更為簡潔的語法。
+此外，你也可以參考社群專案像是 [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) 和 [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers)，這些專案提供了更為簡潔的語法。
