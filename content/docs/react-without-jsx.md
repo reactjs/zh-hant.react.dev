@@ -42,7 +42,7 @@ ReactDOM.render(
 
 component可以是一個字串，或`React.Component`的subclass，或一個單純用於stateless component的function。
 
-如果你已經疲於不斷重複寫`React.createElement`，一個常見的方式是賦予一個縮寫：
+如果你已經疲於不斷重複寫 `React.createElement`，一個常見的方式是賦予一個縮寫：
 
 ```js
 const e = React.createElement;
