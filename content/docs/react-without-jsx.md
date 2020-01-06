@@ -8,7 +8,7 @@ JSX 對於使用 React 並不是不可或缺的。當你不想在開發環境中
 
 每個 JSX 元素都只是呼叫 `React.createElement(component, props, ...children)` 的語法糖。所有任何你能用 JSX 做的事，你都能用純 JavaScript 做到。
 
-比如, 這段用JSX寫成的編碼：
+比如，這段用 JSX 寫成的編碼：
 
 ```js
 class Hello extends React.Component {
