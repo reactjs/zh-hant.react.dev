@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-可以編譯成這段沒有JSX的編碼
+可以編譯成這段沒有 JSX 的程式碼：
 
 ```js
 class Hello extends React.Component {
