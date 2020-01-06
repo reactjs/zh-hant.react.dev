@@ -46,7 +46,11 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
+<<<<<<< HEAD
 在未來，我們打算在 Create React App 和相關的 toolkit 中將這個套件設為預設。
+=======
+This plugin is included by default in [Create React App](/docs/create-a-new-react-app.html#create-react-app).
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 **你現在可以先跳過，下一頁將解釋如何打造[你自己的 Hook](/docs/hooks-custom.html)。**在這頁，我們將會繼續解釋這些規則背後的原因。
 

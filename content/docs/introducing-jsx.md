@@ -180,4 +180,8 @@ const element = {
 
 >**提示：**
 >
+<<<<<<< HEAD
 >我們推薦你在編輯器中使用 [「Babel」語法](http://babeljs.io/docs/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。這個網站使用的是一個相容的色彩主題 [Oceanic Next](https://github.com/voronianski/oceanic-next-color-scheme)。
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4

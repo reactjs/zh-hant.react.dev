@@ -48,7 +48,11 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 當你剛實作全新的 React 應用程式時，一個[簡單的 HTML 網頁配上 script 標籤](/docs/add-react-to-a-website.html)或許依然是最好的選擇。這樣我們就可以在一分鐘內設定好。
 
+<<<<<<< HEAD
 當你的應用程式逐漸擴大，你或許要考慮使用一個比較綜合的設定方法。我們推薦使用[一些 JavaScript toolchains](/docs/create-a-new-react-app.html) 來設定大型的應用程式。它們只需要一點，甚至一點配置也不需要，就能讓我們充份使用豐富的 React ecosystem。
+=======
+As your application grows, you might want to consider a more integrated setup. There are several JavaScript toolchains we recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem. [Learn how.](/docs/create-a-new-react-app.html)
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ## 學習 React {#learn-react}
 
