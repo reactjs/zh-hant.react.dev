@@ -6,7 +6,7 @@ permalink: docs/react-without-jsx.html
 
 JSX 對於使用 React 並不是不可或缺的。當你不想在開發環境中設置編譯時，使用沒有 JSX 的 React 格外方便。
 
-每個JSX元素都只是呼叫`React.createElement(component, props, ...children)`的語法糖。所有任何你能用JSX做的事，你都能用純JavaScript做到。
+每個 JSX 元素都只是呼叫 `React.createElement(component, props, ...children)` 的語法糖。所有任何你能用 JSX 做的事，你都能用純 JavaScript 做到。
 
 比如, 這段用JSX寫成的編碼：
 
