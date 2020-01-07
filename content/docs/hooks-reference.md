@@ -69,6 +69,8 @@ function Counter({initialCount}) {
 
 「+」和「-」按鈕使用了函數式形式，因為被更新的值是基於先前的值。但是「Reset」按鈕則使用普通形式，因為它總是把 count 設定回初始值。
 
+如果你的 update function 回傳完全相同的值，之後的 render 將會被完整跳過。
+
 > 注意
 >
 > 與 class component 的 `setState` 方法不同，`useState` 不會自動合併更新 object。你可以用函數式更新的形式結合 object spread 語法來達到相同效果：
@@ -180,7 +182,7 @@ const value = useContext(MyContext);
 
 接收一個 context object（`React.createContext` 的回傳值）並回傳該 context 目前的值。Context 目前的值是取決於由上層 component 距離最近的 `<MyContext.Provider>` 的 `value` prop。
 
-當 component 上層最近的 `<MyContext.Provider>` 更新時，該 hook 會觸發重新 render，並使用最新傳遞到 `MyContext` 的 context `value`。
+當 component 上層最近的 `<MyContext.Provider>` 更新時，該 hook 會觸發重新 render，並使用最新傳遞到 `MyContext` 的 context `value` 傳送到 `MyContext` provider。即便 ancestor 使用 [`React.memo`](/docs/react-api.html#reactmemo) 或 [`shouldComponentUpdate`](/docs/react-component.html#shouldcomponentupdate)，重新 render 仍然從使用 `useContext` 的 component 本身開始。
 
 不要忘記 `useContext` 的參數必需為 *context object 自己*：
 

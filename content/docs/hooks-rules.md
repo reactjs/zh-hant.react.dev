@@ -25,7 +25,7 @@ Hook 是 JavaScript function，當你使用它們時需要遵守兩個規則。�
 
 ## ESLint Plugin {#eslint-plugin}
 
-我們發佈了一個 ESLint plugin 叫做 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) 來強制施行這兩個規則。如果你想嘗試的話，可以將這個 plugin 加入到你的專案中: 
+我們發佈了一個 ESLint plugin 叫做 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) 來強制施行這兩個規則。如果你想嘗試的話，可以將這個 plugin 加入到你的專案中:
 
 ```bash
 npm install eslint-plugin-react-hooks --save-dev
@@ -46,7 +46,7 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
-在未來，我們打算在 Create React App 和相關的 toolkit 中將這個套件設為預設。
+這個 plugin 在 [Create React App](/docs/create-a-new-react-app.html#create-react-app) 預設會被引入。
 
 **你現在可以先跳過，下一頁將解釋如何打造[你自己的 Hook](/docs/hooks-custom.html)。**在這頁，我們將會繼續解釋這些規則背後的原因。
 
@@ -82,7 +82,7 @@ function Form() {
 // ------------
 // 第一次 render
 // ------------
-useState('Mary')           // 1. 用 'Mary' 來初始化 name state 變數 
+useState('Mary')           // 1. 用 'Mary' 來初始化 name state 變數
 useEffect(persistForm)     // 2. 增加一個 effect 來保存表單
 useState('Poppins')        // 3. 用 'Poppins' 來初始化 surname state 變數
 useEffect(updateTitle)     // 4. 增加一個 effect 來更新標題

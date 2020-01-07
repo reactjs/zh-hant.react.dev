@@ -428,8 +428,8 @@ function Example() {
 
 ```js
 function ScrollView({row}) {
-  let [isScrollingDown, setIsScrollingDown] = useState(false);
-  let [prevRow, setPrevRow] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
     // Row 在最後一次 render 被改變。更新 isScrollingDown
@@ -489,6 +489,8 @@ function MeasureExample() {
 在這個範例我們不選擇 `useRef` 是因為一個 object 的 ref 不會通知我們目前的 ref 值的*改變*。使用一個 callback ref 確保[即使 child component 延遲顯示測量的 node](https://codesandbox.io/s/818zzk8m78) （例如：在 response click），我們仍然會在 parent component 中收到有關它的通知，並可以更新測量結果。
 
 這確保我們的 ref callback 不會在 re-render 時改變，因此 React 不需要呼叫它。
+
+在這個範例，callback ref 只會在當 component mount 以及 unmount 時被呼叫，由於被 render 的 `<h1>` component 在所有 render 都保持存在。如果你想要在任何時候在 component resize 時被通知，你可以使用 [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 或其他第三方的 Hook。
 
 如果你希望呼叫它的話，你可以[抽出這個邏輯](https://codesandbox.io/s/m5o42082xy)變成一個可重複使用的 Hook：
 
@@ -716,7 +718,7 @@ function Counter() {
 ```js{2-6,10-11,16}
 function Example(props) {
   // 保持最新的 props 在 ref。
-  let latestProps = useRef(props);
+  const latestProps = useRef(props);
   useEffect(() => {
     latestProps.current = props;
   });
