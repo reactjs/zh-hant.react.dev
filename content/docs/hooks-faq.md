@@ -465,11 +465,7 @@ function ScrollView({row}) {
 
 ### 我該如何測量一個 DOM node？ {#how-can-i-measure-a-dom-node}
 
-<<<<<<< HEAD
 為了測量 DOM node 的位置或是大小，你可以使用 [callback ref](/docs/refs-and-the-dom.html#callback-refs)。只要 ref 被 attach 到不同的 node，React 將會呼叫這個 callback。這裡是一個[簡易的範例](https://codesandbox.io/s/l7m0v5x4v9)：
-=======
-One rudimentary way to measure the position or size of a DOM node is to use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -494,13 +490,9 @@ function MeasureExample() {
 
 這確保我們的 ref callback 不會在 re-render 時改變，因此 React 不需要呼叫它。
 
-<<<<<<< HEAD
-如果你希望呼叫它的話，你可以[抽出這個邏輯](https://codesandbox.io/s/m5o42082xy)變成一個可重複使用的 Hook：
-=======
-In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
+在這個範例，callback ref 只會在當 component mount 以及 unmount 時被呼叫，由於被 render 的 `<h1>` component 在所有 render 都保持存在。如果你想要在任何時候在 component resize 時被通知，你可以使用 [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) 或其他第三方的 Hook。
 
-If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+如果你希望呼叫它的話，你可以[抽出這個邏輯](https://codesandbox.io/s/m5o42082xy)變成一個可重複使用的 Hook：
 
 ```js{2}
 function MeasureExample() {
@@ -725,13 +717,8 @@ function Counter() {
 
 ```js{2-6,10-11,16}
 function Example(props) {
-<<<<<<< HEAD
   // 保持最新的 props 在 ref。
-  let latestProps = useRef(props);
-=======
-  // Keep latest props in a ref.
   const latestProps = useRef(props);
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
   useEffect(() => {
     latestProps.current = props;
   });
