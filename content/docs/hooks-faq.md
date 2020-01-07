@@ -97,7 +97,7 @@ Hook 的確有它本身的學習曲線。如果在這份文件中缺漏了些什
 
 對於不常見的 `getSnapshotBeforeUpdate` 和 `componentDidCatch` 的生命週期並沒有等價的 Hook 方式，但我們計劃很快會加入它們。
 
-這是早期的 Hook，目前一些第三方函式庫可能與 Hook 不相容。
+這是早期的 Hook，目前一些第三方 function 庫可能與 Hook 不相容。
 
 ### Hook 可以取代 Render Props 和 Higher-Order Component 嗎？ {#do-hooks-replace-render-props-and-higher-order-components}
 
@@ -115,7 +115,7 @@ React Router 從 v5.1 版本後[支援 Hooks](https://reacttraining.com/react-ro
 
 ### Hook 可以使用靜態型別嗎？ {#do-hooks-work-with-static-typing}
 
-Hook 的設計考慮到了靜態型別。因為它們是函式，比 Higher-Order Component 等其他模式的 component 更容易正確的定義。最新的 Flow 和 TypeScript 定義包含對 React Hook 的支援。
+Hook 的設計考慮到了靜態型別。因為它們是 function，比 Higher-Order Component 等其他模式的 component 更容易正確的定義。最新的 Flow 和 TypeScript 定義包含對 React Hook 的支援。
 
 重要的是，如果你想要以某種嚴格的方式定義 React API，自訂的 Hook 讓你有權利限制。React 為你提供了 primitive，但你可以將它與我們提供的方式，用不同的方式組合在一起。
 
@@ -199,7 +199,7 @@ it('can render and update a counter', () => {
 
 特別是，該規範強制執行：
 
-* 呼叫 Hook 要麼是在一個 `PascalCase` 函式（假設是一個 component）內，或者是其他 `useSomething` 函式（假設是一個字定義的 Hook）。
+* 呼叫 Hook 要麼是在一個 `PascalCase` function（假設是一個 component）內，或者是其他 `useSomething`  function （假設是一個字定義的 Hook）。
 * 在每次的 render 上以相同的順序呼叫 Hook。
 
 這裡還有一些啟發式的方法，當我們發現錯誤並微調規則以平衡避免誤判時，這些規則可能會隨著時間而改變。
@@ -208,7 +208,7 @@ it('can render and update a counter', () => {
 
 ### 生命週期方法與 Hook 如何對應？ {#how-do-lifecycle-methods-correspond-to-hooks}
 
-* `constructor`：Function component 不需要 constructor。你可以在呼叫 [`useState`](/docs/hooks-reference.html#usestate) 時初始化 state。如果初始化 state 的操作代價很高，你可以傳遞一個函式到 `useState`。
+* `constructor`：Function component 不需要 constructor。你可以在呼叫 [`useState`](/docs/hooks-reference.html#usestate) 時初始化 state。如果初始化 state 的操作代價很高，你可以傳遞一個  function 到 `useState`。
 
 * `getDerivedStateFromProps`：改為[在 render](#how-do-i-implement-getderivedstatefromprops) 時安排更新。
 
@@ -542,11 +542,11 @@ function Example({ someProp }) {
 
   useEffect(() => {
     doSomething();
-  }, []); // 🔴 這個不安全（它呼叫 `doSomething` 使用了 `someProp`）
+  }, []); // 🔴 這個不安全（呼叫 `doSomething` 的 function 使用了 `someProp`）
 }
 ```
 
-要記住 effect 之外的函式使用了哪些 props 或 state 是很困難的。這也是為什麼**通常你需要在 effect *內*宣告所需要的 function。**然後可以很容易的看出 effect 依賴了 component 範圍內的值：
+要記住 effect 之外的 function 使用了哪些 props 或 state 是很困難的。這也是為什麼**通常你需要在 effect *內*宣告所需要的 function。**然後可以很容易的看出 effect 依賴了 component 範圍內的值：
 
 ```js{4,8}
 function Example({ someProp }) {
@@ -582,7 +582,7 @@ useEffect(() => {
 
 如果你在 `useEffect`、`useMemo`、`useCallback` 或是 `useImperativeHandle` 的最後指定了[依賴項目的列表](/docs/hooks-reference.html#conditionally-firing-an-effect)，它必須包含參與 React 資料流的所有內部的值。包含了 props、state 和從他們取得的任何值。
 
-如果沒有任何內容（或由它呼叫的函式）reference 到 props、state 或是從它們取得的值，那麼從依賴項目中省略一個函式是*唯一*安全的。這個範例有一個 bug：
+如果沒有任何內容（或由它呼叫的 function）reference 到 props、state 或是從它們取得的值，那麼從依賴項目中省略一個 function 是*唯一*安全的。這個範例有一個 bug：
 
 ```js{5,12}
 function ProductPage({ productId }) {
@@ -601,14 +601,14 @@ function ProductPage({ productId }) {
 }
 ```
 
-**推薦修正的方法是將函式移動到你的 effect _內部_。**這樣可以很容易地看到你的 effect 使用了哪些 props 或 state，並確保他們都被宣告：
+**推薦修正的方法是將 function 移動到你的 effect _內部_。**這樣可以很容易地看到你的 effect 使用了哪些 props 或 state，並確保他們都被宣告：
 
 ```js{5-10,13}
 function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    // 透過將這個函式移動到 effect 內部，我們可以清楚地看到值的使用。
+    // 透過將這個 function 移動到 effect 內部，我們可以清楚地看到值的使用。
     async function fetchProduct() {
       const response = await fetch('http://myapi/product' + productId);
       const json = await response.json();
@@ -637,17 +637,17 @@ function ProductPage({ productId }) {
   }, [productId]);
 ```
 
-我們搬移函式到 effect 內部，所以它不需要被加入在依賴列表。
+我們搬移 function 到 effect 內部，所以它不需要被加入在依賴列表。
 
 >Tip
 >
 >查看[這個簡易的範例](https://codesandbox.io/s/jvvkoo8pq3)以及[這篇文章](https://www.robinwieruch.de/react-hooks-fetch-data/)來學習關於如何使用 Hooks 來取得資料。
 
-**如果有一些因素讓你_不能_搬移函式到 effect 內，這裡有一些其他的選項：**
+**如果有一些因素讓你_不能_搬移 function 到 effect 內，這裡有一些其他的選項：**
 
-* **你可以嘗試將函式搬移到 component 之外**。在這個情況下，函式可以保證不 reference 到任何的 props 或 state，而且也不需要在依賴項目的列表中。
-* 如果你正在呼叫的函式是 pure 的計算，而且可以在 render 時被安全的呼叫，**你可以在 effect 外呼叫它，**並讓 effect 取決於回傳的值。
-* 作為最後的手段，你可以**加入一個函式到 effect 依賴項目，但是 _封裝它的定義_**成 [`useCallback`](/docs/hooks-reference.html#usecallback) Hook。這可以確保它不會在每次 render 時改變，除非*它自己*的依賴項目也改變：
+* **你可以嘗試將 function 搬移到 component 之外**。在這個情況下， function 可以保證不 reference 到任何的 props 或 state，而且也不需要在依賴項目的列表中。
+* 如果你正在呼叫的 function 是 pure 的計算，而且可以在 render 時被安全的呼叫，**你可以在 effect 外呼叫它，**並讓 effect 取決於回傳的值。
+* 作為最後的手段，你可以**加入一個 function 到 effect 依賴項目，但是_封裝它的定義_**成 [`useCallback`](/docs/hooks-reference.html#usecallback) Hook。這可以確保它不會在每次 render 時改變，除非*它自己*的依賴項目也改變：
 
 ```js{2-5}
 function ProductPage({ productId }) {
@@ -707,7 +707,7 @@ function Counter() {
 }
 ```
 
-（`setCount` 函式的 identity 的保證是穩定的，因此省略它是安全的。）
+（`setCount` function 的 identity 的保證是穩定的，因此省略它是安全的。）
 
 現在，`setInterval` callback 每秒執行一次，但每次對 `setCount` 內部的呼叫都可以使用 `count` 最新的值（在 callback 中被呼叫的 `c`。）
 
@@ -739,7 +739,7 @@ function Example(props) {
 
 ### 我該如何實作 shouldComponentUpdate？ {#how-do-i-implement-shouldcomponentupdate}
 
-你可以藉由 `React.memo` 封裝函式來對它的 props 進行淺比較：
+你可以藉由 `React.memo` 封裝 function 來對它的 props 進行淺比較：
 
 ```js
 const Button = React.memo((props) => {
@@ -820,7 +820,7 @@ function Image(props) {
 }
 ```
 
-`useRef` **不**接受像 `useState` 這樣的特殊重載函式。你可以撰寫你自己的函式來建立並延遲設定：
+`useRef` **不**接受像 `useState` 這樣特殊的重載 function。你可以撰寫你自己的 function 來建立並延遲設定：
 
 ```js
 function Image(props) {
@@ -917,7 +917,7 @@ function DeepChild(props) {
 >
 >另外請注意，在這個模式可能會導致 [concurrent 模式](/blog/2018/03/27/update-on-async-rendering.html)出現問題。我們計畫在未來提供更多解決方案，但目前最安全的解決方式是，如果有些值取決於更改，則會使 callback 無效。
 
-在極少數的情況下你可能會透過 [`useCallback`](/docs/hooks-reference.html#usecallback) memoize 一個 callback，但是因為內部函式必須常常被重新建立，所以 memoize 沒有辦法很好個運作。如果你要 memoize 的函式是一個 event hanlder，而且它不會被在 render 時被使用，你可以使用 [ref 作為一個 instance 變數](#is-there-something-like-instance-variables)，並手動儲存最後被 commit 的值：
+在極少數的情況下你可能會透過 [`useCallback`](/docs/hooks-reference.html#usecallback) memoize 一個 callback，但是因為內部 function 必須常常被重新建立，所以 memoize 沒有辦法很好個運作。如果你要 memoize 的 function 是一個 event hanlder，而且它不會被在 render 時被使用，你可以使用 [ref 作為一個 instance 變數](#is-there-something-like-instance-variables)，並手動儲存最後被 commit 的值：
 
 ```js{6,10}
 function Form() {
