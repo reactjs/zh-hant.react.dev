@@ -140,11 +140,7 @@ class CustomTextInput extends React.Component {
 
 #### Ref 和 Function Component {#refs-and-function-components}
 
-<<<<<<< HEAD
-**你不能在 function component 上使用 `ref`**，因為他們沒有 instance：
-=======
-By default, **you may not use the `ref` attribute on function components** because they don't have instances:
->>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
+預設上，**你不能在 function component 上使用 `ref`**，因為它們沒有 instance：
 
 ```javascript{1,8,13}
 function MyFunctionComponent() {
@@ -165,11 +161,7 @@ class Parent extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
-如果你想要使用 ref，你應該把 component 轉成 class，就像你想要使用生命週期或 state 一樣。
-=======
-If you want to allow people to take a `ref` to your function component, you can use [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) (possibly in conjunction with [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)), or you can convert the component to a class.
->>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
+如果你想要讓其他人將 `ref` 帶到你的 function component，你可以使用 [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html)（可能與 [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)），或者你可以轉換成 class component。
 
 然而，只要你想要指到的是 DOM element 或 class component，你也可以**在 function component 裡使用 `ref`**：
 
