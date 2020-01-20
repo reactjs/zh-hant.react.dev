@@ -143,11 +143,7 @@ useEffect(() => {
 
 effect 的預設行為是在每次完成 render 後觸發 effect。這樣的話，如果其中一個依賴有改變，則會重新建立一個 effect。
 
-<<<<<<< HEAD
 然而，在某些情況下這可能矯枉過正，例如在上一章節的 subscription 範例。我們只需要在 `source` prop 改變後才重新建立 subscription，而不需要在每次更新後。
-=======
-However, this may be overkill in some cases, like the subscription example from the previous section. We don't need to create a new subscription on every update, only if the `source` prop has changed.
->>>>>>> c8aef5dc0dc340e800fbb7963a94adb97da9803b
 
 要實現這一點，可以向 `useEffect` 傳遞第二個參數，它是該 effect 所依賴的值 array。我們更新後的範例如下：
 
