@@ -86,9 +86,9 @@ Commit 面相通常非常快，但 render 可能會很慢。為了這個原因�
 
 Render 面相的生命週期包含了以下 class component 函式:
 * `constructor`
-* `componentWillMount`
-* `componentWillReceiveProps`
-* `componentWillUpdate`
+* `componentWillMount` (or `UNSAFE_componentWillMount`)
+* `componentWillReceiveProps` (or `UNSAFE_componentWillReceiveProps`)
+* `componentWillUpdate` (or `UNSAFE_componentWillUpdate`)
 * `getDerivedStateFromProps`
 * `shouldComponentUpdate`
 * `render`
