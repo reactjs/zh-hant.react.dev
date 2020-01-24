@@ -1,14 +1,14 @@
 ---
 id: react-without-jsx
-title: React Without JSX
+title: 沒有 JSX 的 React
 permalink: docs/react-without-jsx.html
 ---
 
-JSX is not a requirement for using React. Using React without JSX is especially convenient when you don't want to set up compilation in your build environment.
+JSX 對於使用 React 並不是不可或缺的。當你不想在開發環境中設置編譯時，使用沒有 JSX 的 React 格外方便。
 
-Each JSX element is just syntactic sugar for calling `React.createElement(component, props, ...children)`. So, anything you can do with JSX can also be done with just plain JavaScript.
+每個 JSX 元素都只是呼叫 `React.createElement(component, props, ...children)` 的語法糖。所有任何你能用 JSX 做的事，你都能用純 JavaScript 做到。
 
-For example, this code written with JSX:
+比如，這段用 JSX 寫成的編碼：
 
 ```js
 class Hello extends React.Component {
@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-can be compiled to this code that does not use JSX:
+可以編譯成這段沒有 JSX 的程式碼：
 
 ```js
 class Hello extends React.Component {
@@ -38,11 +38,11 @@ ReactDOM.render(
 );
 ```
 
-If you're curious to see more examples of how JSX is converted to JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
+如果你想看更多 JSX 是如何轉換成 JavaScript 的範例，你可以嘗試[線上 Babel 編譯器](babel://jsx-simple-example)。
 
-The component can either be provided as a string, or as a subclass of `React.Component`, or a plain function for stateless components.
+Component 可以是一個字串，或 `React.Component` 的 subclass，或一個單純用於 stateless component 的 function。
 
-If you get tired of typing `React.createElement` so much, one common pattern is to assign a shorthand:
+如果你已經疲於不斷重複寫 `React.createElement`，一個常見的方式是賦予一個縮寫：
 
 ```js
 const e = React.createElement;
@@ -53,7 +53,6 @@ ReactDOM.render(
 );
 ```
 
-If you use this shorthand form for `React.createElement`, it can be almost as convenient to use React without JSX.
+如果你使用這個 `React.createElement` 縮寫的格式，他可以跟沒有 JSX 的 React 一樣方便。
 
-Alternatively, you can refer to community projects such as [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) and [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) which offer a terser syntax.
-
+此外，你也可以參考社群專案像是 [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) 和 [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers)，這些專案提供了更為簡潔的語法。
