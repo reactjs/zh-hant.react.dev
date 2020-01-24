@@ -40,7 +40,7 @@ ReactDOM.render(
 
 如果你想看更多 JSX 是如何轉換成 JavaScript 的範例，你可以嘗試[線上 Babel 編譯器](babel://jsx-simple-example)。
 
-component 可以是一個字串，或 `React.Component` 的 subclass，或一個單純用於 stateless component 的function。
+Component 可以是一個字串，或 `React.Component` 的 subclass，或一個單純用於 stateless component 的 function。
 
 如果你已經疲於不斷重複寫 `React.createElement`，一個常見的方式是賦予一個縮寫：
 
