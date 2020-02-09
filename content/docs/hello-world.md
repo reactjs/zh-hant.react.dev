@@ -6,7 +6,7 @@ prev: cdn-links.html
 next: introducing-jsx.html
 ---
 
-React 最簡單的範例看起來像是：
+React 最簡單的範例像這樣：
 
 ```js
 ReactDOM.render(
