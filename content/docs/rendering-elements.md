@@ -16,7 +16,7 @@ next: components-and-props.html
 const element = <h1>Hello, world</h1>;
 ```
 
-與瀏覽器的 DOM element 不同，React element 是單純的 object，而且很容易被建立。React DOM 負責更新 DOM 來符合 React element。
+與瀏覽器的 DOM element 不同，React element 是單純的 object，而且電腦能很迅速的建立它。React DOM 負責更新 DOM 來符合 React element。
 
 >**注意：**
 >
