@@ -48,7 +48,7 @@ React element 是 [immutable](https://en.wikipedia.org/wiki/Immutable_object) �
 
 憑藉我們迄今為止對 React 的認識，更新 UI 唯一的方式是建立一個新的 element，並且將它傳入到 `ReactDOM.render()`。
 
-思考以下這個 ticking clock 的範例：
+參考以下這個 ticking clock 的範例：
 
 `embed:rendering-elements/update-rendered-element.js`
 
