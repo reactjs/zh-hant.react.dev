@@ -25,7 +25,7 @@ redirect_from:
 這份指南分成以下幾個部分：
 
 * [教學設定](#setup-for-the-tutorial)會給你一個開始這份指南的**起始點**。
-* [概論](#overview)會教你 React 中的**重要基礎**：component、prop 和 state。
+* [概論](#overview)會教你 React 中的**重要基礎**：components、props 和 state。
 * [完成遊戲](#completing-the-game)會教你在 React 開發中**最常見的技術**。
 * [加入時間旅行](#adding-time-travel)會讓你對 React 獨特的優點有**更深的見解**。
 
