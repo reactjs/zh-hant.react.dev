@@ -24,7 +24,7 @@ console.log(doubled);
 
 你可以建立一系列的 element 並用大括號 `{}` [將它們包含在 JSX 裡面](/docs/introducing-jsx.html#embedding-expressions-in-jsx)。
 
-下面，我們會用 JavaScript 的 [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function 迭代 `number` array，我們每次都會回傳一個 `<li>` element。最後，我們會把結果產生的 element array 設定為 `listItems`：
+下面，我們會用 JavaScript 的 [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function 迭代 `numbers` array，我們每次都會回傳一個 `<li>` element。最後，我們會把結果產生的 element array 設定為 `listItems`：
 
 ```javascript{2-4}
 const numbers = [1, 2, 3, 4, 5];
