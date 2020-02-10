@@ -37,7 +37,11 @@ redirect_from:
 
 在這裡你可以看到我們將會做什麼：**[完成結果](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**。如果你看不懂其中的程式碼，或是你對其中的語法不熟，請不要擔心！這份指南的目的就是要幫助你了解 React 及其語法。
 
+<<<<<<< HEAD
 我們建議你在往下看這份指南之前，先看看上面這個圈圈叉叉小遊戲。你會注意到遊戲格子的右邊有一個數字列表。這個列表將會列出遊戲中的所有動作的歷史，並在遊戲進行的同時更新。
+=======
+We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 當你稍微了解這個圈圈叉叉小遊戲是怎麼玩的之後，你就可以把它關掉了。在這份指南中，我們會從更簡單的模板開始。我們的下一步是進行設定以幫助你開始開發這個遊戲。
 

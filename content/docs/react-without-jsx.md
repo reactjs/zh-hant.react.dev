@@ -40,7 +40,11 @@ ReactDOM.render(
 
 如果你想看更多 JSX 是如何轉換成 JavaScript 的範例，你可以嘗試[線上 Babel 編譯器](babel://jsx-simple-example)。
 
+<<<<<<< HEAD
 Component 可以是一個字串，或 `React.Component` 的 subclass，或一個單純用於 stateless component 的 function。
+=======
+The component can either be provided as a string, as a subclass of `React.Component`, or a plain function.
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 如果你已經疲於不斷重複寫 `React.createElement`，一個常見的方式是賦予一個縮寫：
 
