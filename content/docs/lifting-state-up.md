@@ -58,7 +58,7 @@ class Calculator extends React.Component {
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
-## 加入秒數輸入 {#adding-a-second-input}
+## 加入第二個輸入 {#adding-a-second-input}
 
 這是我們的新需求，除了攝氏輸入，我們提供一個華氏輸入，它們彼此保持同步。
 
