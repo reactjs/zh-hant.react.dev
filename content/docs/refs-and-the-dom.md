@@ -161,7 +161,7 @@ class Parent extends React.Component {
 }
 ```
 
-如果你想要讓其他人將 `ref` 帶到你的 function component，你可以使用 [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html)（可能與 [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)），或者你可以轉換成 class component。
+如果你想要讓其他人將 `ref` 帶到你的 function component，你可以使用 [`forwardRef`](/docs/forwarding-refs.html)（可能與 [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)），或者你可以轉換成 class component。
 
 然而，只要你想要指到的是 DOM element 或 class component，你也可以**在 function component 裡使用 `ref`**：
 
