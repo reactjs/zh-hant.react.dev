@@ -10,7 +10,7 @@ next: handling-events.html
 
 這個章節會介紹在 React component 中 state 以及生命週期的概念。你可以在[這裡找到 component API 詳細的參考](/docs/react-component.html)。
 
-思考[前一章節](/docs/rendering-elements.html#updating-the-rendered-element)的 ticking clock 的範例。在 [Render Element](/docs/rendering-elements.html#rendering-an-element-into-the-dom) 中，我們只學習到一種方式來更新 UI。 我們呼叫 `ReactDOM.render() 來改變 render 的輸出：
+思考[前一章節](/docs/rendering-elements.html#updating-the-rendered-element)的 ticking clock 的範例。在 [Render Element](/docs/rendering-elements.html#rendering-an-element-into-the-dom) 中，我們只學習到一種方式來更新 UI。 我們呼叫 `ReactDOM.render()` 來改變 render 的輸出：
 
 ```js{8-11}
 function tick() {
