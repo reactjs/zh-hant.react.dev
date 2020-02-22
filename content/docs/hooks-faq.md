@@ -85,7 +85,7 @@ Hook 在 component 之間提供強大而富有表現力的新方式來重複使�
 
 Hook 已經有許多你知道的方式可以直接使用 React 的功能 -- 像是 state、lifecycle、context 以及 ref。基本上它們並沒有改變 React 的運作方式，而且你對於 component、prop 以及上至下的資料流了解也一樣重要。
 
-Hook 的確有它本身的學習曲線。如果在這份文件中缺漏了些什麼，[發起一個 issue](https://github.com/reactjs/reactjs.org/issues/new)，我們將會嘗試幫助你。
+Hook 的確有它本身的學習曲線。如果在這份文件中缺漏了些什麼，[提出一個 issue](https://github.com/reactjs/reactjs.org/issues/new)，我們將會嘗試幫助你。
 
 ### 我應該使用 Hook、Class 或是兩者兼具？ {#should-i-use-hooks-classes-or-a-mix-of-both}
 
