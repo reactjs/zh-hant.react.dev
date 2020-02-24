@@ -70,10 +70,6 @@ React DOM 會將 element 和它的 children 與先前的狀態做比較，並且
 
 ![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
 
-<<<<<<< HEAD
 即使我們在每秒建立一個 element 描述整個 UI tree，只有內容更改的 text node 才會被 React DOM 更新。
-=======
-Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
->>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 根據我們的經驗，應該思考 UI 在任何時候應該如何呈現，而不是隨著時間的推移去消除錯誤。
