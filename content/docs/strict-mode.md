@@ -31,7 +31,11 @@ permalink: docs/strict-mode.html
 
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
+<<<<<<< HEAD
 _現在_ 就關注這些被嚴格模式所發現的問題，會幫助你在 React 將來的版本裡處理非同步 render 的時候更容易。
+=======
+Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of concurrent rendering in future releases of React.
+>>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 ### 警告使用到了 legacy string ref API {#warning-about-legacy-string-ref-api-usage}
 
@@ -82,7 +86,11 @@ class MyComponent extends React.Component {
 * **render** 面相決定了必須做出什麼改變到例如 DOM 的地方。在這個面相上，React 呼叫 `render` 然後比較了它與上一次 render 的結果。
 * **commit** 面相是每當 React 運用到任何改變的時候。（在 React DOM 的例子，當 React 插入、更新、或移除 DOM 節點。）React 也在這個面相上呼叫了像是 `componentDidMount` 和 `componentDidUpdate` 的生命週期。
 
+<<<<<<< HEAD
 Commit 面相通常非常快，但 render 可能會很慢。為了這個原因，將來的非同步模式（還沒被預設成開啟）會把 render 的工作切成小塊，暫停和恢復這些工作藉以避免阻擋瀏覽器。 這表示 React 可能會在 commit 之前調用多次 render 面相的生命週期，或是他會不管有沒有 commit 就調用它們（因為錯誤或是更高優先性的中斷）。
+=======
+The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming concurrent mode (which is not enabled by default yet) breaks the rendering work into pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
+>>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 Render 面相的生命週期包含了以下 class component 函式:
 * `constructor`

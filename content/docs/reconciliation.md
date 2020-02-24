@@ -142,7 +142,11 @@ React 會先匹配兩個 `<li>first</li>` 對應的 tree，然後匹配第二個
 
 當使用 array 索引值作為 key 的 component 進行重新排序時，component state 可能會遇到一些問題。由於 component instance 是基於它們的 key 來決定是否更新以及重複使用，如果 key 是一個索引值，那麼修改順序時會修改目前的 key，導致 component 的 state（例如不受控制輸入框）可能相互篡改導致無法預期的變動。
 
+<<<<<<< HEAD
 [這是](codepen://reconciliation/index-used-as-key) 在 Codepen 上的範例，示範使用索引值作為 key 時導致的問題，以及[這裡](codepen://reconciliation/no-index-used-as-key)是一個不使用索引值作為 key 的版本，修復了重新排列、排序、以及在array 開頭插入的問題。
+=======
+Here is [an example of the issues that can be caused by using indexes as keys](codepen://reconciliation/index-used-as-key) on CodePen, and here is [an updated version of the same example showing how not using indexes as keys will fix these reordering, sorting, and prepending issues](codepen://reconciliation/no-index-used-as-key).
+>>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
 
 ## 權衡 {#tradeoffs}
 
