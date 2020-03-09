@@ -44,7 +44,11 @@ class Welcome extends React.Component {
 
 上述兩種 component 在 React 中是同等的。
 
+<<<<<<< HEAD
 我們將會在[下一個章節]((/docs/state-and-lifecycle.html))探討 class 所擁有的額外特性，但在那之前，我們會使用 function component 來保持簡潔。
+=======
+Function and Class components both have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html).
+>>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
 
 ## Render 一個 Component {#rendering-a-component}
 
@@ -60,7 +64,11 @@ const element = <div />;
 const element = <Welcome name="Sara" />;
 ```
 
+<<<<<<< HEAD
 當 React element 為使用者定義的 component 時，它會將 JSX 所接收的屬性作為一個物件傳遞給 component，這一個物件被稱為「props」。
+=======
+When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object "props".
+>>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
 
 舉例來說，這段程式碼會在頁面上 render 出「Hello, Sara」：
 

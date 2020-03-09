@@ -100,8 +100,14 @@ Render 面相的生命週期包含了以下 class component 函式:
 
 * Class component `constructor` method
 * The `render` method
+<<<<<<< HEAD
 * `setState` updater functions (第一個參數)
 * 靜態的 `getDerivedStateFromProps` 生命週期
+=======
+* `setState` updater functions (the first argument)
+* The static `getDerivedStateFromProps` lifecycle
+* The `shouldComponentUpdate` method
+>>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
 
 > 注意：
 >

@@ -69,7 +69,11 @@ function Counter({initialCount}) {
 
 「+」和「-」按鈕使用了函數式形式，因為被更新的值是基於先前的值。但是「Reset」按鈕則使用普通形式，因為它總是把 count 設定回初始值。
 
+<<<<<<< HEAD
 如果你的 update function 回傳完全相同的值，之後的 render 將會被完整跳過。
+=======
+If your update function returns the exact same value as the current state, the subsequent rerender will be skipped completely.
+>>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
 
 > 注意
 >
@@ -437,7 +441,11 @@ function TextInputWithFocusButton() {
 useImperativeHandle(ref, createHandle, [deps])
 ```
 
+<<<<<<< HEAD
 `useImperativeHandle` 可以讓使用 `ref` 時能向父 component 暴露自定義的 instance 值。一如既往，在大多數的情況下應避免使用 ref 的命令式代碼。`useImperativeHandle` 應與 `forwardRef` 一同使用：
+=======
+`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with [`forwardRef`](/docs/react-api.html#reactforwardref):
+>>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
 
 ```js
 function FancyInput(props, ref) {

@@ -74,7 +74,7 @@ function FriendListItem(props) {
 **一個自定義的 Hook 是以「`use`」為開頭命名的 JavaScript function，而且它可能也呼叫其他的 Hook。**例如，以下是我們第一個字定義的 `useFriendStatus` Hook：
 
 ```js{3}
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
