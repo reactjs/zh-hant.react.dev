@@ -37,4 +37,4 @@ next: testing-recipes.html
 本章節分成以下兩頁：
 
 - [方法](/docs/testing-recipes.html)：為 React component 撰寫測試時的常用模式。
-- [環境]](/docs/testing-environments.html)：為 React component 設定測試環境時應該考慮的事項。
+- [環境](/docs/testing-environments.html)：為 React component 設定測試環境時應該考慮的事項。
