@@ -112,6 +112,8 @@ const OtherComponent = React.lazy(() => import('./OtherComponent'));
 lazy component 應在 `Suspense` component 內 render，這使我們可以在等待 lazy component 載入時，顯示一些 fallback 內容（像是一個載入的符號）。
 
 ```js
+import React, { Suspense } from 'react';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 function MyComponent() {
@@ -128,6 +130,8 @@ function MyComponent() {
 `fallback` prop 接受在等待 component 載入時要 render 的任何 React element。你可以將 `Suspense` component 放在 lazy component 上方的任何位置。你甚至可以包覆多個 lazy component 到 `Suspense` component 內。
 
 ```js
+import React, { Suspense } from 'react';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
@@ -150,7 +154,9 @@ function MyComponent() {
 如果其他的 module 載入失敗（例如，因為網路失敗），它將會觸發一個錯誤。你可以透過[錯誤邊界](/docs/error-boundaries.html)處理這些錯誤來呈現一個好的使用者體驗和管理恢復。一旦你建立了你的錯誤邊界，你可以在任何的 lazy component 上方使用它，當網路發生錯誤時可以顯示一個錯誤狀態。
 
 ```js
+import React, { Suspense } from 'react';
 import MyErrorBoundary from './MyErrorBoundary';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
@@ -177,8 +183,8 @@ Route 是一個開始的好地方。Web 上大多數的人都習慣花一些時�
 這裡是如何在你的應用程式使用像是 [React Router](https://reacttraining.com/react-router/) 的函式庫與 `React.lazy` 來設定基於 route 的 code-splitting。
 
 ```js
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const Home = lazy(() => import('./routes/Home'));
 const About = lazy(() => import('./routes/About'));

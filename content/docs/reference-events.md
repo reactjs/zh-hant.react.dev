@@ -26,6 +26,7 @@ void preventDefault()
 boolean isDefaultPrevented()
 void stopPropagation()
 boolean isPropagationStopped()
+void persist()
 DOMEventTarget target
 number timeStamp
 string type
@@ -75,6 +76,7 @@ React 將事件規格化，已讓它們在不同的瀏覽器中有ㄧ致的屬�
 - [Keyboard Events](#keyboard-events)
 - [Focus Events](#focus-events)
 - [Form Events](#form-events)
+- [Generic Events](#generic-events)
 - [Mouse Events](#mouse-events)
 - [Pointer Events](#pointer-events)
 - [Selection Events](#selection-events)
@@ -176,10 +178,20 @@ DOMEventTarget relatedTarget
 事件名稱：
 
 ```
-onChange onInput onInvalid onSubmit
+onChange onInput onInvalid onReset onSubmit
 ```
 
 想了解關於 onChange 事件的資訊，請參考[表單](/docs/forms.html)。
+
+* * *
+
+### Generic 事件 {#generic-events}
+
+事件名稱：
+
+```
+onError onLoad
+```
 
 * * *
 
