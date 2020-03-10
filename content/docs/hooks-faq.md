@@ -91,19 +91,11 @@ Hook 的確有它本身的學習曲線。如果在這份文件中缺漏了些什
 
 當你準備好時，我們鼓勵開始使用 Hook 撰寫你新的 component。確保你團隊的成員們使用 Hook 並熟悉本文件。我們並不鼓勵你重寫現有的 class component 成 Hook，除非你已經計劃重寫它們（例如：修正 bug）。
 
-<<<<<<< HEAD
-你不可以在 class component 內使用 Hook，但你絕對可以在 single tree *內*混合使用 class 和帶有 Hook 的 function component。無論是 class 或 function component，使用 Hook 是該 component 實作的細節。從長遠來看，我們期待 Hook 可以是大家撰寫 React component 的主要方式。
-=======
-You can't use Hooks *inside* a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
->>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
+你不可以在 class component *內*使用 Hook，但你絕對可以在單個 tree 中將 class 和 function component 與 Hook 混合使用。無論是 class 或 function component，使用 Hook 是該 component 實作的細節。從長遠來看，我們期待 Hook 可以是大家撰寫 React component 的主要方式。
 
 ### Hook 包含所有 Class 的使用情境嗎？ {#do-hooks-cover-all-use-cases-for-classes}
 
-<<<<<<< HEAD
-對於不常見的 `getSnapshotBeforeUpdate` 和 `componentDidCatch` 的生命週期並沒有等價的 Hook 方式，但我們計劃很快會加入它們。
-=======
-Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate`, `getDerivedStateFromError` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
->>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
+我們的目標是讓 Hook 盡快能涵蓋 class 的所有使用情境。對於不常見的 `getSnapshotBeforeUpdate` 和 `componentDidCatch` 的生命週期並沒有等價的 Hook 方式，但我們計劃很快會加入它們。
 
 這是早期的 Hook，目前一些第三方 function 庫可能與 Hook 不相容。
 
@@ -226,11 +218,7 @@ it('can render and update a counter', () => {
 
 * `componentDidMount`、`componentDidUpdate`、`componentWillUnmount`：[`useEffect` Hook](/docs/hooks-reference.html#useeffect) 可以表達這些所有的組合（包含[少見](#can-i-skip-an-effect-on-updates)和[常見](#can-i-run-an-effect-only-on-updates)）的情況
 
-<<<<<<< HEAD
-* `componentDidCatch` 和 `getDerivedStateFromError`：現在沒有 Hook 等價於這些方法，，但是它們未來很快會被加入。
-=======
-* `getSnapshotBeforeUpdate`, `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
->>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
+* `getSnapshotBeforeUpdate`、`componentDidCatch` 和 `getDerivedStateFromError`：現在沒有 Hook 等價於這些方法，，但是它們未來很快會被加入。
 
 ### 我如何使用 Hook fetch 資料？ {#how-can-i-do-data-fetching-with-hooks}
 
@@ -301,11 +289,7 @@ function Box() {
 
 這是因為當我們更新 state 變數時，我們*替換*它的值。這與 class 中的`this.setState`不同，將被更新的欄位*合併*到 object 中。
 
-<<<<<<< HEAD
 如果你漏掉了自動合併，你可以撰寫一個自訂的 `useLegacyState` Hook 來合併 object state 的更新。然而，**我們建議根據哪些值是趨於一起變化的，拆分為多個 state 變數**
-=======
-If you miss automatic merging, you could write a custom `useLegacyState` Hook that merges object state updates. However, **we recommend to split state into multiple state variables based on which values tend to change together.**
->>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
 
 例如，我們可以拆分 component state 成 `position` 和 `size` object，並總是替換 `position` 而不需要合併：
 
@@ -596,11 +580,7 @@ useEffect(() => {
 
 讓我們看看這個為什麼很重要。
 
-<<<<<<< HEAD
-如果你在 `useEffect`、`useMemo`、`useCallback` 或是 `useImperativeHandle` 的最後指定了[依賴項目的列表](/docs/hooks-reference.html#conditionally-firing-an-effect)，它必須包含參與 React 資料流的所有內部的值。包含了 props、state 和從他們取得的任何值。
-=======
-If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values that are used inside the callback and participate in the React data flow. That includes props, state, and anything derived from them.
->>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
+如果你在 `useEffect`、`useMemo`、`useCallback` 或是 `useImperativeHandle` 的最後指定了[依賴項目的列表](/docs/hooks-reference.html#conditionally-firing-an-effect)，它必須包含在 callback 內使用的值以及參與 React 的資料流。包含了 props、state 和從它們取得的任何值。
 
 如果沒有任何內容（或由它呼叫的 function）reference 到 props、state 或是從它們取得的值，那麼從依賴項目中省略一個 function 是*唯一*安全的。這個範例有一個 bug：
 

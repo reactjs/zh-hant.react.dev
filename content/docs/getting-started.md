@@ -36,11 +36,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 ### 線上體驗 {#online-playgrounds}
 
-<<<<<<< HEAD
-如果你有興趣嘗試 React，你可以使用一些線上編輯器，包括 [CodePen](codepen://hello-world)、[CodeSandbox](https://codesandbox.io/s/new)，或 [Glitch](https://glitch.com/edit/#!/remix/starter-react-template)，實作一個 Hello World 的範例。
-=======
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), or [Stackblitz](https://stackblitz.com/fork/react).
->>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
+如果你有興趣嘗試 React，你可以使用一些線上編輯器。在 [CodePen](codepen://hello-world)、[CodeSandbox](https://codesandbox.io/s/new)、[Glitch](https://glitch.com/edit/#!/remix/starter-react-template)，或是 [Stackblitz](https://stackblitz.com/fork/react) 實作一個 Hello World 的範例。
 
 如果你偏向使用自己的編輯器，你可以[下載此 HTML 文件](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)進行修改，並從本機文件系統裡把它打開到瀏覽器。這會進行一個緩慢的 runtime 程式碼轉換，因此我們建議只把這文件用作簡單的示範。
 
@@ -87,11 +83,7 @@ If you're interested in playing around with React, you can use an online code pl
 
 ### 實用指南 {#practical-tutorial}
 
-<<<<<<< HEAD
 如果你喜歡**動手做**，請參考我們的[實用指南](/tutorial/tutorial.html)。我們會利用 React 實作一個井字遊戲。你可能對遊戲開發不感興趣，因而很想跳過這個部份，但請給它一個機會。在這指南所學習的技巧，將會是實作*任何* React 應用程式的重要基礎，掌握到它們會讓你更了解 React。
-=======
-If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not into building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
->>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
 
 ### 按部就班學習指南 {#step-by-step-guide}
 

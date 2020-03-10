@@ -178,19 +178,16 @@ DOMEventTarget relatedTarget
 事件名稱：
 
 ```
-onChange onInput onInvalid onReset onSubmit 
+onChange onInput onInvalid onReset onSubmit
 ```
 
 想了解關於 onChange 事件的資訊，請參考[表單](/docs/forms.html)。
 
 * * *
 
-<<<<<<< HEAD
-### 滑鼠事件 {#mouse-events}
-=======
-### Generic Events {#generic-events}
+### Generic 事件 {#generic-events}
 
-Event names:
+事件名稱：
 
 ```
 onError onLoad
@@ -198,8 +195,7 @@ onError onLoad
 
 * * *
 
-### Mouse Events {#mouse-events}
->>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
+### 滑鼠事件 {#mouse-events}
 
 事件名稱：
 
