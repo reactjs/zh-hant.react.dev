@@ -126,7 +126,11 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 如果你的 function component 每次得到相同 prop 的時候都會 render 相同結果，你可以將其包在 `React.memo` 之中，透過快取 render 結果來在某些情況下加速。這表示 React 會跳過 render 這個 component，並直接重用上次的 render 結果。
 
+<<<<<<< HEAD
 `React.memo` 只影響 props 的變更。如果你的 function component 內有使用 [`useState`](/docs/hooks-state.html) 或 [`useContext`](/docs/hooks-reference.html#usecontext) 且被 wrap 在 `React.memo`，當 state 或 context 改變時，它仍然會重新 render。
+=======
+`React.memo` only checks for prop changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 這預設只會對 prop 進行 shallow compare 。如果你需要控制比較的方法，你可以提供一個自訂的比較 function 作為第二個參數。
 

@@ -31,8 +31,13 @@ function Example() {
 
 >注意
 >
+<<<<<<< HEAD
 >React 16.8.0 是第一個支援 Hook 的版本。在升級時，記得不要忘記升級所有的套件包括 React DOM。
 >React Native 則是從 [0.59 的版本開始](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059)支援 Hook。
+=======
+>React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM.
+>React Native supports Hooks since [the 0.59 release of React Native](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059).
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 ## 介紹影片 {#video-introduction}
 
