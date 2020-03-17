@@ -27,6 +27,8 @@ Hook 是 JavaScript function，當你使用它們時需要遵守兩個規則。�
 
 我們發佈了一個 ESLint plugin 叫做 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) 來強制施行這兩個規則。如果你想嘗試的話，可以將這個 plugin 加入到你的專案中:
 
+This plugin is included by default in [Create React App](/docs/create-a-new-react-app.html#create-react-app).
+
 ```bash
 npm install eslint-plugin-react-hooks --save-dev
 ```
@@ -45,8 +47,6 @@ npm install eslint-plugin-react-hooks --save-dev
   }
 }
 ```
-
-這個 plugin 在 [Create React App](/docs/create-a-new-react-app.html#create-react-app) 預設會被引入。
 
 **你現在可以先跳過，下一頁將解釋如何打造[你自己的 Hook](/docs/hooks-custom.html)。**在這頁，我們將會繼續解釋這些規則背後的原因。
 

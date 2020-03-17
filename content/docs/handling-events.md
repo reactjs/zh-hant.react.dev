@@ -8,7 +8,7 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
-使用 React element 處理事件跟使用 DOM element 處理事件是十分相似的。但是，兩者還是有語法上的差異：
+使用 React element 處理事件跟使用 DOM element 處理事件是十分相似的。它們T有一些語法上的差異：
 
 * 事件的名稱在 React 中都是 camelCase，而在 HTML DOM 中則是小寫。
 * 事件的值在 JSX 中是一個 function，而在 HTML DOM 中則是一個 string。
@@ -130,7 +130,7 @@ class LoggingButton extends React.Component {
   render() {
     // 這個語法確保 `this` 是在 handleClick 中被綁定：
     return (
-      <button onClick={(e) => this.handleClick(e)}>
+      <button onClick={() => this.handleClick()}>
         Click me
       </button>
     );
