@@ -44,11 +44,7 @@ class Welcome extends React.Component {
 
 上述兩種 component 在 React 中是同等的。
 
-<<<<<<< HEAD
-我們將會在[下一個章節](/docs/state-and-lifecycle.html)探討 class 所擁有的額外特性，但在那之前，我們會使用 function component 來保持簡潔。
-=======
-Function and Class components both have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html).
->>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
+Function 和 Class component 兩者都擁有額外的特性，我們將會在[下一個章節](/docs/state-and-lifecycle.html)探討。
 
 ## Render 一個 Component {#rendering-a-component}
 
