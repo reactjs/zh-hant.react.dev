@@ -96,6 +96,7 @@ Render 面相的生命週期包含了以下 class component 函式:
 
 因為以上函式可能會被呼叫不只一次，不包含副作用是很重要的。忽視這個規則可能會導致各種問題，包含記憶體滲漏，和不合法的應用程式 state。不幸的是，偵測這些問題很困難，因為它們通常是 [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm)。
 
+<<<<<<< HEAD
 嚴格模式無法自動檢測 side effect，但它可以藉由使這些 side effect 變得更有確定性，來幫助你發現它們。它藉由故意調用兩次下面的函式來完成這個功能：
 
 * Class component `constructor` 方法
@@ -103,6 +104,15 @@ Render 面相的生命週期包含了以下 class component 函式:
 * `setState` updater functions (第一個參數)
 * 靜態的 `getDerivedStateFromProps` 生命週期
 * `shouldComponentUpdate` 方法
+=======
+Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following functions:
+
+* Class component `constructor`, `render`, and `shouldComponent` methods
+* Class component static `getDerivedStateFromProps` method
+* Function component bodies
+* State updater functions (the first argument to `setState`)
+* Functions passed to `useState`, `useMemo`, or `useReducer`
+>>>>>>> 9e5a358cb24a665fc48615ae224f26a4f2191b32
 
 > 注意：
 >
