@@ -34,11 +34,7 @@ const element = <h1>Hello, world</h1>;
 
 使用 React 建立應用程式時，通常會有一個單一的 root DOM node。如果你想要整合 React 到現有的應用程式時，你可以根據你的需求獨立出多個 root DOM node。
 
-<<<<<<< HEAD
-如果要 render 一個 React element 到 root DOM node，傳入兩者到 `ReactDOM.render()`：
-=======
-To render a React element into a root DOM node, pass both to [`ReactDOM.render()`](/docs/react-dom.html#render):
->>>>>>> 9fa6418ada9b24bdacf4cb1facbe69160d0740a9
+如果要 render 一個 React element 到 root DOM node，傳入兩者到 [`ReactDOM.render()`](/docs/react-dom.html#render)：
 
 `embed:rendering-elements/render-an-element.js`
 

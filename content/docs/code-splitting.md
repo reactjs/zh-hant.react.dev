@@ -79,14 +79,7 @@ import("./math").then(math => {
 });
 ```
 
-<<<<<<< HEAD
-當 Webpack 遇到這種語法時，它將自動的在你的應用程式啟動 code-splitting。如果你使用 Create React App 的話，它已經幫你設定好了，你可以立即的[使用它](https://facebook.github.io/create-react-app/docs/code-splitting)。在 [Next.js](https://github.com/zeit/next.js/#dynamic-import) 也內建支援這個功能。
-=======
-When Webpack comes across this syntax, it automatically starts code-splitting
-your app. If you're using Create React App, this is already configured for you
-and you can [start using it](https://facebook.github.io/create-react-app/docs/code-splitting) immediately. It's also supported
-out of the box in [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import).
->>>>>>> 9e5a358cb24a665fc48615ae224f26a4f2191b32
+當 Webpack 遇到這種語法時，它將自動的在你的應用程式啟動 code-splitting。如果你使用 Create React App 的話，它已經幫你設定好了，你可以立即的[使用它](https://facebook.github.io/create-react-app/docs/code-splitting)。在 [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import) 也內建支援這個功能。
 
 如果你是自行設定 Webpack，你可以閱讀 Webpack 的 [code-splitting 指南](https://webpack.js.org/guides/code-splitting/)。你的 Webpack 設定看起來應該[像這樣](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)。
 
