@@ -98,7 +98,7 @@ Render 面相的生命週期包含了以下 class component 函式:
 
 嚴格模式無法自動檢測 side effect，但它可以藉由使這些 side effect 變得更有確定性，來幫助你發現它們。它藉由故意調用兩次下面的函式來完成這個功能：
 
-* Class component `constructor`、`render` 和 `shouldComponent` 方法
+* Class component `constructor`、`render` 和 `shouldComponentUpdate` 方法
 * Class component 的靜態 `getDerivedStateFromProps` 方法
 * Function component 的內容
 * 狀態更新函式（`setState` 的第一個參數）
