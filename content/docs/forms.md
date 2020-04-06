@@ -68,17 +68,7 @@ class NameForm extends React.Component {
 
 由於 `value` attribute 是被設定在我們的表單 element 上，顯示的 value 會永遠是 `this.state.value`，這使得 React 的 state 成為了資料來源。由於 `handleChange` 在每一次鍵盤被敲擊時都會被執行，並更新 React 的 state，因此被顯示的 value 將會在使用者打字的同時被更新。
 
-<<<<<<< HEAD
-在這樣的 controlled component 中，每一個 state 的 mutation 都會有一個相對應的 handler function。這使得修改或驗證使用者輸入變得很容易。例如，如果我們想要確認名字全部都是用大寫字母寫成的話，我們可以把 `handleChange` 寫成：
-
-```javascript{2}
-handleChange(event) {
-  this.setState({value: event.target.value.toUpperCase()});
-}
-```
-=======
-With a controlled component, the input's value is always driven by the React state. While this means you have to type a bit more code, you can now pass the value to other UI elements too, or reset it from other event handlers.
->>>>>>> fa5e6e7a988b4cb465601e4c3beece321edeb812
+在這樣的 controlled component 中，顯示的 value 始終由 React 的 state 驅動，雖然這意味著你必須寫更多的 code，但現在你同時可以將 value 傳遞給其他的 UI element，或是從其他 event handler 重置。
 
 ## Textarea 標籤 {#the-textarea-tag}
 
