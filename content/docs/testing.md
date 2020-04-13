@@ -14,7 +14,11 @@ next: testing-recipes.html
 * 在簡化的測試環境中 **render component tree** 並且 assert 它們的輸出。
 * 在真實瀏覽器環境中**執行一個完整的應用程式**（也稱為「end-to-end」測試）。
 
+<<<<<<< HEAD
 本文件章節專注於第一種情況的測試策略。而完整的 end-to-end 測試對於預防重要的 workflow 不受影響非常有用，但此類測試不涉於 React component，因此不在本文件範圍內。
+=======
+This documentation section focuses on testing strategies for the first case. While full end-to-end tests can be very useful to prevent regressions to important workflows, such tests are not concerned with React components in particular, and are out of the scope of this section.
+>>>>>>> b3c7f041586b71b31f556403426fcd7cab342535
 
 ### 權衡 {#tradeoffs}
 
