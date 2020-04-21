@@ -249,4 +249,4 @@ function Todos() {
 }
 ```
 
-在複雜的 componnet 中使用 reducer 管理 local state 的需求很常見，我們已經將 `useReducer` Hook 內建在 React 中。你可以在 [Hooks API 參考](/docs/hooks-reference.html)中找到它與其他內建的 Hook。
+在複雜的 component 中使用 reducer 管理 local state 的需求很常見，我們已經將 `useReducer` Hook 內建在 React 中。你可以在 [Hooks API 參考](/docs/hooks-reference.html)中找到它與其他內建的 Hook。

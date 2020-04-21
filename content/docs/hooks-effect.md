@@ -338,7 +338,7 @@ function FriendStatusWithCounter(props) {
 
 ### 解釋：為什麼 Effect 在每次更新時執行 {#explanation-why-effects-run-on-each-update}
 
-如果你習慣了 class，那麼你可能想知道為什麼 effect 的清除階段會在每次重新 render 後發生，而不僅僅是在 unmounting 過程中發生一次。讓我們看一個實際的範例，看看為什麼這種設計可以幫我們寫 bug 更少的 component。
+如果你習慣了 class，那麼你可能想知道為什麼 effect 的清除階段會在每次重新 render 後發生，而不僅僅是在 unmounting 過程中發生一次。讓我們看一個實際的範例，看看為什麼這種設計可以幫我們寫出 bug 更少的 component。
 
 在[本頁前面](#example-using-classes-1)，我們介紹了一個 `FriendStatus` component 的範例，這個 component 顯示朋友是否在線上。我們的 class 從 `this.props` 中抓取 `friend.id`，在 component mount 後訂閱好友狀態，並在 unmount 期間取消訂閱：
 
