@@ -528,7 +528,7 @@ function useClientRect() {
 
 ### 我可以在更新時忽略 effect 嗎？ {#can-i-skip-an-effect-on-updates}
 
-可以的。請參考[條件是觸發 effect](/docs/hooks-reference.html#conditionally-firing-an-effect)。請注意，忘記處理更新通常[導致 bug](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update)，這就是為什麼這不是預設行為。
+可以的。請參考[條件式觸發 effect](/docs/hooks-reference.html#conditionally-firing-an-effect)。請注意，忘記處理更新通常[導致 bug](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update)，這就是為什麼這不是預設行為。
 
 ### 在依賴項目的列表中忽略 function 是安全的嗎？ {#is-it-safe-to-omit-functions-from-the-list-of-dependencies}
 
