@@ -1045,7 +1045,11 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+<<<<<<< HEAD
 在圈圈叉叉小遊戲歷史中的每個動作，我們都會建立一個列表元素 `<li>`，並在裡面加入 `<button>`。這個按鈕有ㄧ個會呼叫 `this.jumpTo()` 方法的 `onClick` handler。我們還沒實作 `jumpTo()` 方法。現在，我們應該能在開發者工具的 console 中看到一系列在遊戲中曾經發生過的動作以及一個警告：
+=======
+For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+>>>>>>> bc91fe4101420f98454a59ac34c1cf1d4d4f4476
 
 >  警告：
 >  每一個 array 或 iterator 中的 child 必須要有一個獨特的「key」屬性。請參考 Game 的 render 方法。
