@@ -3,7 +3,7 @@ id: cdn-links
 title: CDN 連結
 permalink: docs/cdn-links.html
 prev: create-a-new-react-app.html
-next: hello-world.html
+next: release-channels.html
 ---
 
 通過 CDN 載入 React 和 React DOM。
