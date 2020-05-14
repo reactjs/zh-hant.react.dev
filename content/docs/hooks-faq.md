@@ -422,7 +422,7 @@ function Example() {
 
 ### 我該如何實作 getDerivedStateFromProps？ {#how-do-i-implement-getderivedstatefromprops}
 
-雖然你可能[不需要它](/blog/2018/06/07/you-probably-dont-need-derived-state.html)，但在極少數情況下（例如實作`<Transition>` component），你可以在 render 期間更新 state。React 將會在第一次的 redner 退出後，重新執行 component 並且立即更新 state，這個操作代價不會很昂貴。
+雖然你可能[不需要它](/blog/2018/06/07/you-probably-dont-need-derived-state.html)，但在極少數情況下（例如實作`<Transition>` component），你可以在 render 期間更新 state。React 將會在第一次的 render 退出後，重新執行 component 並且立即更新 state，這個操作代價不會很昂貴。
 
 在這裡，我們將 `row` prop 先前的值存儲在 state 變數中，讓我們可以方便的比較：
 
@@ -651,7 +651,7 @@ function ProductPage({ productId }) {
 
 ```js{2-5}
 function ProductPage({ productId }) {
-  // ✅ 藉由 useCallback 封裝可以避免在每次 redner 時改變
+  // ✅ 藉由 useCallback 封裝可以避免在每次 render 時改變
   const fetchProduct = useCallback(() => {
     // ... Does something with productId ...
   }, [productId]); // ✅ 所有 useCallback 依賴已經被指定
