@@ -1,20 +1,20 @@
 ---
 id: faq-build
-title: Babel, JSX, and Build Steps
+title: Babel、JSX 和構建步驟
 permalink: docs/faq-build.html
 layout: docs
 category: FAQ
 ---
 
-### Do I need to use JSX with React? {#do-i-need-to-use-jsx-with-react}
+### 我需要在 React 中使用 JSX 嗎？ {#do-i-need-to-use-jsx-with-react}
 
-No! Check out ["React Without JSX"](/docs/react-without-jsx.html) to learn more.
+不需要！請參考[沒有 JSX 的 React](/docs/react-without-jsx.html) 來了解更多資訊。
 
-### Do I need to use ES6 (+) with React? {#do-i-need-to-use-es6--with-react}
+### 我需要在 React 裡使用 ES6 (+) 嗎？ {#do-i-need-to-use-es6--with-react}
 
-No! Check out ["React Without ES6"](/docs/react-without-es6.html) to learn more.
+不需要！請參考[沒有 ES6 的 React](/docs/react-without-es6.html) 來了解更多資訊。
 
-### How can I write comments in JSX? {#how-can-i-write-comments-in-jsx}
+### 如何在 JSX 中編寫註解？ {#how-can-i-write-comments-in-jsx}
 
 ```jsx
 <div>
