@@ -121,7 +121,7 @@ Hook 的設計考慮到了靜態型別。因為它們是 function，比 Higher-O
 
 ### 如何測試使用 Hook 的 component？ {#how-to-test-components-that-use-hooks}
 
-從 React 的角度來看，使用 Hook 的 component 就只是一個正常的 component。如果你的測試方案不依賴在 React 內部，測試使用 Hook 的 component 通常與你測試 component 的方式不同。
+從 React 的角度來看，使用 Hook 的 component 就只是一個正常的 component。如果你的測試方案不依賴在 React 內部，測試使用 Hook 的 component 通常與你測試 component 的方式相同。
 
 >注意
 >
