@@ -73,7 +73,13 @@ Create React App 並不會處理 backend 邏輯或資料庫；它只會建立一
 
 - **[Neutrino](https://neutrinojs.org/)** 結合了 [webpack](https://webpack.js.org/) 強大的功能與簡單的預設，並包括了 [React 應用程式](https://neutrinojs.org/packages/react/)和 [React component](https://neutrinojs.org/packages/react-components/) 的預設。
 
+<<<<<<< HEAD
 - **[Parcel](https://parceljs.org/)** 是一個快速、零設定的網路應用程式 bundler，並且[可以配合 React](https://parceljs.org/recipes.html#react) 一起使用。
+=======
+- **[Nx](https://nx.dev/react)** is a toolkit for full-stack monorepo development, with built-in support for React, Next.js, [Express](https://expressjs.com/), and more.
+
+- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react).
+>>>>>>> f81b909ce97dc253998a192f367551cb2b40d66f
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** 是一個不需要設定的 server-rendering 框架，但它比 Next.js 提供更多的靈活性。
 
