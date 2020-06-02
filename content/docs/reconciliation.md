@@ -10,7 +10,7 @@ React 提供聲明式 (declarative) 的 API，讓開發者在使用 React 時，
 
 在使用 React 時，每次呼叫 `render()` 函式，我們都可以當成是建立了一顆由 React element 構成的樹狀結構。而在每一次有 state 或 props 更新時，`render()` 函式就會回傳一顆不同的 tree。因此，React 需要判斷如何有效率的把 UI 從舊的 tree 更新成新的 tree。
 
-對於這個「如何用最少操作去將舊的 tree 轉換成新的 tree」的演算法問題有一些通用的解法，但即使是目前[最先進的演算法](<(https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf)>)都還需要 O(n<sup>3</sup>) 的時間複雜度（n 為 tree 中 element 的數量）。
+對於這個「如何用最少操作去將舊的 tree 轉換成新的 tree」的演算法問題有一些通用的解法，但即使是目前[最先進的演算法](https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf)都還需要 O(n<sup>3</sup>) 的時間複雜度（n 為 tree 中 element 的數量）。
 
 假設 React 使用這種演算法，則呈現 1000 個 element 需要 10 億次的比較。因為這個比較成本實在太高，所以 React 在以下兩個假設下採用了一個 O(n) 的啓發式 (heuristic) 演算法：
 
