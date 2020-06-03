@@ -20,7 +20,7 @@ const element = <h1>Hello, world</h1>;
 
 >**注意：**
 >
->大家可能會將 element 與更廣為人知的「component」概念混淆。我們將會在[下一個章節](/docs/components-and-props.html)介紹 component。Element 是由 component 所「組成」的，我們建議你在開始之前閱讀本章節。
+>大家可能會將 element 與更廣為人知的「component」概念混淆。我們將會在[下一個章節](/docs/components-and-props.html)介紹 component。Component 是由 element 所「組成」的，我們建議你在開始之前閱讀本章節。
 
 ## Render Element 到 DOM 內 {#rendering-an-element-into-the-dom}
 
