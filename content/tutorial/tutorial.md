@@ -1195,11 +1195,7 @@ class Game extends React.Component {
 * 在遊戲進行的同時儲存遊戲歷史
 * 讓玩家回顧遊戲的歷史，並回到棋盤之前的版本
 
-<<<<<<< HEAD
 做得好！希望現在你覺得你對 React 的運作有相當程度的理解。
-=======
-Nice work! We hope you now feel like you have a decent grasp of how React works.
->>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
 
 按這裡看看最終的結果：**[完成結果](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**。
 
