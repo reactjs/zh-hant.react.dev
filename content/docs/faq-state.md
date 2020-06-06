@@ -22,7 +22,7 @@ category: FAQ
 
 在 React，`this.props` 和 `this.state` 都代表該 *render* 的值。也就是目前螢幕上的內容。
 
-呼叫 `setState` 是非同步的 — 不要在呼叫 `setState` 後立即憑藉著 `this.state` 去反應新的值。如果需要基於目前 state 來計算值，請傳遞一個更新用的 function 而不是 object（細節請看下方）。
+呼叫 `setState` 是非同步的 — 不要在呼叫 `setState` 後立即依賴 `this.state` 去反映新的值。如果需要基於目前 state 來計算值，請傳遞一個更新用的 function 而不是 object（細節請看下方）。
 
 *不會*符合預期結果的程式碼範例：
 
@@ -97,9 +97,9 @@ handleSomething() {
 * 這會破壞 `props` 和 `state` 間的一致性，造成難以除錯的問題。
 * 這會造成我們正在研究的一些新功能難以實現。
 
-這則 [GitHub 評論](https://github.com/facebook/react/issues/11527#issuecomment-360199710) 以具體範例來深入探討。
+這則 [GitHub 評論](https://github.com/facebook/react/issues/11527#issuecomment-360199710)以具體範例來深入探討。
 
-### 我應該使用 Redux 或 MobX 之類的 state 管理函式庫嗎？ {#should-i-use-a-state-management-library-like-redux-or-mobx}
+### 我應該使用 Redux 或 MobX 之類的狀態管理函式庫嗎？ {#should-i-use-a-state-management-library-like-redux-or-mobx}
 
 [看情況。](https://redux.js.org/faq/general#when-should-i-use-redux)
 
