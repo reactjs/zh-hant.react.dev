@@ -12,7 +12,7 @@ category: FAQ
 
 ### `state` 和 `props` 有什麼不同？ {#what-is-the-difference-between-state-and-props}
 
-[`props`](/docs/components-and-props.html)（「properties」的簡寫）和 [`state`](/docs/state-and-lifecycle.html) 都是純 JavaScript object。雖然兩者都擁有會影響 render 輸出的資訊，但在一個重要方向上有所不同：`props` 是被傳遞 *進* component（類似於 function 的參數），而 `state` 是在 component *內部* 被管理（類似於在 function 中宣告中的變數）。
+[`props`](/docs/components-and-props.html)（「properties」的簡寫）和 [`state`](/docs/state-and-lifecycle.html) 都是純 JavaScript object。雖然兩者都擁有會影響 render 輸出的資訊，但在一個重要方向上有所不同：`props` 是被傳遞*進* component（類似於 function 的參數），而 `state` 是在 component *內部*被管理（類似於在 function 中宣告中的變數）。
 
 這裡有一些很棒的資源，可以進一步閱讀來了解使用 `props` 和 `state` 的時機：
 * [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
@@ -24,7 +24,7 @@ category: FAQ
 
 呼叫 `setState` 是非同步的 — 不要在呼叫 `setState` 後立即憑藉著 `this.state` 去反應新的值。如果需要基於目前 state 來計算值，請傳遞一個更新用的 function 而不是 object（細節請看下方）。
 
-*不會* 符合預期結果的程式碼範例：
+*不會*符合預期結果的程式碼範例：
 
 ```jsx
 incrementCount() {
@@ -103,4 +103,4 @@ handleSomething() {
 
 [看情況。](https://redux.js.org/faq/general#when-should-i-use-redux)
 
-在加入額外的函式庫前先來了解 React是個好主意。因為你可以只用 React 就建立一個夠複雜的應用程式。
+在加入額外的函式庫前先來了解 React 是個好主意。因為你可以只用 React 就建立一個夠複雜的應用程式。
