@@ -233,7 +233,11 @@ function Comment(props) {
 
 [在 CodePen 上試試看吧！](codepen://components-and-props/extracting-components-continued)
 
+<<<<<<< HEAD
 在一開始，將 component 抽離出來可能是一件繁重的工作，但是在較大的應用程式中，建構可複用的 component 是非常值得。以經驗來說，如果一個 UI 中有一部分會被重複使用很多次（`Button`、`Panel`、`Avatar`），或者它足夠複雜到自成一個 component（`App`、`FeedStory`、`Comment`），那它就適合被抽出作為一個可複用的 component。
+=======
+Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be extracted to a separate component.
+>>>>>>> c9b990070fc35d31b56957263e1ea9fe2fe67b40
 
 ## Props 是唯讀的 {#props-are-read-only}
 
