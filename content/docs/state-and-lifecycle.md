@@ -420,12 +420,6 @@ Parent 和 child component 不會知道某個 component 是 stateful 或 statele
 Component 可以選擇將它的 state 做為 props 往下傳遞到它的 child component：
 
 ```js
-<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-```
-
-這也適用在使用者所定義的 component：
-
-```js
 <FormattedDate date={this.state.date} />
 ```
 
