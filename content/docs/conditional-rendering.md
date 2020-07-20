@@ -122,11 +122,7 @@ ReactDOM.render(
 
 ### Inline If 與 && 邏輯運算子 {#inline-if-with-logical--operator}
 
-<<<<<<< HEAD
-你可以透過大括號[在 JSX 中嵌入任何的表達式](/docs/introducing-jsx.html#embedding-expressions-in-jsx)，包括 JavaScript 的 `&&` 邏輯運算子，可以方便 render 有條件的 element：
-=======
-You may [embed expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
->>>>>>> ee75c297574468f888574aae2d9620d64bb5b5a1
+你可以透過大括號[在 JSX 中嵌入表達式](/docs/introducing-jsx.html#embedding-expressions-in-jsx)，包括 JavaScript 的 `&&` 邏輯運算子，可以方便 render 有條件的 element：
 
 ```js{6-10}
 function Mailbox(props) {
