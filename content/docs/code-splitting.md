@@ -42,12 +42,7 @@ console.log(add(16, 26)); // 42
 >
 > 你的 bundle 後的最終結果看起來會與此不同。
 
-<<<<<<< HEAD
-如果你使用 [Create React App](https://github.com/facebookincubator/create-react-app)、[Next.js](https://github.com/zeit/next.js/)、[Gatsby](https://www.gatsbyjs.org/)，或者是類似的工具，會有一個內建的 Webpack 設定來 bundle 你的應用程式。
-=======
-If you're using [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your
-app.
->>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
+如果你使用 [Create React App](https://create-react-app.dev/)、[Next.js](https://nextjs.org/)、[Gatsby](https://www.gatsbyjs.org/)，或者是類似的工具，會有一個內建的 Webpack 設定來 bundle 你的應用程式。
 
 如果沒有的話，你需要自己設定 bundle。例如，拜訪 Webpack 文件的 [Installation](https://webpack.js.org/guides/installation/) 和 [Getting Started](https://webpack.js.org/guides/getting-started/) 指南。
 
