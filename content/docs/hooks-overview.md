@@ -229,7 +229,11 @@ function FriendListItem(props) {
 }
 ```
 
+<<<<<<< HEAD
 這兩個 component 的 state 是完全獨立的。Hook 是一種重複使用 *stateful 邏輯*的方式，不是 state 本身。實際上，每一次呼叫一個 Hook 都有一個完全獨立且隔離的 state —— 所以你甚至可以在一個 component 使用同一個客製化 Hook 兩次。
+=======
+The state of each component is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 客製化 Hook 比較像慣例而不是功能，如果一個 function 的名字是「`use`」開頭且他呼叫其他 Hook，我們將他稱之為客製化 Hook。使用 Hook 時，`useSomething`的命名慣例是我們的 linter plugin 如何能夠在程式碼中找到 bug 的原因。
 
