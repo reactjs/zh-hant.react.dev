@@ -178,7 +178,7 @@ Hook 是 JavaScript function，但是他們強加了兩條額外的規則：
 
 在這一頁前面，我們提到 `FriendStatus` component 呼叫 `useState` 與 `useEffect` Hook 來訂閱朋友的線上狀態。假如我們也想要在另一個 component 重複使用這個訂閱邏輯。
 
-首先，我們抽離這個邏輯到客製化 Hook `useFriendState` 之中：
+首先，我們抽離這個邏輯到客製化 Hook `useFriendState` 之中：
 
 ```js{3}
 import React, { useState, useEffect } from 'react';
@@ -269,4 +269,4 @@ function Todos() {
 
 你也可以看看 [Hook API reference](/docs/hooks-reference.html) 與 [Hook 常見問題](/docs/hooks-faq.html)。
 
-最後，不要漏了 [Hook 介紹頁面](/docs/hooks-intro.html)，這裡解釋了*為什麼*我們加入了 Hook 與我們如何和 class 一起使用——不用重寫我們的應用程式。
+最後，不要漏了 [Hook 介紹頁面](/docs/hooks-intro.html)，這裡解釋了*為什麼*我們加入了 Hook 與我們如何和 class 一起使用——不用重寫我們的應用程式。
