@@ -2,6 +2,8 @@
 id: reconciliation
 title: Reconciliation
 permalink: docs/reconciliation.html
+prev: react-without-jsx.html
+next: context.html
 ---
 
 React 提供聲明式 (declarative) 的 API，讓開發者在使用 React 時，可以不用關注每次 Component 更新時底層有什麼改變。這讓開發應用程式簡單許多，但也可能讓開發者對 React 底層的相關實作不夠瞭解。因此在這篇文章中描述了實作 React 底層中「diffing」演算法時，我們採取什麼策略讓 component 的更新是可預測的，同時可以滿足要求高效能的應用程式。
