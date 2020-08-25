@@ -8,7 +8,7 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
-使用 React element 處理事件跟使用 DOM element 處理事件是十分相似的。它們T有一些語法上的差異：
+使用 React element 處理事件跟使用 DOM element 處理事件是十分相似的。它們有一些語法上的差異：
 
 * 事件的名稱在 React 中都是 camelCase，而在 HTML DOM 中則是小寫。
 * 事件的值在 JSX 中是一個 function，而在 HTML DOM 中則是一個 string。
@@ -97,7 +97,7 @@ ReactDOM.render(
 
 這並非是 React 才有的行為，而是 [function 在 JavaScript 中的運作模式](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/)。總之，當你使用一個方法，卻沒有在後面加上 `()` 之時（例如當你使用 `onClick={this.handleClick}` 時），你應該要綁定這個方法。
 
-如果呼叫 `bind` 對你來說很麻煩的話，你可以用別的方式。如果你使用了還在測試中的 [class fields 語法](https://babeljs.io/docs/plugins/transform-class-properties/)的話，你可以用 class field 正確的綁定 callback：
+如果呼叫 `bind` 對你來說很麻煩的話，你可以用別的方式。如果你使用了還在測試中的 [class fields 語法](https://babeljs.io/docs/plugins/transform-class-properties/)的話，你可以用 class field 正確的綁定 callback：
 
 ```js{2-6}
 class LoggingButton extends React.Component {
