@@ -56,7 +56,12 @@ React element 使用 `htmlFor` 來替代 `for`，因為 `for` 在 JavaScript 是
 
 ### selected {#selected}
 
+<<<<<<< HEAD
 `selected` 這個 attribute 可以使用在 `<option>` 裡面，用來設定 component 是否已被選取。這對建立 controlled component 很有幫助。
+=======
+If you want to mark an `<option>` as selected, reference the value of that option in the `value` of its `<select>` instead.
+Check out ["The select Tag"](/docs/forms.html#the-select-tag) for detailed instructions.
+>>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 ### style {#style}
 
@@ -120,7 +125,11 @@ React 會為某些數字型態的 style property 自動加上「px」。如果�
 
 ### value {#value}
 
+<<<<<<< HEAD
 `value` attribute 可以使用在 `<input>` 和 `<textarea>` component。你可以使用它來設定 component value。這對建立 controlled component 很有幫助。`defaultValue` 則是使用在 uncontrolled component，在初始 mount 後設定 component 的 value。
+=======
+The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+>>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 ## 可以使用的 HTML Attribute {#all-supported-html-attributes}
 

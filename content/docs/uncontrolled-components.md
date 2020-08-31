@@ -2,6 +2,8 @@
 id: uncontrolled-components
 title: Uncontrolled Component
 permalink: docs/uncontrolled-components.html
+prev: refs-and-the-dom.html
+next: optimizing-performance.html
 ---
 
 在大多數的情況下，我們推薦使用[controlled component](/docs/forms.html#controlled-components)來實作表單。在控制元件裡，表單的資料是被 React component 所處理。另一個選擇是 uncontrolled component，表單的資料是由 DOM 本身所處理的。

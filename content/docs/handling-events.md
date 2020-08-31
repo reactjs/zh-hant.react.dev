@@ -54,7 +54,11 @@ function ActionLink() {
 }
 ```
 
+<<<<<<< HEAD
 在這裡，`e` 是一個綜合事件（synthetic event）。React 根據 [W3C 規範](https://www.w3.org/TR/DOM-Level-3-Events/)來定義這些綜合事件，所以，你不需要煩惱跨瀏覽器相容性（cross-browser compatibility）的問題。若想了解更多這方面的資訊，請參考 [`SyntheticEvent`](/docs/events.html)。
+=======
+Here, `e` is a synthetic event. React defines these synthetic events according to the [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), so you don't need to worry about cross-browser compatibility. React events do not work exactly the same as native events. See the [`SyntheticEvent`](/docs/events.html) reference guide to learn more.
+>>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 當使用 React 時，你不需要在建立一個 DOM element 後再使用 `addEventListener` 來加上 listener。你只需要在這個 element 剛開始被 render 時就提供一個 listener。
 

@@ -122,9 +122,15 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
+<<<<<<< HEAD
 `React.memo` 是一個 [higher order component](/docs/higher-order-components.html)。它跟 [`React.PureComponent`](#reactpurecomponent) 很類似，但是它是使用在 function component 上而不是給 class 使用。
 
 如果你的 function component 每次得到相同 prop 的時候都會 render 相同結果，你可以將其包在 `React.memo` 之中，透過快取 render 結果來在某些情況下加速。這表示 React 會跳過 render 這個 component，並直接重用上次的 render 結果。
+=======
+`React.memo` is a [higher order component](/docs/higher-order-components.html).
+
+If your component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+>>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 `React.memo` 只會確認 props 的改變。如果你的 function component 內有使用 [`useState`](/docs/hooks-state.html) 或 [`useContext`](/docs/hooks-reference.html#usecontext) Hook，而且被 wrap 在 `React.memo`，當 state 或 context 改變時，它仍然會重新 render。
 
