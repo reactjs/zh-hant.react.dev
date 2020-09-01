@@ -2,6 +2,8 @@
 id: error-boundaries
 title: 錯誤邊界
 permalink: docs/error-boundaries.html
+prev: portals.html
+next: web-components.html
 ---
 
 在過去，component 裡 JavaScript 的錯誤常常會破壞 React 的內部 state，並使它在下次 render 的時候[發生](https://github.com/facebook/react/issues/4026) [神秘的](https://github.com/facebook/react/issues/6895) [錯誤](https://github.com/facebook/react/issues/8579)。這些錯誤總是被應用程式的程式碼裡更早發生的錯誤所導致，但 React 並沒有提供在 component 裡優雅處理它們的方式，而且也無法從錯誤中恢復。
@@ -47,7 +49,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -97,7 +99,7 @@ React 16 把所有發生在 render 時的錯誤在開發時印出在 console 裡
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="被錯誤邊界 component 捕捉到的錯誤與行數">
 
-如果你沒有使用 Create React App, 你可以手動在 Babel 設定加上[這個 plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source)。注意它是被設計用來在開發模式使用的，且**必須在正式環境被關掉**。
+如果你沒有使用 Create React App, 你可以手動在 Babel 設定加上[這個 plugin](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source)。注意它是被設計用來在開發模式使用的，且**必須在正式環境被關掉**。
 
 > 注意
 >

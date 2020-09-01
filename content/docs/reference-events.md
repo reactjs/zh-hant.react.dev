@@ -12,7 +12,7 @@ category: Reference
 
 你的 event handler 將會是 `SyntheticEvent` 被傳遞的 instance，它是一個跨瀏覽器的、瀏覽器原生事件的 wrapper。它和瀏覽器原生事件有相同的介面，包含 `stopPropagation()` 和 `preventDefault()`，除了原生事件在所有的瀏覽器都以相同的方式運作這點以外。
 
-如果你發現因為某些原因你需要使用瀏覽器的底層事件，你只需要使用 `nativeEvent` 這個 attribute 即可。每個 `SyntheticEvent` object 都有下列的 attribute：
+如果你發現因為某些原因你需要使用瀏覽器的底層事件，你只需要使用 `nativeEvent` 這個 attribute 即可。Synthetic event 不同於瀏覽器的 native event 並不會直接 mapping，例如在 `onMouseLeave` `event.nativeEvent` 將會指向到 `mouseout` event。特定 mapping 不是公開 API 的一部分，並且可以隨時更改。每個 `SyntheticEvent` object 都有下列的 attribute：
 
 ```javascript
 boolean bubbles

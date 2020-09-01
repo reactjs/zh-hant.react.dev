@@ -122,7 +122,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-`React.memo` 是一個 [higher order component](/docs/higher-order-components.html)。它跟 [`React.PureComponent`](#reactpurecomponent) 很類似，但是它是使用在 function component 上而不是給 class 使用。
+`React.memo` 是一個 [higher order component](/docs/higher-order-components.html)。
 
 如果你的 function component 每次得到相同 prop 的時候都會 render 相同結果，你可以將其包在 `React.memo` 之中，透過快取 render 結果來在某些情況下加速。這表示 React 會跳過 render 這個 component，並直接重用上次的 render 結果。
 

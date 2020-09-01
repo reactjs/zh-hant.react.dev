@@ -2,6 +2,8 @@
 id: react-without-jsx
 title: 沒有 JSX 的 React
 permalink: docs/react-without-jsx.html
+prev: react-without-es6.html
+next: reconciliation.html
 ---
 
 JSX 對於使用 React 並不是不可或缺的。當你不想在開發環境中設置編譯時，使用沒有 JSX 的 React 格外方便。

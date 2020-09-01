@@ -580,7 +580,7 @@ useEffect(() => {
 
 讓我們看看這個為什麼很重要。
 
-如果你在 `useEffect`、`useMemo`、`useCallback` 或是 `useImperativeHandle` 的最後指定了[依賴項目的列表](/docs/hooks-reference.html#conditionally-firing-an-effect)，它必須包含在 callback 內使用的值以及參與 React 的資料流。包含了 props、state 和從它們取得的任何值。
+如果你在 `useEffect`、`useLayoutEffect`、`useMemo`、`useCallback` 或是 `useImperativeHandle` 的最後指定了[依賴項目的列表](/docs/hooks-reference.html#conditionally-firing-an-effect)，它必須包含在 callback 內使用的值以及參與 React 的資料流。包含了 props、state 和從它們取得的任何值。
 
 如果沒有任何內容（或由它呼叫的 function）reference 到 props、state 或是從它們取得的值，那麼從依賴項目中省略一個 function 是*唯一*安全的。這個範例有一個 bug：
 
