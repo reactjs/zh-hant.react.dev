@@ -49,7 +49,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -99,11 +99,7 @@ React 16 把所有發生在 render 時的錯誤在開發時印出在 console 裡
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="被錯誤邊界 component 捕捉到的錯誤與行數">
 
-<<<<<<< HEAD
-如果你沒有使用 Create React App, 你可以手動在 Babel 設定加上[這個 plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source)。注意它是被設計用來在開發模式使用的，且**必須在正式環境被關掉**。
-=======
-If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
->>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
+如果你沒有使用 Create React App, 你可以手動在 Babel 設定加上[這個 plugin](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source)。注意它是被設計用來在開發模式使用的，且**必須在正式環境被關掉**。
 
 > 注意
 >

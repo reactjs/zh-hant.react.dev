@@ -1,12 +1,8 @@
 ---
 id: refs-and-the-dom
-<<<<<<< HEAD
-title: Ref 和 DOM
-=======
-title: Refs and the DOM
+title: Refs 和 DOM
 prev: static-type-checking.html
 next: uncontrolled-components.html
->>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"
