@@ -29,11 +29,7 @@ prev: testing-recipes.html
 
 如果你正在撰寫一個函式庫，它主要測試於特定的瀏覽器行為，並要求原生的瀏覽器行為像是 layout 或是真實的輸入，你可以使用像是 [mocha](https://mochajs.org/) 的測試框架。
 
-<<<<<<< HEAD
-在_無法_模擬 DOM 的環境中（例如：在 Node.js 上測試 React Native 的 component），你可以使用 [event simulation helper](/docs/test-utils.html#simulate) 來模擬互動的 element。或者，你可以使用 [`@testing-library/react-native`](https://testing-library.com/docs/native-testing-library) 的 `fireEvent` helper。
-=======
-In an environment where you _can't_ simulate a DOM (e.g. testing React Native components on Node.js), you could use [event simulation helpers](/docs/test-utils.html#simulate) to simulate interactions with elements. Alternately, you could use the `fireEvent` helper from [`@testing-library/react-native`](https://testing-library.com/docs/react-native-testing-library/intro).
->>>>>>> 657658aa1f19c65e35055ddca4452c98d569552f
+在_無法_模擬 DOM 的環境中（例如：在 Node.js 上測試 React Native 的 component），你可以使用 [event simulation helper](/docs/test-utils.html#simulate) 來模擬互動的 element。或者，你可以使用 [`@testing-library/react-native`](https://testing-library.com/docs/react-native-testing-library/intro) 的 `fireEvent` helper。
 
 像是 [Cypress](https://www.cypress.io/)、[puppeteer](https://github.com/GoogleChrome/puppeteer) 和 [webdriver](https://www.seleniumhq.org/projects/webdriver/) 的框架對於執行 [end-to-end tests](#end-to-end-tests-aka-e2e-tests) 非常有用。
 
