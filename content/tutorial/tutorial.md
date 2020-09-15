@@ -170,7 +170,7 @@ JSX 就跟 JavaScript ㄧ樣強大。你可以在 JSX 中的括號中放入*任�
 
 上述的 `ShoppingList` component 只會 render 內建如 `<div />` 和 `<li />` 的 DOM component。此外，你也可以組合 render 客製的 React component。例如，我們現在可以用 `<ShoppingList />` 來使用 shopping list。每個 React component 都是封裝好並能獨立運作的。React 讓你能用簡單的 component 建立複雜的 UI。
 
-## 檢查你的 Starter Code {#inspecting-the-starter-code}
+### 檢查你的 Starter Code {#inspecting-the-starter-code}
 
 如果你打算在**你的瀏覽器**中練習這份指南的話，請在分頁中開啟這份程式：**[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**。如果你打算在**本地開發環境**中練習，在你的專案資料夾中打開 `src/index.js`（你在 [setup](#setup-option-2-local-development-environment) 時已接觸過這個檔案）。
 

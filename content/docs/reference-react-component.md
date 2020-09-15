@@ -274,7 +274,7 @@ shouldComponentUpdate(nextProps, nextState)
 static getDerivedStateFromProps(props, state)
 ```
 
-`getDerivedStateFromProps` 會在一個 component 被 render 前被呼叫，不管是在首次 mount 時或後續的更新時。它應該回傳一個 object 以更新 state，或回傳 null 以表示不需要更新任何 state。
+`getDerivedStateFromProps` 會在一個 component 被 render 前被呼叫，不管是在首次 mount 時或後續的更新時。它應該回傳一個 object 以更新 state，或回傳 `null` 以表示不需要更新任何 state。
 
 這個方法是為了某些[很少見的例子](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)而存在的，像是有時 state 會依賴 prop 在一段時間過後所產生的改變。例如，也許建立一個 `<Transition>` component 是很方便的，我們可以用它來比較其之前與之後的 children，並決定我們要 animate in and out 哪一個 child。
 
@@ -586,7 +586,7 @@ component.forceUpdate(callback)
 
 ### `defaultProps` {#defaultprops}
 
-`defaultProps` 可以在一個 component class 自身被定義為一個屬性，它被用來設定該 class 的預設 props。它是為了 undefined（而非 null） 的 prop 使用的。例如：
+`defaultProps` 可以在一個 component class 自身被定義為一個屬性，它被用來設定該 class 的預設 props。它是為了 `undefined`（而非 `null`） 的 prop 使用的。例如：
 
 ```js
 class CustomButton extends React.Component {
@@ -606,7 +606,7 @@ CustomButton.defaultProps = {
   }
 ```
 
-如果 `props.color` 的值被設為 null，其值會繼續為 null：
+如果 `props.color` 的值被設為 `null`，其值會繼續為 `null`：
 
 ```js
   render() {
