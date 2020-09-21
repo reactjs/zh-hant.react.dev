@@ -2,8 +2,6 @@
 id: error-boundaries
 title: 錯誤邊界
 permalink: docs/error-boundaries.html
-prev: portals.html
-next: web-components.html
 ---
 
 在過去，component 裡 JavaScript 的錯誤常常會破壞 React 的內部 state，並使它在下次 render 的時候[發生](https://github.com/facebook/react/issues/4026) [神秘的](https://github.com/facebook/react/issues/6895) [錯誤](https://github.com/facebook/react/issues/8579)。這些錯誤總是被應用程式的程式碼裡更早發生的錯誤所導致，但 React 並沒有提供在 component 裡優雅處理它們的方式，而且也無法從錯誤中恢復。
