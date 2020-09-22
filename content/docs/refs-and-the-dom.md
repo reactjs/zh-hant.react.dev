@@ -1,8 +1,7 @@
 ---
 id: refs-and-the-dom
 title: Refs 和 DOM
-prev: static-type-checking.html
-next: uncontrolled-components.html
+permalink: docs/refs-and-the-dom.html
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"
@@ -10,7 +9,6 @@ redirect_from:
   - "docs/more-about-refs-zh-CN.html"
   - "tips/expose-component-functions.html"
   - "tips/children-undefined.html"
-permalink: docs/refs-and-the-dom.html
 ---
 
 Ref 提供了一種可以取得 DOM 節點或在 render 方法內建立 React element 的方式。

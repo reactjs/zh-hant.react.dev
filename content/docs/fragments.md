@@ -2,8 +2,6 @@
 id: fragments
 title: Fragments
 permalink: docs/fragments.html
-prev: context.html
-next: portals.html
 ---
 
 React 其中一種常見的使用情況是在一個 component 中回傳多個 element，fragment 讓你能夠在不用增加額外 DOM 節點的情況下，重新組合 child component。
