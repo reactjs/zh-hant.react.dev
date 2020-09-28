@@ -18,7 +18,7 @@ permalink: docs/render-props.html
 
 以下我們會討論為什麼 render props 如此有用，以及怎麼實作自己的 render props。
 
-## 為 Cross-Cutting Concerns 使用 Render Props{#use-render-props-for-cross-cutting-concerns}
+## 為橫切關注點使用 Render Props{#use-render-props-for-cross-cutting-concerns}
 
 Component 是 React 中主要的程式碼重用單位，但如何將一個 component 所包含的 state 或行為共享給其他也同樣需要這些狀態或行為的 component 並不是那麼直觀。
 
