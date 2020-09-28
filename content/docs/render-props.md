@@ -4,7 +4,7 @@ title: Render Props
 permalink: docs/render-props.html
 ---
 
-["render prop"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) 這個詞指的是一種用一個其值為函式的 prop 來在 React components 之間共享程式碼的技巧。
+[「render prop」](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)這個詞指的是一種用一個其值為函式的 prop 來在 React component 之間共享程式碼的技巧。
 
 一個有 render prop 的 component 會接受一個函式，此函式不會實作他自己的 render 邏輯，而是會回傳並且呼叫一個 React element。
 
@@ -14,13 +14,13 @@ permalink: docs/render-props.html
 )}/>
 ```
 
-使用render props的套件包含 [React Router](https://reacttraining.com/react-router/web/api/Route/render-func), [Downshift](https://github.com/paypal/downshift) 和 [Formik](https://github.com/jaredpalmer/formik)。
+使用 render props 的函式庫包含 [React Router](https://reacttraining.com/react-router/web/api/Route/render-func)、[Downshift](https://github.com/paypal/downshift) 和 [Formik](https://github.com/jaredpalmer/formik)。
 
 以下我們會討論為什麼 render props 如此有用，以及怎麼實作自己的 render props。
 
 ## 為 Cross-Cutting Concerns 使用 Render Props{#use-render-props-for-cross-cutting-concerns}
 
-Components 是 React 中主要的程式碼重用單位，但如何將一個 component 所包含的 state 或行為共享給其他也同樣需要這些狀態或行為的 component 並不是那麼直觀。
+Component 是 React 中主要的程式碼重用單位，但如何將一個 component 所包含的 state 或行為共享給其他也同樣需要這些狀態或行為的 component 並不是那麼直觀。
 
 例如，下面這個 component 負責在一個網頁應用中追蹤滑鼠游標的位置：
 
@@ -212,13 +212,13 @@ class MouseTracker extends React.Component {
 更具體地說，**render prop 是一個讓 component 知道該 render 什麼的 function prop。**
 
 
-這個技巧讓我們想共享的行為變得極為可轉移。要使用這個行為時，就 render 一個有 `render` prop 的 `<Mouse>` ，讓 `render` prop 來告訴 `<Mouse>`  該用現在游標的 (x,y) render 什麼。
+這個技巧讓我們想共享的行為變得極為可轉移。要使用這個行為時，就 render 一個有 `render` prop 的 `<Mouse>`，讓 `render` prop 來告訴 `<Mouse>` 該用現在游標的 (x,y) render 什麼。
 
-關於 render props 一件有趣的事是，你可以用包含 render prop 的普通 component 來實作最  [higher-order components](/docs/higher-order-components.html)。 舉例來說，如果你偏好用 `withMouse` HOC 而不是 `<Mouse>` component的話，你可以輕易地用一個普通的 `<Mouse>` 加上 render prop 來創建：
+關於 render props 一件有趣的事是，你可以用包含 render prop 的普通 component 來實作最  [higher-order component](/docs/higher-order-components.html)。舉例來說，如果你偏好用 `withMouse` HOC 而不是 `<Mouse>` component 的話，你可以輕易地用一個普通的 `<Mouse>` 加上 render prop 來建立：
 
 ```js
 // 如果你真的想用 HOC ，你可以輕易地用一個
-// 有 render prop 的普通 component 來創建！
+// 有 render prop 的普通 component 來建立！
 function withMouse(Component) {
   return class extends React.Component {
     render() {
@@ -236,7 +236,7 @@ function withMouse(Component) {
 
 ## 使用 Props 代替 `render` {#using-props-other-than-render}
 
-記住，只因為這個模式稱為 「render props」，不代表*你一定要用一個名為 `render` 的 prop來使用這個模式*。事實上，[*任何* 是函式且被 component 用來認知該 render 什麼的 prop ，都叫做 「redner prop」](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)。
+記住，只因為這個模式稱為 「render props」，不代表*你一定要用一個名為 `render` 的 prop來使用這個模式*。事實上，[*任何*是函式且被 component 用來認知該 render 什麼的 prop，都叫做 「redner prop」](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)。
 
 雖然上述範例使用 `render`，我們可以同樣輕易地使用 `children` prop！
 
@@ -268,9 +268,9 @@ Mouse.propTypes = {
 
 ## 警告 {#caveats}
 
-### 注意當將 Render Props 用在 React.PureComponent 時{#be-careful-when-using-render-props-with-reactpurecomponent}
+### 注意當 Render Props 使用在 React.PureComponent 時{#be-careful-when-using-render-props-with-reactpurecomponent}
 
-如果你在 `render` 方法中創建函式，使用 render prop 會讓 [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) 帶來的好處作廢。這是因為對新的 props 而言，prop 的淺比較會永遠回傳 `false`，並且每次 `render` 都會為 render prop 產生新的值。
+如果你在 `render` 方法中建立函式，使用 render prop 會讓 [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) 帶來的好處作廢。這是因為對新的 props 而言，prop 的淺比較會永遠回傳 `false`，並且每次 `render` 都會為 render prop 產生新的值。
 
 例如，繼續我們上述的 `<Mouse>` component，如果 `Mouse` 繼承 `React.PureComponent` 而不是 `React.Component` 的話，我們的範例會像這樣：
 
@@ -304,7 +304,7 @@ class MouseTracker extends React.Component {
 ```js
 class MouseTracker extends React.Component {
   // `this.renderTheCat` 被定義成一個 instance 方法
-  // 當我們在 render 使用到時，會永遠指向 *相同的* 函式
+  // 當我們在 render 使用到時，會永遠指向*相同的*函式
   renderTheCat(mouse) {
     return <Cat mouse={mouse} />;
   }
