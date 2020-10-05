@@ -152,7 +152,24 @@ ReactDOM.render(
 
 所以，當條件為 `true` 時，`&&` 右側的 element 會出現在輸出中，如果是 `false`，React 會忽略並跳過它。
 
+<<<<<<< HEAD
 ### Inline If-Else 與三元運算子 {#inline-if-else-with-conditional-operator}
+=======
+Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      { count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
+```
+
+### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
+>>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 另一個有條件 render element 的方式是透過 JavaScript 的三元運算子 [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)。
 
