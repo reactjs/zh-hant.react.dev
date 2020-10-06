@@ -39,7 +39,7 @@ class Welcome extends React.Component {
 
 ### Component 生命週期 {#the-component-lifecycle}
 
-每一個 component 都有數個 「生命週期方法」，你可以 [override](https://en.wikipedia.org/wiki/Method_overriding) 這些方法，以便在開發過程中某些特定的時刻執行某些程式。**你可以使用[這個生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)作為速查表。** 以下，常用的生命週期方法將會以粗體表達。其餘的生命週期方法則相對較少。
+每一個 component 都有數個 「生命週期方法」，你可以 [override](https://en.wikipedia.org/wiki/Method_overriding) 這些方法，以便在開發過程中某些特定的時刻執行某些程式。**你可以使用[這個生命週期表](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)作為速查表。** 以下，常用的生命週期方法將會以粗體表達。其餘的生命週期方法則相對較少。
 
 #### Mounting {#mounting}
 
@@ -109,7 +109,7 @@ class Welcome extends React.Component {
 
 ### 常用的生命周期方法 {#commonly-used-lifecycle-methods}
 
-此段落將會介紹你在建立 React component 時最可能會使用到的幾種方法。**想更深入了解生命週期方法，請參考[生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)。**
+此段落將會介紹你在建立 React component 時最可能會使用到的幾種方法。**想更深入了解生命週期方法，請參考[生命週期表](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)。**
 
 ### `render()` {#render}
 
@@ -245,7 +245,7 @@ componentWillUnmount()
 
 ### 不常使用的生命週期方法 {#rarely-used-lifecycle-methods}
 
-這個章節內介紹的方法是在那些不常見的情況中使用的。它們有時很方便，但是你大多數的 component 大概不會需要使用它們。**你可以在這個[生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)上方點選「顯示不常使用的生命週期方法」，並看到以下所介紹的方法。**
+這個章節內介紹的方法是在那些不常見的情況中使用的。它們有時很方便，但是你大多數的 component 大概不會需要使用它們。**你可以在這個[生命週期表](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)上方點選「顯示不常使用的生命週期方法」，並看到以下所介紹的方法。**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -323,7 +323,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 想了解更多，請參考 [*React 16 中的錯誤邊界*](/blog/2017/07/26/error-handling-in-react-16.html)一文。
 
 > 注意：
-> 
+>
 > 錯誤邊界只會截取在 tree 中、自身**以下**的 component 中的錯誤。錯誤邊界無法截取自身內的錯誤。
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
@@ -352,7 +352,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -407,13 +407,13 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
 > 注意：
-> 
+>
 > 在有錯誤的情況下，你可以透過呼叫 `setState` 來 render 一個含有 `componentDidCatch()` 的 fallback UI，但這個方法會在未來的版本中會被棄用。
 > 請使用 `static getDerivedStateFromError()` 來處理 fallback render。
 

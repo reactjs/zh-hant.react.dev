@@ -79,11 +79,11 @@ import("./math").then(math => {
 });
 ```
 
-當 Webpack 遇到這種語法時，它將自動的在你的應用程式啟動 code-splitting。如果你使用 Create React App 的話，它已經幫你設定好了，你可以立即的[使用它](https://facebook.github.io/create-react-app/docs/code-splitting)。在 [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import) 也內建支援這個功能。
+當 Webpack 遇到這種語法時，它將自動的在你的應用程式啟動 code-splitting。如果你使用 Create React App 的話，它已經幫你設定好了，你可以立即的[使用它](https://create-react-app.dev/docs/code-splitting/)。在 [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import) 也內建支援這個功能。
 
 如果你是自行設定 Webpack，你可以閱讀 Webpack 的 [code-splitting 指南](https://webpack.js.org/guides/code-splitting/)。你的 Webpack 設定看起來應該[像這樣](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)。
 
-當使用 [Babel](https://babeljs.io/) 時，你將需要確保 Babel 可以解析動態的 import 語法而不是去轉換它。你可能會需要 [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import)。
+當使用 [Babel](https://babeljs.io/) 時，你將需要確保 Babel 可以解析動態的 import 語法而不是去轉換它。你可能會需要 [@babel/plugin-syntax-dynamic-import](https://classic.yarnpkg.com/en/package/@babel/plugin-syntax-dynamic-import)。
 
 ## `React.lazy` {#reactlazy}
 
