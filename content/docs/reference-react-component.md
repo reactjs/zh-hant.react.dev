@@ -39,11 +39,7 @@ class Welcome extends React.Component {
 
 ### Component 生命週期 {#the-component-lifecycle}
 
-<<<<<<< HEAD
-每一個 component 都有數個 「生命週期方法」，你可以 [override](https://en.wikipedia.org/wiki/Method_overriding) 這些方法，以便在開發過程中某些特定的時刻執行某些程式。**你可以使用[這個生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)作為速查表。** 以下，常用的生命週期方法將會以粗體表達。其餘的生命週期方法則相對較少。
-=======
-Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
->>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
+每一個 component 都有數個 「生命週期方法」，你可以 [override](https://en.wikipedia.org/wiki/Method_overriding) 這些方法，以便在開發過程中某些特定的時刻執行某些程式。**你可以使用[這個生命週期表](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)作為速查表。** 以下，常用的生命週期方法將會以粗體表達。其餘的生命週期方法則相對較少。
 
 #### Mounting {#mounting}
 
@@ -113,11 +109,7 @@ Each component has several "lifecycle methods" that you can override to run code
 
 ### 常用的生命周期方法 {#commonly-used-lifecycle-methods}
 
-<<<<<<< HEAD
-此段落將會介紹你在建立 React component 時最可能會使用到的幾種方法。**想更深入了解生命週期方法，請參考[生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)。**
-=======
-The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
->>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
+此段落將會介紹你在建立 React component 時最可能會使用到的幾種方法。**想更深入了解生命週期方法，請參考[生命週期表](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)。**
 
 ### `render()` {#render}
 
@@ -253,11 +245,7 @@ componentWillUnmount()
 
 ### 不常使用的生命週期方法 {#rarely-used-lifecycle-methods}
 
-<<<<<<< HEAD
-這個章節內介紹的方法是在那些不常見的情況中使用的。它們有時很方便，但是你大多數的 component 大概不會需要使用它們。**你可以在這個[生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)上方點選「顯示不常使用的生命週期方法」，並看到以下所介紹的方法。**
-=======
-The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
->>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
+這個章節內介紹的方法是在那些不常見的情況中使用的。它們有時很方便，但是你大多數的 component 大概不會需要使用它們。**你可以在這個[生命週期表](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)上方點選「顯示不常使用的生命週期方法」，並看到以下所介紹的方法。**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -290,12 +278,7 @@ static getDerivedStateFromProps(props, state)
 
 這個方法是為了某些[很少見的例子](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)而存在的，像是有時 state 會依賴 prop 在一段時間過後所產生的改變。例如，也許建立一個 `<Transition>` component 是很方便的，我們可以用它來比較其之前與之後的 children，並決定我們要 animate in and out 哪一個 child。
 
-<<<<<<< HEAD
 繼承 state 會導致冗長的程式碼並使你的 component 很難理解。[請確認你知道這些較為簡單的替代方案](/blog/2018/06/07/you-probably-dont-need-derived-state.html)。
-=======
-Deriving state leads to verbose code and makes your components difficult to think about.
-[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
->>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 * 如果你需要在某個 prop 改變時產生相對應的**side effect**（例如，資料提取或使用動畫），請使用 [`componentDidUpdate`](#componentdidupdate)。
 
@@ -339,15 +322,9 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 想了解更多，請參考 [*React 16 中的錯誤邊界*](/blog/2017/07/26/error-handling-in-react-16.html)一文。
 
-<<<<<<< HEAD
 > 注意：
-> 
-> 錯誤邊界只會截取在 tree 中、自身**以下**的 component 中的錯誤。錯誤邊界無法截取自身內的錯誤。
-=======
-> Note
 >
-> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
->>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
+> 錯誤邊界只會截取在 tree 中、自身**以下**的 component 中的錯誤。錯誤邊界無法截取自身內的錯誤。
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
@@ -435,17 +412,10 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
 > 注意：
-> 
+>
 > 在有錯誤的情況下，你可以透過呼叫 `setState` 來 render 一個含有 `componentDidCatch()` 的 fallback UI，但這個方法會在未來的版本中會被棄用。
 > 請使用 `static getDerivedStateFromError()` 來處理 fallback render。
-=======
-> Note
->
-> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
-> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
->>>>>>> 8f7ffa473905148fd5c7ecfd7fed5dabbd261bf0
 
 * * *
 
