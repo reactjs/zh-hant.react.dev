@@ -42,19 +42,12 @@ console.log(add(16, 26)); // 42
 >
 > 你的 bundle 後的最終結果看起來會與此不同。
 
-<<<<<<< HEAD
 如果你使用 [Create React App](https://create-react-app.dev/)、[Next.js](https://nextjs.org/)、[Gatsby](https://www.gatsbyjs.org/)，或者是類似的工具，會有一個內建的 Webpack 設定來 bundle 你的應用程式。
 
 如果沒有的話，你需要自己設定 bundle。例如，拜訪 Webpack 文件的 [Installation](https://webpack.js.org/guides/installation/) 和 [Getting Started](https://webpack.js.org/guides/getting-started/) 指南。
-=======
-If you're using [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your app.
-
-If you aren't, you'll need to setup bundling yourself. For example, see the [Installation](https://webpack.js.org/guides/installation/) and [Getting Started](https://webpack.js.org/guides/getting-started/) guides on the Webpack docs.
->>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 ## Code-Splitting {#code-splitting}
 
-<<<<<<< HEAD
 Bundle 非常棒，但隨著你的應用程式成長，你的 bundle 也將會隨著增長。特別是你引入了大量的第三方函式庫。
 你需要隨時留意 bundle 後的程式碼，這樣你就不會得意外的讓 bundle 檔案變得太大，以至於你的應用程式需要很長的時間才能被載入。
 
@@ -69,18 +62,6 @@ Code-splitting 可以幫助你「延遲載入」目前使用者所需要的東�
 ## `import()` {#import}
 
 將 code-splitting 引入到你的應用程式最好的方式是透過動態 `import()` 語法。
-=======
-Bundling is great, but as your app grows, your bundle will grow too. Especially if you are including large third-party libraries. You need to keep an eye on the code you are including in your bundle so that you don't accidentally make it so large that your app takes a long time to load.
-
-To avoid winding up with a large bundle, it's good to get ahead of the problem and start "splitting" your bundle. Code-Splitting is a feature
-supported by bundlers like [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) and Browserify (via [factor-bundle](https://github.com/browserify/factor-bundle)) which can create multiple bundles that can be dynamically loaded at runtime.
-
-Code-splitting your app can help you "lazy-load" just the things that are currently needed by the user, which can dramatically improve the performance of your app. While you haven't reduced the overall amount of code in your app, you've avoided loading code that the user may never need, and reduced the amount of code needed during the initial load.
-
-## `import()` {#import}
-
-The best way to introduce code-splitting into your app is through the dynamic `import()` syntax.
->>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 **加入前：**
 
@@ -98,19 +79,11 @@ import("./math").then(math => {
 });
 ```
 
-<<<<<<< HEAD
 當 Webpack 遇到這種語法時，它將自動的在你的應用程式啟動 code-splitting。如果你使用 Create React App 的話，它已經幫你設定好了，你可以立即的[使用它](https://create-react-app.dev/docs/code-splitting/)。在 [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import) 也內建支援這個功能。
 
 如果你是自行設定 Webpack，你可以閱讀 Webpack 的 [code-splitting 指南](https://webpack.js.org/guides/code-splitting/)。你的 Webpack 設定看起來應該[像這樣](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)。
 
 當使用 [Babel](https://babeljs.io/) 時，你將需要確保 Babel 可以解析動態的 import 語法而不是去轉換它。你可能會需要 [@babel/plugin-syntax-dynamic-import](https://classic.yarnpkg.com/en/package/@babel/plugin-syntax-dynamic-import)。
-=======
-When Webpack comes across this syntax, it automatically starts code-splitting your app. If you're using Create React App, this is already configured for you and you can [start using it](https://create-react-app.dev/docs/code-splitting/) immediately. It's also supported out of the box in [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import).
-
-If you're setting up Webpack yourself, you'll probably want to read Webpack's [guide on code splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
-
-When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can parse the dynamic import syntax but is not transforming it. For that you will need [@babel/plugin-syntax-dynamic-import](https://classic.yarnpkg.com/en/package/@babel/plugin-syntax-dynamic-import).
->>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 ## `React.lazy` {#reactlazy}
 
@@ -203,19 +176,11 @@ const MyComponent = () => (
 
 ## 基於 Route 的 Code-Splitting {#route-based-code-splitting}
 
-<<<<<<< HEAD
 在你的應用程式決定採用 code-splitting 可能有點棘手。你想要確保選擇的位置可以適當的 split bundle，但不會破壞使用者的體驗。
 
 Route 是一個開始的好地方。Web 上大多數的人都習慣花一些時間來等待頁面的過渡。你也傾向於重新 render 一次整個頁面，所以你的使用者不能同時與頁面上的其他 element 做互動。
 
 這裡是如何在你的應用程式使用像是 [React Router](https://reacttraining.com/react-router/) 的函式庫與 `React.lazy` 來設定基於 route 的 code-splitting。
-=======
-Deciding where in your app to introduce code splitting can be a bit tricky. You want to make sure you choose places that will split bundles evenly, but won't disrupt the user experience.
-
-A good place to start is with routes. Most people on the web are used to page transitions taking some amount of time to load. You also tend to be re-rendering the entire page at once so your users are unlikely to be interacting with other elements on the page at the same time.
-
-Here's an example of how to setup route-based code splitting into your app using libraries like [React Router](https://reacttraining.com/react-router/) with `React.lazy`.
->>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
 
 ```js
 import React, { Suspense, lazy } from 'react';
