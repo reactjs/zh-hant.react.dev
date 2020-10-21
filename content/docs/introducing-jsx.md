@@ -180,8 +180,4 @@ const element = {
 
 >**提示：**
 >
-<<<<<<< HEAD
->我們推薦你在編輯器中使用 [「Babel」語法](http://babeljs.io/docs/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。
-=======
->We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
->>>>>>> 4e6cee1f82737aa915afd87de0cd4a8393de3fc8
+>我們推薦你在編輯器中使用 [「Babel」語法](https://babeljs.io/docs/en/next/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。
