@@ -180,4 +180,4 @@ const element = {
 
 >**提示：**
 >
->我們推薦你在編輯器中使用 [「Babel」語法](http://babeljs.io/docs/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。
+>我們推薦你在編輯器中使用 [「Babel」語法](https://babeljs.io/docs/en/next/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。
