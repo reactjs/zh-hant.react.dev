@@ -166,7 +166,7 @@ return React.createElement('div', {className: 'shopping-list'},
 
 如果你想了解更多 `createElement()`，在 [API 參考指南](/docs/react-api.html#createelement)中有更詳細的解釋，但我們不會在這份指南中用到它。我們會繼續使用 JSX。
 
-JSX 就跟 JavaScript ㄧ樣強大。你可以在 JSX 中的括號中放入*任何* JavaScript 的表達式。每個 React element 都是一個 JavaScript 的 object，你可以把它存在一個變數中或在程式中互相傳遞。
+JSX 就跟 JavaScript 一樣強大。你可以在 JSX 中的括號中放入*任何* JavaScript 的表達式。每個 React element 都是一個 JavaScript 的 object，你可以把它存在一個變數中或在程式中互相傳遞。
 
 上述的 `ShoppingList` component 只會 render 內建如 `<div />` 和 `<li />` 的 DOM component。此外，你也可以組合 render 客製的 React component。例如，我們現在可以用 `<ShoppingList />` 來使用 shopping list。每個 React component 都是封裝好並能獨立運作的。React 讓你能用簡單的 component 建立複雜的 UI。
 
@@ -228,7 +228,7 @@ class Square extends React.Component {
 
 ### 建立互動式的 Component {#making-an-interactive-component}
 
-讓我們在點擊 Square component 時，能在方格中填入ㄧ個 X。
+讓我們在點擊 Square component 時，能在方格中填入一個 X。
 首先，把從 Square component 的 `render()` 中回傳的按鈕的標籤，修改成以下的程式：
 
 ```javascript{4}
@@ -549,13 +549,13 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 #### 簡化複雜功能 {#complex-features-become-simple}
 
-不可變性使得複雜的功能變得更容易實現。稍後在這份教學指南中，我們將會實現「時間旅行」的功能。這個功能讓我們能回顧關關叉叉小遊戲的歷史並「跳回」之前的動作。這個功能並非只適用於遊戲 -- 復原動作與取消復原動作的功能是應用程式中很常見的需求。避免直接修改資料讓我們能將遊戲歷史先前的版本完整的保留下來，並在之後重新使用它們。
+不可變性使得複雜的功能變得更容易實現。稍後在這份教學指南中，我們將會實現「時間旅行」的功能。這個功能讓我們能回顧圈圈叉叉小遊戲的歷史並「跳回」之前的動作。這個功能並非只適用於遊戲 -- 復原動作與取消復原動作的功能是應用程式中很常見的需求。避免直接修改資料讓我們能將遊戲歷史先前的版本完整的保留下來，並在之後重新使用它們。
 
 #### 偵測改變 {#detecting-changes}
 
 在可變更的 object 中偵測改變是很困難的，因為這些改變是直接的。如果要偵測改變的話，我們需要比較這個可變更的 object 和它之前的 copy，並且走訪整個 object tree。
 
-相較之下，在不可變更的 object 中偵測改變就容易多了。如果某個不可變更 object 和之前不ㄧ樣，那麼這個 object 就已經被改變了。
+相較之下，在不可變更的 object 中偵測改變就容易多了。如果某個不可變更 object 和之前不一樣，那麼這個 object 就已經被改變了。
 
 #### 在 React 中決定何時重新 render {#determining-when-to-re-render-in-react}
 
@@ -606,7 +606,7 @@ class Board extends React.Component {
   }
 ```
 
-每當玩家做出一個動作，`xIsNext`（一個 boolean）就會被翻轉，以用來決定下ㄧ個玩家是誰，並儲存遊戲的 state。接下來，我們將更新 Board 的 `handleClick` function 以翻轉 `xIsNext` 的值：
+每當玩家做出一個動作，`xIsNext`（一個 boolean）就會被翻轉，以用來決定下一個玩家是誰，並儲存遊戲的 state。接下來，我們將更新 Board 的 `handleClick` function 以翻轉 `xIsNext` 的值：
 
 ```javascript{3,6}
   handleClick(i) {
@@ -621,7 +621,7 @@ class Board extends React.Component {
 
 這個改變會讓「X」和「O」輪流出現，試試看吧！
 
-我們也來更新一下 Board 的 `render` 中「status」的文字，讓它能顯示下ㄧ個玩家是誰：
+我們也來更新一下 Board 的 `render` 中「status」的文字，讓它能顯示下一個玩家是誰：
 
 ```javascript{2}
   render() {
@@ -803,7 +803,7 @@ history = [
 
 我們會希望最頂層的 Game component 能展示過去一系列的動作。它需要能讀取 `history` 才能做到如此，所以我們會把 `history` state 放在最上層的 Game component 裡面。
 
-把 `history` state 放在 Game component 裡面也讓我們能夠把 `squares` 的 state 從它的 child Board component 中移除。如同我們把 state 從 Square component [「提升」](#lifting-state-up)到 Board component ㄧ樣，我們現在也要把 state 從 Board 再度提升到最頂層的 Game component 中。這讓 Game component 能完全掌握 Board 的資料，並讓它能告訴 Board 何時該從 `history` 中 render 之前的動作。
+把 `history` state 放在 Game component 裡面也讓我們能夠把 `squares` 的 state 從它的 child Board component 中移除。如同我們把 state 從 Square component [「提升」](#lifting-state-up)到 Board component 一樣，我們現在也要把 state 從 Board 再度提升到最頂層的 Game component 中。這讓 Game component 能完全掌握 Board 的資料，並讓它能告訴 Board 何時該從 `history` 中 render 之前的動作。
 
 首先，我們會先在 Game component 的 constructor 中設定最初的 state：
 
@@ -1045,7 +1045,7 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-在圈圈叉叉小遊戲歷史中的每個動作，我們都會建立一個列表元素 `<li>`，並在裡面加入 `<button>`。這個按鈕有ㄧ個會呼叫 `this.jumpTo()` 方法的 `onClick` handler。我們還沒實作 `jumpTo()` 方法。現在，我們應該能在開發者工具的 console 中看到一系列在遊戲中曾經發生過的動作以及一個警告：
+在圈圈叉叉小遊戲歷史中的每個動作，我們都會建立一個列表元素 `<li>`，並在裡面加入 `<button>`。這個按鈕有一個會呼叫 `this.jumpTo()` 方法的 `onClick` handler。我們還沒實作 `jumpTo()` 方法。現在，我們應該能在開發者工具的 console 中看到一系列在遊戲中曾經發生過的動作以及一個警告：
 
 >  警告：
 >  每一個 array 或 iterator 中的 child 必須要有一個獨特的「key」屬性。請參考 Game 的 render 方法。
@@ -1079,7 +1079,7 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 當一個列表被重新 render 的時候，React 會依據每一個列表項目的 key 搜尋上一個列表內的所有項目，並尋找相對應的 key。如果目前的列表有一個之前不存在的 key，那麼 React 就會建立一個 component。如果目前的列表缺少一個之前的列表中有的 key，React 便會將上一個 component 摧毀。如果兩個 key 符合，那麼相對應的 component 就會被移動。Key 告訴 React 每個 component 的身份，這讓 React 能夠在每次重新 render 之間維持 state。如果一個 component 的 key 改變了，那麼這個 component 就會被摧毀，然後在被加上新的 state 後重新被建立。
 
-`Key` 是在 React 中一個特別的且被保留為關鍵字的屬性（跟 `ref` 這個較為進階的功能ㄧ樣）。當ㄧ個元素被建立時，React 會取出 `key` 屬性，並直接將這個 key 儲存在回傳的 element 內。雖然 `key` 可能看起來跟 `props` 像是同一類的關鍵字，但我們沒辦法使用 `this.props.key` 來參考 `key`。React 會自動使用 `key` 來決定哪一個 component 需要被更新。一個 component 無法得知自身的 `key` 是什麼。
+`Key` 是在 React 中一個特別的且被保留為關鍵字的屬性（跟 `ref` 這個較為進階的功能一樣）。當一個元素被建立時，React 會取出 `key` 屬性，並直接將這個 key 儲存在回傳的 element 內。雖然 `key` 可能看起來跟 `props` 像是同一類的關鍵字，但我們沒辦法使用 `this.props.key` 來參考 `key`。React 會自動使用 `key` 來決定哪一個 component 需要被更新。一個 component 無法得知自身的 `key` 是什麼。
 
 **我們極力推薦你在建立動態列表時一律指定適當的 key。** 如果你沒有好好指定 key 的話，你可能要考慮重塑你的資料結構，讓你能夠使用 key。
 
