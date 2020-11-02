@@ -52,10 +52,17 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 ```html{5,6,9}
   <!-- ... 其他 HTML ... -->
 
+<<<<<<< HEAD
   <!-- 載入 React。 -->
   <!-- 注意：在發佈應用程式前，請把「development.js」替換成「production.min.js」。 -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> 30baecf59de28a8cd3c91a2cd878e3822f864061
 
   <!-- 載入我們的 React component。-->
   <script src="like_button.js"></script>
@@ -84,7 +91,11 @@ const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
+<<<<<<< HEAD
 這兩行的程式碼會找我們在第一步所加入的 `<div>`，然後在裡面展示我們的「Like」按鈕 React component。
+=======
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
+>>>>>>> 30baecf59de28a8cd3c91a2cd878e3822f864061
 
 ### 大功告成！ {#thats-it}
 
@@ -115,8 +126,8 @@ ReactDOM.render(e(LikeButton), domContainer);
 如果你已經壓縮了應用程式的 scripts，而且確保了你發佈的 HTML 是載入了以 `production.min.js` 結尾的 React 版本，那麼**你的網頁已經發佈就緒**：
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 如果你沒有一個為你的 scripts 進行壓縮的步驟，[這裡有個方法設定](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)。
