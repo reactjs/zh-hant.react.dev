@@ -34,44 +34,12 @@ string type
 
 > 注意：
 >
-<<<<<<< HEAD
-> 截至 v0.14 為止，從 event handler 回傳 `false` 並不會停止事件冒泡（event propagation）。因此你可以選擇是情況手寫觸發 `e.stopPropagation()` 或 `e.preventDefault()`。
+> 從 v17 開始，`e.persist()` 將不會再有任何作用，因為 `SyntheticEvent` 已不再被 [pool](/docs/legacy-event-pooling.html) 了。
 
-### 事件結合 {#event-pooling}
-
-`SyntheticEvent` 是透過結合事件而來的。這表示 `SyntheticEvent` 這個 object 會被重複使用，且所有的屬性都會在事件的 callback 被呼叫後變成無效。
-這是出於效能考量。
-因此，你不能用非同步的方式讀取這些事件：
-
-```javascript
-function onClick(event) {
-  console.log(event); // => 無效的 object。
-  console.log(event.type); // => "click"
-  const eventType = event.type; // => "click"
-
-  setTimeout(function() {
-    console.log(event.type); // => null
-    console.log(eventType); // => "click"
-  }, 0);
-
-  // 不會產生任何作用，this.state.clickEvent 只會包含 null
-  this.setState({clickEvent: event});
-
-  // 你仍可以導出事件屬性
-  this.setState({eventType: event.type});
-}
-```
-=======
-> As of v17, `e.persist()` doesn't do anything because the `SyntheticEvent` is no longer [pooled](/docs/legacy-event-pooling.html).
->>>>>>> 30baecf59de28a8cd3c91a2cd878e3822f864061
 
 > 注意：
 >
-<<<<<<< HEAD
-> 如果你想要用非同步的方式讀取這些事件，你應該在該事件上呼叫 `event.persist()`。此方法將會把該合成事件從事件組合中移出，並允許使用者程式保留對該事件的引用。
-=======
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
->>>>>>> 30baecf59de28a8cd3c91a2cd878e3822f864061
+> 截至 v0.14 為止，從 event handler 回傳 `false` 並不會停止事件冒泡（event propagation）。因此你可以視情況手寫觸發 `e.stopPropagation()` 或 `e.preventDefault()`。
 
 ## 支援的事件 {#supported-events}
 
@@ -252,6 +220,7 @@ function Example() {
 }
 ```
 
+
 * * *
 
 ### 表單事件 {#form-events}
@@ -386,15 +355,11 @@ DOMTouchList touches
 onScroll
 ```
 
-<<<<<<< HEAD
-屬性：
-=======
->Note
+>注意：
 >
->Starting with React 17, the `onScroll` event **does not bubble** in React. This matches the browser behavior and prevents the confusion when a nested scrollable element fires events on a distant parent.
+>從 React 17 開始，`onScroll` 事件就不是冒泡了，這與瀏覽器的行為相符，並且避免了當巢狀滾動元件觸發事件時，在遠處 parent 元件上的混亂現象。
 
-Properties:
->>>>>>> 30baecf59de28a8cd3c91a2cd878e3822f864061
+屬性：
 
 ```javascript
 number detail
