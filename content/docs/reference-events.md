@@ -34,36 +34,12 @@ string type
 
 > 注意：
 >
-> 截至 v0.14 為止，從 event handler 回傳 `false` 並不會停止事件冒泡（event propagation）。因此你可以選擇是情況手寫觸發 `e.stopPropagation()` 或 `e.preventDefault()`。
+> 從 v17 開始，`e.persist()` 將不會再有任何作用，因為 `SyntheticEvent` 已不再被 [pool](/docs/legacy-event-pooling.html) 了。
 
-### 事件結合 {#event-pooling}
-
-`SyntheticEvent` 是透過結合事件而來的。這表示 `SyntheticEvent` 這個 object 會被重複使用，且所有的屬性都會在事件的 callback 被呼叫後變成無效。
-這是出於效能考量。
-因此，你不能用非同步的方式讀取這些事件：
-
-```javascript
-function onClick(event) {
-  console.log(event); // => 無效的 object。
-  console.log(event.type); // => "click"
-  const eventType = event.type; // => "click"
-
-  setTimeout(function() {
-    console.log(event.type); // => null
-    console.log(eventType); // => "click"
-  }, 0);
-
-  // 不會產生任何作用，this.state.clickEvent 只會包含 null
-  this.setState({clickEvent: event});
-
-  // 你仍可以導出事件屬性
-  this.setState({eventType: event.type});
-}
-```
 
 > 注意：
 >
-> 如果你想要用非同步的方式讀取這些事件，你應該在該事件上呼叫 `event.persist()`。此方法將會把該合成事件從事件組合中移出，並允許使用者程式保留對該事件的引用。
+> 截至 v0.14 為止，從 event handler 回傳 `false` 並不會停止事件冒泡（event propagation）。因此你可以視情況手寫觸發 `e.stopPropagation()` 或 `e.preventDefault()`。
 
 ## 支援的事件 {#supported-events}
 
@@ -167,9 +143,83 @@ onFocus onBlur
 
 屬性：
 
-```javascript
+```js
 DOMEventTarget relatedTarget
 ```
+
+#### onFocus
+
+The `onFocus` event is called when the element (or some element inside of it) receives focus. For example, it's called when the user clicks on a text input.
+
+```javascript
+function Example() {
+  return (
+    <input
+      onFocus={(e) => {
+        console.log('Focused on input');
+      }}
+      placeholder="onFocus is triggered when you click this input."
+    />
+  )
+}
+```
+
+#### onBlur
+
+The `onBlur` event handler is called when focus has left the element (or left some element inside of it). For example, it's called when the user clicks outside of a focused text input.
+
+```javascript
+function Example() {
+  return (
+    <input
+      onBlur={(e) => {
+        console.log('Triggered because this input lost focus');
+      }}
+      placeholder="onBlur is triggered when you click this input and then you click outside of it."
+    />
+  )
+}
+```
+
+#### Detecting Focus Entering and Leaving
+
+You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from _outside_ of the parent element. Here is a demo you can copy and paste that shows how to detect focusing a child, focusing the element itself, and focus entering or leaving the whole subtree.
+
+```javascript
+function Example() {
+  return (
+    <div
+      tabIndex={1}
+      onFocus={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('focused self');
+        } else {
+          console.log('focused child', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Not triggered when swapping focus between children
+          console.log('focus entered self');
+        }
+      }}
+      onBlur={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('unfocused self');
+        } else {
+          console.log('unfocused child', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Not triggered when swapping focus between children
+          console.log('focus left self');
+        }
+      }}
+    >
+      <input id="1" />
+      <input id="2" />
+    </div>
+  );
+}
+```
+
 
 * * *
 
@@ -304,6 +354,10 @@ DOMTouchList touches
 ```
 onScroll
 ```
+
+>注意：
+>
+>從 React 17 開始，`onScroll` 事件就不是冒泡了，這與瀏覽器的行為相符，並且避免了當巢狀滾動元件觸發事件時，在遠處 parent 元件上的混亂現象。
 
 屬性：
 
