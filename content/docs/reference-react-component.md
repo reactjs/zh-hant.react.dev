@@ -412,7 +412,17 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 > 注意：
+=======
+Production and development builds of React slightly differ in the way `componentDidCatch()` handles errors.
+
+On development, the errors will bubble up to `window`, this means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch()`.
+
+On production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explictly caught by `componentDidCatch()`.
+
+> Note
+>>>>>>> 957276e1e92bb48e5bb6b1c17fd0e7a559de0748
 >
 > 在有錯誤的情況下，你可以透過呼叫 `setState` 來 render 一個含有 `componentDidCatch()` 的 fallback UI，但這個方法會在未來的版本中會被棄用。
 > 請使用 `static getDerivedStateFromError()` 來處理 fallback render。
