@@ -412,7 +412,14 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
+React 在 production 和 development 在處理 `componentDidCatch()` 錯誤的方式不同。
+
+在 development 時，錯誤將會冒泡到 `window`，意思是任何的 `window.onerror` 或 `window.addEventListener('error', callback)` 將攔截透過 `componentDidCatch` 所捕捉到的錯誤。
+
+反之，在 production 時不會冒泡，意思是任何 ancestor 錯誤處理將只會接收未由 `componentDidCatch()` 明確捕捉的錯誤。
+
 > 注意：
+
 >
 > 在有錯誤的情況下，你可以透過呼叫 `setState` 來 render 一個含有 `componentDidCatch()` 的 fallback UI，但這個方法會在未來的版本中會被棄用。
 > 請使用 `static getDerivedStateFromError()` 來處理 fallback render。

@@ -45,7 +45,7 @@ class NameForm extends React.Component {
 
 ### 預設值 {#default-values}
 
-在 React 的 render 生命週期裡，表單上的 `value` attribute 會覆寫掉 DOM 的值。在 uncontrolled component 裡，你常常會希望 React 去指定初始值，但讓之後的更新保持不可控制的。為了處理這種情況，你可以指定 `defaultValue` attribute 而非 `value`。
+在 React 的 render 生命週期裡，表單上的 `value` attribute 會覆寫掉 DOM 的值。在 uncontrolled component 裡，你常常會希望 React 去指定初始值，但讓之後的更新保持不可控制的。為了處理這種情況，你可以指定 `defaultValue` attribute 而非 `value`。在 component mount 後改變 `defaultValue` 屬性不會造成任何在 DOM 裡面的值更新。
 
 ```javascript{7}
 render() {
