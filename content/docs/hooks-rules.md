@@ -27,7 +27,7 @@ Hook 是 JavaScript function，當你使用它們時需要遵守兩個規則。�
 
 我們發佈了一個 ESLint plugin 叫做 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) 來強制施行這兩個規則。如果你想嘗試的話，可以將這個 plugin 加入到你的專案中:
 
-This plugin is included by default in [Create React App](/docs/create-a-new-react-app.html#create-react-app).
+[Create React App](/docs/create-a-new-react-app.html#create-react-app) 默認包含此插件。
 
 ```bash
 npm install eslint-plugin-react-hooks --save-dev
