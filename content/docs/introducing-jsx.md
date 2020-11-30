@@ -91,7 +91,7 @@ function getGreeting(user) {
 你可以使用引號將字串設定為屬性：
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <div tabIndex={0}></div>;
 ```
 
 你也可以在屬性中使用大括號來嵌入一個 JavaScript expression：
