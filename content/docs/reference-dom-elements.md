@@ -130,7 +130,7 @@ React 會為某些數字型態的 style property 自動加上「px」。如果�
 React 為 DOM 提供了一套以 JavaScript 為中心的 API。因為 React component 通常會有自訂或跟 DOM 相關的 prop，React 使用像 DOM API 一樣的 `camelCase`。
 
 ```js
-<div tabIndex="-1" />      // 就像 node.tabIndex DOM API
+<div tabIndex={-1} />      // 就像 node.tabIndex DOM API
 <div className="Button" /> // 就像 node.className DOM API
 <input readOnly={true} />  // 就像 node.readOnly DOM API
 ```
