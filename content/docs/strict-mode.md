@@ -115,6 +115,10 @@ Render 面相的生命週期包含了以下 class component 函式:
 
 通過有意地雙重調用如 component constructor，嚴格模式使這種模式更容易被發現。
 
+> 注意：
+>
+> 從 React 17 開始，React 會自動更改如 `console.log()` 的 console 方法，以在第二次調用生命週期函數時使 log 靜音，在某些情況下，它可能會導致無法預期的行為，你[可以使用替代方案](https://github.com/facebook/react/issues/20090#issuecomment-715927125)。
+
 ### 檢測 legacy context API {#detecting-legacy-context-api}
 
 Legacy context API 是容易出錯的，並將在以後的主要版本中刪除。它仍然適用於所有 16.x 版本，但將在嚴格模式下顯示以下警告訊息：
