@@ -27,7 +27,7 @@ React 提供聲明式 (declarative) 的 API，讓開發者在使用 React 時，
 
 當比對的兩個 root element 為不同類型的元素時，React 會將原有的 tree 整顆拆掉並且重新建立起新的 tree。例如，當一個元素從 `<a>` 變成 `<img>`、從 `<Article>` 變成 `<Comment>`、或從 `<Button>` 變成 `<div>` 時，都會觸發一個完整的重建流程。
 
-當拆掉一顆 tree 時，舊的 DOM 節點會被銷毀，且該 component instance 會執行 `componentWillUnmount()` 函式。當建立一顆新的 tree 時，新建立的 DOM 節點會被插入到 DOM 中，且該 component instance 會依次執行 `componentWillMount()` 與 `componentDidMount()` 方法。而所有跟之前舊的 tree 所關聯的 state 也會被銷毀。
+當拆掉一顆 tree 時，舊的 DOM 節點會被銷毀，且該 component instance 會執行 `componentWillUnmount()` 函式。當建立一顆新的 tree 時，新建立的 DOM 節點會被插入到 DOM 中，且該 component instance 會依次執行 `UNSAFE_componentWillMount()` 與 `componentDidMount()` 方法。而所有跟之前舊的 tree 所關聯的 state 也會被銷毀。
 
 任何在 root 以下的 component 也會被 unmount，它們的狀態會被銷毀。例如，當比對以下變更時：
 
@@ -42,6 +42,12 @@ React 提供聲明式 (declarative) 的 API，讓開發者在使用 React 時，
 ```
 
 React 會 destroy 舊的 `Counter` 並且重新建立一個新的。
+
+>筆記：
+>
+>下列方法已過時，你在寫新程式應[避免使用他們](/blog/2018/03/27/update-on-async-rendering.html)：
+>
+>- `UNSAFE_componentWillMount()`
 
 ### 比對同一類型的 DOM Element {#dom-elements-of-the-same-type}
 
@@ -69,9 +75,16 @@ React 會 destroy 舊的 `Counter` 並且重新建立一個新的。
 
 ### 比對同類型的 Component Element {#component-elements-of-the-same-type}
 
-當一個 component 更新時，該 component 的 instance 保持不變，這樣 state 能夠被保留在不同次的 render 中。React 會更新該 component instance 的 props 以跟最新的 element 保持一致，並且呼叫該 instance 的 `componentWillReceiveProps()` 和 `componentWillUpdate()` 方法。
+當一個 component 更新時，該 component 的 instance 保持不變，這樣 state 能夠被保留在不同次的 render 中。React 會更新該 component instance 的 props 以跟最新的 element 保持一致，並且呼叫該 instance 的 `UNSAFE_componentWillReceiveProps()` 、 `UNSAFE_componentWillUpdate()` 和 `componentDidUpdate()` 方法。
 
 接下來，該 instance 會再呼叫 `render()` 方法，而 diff 算法將會遞迴處理舊的結果以及新的結果。
+
+>筆記：
+>
+>下列方法已過時，你在寫新程式應[避免使用他們](/blog/2018/03/27/update-on-async-rendering.html)：
+>
+>- `UNSAFE_componentWillUpdate()`
+>- `UNSAFE_componentWillReceiveProps()`
 
 ### 對 Children 進行遞迴處理 {#recursing-on-children}
 
