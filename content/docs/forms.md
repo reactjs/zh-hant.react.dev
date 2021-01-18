@@ -31,7 +31,7 @@ HTML 表單的 element 和 React 中其他的 DOM element 不太一樣，因為�
 
 例如，如果我們想要讓上一個範例在一個名字被輸入表單時印出，我們可以把這個表單寫成一個 controlled component：
 
-```javascript{4,10-12,24}
+```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
