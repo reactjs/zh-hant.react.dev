@@ -71,7 +71,7 @@ prev: hooks-reference.html
 
 注意，若要**啟動 Hook，所有 React package 需要升級到 16.8.0 或是更高的版本**。例如你忘了升級 React DOM，Hook 將無法正常執行。
 
-React Native 0.59 以上的版本支援 Hooks。
+[React Native 0.59](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059) 以上的版本支援 Hooks。
 
 ### 我需要重寫所有的 Class component 嗎？ {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -85,17 +85,17 @@ Hook 在 component 之間提供強大而富有表現力的新方式來重複使�
 
 Hook 已經有許多你知道的方式可以直接使用 React 的功能 -- 像是 state、lifecycle、context 以及 ref。基本上它們並沒有改變 React 的運作方式，而且你對於 component、prop 以及上至下的資料流了解也一樣重要。
 
-Hook 的確有它本身的學習曲線。如果在這份文件中缺漏了些什麼，[發起一個 issue](https://github.com/reactjs/reactjs.org/issues/new)，我們將會嘗試幫助你。
+Hook 的確有它本身的學習曲線。如果在這份文件中缺漏了些什麼，[提出一個 issue](https://github.com/reactjs/reactjs.org/issues/new)，我們將會嘗試幫助你。
 
 ### 我應該使用 Hook、Class 或是兩者兼具？ {#should-i-use-hooks-classes-or-a-mix-of-both}
 
 當你準備好時，我們鼓勵開始使用 Hook 撰寫你新的 component。確保你團隊的成員們使用 Hook 並熟悉本文件。我們並不鼓勵你重寫現有的 class component 成 Hook，除非你已經計劃重寫它們（例如：修正 bug）。
 
-你不可以在 class component 內使用 Hook，但你絕對可以在 single tree *內*混合使用 class 和帶有 Hook 的 function component。無論是 class 或 function component，使用 Hook 是該 component 實作的細節。從長遠來看，我們期待 Hook 可以是大家撰寫 React component 的主要方式。
+你不可以在 class component *內*使用 Hook，但你絕對可以在單個 tree 中將 class 和 function component 與 Hook 混合使用。無論是 class 或 function component，使用 Hook 是該 component 實作的細節。從長遠來看，我們期待 Hook 可以是大家撰寫 React component 的主要方式。
 
 ### Hook 包含所有 Class 的使用情境嗎？ {#do-hooks-cover-all-use-cases-for-classes}
 
-對於不常見的 `getSnapshotBeforeUpdate` 和 `componentDidCatch` 的生命週期並沒有等價的 Hook 方式，但我們計劃很快會加入它們。
+我們的目標是讓 Hook 盡快能涵蓋 class 的所有使用情境。對於不常見的 `getSnapshotBeforeUpdate` 和 `componentDidCatch` 的生命週期並沒有等價的 Hook 方式，但我們計劃很快會加入它們。
 
 這是早期的 Hook，目前一些第三方 function 庫可能與 Hook 不相容。
 
@@ -121,7 +121,7 @@ Hook 的設計考慮到了靜態型別。因為它們是 function，比 Higher-O
 
 ### 如何測試使用 Hook 的 component？ {#how-to-test-components-that-use-hooks}
 
-從 React 的角度來看，使用 Hook 的 component 就只是一個正常的 component。如果你的測試方案不依賴在 React 內部，測試使用 Hook 的 component 通常與你測試 component 的方式不同。
+從 React 的角度來看，使用 Hook 的 component 就只是一個正常的 component。如果你的測試方案不依賴在 React 內部，測試使用 Hook 的 component 通常與你測試 component 的方式相同。
 
 >注意
 >
@@ -218,7 +218,7 @@ it('can render and update a counter', () => {
 
 * `componentDidMount`、`componentDidUpdate`、`componentWillUnmount`：[`useEffect` Hook](/docs/hooks-reference.html#useeffect) 可以表達這些所有的組合（包含[少見](#can-i-skip-an-effect-on-updates)和[常見](#can-i-run-an-effect-only-on-updates)）的情況
 
-* `componentDidCatch` 和 `getDerivedStateFromError`：現在沒有 Hook 等價於這些方法，，但是它們未來很快會被加入。
+* `getSnapshotBeforeUpdate`、`componentDidCatch` 和 `getDerivedStateFromError`：現在沒有 Hook 等價於這些方法，，但是它們未來很快會被加入。
 
 ### 我如何使用 Hook fetch 資料？ {#how-can-i-do-data-fetching-with-hooks}
 
@@ -422,7 +422,7 @@ function Example() {
 
 ### 我該如何實作 getDerivedStateFromProps？ {#how-do-i-implement-getderivedstatefromprops}
 
-雖然你可能[不需要它](/blog/2018/06/07/you-probably-dont-need-derived-state.html)，但在極少數情況下（例如實作`<Transition>` component），你可以在 render 期間更新 state。React 將會在第一次的 redner 退出後，重新執行 component 並且立即更新 state，這個操作代價不會很昂貴。
+雖然你可能[不需要它](/blog/2018/06/07/you-probably-dont-need-derived-state.html)，但在極少數情況下（例如實作`<Transition>` component），你可以在 render 期間更新 state。React 將會在第一次的 render 退出後，重新執行 component 並且立即更新 state，這個操作代價不會很昂貴。
 
 在這裡，我們將 `row` prop 先前的值存儲在 state 變數中，讓我們可以方便的比較：
 
@@ -528,7 +528,7 @@ function useClientRect() {
 
 ### 我可以在更新時忽略 effect 嗎？ {#can-i-skip-an-effect-on-updates}
 
-可以的。請參考[條件是觸發 effect](/docs/hooks-reference.html#conditionally-firing-an-effect)。請注意，忘記處理更新通常[導致 bug](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update)，這就是為什麼這不是預設行為。
+可以的。請參考[條件式觸發 effect](/docs/hooks-reference.html#conditionally-firing-an-effect)。請注意，忘記處理更新通常[導致 bug](/docs/hooks-effect.html#explanation-why-effects-run-on-each-update)，這就是為什麼這不是預設行為。
 
 ### 在依賴項目的列表中忽略 function 是安全的嗎？ {#is-it-safe-to-omit-functions-from-the-list-of-dependencies}
 
@@ -580,7 +580,7 @@ useEffect(() => {
 
 讓我們看看這個為什麼很重要。
 
-如果你在 `useEffect`、`useMemo`、`useCallback` 或是 `useImperativeHandle` 的最後指定了[依賴項目的列表](/docs/hooks-reference.html#conditionally-firing-an-effect)，它必須包含參與 React 資料流的所有內部的值。包含了 props、state 和從他們取得的任何值。
+如果你在 `useEffect`、`useLayoutEffect`、`useMemo`、`useCallback` 或是 `useImperativeHandle` 的最後指定了[依賴項目的列表](/docs/hooks-reference.html#conditionally-firing-an-effect)，它必須包含在 callback 內使用的值以及參與 React 的資料流。包含了 props、state 和從它們取得的任何值。
 
 如果沒有任何內容（或由它呼叫的 function）reference 到 props、state 或是從它們取得的值，那麼從依賴項目中省略一個 function 是*唯一*安全的。這個範例有一個 bug：
 
@@ -589,7 +589,7 @@ function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
   async function fetchProduct() {
-    const response = await fetch('http://myapi/product' + productId); // 使用 productId prop
+    const response = await fetch('http://myapi/product/' + productId); // 使用 productId prop
     const json = await response.json();
     setProduct(json);
   }
@@ -610,7 +610,7 @@ function ProductPage({ productId }) {
   useEffect(() => {
     // 透過將這個 function 移動到 effect 內部，我們可以清楚地看到值的使用。
     async function fetchProduct() {
-      const response = await fetch('http://myapi/product' + productId);
+      const response = await fetch('http://myapi/product/' + productId);
       const json = await response.json();
       setProduct(json);
     }
@@ -651,7 +651,7 @@ function ProductPage({ productId }) {
 
 ```js{2-5}
 function ProductPage({ productId }) {
-  // ✅ 藉由 useCallback 封裝可以避免在每次 redner 時改變
+  // ✅ 藉由 useCallback 封裝可以避免在每次 render 時改變
   const fetchProduct = useCallback(() => {
     // ... Does something with productId ...
   }, [productId]); // ✅ 所有 useCallback 依賴已經被指定

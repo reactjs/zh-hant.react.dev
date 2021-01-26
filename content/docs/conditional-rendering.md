@@ -122,7 +122,7 @@ ReactDOM.render(
 
 ### Inline If 與 && 邏輯運算子 {#inline-if-with-logical--operator}
 
-你可以透過大括號[在 JSX 中嵌入任何的表達式](/docs/introducing-jsx.html#embedding-expressions-in-jsx)，包括 JavaScript 的 `&&` 邏輯運算子，可以方便 render 有條件的 element：
+你可以透過大括號[在 JSX 中嵌入表達式](/docs/introducing-jsx.html#embedding-expressions-in-jsx)，包括 JavaScript 的 `&&` 邏輯運算子，可以方便 render 有條件的 element：
 
 ```js{6-10}
 function Mailbox(props) {
@@ -152,6 +152,19 @@ ReactDOM.render(
 
 所以，當條件為 `true` 時，`&&` 右側的 element 會出現在輸出中，如果是 `false`，React 會忽略並跳過它。
 
+請注意，回傳 falsy expression 仍會導致 `&&` 之後的 element 被忽略，但依舊回傳 falsy expression，在下面的範例中，render 將會回傳 `<div>0</div>`。
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      { count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
+```
+
 ### Inline If-Else 與三元運算子 {#inline-if-else-with-conditional-operator}
 
 另一個有條件 render element 的方式是透過 JavaScript 的三元運算子 [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator)。
@@ -176,11 +189,10 @@ render() {
   const isLoggedIn = this.state.isLoggedIn;
   return (
     <div>
-      {isLoggedIn ? (
-        <LogoutButton onClick={this.handleLogoutClick} />
-      ) : (
-        <LoginButton onClick={this.handleLoginClick} />
-      )}
+      {isLoggedIn
+        ? <LogoutButton onClick={this.handleLogoutClick} />
+        : <LoginButton onClick={this.handleLoginClick} />
+      }
     </div>
   );
 }

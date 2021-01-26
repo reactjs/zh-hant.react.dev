@@ -39,7 +39,7 @@ React 團隊主要推薦以下的方案：
 
 [Create React App](https://github.com/facebookincubator/create-react-app) 是一個適合**學習 React** 的環境，而且也是使用 React 建立一個**全新的 [single-page](/docs/glossary.html#single-page-application) 應用程式**的最佳方法。
 
-它會為你設定好開發環境，以便你能夠使用最新的 JavaScript 特性，提供良好的開發者體驗，並且為線上環境最佳化你的應用程式。你需要在你的機器上安裝 Node >= 8.10 和 npm >= 5.6。要建立項目，請執行：
+它會為你設定好開發環境，以便你能夠使用最新的 JavaScript 特性，提供良好的開發者體驗，並且為線上環境最佳化你的應用程式。你需要在你的機器上安裝 [Node >= 8.10 和 npm >= 5.6](https://nodejs.org/en/)。要建立項目，請執行：
 
 ```bash
 npx create-react-app my-app
@@ -72,6 +72,8 @@ Create React App 並不會處理 backend 邏輯或資料庫；它只會建立一
 以下的 toolchain 會提供更多的靈活性和選擇。我們推薦給比較有經驗的使用者：
 
 - **[Neutrino](https://neutrinojs.org/)** 結合了 [webpack](https://webpack.js.org/) 強大的功能與簡單的預設，並包括了 [React 應用程式](https://neutrinojs.org/packages/react/)和 [React component](https://neutrinojs.org/packages/react-components/) 的預設。
+
+- **[Nx](https://nx.dev/react)** 是一套用於 full-stack monorepo 開發的 toolkit，內建支援 React、Next.js、[Express](https://expressjs.com/) 以及更多。
 
 - **[Parcel](https://parceljs.org/)** 是一個快速、零設定的網路應用程式 bundler，並且[可以配合 React](https://parceljs.org/recipes.html#react) 一起使用。
 

@@ -58,7 +58,7 @@ class Calculator extends React.Component {
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
-## 加入秒數輸入 {#adding-a-second-input}
+## 加入第二個輸入 {#adding-a-second-input}
 
 這是我們的新需求，除了攝氏輸入，我們提供一個華氏輸入，它們彼此保持同步。
 
@@ -305,7 +305,7 @@ class Calculator extends React.Component {
 
 讓我們回顧一下當你編輯輸入時會發生什麼事情：
 
-* React 在 DOM `<input>` 上呼叫被指定為 `onChange` 的 function。在我們的範例中，這是在 `TemperatureInput` component 內的 `handleChange` 方法。
+* React 在 DOM `<input>` 上呼叫被指定為 `onChange` 的函式。在我們的範例中，這是在 `TemperatureInput` component 內的 `handleChange` 方法。
 * 在 `TemperatureInput` component 的 `handleChange` 方法呼叫 `this.props.onTemperatureChange()` 與新的期望值。它的 prop 包含 `onTemperatureChange`，是由 `Calculator` parent component 所提供的。
 * 當它被 render 之前，`Calculator` 指定攝氏 `TemperatureInput` 的 `onTemperatureChange` 是 `Calculator` 的 `handleCelsiusChange` 方法，而華氏溫度的 `TemperatureInput` 的 `onTemperatureChange` 方法是 `Calculator` 的 `handleFahrenheitChange` 方法。因此根據我們編輯的輸入呼叫這兩個 `Calculator` 方法中的其中一個。
 * 在這些方法中，`Calculator` component 要求 React 根據我們編輯的新輸入值和目前的溫度單位的輸入呼叫 `this.setState()` 來重新 render 本身。

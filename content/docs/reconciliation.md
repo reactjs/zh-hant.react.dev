@@ -10,7 +10,7 @@ React 提供聲明式 (declarative) 的 API，讓開發者在使用 React 時，
 
 在使用 React 時，每次呼叫 `render()` 函式，我們都可以當成是建立了一顆由 React element 構成的樹狀結構。而在每一次有 state 或 props 更新時，`render()` 函式就會回傳一顆不同的 tree。因此，React 需要判斷如何有效率的把 UI 從舊的 tree 更新成新的 tree。
 
-對於這個「如何用最少操作去將舊的 tree 轉換成新的 tree」的演算法問題有一些通用的解法，但即使是目前[最先進的演算法](<(https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf)>)都還需要 O(n<sup>3</sup>) 的時間複雜度（n 為 tree 中 element 的數量）。
+對於這個「如何用最少操作去將舊的 tree 轉換成新的 tree」的演算法問題有一些通用的解法，但即使是目前[最先進的演算法](https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf)都還需要 O(n<sup>3</sup>) 的時間複雜度（n 為 tree 中 element 的數量）。
 
 假設 React 使用這種演算法，則呈現 1000 個 element 需要 10 億次的比較。因為這個比較成本實在太高，所以 React 在以下兩個假設下採用了一個 O(n) 的啓發式 (heuristic) 演算法：
 
@@ -27,7 +27,7 @@ React 提供聲明式 (declarative) 的 API，讓開發者在使用 React 時，
 
 當比對的兩個 root element 為不同類型的元素時，React 會將原有的 tree 整顆拆掉並且重新建立起新的 tree。例如，當一個元素從 `<a>` 變成 `<img>`、從 `<Article>` 變成 `<Comment>`、或從 `<Button>` 變成 `<div>` 時，都會觸發一個完整的重建流程。
 
-當拆掉一顆 tree 時，舊的 DOM 節點會被銷毀，且該 component instance 會執行 `componentWillUnmount()` 函式。當建立一顆新的 tree 時，新建立的 DOM 節點會被插入到 DOM 中，且該 component instance 會依次執行 `componentWillMount()` 與 `componentDidMount()` 方法。而所有跟之前舊的 tree 所關聯的 state 也會被銷毀。
+當拆掉一顆 tree 時，舊的 DOM 節點會被銷毀，且該 component instance 會執行 `componentWillUnmount()` 函式。當建立一顆新的 tree 時，新建立的 DOM 節點會被插入到 DOM 中，且該 component instance 會依次執行 `UNSAFE_componentWillMount()` 與 `componentDidMount()` 方法。而所有跟之前舊的 tree 所關聯的 state 也會被銷毀。
 
 任何在 root 以下的 component 也會被 unmount，它們的狀態會被銷毀。例如，當比對以下變更時：
 
@@ -42,6 +42,12 @@ React 提供聲明式 (declarative) 的 API，讓開發者在使用 React 時，
 ```
 
 React 會 destroy 舊的 `Counter` 並且重新建立一個新的。
+
+>筆記：
+>
+>下列方法已過時，你在寫新程式應[避免使用他們](/blog/2018/03/27/update-on-async-rendering.html)：
+>
+>- `UNSAFE_componentWillMount()`
 
 ### 比對同一類型的 DOM Element {#dom-elements-of-the-same-type}
 
@@ -69,9 +75,16 @@ React 會 destroy 舊的 `Counter` 並且重新建立一個新的。
 
 ### 比對同類型的 Component Element {#component-elements-of-the-same-type}
 
-當一個 component 更新時，該 component 的 instance 保持不變，這樣 state 能夠被保留在不同次的 render 中。React 會更新該 component instance 的 props 以跟最新的 element 保持一致，並且呼叫該 instance 的 `componentWillReceiveProps()` 和 `componentWillUpdate()` 方法。
+當一個 component 更新時，該 component 的 instance 保持不變，這樣 state 能夠被保留在不同次的 render 中。React 會更新該 component instance 的 props 以跟最新的 element 保持一致，並且呼叫該 instance 的 `UNSAFE_componentWillReceiveProps()` 、 `UNSAFE_componentWillUpdate()` 和 `componentDidUpdate()` 方法。
 
 接下來，該 instance 會再呼叫 `render()` 方法，而 diff 算法將會遞迴處理舊的結果以及新的結果。
+
+>筆記：
+>
+>下列方法已過時，你在寫新程式應[避免使用他們](/blog/2018/03/27/update-on-async-rendering.html)：
+>
+>- `UNSAFE_componentWillUpdate()`
+>- `UNSAFE_componentWillReceiveProps()`
 
 ### 對 Children 進行遞迴處理 {#recursing-on-children}
 
@@ -142,7 +155,7 @@ React 會先匹配兩個 `<li>first</li>` 對應的 tree，然後匹配第二個
 
 當使用 array 索引值作為 key 的 component 進行重新排序時，component state 可能會遇到一些問題。由於 component instance 是基於它們的 key 來決定是否更新以及重複使用，如果 key 是一個索引值，那麼修改順序時會修改目前的 key，導致 component 的 state（例如不受控制輸入框）可能相互篡改導致無法預期的變動。
 
-[這是](codepen://reconciliation/index-used-as-key) 在 Codepen 上的範例，示範使用索引值作為 key 時導致的問題，以及[這裡](codepen://reconciliation/no-index-used-as-key)是一個不使用索引值作為 key 的版本，修復了重新排列、排序、以及在array 開頭插入的問題。
+下面是一個在 Codepen 上的範例，[示範使用索引值作為 key 時導致的問題](codepen://reconciliation/index-used-as-key)，以及[一個修復了重新排列、排序、以及在 array 開頭插入的問題，且不使用索引值作為 key 的版本](codepen://reconciliation/no-index-used-as-key)。
 
 ## 權衡 {#tradeoffs}
 

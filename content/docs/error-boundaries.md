@@ -47,7 +47,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -97,7 +97,7 @@ React 16 把所有發生在 render 時的錯誤在開發時印出在 console 裡
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="被錯誤邊界 component 捕捉到的錯誤與行數">
 
-如果你沒有使用 Create React App, 你可以手動在 Babel 設定加上[這個 plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source)。注意它是被設計用來在開發模式使用的，且**必須在正式環境被關掉**。
+如果你沒有使用 Create React App, 你可以手動在 Babel 設定加上[這個 plugin](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source)。注意它是被設計用來在開發模式使用的，且**必須在正式環境被關掉**。
 
 > 注意
 >
@@ -152,7 +152,7 @@ class MyComponent extends React.Component {
     if (this.state.error) {
       return <h1>Caught an error.</h1>
     }
-    return <div onClick={this.handleClick}>Click Me</div>
+    return <button onClick={this.handleClick}>Click Me</button>
   }
 }
 ```

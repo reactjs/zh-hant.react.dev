@@ -6,7 +6,7 @@ permalink: docs/code-splitting.html
 
 ## Bundling {#bundling}
 
-大部分 React 應用程式會使用像是 [Webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/) 或 [Browserify](http://browserify.org/) 的工具來 bundle 它們的檔案。
+大部分 React 應用程式會使用像是 [Webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/) 或 [Browserify](http://browserify.org/) 的工具來 bundle 它們的檔案。Bundle 是將 import 的檔案合併為單一的檔案過程：「Bundle」。網頁可以引入 bundle，以一次載入整個應用程式。
 
 Bundle 是將被 import 的檔案合併成一個單一的檔案：「bundle」。這個 bundle 檔案可以被引入到網頁內來載入整個應用程式。
 
@@ -42,7 +42,7 @@ console.log(add(16, 26)); // 42
 >
 > 你的 bundle 後的最終結果看起來會與此不同。
 
-如果你使用 [Create React App](https://github.com/facebookincubator/create-react-app)、[Next.js](https://github.com/zeit/next.js/)、[Gatsby](https://www.gatsbyjs.org/)，或者是類似的工具，會有一個內建的 Webpack 設定來 bundle 你的應用程式。
+如果你使用 [Create React App](https://create-react-app.dev/)、[Next.js](https://nextjs.org/)、[Gatsby](https://www.gatsbyjs.org/)，或者是類似的工具，會有一個內建的 Webpack 設定來 bundle 你的應用程式。
 
 如果沒有的話，你需要自己設定 bundle。例如，拜訪 Webpack 文件的 [Installation](https://webpack.js.org/guides/installation/) 和 [Getting Started](https://webpack.js.org/guides/getting-started/) 指南。
 
@@ -79,11 +79,11 @@ import("./math").then(math => {
 });
 ```
 
-當 Webpack 遇到這種語法時，它將自動的在你的應用程式啟動 code-splitting。如果你使用 Create React App 的話，它已經幫你設定好了，你可以立即的[使用它](https://facebook.github.io/create-react-app/docs/code-splitting)。在 [Next.js](https://github.com/zeit/next.js/#dynamic-import) 也內建支援這個功能。
+當 Webpack 遇到這種語法時，它將自動的在你的應用程式啟動 code-splitting。如果你使用 Create React App 的話，它已經幫你設定好了，你可以立即的[使用它](https://create-react-app.dev/docs/code-splitting/)。在 [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import) 也內建支援這個功能。
 
 如果你是自行設定 Webpack，你可以閱讀 Webpack 的 [code-splitting 指南](https://webpack.js.org/guides/code-splitting/)。你的 Webpack 設定看起來應該[像這樣](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269)。
 
-當使用 [Babel](https://babeljs.io/) 時，你將需要確保 Babel 可以解析動態的 import 語法而不是去轉換它。你可能會需要 [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import)。
+當使用 [Babel](https://babeljs.io/) 時，你將需要確保 Babel 可以解析動態的 import 語法而不是去轉換它。你可能會需要 [@babel/plugin-syntax-dynamic-import](https://classic.yarnpkg.com/en/package/@babel/plugin-syntax-dynamic-import)。
 
 ## `React.lazy` {#reactlazy}
 
@@ -112,6 +112,8 @@ const OtherComponent = React.lazy(() => import('./OtherComponent'));
 lazy component 應在 `Suspense` component 內 render，這使我們可以在等待 lazy component 載入時，顯示一些 fallback 內容（像是一個載入的符號）。
 
 ```js
+import React, { Suspense } from 'react';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 function MyComponent() {
@@ -128,6 +130,8 @@ function MyComponent() {
 `fallback` prop 接受在等待 component 載入時要 render 的任何 React element。你可以將 `Suspense` component 放在 lazy component 上方的任何位置。你甚至可以包覆多個 lazy component 到 `Suspense` component 內。
 
 ```js
+import React, { Suspense } from 'react';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
@@ -150,7 +154,9 @@ function MyComponent() {
 如果其他的 module 載入失敗（例如，因為網路失敗），它將會觸發一個錯誤。你可以透過[錯誤邊界](/docs/error-boundaries.html)處理這些錯誤來呈現一個好的使用者體驗和管理恢復。一旦你建立了你的錯誤邊界，你可以在任何的 lazy component 上方使用它，當網路發生錯誤時可以顯示一個錯誤狀態。
 
 ```js
+import React, { Suspense } from 'react';
 import MyErrorBoundary from './MyErrorBoundary';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
@@ -177,8 +183,8 @@ Route 是一個開始的好地方。Web 上大多數的人都習慣花一些時�
 這裡是如何在你的應用程式使用像是 [React Router](https://reacttraining.com/react-router/) 的函式庫與 `React.lazy` 來設定基於 route 的 code-splitting。
 
 ```js
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const Home = lazy(() => import('./routes/Home'));
 const About = lazy(() => import('./routes/About'));

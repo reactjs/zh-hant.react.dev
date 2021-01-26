@@ -98,10 +98,11 @@ Render 面相的生命週期包含了以下 class component 函式:
 
 嚴格模式無法自動檢測 side effect，但它可以藉由使這些 side effect 變得更有確定性，來幫助你發現它們。它藉由故意調用兩次下面的函式來完成這個功能：
 
-* Class component `constructor` method
-* The `render` method
-* `setState` updater functions (第一個參數)
-* 靜態的 `getDerivedStateFromProps` 生命週期
+* Class component `constructor`、`render` 和 `shouldComponentUpdate` 方法
+* Class component 的靜態 `getDerivedStateFromProps` 方法
+* Function component 的內容
+* 狀態更新函式（`setState` 的第一個參數）
+* 函數傳遞至 `useState`、`useMemo` 或 `useReducer`
 
 > 注意：
 >
@@ -113,6 +114,10 @@ Render 面相的生命週期包含了以下 class component 函式:
 第一眼看這段程式碼，可能不會覺得它有問題。但如果 `SharedApplicationState.recordEvent` 不是 [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) 的話，多次實體化這個 component 可能會導致不合法的應用程式 state。這種細微的錯誤可能在開發期間不會出現，或者會不一致地出現，因此被忽略了。
 
 通過有意地雙重調用如 component constructor，嚴格模式使這種模式更容易被發現。
+
+> 注意：
+>
+> 從 React 17 開始，React 會自動更改如 `console.log()` 的 console 方法，以在第二次調用生命週期函數時使 log 靜音，在某些情況下，它可能會導致無法預期的行為，你[可以使用替代方案](https://github.com/facebook/react/issues/20090#issuecomment-715927125)。
 
 ### 檢測 legacy context API {#detecting-legacy-context-api}
 

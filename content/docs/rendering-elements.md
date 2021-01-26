@@ -20,7 +20,7 @@ const element = <h1>Hello, world</h1>;
 
 >**注意：**
 >
->大家可能會將 element 與更廣為人知的「component」概念混淆。我們將會在[下一個章節](/docs/components-and-props.html)介紹 component。Element 是由 component 所「組成」的，我們建議你在開始之前閱讀本章節。
+>大家可能會將 element 與更廣為人知的「component」概念混淆。我們將會在[下一個章節](/docs/components-and-props.html)介紹 component。Component 是由 element 所「組成」的，我們建議你在開始之前閱讀本章節。
 
 ## Render Element 到 DOM 內 {#rendering-an-element-into-the-dom}
 
@@ -34,7 +34,7 @@ const element = <h1>Hello, world</h1>;
 
 使用 React 建立應用程式時，通常會有一個單一的 root DOM node。如果你想要整合 React 到現有的應用程式時，你可以根據你的需求獨立出多個 root DOM node。
 
-如果要 render 一個 React element 到 root DOM node，傳入兩者到 `ReactDOM.render()`：
+如果要 render 一個 React element 到 root DOM node，傳入兩者到 [`ReactDOM.render()`](/docs/react-dom.html#render)：
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -46,7 +46,7 @@ const element = <h1>Hello, world</h1>;
 
 React element 是 [immutable](https://en.wikipedia.org/wiki/Immutable_object) 的。一旦你建立一個 element，你不能改變它的 children 或是 attribute。Element 就像是電影中的一個幀：它代表特定時間點的 UI。
 
-憑藉我們迄今為止對 React 的認識，更新 UI 唯一的方式是建立一個新的 element，並且將它傳入到 `ReactDOM.render()`。
+憑藉我們迄今為止對 React 的認識，更新 UI 唯一的方式是建立一個新的 element，並且將它傳入到 [`ReactDOM.render()`](/docs/react-dom.html#render)。
 
 思考以下這個 ticking clock 的範例：
 
@@ -54,11 +54,11 @@ React element 是 [immutable](https://en.wikipedia.org/wiki/Immutable_object) �
 
 [在 CodePen 上試試看吧！](codepen://rendering-elements/update-rendered-element)
 
-它從 [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback 每秒呼叫 `ReactDOM.render()`。
+它從 [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback 每秒呼叫 [`ReactDOM.render()`](/docs/react-dom.html#render)。
 
 >**注意：**
 >
->在實踐中，大部分 React 應用程式只呼叫 `ReactDOM.render()` 一次。在下一個章節中，我們將會學習如何將這些程式碼封裝到 [stateful component](/docs/state-and-lifecycle.html)。
+>在實踐中，大部分 React 應用程式只呼叫 [`ReactDOM.render()`](/docs/react-dom.html#render) 一次。在下一個章節中，我們將會學習如何將這些程式碼封裝到 [stateful component](/docs/state-and-lifecycle.html)。
 >
 >我們建議你不要跳著主題看，因為它們彼此間是環環相扣的。
 
@@ -72,4 +72,4 @@ React DOM 會將 element 和它的 children 與先前的狀態做比較，並且
 
 即使我們在每秒建立一個 element 描述整個 UI tree，只有內容更改的 text node 才會被 React DOM 更新。
 
-根據我們的經驗，應該思考 UI 在任何時候應該如何呈現，而不是隨著時間的推移去消除錯誤。
+根據我們的經驗，應該思考 UI 在任何時候應該如何呈現，而不是隨著時間的推移改變它，就可以去所有消除錯誤。

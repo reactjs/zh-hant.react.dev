@@ -1,6 +1,7 @@
 ---
 id: refs-and-the-dom
-title: Ref 和 DOM
+title: Refs 和 DOM
+permalink: docs/refs-and-the-dom.html
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"
@@ -8,7 +9,6 @@ redirect_from:
   - "docs/more-about-refs-zh-CN.html"
   - "tips/expose-component-functions.html"
   - "tips/children-undefined.html"
-permalink: docs/refs-and-the-dom.html
 ---
 
 Ref 提供了一種可以取得 DOM 節點或在 render 方法內建立 React element 的方式。
@@ -161,14 +161,14 @@ class Parent extends React.Component {
 }
 ```
 
-如果你想要讓其他人將 `ref` 帶到你的 function component，你可以使用 [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html)（可能與 [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)），或者你可以轉換成 class component。
+如果你想要讓其他人將 `ref` 帶到你的 function component，你可以使用 [`forwardRef`](/docs/forwarding-refs.html)（可能與 [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)），或者你可以轉換成 class component。
 
 然而，只要你想要指到的是 DOM element 或 class component，你也可以**在 function component 裡使用 `ref`**：
 
 ```javascript{2,3,6,13}
 function CustomTextInput(props) {
-  // 必須在這裡宣告 textInput 使 ref 可以參考到他
-  let textInput = React.createRef();
+  // 必須在這裡宣告 textInput 使 ref 可以參考到它
+  const textInput = useRef(null);
 
   function handleClick() {
     textInput.current.focus();

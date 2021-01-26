@@ -54,8 +54,8 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
   <!-- 載入 React。 -->
   <!-- 注意：在發佈應用程式前，請把「development.js」替換成「production.min.js」。 -->
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 
   <!-- 載入我們的 React component。-->
   <script src="like_button.js"></script>
@@ -115,8 +115,8 @@ ReactDOM.render(e(LikeButton), domContainer);
 如果你已經壓縮了應用程式的 scripts，而且確保了你發佈的 HTML 是載入了以 `production.min.js` 結尾的 React 版本，那麼**你的網頁已經發佈就緒**：
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 如果你沒有一個為你的 scripts 進行壓縮的步驟，[這裡有個方法設定](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)。

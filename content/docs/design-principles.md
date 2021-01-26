@@ -92,7 +92,7 @@ There is an internal joke in the team that React should have been called "Schedu
 
 Providing a good developer experience is important to us.
 
-For example, we maintain [React DevTools](https://github.com/facebook/react-devtools) which let you inspect the React component tree in Chrome and Firefox. We have heard that it brings a big productivity boost both to the Facebook engineers and to the community.
+For example, we maintain [React DevTools](https://github.com/facebook/react/tree/master/packages/react-devtools) which let you inspect the React component tree in Chrome and Firefox. We have heard that it brings a big productivity boost both to the Facebook engineers and to the community.
 
 We also try to go an extra mile to provide helpful developer warnings. For example, React warns you in development if you nest tags in a way that the browser doesn't understand, or if you make a common typo in the API. Developer warnings and the related checks are the main reason why the development version of React is slower than the production version.
 
@@ -126,7 +126,7 @@ We do, however, provide some global configuration on the build level. For exampl
 
 ### Beyond the DOM {#beyond-the-dom}
 
-We see the value of React in the way it allows us to write components that have fewer bugs and compose together well. DOM is the original rendering target for React but [React Native](https://facebook.github.io/react-native/) is just as important both to Facebook and the community.
+We see the value of React in the way it allows us to write components that have fewer bugs and compose together well. DOM is the original rendering target for React but [React Native](https://reactnative.dev/) is just as important both to Facebook and the community.
 
 Being renderer-agnostic is an important design constraint of React. It adds some overhead in the internal representations. On the other hand, any improvements to the core translate across platforms.
 

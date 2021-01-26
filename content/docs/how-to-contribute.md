@@ -21,7 +21,7 @@ All work on React happens directly on [GitHub](https://github.com/facebook/react
 
 ### Semantic Versioning {#semantic-versioning}
 
-React follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. When we make breaking changes, we also introduce deprecation warnings in a minor version so that our users learn about the upcoming changes and migrate their code in advance. Learn more about our commitment to stability and incremental migration in [our versioning policy](https://reactjs.org/docs/faq-versioning.html).
+React follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. When we make breaking changes, we also introduce deprecation warnings in a minor version so that our users learn about the upcoming changes and migrate their code in advance. Learn more about our commitment to stability and incremental migration in [our versioning policy](/docs/faq-versioning.html).
 
 Every significant change is documented in the [changelog file](https://github.com/facebook/react/blob/master/CHANGELOG.md).
 
@@ -56,7 +56,7 @@ Facebook has a [bounty program](https://www.facebook.com/whitehat/) for the safe
 ### How to Get in Touch {#how-to-get-in-touch}
 
 * IRC: [#reactjs on freenode](https://webchat.freenode.net/?channels=reactjs)
-* [Discussion forums](https://reactjs.org/community/support.html#popular-discussion-forums)
+* [Discussion forums](/community/support.html#popular-discussion-forums)
 
 There is also [an active community of React users on the Discord chat platform](https://www.reactiflux.com/) in case you need help with React.
 
@@ -88,7 +88,7 @@ The core team is monitoring for pull requests. We will review your pull request 
 2. Run `yarn` in the repository root.
 3. If you've fixed a bug or added code that should be tested, add tests!
 4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
-5. Run `yarn test-prod` to test in the production environment. It supports the same options as `yarn test`.
+5. Run `yarn test --prod` to test in the production environment.
 6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
 7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
 8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
@@ -117,31 +117,39 @@ Then, you can run several commands:
 * `yarn linc` is like `yarn lint` but faster because it only checks files that differ in your branch.
 * `yarn test` runs the complete test suite.
 * `yarn test --watch` runs an interactive test watcher.
+* `yarn test --prod` runs tests in the production environment.
 * `yarn test <pattern>` runs tests with matching filenames.
-* `yarn test-prod` runs tests in the production environment. It supports all the same options as `yarn test`.
 * `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
 * `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
 * `yarn build` creates a `build` folder with all the packages.
 * `yarn build react/index,react-dom/index --type=UMD` creates UMD builds of just React and ReactDOM.
 
-We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However it can be handy to try your build of React in a real project.
+We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However, it can be handy to try your build of React in a real project.
 
 First, run `yarn build`. This will produce pre-built bundles in `build` folder, as well as prepare npm packages inside `build/packages`.
 
 The easiest way to try your changes is to run `yarn build react/index,react-dom/index --type=UMD` and then open `fixtures/packaging/babel-standalone/dev.html`. This file already uses `react.development.js` from the `build` folder so it will pick up your changes.
 
-If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder:
+If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. 
+
+If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder. Note that **instead of `--type=UMD` you'll want to pass `--type=NODE` when building**. You'll also need to build the `scheduler` package:
 
 ```sh
-cd ~/path_to_your_react_clone/build/node_modules/react
+cd ~/path_to_your_react_clone/
+yarn build react/index,react-dom/index,scheduler --type=NODE
+
+cd build/node_modules/react
 yarn link
-cd ~/path_to_your_react_clone/build/node_modules/react-dom
+cd build/node_modules/react-dom
 yarn link
-cd /path/to/your/project
+
+cd ~/path/to/your/project
 yarn link react react-dom
 ```
 
 Every time you run `yarn build` in the React folder, the updated versions will appear in your project's `node_modules`. You can then rebuild your project to try your changes.
+
+If some package is still missing (e.g. maybe you use `react-dom/server` in your project), you can always do a full build with `yarn build`. Note that running `yarn build` without options takes a long time.
 
 We still require that your pull request contains unit tests for any new functionality. This way we can ensure that we don't break your code in the future.
 

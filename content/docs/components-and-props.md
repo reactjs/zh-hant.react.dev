@@ -44,7 +44,7 @@ class Welcome extends React.Component {
 
 上述兩種 component 在 React 中是同等的。
 
-我們將會在[下一個章節]((/docs/state-and-lifecycle.html))探討 class 所擁有的額外特性，但在那之前，我們會使用 function component 來保持簡潔。
+Function 和 Class component 兩者都擁有額外的特性，我們將會在[下一個章節](/docs/state-and-lifecycle.html)探討。
 
 ## Render 一個 Component {#rendering-a-component}
 
@@ -60,7 +60,7 @@ const element = <div />;
 const element = <Welcome name="Sara" />;
 ```
 
-當 React element 為使用者定義的 component 時，它會將 JSX 所接收的屬性作為一個物件傳遞給 component，這一個物件被稱為「props」。
+當 React 看到由使用者定義 component 的 element 時，它將 JSX 屬性和 children 作為 single object 傳遞給該 component。我們稱這個 object 為「props」。
 
 舉例來說，這段程式碼會在頁面上 render 出「Hello, Sara」：
 
@@ -233,7 +233,7 @@ function Comment(props) {
 
 [在 CodePen 上試試看吧！](codepen://components-and-props/extracting-components-continued)
 
-在一開始，將 component 抽離出來可能是一件繁重的工作，但是在較大的應用程式中，建構可複用的 component 是非常值得。以經驗來說，如果一個 UI 中有一部分會被重複使用很多次（`Button`、`Panel`、`Avatar`），或者它足夠複雜到自成一個 component（`App`、`FeedStory`、`Comment`），那它就適合被抽出作為一個可複用的 component。
+在一開始，將 component 抽離出來可能是一件繁重的工作，但是在較大的應用程式中，建構可複用的 component 是非常值得。以經驗來說，如果一個 UI 中有一部分會被重複使用很多次（`Button`、`Panel`、`Avatar`），或者它足夠複雜（`App`、`FeedStory`、`Comment`），則可以將它提取到獨立的 component。
 
 ## Props 是唯讀的 {#props-are-read-only}
 

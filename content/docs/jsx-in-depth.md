@@ -42,8 +42,7 @@ React.createElement(
 ```js
 React.createElement(
   'div',
-  {className: 'sidebar'},
-  null
+  {className: 'sidebar'}
 )
 ```
 
@@ -228,7 +227,7 @@ function NumberDescriber(props) {
 <MyTextBox autocomplete={true} />
 ```
 
-一般來說，我們因為容易把它跟 [ES6 object shorthand](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) 混淆，`{foo}` 是 `{foo: foo}` 的簡寫而不是 `{foo: true}`，所以並不建議這樣使用。這種行為存在只是為了相配 HTML 的行為。
+一般來說，我們不建議*不*傳遞 prop 的值，因為容易把它跟 [ES6 object shorthand](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) 混淆，`{foo}` 是 `{foo: foo}` 的簡寫而不是 `{foo: true}`，所以並不建議這樣使用。這種行為存在只是為了相配 HTML 的行為。
 
 ### 展開屬性 {#spread-attributes}
 

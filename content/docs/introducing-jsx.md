@@ -176,8 +176,8 @@ const element = {
 
 這種物件被稱呼為「React element」。你可以想像他們描述的是你想要在螢幕上看到的東西，React 會讀取這些物件並用這些描述來產生 DOM 並保持他們在最新狀態。
 
-我們會在下一個章節探討如何把 React element render 到 DOM 之中。
+我們會在[下一個章節](/docs/rendering-elements.html)探討如何把 React element render 到 DOM 之中。
 
 >**提示：**
 >
->我們推薦你在編輯器中使用 [「Babel」語法](http://babeljs.io/docs/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。
+>我們推薦你在編輯器中使用 [「Babel」語法](https://babeljs.io/docs/en/next/editors)，這樣可以確保 ES6 跟 JSX 都能夠正確的被語法突顯。

@@ -39,7 +39,7 @@ class Welcome extends React.Component {
 
 ### Component 生命週期 {#the-component-lifecycle}
 
-每一個 component 都有數個 「生命週期方法」，你可以 [override](https://en.wikipedia.org/wiki/Method_overriding) 這些方法，以便在開發過程中某些特定的時刻執行某些程式。**你可以使用[這個生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)作為速查表。** 以下，常用的生命週期方法將會以粗體表達。其餘的生命週期方法則相對較少。
+每一個 component 都有數個 「生命週期方法」，你可以 [override](https://en.wikipedia.org/wiki/Method_overriding) 這些方法，以便在開發過程中某些特定的時刻執行某些程式。**你可以使用[這個生命週期表](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)作為速查表。** 以下，常用的生命週期方法將會以粗體表達。其餘的生命週期方法則相對較少。
 
 #### Mounting {#mounting}
 
@@ -109,7 +109,7 @@ class Welcome extends React.Component {
 
 ### 常用的生命周期方法 {#commonly-used-lifecycle-methods}
 
-此段落將會介紹你在建立 React component 時最可能會使用到的幾種方法。**想更深入了解生命週期方法，請參考[生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)。**
+此段落將會介紹你在建立 React component 時最可能會使用到的幾種方法。**想更深入了解生命週期方法，請參考[生命週期表](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)。**
 
 ### `render()` {#render}
 
@@ -245,7 +245,7 @@ componentWillUnmount()
 
 ### 不常使用的生命週期方法 {#rarely-used-lifecycle-methods}
 
-這個章節內介紹的方法是在那些不常見的情況中使用的。它們有時很方便，但是你大多數的 component 大概不會需要使用它們。**你可以在這個[生命週期表](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)上方點選「顯示不常使用的生命週期方法」，並看到以下所介紹的方法。**
+這個章節內介紹的方法是在那些不常見的情況中使用的。它們有時很方便，但是你大多數的 component 大概不會需要使用它們。**你可以在這個[生命週期表](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)上方點選「顯示不常使用的生命週期方法」，並看到以下所介紹的方法。**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -274,7 +274,7 @@ shouldComponentUpdate(nextProps, nextState)
 static getDerivedStateFromProps(props, state)
 ```
 
-`getDerivedStateFromProps` 會在一個 component 被 render 前被呼叫，不管是在首次 mount 時或後續的更新時。它應該回傳一個 object 以更新 state，或回傳 null 以表示不需要更新任何 state。
+`getDerivedStateFromProps` 會在一個 component 被 render 前被呼叫，不管是在首次 mount 時或後續的更新時。它應該回傳一個 object 以更新 state，或回傳 `null` 以表示不需要更新任何 state。
 
 這個方法是為了某些[很少見的例子](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state)而存在的，像是有時 state 會依賴 prop 在一段時間過後所產生的改變。例如，也許建立一個 `<Transition>` component 是很方便的，我們可以用它來比較其之前與之後的 children，並決定我們要 animate in and out 哪一個 child。
 
@@ -284,7 +284,7 @@ static getDerivedStateFromProps(props, state)
 
 * 如果你想要 **在某個 prop 改變時重新計算某些資料**，[請使用 memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)。
 
-* 如果你想要 **在某個 prop 改變時「重置」某個 state**，請考慮建立一個[完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) 的 component 或[帶有 `key` 的完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) component。
+* 如果你想要 **在某個 prop 改變時「重置」某個 state**，請考慮建立一個[完全被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) 的 component 或[帶有 `key` 的完全不可被控制](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) component。
 
 這個方法無法觸及一個 component 的 instance。如果你想要這麼做的話，你可以把一個 component 的 prop 和 state 提取出來變成 pure function，並寫在該 class definition 之外，並透過這樣的方式在 `getDerivedStateFromProps()` 和其他 class 方法之間重複使用某些程式碼。
 
@@ -323,7 +323,7 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 想了解更多，請參考 [*React 16 中的錯誤邊界*](/blog/2017/07/26/error-handling-in-react-16.html)一文。
 
 > 注意：
-> 
+>
 > 錯誤邊界只會截取在 tree 中、自身**以下**的 component 中的錯誤。錯誤邊界無法截取自身內的錯誤。
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
@@ -352,7 +352,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -407,13 +407,20 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
+React 在 production 和 development 在處理 `componentDidCatch()` 錯誤的方式不同。
+
+在 development 時，錯誤將會冒泡到 `window`，意思是任何的 `window.onerror` 或 `window.addEventListener('error', callback)` 將攔截透過 `componentDidCatch` 所捕捉到的錯誤。
+
+反之，在 production 時不會冒泡，意思是任何 ancestor 錯誤處理將只會接收未由 `componentDidCatch()` 明確捕捉的錯誤。
+
 > 注意：
-> 
+
+>
 > 在有錯誤的情況下，你可以透過呼叫 `setState` 來 render 一個含有 `componentDidCatch()` 的 fallback UI，但這個方法會在未來的版本中會被棄用。
 > 請使用 `static getDerivedStateFromError()` 來處理 fallback render。
 
@@ -500,7 +507,7 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater[, callback])
+setState(updater, [callback])
 ```
 
 `setState()` 會將改變排進一個 queue 中，並告知 React 這個 component 以及它的 children 需要用更新後的 state 重新 render。這是你會在事件處理和伺服器回應用來更新使用者介面最主要的方法。
@@ -586,7 +593,7 @@ component.forceUpdate(callback)
 
 ### `defaultProps` {#defaultprops}
 
-`defaultProps` 可以在一個 component class 自身被定義為一個屬性，它被用來設定該 class 的預設 props。它是為了 undefined（而非 null） 的 prop 使用的。例如：
+`defaultProps` 可以在一個 component class 自身被定義為一個屬性，它被用來設定該 class 的預設 props。它是為了 `undefined`（而非 `null`） 的 prop 使用的。例如：
 
 ```js
 class CustomButton extends React.Component {
@@ -606,7 +613,7 @@ CustomButton.defaultProps = {
   }
 ```
 
-如果 `props.color` 的值被設為 null，其值會繼續為 null：
+如果 `props.color` 的值被設為 `null`，其值會繼續為 `null`：
 
 ```js
   render() {

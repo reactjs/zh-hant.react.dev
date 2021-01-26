@@ -10,7 +10,7 @@ next: handling-events.html
 
 這個章節會介紹在 React component 中 state 以及生命週期的概念。你可以在[這裡找到 component API 詳細的參考](/docs/react-component.html)。
 
-思考[前一章節](/docs/rendering-elements.html#updating-the-rendered-element)的 ticking clock 的範例。在 [Render Element](/docs/rendering-elements.html#rendering-an-element-into-the-dom) 中，我們只學習到一種方式來更新 UI。 我們呼叫 `ReactDOM.render() 來改變 render 的輸出：
+思考[前一章節](/docs/rendering-elements.html#updating-the-rendered-element)的 ticking clock 的範例。在 [Render Element](/docs/rendering-elements.html#rendering-an-element-into-the-dom) 中，我們只學習到一種方式來更新 UI。 我們呼叫 `ReactDOM.render()` 來改變 render 的輸出：
 
 ```js{8-11}
 function tick() {
@@ -418,12 +418,6 @@ Parent 和 child component 不會知道某個 component 是 stateful 或 statele
 這就是 state 通常被稱為 local state 或被封裝的原因。除了擁有和可以設定它之外的任何 component 都不能訪問它。
 
 Component 可以選擇將它的 state 做為 props 往下傳遞到它的 child component：
-
-```js
-<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-```
-
-這也適用在使用者所定義的 component：
 
 ```js
 <FormattedDate date={this.state.date} />

@@ -56,7 +56,8 @@ React element 使用 `htmlFor` 來替代 `for`，因為 `for` 在 JavaScript 是
 
 ### selected {#selected}
 
-`selected` 這個 attribute 可以使用在 `<option>` 裡面，用來設定 component 是否已被選取。這對建立 controlled component 很有幫助。
+如果你想要將 `<option>` 標記成已選擇，請在 `<select>` 的 `value` 中引用該選項的值。
+更多細節說明請參考[「The select Tag」](/docs/forms.html#the-select-tag)。
 
 ### style {#style}
 
@@ -120,7 +121,7 @@ React 會為某些數字型態的 style property 自動加上「px」。如果�
 
 ### value {#value}
 
-`value` attribute 可以使用在 `<input>` 和 `<textarea>` component。你可以使用它來設定 component value。這對建立 controlled component 很有幫助。`defaultValue` 則是使用在 uncontrolled component，在初始 mount 後設定 component 的 value。
+`value` attribute 可以使用在 `<input>`、`<select>` 和 `<textarea>` component。你可以使用它來設定 component value。這對建立 controlled component 很有幫助。`defaultValue` 則是使用在 uncontrolled component，在初始 mount 後設定 component 的 value。
 
 ## 可以使用的 HTML Attribute {#all-supported-html-attributes}
 
@@ -129,7 +130,7 @@ React 會為某些數字型態的 style property 自動加上「px」。如果�
 React 為 DOM 提供了一套以 JavaScript 為中心的 API。因為 React component 通常會有自訂或跟 DOM 相關的 prop，React 使用像 DOM API 一樣的 `camelCase`。
 
 ```js
-<div tabIndex="-1" />      // 就像 node.tabIndex DOM API
+<div tabIndex={-1} />      // 就像 node.tabIndex DOM API
 <div className="Button" /> // 就像 node.className DOM API
 <input readOnly={true} />  // 就像 node.readOnly DOM API
 ```
