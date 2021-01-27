@@ -464,9 +464,9 @@ FancyInput = forwardRef(FancyInput);
 >
 > 如果你是從 class component migrate 程式碼，請注意 `useLayoutEffect` 與 `componentDidMount` 和 `componentDidUpdate` 的呼叫時機是一樣。不過，**我們建議先使用 `useEffect`**，只當它有問題時才嘗試使用 `useLayoutEffect`。
 >
->如果你使用伺服器 render，請記住 `useLayoutEffect` 或 `useEffect` *均不會*執行，直到 JavaScript 完成載入。這是為什麼在伺服器 render 的 component 包含 `useLayoutEffect` 時 React 會發出警告。要解決這問題，把該邏輯搬到 `useEffect` 裡（如果首次 render 不需要該邏輯），或把 component 廷遲到客戶端完成 render 後才出現（如果直到 `useLayoutEffect` 執行前 HTML 都會錯亂的情況下）。
+> 如果你使用伺服器 render，請記住 `useLayoutEffect` 或 `useEffect` *均不會*執行，直到 JavaScript 完成載入。這是為什麼在伺服器 render 的 component 包含 `useLayoutEffect` 時 React 會發出警告。要解決這問題，把該邏輯搬到 `useEffect` 裡（如果首次 render 不需要該邏輯），或把 component 延遲到客戶端完成 render 後才出現（如果直到 `useLayoutEffect` 執行前 HTML 都會錯亂的情況下）。
 >
->要在伺服器 render 的 HTML 排除需要 layout effect 的 component，可以利用 `showChild && <Child />` 進行條件 render，並使用 `useEffect(() => { setShowChild(true); }, [])` 來延遲顯示。這樣，UI 就不會在完成 render 之前顯示錯亂了。
+> 要在伺服器 render 的 HTML 排除需要 layout effect 的 component，可以利用 `showChild && <Child />` 進行條件 render，並使用 `useEffect(() => { setShowChild(true); }, [])` 來延遲顯示。這樣，UI 就不會在完成 render 之前顯示錯亂了。
 
 ### `useDebugValue` {#usedebugvalue}
 
