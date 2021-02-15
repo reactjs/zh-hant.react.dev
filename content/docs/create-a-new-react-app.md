@@ -39,7 +39,11 @@ React 團隊主要推薦以下的方案：
 
 [Create React App](https://github.com/facebookincubator/create-react-app) 是一個適合**學習 React** 的環境，而且也是使用 React 建立一個**全新的 [single-page](/docs/glossary.html#single-page-application) 應用程式**的最佳方法。
 
+<<<<<<< HEAD
 它會為你設定好開發環境，以便你能夠使用最新的 JavaScript 特性，提供良好的開發者體驗，並且為線上環境最佳化你的應用程式。你需要在你的機器上安裝 [Node >= 8.10 和 npm >= 5.6](https://nodejs.org/en/)。要建立項目，請執行：
+=======
+It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 10.16 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
+>>>>>>> 888d9eae7a33ec1a48c18f28e82c26d048d885be
 
 ```bash
 npx create-react-app my-app
