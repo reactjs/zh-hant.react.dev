@@ -8,7 +8,7 @@ prev: hooks-overview.html
 
 *Hook* 是 React 16.8 中增加的新功能。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
 
-[介紹 Hook](/docs/hooks-intro.html)使用過這個範例讓我們熟悉 Hook：
+[介紹 Hook](/docs/hooks-intro.html) 使用過這個範例讓我們熟悉 Hook：
 
 ```js{4-5}
 import React, { useState } from 'react';
@@ -98,13 +98,13 @@ function Example() {
 }
 ```
 
-**什麼是 Hook？**Hook 是一個讓你可以使用 React 各項功能的特殊 function。舉例來說，`useState` 是一個讓你增加 React state 到 function component 的 Hook。在後面的章節我們會學習其他 Hook。 
+**什麼是 Hook？**Hook 是一個讓你可以使用 React 各項功能的特殊 function。舉例來說，`useState` 是一個讓你增加 React state 到 function component 的 Hook。在後面的章節我們會學習其他 Hook。
 
 **什麼時候該使用 Hook？**以前當你寫一個 function component 需要增加一些 state 時，你必須轉換成 class。現在你可以直接在 function component 中使用 Hook。我們現在就來試試看吧！
 
 >注意
 >
->關於在 component 中哪裡可以使用 Hook，有一些特別的規則。我們會在 [Hook 的規則](/docs/hooks-rules.html) 中學習。
+>關於在 component 中哪裡可以使用 Hook，有一些特別的規則。我們會在 [Hook 的規則](/docs/hooks-rules.html)中學習。
 
 ## 宣告一個 State 變數 {#declaring-a-state-variable}
 
@@ -232,7 +232,7 @@ function Example() {
   const [fruit, setFruit] = useState('banana');
 ```
 
-這個 JavaScript 語法叫做 [array destructuring](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#陣列解構)。這代表我們宣告了兩個新的變數 `fruit` 和 `setFruit`，`fruit` 被設為 `useState` 回傳的第一個值，`setFruit` 則是第二個。跟下面這段程式相同：
+這個 JavaScript 語法叫做[陣列解構賦值](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#陣列解構)。這代表我們宣告了兩個新的變數 `fruit` 和 `setFruit`，`fruit` 被設為 `useState` 回傳的第一個值，`setFruit` 則是第二個。跟下面這段程式相同：
 
 ```js
   var fruitStateVariable = useState('banana'); // 回傳一對值
@@ -240,7 +240,7 @@ function Example() {
   var setFruit = fruitStateVariable[1]; // 第二個值
 ```
 
-當我們使用 `useState` 宣告 state 變數，他會回傳一對在 array 裡的值。第一個值是目前 state 的值，第二個是一個可以更新 state 的 function。因為它們有特殊的意義，只用 `[0]` 和 `[1]` 來存取它們的話會令人困惑。所以我們使用 array destructuring 來命名它們。
+當我們使用 `useState` 宣告 state 變數，他會回傳一對在 array 裡的值。第一個值是目前 state 的值，第二個是一個可以更新 state 的 function。因為它們有特殊的意義，只用 `[0]` 和 `[1]` 來存取它們的話會令人困惑。所以我們使用陣列解構賦值來命名它們。
 
 >注意
 >

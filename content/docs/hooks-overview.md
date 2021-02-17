@@ -56,7 +56,7 @@ function ExampleWithManyStates() {
 }
 ```
 
-[Array destructuring](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) 語法讓我們可以給用呼叫 `useState` 宣告的 state 變數不同的名字，這些名字不是 `useState` API 的一部份。相反地，React 假設如果你呼叫 `useState` 多次，你在每次 render 用同樣的順序。我們之後將會回來討論為什麼可以這樣做與什麼時候他很有用。
+[陣列解構賦值](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring)語法讓我們可以給用呼叫 `useState` 宣告的 state 變數不同的名字，這些名字不是 `useState` API 的一部份。相反地，React 假設如果你呼叫 `useState` 多次，你在每次 render 用同樣的順序。我們之後將會回來討論為什麼可以這樣做與什麼時候他很有用。
 
 #### 但是什麼是 Hook? {#but-what-is-a-hook}
 
@@ -99,7 +99,7 @@ function Example() {
 }
 ```
 
-當你呼叫 `useEffect` 時，你告訴 React 刷新 DOM 變動之後運行你的 「effect」。Effect 在 component 裡面被宣告所以他們有權限訪問他的 props 和 state。預設之下，React 在每一次 render 之後運行 effect —— *包括*第一次 render。（我們會在[使用 Effect Hook](/docs/hooks-effect.html) 做更多他和 class lifecycle 的比較。）
+當你呼叫 `useEffect` 時，你告訴 React 刷新 DOM 變動之後執行你的 「effect」。Effect 在 component 裡面被宣告所以他們有權限訪問他的 props 和 state。預設之下，React 在每一次 render 之後執行 effect —— *包括*第一次 render。（我們會在[使用 Effect Hook](/docs/hooks-effect.html) 做更多他和 class lifecycle 的比較。）
 
 Effect 可以透過回傳一個 function 選擇性的定義如何「清理」。舉例來說，這個 component 使用 effect 來訂閱朋友的上線狀態，並在取消訂閱之後清理。
 
@@ -163,7 +163,7 @@ Hook 讓你在 component 中透過彼此相關的部分組織 side effect（像�
 
 Hook 是 JavaScript function，但是他們強加了兩條額外的規則：
 
-* 只在 **最上層** 呼叫 Hook。不要在迴圈、判斷式、或是嵌套 function 中呼叫 Hook。
+* 只在**最上層**呼叫 Hook。不要在迴圈、判斷式、或是嵌套 function 中呼叫 Hook。
 * 只在 **React function component** 呼叫 Hook。不要在一般 JavaScript function 中呼叫 Hook。（只有一個其他有效的地方可以呼叫 Hook——你自己的客製化 Hook。我們馬上會學到他們。）
 
 我們提供了一個 [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) 自動強制套用這些規則。我們了解這些規則第一眼看起來很多限制或是很讓人疑惑，但是他們是讓 Hook 成功運作的必要條件。
@@ -174,7 +174,7 @@ Hook 是 JavaScript function，但是他們強加了兩條額外的規則：
 
 ## 💡 打造你自己的 Hook {#building-your-own-hooks}
 
-有時候，我們想要在 component 之間重複使用某些 stateful 邏輯。傳統上，這個問題有兩種熱門的答案：[higher-order components](/docs/higher-order-components.html) 與 [render prop](/docs/render-props.html)。客製化 Hook 讓你不用在你的 tree 中加入更多 component 就能做到。
+有時候，我們想要在 component 之間重複使用某些 stateful 邏輯。傳統上，這個問題有兩種熱門的答案：[higher-order components](/docs/higher-order-components.html) 與 [render props](/docs/render-props.html)。客製化 Hook 讓你不用在你的 tree 中加入更多 component 就能做到。
 
 在這一頁前面，我們提到 `FriendStatus` component 呼叫 `useState` 與 `useEffect` Hook 來訂閱朋友的線上狀態。假如我們也想要在另一個 component 重複使用這個訂閱邏輯。
 
