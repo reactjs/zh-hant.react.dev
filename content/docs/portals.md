@@ -10,7 +10,7 @@ Portal 提供一個優秀方法來讓 children 可以 render 到 parent componen
 ReactDOM.createPortal(child, container)
 ```
 
-第一個參數 (`child`) 是任何[可 render 的 React child](/docs/react-component.html#render)，例如 element，string 或者 fragment。第二個參數 (`container`) 則是一個 DOM element。
+第一個參數（`child`）是任何[可 render 的 React child](/docs/react-component.html#render)，例如 element、string 或者 fragment。第二個參數（`container`）則是一個 DOM element。
 
 ## 使用方式 {#usage}
 
@@ -31,7 +31,7 @@ render() {
 
 ```js{6}
 render() {
-  // React *不會* 創建新的 div。它會將 children render 進 `domNode` 中。
+  // React *不會*建立新的 div。它會將 children render 進 `domNode` 中。
   // `domNode` 可以是任何在隨意位置的合法 DOM node。
   return ReactDOM.createPortal(
     this.props.children,
@@ -40,11 +40,11 @@ render() {
 }
 ```
 
-一個典型的 portal 使用案例是，當 parent component 有 `overflow: hidden` 或者 `z-index` 的樣式時，卻仍需要 child 在視覺上「跳出」其容器的狀況。例如 dialog，hovercard 與 tooltip 都屬於此案例。
+一個典型的 portal 使用案例是，當 parent component 有 `overflow: hidden` 或者 `z-index` 的樣式時，卻仍需要 child 在視覺上「跳出」其容器的狀況。例如 dialog、hovercard 與 tooltip 都屬於此案例。
 
 > 注意：
 >
-> 當使用 portal 時，需記得[控管鍵盤 focus](/docs/accessibility.html#programmatically-managing-focus) 會變得非常重要。
+> 當使用 portal 時，請留意[控管鍵盤 focus](/docs/accessibility.html#programmatically-managing-focus) 對於無障礙功能會變得非常重要。
 >
 > 使用跳窗 dialog 時，應確保每個人都可以依照 [WAI-ARIA Modal 開發規範](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal) 定義的方式與其互動。
 
