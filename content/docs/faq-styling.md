@@ -6,7 +6,7 @@ layout: docs
 category: FAQ
 ---
 
-### 如何在 components 中加入 CSS classes？ {#how-do-i-add-css-classes-to-components}
+### 如何在 Component 中加入 CSS Class？ {#how-do-i-add-css-classes-to-components}
 
 把字串以 prop `className` 傳入：
 
