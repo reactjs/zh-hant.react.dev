@@ -8,7 +8,7 @@ category: FAQ
 
 ### 如何在 Component 中加入 CSS Class？ {#how-do-i-add-css-classes-to-components}
 
-把字串以 prop `className` 傳入：
+傳遞一個 string 作為 `className` 的 prop：
 
 ```jsx
 render() {
@@ -32,11 +32,11 @@ render() {
 >  
 >如果你發現你常寫類似的程式碼，可使用 [classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) 函式庫簡化。
 
-### 可以使用 inline style 嗎？ {#can-i-use-inline-styles}
+### 可以使用 Inline Style 嗎？ {#can-i-use-inline-styles}
 
-可以，請見 [此處](/docs/dom-elements.html#style) 文件關於 styling  部分。
+可以，請見[此處](/docs/dom-elements.html#style) 文件關於 styling 部分。
 
-### inline styles 不好嗎？ {#are-inline-styles-bad}
+### Inline Style 不好嗎？ {#are-inline-styles-bad}
 
 CSS class 通常比 inline style 效能更好。
 
