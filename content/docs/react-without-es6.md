@@ -84,7 +84,7 @@ var Counter = createReactClass({
 
 ## 自動綁定 {#autobinding}
 
-在使用 ES6 class 宣告 React component 時，其方法的語義與一般的 ES6 class 相同。也就是說這些方法不會自動綁定 `this` 到 instance 上。你會需要明確地在 constructor 中使用 `.bind(this)` 來綁定 `this`：
+在使用 ES6 class 宣告 React component 時，其方法的語義與一般的 ES6 class 相同。也就是說，這些方法不會自動綁定 `this` 到 instance 上。你會需要明確地在 constructor 中使用 `.bind(this)` 來綁定 `this`：
 
 ```javascript
 class SayHello extends React.Component {
@@ -110,7 +110,7 @@ class SayHello extends React.Component {
 }
 ```
 
-而使用 `createReactClass()` 時就不需要這麼做，因為它會自動綁定所有的方法：
+而使用 `createReactClass()` 時就不需要這麼做，因為它會自動綁定所有方法：
 
 ```javascript
 var SayHello = createReactClass({
@@ -132,7 +132,7 @@ var SayHello = createReactClass({
 });
 ```
 
-這代表使用 ES6 class 時會需要為 event handler 多寫一些 boilerplate 程式碼，但好處是在大型的應用程式中會有稍微好一點的效能。
+這代表使用 ES6 class 時會需要為 event handler 多寫一些 boilerplate 程式碼，但這種寫法的好處是在大型的應用程式中會有稍微好一點的效能。
 
 如果寫 boilerplate 程式碼對你來說實在是很沒有吸引力的話，你可以啟用 Babel 的**實驗性**語法提案 [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/)：
 
@@ -222,4 +222,4 @@ ReactDOM.render(
 );
 ```
 
-如果一個 component 使用了複數的 mixin，且其中的多個 mixin 同時定義了相同的生命週期方法（例如，多個 mixin 都想要在 component 被銷毀時做一些清除的動作），則所有的生命週期方法都保證會被呼叫到。這些 Mixin 中的方法會依照它們排列的順序依序執行，並在最後呼叫 component 上對應的方法。
+如果一個 component 使用了複數個 mixin，且其中的多個 mixin 同時定義了相同的生命週期方法（例如，多個 mixin 都想要在 component 被銷毀時做一些清除的動作），則所有的生命週期方法都保證會被呼叫到。這些 Mixin 中的方法會依照它們的排列順序依序執行，並會在最後呼叫 component 上的對應方法。
