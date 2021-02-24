@@ -6,13 +6,13 @@ layout: docs
 category: FAQ
 ---
 
-### Is there a recommended way to structure React projects? {#is-there-a-recommended-way-to-structure-react-projects}
+### 有任何建構 React 專案的推薦方式嗎？ {#is-there-a-recommended-way-to-structure-react-projects}
 
-React doesn't have opinions on how you put files into folders. That said there are a few common approaches popular in the ecosystem you may want to consider.
+React 對你如何將檔案放入資料夾中並無意見。不過你可以考慮幾種在生態系中常見的方法。
 
-#### Grouping by features or routes {#grouping-by-features-or-routes}
+#### 以功能或路徑分類 {#grouping-by-features-or-routes}
 
-One common way to structure projects is to locate CSS, JS, and tests together inside folders grouped by feature or route.
+一種建構專案的常見方式是將 CSS，JS，和測試檔案放在以功能或路徑分類的資料夾中。
 
 ```
 common/
@@ -35,11 +35,11 @@ profile/
   ProfileAPI.js
 ```
 
-The definition of a "feature" is not universal, and it is up to you to choose the granularity. If you can't come up with a list of top-level folders, you can ask the users of your product what major parts it consists of, and use their mental model as a blueprint.
+「功能」的定義並不是統一的，且其粒度由你決定。如果你無法列出最高階層的資料夾，你可以詢問你的產品使用者，產品包含哪些主要部分，然後以他們的心智模型作為藍圖。
 
-#### Grouping by file type {#grouping-by-file-type}
+#### 以檔案類型分類 {#grouping-by-file-type}
 
-Another popular way to structure projects is to group similar files together, for example:
+另一個受歡迎的建構專案方式是將相似的檔案組在一起，例如：
 
 ```
 api/
@@ -59,16 +59,16 @@ components/
   ProfileHeader.css
 ```
 
-Some people also prefer to go further, and separate components into different folders depending on their role in the application. For example, [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) is a design methodology built on this principle. Remember that it's often more productive to treat such methodologies as helpful examples rather than strict rules to follow.
+有些人也喜歡進一步將 component 按照其在應用程式中的角色分進不同的資料夾裡。例如，[Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) 便是一個基於此原則的設計方法。記得，把類似的方法視為有幫助的例子而非必須遵守的嚴格規定，通常會更有成效。
 
-#### Avoid too much nesting {#avoid-too-much-nesting}
+#### 避免太多 nesting {#avoid-too-much-nesting}
 
-There are many pain points associated with deep directory nesting in JavaScript projects. It becomes harder to write relative imports between them, or to update those imports when the files are moved. Unless you have a very compelling reason to use a deep folder structure, consider limiting yourself to a maximum of three or four nested folders within a single project. Of course, this is only a recommendation, and it may not be relevant to your project.
+JavaScript 專案中有很多和深度 nesting 目錄有關的痛點。撰寫其中的相對導入或是在檔案移動後更新這些導入變得越來越難。除非你有非常令人信服的原因必須使用深度 nesting 資料夾，不然請考慮限制你自己在一個專案中使用最多三層或四層資料夾。當然，這只是一個建議，且也不一定會和你的專案有關。
 
-#### Don't overthink it {#dont-overthink-it}
+#### 不要想得太多 {#dont-overthink-it}
 
-If you're just starting a project, [don't spend more than five minutes](https://en.wikipedia.org/wiki/Analysis_paralysis) on choosing a file structure. Pick any of the above approaches (or come up with your own) and start writing code! You'll likely want to rethink it anyway after you've written some real code.
+如果你才剛開始一個專案，[請不要花超過五分鐘](https://en.wikipedia.org/wiki/Analysis_paralysis) 在選擇檔案結構。選擇以上任何方法（或想一個你自己的）然後開始寫程式碼！畢竟在你寫了一些真正的程式碼後你很可能會想重新思考。
 
-If you feel completely stuck, start by keeping all files in a single folder. Eventually it will grow large enough that you will want to separate some files from the rest. By that time you'll have enough knowledge to tell which files you edit together most often. In general, it is a good idea to keep files that often change together close to each other. This principle is called "colocation".
+如果你感到完全卡住，從把所有檔案放在一個資料夾開始。最終它會變大到你會想將某些檔案和剩下的分開。在那時你就會有足夠的認知去分辨哪些檔案你最常一起更改。總的來說，把經常一起更改的檔案放得和彼此近一些是個好主意。這個原則稱為「colocation」。
 
-As projects grow larger, they often use a mix of both of the above approaches in practice. So choosing the "right" one in the beginning isn't very important.
+當專案變得更大時，實務上他們通常會使用上述兩種方法的混合。所以在一開始選擇「正確的」那一個並不是非常重要。
