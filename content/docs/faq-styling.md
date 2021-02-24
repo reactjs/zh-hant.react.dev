@@ -16,7 +16,7 @@ render() {
 }
 ```
 
-CSS class 常會依賴 component prop 或 state：
+通常 CSS class 會依賴 component 的 prop 或 state：
 
 ```jsx
 render() {
