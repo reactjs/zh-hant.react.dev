@@ -6,9 +6,9 @@ layout: docs
 category: FAQ
 ---
 
-### How do I add CSS classes to components? {#how-do-i-add-css-classes-to-components}
+### 如何在 Component 中加入 CSS Class？ {#how-do-i-add-css-classes-to-components}
 
-Pass a string as the `className` prop:
+傳遞一個 string 作為 `className` 的 prop：
 
 ```jsx
 render() {
@@ -16,7 +16,7 @@ render() {
 }
 ```
 
-It is common for CSS classes to depend on the component props or state:
+通常 CSS class 會依賴 component 的 prop 或 state：
 
 ```jsx
 render() {
@@ -28,24 +28,24 @@ render() {
 }
 ```
 
->Tip
->
->If you often find yourself writing code like this, [classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) package can simplify it.
+>小技巧
+>  
+>如果你發現你常寫類似的程式碼，可使用 [classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) 函式庫簡化。
 
-### Can I use inline styles? {#can-i-use-inline-styles}
+### 可以使用 Inline Style 嗎？ {#can-i-use-inline-styles}
 
-Yes, see the docs on styling [here](/docs/dom-elements.html#style).
+可以，請見[此處](/docs/dom-elements.html#style) 文件關於 styling 部分。
 
-### Are inline styles bad? {#are-inline-styles-bad}
+### Inline Style 不好嗎？ {#are-inline-styles-bad}
 
-CSS classes are generally better for performance than inline styles.
+CSS class 通常比 inline style 效能更好。
 
-### What is CSS-in-JS? {#what-is-css-in-js}
+### CSS-in-JS 是什麼？ {#what-is-css-in-js}
 
-"CSS-in-JS" refers to a pattern where CSS is composed using JavaScript instead of defined in external files.
+「CSS-in-JS」指的是使用 JavaScript 組成 CSS 而非將其定義於外部檔案的一種模式。
 
-_Note that this functionality is not a part of React, but provided by third-party libraries._ React does not have an opinion about how styles are defined; if in doubt, a good starting point is to define your styles in a separate `*.css` file as usual and refer to them using [`className`](/docs/dom-elements.html#classname).
+_請注意此功能為第三方函式庫所提供，並非 React 的一部份。_ React 對 style 是如何定義並無意見。若有疑問，照常地將你的 style 定義於另一個 `*.css` 檔案中然後使用 [`className`](/docs/dom-elements.html#classname) 去引用會是個好的開始。
 
-### Can I do animations in React? {#can-i-do-animations-in-react}
+### 我可以在 React 中做動畫嗎？ {#can-i-do-animations-in-react}
 
-React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/) and [React Motion](https://github.com/chenglou/react-motion) or [React Spring](https://github.com/react-spring/react-spring), for example.
+React 可以支援動畫。範例請見 [React Transition Group](https://reactcommunity.org/react-transition-group/) 和 [React Motion](https://github.com/chenglou/react-motion) 或 [React Spring](https://github.com/react-spring/react-spring)。
