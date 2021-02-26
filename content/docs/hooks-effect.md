@@ -33,7 +33,7 @@ function Example() {
 }
 ```
 
-這個範例基於[上一頁的計數器範例](/docs/hooks-state.html)，但是我們增加了一個新的功能：我們把網頁標題設定為包含點擊次數的自定義訊息。
+這個範例基於[上一頁的計數器範例](/docs/hooks-state.html)，但是我們增加了一個新的功能：我們把網頁標題設定為包含點擊次數的自訂訊息。
 
 資料 fetch、設定 subscription、或手動改變 React component 中的 DOM 都是 side effect 的範例。無論你是否習慣將這些操作稱為「side effect」（或簡稱「effect」），你之前可能已經在 component 中執行了這些操作。
 
