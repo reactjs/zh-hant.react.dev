@@ -482,7 +482,7 @@ useEffect(() => {
 
 ## 下一步 {#next-steps}
 
-恭喜！這一頁很長，但是希望讀到最後，你絕大多數的問題都有了答案。你已經學過 State Hook 和 Effect Hook，把兩者結合起來，你有*很多*可以去做。它們涵蓋了 class 的絕大多數的使用案例 — 如果沒有涵蓋到，[額外的 Hook](/docs/hooks-reference.html) 或許會幫到你。
+恭喜！這一頁很長，但是希望讀到最後，你絕大多數的問題都有了答案。你已經學過 State Hook 和 Effect Hook，把兩者結合起來，你已經能做到*很多*東西。它們涵蓋了 class 的絕大多數的使用案例 — 如果沒有涵蓋到，[額外的 Hook](/docs/hooks-reference.html) 或許會幫到你。
 
 我們也開始看到 Hook 如何解決[動機](/docs/hooks-intro.html#motivation)中概述的問題。我們已經看到了 effect 清除如何避免在 `componentDidUpdate` 和 `componentWillUnmount` 中重複，如何使相關程式碼更緊密地結合在一起，並幫助我們避免 bug。我們還看到了我們可以如何根據 effect 的目的來區分 effect，這是我們在 class 中根本無法做到的。
 
