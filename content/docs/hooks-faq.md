@@ -410,7 +410,7 @@ function Example() {
 }
 ```
 
-如果你第一次點擊「Show alret」counter 會遞增，**在你點擊「Show alert」按鈕**時，alert 將會顯示 `count` 變數。
+如果你第一次點擊「Show alert」並且遞增 counter，那麼 alert 將會顯示**你當時點擊「Show alert」按鈕**時的 count 變數。假設 prop 和 state 沒有改變的話，這可以避免 bug。
 
 如果你想要從一些非同步的 callback 讀取*最新的* state，你可以把它保留在 [ref](/docs/hooks-faq.html#is-there-something-like-instance-variables)，mutate 它，並從中讀取。
 
