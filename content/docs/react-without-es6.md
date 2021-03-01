@@ -28,7 +28,7 @@ var Greeting = createReactClass({
 
 ES6 class 與 `createReactClass()` 的 API 十分相似，只有以下幾個不同處。
 
-## 宣告預設 props {#declaring-default-props}
+## 宣告預設 Props {#declaring-default-props}
 
 使用 function 與 ES6 class 語法時，`defaultProps` 會被定義為 component 上的一個屬性：
 
