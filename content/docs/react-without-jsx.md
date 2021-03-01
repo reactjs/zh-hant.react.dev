@@ -1,10 +1,10 @@
 ---
 id: react-without-jsx
-title: 沒有 JSX 的 React
+title: 不使用 JSX 開發 React
 permalink: docs/react-without-jsx.html
 ---
 
-JSX 對於使用 React 並不是不可或缺的。當你不想在開發環境中設置編譯時，使用沒有 JSX 的 React 格外方便。
+JSX 對於使用 React 並不是不可或缺的。當你不想在開發環境中設置編譯時，不使用 JSX 開發 React 格外方便。
 
 每個 JSX 元素都只是呼叫 `React.createElement(component, props, ...children)` 的語法糖。所有任何你能用 JSX 做的事，你都能用純 JavaScript 做到。
 
@@ -53,6 +53,6 @@ ReactDOM.render(
 );
 ```
 
-如果你使用這個 `React.createElement` 縮寫的格式，他可以跟沒有 JSX 的 React 一樣方便。
+如果你使用這個 `React.createElement` 縮寫的格式，他可以跟不使用 JSX 開發 React 一樣方便。
 
 此外，你也可以參考社群專案像是 [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) 和 [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers)，這些專案提供了更為簡潔的語法。
