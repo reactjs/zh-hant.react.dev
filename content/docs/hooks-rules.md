@@ -12,7 +12,7 @@ Hook 是 JavaScript function，當你使用它們時需要遵守兩個規則。�
 
 ### 只在最上層呼叫 Hook {#only-call-hooks-at-the-top-level}
 
-**不要在迴圈、條件式或是巢狀的 function 內呼叫 Hook。**相反的，總是在 React function 的最上層使用 Hook。藉由遵循這些規則，你可以確保當每次一個 component render 時 Hook 都依照正確的順序被呼叫。正是這個使得 React 有辦法在多個 `useState` 和 `useEffect` 呼叫間，正確地保持 Hook 的 state。 (如果你感到好奇，我們將在[下方](#explanation)深入的解釋它。)
+**不要在迴圈、條件式或是巢狀的 function 內呼叫 Hook。**相反的，在任何 early return 之前，請在 React function top level 使用 Hook。藉由遵循這些規則，你可以確保當每次一個 component render 時 Hook 都依照正確的順序被呼叫。正是這個使得 React 有辦法在多個 `useState` 和 `useEffect` 呼叫間，正確地保持 Hook 的 state。 (如果你感到好奇，我們將在[下方](#explanation)深入的解釋它。)
 
 ### 只在 React Function 中呼叫 Hook {#only-call-hooks-from-react-functions}
 
