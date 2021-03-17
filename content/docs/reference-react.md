@@ -126,11 +126,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 如果你的 function component 每次得到相同 prop 的時候都會 render 相同結果，你可以將其包在 `React.memo` 之中，透過快取 render 結果來在某些情況下加速。這表示 React 會跳過 render 這個 component，並直接重用上次的 render 結果。
 
-<<<<<<< HEAD
-`React.memo` 只會確認 props 的改變。如果你的 function component 內有使用 [`useState`](/docs/hooks-state.html) 或 [`useContext`](/docs/hooks-reference.html#usecontext) Hook，而且被 wrap 在 `React.memo`，當 state 或 context 改變時，它仍然會重新 render。
-=======
-`React.memo` only checks for prop changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html), [`useReducer`](/docs/hooks-reference.html#usereducer) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
->>>>>>> 54a331d7eff285b87b6865b3ad65a5fea1a86547
+`React.memo` 只會確認 props 的改變。如果你的 function component 被 wrap 在 `React.memo` 內，實作中具有一個 [`useState`](/docs/hooks-state.html)、[`useReducer`](/docs/hooks-reference.html#usereducer) 或 [`useContext`](/docs/hooks-reference.html#usecontext) Hook，當 state 或 context 改變時，它仍然會持續 rerender。
 
 這預設只會對 prop 進行 shallow compare 。如果你需要控制比較的方法，你可以提供一個自訂的比較 function 作為第二個參數。
 
@@ -148,7 +144,7 @@ function areEqual(prevProps, nextProps) {
 export default React.memo(MyComponent, areEqual);
 ```
 
-這個 function 是用來作為 **[效能最佳化](/docs/optimizing-performance.html)** 所用。請勿依賴這個 function 來「避免」render，這可能會產生 bug。
+這個 function 是用來作為**[效能最佳化](/docs/optimizing-performance.html)**所用。請勿依賴這個 function 來「避免」render，這可能會產生 bug。
 
 > 備註
 >
