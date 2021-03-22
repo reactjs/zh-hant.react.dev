@@ -71,7 +71,11 @@ class ErrorBoundary extends React.Component {
 
 ## 該把錯誤邊界放在哪裡 {#where-to-place-error-boundaries}
 
+<<<<<<< HEAD
 錯誤邊界的精確度取決於你自己。你可以把它包在最上層的 route component 藉以顯示「發生了一些錯誤」的訊息給使用者，就如同 server-side framework 裡常常處理錯誤的方式。你也可以把它包在個別的小工具外，藉以保護它們不受應用程式裡發生的其他錯誤的影響。
+=======
+The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like how server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+>>>>>>> df2fbde3b52336229eee550debd692184c427691
 
 
 ## 對於未捕捉到的錯誤的新行為 {#new-behavior-for-uncaught-errors}
@@ -130,7 +134,11 @@ try {
 
 React 不需要從 event handler 裡發生的錯誤恢復。不像 render 和其他生命週期的函式一樣，event handler 不會發生在 render 的時候。所以如果它們丟出錯誤，React 仍然知道該顯示什麼在畫面上。
 
+<<<<<<< HEAD
 如果你需要捕捉 event handler 裡的錯誤，只要使用一般 JavaScript 的 `try` / `catch` 就可以了：
+=======
+If you need to catch an error inside an event handler, use the regular JavaScript `try` / `catch` statement:
+>>>>>>> df2fbde3b52336229eee550debd692184c427691
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {
