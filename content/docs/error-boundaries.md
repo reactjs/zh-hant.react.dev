@@ -130,7 +130,7 @@ try {
 
 React 不需要從 event handler 裡發生的錯誤恢復。不像 render 和其他生命週期的函式一樣，event handler 不會發生在 render 的時候。所以如果它們丟出錯誤，React 仍然知道該顯示什麼在畫面上。
 
-如果你需要捕捉 event handler 裡的錯誤，只要使用一般 JavaScript 的 `try` / `catch` 就可以了：
+如果你需要捕捉一個 event handler 裡的錯誤，只要使用一般 JavaScript 的 `try` / `catch` 就可以了：
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {
