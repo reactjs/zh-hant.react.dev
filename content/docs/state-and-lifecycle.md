@@ -433,7 +433,7 @@ function FormattedDate(props) {
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
 
-這通常被稱作為「上至下」或「單向」的資料流。任何 state 總是由某個特地的 component 所擁有，任何從 state 得到的資料或 UI，state 只能影響在 tree「以下」的 component。
+這通常被稱作為「上至下」或「單向」的資料流。任何 state 總是由某個特定的 component 所擁有，任何從 state 得到的資料或 UI，state 只能影響在 tree「以下」的 component。
 
 如果你想像一個 component tree 是一個 props 的瀑布，每個 component 的 state 像是一個額外的水流源頭，它在任意的某個地方而且往下流。
 
