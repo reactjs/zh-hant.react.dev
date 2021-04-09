@@ -54,11 +54,7 @@ React 16.3 加上了第三種選擇，提供了 string ref 的便利性且免除
 
 React 過去支援了 `findDOMNode` 來用 class instance 搜尋 tree 裡面的 DOM 節點。通常你不需要這個，因為你可以 [直接把一個 ref 附到你的 DOM 節點](/docs/refs-and-the-dom.html#creating-refs)。
 
-<<<<<<< HEAD
 `findDOMNode` 也可以被使用在 class component 上，但這是一個破壞抽象層的用法，它允許了 parent 來要求 render 某個特定的 children。它產生了重構的風險，因為 parent 可能會進入到某個 DOM 節點，所以你不能隨意改變 component 的實作細節。`findDOMNode` 只會回傳第一個 child，但如果使用了 Fragment，有可能某個 component 會 render 多個 DOM 節點。`findDOMNode` 是一個只能讀一次的 API。它只在你要求的時候告訴你答案。如果一個 child component render 了不同的節點，沒有任何方法可以處理這樣的改變。所以 `findDOMNode` 只在元件永遠回傳一個單一且永遠不改變的 DOM 節點時有用。
-=======
-`findDOMNode` can also be used on class components but this was breaking abstraction levels by allowing a parent to demand that certain children were rendered. It creates a refactoring hazard where you can't change the implementation details of a component because a parent might be reaching into its DOM node. `findDOMNode` only returns the first child, but with the use of Fragments, it is possible for a component to render multiple DOM nodes. `findDOMNode` is a one time read API. It only gave you an answer when you asked for it. If a child component renders a different node, there is no way to handle this change. Therefore `findDOMNode` only worked if components always return a single DOM node that never changes.
->>>>>>> 49fd7d5f115378e3663b049f108a2d29b31290c8
 
 你可以藉由傳遞 ref 到你的客製化 component，且把它傳到使用 [ref forwarding](/docs/forwarding-refs.html#forwarding-refs-to-dom-components) 的 DOM，使它變得明顯。
 
