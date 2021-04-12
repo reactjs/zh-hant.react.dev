@@ -1,32 +1,32 @@
 ---
 id: accessibility
-title: Accessibility
+title: 無障礙功能
 permalink: docs/accessibility.html
 ---
 
 ## Why Accessibility? {#why-accessibility}
 
-Web accessibility (also referred to as [**a11y**](https://en.wiktionary.org/wiki/a11y)) is the design and creation of websites that can be used by everyone. Accessibility support is necessary to allow assistive technology to interpret web pages.
+網路無障礙功能（又稱為 [**a11y**](https://en.wiktionary.org/wiki/a11y)）的概念是設計並創造所有人都能使用的網站。我們必須支援無障礙功能，才能使用輔助科技解讀網頁。
 
-React fully supports building accessible websites, often by using standard HTML techniques.
+React 能完整支援無障礙網站的建構。這些網站通常都使用標準的 HTML 技術。
 
-## Standards and Guidelines {#standards-and-guidelines}
+## 標準及規範 {#standards-and-guidelines}
 
 ### WCAG {#wcag}
 
-The [Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) provides guidelines for creating accessible web sites.
+[網路內容無障礙功能指南](https://www.w3.org/WAI/intro/wcag)（WCAG）提供了創造無障礙網頁的規範。
 
-The following WCAG checklists provide an overview:
+以下的 WCAG 檢查清單提供了概觀：
 
-- [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
-- [WCAG checklist from WebAIM](https://webaim.org/standards/wcag/checklist)
-- [Checklist from The A11Y Project](https://a11yproject.com/checklist.html)
+- [Wuhcag 的 WCAG 檢查清單](https://www.wuhcag.com/wcag-checklist/)
+- [WebAIM 的 WCAG 檢查清單](https://webaim.org/standards/wcag/checklist)
+- [The A11Y Project 的檢查清單](https://a11yproject.com/checklist.html)
 
 ### WAI-ARIA {#wai-aria}
 
-The [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) document contains techniques for building fully accessible JavaScript widgets.
+這份[網路無障礙功能倡議 - 無障礙網路應用程式](https://www.w3.org/WAI/intro/aria)文件包含了許多架設無障礙功能 JavaScript 的小工具。
 
-Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most DOM properties and attributes in React are camelCased, these attributes should be hyphen-cased (also known as kebab-case, lisp-case, etc) as they are in plain HTML:
+請注意，所有的 `aria-*` HTML attribute 在 JSX 中都是支援的。相較於 React 中大部分駝峰式大小寫的 DOM property 和 attribute，這些 attribute 則應該像在純 HTML 中一樣使用帶連字符式寫法（又稱為 kebab-case，lisp-case 等）：
 
 ```javascript{3,4}
 <input
@@ -40,15 +40,14 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 ```
 
 ## Semantic HTML {#semantic-html}
-Semantic HTML is the foundation of accessibility in a web application. Using the various HTML elements to reinforce the meaning of information
-in our websites will often give us accessibility for free.
+Semantic HTML 是無障礙網頁應用程式的基礎。使用不同的 HTML element 來加強網站中資訊的意義可以在不用花費的情況下讓所有人造訪你的網站。
 
-- [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+- [MDN HTML element 參考](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 
-Sometimes we break HTML semantics when we add `<div>` elements to our JSX to make our React code work, especially when working with lists (`<ol>`, `<ul>` and `<dl>`) and the HTML `<table>`.
-In these cases we should rather use [React Fragments](/docs/fragments.html) to group together multiple elements.
+有時當我們增加 `<div>` element 到 JSX 以使我們的 React 程式運作時，我們會違反 HTML 的語法規定，尤其是當我們在處理列表（`<ol>`，`<ul>` 和 `<dl>`）以及 HTML 表格 `<table>` 的時候。
+在這些情況下我們應該使用 [React Fragment](/docs/fragments.html) 將數個 element 組織在一起。
 
-For example,
+例如：
 
 ```javascript{1,5,8}
 import React, { Fragment } from 'react';
@@ -73,14 +72,14 @@ function Glossary(props) {
 }
 ```
 
-You can map a collection of items to an array of fragments as you would any other type of element as well:
+你可以使用 map 將一個 collection 中的每一個 item 與一個 fragment 相對應，就如同處理其他的 element ㄧ樣：
 
 ```javascript{6,9}
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Fragments should also have a `key` prop when mapping collections
+        // 當你 map 一個 collection 時，Fragment 也應該要有一個 `key` prop 
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -91,7 +90,7 @@ function Glossary(props) {
 }
 ```
 
-When you don't need any props on the Fragment tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
+如果你的 Fragment tag 不需要任何 prop，你也可以使用[短語法](/docs/fragments.html#short-syntax)，如果你的工具支援這個語法的話：
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -104,60 +103,60 @@ function ListItem({ item }) {
 }
 ```
 
-For more info, see [the Fragments documentation](/docs/fragments.html).
+請參考[Fragment 文檔](/docs/fragments.html)了解更多詳情。
 
-## Accessible Forms {#accessible-forms}
+## 無障礙表格 {#accessible-forms}
 
-### Labeling {#labeling}
-Every HTML form control, such as `<input>` and `<textarea>`, needs to be labeled accessibly. We need to provide descriptive labels that are also exposed to screen readers.
+### 標記 {#labeling}
+每一個 HTML 的表格控制，例如 `<input>` 和 `<textarea>`，都需要無障礙標記。我們需要提供敘述性的、能讓螢幕閱讀器識別的標記。
 
-The following resources show us how to do this:
+以下的資源讓我們知道如何標記：
 
-- [The W3C shows us how to label elements](https://www.w3.org/WAI/tutorials/forms/labels/)
-- [WebAIM shows us how to label elements](https://webaim.org/techniques/forms/controls)
-- [The Paciello Group explains accessible names](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
+- [W3C 解釋如何標記 element](https://www.w3.org/WAI/tutorials/forms/labels/)
+- [WebAIM 解釋如何標記 element](https://webaim.org/techniques/forms/controls)
+- [Paciello Group 解釋無障礙名稱](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
 
-Although these standard HTML practices can be directly used in React, note that the `for` attribute is written as `htmlFor` in JSX:
+雖然這些標準的 HTML 用法能直接在 React 中使用，請注意 `for` attribute 在 JSX 中是寫作 `htmlFor`：
 
 ```javascript{1}
 <label htmlFor="namedInput">Name:</label>
 <input id="namedInput" type="text" name="name"/>
 ```
 
-### Notifying the user of errors {#notifying-the-user-of-errors}
+### 通知用戶錯誤訊息 {#notifying-the-user-of-errors}
 
-Error situations need to be understood by all users. The following link shows us how to expose error texts to screen readers as well:
+錯誤發生的狀況需要被所有使用者了解。以下連結解釋如何讓螢幕閱讀器也能識別錯誤訊息：
 
-- [The W3C demonstrates user notifications](https://www.w3.org/WAI/tutorials/forms/notifications/)
-- [WebAIM looks at form validation](https://webaim.org/techniques/formvalidation/)
+- [W3C 解釋用戶通知](https://www.w3.org/WAI/tutorials/forms/notifications/)
+- [WebAIM 解釋表格驗證](https://webaim.org/techniques/formvalidation/)
 
-## Focus Control {#focus-control}
+## 焦點控制 {#focus-control}
 
-Ensure that your web application can be fully operated with the keyboard only:
+確保你的網路應用程式能完全只用鍵盤操作：
 
-- [WebAIM talks about keyboard accessibility](https://webaim.org/techniques/keyboard/)
+- [WebAIM 談鍵盤無障礙功能](https://webaim.org/techniques/keyboard/)
 
-### Keyboard focus and focus outline {#keyboard-focus-and-focus-outline}
+### 鍵盤焦點和焦點輪廓 {#keyboard-focus-and-focus-outline}
 
-Keyboard focus refers to the current element in the DOM that is selected to accept input from the keyboard. We see it everywhere as a focus outline similar to that shown in the following image:
+鍵盤焦點指的是目前在 DOM 中的 element 被選取以接受來自鍵盤的輸入。我們到處可以見到類似下面這張圖示內的焦點輪廓：
 
 <img src="../images/docs/keyboard-focus.png" alt="Blue keyboard focus outline around a selected link." />
 
-Only ever use CSS that removes this outline, for example by setting `outline: 0`, if you are replacing it with another focus outline implementation.
+如果你打算用另一種方式做焦點輪廓，請使用 CSS 來移除這個輪廓，例如設定 `outline: 0`。
 
-### Mechanisms to skip to desired content {#mechanisms-to-skip-to-desired-content}
+### 跳到指定內容的方式 {#mechanisms-to-skip-to-desired-content}
 
-Provide a mechanism to allow users to skip past navigation sections in your application as this assists and speeds up keyboard navigation.
+請提供某種方式讓使用者可以跳過應用程式中的導覽部分，因為這樣可以協助加速鍵盤導覽。
 
-Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with internal page anchors and some styling:
+跳過連結或跳過導覽連結是隱藏式的導覽連結，只有在鍵盤使用者與網頁互動時才會顯現。它們十分容易用內部頁面錨和一些 styling 做出來：
 
-- [WebAIM - Skip Navigation Links](https://webaim.org/techniques/skipnav/)
+- [WebAIM - 跳過導覽連結](https://webaim.org/techniques/skipnav/)
 
-Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarcate page regions as assistive technology allow the user to quickly navigate to these sections.
+你也可以使用像 `<main>` 和 `<aside>` 這樣的 landmark element 和 role 來標記頁面上的區域，因為輔助科技會快速導覽使用者到這些區域。
 
-Read more about the use of these elements to enhance accessibility here:
+在這裡你可以閱讀更多關於這些 element 增加無障礙功能的用法：
 
-- [Accessible Landmarks](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
+- [無障礙的 Landmark](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
 ### Programmatically managing focus {#programmatically-managing-focus}
 
