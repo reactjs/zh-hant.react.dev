@@ -4,9 +4,9 @@ title: 無障礙功能
 permalink: docs/accessibility.html
 ---
 
-## Why Accessibility? {#why-accessibility}
+## 為什麼要有無障礙功能？ {#why-accessibility}
 
-網路無障礙功能（又稱為 [**a11y**](https://en.wiktionary.org/wiki/a11y)）的概念是設計並創造所有人都能使用的網站。我們必須支援無障礙功能，才能使用輔助科技解讀網頁。
+網路無障礙功能（又稱為 [**a11y**](https://en.wiktionary.org/wiki/a11y)）的概念是設計並打造所有人都能使用的網站。我們必須支援無障礙功能，才能使用輔助科技解讀網頁。
 
 React 能完整支援無障礙網站的建構。這些網站通常都使用標準的 HTML 技術。
 
@@ -14,7 +14,7 @@ React 能完整支援無障礙網站的建構。這些網站通常都使用標�
 
 ### WCAG {#wcag}
 
-[網路內容無障礙功能指南](https://www.w3.org/WAI/intro/wcag)（WCAG）提供了創造無障礙網頁的規範。
+[網路內容無障礙功能指南](https://www.w3.org/WAI/intro/wcag)（WCAG）提供了建立無障礙網頁的規範。
 
 以下的 WCAG 檢查清單提供了概觀：
 
@@ -26,7 +26,7 @@ React 能完整支援無障礙網站的建構。這些網站通常都使用標�
 
 這份[網路無障礙功能倡議 - 無障礙網路應用程式](https://www.w3.org/WAI/intro/aria)文件包含了許多架設無障礙功能 JavaScript 的小工具。
 
-請注意，所有的 `aria-*` HTML attribute 在 JSX 中都是支援的。相較於 React 中大部分駝峰式大小寫的 DOM property 和 attribute，這些 attribute 則應該像在純 HTML 中一樣使用帶連字符式寫法（又稱為 kebab-case，lisp-case 等）：
+請注意，所有的 `aria-*` HTML attribute 在 JSX 中都是支援的。相較於 React 中大部分駝峰式大小寫的 DOM property 和 attribute，這些 attribute 則應該像在純 HTML 中一樣使用帶連字符式寫法（又稱為 kebab-case、lisp-case 等）：
 
 ```javascript{3,4}
 <input
@@ -42,9 +42,9 @@ React 能完整支援無障礙網站的建構。這些網站通常都使用標�
 ## Semantic HTML {#semantic-html}
 Semantic HTML 是無障礙網頁應用程式的基礎。使用不同的 HTML element 來加強網站中資訊的意義可以在不用花費的情況下讓所有人造訪你的網站。
 
-- [MDN HTML element 參考](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+- [MDN HTML element 參考](https://developer.mozilla.org/zh-TW/docs/Web/HTML/Element)
 
-有時當我們增加 `<div>` element 到 JSX 以使我們的 React 程式運作時，我們會違反 HTML 的語法規定，尤其是當我們在處理列表（`<ol>`，`<ul>` 和 `<dl>`）以及 HTML 表格 `<table>` 的時候。
+有時候當我們新增 `<div>` element 到 JSX 讓 React 程式可以運作時，我們會違反 HTML 的語義，尤特別是在當我們處理列表（`<ol>`，`<ul>` 和 `<dl>`）以及 HTML 表格 `<table>` 的時候。
 在這些情況下我們應該使用 [React Fragment](/docs/fragments.html) 將數個 element 組織在一起。
 
 例如：
@@ -79,7 +79,7 @@ function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // 當你 map 一個 collection 時，Fragment 也應該要有一個 `key` prop 
+        // 當你 map 一個 collection 時，Fragment 也應該要有一個 `key` prop
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -90,7 +90,7 @@ function Glossary(props) {
 }
 ```
 
-如果你的 Fragment tag 不需要任何 prop，你也可以使用[短語法](/docs/fragments.html#short-syntax)，如果你的工具支援這個語法的話：
+如果你的 Fragment tag 不需要任何 prop，你也可以使用[簡寫語法](/docs/fragments.html#short-syntax)，如果你的工具支援這個語法的話：
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -103,7 +103,7 @@ function ListItem({ item }) {
 }
 ```
 
-請參考[Fragment 文檔](/docs/fragments.html)了解更多詳情。
+請參考 [Fragment 文件](/docs/fragments.html)了解更多詳情。
 
 ## 無障礙表格 {#accessible-forms}
 
@@ -144,7 +144,7 @@ function ListItem({ item }) {
 
 如果你打算用另一種方式做焦點輪廓，請使用 CSS 來移除這個輪廓，例如設定 `outline: 0`。
 
-### 跳到指定內容的方式 {#mechanisms-to-skip-to-desired-content}
+### 跳到指定內容的機制 {#mechanisms-to-skip-to-desired-content}
 
 請提供某種方式讓使用者可以跳過應用程式中的導覽部分，因為這樣可以協助加速鍵盤導覽。
 
