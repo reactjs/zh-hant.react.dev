@@ -523,7 +523,7 @@ class Board extends React.Component {
 
 ### Immutability（不可變性）的重要性 {#why-immutability-is-important}
 
-在上一段程式碼的範例中，我們建議你使用 `.slice()` 運算子去建立一個 `squares` array 的 copy 並修改它，而不是修改已存在的 array。現在我們來討論什麼是不可變性以及為什麼學習不可變性是很重要的。
+在上一段程式碼的範例中，我們建議你使用 `.slice()` 方法去建立一個 `squares` array 的副本，而不是修改已存在的 array。我們將會討論什麼是不可變性以及為什麼學習不可變性是很重要的。
 
 一般來說，修改資料有兩種做法。第一種方法是透過改變資料的值來直接*修改*資料。第二種方法是改變 copy 中的資料，並用這個新的 copy 取代原本的資料。
 
