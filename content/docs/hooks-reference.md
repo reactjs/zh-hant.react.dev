@@ -76,6 +76,7 @@ function Counter({initialCount}) {
 > 與 class component 的 `setState` 方法不同，`useState` 不會自動合併更新 object。你可以用函數式更新的形式結合 object spread 語法來達到相同效果：
 >
 > ```js
+> const [state, setState] = useState({});
 > setState(prevState => {
 >   // 也可以使用 Object.assign
 >   return {...prevState, ...updatedValues};

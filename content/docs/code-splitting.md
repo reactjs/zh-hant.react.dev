@@ -44,7 +44,11 @@ console.log(add(16, 26)); // 42
 
 如果你使用 [Create React App](https://create-react-app.dev/)、[Next.js](https://nextjs.org/)、[Gatsby](https://www.gatsbyjs.org/)，或者是類似的工具，會有一個內建的 Webpack 設定來 bundle 你的應用程式。
 
+<<<<<<< HEAD
 如果沒有的話，你需要自己設定 bundle。例如，拜訪 Webpack 文件的 [Installation](https://webpack.js.org/guides/installation/) 和 [Getting Started](https://webpack.js.org/guides/getting-started/) 指南。
+=======
+If you aren't, you'll need to set up bundling yourself. For example, see the [Installation](https://webpack.js.org/guides/installation/) and [Getting Started](https://webpack.js.org/guides/getting-started/) guides on the Webpack docs.
+>>>>>>> 5119600cf6f7a5dcbd4d2cc23f6b4ff55d2969b2
 
 ## Code-Splitting {#code-splitting}
 

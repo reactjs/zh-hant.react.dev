@@ -298,7 +298,11 @@ static getDerivedStateFromProps(props, state)
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
+<<<<<<< HEAD
 `getSnapshotBeforeUpdate()` 會在最近一次 render 的 output 被提交給 DOM 時被呼叫。它讓你在 DOM 改變之前先從其中抓取一些資訊（例如滾動軸的位置）。這個生命週期方法回傳的值會被當作一個參數傳遞給 `componentDidUpdate()`。
+=======
+`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to `componentDidUpdate()`.
+>>>>>>> 5119600cf6f7a5dcbd4d2cc23f6b4ff55d2969b2
 
 這個方法並不常見，但它可能會在像是對話串這類需要以某種特殊方始處理滾動軸位置的 UI 中出現。
 
