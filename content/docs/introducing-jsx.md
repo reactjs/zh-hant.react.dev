@@ -14,7 +14,7 @@ const element = <h1>你好，世界！</h1>;
 
 這個有趣的標籤語法不是一個字串也不是 HTML。
 
-這個語法叫做 JSX，是一個 JavaScript 的語法擴充。我們推薦你在寫 React 的時候透過這個語法來描述使用者界面的外觀。 JSX 可能為讓你想到一些樣板語言，但不一樣的地方是 JSX 允許你使用 JavaScript 所有的功能。
+這個語法叫做 JSX，是一個 JavaScript 的語法擴充。我們推薦你在寫 React 的時候透過這個語法來描述使用者介面的外觀。 JSX 可能為讓你想到一些樣板語言，但不一樣的地方是 JSX 允許你使用 JavaScript 所有的功能。
 
 執行 JSX 會產生 React「element」。我們會在[下一個章節](/docs/rendering-elements.html)深入如何將這些輸出 render 到 DOM 裡頭。接下來，我們將帶您了解 JSX 的基礎。
 
@@ -24,7 +24,7 @@ React 擁抱了 render 邏輯從根本上就得跟其他 UI 邏輯綁在一起�
 
 與其刻意的將*技術*拆開，把標籤語法跟邏輯拆放於不同檔案之中，React [*關注點分離*](https://en.wikipedia.org/wiki/Separation_of_concerns)的方法是將其拆分為很多同時包含 UI 與邏輯的 component，而彼此之間很少互相依賴。我們會在[之後的章節](/docs/components-and-props.html)中回來探討 component 這個主題，但如果你還沒被說服接受將標籤語法寫在 JS 裡頭，[這個演講](https://www.youtube.com/watch?v=x7cQ3mrcKaY)或許會說服你。
 
-React [並不要求](/docs/react-without-jsx.html)使用 JSX，但大部分人覺得在 JavaScript 程式碼中撰寫使用者界面的同時，這是一個很好的視覺輔助。這也允許 React 顯示更有用的錯誤及警告訊息。
+React [並不要求](/docs/react-without-jsx.html)使用 JSX，但大部分人覺得在 JavaScript 程式碼中撰寫使用者介面的同時，這是一個很好的視覺輔助。這也允許 React 顯示更有用的錯誤及警告訊息。
 
 好，說完這個了，讓我們開始吧！
 
