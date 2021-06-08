@@ -44,4 +44,4 @@ React 是一個 JavaScript 的函式庫，而且我們假設你有一些 JavaScr
 
 ## 馬上開始吧！ {#lets-get-started}
 
-繼續滾動頁面至底部，你會找到進入[下一章的連結](/docs/introducing-jsx.html)。
+繼續滾動頁面至底部，你會在網頁的右下角找到進入[下一章的連結](/docs/introducing-jsx.html)。
