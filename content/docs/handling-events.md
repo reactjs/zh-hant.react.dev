@@ -29,11 +29,7 @@ redirect_from:
 </button>
 ```
 
-<<<<<<< HEAD
-另外一個差異是，在 React 中，你不能夠在像在 HTML DOM 中使用 `return false` 來避免瀏覽器預設行為。你必須明確地呼叫 `preventDefault`。例如，在純 HTML 中，若要避免連結開啟新頁的預設功能，你可以這樣寫：
-=======
-Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default form behavior of submitting, you can write:
->>>>>>> ec2d0adcb44d6394f4e6282d8bf52f0e25dbfec3
+另外一個差異是，在 React 中，你不能夠使用 `return false` 來避免瀏覽器預設行為。你必須明確地呼叫 `preventDefault`。例如，在純 HTML 中，若要避免連結開啟新頁的預設功能，你可以這樣寫：
 
 ```html
 <form onsubmit="console.log('You clicked submit.'); return false">
