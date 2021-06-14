@@ -207,7 +207,11 @@ ReactDOM.render(
 
 ### Key 必須在 Sibling 中是唯一的 {#keys-must-only-be-unique-among-siblings}
 
+<<<<<<< HEAD
 在 array 中使用的 key 應該要是唯一的值。然而，它們不必在全域中唯一。當我們產生兩個不同的 array 時，我們仍然可以使用相同的 key：
+=======
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {

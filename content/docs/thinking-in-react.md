@@ -84,7 +84,11 @@ React 中有兩種「模型」資料： props and state。理解兩者的差別�
 
 為了正確地建立你的應用程式，你首先需要思考你的應用程式最少需要哪些可變的 state。這裡的關鍵是 [DRY：*避免重複代碼原則*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)。請找出你的應用程式所需的最少的呈現方式，並在你遇到其他東西時再計算它們。例如，如果你在建立一個待辦清單，使用一個可以用來代表待辦事項的 array。不要另外用一個獨立的 state 變數來追蹤數量。當你要 render 代辦事項的數量時，讀取待辦事項 array 的長度即可。
 
+<<<<<<< HEAD
 思考我們範例中應用程式的所有資料。我們現在有：
+=======
+Think of all the pieces of data in our example application. We have:
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
   * 原本的產品列表
   * 使用者輸入的搜尋關鍵字
