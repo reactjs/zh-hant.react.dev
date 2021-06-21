@@ -9,11 +9,7 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
-<<<<<<< HEAD
 HTML 表單的 element 和 React 中其他的 DOM element 不太一樣，因為表單的 element 很自然地有一些內部的 state。例如，這個表單在下面簡單的 HTML 中接受一個名稱：
-=======
-HTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
->>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 ```html
 <form>
