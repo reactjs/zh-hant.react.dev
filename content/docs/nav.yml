@@ -133,19 +133,6 @@
       title: 測試方法
     - id: testing-environments
       title: 測試環境
-- title: Concurrent Mode (Experimental)
-  isOrdered: true
-  items:
-    - id: concurrent-mode-intro
-      title: Introducing Concurrent Mode
-    - id: concurrent-mode-suspense
-      title: Suspense for Data Fetching
-    - id: concurrent-mode-patterns
-      title: Concurrent UI Patterns
-    - id: concurrent-mode-adoption
-      title: Adopting Concurrent Mode
-    - id: concurrent-mode-reference
-      title: Concurrent Mode API Reference
 - title: 貢獻
   items:
     - id: how-to-contribute
