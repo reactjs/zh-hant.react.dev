@@ -160,7 +160,13 @@ return (
 ```
 現在你就可以在任何 `<script>` 標籤裡使用 JSX，方法就是為它們加上 `type="text/babel"` 的 attribute。這裡是個 [HTML 文件與 JSX 的範例](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)，你可以下載來嘗試一下。
 
+<<<<<<< HEAD
 這種方式最適合用來學習和建立簡單的示範。然而，它會令你的網頁變慢，而且並**不適合發佈到線上環境**。當你準備好到下一步，請移除掉你剛加入的 `<script>` 標籤和 `type="text/babel"` attribute。在下一個章節，你會設定一個 JSX preprocessor 來自動轉換所有的 `<script>` 標籤。
+=======
+Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
+
+This approach is fine for learning and creating simple demos. However, it makes your website slow and **isn't suitable for production**. When you're ready to move forward, remove this new `<script>` tag and the `type="text/babel"` attributes you've added. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags automatically.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 ### 將 JSX 加入到項目 {#add-jsx-to-a-project}
 

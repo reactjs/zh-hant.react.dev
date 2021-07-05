@@ -38,7 +38,11 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 如果你有興趣嘗試 React，你可以使用一些線上編輯器。在 [CodePen](codepen://hello-world)、[CodeSandbox](https://codesandbox.io/s/new)，或是 [Stackblitz](https://stackblitz.com/fork/react) 實作一個 Hello World 的範例。
 
+<<<<<<< HEAD
 如果你偏向使用自己的編輯器，你可以[下載此 HTML 文件](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)進行修改，並從本機文件系統裡把它打開到瀏覽器。這會進行一個緩慢的 runtime 程式碼轉換，因此我們建議只把這文件用作簡單的示範。
+=======
+If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 ### 將 React 加入到網頁 {#add-react-to-a-website}
 
@@ -115,7 +119,11 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 你也可以在 Twitter 追蹤 [@reactjs 帳號](https://twitter.com/reactjs)，只閱讀官方部落格也不會令你錯過重要消息。
 
+<<<<<<< HEAD
 並非所有 React 版本發佈值得我們在部落格裡發佈文章，但你可以在 [React 的程式碼倉庫中的 `CHANGELOG.md` 文件](https://github.com/facebook/react/blob/master/CHANGELOG.md)或 [Release](https://github.com/facebook/react/releases) 頁面，找到每個版本發佈的詳細更新日誌。
+=======
+Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/main/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 ## 版本化文件 {#versioned-documentation}
 
