@@ -324,7 +324,7 @@ class Calculator extends React.Component {
 
 如果某樣東西可以從 prop 或 state 被取得，它可能不應該在 state。例如，我們只 store 最後編輯的 `temperature` 和它的 `scale`，而不是 store `celsiusValue` 和 `fahrenheitValue`。其他輸入的值總是可以從它們的 `render()` 方法被計算出來。這讓我們可以清除或將四捨五入應用於另一個欄位, 而不會在使用者輸入中失去任何精度。
 
-當你在 UI 上看到一些錯誤時，你可以使用 [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) 來檢查 prop 並往 tree 的上方尋找，直到找到負責更新 state 的 component。這讓你可以追蹤到錯誤的來源：
+當你在 UI 上看到一些錯誤時，你可以使用 [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) 來檢查 prop 並往 tree 的上方尋找，直到找到負責更新 state 的 component。這讓你可以追蹤到錯誤的來源：
 
 <img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
 

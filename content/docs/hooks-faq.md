@@ -991,7 +991,7 @@ React 會持續追蹤目前 render 的 component。感謝 [Hooks 的規則](/doc
 
 Hooks 綜合了幾個不同來源的想法：
 
-* 在 [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) repository 中，我們使用 functional APIs 的舊實驗。
+* 在 [react-future](https://github.com/reactjs/react-future/tree/main/07%20-%20Returning%20State) repository 中，我們使用 functional APIs 的舊實驗。
 * React 社群使用 render props APIs 的實驗，包括 [Ryan Florence](https://github.com/ryanflorence) 的 [Reactions Component](https://github.com/reactions/component)。
 * [Dominic Gannaway](https://github.com/trueadm) 的 [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) 提案作為 render props 的語法糖。
 * [DisplayScript](http://displayscript.org/introduction.html) 中的 state 變數以及 state 單元。
