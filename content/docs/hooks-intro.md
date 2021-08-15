@@ -98,7 +98,11 @@ React 沒有提供一個方法來把可重用的行為「附加」到一個 comp
 
 我們也了解要添加一個新的 primitive 到 React 的標準非常高。我們已經準備了一個[詳盡的 RFC](https://github.com/reactjs/rfcs/pull/68) 給好奇的讀者，它藉由更多細節深入探討動機，並針對特定的設計決策以及先關的既有技術提供額外的觀點。
 
+<<<<<<< HEAD
 **至關重要的是，Hook 可以與既有的程式碼一起運作，因此你可以逐步採用它們。** 不用急著轉換到 Hook。我們建議避免任何「巨大的改寫」，尤其是那些既有、複雜的 class component。要開始「從 Hook 的角度思考」需要一些思維上的轉變。根據我們的經驗，最好先在新的且重要性較低的 component 中練習使用 Hook，並確保團隊中的每個人都不會對它感到不舒服。在你嘗試了 Hook 之後，請自由地[給我們一些回饋](https://github.com/facebook/react/issues/new)，不管是正面的還是負面的可以。
+=======
+**Crucially, Hooks work side-by-side with existing code so you can adopt them gradually.** There is no rush to migrate to Hooks. We recommend avoiding any "big rewrites", especially for existing, complex class components. It takes a bit of a mind shift to start "thinking in Hooks". In our experience, it's best to practice using Hooks in new and non-critical components first, and ensure that everybody on your team feels comfortable with them. After you give Hooks a try, please feel free to [send us feedback](https://github.com/facebook/react/issues/new), positive or negative.
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 我們有意讓 Hook 能涵蓋 class 所有既有的使用案例，但**我們會在可見的未來繼續支援 class component。**在 Facebook 裡，我們有數以萬計的 component 是用 class 寫的，而我們絕對沒有計劃要改寫它們。取而代之，我們開始在新的程式碼中使用 Hook 並讓它們跟 class 共存。
 
