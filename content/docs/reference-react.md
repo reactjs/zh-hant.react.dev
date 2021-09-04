@@ -178,11 +178,7 @@ React.cloneElement(
 )
 ```
 
-<<<<<<< HEAD
-複製並回傳一個基於 `element` 的新 React element。這個回傳的 element 的 prop 將會是原本 element 的 prop 與新的 prop 進行 shallow 合併之後的結果。新的 children 將會取代原先的 children。 原先 element 的 `key` 與 `ref` 將會被保留。
-=======
-Clone and return a new React element using `element` as the starting point. `config` should contain all new props, `key`, or `ref`. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved if no `key` and `ref` present in the `config`.
->>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
+使用 `element` 作為開始 clone 並回傳一個新 React element。`config` 應該包含所有新的 props、`key`、或 `ref`。產生的 element 將會有原始 element 的 props 以及新 props 的 shallow merge。新的 children 會取代現有的 children。如果 `config` 中不存在 `key` 和 `ref`，則原始的 `key` 和 `ref` 會被保留。
 
 `React.cloneElement()` 幾乎等於：
 
@@ -190,11 +186,7 @@ Clone and return a new React element using `element` as the starting point. `con
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-<<<<<<< HEAD
-但是，這同時也會保留 `ref`。如果你有一個 child 上有 `ref` 的時候，你將不會不小心從你的上層元件偷走 ref。你的新 element 會保留一樣的 `ref`。
-=======
-However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element. The new `ref` or `key` will replace old ones if present.
->>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
+但是，這同時也會保留 `ref`。如果你有一個 child 上有 `ref` 的時候，你將不會不小心從你的上層元件偷走 ref。你的新 element 會保留一樣的 `ref`。如果有存在 `ref` 或 `key` 的話，將會取代舊的。
 
 這個 API 是用來取代目前已經過時的 `React.addons.cloneWithProps()`。
 

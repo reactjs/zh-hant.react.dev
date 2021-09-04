@@ -991,22 +991,12 @@ React 會持續追蹤目前 render 的 component。感謝 [Hooks 的規則](/doc
 
 Hooks 綜合了幾個不同來源的想法：
 
-<<<<<<< HEAD
-* 在 [react-future](https://github.com/reactjs/react-future/tree/main/07%20-%20Returning%20State) repository 中，我們使用 functional APIs 的舊實驗。
+* * 在 [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) repository 中，我們使用 functional APIs 的舊實驗。
 * React 社群使用 render props APIs 的實驗，包括 [Ryan Florence](https://github.com/ryanflorence) 的 [Reactions Component](https://github.com/reactions/component)。
 * [Dominic Gannaway](https://github.com/trueadm) 的 [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) 提案作為 render props 的語法糖。
 * [DisplayScript](http://displayscript.org/introduction.html) 中的 state 變數以及 state 單元。
 * ReasonReact 中的 [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html)。
 * Rx 中的 [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html)。
 * Multicore OCaml 中的 [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting)。
-=======
-* Our old experiments with functional APIs in the [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) repository.
-* React community's experiments with render prop APIs, including [Ryan Florence](https://github.com/ryanflorence)'s [Reactions Component](https://github.com/reactions/component).
-* [Dominic Gannaway](https://github.com/trueadm)'s [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) proposal as a sugar syntax for render props.
-* State variables and state cells in [DisplayScript](http://displayscript.org/introduction.html).
-* [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html) in ReasonReact.
-* [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html) in Rx.
-* [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting) in Multicore OCaml.
->>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 [Sebastian Markbåge](https://github.com/sebmarkbage) 想出了 Hook 的原始設計，之後由 [Andrew Clark](https://github.com/acdlite)、[Sophie Alpert](https://github.com/sophiebits)、[Dominic Gannaway](https://github.com/trueadm) 以及其他 React 團隊的成員加以完善。

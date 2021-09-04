@@ -243,11 +243,7 @@ class Square extends React.Component {
 }
 ```
 
-<<<<<<< HEAD
-現在，當你點擊任何一個 Square 時，我們應該能在瀏覽器中收到一個 alert。
-=======
-If you click on a Square now, you should see 'click' in your browser's devtools console.
->>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
+現在，當你點擊任何一個 Square 時，我們應該能在瀏覽器中的 devtools 看到 `console.log` 的結果。
 
 >注意：
 >
@@ -265,11 +261,7 @@ If you click on a Square now, you should see 'click' in your browser's devtools 
 >}
 >```
 >
-<<<<<<< HEAD
->請注意在 `onClick={() => alert('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。React 在點擊之後只會呼叫這個 function 。把 `() =>` 寫成 `onClick={alert('click')}` 是一個常見的錯誤，這會造成 component 在每次重新 render 時都會觸發 alert。
-=======
->Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
->>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
+>請注意在 `onClick={() => console.log('click')}`中，我們會把一個 *function* 做為 `onClick` 的 prop 往下傳。React 在點擊之後只會呼叫這個 function 。把 `() =>` 寫成 `onClick={console.log('click')}` 是一個常見的錯誤，這會造成 component 在每次重新 render 時都會觸發 alert。
 
 下一步，我們要讓 Square component 「記得」它被點擊了，並在方格中填入 X 這個記號。Component 使用 **state** 來保持狀態。
 
