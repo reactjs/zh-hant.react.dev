@@ -39,9 +39,9 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
 
 由於你常常會展示 JSON 的資料模型給使用者，你會發現，如果你的模式是正確地被建立的話，你的 UI（以及你的 component 結構）會很好的相互對應。這是因為 UI 和資料模型通常是遵守同樣的*資訊架構*，這意味著將你的 UI 拆成 component 通常是相當容易的。將 UI 分解成數個 component，每一個都明確代表著你的資料模型中的某一部份即可。
 
-![Component 架構圖](../images/blog/thinking-in-react-components.png)
+![圖解巢狀的 component](../images/blog/thinking-in-react-components.png)
 
-你會看到在這裡我們應用程式中有五個 component。我們把每個 component 所代表的資料都斜體化了。
+你會看到在這裡我們應用程式中有 5 個 component。我們將每個 component 代表的資料用斜體表示。圖片中的數字對應到下面的數字：
 
   1. **`FilterableProductTable`（橘色）：** 包含整個範例
   2. **`SearchBar`（藍色）：** 接收所有 *使用者的輸入*
