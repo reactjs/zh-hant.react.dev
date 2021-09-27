@@ -48,9 +48,15 @@ ReactDOM.render(element, container[, callback])
 >
 > `ReactDOM.render()` 不修改 container 的 node（只修改 container 的 children）。它可以將 component 插入一個現有的 DOM node 而不用覆蓋已經存在的 children。
 >
+<<<<<<< HEAD
 > `ReactDOM.render()` 目前回傳一個 reference 到 root `ReactComponent` instance。然而，使用這個回傳值是被遺留的方式
 > 並且應該被避免，因為未來版本的 React 在某些情況下可能會非同步地 render component。如果你需要 reference 到 root `ReactComponent` instance，首選的解決方式是附加一個
 > [callback ref](/docs/more-about-refs.html#the-ref-callback-attribute) 在 root element 上。
+=======
+> `ReactDOM.render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
+> and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
+> [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
+>>>>>>> 4fab3d31469ab7a53dbf8b50cab5d57880a0c035
 >
 > 使用 `ReactDOM.render()` 來 hydrate 一個 server-render container 已經被棄用，並且在 React 17 將會被移除。使用 [`hydrate()`](#hydrate) 作為代替。
 
