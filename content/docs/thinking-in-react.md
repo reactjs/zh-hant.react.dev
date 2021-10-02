@@ -41,7 +41,7 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
 
 ![圖解巢狀的 component](../images/blog/thinking-in-react-components.png)
 
-你會看到在這裡我們應用程式中有 5 個 component。我們將每個 component 代表的資料用斜體表示。圖片中的數字對應到下面的數字：
+你會看到在這裡我們應用程式中有 5 個 component。我們將每個 component 代表的資料用斜體表示。圖片中的數字對應到下面的數字。
 
   1. **`FilterableProductTable`（橘色）：** 包含整個範例
   2. **`SearchBar`（藍色）：** 接收所有 *使用者的輸入*

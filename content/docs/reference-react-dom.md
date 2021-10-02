@@ -50,7 +50,7 @@ ReactDOM.render(element, container[, callback])
 >
 > `ReactDOM.render()` 目前回傳一個 reference 到 root `ReactComponent` instance。然而，使用這個回傳值是被遺留的方式
 > 並且應該被避免，因為未來版本的 React 在某些情況下可能會非同步地 render component。如果你需要 reference 到 root `ReactComponent` instance，首選的解決方式是附加一個
-> [callback ref](/docs/more-about-refs.html#the-ref-callback-attribute) 在 root element 上。
+> [callback ref](/docs/refs-and-the-dom.html#callback-refs) 在 root element 上。
 >
 > 使用 `ReactDOM.render()` 來 hydrate 一個 server-render container 已經被棄用，並且在 React 17 將會被移除。使用 [`hydrate()`](#hydrate) 作為代替。
 
