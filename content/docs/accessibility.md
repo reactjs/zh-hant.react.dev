@@ -26,7 +26,7 @@ React 能完整支援無障礙網站的建構。這些網站通常都使用標�
 
 這份[網路無障礙功能倡議 - 無障礙網路應用程式](https://www.w3.org/WAI/intro/aria)文件包含了許多架設無障礙功能 JavaScript 的小工具。
 
-請注意，所有的 `aria-*` HTML attribute 在 JSX 中都是支援的。相較於 React 中大部分駝峰式大小寫的 DOM property 和 attribute，這些 attribute 則應該像在純 HTML 中一樣使用帶連字符式寫法（又稱為 kebab-case、lisp-case 等）：
+請注意，所有的 `aria-*` HTML attribute 在 JSX 中都是支援的。相較於 React 中大部分駝峰式大小寫的 DOM property 和 attribute，這些 attribute 則應該像在純 HTML 中一樣使用帶連字符式寫法（又稱為 kebab-case、lisp-case 等）：
 
 ```javascript{3,4}
 <input
