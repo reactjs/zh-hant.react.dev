@@ -271,11 +271,7 @@ this.setState(partialState);
 
 ## Controlled 輸入值為 Null {#controlled-input-null-value}
 
-<<<<<<< HEAD
 在一個 [controlled component](/docs/forms.html#controlled-components) 上指明 value prop 可避免使用者改變輸入，除非你希望使用者這樣做。如果你已經指明了 `value` 但輸入仍然是可以被修改的，你很可能是不小心將 `value` 的值設定為 `undefined` 或 `null`。
-=======
-Specifying the `value` prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
->>>>>>> 4fab3d31469ab7a53dbf8b50cab5d57880a0c035
 
 下面的程式碼就是一個範例。（輸入原先是被鎖住的，但在短暫的延遲後，變得可以被修改了。）
 
