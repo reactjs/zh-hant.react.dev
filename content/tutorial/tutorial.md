@@ -450,19 +450,11 @@ class Square extends React.Component {
 
 當一個 Square 被點擊時，`onClick` 這個 Board 所提供給它的 function 會被呼叫。我們來看一下這件事是如何做到的：
 
-<<<<<<< HEAD
 1. 在內建的 DOM `<button>` component 上的 `onClick` prop 告訴 React 要設定一個 click event listener。
 2. 當按鈕被點擊時，React 會呼叫在 Square `render()` 方法中被定義的 `onClick` event handler。
 3. 這個 event handler 將會呼叫 `this.props.onClick()`。Square 的 `onClick` prop 透過 Board 被指定。
-4. 因為 Board 把 `onClick={() => this.handleClick(i)}` 傳給 Square，Square 會在被點擊時呼叫 `this.handleClick(i)`。
+4. 因為 Board 把 `onClick={() => this.handleClick(i)}` 傳給 Square，Square 會在被點擊時呼叫 `handleClick(i)`。
 5. 我們尚未定義 `handleClick()`，所以我們的程式目前會崩潰。如果你現在點擊 Square 的話，將會看到「this.handleClick is not a function」之類的紅色錯誤訊息。
-=======
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
->>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 >注意
 >
