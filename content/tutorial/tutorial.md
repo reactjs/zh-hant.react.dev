@@ -453,7 +453,7 @@ class Square extends React.Component {
 1. 在內建的 DOM `<button>` component 上的 `onClick` prop 告訴 React 要設定一個 click event listener。
 2. 當按鈕被點擊時，React 會呼叫在 Square `render()` 方法中被定義的 `onClick` event handler。
 3. 這個 event handler 將會呼叫 `this.props.onClick()`。Square 的 `onClick` prop 透過 Board 被指定。
-4. 因為 Board 把 `onClick={() => this.handleClick(i)}` 傳給 Square，Square 會在被點擊時呼叫 `this.handleClick(i)`。
+4. 因為 Board 把 `onClick={() => this.handleClick(i)}` 傳給 Square，Square 會在被點擊時呼叫 `handleClick(i)`。
 5. 我們尚未定義 `handleClick()`，所以我們的程式目前會崩潰。如果你現在點擊 Square 的話，將會看到「this.handleClick is not a function」之類的紅色錯誤訊息。
 
 >注意
