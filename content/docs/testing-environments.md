@@ -55,4 +55,8 @@ Component 可能使用基於像是 `setTimeout`、`setInterval` 或是 `Date.now
 
 End-to-end 測試對於測試更長的 workflow 非常有用，特別是當它們對於你的商業邏輯至關重要時（像是付款或是註冊）。對於這些測試，你可能需要測試真實瀏覽器是如何 render 整個應用程式，從真實 API endpoint 來 fetch 資料，使用 session 和 cookie，在不同的連結之間導航。你可能不只想要 assert 在 DOM 上的 state，而且還要備份資料的 assert（例如：驗證更新是否已經被儲存到資料庫）。
 
+<<<<<<< HEAD
 在這個場景下，你將使用像是 [Cypress](https://www.cypress.io/) 的測試框架，或是像是 [puppeteer](https://github.com/GoogleChrome/puppeteer) 的函式庫，所以你可以在不同的 route 之間切換，並 assert side effect，而不是只有在瀏覽器內，也有可能在後端。
+=======
+In this scenario, you would use a framework like [Cypress](https://www.cypress.io/), [Playwright](https://playwright.dev) or a library like [Puppeteer](https://pptr.dev/) so you can navigate between multiple routes and assert on side effects not just in the browser, but potentially on the backend as well.
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
