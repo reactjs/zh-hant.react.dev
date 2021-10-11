@@ -62,7 +62,11 @@ class ErrorBoundary extends React.Component {
 
 錯誤邊界就如同 JavaScript 的 `catch {}`，但它是給 component 使用的。只有 class component 可以成為錯誤邊界。實務上，大部分的時間你只會想要宣告錯誤邊界 component 一次，然後在你的應用程式裡重複使用它。
 
+<<<<<<< HEAD
 要注意**錯誤邊界只會捕捉它底下 component tree 裡的 component 的錯誤**。錯誤邊界無法捕捉它自己本身的錯誤。如果一個錯誤邊界在 render 錯誤訊息的時候失敗了，這個錯誤會被傳遞到在它之上最近的錯誤邊界。這個也與 JavaScript 的 catch {} 的運作方式類似。
+=======
+Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how the `catch {}` block works in JavaScript.
+>>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
 
 ## Live Demo {#live-demo}
 
