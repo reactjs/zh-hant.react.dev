@@ -848,7 +848,7 @@ function Image(props) {
 
 此外，考慮到 Hooks 的設計在以下幾個方面很有效：
 
-* Hook 可以避免 class 的大量開銷，像是建立 class instance 並在 constructor 綁定 event hanlder。
+* Hook 可以避免 class 的大量開銷，像是建立 class instance 並在 constructor 綁定 event handler。
 
 * **習慣使用 Hooks 的程式碼後，就不需要深層的巢狀 component**，這在 higher-order component、render props 和 context 等其他流行函式庫中普遍存在，使用較小的 component tree，React 可以減少更多的工作量。
 
@@ -917,7 +917,7 @@ function DeepChild(props) {
 >
 >另外請注意，在這個模式可能會導致 [concurrent 模式](/blog/2018/03/27/update-on-async-rendering.html)出現問題。我們計畫在未來提供更多解決方案，但目前最安全的解決方式是，如果有些值取決於更改，則會使 callback 無效。
 
-在極少數的情況下你可能會透過 [`useCallback`](/docs/hooks-reference.html#usecallback) memoize 一個 callback，但是因為內部 function 必須常常被重新建立，所以 memoize 沒有辦法很好個運作。如果你要 memoize 的 function 是一個 event hanlder，而且它不會被在 render 時被使用，你可以使用 [ref 作為一個 instance 變數](#is-there-something-like-instance-variables)，並手動儲存最後被 commit 的值：
+在極少數的情況下你可能會透過 [`useCallback`](/docs/hooks-reference.html#usecallback) memoize 一個 callback，但是因為內部 function 必須常常被重新建立，所以 memoize 沒有辦法很好個運作。如果你要 memoize 的 function 是一個 event handler，而且它不會被在 render 時被使用，你可以使用 [ref 作為一個 instance 變數](#is-there-something-like-instance-variables)，並手動儲存最後被 commit 的值：
 
 ```js{6,10}
 function Form() {
@@ -991,7 +991,7 @@ React 會持續追蹤目前 render 的 component。感謝 [Hooks 的規則](/doc
 
 Hooks 綜合了幾個不同來源的想法：
 
-* * 在 [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) repository 中，我們使用 functional APIs 的舊實驗。
+* 在 [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State) repository 中，我們使用 functional APIs 的舊實驗。
 * React 社群使用 render props APIs 的實驗，包括 [Ryan Florence](https://github.com/ryanflorence) 的 [Reactions Component](https://github.com/reactions/component)。
 * [Dominic Gannaway](https://github.com/trueadm) 的 [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) 提案作為 render props 的語法糖。
 * [DisplayScript](http://displayscript.org/introduction.html) 中的 state 變數以及 state 單元。
