@@ -914,8 +914,6 @@ function DeepChild(props) {
 >注意
 >
 >我們建議[在 context 中傳遞 `dispatch`](#how-to-avoid-passing-callbacks-down)，而不是在 props 中傳遞單獨的 callback。下面的方法僅在此處提及完整性和跳脫方法。
->
->另外請注意，在這個模式可能會導致 [concurrent 模式](/blog/2018/03/27/update-on-async-rendering.html)出現問題。我們計畫在未來提供更多解決方案，但目前最安全的解決方式是，如果有些值取決於更改，則會使 callback 無效。
 
 在極少數的情況下你可能會透過 [`useCallback`](/docs/hooks-reference.html#usecallback) memoize 一個 callback，但是因為內部 function 必須常常被重新建立，所以 memoize 沒有辦法很好個運作。如果你要 memoize 的 function 是一個 event handler，而且它不會被在 render 時被使用，你可以使用 [ref 作為一個 instance 變數](#is-there-something-like-instance-variables)，並手動儲存最後被 commit 的值：
 
