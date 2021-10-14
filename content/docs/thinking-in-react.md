@@ -137,11 +137,7 @@ OK，所以我們已經找出這個應用程式最少的 state 是哪些了。�
 
 React 將這種資料流明確表示出來，以便讓你能更容易理解你的程式如何運作，但是這的確比傳統的雙向資料綁定需要打多一點字。
 
-<<<<<<< HEAD
-如果你試著在範例目前的版本中印出或勾選 checkbox，你會看到 React 無視你的輸入。這是刻意的，因為我們把 `input` 的 `value` prop 設定為永遠和從 `FilterableProductTable` 傳下來的 `state` ㄧ樣。
-=======
-If you try to type or check the box in the previous version of the example (step 4), you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
->>>>>>> 9b3c3f4e613440baf2e2f1775be65dac8c08ab5f
+如果你嘗試在上一個版本的範例（第四步）中輸入或勾選 checkbox，你會看到 React 忽略你的輸入。這是刻意的，因為我們把 `input` 的 `value` prop 設定為永遠和從 `FilterableProductTable` 傳下來的 `state` ㄧ樣。
 
 讓我們思考一下我們想要做些什麼。我們想確保當使用者改變這個表格時，我們會更新 state 以反映使用者的輸入。既然 component 只應該更新它自己本身的 state， `FilterableProductTable` 將會把 callback 傳給 `SearchBar`，而它們則會在 state 該被更新的時候被觸發。我們可以在輸入上使用 `onChange` 這個 event 來
 接收通知。被 `FilterableProductTable` 傳下來的 callback 則會呼叫 `setState()`，之後應用程式就會被更新。
