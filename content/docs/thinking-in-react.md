@@ -72,7 +72,11 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
 
 在這一步的最後，你會有一個函式庫的可重複使用的 component 來 render 你的資料模型。這些 component 只會有 `render()` 方法，因為這是你應用程式的靜態版本。最高層級的 component (`FilterableProductTable`) 會接收你的資料模型作為 prop。如果你改變底層的資料模型並再次呼叫 `ReactDOM.render()` 的話，那麼 UI 就會被更新。你可以看到 UI 的更新方式以及更改的位置。React 的 **單向資料流**（也可稱為*單向綁定*）確保所有 component 都是模塊化且快速的。
 
+<<<<<<< HEAD
 如果你需要幫助來執行這一步的話，請參考這份 [React 文件](/docs/)。
+=======
+Refer to the [React docs](/docs/getting-started.html) if you need help executing this step.
+>>>>>>> 4133943e718a77f11627888db2f59f6cb7a73403
 
 ### 簡短的插曲：Props 和 State {#a-brief-interlude-props-vs-state}
 
