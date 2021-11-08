@@ -218,7 +218,7 @@ function todosReducer(state, action) {
 }
 ```
 
-Redcer 是非常方便於獨立測試的，而且可以表達複雜的更新邏輯。如果有需要的話，你可以將它們拆成更小的 reducer。然而，你可能也喜歡使用 React local state 的好處，或者你不想要安裝其他的函式庫。
+Reducer 是非常方便於獨立測試的，而且可以表達複雜的更新邏輯。如果有需要的話，你可以將它們拆成更小的 reducer。然而，你可能也喜歡使用 React local state 的好處，或者你不想要安裝其他的函式庫。
 
 那麼，如果我們可以撰寫一個 `useReducer` Hook，讓我們用 reducer 管理 component 的 *local* state 呢？ 它的簡化版本看起來如下：
 
