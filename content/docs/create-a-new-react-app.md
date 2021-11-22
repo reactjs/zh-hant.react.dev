@@ -75,7 +75,11 @@ Create React App 並不會處理 backend 邏輯或資料庫；它只會建立一
 
 - **[Nx](https://nx.dev/react)** 是一套用於 full-stack monorepo 開發的 toolkit，內建支援 React、Next.js、[Express](https://expressjs.com/) 以及更多。
 
+<<<<<<< HEAD
 - **[Parcel](https://parceljs.org/)** 是一個快速、零設定的網路應用程式 bundler，並且[可以配合 React](https://parceljs.org/recipes.html#react) 一起使用。
+=======
+- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes/react/).
+>>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** 是一個不需要設定的 server-rendering 框架，但它比 Next.js 提供更多的靈活性。
 
