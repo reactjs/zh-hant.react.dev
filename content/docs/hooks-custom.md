@@ -147,7 +147,7 @@ function FriendListItem(props) {
 
 **請問兩個 component 使用相同的 Hook 是共享 state 的嗎？**不是的。自定義的 Hook 有一個機制重複使用 *stateful 邏輯*（例如設定訂閱並記住目前的值），但每次你使用自定義的 Hook 時，所有內部的 state 和 effect 都是完全獨立的
 
-**自定義的 Hook 是如何隔離 state 的？** 每個*呼叫* Hook 的都會得到獨立的 state。因為我們直接呼叫 `useFriendStatus`，從 React 的角度來看，我們的 component 只呼叫 `useState` 和 `useEffect`。正如我們[之前](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns)所[理解](/docs/hooks-state.html#tip-using-multiple-state-variables)的，我們可以在一個 componnet 呼叫 `useState` 和 `useEffect` 多次，而且它們都是完全獨立的。
+**自定義的 Hook 是如何隔離 state 的？** 每個*呼叫* Hook 的都會得到獨立的 state。因為我們直接呼叫 `useFriendStatus`，從 React 的角度來看，我們的 component 只呼叫 `useState` 和 `useEffect`。正如我們[之前](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns)所[理解](/docs/hooks-state.html#tip-using-multiple-state-variables)的，我們可以在一個 component 呼叫 `useState` 和 `useEffect` 多次，而且它們都是完全獨立的。
 
 ### 提示：在 Hook 之間傳遞資訊 {#tip-pass-information-between-hooks}
 
