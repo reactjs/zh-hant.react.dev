@@ -1045,11 +1045,7 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 **[按這裡看目前的程式碼](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-<<<<<<< HEAD
 當我們 interate `history` array 時，`step` 變數指的是目前的 `history` element 的值，而 `move` 指的是目前 `history` element 的 index。在這裡我們只對 `move` 有興趣，因此 `step` 沒有被分配到任何的東西。
-=======
-As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We are only interested in `move` here, hence `step` is not getting assigned to anything.
->>>>>>> 17ad2cbc71f4c1fcc3f3f9ae528bfd292a9fced7
 
 在圈圈叉叉小遊戲歷史中的每個動作，我們都會建立一個列表元素 `<li>`，並在裡面加入 `<button>`。這個按鈕有一個會呼叫 `this.jumpTo()` 方法的 `onClick` handler。我們還沒實作 `jumpTo()` 方法。現在，我們應該能在開發者工具的 console 中看到一系列在遊戲中曾經發生過的動作以及一個警告：
 
