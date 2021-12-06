@@ -6,7 +6,7 @@ permalink: docs/render-props.html
 
 [「render prop」](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)這個詞指的是一種用一個其值為函式的 prop 來在 React component 之間共享程式碼的技巧。
 
-一個有 render prop 的 component 會接受一個函式，此函式不會實作他自己的 render 邏輯，而是會回傳並且呼叫一個 React element。
+一個帶有 render prop 的 component 不會執行自己的 render 邏輯，而會接受一個回傳 React element 的函式並呼叫。
 
 ```jsx
 <DataProvider render={data => (
