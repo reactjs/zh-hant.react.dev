@@ -29,7 +29,7 @@ render() {
 ```
 
 >小技巧
->  
+>
 >如果你發現你常寫類似的程式碼，可使用 [classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) 函式庫簡化。
 
 ### 可以使用 Inline Style 嗎？ {#can-i-use-inline-styles}
@@ -48,8 +48,4 @@ _請注意此功能為第三方函式庫所提供，並非 React 的一部份。
 
 ### 我可以在 React 中做動畫嗎？ {#can-i-do-animations-in-react}
 
-<<<<<<< HEAD
-React 可以支援動畫。範例請見 [React Transition Group](https://reactcommunity.org/react-transition-group/) 和 [React Motion](https://github.com/chenglou/react-motion) 或 [React Spring](https://github.com/react-spring/react-spring)。
-=======
-React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/), [React Motion](https://github.com/chenglou/react-motion), [React Spring](https://github.com/react-spring/react-spring), or [Framer Motion](https://framer.com/motion), for example.
->>>>>>> 014f4890dc30a3946c63f83b06883241ddc9bc75
+React 可以支援動畫。範例請見 [React Transition Group](https://reactcommunity.org/react-transition-group/) 和 [React Motion](https://github.com/chenglou/react-motion) 、 [React Spring](https://github.com/react-spring/react-spring) 或是 [Framer Motion](https://framer.com/motion)。
