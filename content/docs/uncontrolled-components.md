@@ -39,7 +39,7 @@ class NameForm extends React.Component {
 
 [**在 CodePen 上試試看！**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
-由於 uncontrolled component 保持了 DOM 裡的唯一的真相來源，有的時候使用 uncontrolled component 時更容易整合 React 和非 React 的程式碼。如果你想有個又快又髒的方法，它也可以減少一些程式碼。否則，通常應使用 controlled component。。
+由於 uncontrolled component 保持了 DOM 裡的唯一的真相來源，有的時候使用 uncontrolled component 時更容易整合 React 和非 React 的程式碼。如果你想有個又快又髒的方法，它也可以減少一些程式碼。否則，通常應使用 controlled component。
 
 如果仍不清楚在特定情況下應使用哪種類型的 component，你可能會覺得[這篇關於控制與不可控制輸入的文章](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)有所幫助。
 
