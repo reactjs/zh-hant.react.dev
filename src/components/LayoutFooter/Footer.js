@@ -145,7 +145,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               color: colors.subtleOnDark,
               paddingTop: 15,
             }}>
-            {`© ${new Date().getFullYear()} Facebook Inc 版權所有`}
+            {`Copyright © ${new Date().getFullYear()} Meta Platforms, Inc.`}
           </p>
         </section>
       </div>
