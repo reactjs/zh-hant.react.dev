@@ -180,11 +180,15 @@ const MyComponent = () => (
 
 Route 是一個開始的好地方。Web 上大多數的人都習慣花一些時間來等待頁面的過渡。你也傾向於重新 render 一次整個頁面，所以你的使用者不能同時與頁面上的其他 element 做互動。
 
+<<<<<<< HEAD
 這裡是如何在你的應用程式使用像是 [React Router](https://reacttraining.com/react-router/) 的函式庫與 `React.lazy` 來設定基於 route 的 code-splitting。
+=======
+Here's an example of how to setup route-based code splitting into your app using libraries like [React Router](https://reactrouter.com/) with `React.lazy`.
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf
 
 ```js
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const Home = lazy(() => import('./routes/Home'));
 const About = lazy(() => import('./routes/About'));
@@ -192,10 +196,10 @@ const About = lazy(() => import('./routes/About'));
 const App = () => (
   <Router>
     <Suspense fallback={<div>Loading...</div>}>
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route path="/about" component={About}/>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </Suspense>
   </Router>
 );
