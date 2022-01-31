@@ -68,7 +68,11 @@ ReactDOM.render(
 );
 ```
 
+<<<<<<< HEAD
 [在 CodePen 上試試看吧！](codepen://introducing-jsx)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
 
 為了方便閱讀，我們將 JSX 拆成很多行表達。雖然這並不需要，我們建議將多行 JSX 包在括號中來避免遇到[自動分號補足](http://stackoverflow.com/q/2846283)的麻煩。
 
@@ -91,7 +95,7 @@ function getGreeting(user) {
 你可以使用引號將字串設定為屬性：
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 你也可以在屬性中使用大括號來嵌入一個 JavaScript expression：

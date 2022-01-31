@@ -17,7 +17,11 @@ ReactDOM.render(
 
 在頁面上顯示「Hello, world!」。
 
+<<<<<<< HEAD
 [在 CodePen 上試試看吧！](codepen://hello-world)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrpgNB?editors=1010)**
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
 
 點擊上方連結開啟線上編輯器。請隨意的變更程式碼並觀察它們的輸出變化。這個指南大部分的範例都可以像這樣編輯。
 

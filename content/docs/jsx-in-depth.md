@@ -231,7 +231,11 @@ function NumberDescriber(props) {
 
 ### 展開屬性 {#spread-attributes}
 
+<<<<<<< HEAD
 如果你已經有了一個 `props` 的 object，並且想把它傳遞進 JSX，你可以使用 `...` 作為展開運算子來傳遞整個 props object。以下兩個 component 是相等的：
+=======
+If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" syntax to pass the whole props object. These two components are equivalent:
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
 
 ```js{7}
 function App1() {
@@ -244,7 +248,11 @@ function App2() {
 }
 ```
 
+<<<<<<< HEAD
 你也可以使用展開運算子來分開並挑選 component 所需的 props。
+=======
+You can also pick specific props that your component will consume while passing all other props using the spread syntax.
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
 
 ```js{2}
 const Button = props => {
