@@ -68,7 +68,7 @@ ReactDOM.render(
 );
 ```
 
-[在 CodePen 上試試看吧！](codepen://introducing-jsx)
+[在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)
 
 為了方便閱讀，我們將 JSX 拆成很多行表達。雖然這並不需要，我們建議將多行 JSX 包在括號中來避免遇到[自動分號補足](http://stackoverflow.com/q/2846283)的麻煩。
 
