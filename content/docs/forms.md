@@ -259,7 +259,7 @@ this.setState({
 });
 ```
 
-這和下面的 ES5 程式碼是ㄧ樣的：
+這和下面的 ES5 程式碼是一樣的：
 
 ```js{2}
 var partialState = {};
