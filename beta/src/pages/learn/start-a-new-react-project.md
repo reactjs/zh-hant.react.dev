@@ -71,9 +71,15 @@ Create React App 對於開始使用 React 是很棒的，但如果你想要一�
 
 你可能更喜歡建立和設置你自己的工具鏈。JavaScript 建構工具鏈通常由以下部分所組成：
 
+<<<<<<< HEAD
 * 一個 **package manager** — 讓你可以安裝、升級以及管理 third-party package。[Yarn](https://yarnpkg.com/) 和 [npm](https://www.npmjs.com/) 是兩個最流行的 package manager。
 * 一個 **bundler** — 讓你可以撰寫模組化的程式，並將這些模組化程式 bundle 成更小的 package 來最佳化載入時間。[Webpack](https://webpack.js.org/)、[Snowpack](https://www.snowpack.dev/)、[Parcel](https://parceljs.org/) 是一些流行的 bundler。
 * 一個 **compiler** — 讓你可以撰寫現代化的 JavaScript 程式且仍然可以在舊的瀏覽器執行。[Babel](https://babeljs.io/) 就是一個這樣的例子。
+=======
+* A **package manager**—lets you install, update and manage third-party packages. [Yarn](https://yarnpkg.com/) and [npm](https://www.npmjs.com/) are two popular package managers.
+* A **bundler**—lets you write modular code and bundle it together into small packages to optimize load time. [Webpack](https://webpack.js.org/), [Snowpack](https://www.snowpack.dev/), [Parcel](https://parceljs.org/) are several popular bundlers.
+* A **compiler**—lets you write modern JavaScript code that still works in older browsers. [Babel](https://babeljs.io/) is one such example.
+>>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
 
 在大型專案中，你可能也希望有工具可以在單一個 repository 內管理多個 package。[Nx](https://nx.dev/react) 就是這一種工具的例子。
 
