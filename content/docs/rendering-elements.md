@@ -38,11 +38,7 @@ const element = <h1>Hello, world</h1>;
 
 `embed:rendering-elements/render-an-element.js`
 
-<<<<<<< HEAD
-[在 CodePen 上試試看吧！](codepen://rendering-elements/render-an-element)
-=======
-**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
->>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
+[在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)
 
 在網頁上你會看見顯示「Hello, world」。
 
@@ -56,11 +52,7 @@ React element 是 [immutable](https://en.wikipedia.org/wiki/Immutable_object) �
 
 `embed:rendering-elements/update-rendered-element.js`
 
-<<<<<<< HEAD
-[在 CodePen 上試試看吧！](codepen://rendering-elements/update-rendered-element)
-=======
-**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
->>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
+[在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)
 
 它從 [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback 每秒呼叫 [`ReactDOM.render()`](/docs/react-dom.html#render)。
 
@@ -74,11 +66,7 @@ React element 是 [immutable](https://en.wikipedia.org/wiki/Immutable_object) �
 
 React DOM 會將 element 和它的 children 與先前的狀態做比較，並且只更新必要的 DOM 達到理想的狀態。
 
-<<<<<<< HEAD
-你可以透過瀏覽器工具來檢測[最後一個範例](codepen://rendering-elements/update-rendered-element)做驗證：
-=======
-You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
->>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
+你可以透過瀏覽器工具來檢測[最後一個範例](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)做驗證：
 
 ![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
 

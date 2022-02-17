@@ -76,11 +76,7 @@ ReactDOM.render(
 );
 ```
 
-<<<<<<< HEAD
-[在 CodePen 上試試看吧！](codepen://components-and-props/rendering-a-component)
-=======
-**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
->>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
+[在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)
 
 讓我們來複習一下這個例子發生了什麼事：
 
@@ -122,11 +118,7 @@ ReactDOM.render(
 );
 ```
 
-<<<<<<< HEAD
-[在 CodePen 上試試看吧！](codepen://components-and-props/composing-components)
-=======
-**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
->>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
+[在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)
 
 通常來說，每個 React 應用程式都有一個最高層級的 `App` component。然而，如果你將 React 結合至現存的應用程式中，你可能需要使用像 `Button` 這樣的小型 component，並由下往上，逐步應用到畫面的最高層級。
 
@@ -160,11 +152,7 @@ function Comment(props) {
 }
 ```
 
-<<<<<<< HEAD
-[在 CodePen 上試試看吧！](codepen://components-and-props/extracting-components)
-=======
-**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
->>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
+[在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)
 
 它接受 `author` (一個物件)、`text` (一個字串)、還有 `date` (一個日期) 作為它的 props。它的作用是在一個社交網站上 render 一則評論。
 
@@ -243,11 +231,7 @@ function Comment(props) {
 }
 ```
 
-<<<<<<< HEAD
-[在 CodePen 上試試看吧！](codepen://components-and-props/extracting-components-continued)
-=======
-**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
->>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
+[在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)
 
 在一開始，將 component 抽離出來可能是一件繁重的工作，但是在較大的應用程式中，建構可複用的 component 是非常值得。以經驗來說，如果一個 UI 中有一部分會被重複使用很多次（`Button`、`Panel`、`Avatar`），或者它足夠複雜（`App`、`FeedStory`、`Comment`），則可以將它提取到獨立的 component。
 

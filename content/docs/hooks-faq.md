@@ -97,13 +97,7 @@ Hook 的確有它本身的學習曲線。如果在這份文件中缺漏了些什
 
 我們的目標是讓 Hook 盡快能涵蓋 class 的所有使用情境。對於不常見的 `getSnapshotBeforeUpdate` 和 `componentDidCatch` 的生命週期並沒有等價的 Hook 方式，但我們計劃很快會加入它們。
 
-<<<<<<< HEAD
-這是早期的 Hook，目前一些第三方 function 庫可能與 Hook 不相容。
-
 ### Hook 可以取代 Render Props 和 Higher-Order Component 嗎？ {#do-hooks-replace-render-props-and-higher-order-components}
-=======
-### Do Hooks replace render props and higher-order components? {#do-hooks-replace-render-props-and-higher-order-components}
->>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
 
 我們思考 Hook 是一個更簡單的方式來提供這個使用情境。這兩種模式仍然有它的用處（例如：一個 virtual scroller component 可能有一個 `renderItem` prop，或是一個 virtual container component 可能有它本身的 DOM 結構）。但在大部分的情況下，Hook 就可以滿足了，而且可以幫助你減少在 tree 內的巢狀 component。
 
