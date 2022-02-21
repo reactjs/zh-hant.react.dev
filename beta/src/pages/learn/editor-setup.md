@@ -15,7 +15,7 @@ title: 編輯器設定
 其他在 React 社群使用的流行文字編輯器包括：
 
 * [WebStorm](https://www.jetbrains.com/webstorm/)—一個專門為 JavaScript 設計的完整開發環境。
-* [Sublime Text](https://www.sublimetext.com/)—支援 JSX 和 TypeScript、語法高亮和自動補全功能。
+* [Sublime Text](https://www.sublimetext.com/)—支援 JSX 和 TypeScript、[語法高亮](https://stackoverflow.com/a/70960574/458193)和自動補全功能。
 * [Vim](https://www.vim.org/)—是一個高度可配置的文字編輯器，可以非常有效的建立和修改任何類型的文本。它作為「vi」被內建在大多數 UNIX 系統和蘋果 OS X 系統中。
 
 ## 推薦的文字編輯器功能 {/*recommended-text-editor-features*/}
