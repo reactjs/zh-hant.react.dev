@@ -8,23 +8,23 @@
       "path": "",
       "routes": [
         {
-          "title": "Installation",
+          "title": "安裝",
           "path": "/learn/installation",
           "routes": [
             {
-              "title": "Start a New React Project",
+              "title": "開始一個新的 React 專案",
               "path": "/learn/start-a-new-react-project"
             },
             {
-              "title": "Add React to a Website",
+              "title": "將 React 加入到網頁",
               "path": "/learn/add-react-to-a-website"
             },
             {
-              "title": "Editor Setup",
+              "title": "編輯器設定",
               "path": "/learn/editor-setup"
             },
             {
-              "title": "React Developer Tools",
+              "title": "React 開發者工具",
               "path": "/learn/react-developer-tools"
             }
           ]
