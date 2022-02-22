@@ -1,27 +1,27 @@
 ---
-title: React Developer Tools
+title: React 開發者工具
 ---
 
 <Intro>
 
-Use React Developer Tools to inspect React [components](/learn/your-first-component), edit [props](/learn/passing-props-to-a-component) and [state](/learn/state-a-components-memory), and identify performance problems.
+使用 React 開發者工具檢查 React [component](/learn/your-first-component)、編輯 [props](/learn/passing-props-to-a-component) 和 [state](/learn/state-a-components-memory)，並辨認效能問題。
 
 </Intro>
 
-## Browser extension {/*browser-extension*/}
+## 瀏覽器擴充元件 {/*browser-extension*/}
 
-The easiest way to debug websites built with React is to install the React Developer Tools browser extension. It is available for several popular browsers:
+要 debug 用 React 建構的網站最簡單的方式是安裝 React 開發者瀏覽器擴充元件。它可以在一些流行的瀏覽器上使用：
 
 * [Install for **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 * [Install for **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
 * [Install for **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
 
-Now, if you visit a website **built with React**, you will see the _Components_ and _Profiler_ panels.
+現在，如果你拜訪**用 React 建構**的網站，你將會看到 _Components_ 和 _Profiler_ 控制面板。
 
 ![React Developer Tools extension](/images/docs/react-devtools-extension.png)
 
-### Safari and other browsers {/*safari-and-other-browsers*/}
-For other browsers (for example, Safari), install the [`react-devtools`](https://www.npmjs.com/package/react-devtools) npm package:
+### Safari 和其他瀏覽器 {/*safari-and-other-browsers*/}
+對於其他的瀏覽器（例如，Safari），安裝 [`react-devtools`](https://www.npmjs.com/package/react-devtools) npm package：
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -30,26 +30,26 @@ yarn global add react-devtools
 npm install -g react-devtools
 ```
 
-Next open the developer tools from the terminal:
+接著從 terminal 打開開發者工具：
 ```bash
 react-devtools
 ```
 
-Then connect your website by adding the following `<script>` tag to the beginning of your website's `<head>`:
+然後透過在你的網站 `<head>` 的起始加入以下 `<script>` tag 來連接你的網站：
 ```html {3}
 <html>
   <head>
     <script src="http://localhost:8097"></script>
 ```
 
-Reload your website in the browser now to view it in developer tools.
+重新載入網頁現在你可以看到開發者工具。
 
 ![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
 
 ## Mobile (React Native) {/*mobile-react-native*/}
-React Developer Tools can be used to inspect apps built with [React Native](https://reactnative.dev/) as well.
+React 開發者工具也可以用來檢測由 [React Native](https://reactnative.dev/) 建構的應用程式。
 
-The easiest way to use React Developer Tools is to install it globally:
+使用 React 開發者工具最簡單的方式就是全域安裝它：
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -58,13 +58,13 @@ yarn global add react-devtools
 npm install -g react-devtools
 ```
 
-Next open the developer tools from the terminal.
+接著從 terminal 打開開發者工具：
 ```bash
 react-devtools
 ```
 
-It should connect to any local React Native app that's running.
+它應該連接到你任何在本機端執行的 React Native 應用程式。
 
-> Try reloading the app if developer tools doesn't connect after a few seconds.
+> 如果在幾秒鐘內沒有連接上開發者工具，請嘗試重新載入應用程式。
 
-[Learn more about debugging React Native.](https://reactnative.dev/docs/debugging)
+[學習更多關於 React Native 的 debugging。](https://reactnative.dev/docs/debugging)

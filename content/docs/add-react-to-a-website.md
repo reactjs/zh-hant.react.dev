@@ -168,7 +168,7 @@ return (
 
 將 JSX 加入到項目裡並不需要複雜的工具，例如一個 bundler 或開發伺服器。本質上，加入 JSX **就像加入一個 CSS preprocessor。**這只需要你安裝 [Node.js](https://nodejs.org/) 到你的電腦裡。
 
-在終端機轉到你的項目文件夾裡，再貼上以下的兩行指令：
+在 terminal 轉到你的項目文件夾裡，再貼上以下的兩行指令：
 
 1. **第一步：** 執行  `npm init -y`（如果失敗了，[這裡有方法解決](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d)）
 2. **第二步：** 執行  `npm install babel-cli@6 babel-preset-react-app@3`
