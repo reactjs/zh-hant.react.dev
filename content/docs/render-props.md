@@ -214,7 +214,7 @@ class MouseTracker extends React.Component {
 
 這個技巧讓我們想共享的行為變得極為可轉移。要使用這個行為時，就 render 一個有 `render` prop 的 `<Mouse>`，讓 `render` prop 來告訴 `<Mouse>` 該用現在游標的 (x,y) render 什麼。
 
-關於 render props 一件有趣的事是，你可以用包含 render prop 的普通 component 來實作最  [higher-order component](/docs/higher-order-components.html)。舉例來說，如果你偏好用 `withMouse` HOC 而不是 `<Mouse>` component 的話，你可以輕易地用一個普通的 `<Mouse>` 加上 render prop 來建立：
+關於 render props 一件有趣的事是，你可以用包含 render prop 的普通 component 來實作 [higher-order component](/docs/higher-order-components.html)。舉例來說，如果你偏好用 `withMouse` HOC 而不是 `<Mouse>` component 的話，你可以輕易地用一個普通的 `<Mouse>` 加上 render prop 來建立：
 
 ```js
 // 如果你真的想用 HOC ，你可以輕易地用一個
