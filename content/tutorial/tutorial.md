@@ -1148,13 +1148,21 @@ class Game extends React.Component {
   }
 ```
 
+<<<<<<< HEAD
 請注意在 `jumpTo` 方法中，我們沒有更新 `history` 的狀態，這是因為狀態的更新會被合併，簡單來說 React 只會更新 setState 方法中提到的屬性，而其餘的狀態則保持不變。更多資訊請參考 **[官方手冊](/docs/state-and-lifecycle.html#state-updates-are-merged)**。
+=======
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 現在，我們會在 Game 中每當一個方格被點擊就被觸發的 `handleClick` 中做一些修改。
 
 我們剛加入的 `stepNumber` 的 state 反映了我們將會展示給玩家的動作。在我們做了一個新的動作後，我們需要將 `stepNumber: history.length` 加到 `this.setState` 的 argument 中，以更新 `stepNumber`。這確保了在新動作產生後，我們不會卡在展示一樣的動作。
 
+<<<<<<< HEAD
 我們也會將 `this.state.history` 替換成 `this.state.history.slice(0, this.state.stepNumber + 1)`。假使我們「回到過去」的某個時刻，並做了一個跟過去不一樣的新動作，這將會確保我們會刪除從那一刻起所有屬於「未來」、但現在已不再正確的的歷史。
+=======
+We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now be incorrect.
+>>>>>>> 1e3b023d3192c36a2da7b72389debee2f0e0e8b0
 
 ```javascript{2,13}
   handleClick(i) {
