@@ -276,10 +276,10 @@ this.setState(partialState);
 下面的程式碼就是一個範例。（輸入原先是被鎖住的，但在短暫的延遲後，變得可以被修改了。）
 
 ```javascript
-ReactDOM.render(<input value="hi" />, mountNode);
+ReactDOM.createRoot(mountNode).render(<input value="hi" />);
 
 setTimeout(function() {
-  ReactDOM.render(<input value={null} />, mountNode);
+  ReactDOM.createRoot(mountNode).render(<input value={null} />);
 }, 1000);
 
 ```
