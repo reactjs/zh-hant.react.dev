@@ -117,11 +117,7 @@ React 會為某些數字型態的 style property 自動加上「px」。如果�
 
 如果你使用 server-side React render 時，通常 server 和 client render 不同時，會有一個警示訊息。然而，在一些少數的案例，很難去保證 server 和 client side 會完全符合。例如，像是 timestamp 就無法在 server 和 client 保持相同。
 
-<<<<<<< HEAD
-如果你設定了 `suppressHydrationWarning` 為 `true`，attribute 以及 element 內容不一樣時，React 就不會有警示訊息。這只作用在一層深度，且需要有計畫性地使用，請勿濫用。你可以在 [`ReactDOM.hydrate()` 文件](/docs/react-dom.html#hydrate) 讀到更多關於 hydration。
-=======
-If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrateRoot()` documentation](/docs/react-dom-client.html#hydrateroot).
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+如果你設定了 `suppressHydrationWarning` 為 `true`，attribute 以及 element 內容不一樣時，React 就不會有警示訊息。這只作用在一層深度，且需要有計畫性地使用，請勿濫用。你可以在 [`ReactDOM.hydrateRoot()` documentation](/docs/react-dom-client.html#hydrateroot) 讀到更多關於 hydration。
 
 ### value {#value}
 

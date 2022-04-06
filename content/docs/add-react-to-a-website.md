@@ -52,17 +52,10 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 ```html{5,6,9}
   <!-- ... 其他 HTML ... -->
 
-<<<<<<< HEAD
   <!-- 載入 React。 -->
   <!-- 注意：在發佈應用程式前，請把「development.js」替換成「production.min.js」。 -->
-  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-=======
-  <!-- Load React. -->
-  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
   <!-- 載入我們的 React component。-->
   <script src="like_button.js"></script>
@@ -84,24 +77,15 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 在 **[starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** 之後，請在 `like_button.js` 的底部加上以下兩行的程式碼:
 
-<<<<<<< HEAD
-```js{3,4}
-// ... 你貼上的 starter code ...
-=======
 ```js{3,4,5}
-// ... the starter code you pasted ...
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+// ... 你貼上的 starter code ...
 
 const domContainer = document.querySelector('#like_button_container');
 const root = ReactDOM.createRoot(domContainer);
 root.render(e(LikeButton));
 ```
 
-<<<<<<< HEAD
-這兩行的程式碼會找我們在第一步所加入的 `<div>`，然後在裡面展示我們的「Like」按鈕 React component。
-=======
-These three lines of code find the `<div>` we added to our HTML in the first step, create a React app with it, and then display our "Like" button React component inside of it.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+這三行的程式碼會找我們在第一步所加入的 `<div>`，用它建立一個 React app 然後在裡面顯示我們的「Like」按鈕 React component。
 
 ### 大功告成！ {#thats-it}
 

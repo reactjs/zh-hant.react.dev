@@ -30,15 +30,9 @@ React 從一開始就被設計成逐步採用的方式，你可以根據你的�
 
 在 HTML 頁面的 `</body>` 標籤結束之前，為以下檔案加入三個 `<script>` 標籤：
 
-<<<<<<< HEAD
-- [**react.development.js**](https://unpkg.com/react@17/umd/react.development.js) 載入 React 的核心
-- [**react-dom.development.js**](https://unpkg.com/react-dom@17/umd/react-dom.development.js) 讓 React render HTML element 到 [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model)。
+- [**react.development.js**](https://unpkg.com/react@18/umd/react.development.js) 載入 React 的核心
+- [**react-dom.development.js**](https://unpkg.com/react-dom@18/umd/react-dom.development.js) 讓 React render HTML element 到 [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model)。
 - **like_button.js** 是你在第三步將要撰寫 component 的地方！
-=======
-- [**react.development.js**](https://unpkg.com/react@18/umd/react.development.js) loads the core of React
-- [**react-dom.development.js**](https://unpkg.com/react-dom@18/umd/react-dom.development.js) lets React render HTML elements to the [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model).
-- **like_button.js** is where you'll write your component in step 3!
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 <Gotcha>
 
@@ -80,11 +74,7 @@ function LikeButton() {
 
 ### 第四步：把你的 React Component 加入到頁面 {/*step-4-add-your-react-component-to-the-page*/}
 
-<<<<<<< HEAD
-最後，在 **like_button.js** 底部加入兩行。這兩行程式碼找到你在第一步中加入 HTML 到 `<div>`，然後在其中顯示「Like」按鈕的 React component。
-=======
-Lastly, add three lines to the bottom of **like_button.js**. These three lines of code find the `<div>` you added to your HTML in the first step, create a React app with it, and then display the "Like" button React component inside of it.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+最後，在 **like_button.js** 底部加入三行程式碼。這三行程式碼找到你在第一步中加入 HTML 到 `<div>`，用它建立一個 React app，然後在裡面顯示「Like」按鈕的 React component。
 
 ```js
 const domContainer = document.getElementById('component-goes-here');
@@ -99,11 +89,7 @@ root.render(React.createElement(LikeButton));
 
 #### 你可以重複使用 Component！ {/*you-can-reuse-components*/}
 
-<<<<<<< HEAD
-你可能想要在同一個 HTML 頁面的多個地方顯示一個 React component。當頁面中由 React 驅動的部分彼此隔離時，這是最有用的。你可以透過多次呼叫 `ReactDOM.render()` 和多個 container element 來做到這一點。
-=======
-You might want to display a React component in multiple places on the same HTML page. This is most useful while React-powered parts of the page are isolated from each other. You can do this by calling `ReactDOM.createRoot()` multiple times with multiple container elements.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+你可能想要在同一個 HTML 頁面的多個地方顯示一個 React component。當頁面中由 React 驅動的部分彼此隔離時，這是最有用的。你可以透過多次呼叫 `ReactDOM.createRoot()` 和多個 container element 來做到這一點。
 
 1. 在 **index.html** 中，加入一個額外的 `<div id="component-goes-here-too"></div>` container element。
 2. 在 **like_button.js** 中，為新的 container element 加入一個額外的 `ReactDOM.render()`：

@@ -10,15 +10,11 @@ next: handling-events.html
 
 這個章節會介紹在 React component 中 state 以及生命週期的概念。你可以在[這裡找到 component API 詳細的參考](/docs/react-component.html)。
 
-<<<<<<< HEAD
-思考[前一章節](/docs/rendering-elements.html#updating-the-rendered-element)的 ticking clock 的範例。在 [Render Element](/docs/rendering-elements.html#rendering-an-element-into-the-dom) 中，我們只學習到一種方式來更新 UI。 我們呼叫 `ReactDOM.render()` 來改變 render 的輸出：
-=======
-Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element). In [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom), we have only learned one way to update the UI. We call `root.render()` to change the rendered output:
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+思考[前一章節](/docs/rendering-elements.html#updating-the-rendered-element)的 ticking clock 的範例。在 [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom) 中，我們只學習到一種方式來更新 UI。 我們呼叫 `root.render()` 來改變 render 的輸出：
 
 ```js{10}
 const root = ReactDOM.createRoot(document.getElementById('root'));
-  
+
 function tick() {
   const element = (
     <div>
@@ -300,11 +296,7 @@ root.render(<Clock />);
 
 讓我們快速的回顧一下發生了哪些事情，以及呼叫這些方法的順序：
 
-<<<<<<< HEAD
-1) 當 `<Clock />` 被傳入到 `ReactDOM.render()` 時，React 會呼叫 `Clock` component 的constructor。由於 `Clock` 需要顯示目前的時間，它使用包含目前時間的 object 初始化 `this.state`。我們會在之後更新這個 state。
-=======
-1) When `<Clock />` is passed to `root.render()`, React calls the constructor of the `Clock` component. Since `Clock` needs to display the current time, it initializes `this.state` with an object including the current time. We will later update this state.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+1) 當 `<Clock />` 被傳入到 `root.render()` 時，React 會呼叫 `Clock` component 的constructor。由於 `Clock` 需要顯示目前的時間，它使用包含目前時間的 object 初始化 `this.state`。我們會在之後更新這個 state。
 
 2) React 接著呼叫 `Clock` component 的 `render()` 方法。這就是 React 如何了解應該要在螢幕上顯示什麼內容。React 接著更新 DOM 來符合 `Clock` 的 render 輸出。
 

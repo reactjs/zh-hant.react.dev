@@ -144,17 +144,13 @@ useEffect(() => {
 
 然而，不是所有的 effect 都可以被延後。例如，使用者可見的 DOM 改變必須在下一次繪製之前同步觸發，這樣使用者才不會感覺到視覺不一致。（概念上類似被動和主動 event listener 的區別。）為這類型的 effect，React 提供了一個額外的 [`useLayoutEffect`](#uselayouteffect) Hook。它和 `useEffect` 的結構相同，只是執行的時機不同而已。
 
-<<<<<<< HEAD
-雖然 `useEffect` 會被延遲直到瀏覽器繪制完成，但會保證在任何新 render 前執行。React 會在開始新一個更新前刷新上一輪 render 的 effect。
-=======
 Additionally, starting in React 18, the function passed to `useEffect` will fire synchronously **before** layout and paint when it's the result of a discrete user input such as a click, or when it's the result of an update wrapped in [`flushSync`](/docs/react-dom.html#flushsync). This behavior allows the result of the effect to be observed by the event system, or by the caller of [`flushSync`](/docs/react-dom.html#flushsync).
 
 > Note
-> 
+>
 > This only affects the timing of when the function passed to `useEffect` is called - updates scheduled inside these effects are still deferred. This is different than [`useLayoutEffect`](#uselayouteffect), which fires the function and processes the updates inside of it immediately.
 
-Even in cases where `useEffect` is deferred until after the browser has painted, it's guaranteed to fire before any new renders. React will always flush a previous render's effects before starting a new update.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+雖然 `useEffect` 會被延遲直到瀏覽器繪制完成，但會保證在任何新 render 前執行。React 會在開始新一個更新前刷新上一輪 render 的 effect。
 
 #### 有條件的觸發 effect {#conditionally-firing-an-effect}
 
@@ -585,7 +581,7 @@ startTransition(() => {
 function App() {
   const [isPending, startTransition] = useTransition();
   const [count, setCount] = useState(0);
-  
+
   function handleClick() {
     startTransition(() => {
       setCount(c => c + 1);
@@ -650,9 +646,9 @@ function NameFields() {
 ```
 
 > Note:
-> 
+>
 > `useId` generates a string that includes the `:` token. This helps ensure that the token is unique, but is not supported in CSS selectors or APIs like `querySelectorAll`.
-> 
+>
 > `useId` supports an `identifierPrefix` to prevent collisions in multi-root apps. To configure, see the options for [`hydrateRoot`](/docs/react-dom-client.html#hydrateroot) and [`ReactDOMServer`](/docs/react-dom-server.html).
 
 ## Library Hooks {#library-hooks}
@@ -700,9 +696,9 @@ const selectedField = useSyncExternalStore(
 > Note:
 >
 > `getSnapshot` must return a cached value. If getSnapshot is called multiple times in a row, it must return the same exact value unless there was a store update in between.
-> 
+>
 > A shim is provided for supporting multiple React versions published as `use-sync-external-store/shim`. This shim will prefer `useSyncExternalStore` when available, and fallback to a user-space implementation when it's not.
-> 
+>
 > As a convenience, we also provide a version of the API with automatic support for memoizing the result of getSnapshot published as `use-sync-external-store/with-selector`.
 
 ### `useInsertionEffect` {#useinsertioneffect}

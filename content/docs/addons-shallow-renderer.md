@@ -59,11 +59,7 @@ Shallow testing 目前有些限制，並不支援 refs。
 
 你可以把 shallowRenderer 想成一個用來 render 測試中 component 的「空間」，並且可以從中提取該 component 輸出的內容。
 
-<<<<<<< HEAD
-`shallowRenderer.render()` 類似於 [`ReactDOM.render()`](/docs/react-dom.html#render)，但它不依賴 DOM 且只 render 一層。這意味著你可以對測試的 component 及其 child component 進行隔離測試。
-=======
-`shallowRenderer.render()` is similar to [`root.render()`](/docs/react-dom-client.html#createroot) but it doesn't require DOM and only renders a single level deep. This means you can test components isolated from how their children are implemented.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+`shallowRenderer.render()` 類似於 [`root.render()`](/docs/react-dom-client.html#createroot)，但它不依賴 DOM 且只 render 一層。這意味著你可以對測試的 component 及其 child component 進行隔離測試。
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
