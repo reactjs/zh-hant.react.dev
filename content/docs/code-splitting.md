@@ -145,10 +145,10 @@ function MyComponent() {
 }
 ```
 
-### 避免 fallbacks {#avoiding-fallbacks}
-Any component may suspend as a result of rendering, even components that were already shown to the user. In order for screen content to always be consistent, if an already shown component suspends, React has to hide its tree up to the closest `<Suspense>` boundary. However, from the user's perspective, this can be disorienting.
+### 避免 Fallbacks {#avoiding-fallbacks}
+任何 component 都可能因 render 而暫停，即使是已經向使用者顯示的 component。為了讓螢幕內容始終保持一致，如果一個已經顯示的 component suspend，React 必須將 tree 隱藏到最近的 `<Suspense>` 邊界。但是，從使用者的角度來看，這可能會讓人迷惑。
 
-Consider this tab switcher:
+思考這個 tab switcher：
 
 ```js
 import React, { Suspense } from 'react';
@@ -177,9 +177,9 @@ function MyComponent() {
 
 ```
 
-In this example, if tab gets changed from `'photos'` to `'comments'`, but `Comments` suspends, the user will see a glimmer. This makes sense because the user no longer wants to see `Photos`, the `Comments` component is not ready to render anything, and React needs to keep the user experience consistent, so it has no choice but to show the `Glimmer` above.
+在這個範例中，如果 tab 從 `'photos'` 改變為 `'comments'`，但是 `Comments` 暫停，使用者會看到一個 glimmer。這很合理因為使用者不想要看到 `Photos`，`Comments` component 還沒準備 render 任何東西，React 需要保持使用者體驗一致，所以它別無選擇，只能顯示上面的 `Glimmer`。
 
-However, sometimes this user experience is not desirable. In particular, it is sometimes better to show the "old" UI while the new UI is being prepared. You can use the new [`startTransition`](/docs/react-api.html#starttransition) API to make React do this:
+但是，有時候這樣的使用者體驗並不理想。在特定場景下，有時候在新的 UI 準備好之前，顯示「舊」的 UI 會更好。你可以使用新的 [`startTransition`](/docs/react-api.html#starttransition) API 來讓 React 執行此操作：
 
 ```js
 function handleTabSelect(tab) {
@@ -189,7 +189,7 @@ function handleTabSelect(tab) {
 }
 ```
 
-Here, you tell React that setting tab to `'comments'` is not an urgent update, but is a [transition](/docs/react-api.html#transitions) that may take some time. React will then keep the old UI in place and interactive, and will switch to showing `<Comments />` when it is ready. See [Transitions](/docs/react-api.html#transitions) for more info.
+這裡，你告訴 React 設定 tab 成 `'comments'` 不是一個緊急更新，但它是一個 [transition](/docs/react-api.html#transitions) 所以可能需要一些時間。React 將會保持舊的 UI 交互，並且在準備好時切換成顯示 `<Comments />`。更多資訊請參考 [Transitions](/docs/react-api.html#transitions)。
 
 ### 錯誤邊界 {#error-boundaries}
 
