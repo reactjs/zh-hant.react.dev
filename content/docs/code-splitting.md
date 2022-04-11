@@ -87,11 +87,15 @@ import("./math").then(math => {
 
 ## `React.lazy` {#reactlazy}
 
+<<<<<<< HEAD
 > 注意：
 >
 > `React.lazy` 和 Suspense 還無法在 server-side render 使用。如果你想要在 server render 應用程式做 code-splitting，我們推薦 [Loadable Components](https://github.com/gregberge/loadable-components)。它有一個用於 server-side render 的 [bundle splitting 的指南](https://loadable-components.com/docs/server-side-rendering/)。
 
 `React.lazy` 讓你 render 一個動態 import 的 component 作為正常的 component。
+=======
+The `React.lazy` function lets you render a dynamic import as a regular component.
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 **加入前：**
 
@@ -149,7 +153,57 @@ function MyComponent() {
 }
 ```
 
+<<<<<<< HEAD
 ### 錯誤邊界 {#error-boundaries}
+=======
+### Avoiding fallbacks {#avoiding-fallbacks}
+Any component may suspend as a result of rendering, even components that were already shown to the user. In order for screen content to always be consistent, if an already shown component suspends, React has to hide its tree up to the closest `<Suspense>` boundary. However, from the user's perspective, this can be disorienting.
+
+Consider this tab switcher:
+
+```js
+import React, { Suspense } from 'react';
+import Tabs from './Tabs';
+import Glimmer from './Glimmer';
+
+const Comments = React.lazy(() => import('./Comments'));
+const Photos = React.lazy(() => import('./Photos'));
+
+function MyComponent() {
+  const [tab, setTab] = React.useState('photos');
+  
+  function handleTabSelect(tab) {
+    setTab(tab);
+  };
+
+  return (
+    <div>
+      <Tabs onTabSelect={handleTabSelect} />
+      <Suspense fallback={<Glimmer />}>
+        {tab === 'photos' ? <Photos /> : <Comments />}
+      </Suspense>
+    </div>
+  );
+}
+
+```
+
+In this example, if tab gets changed from `'photos'` to `'comments'`, but `Comments` suspends, the user will see a glimmer. This makes sense because the user no longer wants to see `Photos`, the `Comments` component is not ready to render anything, and React needs to keep the user experience consistent, so it has no choice but to show the `Glimmer` above.
+
+However, sometimes this user experience is not desirable. In particular, it is sometimes better to show the "old" UI while the new UI is being prepared. You can use the new [`startTransition`](/docs/react-api.html#starttransition) API to make React do this:
+
+```js
+function handleTabSelect(tab) {
+  startTransition(() => {
+    setTab(tab);
+  });
+}
+```
+
+Here, you tell React that setting tab to `'comments'` is not an urgent update, but is a [transition](/docs/react-api.html#transitions) that may take some time. React will then keep the old UI in place and interactive, and will switch to showing `<Comments />` when it is ready. See [Transitions](/docs/react-api.html#transitions) for more info.
+
+### Error boundaries {#error-boundaries}
+>>>>>>> 84ad3308338e2bb819f4f24fa8e9dfeeffaa970b
 
 如果其他的 module 載入失敗（例如，因為網路失敗），它將會觸發一個錯誤。你可以透過[錯誤邊界](/docs/error-boundaries.html)處理這些錯誤來呈現一個好的使用者體驗和管理恢復。一旦你建立了你的錯誤邊界，你可以在任何的 lazy component 上方使用它，當網路發生錯誤時可以顯示一個錯誤狀態。
 

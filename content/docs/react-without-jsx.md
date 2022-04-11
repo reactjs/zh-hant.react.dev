@@ -17,10 +17,8 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Hello toWhat="World" />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Hello toWhat="World" />);
 ```
 
 可以編譯成這段沒有 JSX 的程式碼：
@@ -32,10 +30,8 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(
-  React.createElement(Hello, {toWhat: 'World'}, null),
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(Hello, {toWhat: 'World'}, null));
 ```
 
 如果你想看更多 JSX 是如何轉換成 JavaScript 的範例，你可以嘗試[線上 Babel 編譯器](babel://jsx-simple-example)。
@@ -47,10 +43,8 @@ Component 可以是一個字串、可以是 `React.Component` 的 subclass，或
 ```js
 const e = React.createElement;
 
-ReactDOM.render(
-  e('div', null, 'Hello World'),
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(e('div', null, 'Hello World'));
 ```
 
 如果你使用這個 `React.createElement` 縮寫的格式，他可以跟不使用 JSX 開發 React 一樣方便。
