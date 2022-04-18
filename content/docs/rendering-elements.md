@@ -34,7 +34,11 @@ const element = <h1>Hello, world</h1>;
 
 使用 React 建立應用程式時，通常會有一個單一的 root DOM node。如果你想要整合 React 到現有的應用程式時，你可以根據你的需求獨立出多個 root DOM node。
 
+<<<<<<< HEAD
 如果要 render 一個 React element 到 root DOM node，傳入兩者到 [`ReactDOM.render()`](/docs/react-dom.html#render)：
+=======
+To render a React element, first pass the DOM element to [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot), then pass the React element to `root.render()`:
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 `embed:rendering-elements/render-an-element.js`
 
@@ -46,7 +50,11 @@ const element = <h1>Hello, world</h1>;
 
 React element 是 [immutable](https://en.wikipedia.org/wiki/Immutable_object) 的。一旦你建立一個 element，你不能改變它的 children 或是 attribute。Element 就像是電影中的一個幀：它代表特定時間點的 UI。
 
+<<<<<<< HEAD
 憑藉我們迄今為止對 React 的認識，更新 UI 唯一的方式是建立一個新的 element，並且將它傳入到 [`ReactDOM.render()`](/docs/react-dom.html#render)。
+=======
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `root.render()`.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 思考以下這個 ticking clock 的範例：
 
@@ -54,11 +62,19 @@ React element 是 [immutable](https://en.wikipedia.org/wiki/Immutable_object) �
 
 [在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)
 
+<<<<<<< HEAD
 它從 [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback 每秒呼叫 [`ReactDOM.render()`](/docs/react-dom.html#render)。
+=======
+It calls [`root.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 >**注意：**
 >
+<<<<<<< HEAD
 >在實踐中，大部分 React 應用程式只呼叫 [`ReactDOM.render()`](/docs/react-dom.html#render) 一次。在下一個章節中，我們將會學習如何將這些程式碼封裝到 [stateful component](/docs/state-and-lifecycle.html)。
+=======
+>In practice, most React apps only call `root.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 >
 >我們建議你不要跳著主題看，因為它們彼此間是環環相扣的。
 

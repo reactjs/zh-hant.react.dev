@@ -216,10 +216,8 @@ var TickTock = createReactClass({
   }
 });
 
-ReactDOM.render(
-  <TickTock />,
-  document.getElementById('example')
-);
+const root = ReactDOM.createRoot(document.getElementById('example'));
+root.render(<TickTock />);
 ```
 
 如果一個 component 使用了複數個 mixin，且其中的多個 mixin 同時定義了相同的生命週期方法（例如，多個 mixin 都想要在 component 被銷毀時做一些清除的動作），則所有的生命週期方法都保證會被呼叫到。這些 Mixin 中的方法會依照它們的排列順序依序執行，並會在最後呼叫 component 上的對應方法。

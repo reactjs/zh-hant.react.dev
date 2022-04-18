@@ -33,13 +33,14 @@ const listItems = numbers.map((number) =>
 );
 ```
 
+<<<<<<< HEAD
 我們會把整個 `listItems` array 包含在一個 `<ul>` element 裡，然後 [render 到 DOM 上面](/docs/rendering-elements.html#rendering-an-element-into-the-dom)：
+=======
+Then, we can include the entire `listItems` array inside a `<ul>` element:
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -64,10 +65,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 當你執行這段程式碼時，你會收到一個關於你應該提供 key 給每一個列表項目的警告。「key」是當你在建立一個 element 列表時必須使用的特殊的 string attribute。在下一個段落中，我們將會討論其重要性。
@@ -86,12 +85,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -165,12 +158,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **範例：Key 的正確使用方式**
@@ -193,12 +180,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -239,10 +220,9 @@ const posts = [
   {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
   {id: 2, title: 'Installation', content: 'You can install React from npm.'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)

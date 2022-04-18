@@ -70,7 +70,11 @@ React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的�
 
 你可以從最上層開始，或從最下層開始。也就是說，你可以先從層級較高的 component 開始做起（也就是從 `FilterableProductTable` 開始），或者你也可以從比它低層級的（`ProductRow`）開始。在比較簡單的例子中，通常從上往下是比較簡單的。但在較為大型的專案中，從下往上、邊寫邊測試則比較容易。
 
+<<<<<<< HEAD
 在這一步的最後，你會有一個函式庫的可重複使用的 component 來 render 你的資料模型。這些 component 只會有 `render()` 方法，因為這是你應用程式的靜態版本。最高層級的 component (`FilterableProductTable`) 會接收你的資料模型作為 prop。如果你改變底層的資料模型並再次呼叫 `ReactDOM.render()` 的話，那麼 UI 就會被更新。你可以看到 UI 的更新方式以及更改的位置。React 的 **單向資料流**（也可稱為*單向綁定*）確保所有 component 都是模塊化且快速的。
+=======
+At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `root.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 如果你需要幫助來執行這一步的話，請參考這份 [React 文件](/docs/getting-started.html)。
 

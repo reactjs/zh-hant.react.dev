@@ -35,11 +35,6 @@ React [並不要求](/docs/react-without-jsx.html)使用 JSX，但大部分人�
 ```js{1,2}
 const name = 'Josh Perez';
 const element = <h1>Hello, {name}</h1>;
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
 你可以在 JSX 的大括號中寫入任何合法的 [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions)。舉例來說，`2 + 2`、`user.firstName` 以及 `formatName(user)` 都是合法的 JavaScript expression。
@@ -60,11 +55,6 @@ const element = (
   <h1>
     Hello, {formatName(user)}!
   </h1>
-);
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
 );
 ```
 
