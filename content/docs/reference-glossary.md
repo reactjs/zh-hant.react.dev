@@ -39,13 +39,9 @@ JSX 是一種 JavaScript 語法的擴展。它跟模板語言類似，但具有 
 
 React DOM 使用 camelCase 來命名 HTML 屬性名稱。例如，`tabindex` 在 JSX 中寫作 `tabIndex`。而 `class` 因為是 JavaScript 中的保留字，所以寫作 `className`：
 
-```js
-const name = 'Clementine';
-ReactDOM.render(
-  <h1 className="hello">My name is {name}!</h1>,
-  document.getElementById('root')
-);
-```  
+```jsx
+<h1 className="hello">My name is Clementine!</h1>
+```
 
 ## [Element](/docs/rendering-elements.html) {#elements}
 
