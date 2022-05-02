@@ -25,7 +25,11 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 我們不需要任何複雜的工具或安裝需求 —— **你只需要連接到網路和一分鐘的時間，就能完成本章節。**
 
+<<<<<<< HEAD
 可選：[下載完整範例 (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+=======
+Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ### 第一步：在 HTML 上加入一個 DOM Container {#step-1-add-a-dom-container-to-the-html}
 
@@ -52,10 +56,17 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 ```html{5,6,9}
   <!-- ... 其他 HTML ... -->
 
+<<<<<<< HEAD
   <!-- 載入 React。 -->
   <!-- 注意：在發佈應用程式前，請把「development.js」替換成「production.min.js」。 -->
   <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
   <!-- 載入我們的 React component。-->
   <script src="like_button.js"></script>
@@ -75,16 +86,28 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 >
 >這程式碼定立了一個名為 `LikeButton` 的 React component。請別擔心如果你還沒明白它 —— 我們會在[實用指南](/tutorial/tutorial.html)和[主要概念指南](/docs/hello-world.html)裡解構 React 的基礎。目前，我們就先讓它展示在畫面上吧！
 
+<<<<<<< HEAD
 在 **[starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** 之後，請在 `like_button.js` 的底部加上以下兩行的程式碼:
 
 ```js{3,4}
 // ... 你貼上的 starter code ...
+=======
+After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add three lines to the bottom of `like_button.js`:
+
+```js{3,4,5}
+// ... the starter code you pasted ...
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 const domContainer = document.querySelector('#like_button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+const root = ReactDOM.createRoot(domContainer);
+root.render(e(LikeButton));
 ```
 
+<<<<<<< HEAD
 這兩行的程式碼會找我們在第一步所加入的 `<div>`，然後在裡面展示我們的「Like」按鈕 React component。
+=======
+These three lines of code find the `<div>` we added to our HTML in the first step, create a React app with it, and then display our "Like" button React component inside of it.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ### 大功告成！ {#thats-it}
 
@@ -94,7 +117,11 @@ ReactDOM.render(e(LikeButton), domContainer);
 
 **[按這裡看完整範例的程式碼](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
+<<<<<<< HEAD
 **[下載完整範例 (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+=======
+**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)**
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ### 提示：重用 Component {#tip-reuse-a-component}
 
@@ -102,7 +129,11 @@ ReactDOM.render(e(LikeButton), domContainer);
 
 [按這裡看完整範例的程式碼](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
+<<<<<<< HEAD
 [下載完整範例 (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+=======
+[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/279839cb9891bd41802ebebc5365e9dec08eeb9f.zip)
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 >注意
 >
@@ -115,8 +146,8 @@ ReactDOM.render(e(LikeButton), domContainer);
 如果你已經壓縮了應用程式的 scripts，而且確保了你發佈的 HTML 是載入了以 `production.min.js` 結尾的 React 版本，那麼**你的網頁已經發佈就緒**：
 
 ```js
-<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 如果你沒有一個為你的 scripts 進行壓縮的步驟，[這裡有個方法設定](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)。

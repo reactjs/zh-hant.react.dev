@@ -64,26 +64,31 @@ const element = <Welcome name="Sara" />;
 
 舉例來說，這段程式碼會在頁面上 render 出「Hello, Sara」：
 
-```js{1,5}
+```js{1,6}
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 const element = <Welcome name="Sara" />;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+root.render(element);
 ```
 
 [在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)
 
 讓我們來複習一下這個例子發生了什麼事：
 
+<<<<<<< HEAD
 1. 我們對 `<Welcome name="Sara" />` 這個 element 呼叫了 `ReactDOM.render()`。
 2. React 以 `{name: 'Sara'}` 作為 props 傳入 `Welcome` component 並呼叫。
 3. `Welcome` component 回傳了 `<h1>Hello, Sara</h1>` 這個 element 作為返回值。
 4. React DOM 有效的將 DOM 更新為 `<h1>Hello, Sara</h1>`。
+=======
+1. We call `root.render()` with the `<Welcome name="Sara" />` element.
+2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
+3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
+4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 >**注意：** Component 的字首須為大寫字母
 >
@@ -111,11 +116,6 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
 [在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)

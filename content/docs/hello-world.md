@@ -8,11 +8,9 @@ next: introducing-jsx.html
 
 React 最簡單的範例看起來像是：
 
-```js
-ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('root')
-);
+```jsx
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<h1>Hello, world!</h1>);
 ```
 
 在頁面上顯示「Hello, world!」。

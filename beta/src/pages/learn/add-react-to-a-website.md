@@ -30,9 +30,15 @@ React 從一開始就被設計成逐步採用的方式，你可以根據你的�
 
 在 HTML 頁面的 `</body>` 標籤結束之前，為以下檔案加入三個 `<script>` 標籤：
 
+<<<<<<< HEAD
 - [**react.development.js**](https://unpkg.com/react@17/umd/react.development.js) 載入 React 的核心
 - [**react-dom.development.js**](https://unpkg.com/react-dom@17/umd/react-dom.development.js) 讓 React render HTML element 到 [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model)。
 - **like_button.js** 是你在第三步將要撰寫 component 的地方！
+=======
+- [**react.development.js**](https://unpkg.com/react@18/umd/react.development.js) loads the core of React
+- [**react-dom.development.js**](https://unpkg.com/react-dom@18/umd/react-dom.development.js) lets React render HTML elements to the [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model).
+- **like_button.js** is where you'll write your component in step 3!
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 <Gotcha>
 
@@ -42,8 +48,8 @@ React 從一開始就被設計成逐步採用的方式，你可以根據你的�
 
 ```html
   <!-- end of the page -->
-  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="like_button.js"></script>
 </body>
 ```
@@ -74,11 +80,16 @@ function LikeButton() {
 
 ### 第四步：把你的 React Component 加入到頁面 {/*step-4-add-your-react-component-to-the-page*/}
 
+<<<<<<< HEAD
 最後，在 **like_button.js** 底部加入兩行。這兩行程式碼找到你在第一步中加入 HTML 到 `<div>`，然後在其中顯示「Like」按鈕的 React component。
+=======
+Lastly, add three lines to the bottom of **like_button.js**. These three lines of code find the `<div>` you added to your HTML in the first step, create a React app with it, and then display the "Like" button React component inside of it.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ```js
 const domContainer = document.getElementById('component-goes-here');
-ReactDOM.render(React.createElement(LikeButton), domContainer);
+const root = ReactDOM.createRoot(domContainer);
+root.render(React.createElement(LikeButton));
 ```
 
 **恭喜你/妳！你剛剛在你的網站上 render 了你的第一個 React component！**
@@ -88,21 +99,25 @@ ReactDOM.render(React.createElement(LikeButton), domContainer);
 
 #### 你可以重複使用 Component！ {/*you-can-reuse-components*/}
 
+<<<<<<< HEAD
 你可能想要在同一個 HTML 頁面的多個地方顯示一個 React component。當頁面中由 React 驅動的部分彼此隔離時，這是最有用的。你可以透過多次呼叫 `ReactDOM.render()` 和多個 container element 來做到這一點。
+=======
+You might want to display a React component in multiple places on the same HTML page. This is most useful while React-powered parts of the page are isolated from each other. You can do this by calling `ReactDOM.createRoot()` multiple times with multiple container elements.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 1. 在 **index.html** 中，加入一個額外的 `<div id="component-goes-here-too"></div>` container element。
 2. 在 **like_button.js** 中，為新的 container element 加入一個額外的 `ReactDOM.render()`：
 
 ```js {6,7,8,9}
-ReactDOM.render(
-  React.createElement(LikeButton),
+const root1 = ReactDOM.createRoot(
   document.getElementById('component-goes-here')
 );
+root1.render(React.createElement(LikeButton));
 
-ReactDOM.render(
-  React.createElement(LikeButton),
+const root2 = ReactDOM.createRoot(
   document.getElementById('component-goes-here-too')
 );
+root2.render(React.createElement(LikeButton));
 ```
 
 請查看[一個顯示了三次「Like」按鈕並向它傳送了一些資料的範例](https://gist.github.com/rachelnabors/c0ea05cc33fbe75ad9bbf78e9044d7f8)！
@@ -115,8 +130,8 @@ ReactDOM.render(
 - **如果你已經將你的應用程式 script 進行 minify**，如果你確保部署的 HTML 是載入 `production.min.js` 結尾的 React 版本，你的網站將是 proudction-ready 的，像是如下：
 
 ```html
-<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 ## 嘗試 React 與 JSX {/*try-react-with-jsx*/}
@@ -135,7 +150,11 @@ return <button onClick={() => setLiked(true)}>Like</button>;
 
 這兩個程式碼片段是等效的。JSX 是在 JavaScript 中描述 markup 的流行語法。許多人發現它很熟悉並對於撰寫 UI 程式碼非常有幫助 -- 無論是使用 React 或是其他 library。你可能會在其他專案中看到「markup 散佈在你的 JavaScript 之中」。
 
+<<<<<<< HEAD
 > 你可以使用[這個線上轉換器](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3)來體驗將 HTML markup 轉換成 JSX。
+=======
+> You can play with transforming HTML markup into JSX using [this online converter](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.17).
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ### 嘗試 JSX {/*try-jsx*/}
 
@@ -144,8 +163,8 @@ return <button onClick={() => setLiked(true)}>Like</button>;
 ```html {6}
 <!-- ... rest of <head> ... -->
 
-<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
@@ -157,8 +176,8 @@ return <button onClick={() => setLiked(true)}>Like</button>;
 
 ```jsx {1}
 <script type="text/babel">
-  ReactDOM.render(
-  <h1>Hello, world!</h1>, document.getElementById('root') );
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<h1>Hello, world!</h1>);
 </script>
 ```
 

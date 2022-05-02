@@ -9,18 +9,22 @@ next: release-channels.html
 通過 CDN 載入 React 和 React DOM。
 
 ```html
-<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 ```
 
 以上的版本只適用於開發環境，並不適合用於線上環境。你可以在以下找到已壓縮和最佳化的 React 線上版本：
 
 ```html
-<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 ```
 
+<<<<<<< HEAD
 請更改版本號碼 `17` 來載入指定版本的 `react` 和 `react-dom`。
+=======
+To load a specific version of `react` and `react-dom`, replace `18` with the version number.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 ### 為什麼要使用 `crossorigin` Attribute? {#why-the-crossorigin-attribute}
 
