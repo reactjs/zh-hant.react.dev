@@ -87,10 +87,6 @@ import("./math").then(math => {
 
 ## `React.lazy` {#reactlazy}
 
-> 注意：
->
-> `React.lazy` 和 Suspense 還無法在 server-side render 使用。如果你想要在 server render 應用程式做 code-splitting，我們推薦 [Loadable Components](https://github.com/gregberge/loadable-components)。它有一個用於 server-side render 的 [bundle splitting 的指南](https://loadable-components.com/docs/server-side-rendering/)。
-
 `React.lazy` 讓你 render 一個動態 import 的 component 作為正常的 component。
 
 **加入前：**
@@ -148,6 +144,52 @@ function MyComponent() {
   );
 }
 ```
+
+### 避免 Fallbacks {#avoiding-fallbacks}
+任何 component 都可能因 render 而暫停，即使是已經向使用者顯示的 component。為了讓螢幕內容始終保持一致，如果一個已經顯示的 component suspend，React 必須將 tree 隱藏到最近的 `<Suspense>` 邊界。但是，從使用者的角度來看，這可能會讓人迷惑。
+
+思考這個 tab switcher：
+
+```js
+import React, { Suspense } from 'react';
+import Tabs from './Tabs';
+import Glimmer from './Glimmer';
+
+const Comments = React.lazy(() => import('./Comments'));
+const Photos = React.lazy(() => import('./Photos'));
+
+function MyComponent() {
+  const [tab, setTab] = React.useState('photos');
+
+  function handleTabSelect(tab) {
+    setTab(tab);
+  };
+
+  return (
+    <div>
+      <Tabs onTabSelect={handleTabSelect} />
+      <Suspense fallback={<Glimmer />}>
+        {tab === 'photos' ? <Photos /> : <Comments />}
+      </Suspense>
+    </div>
+  );
+}
+
+```
+
+在這個範例中，如果 tab 從 `'photos'` 改變為 `'comments'`，但是 `Comments` 暫停，使用者會看到一個 glimmer。這很合理因為使用者不想要看到 `Photos`，`Comments` component 還沒準備 render 任何東西，React 需要保持使用者體驗一致，所以它別無選擇，只能顯示上面的 `Glimmer`。
+
+但是，有時候這樣的使用者體驗並不理想。在特定場景下，有時候在新的 UI 準備好之前，顯示「舊」的 UI 會更好。你可以使用新的 [`startTransition`](/docs/react-api.html#starttransition) API 來讓 React 執行此操作：
+
+```js
+function handleTabSelect(tab) {
+  startTransition(() => {
+    setTab(tab);
+  });
+}
+```
+
+這裡，你告訴 React 設定 tab 成 `'comments'` 不是一個緊急更新，但它是一個 [transition](/docs/react-api.html#transitions) 所以可能需要一些時間。React 將會保持舊的 UI 交互，並且在準備好時切換成顯示 `<Comments />`。更多資訊請參考 [Transitions](/docs/react-api.html#transitions)。
 
 ### 錯誤邊界 {#error-boundaries}
 

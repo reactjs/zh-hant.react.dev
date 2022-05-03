@@ -70,17 +70,15 @@ function Welcome(props) {
 }
 
 const element = <Welcome name="Sara" />;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(element);
 ```
 
 [在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)
 
 讓我們來複習一下這個例子發生了什麼事：
 
-1. 我們對 `<Welcome name="Sara" />` 這個 element 呼叫了 `ReactDOM.render()`。
+1. 我們對 `<Welcome name="Sara" />` 這個 element 呼叫了 `root.render()`。
 2. React 以 `{name: 'Sara'}` 作為 props 傳入 `Welcome` component 並呼叫。
 3. `Welcome` component 回傳了 `<h1>Hello, Sara</h1>` 這個 element 作為返回值。
 4. React DOM 有效的將 DOM 更新為 `<h1>Hello, Sara</h1>`。
@@ -111,11 +109,6 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
 [在 CodePen 上試試看吧！](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)
