@@ -144,11 +144,11 @@ useEffect(() => {
 
 然而，不是所有的 effect 都可以被延後。例如，使用者可見的 DOM 改變必須在下一次繪製之前同步觸發，這樣使用者才不會感覺到視覺不一致。（概念上類似被動和主動 event listener 的區別。）為這類型的 effect，React 提供了一個額外的 [`useLayoutEffect`](#uselayouteffect) Hook。它和 `useEffect` 的結構相同，只是執行的時機不同而已。
 
-Additionally, starting in React 18, the function passed to `useEffect` will fire synchronously **before** layout and paint when it's the result of a discrete user input such as a click, or when it's the result of an update wrapped in [`flushSync`](/docs/react-dom.html#flushsync). This behavior allows the result of the effect to be observed by the event system, or by the caller of [`flushSync`](/docs/react-dom.html#flushsync).
+此外，從 React 18 開始，傳給 `useEffect` 的 function 將在 layout 和 paint **之前** 同步的觸發，當它是一個離散的使用者輸入（像是點擊）或當它是一個被 wrap 在 [`flushSync`](/docs/react-dom.html#flushsync) 的更新結果。這個行為讓 event system 或 [`flushSync`](/docs/react-dom.html#flushsync) 的 caller 觀察 effect 的結果。
 
-> Note
+> 注意
 >
-> This only affects the timing of when the function passed to `useEffect` is called - updates scheduled inside these effects are still deferred. This is different than [`useLayoutEffect`](#uselayouteffect), which fires the function and processes the updates inside of it immediately.
+> 這只會影響傳遞給 `useEffect` 的 function 的被呼叫時間 - 在這些 effect 中安排的更新仍然會被延遲。這與 [`useLayoutEffect`](#uselayouteffect) 不同，後者會觸發 function 並立即處理其更新。
 
 雖然 `useEffect` 會被延遲直到瀏覽器繪制完成，但會保證在任何新 render 前執行。React 會在開始新一個更新前刷新上一輪 render 的 effect。
 
@@ -527,12 +527,12 @@ useDebugValue(date, date => date.toDateString());
 const deferredValue = useDeferredValue(value);
 ```
 
-`useDeferredValue` accepts a value and returns a new copy of the value that will defer to more urgent updates. If the current render is the result of an urgent update, like user input, React will return the previous value and then render the new value after the urgent render has completed.
+`useDeferredValue` 接受一個值，並且回傳值的新拷貝，新的拷貝會被推遲到更緊急的更新。如果目前的 render 是緊急更新的結果，像是使用者輸入，React 將會回傳先前的值，並接著在緊急更新完成後，render 新的值。
 
-This hook is similar to user-space hooks which use debouncing or throttling to defer updates. The benefits to using `useDeferredValue` is that React will work on the update as soon as other work finishes (instead of waiting for an arbitrary amount of time), and like [`startTransition`](/docs/react-api.html#starttransition), deferred values can suspend without triggering an unexpected fallback for existing content.
+這個 hook 類似 user-space 的 hook，被用在 deboucing 或 throttiling 來延遲更新。使用 `useDeferredValue` 的好處是 React 將會在其他工作完成後，立即進行更新（而不是等待一個任意的時間），像是 [`startTransition`](/docs/react-api.html#starttransition)，延遲的值可以暫停而不會觸發一個現有內容的 unexpected fallback。
 
-#### Memoizing deferred children {#memoizing-deferred-children}
-`useDeferredValue` only defers the value that you pass to it. If you want to prevent a child component from re-rendering during an urgent update, you must also memoize that component with [`React.memo`](/docs/react-api.html#reactmemo) or [`React.useMemo`](/docs/hooks-reference.html#usememo):
+#### Memoizing 延遲的 Children {#memoizing-deferred-children}
+`useDeferredValue` 只延遲你傳送給它的值。如果你想要防止一個 child component 在一個緊急更新中不斷重新 render，你必須 使用 [`React.memo`](/docs/react-api.html#reactmemo) 或 [`React.useMemo`](/docs/hooks-reference.html#usememo) 來 memoize component：
 
 ```js
 function Typeahead() {
@@ -557,7 +557,7 @@ function Typeahead() {
 }
 ```
 
-Memoizing the children tells React that it only needs to re-render them when `deferredQuery` changes and not when `query` changes. This caveat is not unique to `useDeferredValue`, and it's the same pattern you would use with similar hooks that use debouncing or throttling.
+Memoizing children 告訴 React 它只需要在 `deferredQuery` 重新 render，而不是在 `query` 改變時。這個警告不是 `useDeferredValue` 獨有的，它與你使用的 debouncing 或 throttling 類似的 hook 使用的模式相同。
 
 ### `useTransition` {#usetransition}
 
@@ -565,17 +565,17 @@ Memoizing the children tells React that it only needs to re-render them when `de
 const [isPending, startTransition] = useTransition();
 ```
 
-Returns a stateful value for the pending state of the transition, and a function to start it.
+回傳一個 transition pending 狀態的 stateful 值，以及一個啟動 function。
 
 `startTransition` lets you mark updates in the provided callback as transitions:
-
+讓你在提供的 callback 中標記更新為 transitions：
 ```js
 startTransition(() => {
   setCount(count + 1);
 })
 ```
 
-`isPending` indicates when a transition is active to show a pending state:
+`isPending` 表示當一個 transition 是 active 時顯示 pending state：
 
 ```js
 function App() {
@@ -597,7 +597,7 @@ function App() {
 }
 ```
 
-> Note:
+> 注意：
 >
 > Updates in a transition yield to more urgent updates such as clicks.
 >
@@ -645,7 +645,7 @@ function NameFields() {
 }
 ```
 
-> Note:
+> 注意：
 >
 > `useId` generates a string that includes the `:` token. This helps ensure that the token is unique, but is not supported in CSS selectors or APIs like `querySelectorAll`.
 >
@@ -693,7 +693,7 @@ const selectedField = useSyncExternalStore(
 );
 ```
 
-> Note:
+> 注意：
 >
 > `getSnapshot` must return a cached value. If getSnapshot is called multiple times in a row, it must return the same exact value unless there was a store update in between.
 >
@@ -709,6 +709,6 @@ useInsertionEffect(didUpdate);
 
 The signature is identical to `useEffect`, but it fires synchronously _before_ all DOM mutations. Use this to inject styles into the DOM before reading layout in [`useLayoutEffect`](#uselayouteffect). Since this hook is limited in scope, this hook does not have access to refs and cannot schedule updates.
 
-> Note:
+> 注意：
 >
 > `useInsertionEffect` should be limited to css-in-js library authors. Prefer [`useEffect`](#useeffect) or [`useLayoutEffect`](#uselayouteffect) instead.
