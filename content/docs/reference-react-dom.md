@@ -6,65 +6,47 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
-<<<<<<< HEAD
-如果使用 `<script>` 標籤載入 React 這些頂層 API 就可以在全域 `ReactDOM` 上找到。如果你使用 ES6 和 npm，你可以寫成 `import ReactDOM from 'react-dom'`。如果你使用 ES5 和 npm，你可以寫成 `var ReactDOM = require('react-dom')`。
-=======
-The `react-dom` package provides DOM-specific methods that can be used at the top level of your app and as an escape hatch to get outside the React model if you need to.
+`react-dom` 提供了 DOM 的特定方法讓你可以在你的應用程式頂層使用，如果有需要，也可以作為一個逃生窗口來脫離 React 模型。
 
 ```js
 import * as ReactDOM from 'react-dom';
 ```
 
-If you use ES5 with npm, you can write:
+如果你使用 ES5 與 npm，你可以這樣寫：
 
 ```js
 var ReactDOM = require('react-dom');
 ```
 
-The `react-dom` package also provides modules specific to client and server apps:
+`react-dom` package 也提供了特定於 client 和 server 應用程式的 module：
 - [`react-dom/client`](/docs/react-dom-client.html)
 - [`react-dom/server`](/docs/react-dom-server.html)
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
 ## 概覽 {#overview}
 
-<<<<<<< HEAD
-`react-dom` package 提供了特定於 DOM 的方法，可以被用在你的應用程式的頂層，也可以作為 React model 的出口。大部分你的 component 不應該需要使用到這個模組。
-=======
-The `react-dom` package exports these methods:
+`react-dom` package export 這些方法：
 - [`createPortal()`](#createportal)
 - [`flushSync()`](#flushsync)
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 
-These `react-dom` methods are also exported, but are considered legacy:
+這些 `react-dom` 方法也被 export，但是被視為是 legacy：
 - [`render()`](#render)
 - [`hydrate()`](#hydrate)
 - [`findDOMNode()`](#finddomnode)
 - [`unmountComponentAtNode()`](#unmountcomponentatnode)
 
-> Note: 
-> 
-> Both `render` and `hydrate` have been replaced with new [client methods](/docs/react-dom-client.html) in React 18. These methods will warn that your app will behave as if it's running React 17 (learn more [here](https://reactjs.org/link/switch-to-createroot)).
+> 注意：
+>
+> `render` 與 `hydrate` 兩者在 React 18 已經替換為新的 [client 方法](/docs/react-dom-client.html)。如果你使用像是 React 17 方式，這些方法將警告你的應用程式的行為。（[從這裡](https://reactjs.org/link/switch-to-createroot)了解更多）。
 
 ### 瀏覽器支援 {#browser-support}
 
-<<<<<<< HEAD
-React 支援所有主流瀏覽器包含 IE 9 和以上，儘管舊版瀏覽器像是 IE 9 和 IE 10 [需要一些 polyfill](/docs/javascript-environment-requirements.html)。
-=======
-React supports all modern browsers, although [some polyfills are required](/docs/javascript-environment-requirements.html) for older versions.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+React 支援所有主流瀏覽器，雖然對於一些舊版瀏覽器[需要一些 polyfill](/docs/javascript-environment-requirements.html)。
 
 > 注意：
 >
-<<<<<<< HEAD
-> 我們不支援那些較舊的不支援 ES5 方法的瀏覽器，但如果頁面上包含了像是 [es5-shim 和 es5-sham](https://github.com/es-shims/es5-shim) 等 polyfill 你可能會發現你的應用程式在較舊的瀏覽器上仍可使用。如果你選擇了這條不歸路你就只能靠你自己了。
+> 我們不支援那些較舊不支援 ES5 方法或是 microtasks 的瀏覽器，像是 Internet Explorer。但如果頁面上引入了像是 [es5-shim 和 es5-sham](https://github.com/es-shims/es5-shim) 等 polyfill 你可能會發現你的應用程式在較舊的瀏覽器上仍可使用，但如果你選擇了這條路你就只能靠你自己了。
 
-* * *
-=======
-> We do not support older browsers that don't support ES5 methods or microtasks such as Internet Explorer. You may find that your apps do work in older browsers if polyfills such as [es5-shim and es5-sham](https://github.com/es-shims/es5-shim) are included in the page, but you're on your own if you choose to take this path.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
-
-## Reference {#reference}
+## 參考 {#reference}
 
 ### `createPortal()` {#createportal}
 
@@ -72,10 +54,7 @@ React supports all modern browsers, although [some polyfills are required](/docs
 createPortal(child, container)
 ```
 
-<<<<<<< HEAD
-在 `container` 內 render 一個 React element 並回傳一個 [reference](/docs/more-about-refs.html) 到 component（或者是 [stateless components](/docs/components-and-props.html#function-and-class-components) 則回傳 `null`）。
-=======
-Creates a portal. Portals provide a way to [render children into a DOM node that exists outside the hierarchy of the DOM component](/docs/portals.html).
+提供了一個方式將 children [render 存在於 DOM component 層次結構之外的 DOM 節點中](/docs/portals.html)。
 
 ### `flushSync()` {#flushsync}
 
@@ -83,30 +62,27 @@ Creates a portal. Portals provide a way to [render children into a DOM node that
 flushSync(callback)
 ```
 
-Force React to flush any updates inside the provided callback synchronously. This method is useful for being able to read the result of those updates immediately.
+> 注意：
+>
+> `flushSync` 可能會對效能產生重大的影響。謹慎使用。
+>
+> `flushSync` 可能會迫使 pending 的 Suspense boundary 顯示 `fallback` 狀態。
+>
+> `flushSync` 也可以執行 pending effects，並在回傳之前同步 apply 它們包含的任何更新。
+>
+> `flushSync` `flushSync` 在必要時也可以在 callback 外 flush 更新，以 flush callback 内的更新。例如，如果有來自 click 的 pending 更新，React 可能會在 flush callback 中的更新之前 flush 這些内容。
 
-> Note:
-> 
-> `flushSync` can have a significant impact on performance. Use sparingly.
-> 
-> `flushSync` may force pending Suspense boundaries to show their `fallback` state.
-> 
-> `flushSync` may also run pending effects and synchronously apply any updates they contain before returning.
-> 
-> `flushSync` may also flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
-
-## Legacy Reference {#legacy-reference}
+## Legacy 參考 {#legacy-reference}
 ### `render()` {#render}
 ```javascript
 render(element, container[, callback])
 ```
 
-> Note:
+> 注意：
 >
-> `render` has been replaced with `createRoot` in React 18. See [createRoot](/docs/react-dom-client.html#createroot) for more info.
+> `render` 在 React 18 已經被 `createRoot` 取代。更多資訊請參考 [createRoot](/docs/react-dom-client.html#createroot)。
 
-Render a React element into the DOM in the supplied `container` and return a [reference](/docs/more-about-refs.html) to the component (or returns `null` for [stateless components](/docs/components-and-props.html#function-and-class-components)).
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+將一個 React elemnt render 到提供提供的 `container` 的 DOM 中，並回傳一個該 component 的 [reference](/docs/more-about-refs.html)（對於 [stateless components](/docs/components-and-props.html#function-and-class-components) 回傳 `null`）。
 
 如果 React element 之前已經在 `container` 內被 render，它只會執行更新並 mutate 必要的 DOM，來呈現最新的 React element。
 
@@ -114,27 +90,15 @@ Render a React element into the DOM in the supplied `container` and return a [re
 
 > 注意：
 >
-<<<<<<< HEAD
-> `ReactDOM.render()` 控制了你傳入到 container 內的 node 內容。當第一次被呼叫時，任何存在於 container 的 DOM element 都會被替換。之後的呼叫會使用 React 的 DOM diffing 演算法進行高效率的更新。
+> `render()` 控制了你傳入到 container 內的 node 內容。當第一次被呼叫時，任何存在於 container 的 DOM element 都會被替換。之後的呼叫會使用 React 的 DOM diffing 演算法進行高效率的更新。
 >
-> `ReactDOM.render()` 不修改 container 的 node（只修改 container 的 children）。它可以將 component 插入一個現有的 DOM node 而不用覆蓋已經存在的 children。
+> `render()` 不修改 container 的 node（只修改 container 的 children）。它可以將 component 插入一個現有的 DOM node 而不用覆蓋已經存在的 children。
 >
-> `ReactDOM.render()` 目前回傳一個 reference 到 root `ReactComponent` instance。然而，使用這個回傳值是被遺留的方式
+> `render()` 目前回傳一個 reference 到 root `ReactComponent` instance。然而，使用這個回傳值是被遺留的方式
 > 並且應該被避免，因為未來版本的 React 在某些情況下可能會非同步地 render component。如果你需要 reference 到 root `ReactComponent` instance，首選的解決方式是附加一個
 > [callback ref](/docs/refs-and-the-dom.html#callback-refs) 在 root element 上。
 >
-> 使用 `ReactDOM.render()` 來 hydrate 一個 server-render container 已經被棄用，並且在 React 17 將會被移除。使用 [`hydrate()`](#hydrate) 作為代替。
-=======
-> `render()` controls the contents of the container node you pass in. Any existing DOM elements inside are replaced when first called. Later calls use React’s DOM diffing algorithm for efficient updates.
->
-> `render()` does not modify the container node (only modifies the children of the container). It may be possible to insert a component to an existing DOM node without overwriting the existing children.
->
-> `render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
-> and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
-> [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
->
-> Using `render()` to hydrate a server-rendered container is deprecated. Use [`hydrateRoot()`](#hydrateroot) instead.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+> 使用 `render()` 來 hydrate 一個 server-render container 已經被棄用。使用 [`hydrateRoot()`](#hydrateroot) 作為代替。
 
 * * *
 
@@ -144,15 +108,11 @@ Render a React element into the DOM in the supplied `container` and return a [re
 hydrate(element, container[, callback])
 ```
 
-<<<<<<< HEAD
-與 [`render()`](#render) 相同，但用來 hydrate 其 HTML 內容由 [`ReactDOMServer`](/docs/react-dom-server.html) 所 render 的 container 。React 將會嘗試附加 event listener 到現有的 markup。
-=======
-> Note:
+> 注意：
 >
-> `hydrate` has been replaced with `hydrateRoot` in React 18. See [hydrateRoot](/docs/react-dom-client.html#hydrateroot) for more info.
+> `hydrate` 在 React 18 已經被 `hydrateRoot` 取代。更多資訊請參考 [hydrateRoot](/docs/react-dom-client.html#hydrateroot)。
 
-Same as [`render()`](#render), but is used to hydrate a container whose HTML contents were rendered by [`ReactDOMServer`](/docs/react-dom-server.html). React will attempt to attach event listeners to the existing markup.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+如同 [`render()`](#render)，但它是被用來 hydrate 一個 container，其 HTML 內容是由 [`ReactDOMServer`](/docs/react-dom-server.html) render。React 將嘗試將 event listener attach 到現有 markup 上。s
 
 React 預期在伺服器端和客戶端所 render 的內容是相同的。它可以修補 text content 的差異，但你應該把不匹配的部分視為 bug 並且修正。在開發模式中，React 會警告關於 hydration 過程中的不匹配。在不匹配的情況下，將無法保證 attribute 的差異會被修補。這對於效能來說很重要，因為在大部分的應用程式中，不匹配的情況很少見，也因此驗證要所有 markup 的成本非常高。
 
@@ -170,15 +130,11 @@ React 預期在伺服器端和客戶端所 render 的內容是相同的。它可
 unmountComponentAtNode(container)
 ```
 
-<<<<<<< HEAD
-從 DOM 之中移除一個已經 mount 的 React component 並清除其 event handler 和 state。如果 container 中沒有 mount 任何 component，呼叫此 function 不會執行任何操作。如果一個 component 被 unmount 則回傳 `true`，而如果沒有要 unmount 的 component 則回傳 `false`。
-=======
-> Note:
+> 注意：
 >
-> `unmountComponentAtNode` has been replaced with `root.unmount()` in React 18. See [createRoot](/docs/react-dom-client.html#createroot) for more info.
+> `unmountComponentAtNode` 在 React 18 已經被 `root.unmount()` 取代。更多資訊請參考 [createRoot](/docs/react-dom-client.html#createroot)。
 
-Remove a mounted React component from the DOM and clean up its event handlers and state. If no component was mounted in the container, calling this function does nothing. Returns `true` if a component was unmounted and `false` if there was no component to unmount.
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
+從 DOM 移除一個 mount React component 並清除它的 event handler 以及 state。如果沒有 component 被 mount 在 container 的話，呼叫這個 function 並不會做任何事。如果一個 component 被 unmount 回傳一個 `true`，反之如果沒有 component 被 unmount，回傳 `false`。
 
 * * *
 
@@ -202,14 +158,3 @@ findDOMNode(component)
 > `findDOMNode` 不能被用在 function component。
 
 * * *
-<<<<<<< HEAD
-
-### `createPortal()` {#createportal}
-
-```javascript
-ReactDOM.createPortal(child, container)
-```
-
-創建 portal。Portal 提供了一種方法來 [render children 為存在於 DOM component 層級結構之外的 DOM node](/docs/portals.html)。
-=======
->>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
