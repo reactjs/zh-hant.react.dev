@@ -35,17 +35,9 @@ function Greeting(props) {
   return <GuestGreeting />;
 }
 
-<<<<<<< HEAD
-ReactDOM.render(
-  // 試改為 isLoggedIn={true}:
-  <Greeting isLoggedIn={false} />,
-  document.getElementById('root')
-);
-=======
-const root = ReactDOM.createRoot(document.getElementById('root')); 
-// Try changing to isLoggedIn={true}:
+const root = ReactDOM.createRoot(document.getElementById('root'));
+// 試改為 isLoggedIn={true}:
 root.render(<Greeting isLoggedIn={false} />);
->>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 ```
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
@@ -116,7 +108,7 @@ class LoginControl extends React.Component {
   }
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root')); 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<LoginControl />);
 ```
 
@@ -145,7 +137,7 @@ function Mailbox(props) {
 
 const messages = ['React', 'Re: React', 'Re:Re: React'];
 
-const root = ReactDOM.createRoot(document.getElementById('root')); 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Mailbox unreadMessages={messages} />);
 ```
 
@@ -247,7 +239,7 @@ class Page extends React.Component {
   }
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root')); 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<Page />);
 ```
 

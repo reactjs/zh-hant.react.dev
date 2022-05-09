@@ -62,7 +62,16 @@ createPortal(child, container)
 flushSync(callback)
 ```
 
-<<<<<<< HEAD
+強制 React 同步 flush 提供的 callback 中的任何更新。這可以確保 DOM 被立即的更新。
+
+```javascript
+// Force this state update to be synchronous.
+flushSync(() => {
+  setCount(count + 1);
+});
+// By this point, DOM is updated.
+```
+
 > 注意：
 >
 > `flushSync` 可能會對效能產生重大的影響。謹慎使用。
@@ -73,30 +82,7 @@ flushSync(callback)
 >
 > `flushSync` `flushSync` 在必要時也可以在 callback 外 flush 更新，以 flush callback 内的更新。例如，如果有來自 click 的 pending 更新，React 可能會在 flush callback 中的更新之前 flush 這些内容。
 
-## Legacy 參考 {#legacy-reference}
-=======
-Force React to flush any updates inside the provided callback synchronously. This ensures that the DOM is updated immediately.
-
-```javascript
-// Force this state update to be synchronous.
-flushSync(() => {
-  setCount(count + 1);
-});
-// By this point, DOM is updated.
-```
-
-> Note:
-> 
-> `flushSync` can significantly hurt performance. Use sparingly.
-> 
-> `flushSync` may force pending Suspense boundaries to show their `fallback` state.
-> 
-> `flushSync` may also run pending effects and synchronously apply any updates they contain before returning.
-> 
-> `flushSync` may also flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
-
 ## Legacy Reference {#legacy-reference}
->>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 ### `render()` {#render}
 ```javascript
 render(element, container[, callback])

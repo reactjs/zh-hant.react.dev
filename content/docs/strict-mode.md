@@ -14,23 +14,13 @@ permalink: docs/strict-mode.html
 
 在上面的範例裡，嚴格模式檢查將*不會*跑在 `Header` 和 `Footer` 元件上。然而 `ComponentOne` 和 `ComponentTwo`，以及它們底下的所有子依賴，都會被檢查。
 
-<<<<<<< HEAD
 `StrictMode` 目前可以幫助：
 * [發現擁有不安全生命週期的 component](#identifying-unsafe-lifecycles)
 * [警告使用了 legacy string ref API](#warning-about-legacy-string-ref-api-usage)
 * [警告使用到了被棄用的 findDOMNode](#warning-about-deprecated-finddomnode-usage)
 * [偵測意想不到的副作用](#detecting-unexpected-side-effects)
 * [偵測 legacy context API](#detecting-legacy-context-api)
-* [偵測不安全的 effect](#detecting-unsafe-effects)
-=======
-`StrictMode` currently helps with:
-* [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
-* [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
-* [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
-* [Detecting unexpected side effects](#detecting-unexpected-side-effects)
-* [Detecting legacy context API](#detecting-legacy-context-api)
-* [Ensuring reusable state](#ensuring-reusable-state)
->>>>>>> 26a870e1c6e232062b760d37620d85802750e985
+* [確保可重用的 state](#ensuring-reusable-state)
 
 其他功能會在未來版本的 React 釋出時被加進去。
 

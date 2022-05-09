@@ -512,11 +512,7 @@ setState(updater, [callback])
 
 `setState()` 會將改變排進一個 queue 中，並告知 React 這個 component 以及它的 children 需要用更新後的 state 重新 render。這是你會在事件處理和伺服器回應用來更新使用者介面最主要的方法。
 
-<<<<<<< HEAD
-請把 `setState()` 想成一個*請求*而非一個馬上對 component 進行更新的指令。為了達到更好的效能，React 也許會延遲這個請求，然後一次更新數個 component。React 並不保證 state 的改變會馬上發生。
-=======
-Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. In the rare case that you need to force the DOM update to be applied synchronously, you may wrap it in [`flushSync`](/docs/react-dom.html#flushsync), but this may hurt performance.
->>>>>>> 26a870e1c6e232062b760d37620d85802750e985
+請把 `setState()` 想成一個*請求*而非一個馬上對 component 進行更新的指令。為了達到更好的效能，React 也許會延遲這個請求，然後一次更新數個 component。在極少數情況下，你需要強制同步 DOM 更新，你可以將其包裝在 [`flushSync`](/docs/react-dom.html#flushsync) 中，但這可能會影響效能。
 
 `setState()` 並不會總是馬上更新 component。它有可能會將更新分批處理更新或延遲到稍後才更新。這使得在呼叫 `setState()` 後讀取 `this.state` 成為一個潛在的問題。因此請不要這麼做。相反的，請使用 `componentDidUpdate` 或一個 `setState` callback（`setState(updater, callback)`）。不論你使用哪一個，React 都保證它會在更新後被觸發。如果你需要基於先前的 state 來設定 state 的話，請閱讀以下關於 `updater` 的參數。
 
