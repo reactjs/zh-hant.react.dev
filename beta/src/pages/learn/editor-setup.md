@@ -8,15 +8,32 @@ title: 編輯器設定
 
 </Intro>
 
+<<<<<<< HEAD
 ## 你的編輯器 {/*your-editor*/}
+=======
+<YouWillLearn>
+
+* What the most popular editors are
+* How to format your code automatically
+
+</YouWillLearn>
+
+## Your editor {/*your-editor*/}
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 [VS Code](https://code.visualstudio.com/) 是現在最受歡迎的編輯器之一。它有一個龐大的擴充功能市集，並與 GitHub 等流行服務很好的整合。下面列出的大多數功能也可以作為擴充功能加入到 VS Code 中，使其具有高度的可性！
 
 其他在 React 社群使用的流行文字編輯器包括：
 
+<<<<<<< HEAD
 * [WebStorm](https://www.jetbrains.com/webstorm/)—一個專門為 JavaScript 設計的完整開發環境。
 * [Sublime Text](https://www.sublimetext.com/)—支援 JSX 和 TypeScript、[語法高亮](https://stackoverflow.com/a/70960574/458193)和自動補全功能。
 * [Vim](https://www.vim.org/)—是一個高度可配置的文字編輯器，可以非常有效的建立和修改任何類型的文本。它作為「vi」被內建在大多數 UNIX 系統和蘋果 OS X 系統中。
+=======
+* [WebStorm](https://www.jetbrains.com/webstorm/) is an integrated development environment designed specifically for JavaScript.
+* [Sublime Text](https://www.sublimetext.com/) has support for JSX and TypeScript, [syntax highlighting](https://stackoverflow.com/a/70960574/458193) and autocomplete built in.
+* [Vim](https://www.vim.org/) is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as "vi" with most UNIX systems and with Apple OS X.
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 ## 推薦的文字編輯器功能 {/*recommended-text-editor-features*/}
 
@@ -35,15 +52,23 @@ Code linter 可以在你撰寫程式碼的時候發現問題，幫助你儘早�
 
 你可以透過以下幾個步驟安裝[在 VSCode 內安裝 Prettier 擴充套件](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)：
 
+<<<<<<< HEAD
 1. 啟動 VS Code
 2. 使用快速開啟（按下 `CTRL/CMD + P`）
 3. 貼上 `ext install esbenp.prettier-vscode`
 4. 按下 enter
+=======
+1. Launch VS Code
+2. Use Quick Open (press Ctrl/Cmd+P)
+3. Paste in `ext install esbenp.prettier-vscode`
+4. Press Enter
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 
 #### 儲存時格式化 {/*formatting-on-save*/}
 
 理想情況下，你應該在每次儲存時對你的程式碼進行格式化。 在 VS Code 可以設定！
 
+<<<<<<< HEAD
 1. 在 VS Code 內，按下 `CTRL/CMD + SHIFT + P`。
 2. 輸入「settings」
 3. 按下 enter
@@ -51,3 +76,12 @@ Code linter 可以在你撰寫程式碼的時候發現問題，幫助你儘早�
 5. 確認「format on save」選項是打勾的！
 
 > Prettier 有時會與其他的 linter 衝突。但通常有辦法讓它們可以很好的一起執行。例如，如果你使用 Prettier 和 ESLint，你可以使用 [eslint-prettier](https://github.com/prettier/eslint-plugin-prettier) 擴充套件來執行 prettier 作為 ESLint 規則。
+=======
+1. In VS Code, press `CTRL/CMD + SHIFT + P`.
+2. Type "settings"
+3. Hit Enter
+4. In the search bar, type "format on save"
+5. Be sure the "format on save" option is ticked!
+
+> If your ESLint preset has formatting rules, they may conflict with Prettier. We recommend to disable all formatting rules in your ESLint preset using [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) so that ESLint is *only* used for catching logical mistakes. If you want to enforce that files are formatted before a pull request is merged, use [`prettier --check`](https://prettier.io/docs/en/cli.html#--check) for your continuous integration.
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985

@@ -363,7 +363,11 @@ function MyComponent() {
 
 在我們的 [code splitting 文件](/docs/code-splitting.html#reactlazy) 有更多資訊。請注意 `lazy` component 可以在 `Suspense` tree 中底下很多層 ── 你不需要把每一個 `lazy` 元素包起來。最好的方法是將 `<Suspense>` 放在你想看到 loading indicator 的地方，而在所有你想進行 code splitting 的地方使用 `lazy()` 。
 
+<<<<<<< HEAD
 > 注意
+=======
+> Note
+>>>>>>> 26a870e1c6e232062b760d37620d85802750e985
 >
 > For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
 
@@ -386,6 +390,6 @@ React.startTransition(callback)
 >
 > Updates in a transition yield to more urgent updates such as clicks.
 >
-> Updates in a transitions will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+> Updates in a transition will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
 >
 > `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).

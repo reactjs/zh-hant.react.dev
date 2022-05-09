@@ -64,13 +64,13 @@ const element = <Welcome name="Sara" />;
 
 舉例來說，這段程式碼會在頁面上 render 出「Hello, Sara」：
 
-```js{1,5}
+```js{1,6}
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
-const element = <Welcome name="Sara" />;
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const element = <Welcome name="Sara" />;
 root.render(element);
 ```
 

@@ -108,6 +108,14 @@ const [state, setState] = useState(() => {
 
 請注意 React 可能仍需要在跳過 render 之前 render 該 component。這不應該是個問題，因為 React 不會不必要地「深入」到 component tree 中。如果你在 render 當中執行了昂貴的計算，你可以使用 `useMemo` 來最佳化。
 
+#### Batching of state updates {#batching-of-state-updates}
+
+React may group several state updates into a single re-render to improve performance. Normally, this improves performance and shouldn't affect your application's behavior.
+
+Before React 18, only updates inside React event handlers were batched. Starting with React 18, [batching is enabled for all updates by default](/blog/2022/03/08/react-18-upgrade-guide.html#automatic-batching). Note that React makes sure that updates from several *different* user-initiated events -- for example, clicking a button twice -- are always processed separately and do not get batched. This prevents logical mistakes.
+
+In the rare case that you need to force the DOM update to be applied synchronously, you may wrap it in [`flushSync`](/docs/react-dom.html#flushsync). However, this can hurt performance so do this only where needed.
+
 ### `useEffect` {#useeffect}
 
 ```js
@@ -610,6 +618,10 @@ const id = useId();
 ```
 
 `useId` is a hook for generating unique IDs that are stable across the server and client, while avoiding hydration mismatches.
+
+> Note
+>
+> `useId` is **not** for generating [keys in a list](/docs/lists-and-keys.html#keys). Keys should be generated from your data.
 
 For a basic example, pass the `id` directly to the elements that need it:
 
