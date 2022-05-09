@@ -341,9 +341,9 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 ### `React.Suspense` {#reactsuspense}
 
-`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
+`React.Suspense` 讓你指定 loading indicator，避免下面 tree 中的某些 component 尚未準備好 render。未來我們計畫讓 `Suspense` 處理更多場景，像是資料的取得。你可以閱讀關於這個在[我們的 roadmap](/blog/2018/11/27/react-16-roadmap.html)。
 
-Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
+現在，lazy loading component 是 `<React.Suspense>` **唯一**支援的使用場景：
 
 ```js
 // This component is loaded dynamically
@@ -365,27 +365,26 @@ function MyComponent() {
 
 > 注意：
 >
-> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+> 對於已經顯示給使用者的內容，切換回 loading indicator 可能會讓人迷惑。有時候在新的 UI 準備好之前，顯示「舊」的 UI 會來得更好。若要達成這個方式，你可以使用新的 [`startTransition`](#starttransition) 和 [`useTransition`](/docs/hooks-reference.html#usetransition) transition APIs，來 mark 更新為一個 transitions，並且避免不預期的 fallback。
 
-#### `React.Suspense` in Server Side Rendering {#reactsuspense-in-server-side-rendering}
-During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
-When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
+#### `React.Suspense` 是 Server Side Rendering {#reactsuspense-in-server-side-rendering}
+在 server side rendering 期間，Suspense Boundaries 允許你透過 suspending 以更小的 chunks 來 flush 應用程式。
+當一個 component suspends 時，我們 schedule 一個低優先級的 task 來 render 最近的 Suspense boundary 的 fallback。如果 component 在我們 flush fallback 之前 unsuspends，那麼我們把實際的內容傳送下去，並丟棄 fallback。
 
 #### `React.Suspense` during hydration {#reactsuspense-during-hydration}
-Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at
-a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+Suspense boundary 依賴於它們的 parent boundary 在它們被 hydrate 之前被 hydrate，但它們可以獨立於 sibling boundary hydrate。在被 hydrate 之前發生的 event 將會導致 boundary hydrate 的優先級高於相鄰的 boundary。[閱讀更多](https://github.com/reactwg/react-18/discussions/130)。
 
 ### `React.startTransition` {#starttransition}
 
 ```js
 React.startTransition(callback)
 ```
-`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+這個方法被設計的是被用在當 [`React.useTransition`](/docs/hooks-reference.html#usetransition) 不可使用時。
 
-> Note:
+> 注意：
 >
-> Updates in a transition yield to more urgent updates such as clicks.
+> 在 transition 中的更新會產生更緊急的更新，例如：點擊。
 >
-> Updates in a transition will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+> 在 transition 中的更新不會顯示 re-suspended 的 fallback 內容，允許使用者可以在更新期間繼續互動。
 >
-> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).
+> `React.startTransition` 不提供一個 `isPending` 的 flag。若要追蹤 transition 的 pending 狀態，參考 [`React.useTransition`](/docs/hooks-reference.html#usetransition)。
