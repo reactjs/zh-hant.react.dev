@@ -25,7 +25,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 
 我們不需要任何複雜的工具或安裝需求 —— **你只需要連接到網路和一分鐘的時間，就能完成本章節。**
 
-可選：[下載完整範例 (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+可選：[下載完整範例 (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)
 
 ### 第一步：在 HTML 上加入一個 DOM Container {#step-1-add-a-dom-container-to-the-html}
 
@@ -75,7 +75,7 @@ React 在剛推出的時候就容許被逐步採用，**你可以按自己所需
 >
 >這程式碼定立了一個名為 `LikeButton` 的 React component。請別擔心如果你還沒明白它 —— 我們會在[實用指南](/tutorial/tutorial.html)和[主要概念指南](/docs/hello-world.html)裡解構 React 的基礎。目前，我們就先讓它展示在畫面上吧！
 
-在 **[starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** 之後，請在 `like_button.js` 的底部加上以下兩行的程式碼:
+在 **[starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** 之後，請在 `like_button.js` 的底部加上以三行的程式碼:
 
 ```js{3,4,5}
 // ... 你貼上的 starter code ...
@@ -95,7 +95,7 @@ root.render(e(LikeButton));
 
 **[按這裡看完整範例的程式碼](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[下載完整範例 (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+**[下載完整範例 (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)**
 
 ### 提示：重用 Component {#tip-reuse-a-component}
 
@@ -103,7 +103,7 @@ root.render(e(LikeButton));
 
 [按這裡看完整範例的程式碼](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-[下載完整範例 (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+[下載完整範例 (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/279839cb9891bd41802ebebc5365e9dec08eeb9f.zip)
 
 >注意
 >

@@ -8,15 +8,22 @@ title: 編輯器設定
 
 </Intro>
 
+<YouWillLearn>
+
+* 最受歡迎的編輯器是誰
+* 如何自動格式化你的程式碼
+
+</YouWillLearn>
+
 ## 你的編輯器 {/*your-editor*/}
 
 [VS Code](https://code.visualstudio.com/) 是現在最受歡迎的編輯器之一。它有一個龐大的擴充功能市集，並與 GitHub 等流行服務很好的整合。下面列出的大多數功能也可以作為擴充功能加入到 VS Code 中，使其具有高度的可性！
 
 其他在 React 社群使用的流行文字編輯器包括：
 
-* [WebStorm](https://www.jetbrains.com/webstorm/)—一個專門為 JavaScript 設計的完整開發環境。
-* [Sublime Text](https://www.sublimetext.com/)—支援 JSX 和 TypeScript、[語法高亮](https://stackoverflow.com/a/70960574/458193)和自動補全功能。
-* [Vim](https://www.vim.org/)—是一個高度可配置的文字編輯器，可以非常有效的建立和修改任何類型的文本。它作為「vi」被內建在大多數 UNIX 系統和蘋果 OS X 系統中。
+* [WebStorm](https://www.jetbrains.com/webstorm/) 是一個專門為 JavaScript 設計的完整開發環境。
+* [Sublime Text](https://www.sublimetext.com/) 支援 JSX 和 TypeScript，內建 [syntax highlighting](https://stackoverflow.com/a/70960574/458193) 和 autocomplete。
+* [Vim](https://www.vim.org/) 是一個高度可配置的文字編輯器，可以非常有效的建立和修改任何類型的文本。它作為「vi」被內建在大多數 UNIX 系統和 Apple OS X 系統中。
 
 ## 推薦的文字編輯器功能 {/*recommended-text-editor-features*/}
 
@@ -36,7 +43,7 @@ Code linter 可以在你撰寫程式碼的時候發現問題，幫助你儘早�
 你可以透過以下幾個步驟安裝[在 VSCode 內安裝 Prettier 擴充套件](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)：
 
 1. 啟動 VS Code
-2. 使用快速開啟（按下 `CTRL/CMD + P`）
+2. 使用快速開啟（按下 `CTRL/Cmd + P`）
 3. 貼上 `ext install esbenp.prettier-vscode`
 4. 按下 enter
 
@@ -50,4 +57,4 @@ Code linter 可以在你撰寫程式碼的時候發現問題，幫助你儘早�
 4. 在搜尋欄中，輸入「format on save」
 5. 確認「format on save」選項是打勾的！
 
-> Prettier 有時會與其他的 linter 衝突。但通常有辦法讓它們可以很好的一起執行。例如，如果你使用 Prettier 和 ESLint，你可以使用 [eslint-prettier](https://github.com/prettier/eslint-plugin-prettier) 擴充套件來執行 prettier 作為 ESLint 規則。
+> 如果你的 ESLint 預設有格式規則，它們可能與 Prettier 衝突。我們建議使用 [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) 禁用 ESLint 預設中的所有格式規則，以便 ESLint *僅*用於捕獲邏輯錯誤。如果你想強制在 pull request 被合併之前，對程式碼進行格式化，在你的 continuous integration 中使用 [`prettier --check`](https://prettier.io/docs/en/cli.html#--check)。

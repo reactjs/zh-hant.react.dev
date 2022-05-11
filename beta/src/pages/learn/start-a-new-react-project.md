@@ -4,30 +4,32 @@ title: 開始一個新的 React 專案
 
 <Intro>
 
-如果你正在學習 React 或是考慮將它加入到現有的專案，你可以透過[將 React 加入到網頁](/learn/add-react-to-a-website)快速的開始。如果你的專案將需要許多 component 以及檔案，是時候該考慮以下的選項了！
+如果你正要開始一個新專案，我們推薦使用 toolchain 或是 framework。這些工具提供一個舒適的開發環境，但是本機端需要安裝 Node.js。
 
 </Intro>
+
+<YouWillLearn>
+
+* How toolchains are different from frameworks Toolchain 和 framework 有什麼差異
+* How to start a project with a minimal toolchain 如何從最小的 toolchain 開始一個新專案
+* How to start a project with a fully-featured framework 如何從功能完整的 framework 開始一個新專案
+* What's inside popular toolchains and frameworks 流行的 toolchain 和 framework 內有些什麼
+
+</YouWillLearn>
 
 ## 選擇你自己的冒險 {/*choose-your-own-adventure*/}
 
 React 是一個 library，讓你透過將 UI 程式碼分解成各個稱為 component 來組織你的 UI。React 不在意你的 routing 或是 data management。對於這些功能，你將需要使用 third-party library 或是撰寫你自己的解決方案。意思是你有許多種方式可以開始一個新的 React 專案：
 
-* 從**僅使用工具鏈的最小設置開始**，根據專案需求來增加功能。
-* 從一個已經內建通用功能的 **opinionated 框架**開始。
+* [從 **HTML 文件和 script tag 開始**。](/learn/add-react-to-a-website) 這不需要設定 Node.js，但提供的功能有限。
+* 從**使用 toolchain 的最小設置開始**，根據專案需求來增加功能。（非常適合的學習！）
+* 從一個 **opinionated 框架** 開始，它內建有 data fetching 和 routeing 等常見功能。
 
-無論你是剛開始使用 React，還是想要建立一些大專案，或者想要設定你自己的工具鏈，這份指南將會指引你走向正確的途徑。
+## 從一個最小的 toolchain 開始 {/*getting-started-with-a-minimal-toolchain*/}
 
-## 開始使用 React 的工具鏈 {/*getting-started-with-a-react-toolchain*/}
+如果你是剛開始使用 React，我們推薦 [Create React App](https://create-react-app.dev/)。它是最流行嘗試 React 功能的方式，也是建立一個新的 single-page、client-side application 的好方式。它是為 React 設計的，但對 routing 或 data fetching 不是 opinionated 的。
 
-如果你是剛開始使用 React，我們推薦 [Create React App](https://create-react-app.dev/)，是最流行嘗試 React 功能的方式，也是建立一個新的 single-page、client-side application 的好方式。Create React App 是一個專門為 React 設置的 unopinionated 工具鏈。工具鏈有助於解決以下問題：
-
-* 擴展到許多檔案以及 component
-* 從 npm 使用 third-party library
-* 提早發現常見錯誤
-* 在開發中即時的編輯 CSS 以及 JS
-* 針對 production 進行最佳化的輸出
-
-你可以在 terminal 中使用一行指令來開始建構 Create React App！(**請確認你已經安裝了 [Node.js](https://nodejs.org/)！**)
+首先，安裝 [Node.js](https://nodejs.org/en/)。接著打開你的 terminal 並且執行這行來建立一個專案：
 
 <TerminalBlock>
 
@@ -46,35 +48,35 @@ npm start
 
 更多資訊，[請參考官方指南](https://create-react-app.dev/docs/getting-started)。
 
-> Create React App 並不處理後端或是資料庫的邏輯；它只建立了一個前端的建構管道。意思是你可以搭配任何的後端使用。如果你正在尋找更多像是 routing 和 server-side 邏輯的功能，請繼續閱讀下去！
+> Create React App 並不處理後端或是資料庫的邏輯。你可以將它與任何 backend 一起使用。當你建立一個專案時，你會有一個資料夾與一些靜態的 HTML、CSS 和 JS。因為 Create React App 不能利用 server，所以它不能提供最好的效能。如果你追求更快的載入時間以及內建像是 routing 或 server-side logic，我們建議您使用框架。
 
-### 其他選項 {/*other-options*/}
-
-Create React App 對於開始使用 React 是很棒的，但如果你想要一個更輕量的工具鏈，你可以嘗試其他流行的工具鏈：
+### 熱門替代選項 {/*popular-alternatives*/}
 
 * [Vite](https://vitejs.dev/guide/)
 * [Parcel](https://parceljs.org/)
-* [Snowpack](https://www.snowpack.dev/tutorials/react)
 
-## 使用 React 和一個框架進行建構 {/*building-with-react-and-a-framework*/}
+## 用一個功能齊全的 framework 來建構 {/*building-with-a-full-featured-framework*/}
 
-如果你想要開始一個龐大、production-ready 的專案，[Next.js](https://nextjs.org/) 是一個很好的起點。Next.js 是一個用 React 建構靜態和伺服器渲染應用程式的流行、輕量級的框架。它預設包含了 routing、styling，以及 server-side rendering 等功能，讓你的可以專案快速的啟動和執行。
+如果你想要**開始一個 production-ready 的專案**，[Next.js](https://nextjs.org/) 是一個很好的起點。Next.js 是一個用 React 建構靜態和伺服器渲染應用程式的流行、輕量級的框架。它預設包含了 routing、styling，以及 server-side rendering 等功能，讓你的可以專案快速的啟動和執行。
 
-[開始使用 Next.js 建構](https://nextjs.org/docs/getting-started)的官方指南。
+[Next.js Foundations](https://nextjs.org/learn/foundations/about-nextjs) 教學很好的介紹使用 React 和 Next.js 來進行構建。
 
-### 其他選項 {/*other-options-1*/}
+### 熱門替代選項 {/*popular-alternatives*/}
 
-* [Gatsby](https://www.gatsbyjs.org/) 讓你用 React 和 GraphQL 來產生靜態網站。
-* [Razzle](https://razzlejs.org/) 是一個不需要任何設置的 server-rendering 框架，但是比 Next.js 提供更多彈性。
+* [Gatsby](https://www.gatsbyjs.org/)
+* [Remix](https://remix.run/)
+* [Razzle](https://razzlejs.org/)
 
-## 客製化工具鏈 {/*custom-toolchains*/}
+## 客製化 Toolchain {/*custom-toolchains*/}
 
-你可能更喜歡建立和設置你自己的工具鏈。JavaScript 建構工具鏈通常由以下部分所組成：
+你可能更喜歡建立和設置你自己的 toolchain。Toolchain 通常包括：
 
-* 一個 **package manager** — 讓你可以安裝、升級以及管理 third-party package。[Yarn](https://yarnpkg.com/) 和 [npm](https://www.npmjs.com/) 是兩個最流行的 package manager。
-* 一個 **bundler** — 讓你可以撰寫模組化的程式，並將這些模組化程式 bundle 成更小的 package 來最佳化載入時間。[Webpack](https://webpack.js.org/)、[Snowpack](https://www.snowpack.dev/)、[Parcel](https://parceljs.org/) 是一些流行的 bundler。
-* 一個 **compiler** — 讓你可以撰寫現代化的 JavaScript 程式且仍然可以在舊的瀏覽器執行。[Babel](https://babeljs.io/) 就是一個這樣的例子。
+* 一個 **package manager** 讓你可以安裝、升級以及管理 third-party package。熱門的 package managers：[npm](https://www.npmjs.com/)（Node.js 內建）、[Yarn](https://yarnpkg.com/)、[pnpm](https://pnpm.io/)。
+* 一個 **compiler** 讓你編譯現代語法功能以及像是 JSX 或 type annotation 的額外語法給瀏覽器。熱門的 compilers：[Babel](https://babeljs.io/)、[TypeScript](http://typescript.org/)、[swc](https://swc.rs/)。
+* 一個 **bundler** 讓你可以撰寫模組化的程式，並將這些模組化程式 bundle 成更小的 package 來最佳化載入時間。熱門的 bundlers： [webpack](https://webpack.js.org/)、[Parcel](https://parceljs.org/)、[esbuild](https://esbuild.github.io/)、[swc](https://swc.rs/)。
+* 一個 **minifier** 讓你的程式碼更 compact 讓載入速度更快。熱門的 minifiers：[Terser](https://terser.org/), [swc](https://swc.rs/)。
+* 一個 **server** 處理 server 請求，所以你可以 render component 成 HTML。熱門的：[Express](https://expressjs.com/)。
+* 一個 **linter** 檢查你的程式碼是否存在常見錯誤。熱門的 linters：[ESLint](https://eslint.org/)。
+* 一個 **test runner** 讓你針對你的程式碼進行測試。熱門的 test runners：[Jest](https://jestjs.io/)。
 
-在大型專案中，你可能也希望有工具可以在單一個 repository 內管理多個 package。[Nx](https://nx.dev/react) 就是這一種工具的例子。
-
-如果你傾向從頭設置你自己的 JavaScript 工具鏈，請[查看本指南](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)它重新建立了一些 Create React App 的功能。
+如果你傾向從頭設置你自己的 JavaScript toolchain，請[查看本指南](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)它重新建立了一些 Create React App 的功能。Framework 通常還會提供 routing 和 data fetching 解決方案。在大型專案中，你可能還會想使用像是 [Nx](https://nx.dev/react) 在一個 repository 來管理多的 package。

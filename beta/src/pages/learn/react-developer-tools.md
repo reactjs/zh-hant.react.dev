@@ -8,7 +8,13 @@ title: React 開發者工具
 
 </Intro>
 
-## 瀏覽器擴充元件 {/*browser-extension*/}
+<YouWillLearn>
+
+* 如何安裝 React Developer Tools
+
+</YouWillLearn>
+
+## Browser extension {/*browser-extension*/}
 
 要 debug 用 React 建構的網站最簡單的方式是安裝 React 開發者瀏覽器擴充元件。它可以在一些流行的瀏覽器上使用：
 

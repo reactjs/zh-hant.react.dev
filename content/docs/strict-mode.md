@@ -20,7 +20,7 @@ permalink: docs/strict-mode.html
 * [警告使用到了被棄用的 findDOMNode](#warning-about-deprecated-finddomnode-usage)
 * [偵測意想不到的副作用](#detecting-unexpected-side-effects)
 * [偵測 legacy context API](#detecting-legacy-context-api)
-* [偵測不安全的 effect](#detecting-unsafe-effects)
+* [確保可重用的 state](#ensuring-reusable-state)
 
 其他功能會在未來版本的 React 釋出時被加進去。
 
@@ -170,6 +170,14 @@ When the component unmounts, effects are destroyed as normal:
   * Layout effects are destroyed.
   * Effect effects are destroyed.
 ```
+
+Unmounting and remounting includes:
+
+- `componentDidMount`
+- `componentWillUnmount`
+- `useEffect`
+- `useLayoutEffect`
+- `useInsertionEffect`
 
 > Note:
 >

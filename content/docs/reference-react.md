@@ -363,7 +363,7 @@ function MyComponent() {
 
 在我們的 [code splitting 文件](/docs/code-splitting.html#reactlazy) 有更多資訊。請注意 `lazy` component 可以在 `Suspense` tree 中底下很多層 ── 你不需要把每一個 `lazy` 元素包起來。最好的方法是將 `<Suspense>` 放在你想看到 loading indicator 的地方，而在所有你想進行 code splitting 的地方使用 `lazy()` 。
 
-> 注意
+> 注意：
 >
 > 對於已經顯示給使用者的內容，切換回 loading indicator 可能會讓人迷惑。有時候在新的 UI 準備好之前，顯示「舊」的 UI 會來得更好。若要達成這個方式，你可以使用新的 [`startTransition`](#starttransition) 和 [`useTransition`](/docs/hooks-reference.html#usetransition) transition APIs，來 mark 更新為一個 transitions，並且避免不預期的 fallback。
 
