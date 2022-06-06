@@ -185,7 +185,7 @@ return (
 
 建立一個名為 `src` 的文件夾，然後執行這個終端指令：
 
-```
+```console
 npx babel --watch src --out-dir . --presets react-app/prod
 ```
 
