@@ -38,40 +38,40 @@
           }]
         },
         {
-          "title": "Describing the UI",
+          "title": "描述使用者介面",
           "tags": [],
           "path": "/learn/describing-the-ui",
           "routes": [
             {
-              "title": "Your First Component",
+              "title": "你的第一個 Component",
               "path": "/learn/your-first-component"
             },
             {
-              "title": "Importing and Exporting Components",
+              "title": "導入及導出 Component",
               "path": "/learn/importing-and-exporting-components"
             },
             {
-              "title": "Writing Markup with JSX",
+              "title": "用 JSX 撰寫 Markup",
               "path": "/learn/writing-markup-with-jsx"
             },
             {
-              "title": "JavaScript in JSX with Curly Braces",
+              "title": "在 JSX 中使用 JavaScript 的語法",
               "path": "/learn/javascript-in-jsx-with-curly-braces"
             },
             {
-              "title": "Passing Props to a Component",
+              "title": "傳遞 Props 到 Component 中",
               "path": "/learn/passing-props-to-a-component"
             },
             {
-              "title": "Conditional Rendering",
+              "title": "條件渲染",
               "path": "/learn/conditional-rendering"
             },
             {
-              "title": "Rendering Lists",
+              "title": "列表渲染",
               "path": "/learn/rendering-lists"
             },
             {
-              "title": "Keeping Components Pure",
+              "title": "把 Component 寫成「純函數」",
               "path": "/learn/keeping-components-pure"
             }
           ]

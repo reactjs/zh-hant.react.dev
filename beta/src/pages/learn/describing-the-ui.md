@@ -1,29 +1,33 @@
 ---
-title: Describing the UI
+title: 描述使用者介面
 ---
 
 <Intro>
 
-React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images. React lets you combine them into reusable, nestable *components.* From web sites to phone apps, everything on the screen can be broken down into components. In this chapter, you'll learn to create, customize, and conditionally display React components.
+React 是一個用來渲染使用者介面 (UI) 的 Javascript 函式庫。一個完整的使用者介面是用各種小元件（例如按鈕、文字或圖片）組合而成。React 讓你將這些小元件組合成可以重複使用、可以巢狀使用的 *component*。 
+
+無論是網站還是手機 App，所有畫面上的東西都可以被拆分成一個個 component。在這個章節，你將學會如何建立、客製化以及根據不同的條件來在畫面上渲染 React component。
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to write your first React component](/learn/your-first-component)
-* [When and how to create multi-component files](/learn/importing-and-exporting-components)
-* [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-* [How to configure components with props](/learn/passing-props-to-a-component)
-* [How to conditionally render components](/learn/conditional-rendering)
-* [How to render multiple components at a time](/learn/rendering-lists)
-* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
+* [如何寫出你的第一個 React Component](/learn/your-first-component)
+* [如何建立多個 Component 的檔案](/learn/importing-and-exporting-components)
+* [如何用 JSX 在 Javascript 中加入 Markup](/learn/writing-markup-with-jsx)
+* [如何在 JSX 中透過大括號來使用 Javascript 的語法](/learn/javascript-in-jsx-with-curly-braces)
+* [如何用 Props 來設定你的 Component](/learn/passing-props-to-a-component)
+* [如何根據特定條件來渲染 Component](/learn/conditional-rendering)
+* [如何一次渲染多個 Component](/learn/rendering-lists)
+* [如何把 Component 寫成「純函數」來避免容易混淆的錯誤](/learn/keeping-components-pure)
 
 </YouWillLearn>
 
-## Your first component {/*your-first-component*/}
+## 你的第一個 component {/*your-first-component*/}
 
-React applications are built from isolated pieces of UI called *components*. A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
+一個完整的 React 應用程式是由多個被稱為 *Component* 的使用者介面分塊組合而成。一個 React Component 是一個你可以在裡面使用 Markup 語法的 Javascript 函數。 
+
+Component 可能小至一個按鈕，也可能大至整個頁面。這裡有一個名叫 `Gallery` 的 Component，這個 Component 裡面渲染了三個名叫 `Profile` 的 Component：
 
 <Sandpack>
 
@@ -40,7 +44,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>驚人的科學家們</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -57,14 +61,13 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <LearnMore path="/learn/your-first-component">
 
-Read **[Your First Component](/learn/your-first-component)** to learn how to declare and use React components.
+閱讀 **[你的第一個 Component](/learn/your-first-component)** 來學習如何宣告並使用 React Component。
 
 </LearnMore>
 
-## Importing and exporting components {/*importing-and-exporting-components*/}
+## 導入和導出 Component {/*importing-and-exporting-components*/}
 
-You can declare many components in one file, but large files can get difficult to navigate. To solve this, you can *export* a component into its own file, and then *import* that component from another file:
-
+你可以在一個檔案中宣告很多的 Component，但如果檔案太大的話我們將很難快速的找到想要的程式碼在檔案的哪個位置。為了解決這個問題，你可以從一個檔案 *導出* 一個 Component，然後在另一個檔案中 *導入* 這個 Component 並使用他：
 
 <Sandpack>
 
@@ -84,7 +87,7 @@ import Profile from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>驚人的科學家們</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -112,23 +115,23 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-Read **[Importing and Exporting Components](/learn/importing-and-exporting-components)** to learn how to split components into their own files.
+閱讀 **[導入及導出 Component](/learn/importing-and-exporting-components)** 來學習如何把多個 Component 拆分到屬於他們自己的檔案中。
 
 </LearnMore>
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## 用 JSX 來撰寫 Markup 語法 {/*writing-markup-with-jsx*/}
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
+每個 React component 都是一個可以渲染一些 Markup 語法到瀏覽器的 Javascript 函數，React components 使用一個語法擴充功能稱作 JSX 來表示這些 Markup 語法。JSX 看起來就像 HTML 一樣，但他比 HTML 更加嚴格一些，並且能夠顯示出動態的資訊。
 
-If we paste existing HTML markup into a React component, it won't always work:
+如果你把一個 HTML Markup 直接貼到一個 React component 中，他不一定可以正常運作：
 
 <Sandpack>
 
 ```js
 export default function TodoList() {
   return (
-    // This doesn't quite work!
-    <h1>Hedy Lamarr's Todos</h1>
+    // 這個寫法沒辦法正常運作！
+    <h1>Hedy Lamarr 的待辦事項</h1>
     <img
       src="https://i.imgur.com/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
@@ -149,7 +152,7 @@ img { height: 90px; }
 
 </Sandpack>
 
-If you have existing HTML like this, you can fix it using a [converter](https://transform.tools/html-to-jsx):
+如果你有像這樣的現成 HTML，你可以用這個 [轉換工具](https://transform.tools/html-to-jsx) 來修復他。
 
 <Sandpack>
 
@@ -157,7 +160,7 @@ If you have existing HTML like this, you can fix it using a [converter](https://
 export default function TodoList() {
   return (
     <>
-      <h1>Hedy Lamarr's Todos</h1>
+      <h1>Hedy Lamarr 的待辦事項</h1>
       <img
         src="https://i.imgur.com/yXOvdOSs.jpg"
         alt="Hedy Lamarr"
@@ -181,13 +184,15 @@ img { height: 90px; }
 
 <LearnMore path="/learn/writing-markup-with-jsx">
 
-Read **[Writing Markup with JSX](/learn/writing-markup-with-jsx)** to learn how to write valid JSX.
+閱讀 **[用 JSX 來撰寫 Markup 語法](/learn/writing-markup-with-jsx)** 來學習如何撰寫正確的 JSX 語法。
 
 </LearnMore>
 
-## JavaScript in JSX with curly braces {/*javascript-in-jsx-with-curly-braces*/}
+## 在 JSX 中使用 Javascript 的語法 {/*javascript-in-jsx-with-curly-braces*/}
 
-JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to "open a window" to JavaScript:
+JSX 讓你可以在 Javascript 檔案中使用類似 HTML 的語法，這讓我們把渲染邏輯和內容能夠寫在同一個地方。有時候你可能想要在 Markup 中使用一些 Javascript 的邏輯或是引入一個動態的變數。
+
+在這種情況，你可以在 JSX 語法中使用 **大括號** 來「打開一個 Javascript 的視窗」：
 
 <Sandpack>
 
@@ -203,7 +208,7 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
+      <h1>{person.name} 的待辦事項</h1>
       <img
         className="avatar"
         src="https://i.imgur.com/7vQD0fPs.jpg"
@@ -229,13 +234,15 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-Read **[JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces)** to learn how to access JavaScript data from JSX.
+閱讀 **[在 JSX 中使用 Javascript 的語法](/learn/javascript-in-jsx-with-curly-braces)** 來學習如何在 JSX 語法中存取 JavaScript 的資料。
 
 </LearnMore>
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## 傳遞 Props 到一個 Component 中 {/*passing-props-to-a-component*/}
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
+React components 使用 *props* 來互相傳遞資訊。每個上層的 Component 都可以藉由賦予他們 Props 的方式來傳遞一些資訊到他的下層 Component 中。
+
+Props 可能會讓你想起 HTML 語法中的 attributes，但你可以傳遞任何 JavaScript 的變數到 Props 中，包括物件、陣列、函數，甚至是 JSX！
 
 <Sandpack>
 
@@ -310,15 +317,15 @@ export function getImageUrl(person, size = 's') {
 
 <LearnMore path="/learn/passing-props-to-a-component">
 
-Read **[Passing Props to a Component](/learn/passing-props-to-a-component)** to learn how to pass and read props.
+閱讀 **[傳遞 Props 到 Component 中](/learn/passing-props-to-a-component)** 來學習如何傳入 Props 到 Component 中並使用他。
 
 </LearnMore>
 
-## Conditional rendering {/*conditional-rendering*/}
+## 條件渲染 {/*conditional-rendering*/}
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+有時候你的 Component 會需要根據不同的條件來展示不同的內容。在 React 中，你可以使用 JavaScript 語法中的 `if` 陳述式，`&&` 以及 `? :` 運算子來根據條件渲染不同的 JSX。
 
-In this example, the JavaScript `&&` operator is used to conditionally render a checkmark:
+在下面的範例中，我們用 JavaScript 的 `&&` 運算子來根據條件渲染打勾符號：
 
 <Sandpack>
 
@@ -358,15 +365,15 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Read **[Conditional Rendering](/learn/conditional-rendering)** to learn the different ways to render content conditionally.
+閱讀 **[條件渲染](/learn/conditional-rendering)** 來學習各種根據條件來渲染內容的方法。
 
 </LearnMore>
 
-## Rendering lists {/*rendering-lists*/}
+## 列表渲染 {/*rendering-lists*/}
 
-You will often want to display multiple similar components from a collection of data. You can use JavaScript's `filter()` and `map()` with React to filter and transform your array of data into an array of components.
+你經常會需要用多個相似的 Component 來展示一系列的資料。這個時候你可以在 React 中使用 JavaScript 的 `filter()` 和 `map()` 來篩選資料並轉換成包含多個 Component 的陣列。 
 
-For each array item, you will need to specify a `key`. Usually, you will want to use an ID from the database as a `key`. Keys let React keep track of each item's place in the list even if the list changes.
+對轉換後的陣列中的每個物件，你必須要幫他們指定一個 `key`。 一般來說，你可以用他們在資料庫中的 ID 來作為 `key`。 Key 可以讓 React 知道列表中每個物件當前的位置，即便你的列表發生了改動也沒關係。
 
 <Sandpack>
 
@@ -390,7 +397,7 @@ export default function List() {
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>科學家列表</h1>
       <ul>{listItems}</ul>
     </article>
   );
@@ -458,18 +465,18 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list of components, and how to choose a key.
+閱讀 **[列表渲染](/learn/rendering-lists)** 來學習如何一次把一個陣列渲染成多個 Component，以及如何幫每個 Component 選擇一個 key。
 
 </LearnMore>
 
-## Keeping components pure {/*keeping-components-pure*/}
+## 把 Component 寫成「純函數」 {/*keeping-components-pure*/}
 
-Some JavaScript functions are *pure.* A pure function:
+我們說一個 JavaScript 的函數是一個 *純函數* (Pure Function) ，如果他滿足這些條件： 
 
-* **Minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **不多管閒事** : 這個函數不會修改任何在他被呼叫之前就已經存在的物件或變數。
+* **一樣的輸入，一樣的輸出** : 只要我們輸入相同的參數，這個函數總是回傳一個相同的輸出。
 
-By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. Here is an example of an impure component:
+如果我們嚴格地把 Component 都寫成純函數，就可以在隨著專案規模越來越大的過程中避免一系列不可預期的問題出現。這裡給出了一個「不純的函數」作為例子：
 
 <Sandpack>
 
@@ -495,7 +502,7 @@ export default function TeaSet() {
 
 </Sandpack>
 
-You can make this component pure by passing a prop instead of modifying a preexisting variable:
+你可以藉由改成 Props 傳入資料的方式，而不是直接從外部讀取，來將函數改造為純函數：
 
 <Sandpack>
 
@@ -519,12 +526,12 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how to write components as pure, predictable functions.
+閱讀 **[把 Component 寫成「純函數」](/learn/keeping-components-pure)** 來學習如何用「純函數」且「行為可預測」的寫法來撰寫 Component。
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## 下一步 {/*whats-next*/}
 
-Head over to [Your First Component](/learn/your-first-component) to start reading this chapter page by page!
+出發前往 [你的第一個 Component](/learn/your-first-component) 來一頁一頁閱讀這個章節的內容！
 
-Or, if you're already familiar with these topics, why not read about [Adding Interactivity](/learn/adding-interactivity)?
+或是，如果你已經熟悉這些主題了，不妨瞭解看看 [加入可互動性](/learn/adding-interactivity) ?
