@@ -75,8 +75,8 @@ npm start
 * 一個 **compiler** 讓你編譯現代語法功能以及像是 JSX 或 type annotation 的額外語法給瀏覽器。熱門的 compilers：[Babel](https://babeljs.io/)、[TypeScript](http://typescript.org/)、[swc](https://swc.rs/)。
 * 一個 **bundler** 讓你可以撰寫模組化的程式，並將這些模組化程式 bundle 成更小的 package 來最佳化載入時間。熱門的 bundlers： [webpack](https://webpack.js.org/)、[Parcel](https://parceljs.org/)、[esbuild](https://esbuild.github.io/)、[swc](https://swc.rs/)。
 * 一個 **minifier** 讓你的程式碼更 compact 讓載入速度更快。熱門的 minifiers：[Terser](https://terser.org/), [swc](https://swc.rs/)。
-* 一個 **server** 處理 server 請求，所以你可以 render component 成 HTML。熱門的：[Express](https://expressjs.com/)。
+* 一個 **server** 處理 server 請求，所以你可以 render component 成 HTML。熱門的 servers：[Express](https://expressjs.com/)。
 * 一個 **linter** 檢查你的程式碼是否存在常見錯誤。熱門的 linters：[ESLint](https://eslint.org/)。
 * 一個 **test runner** 讓你針對你的程式碼進行測試。熱門的 test runners：[Jest](https://jestjs.io/)。
 
-如果你傾向從頭設置你自己的 JavaScript toolchain，請[查看本指南](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)它重新建立了一些 Create React App 的功能。Framework 通常還會提供 routing 和 data fetching 解決方案。在大型專案中，你可能還會想使用像是 [Nx](https://nx.dev/react) 在一個 repository 來管理多的 package。
+如果你傾向從頭設置你自己的 JavaScript toolchain，請[查看本指南](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)它重新建立了一些 Create React App 的功能。Framework 通常還會提供 routing 和 data fetching 解決方案。在大型專案中，你可能還會想使用像是 [Nx](https://nx.dev/react) 或是 [Turborepo](https://turborepo.org/) 來幫助你在一個 repository 來管理多的 package。
