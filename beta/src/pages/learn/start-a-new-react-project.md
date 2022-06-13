@@ -71,6 +71,7 @@ npm start
 
 你可能更喜歡建立和設置你自己的 toolchain。Toolchain 通常包括：
 
+<<<<<<< HEAD
 * 一個 **package manager** 讓你可以安裝、升級以及管理 third-party package。熱門的 package managers：[npm](https://www.npmjs.com/)（Node.js 內建）、[Yarn](https://yarnpkg.com/)、[pnpm](https://pnpm.io/)。
 * 一個 **compiler** 讓你編譯現代語法功能以及像是 JSX 或 type annotation 的額外語法給瀏覽器。熱門的 compilers：[Babel](https://babeljs.io/)、[TypeScript](http://typescript.org/)、[swc](https://swc.rs/)。
 * 一個 **bundler** 讓你可以撰寫模組化的程式，並將這些模組化程式 bundle 成更小的 package 來最佳化載入時間。熱門的 bundlers： [webpack](https://webpack.js.org/)、[Parcel](https://parceljs.org/)、[esbuild](https://esbuild.github.io/)、[swc](https://swc.rs/)。
@@ -78,5 +79,16 @@ npm start
 * 一個 **server** 處理 server 請求，所以你可以 render component 成 HTML。熱門的：[Express](https://expressjs.com/)。
 * 一個 **linter** 檢查你的程式碼是否存在常見錯誤。熱門的 linters：[ESLint](https://eslint.org/)。
 * 一個 **test runner** 讓你針對你的程式碼進行測試。熱門的 test runners：[Jest](https://jestjs.io/)。
+=======
+* A **package manager** lets you install, update, and manage third-party packages. Popular package managers: [npm](https://www.npmjs.com/) (built into Node.js), [Yarn](https://yarnpkg.com/), [pnpm](https://pnpm.io/).
+* A **compiler** lets you compile modern language features and additional syntax like JSX or type annotations for the browsers. Popular compilers: [Babel](https://babeljs.io/), [TypeScript](https://www.typescriptlang.org/), [swc](https://swc.rs/).
+* A **bundler** lets you write modular code and bundle it together into small packages to optimize load time. Popular bundlers: [webpack](https://webpack.js.org/), [Parcel](https://parceljs.org/), [esbuild](https://esbuild.github.io/), [swc](https://swc.rs/).
+* A **minifier** makes your code more compact so that it loads faster. Popular minifiers: [Terser](https://terser.org/), [swc](https://swc.rs/).
+* A **server** handles server requests so that you can render components to HTML. Popular servers: [Express](https://expressjs.com/).
+* A **linter** checks your code for common mistakes. Popular linters: [ESLint](https://eslint.org/).
+* A **test runner** lets you run tests against your code. Popular test runners: [Jest](https://jestjs.io/).
+
+If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality. A framework will usually also provide a routing and a data fetching solution. In a larger project, you might also want to manage multiple packages in a single repository with a tool like [Nx](https://nx.dev/react) or [Turborepo](https://turborepo.org/).
+>>>>>>> 6d965422a4056bac5f93f92735364cb08bcffc6b
 
 如果你傾向從頭設置你自己的 JavaScript toolchain，請[查看本指南](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)它重新建立了一些 Create React App 的功能。Framework 通常還會提供 routing 和 data fetching 解決方案。在大型專案中，你可能還會想使用像是 [Nx](https://nx.dev/react) 在一個 repository 來管理多的 package。

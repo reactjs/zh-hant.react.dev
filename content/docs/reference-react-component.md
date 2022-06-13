@@ -507,7 +507,7 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater, [callback])
+setState(updater[, callback])
 ```
 
 `setState()` 會將改變排進一個 queue 中，並告知 React 這個 component 以及它的 children 需要用更新後的 state 重新 render。這是你會在事件處理和伺服器回應用來更新使用者介面最主要的方法。
