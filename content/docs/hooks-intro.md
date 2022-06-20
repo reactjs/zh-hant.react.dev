@@ -31,8 +31,13 @@ function Example() {
 
 >注意
 >
+<<<<<<< HEAD
 >React 16.8.0 是第一個支援 Hook 的版本。在升級時，記得不要忘記升級所有的套件包括 React DOM。
 >React Native 則是從 [0.59 的版本開始](hhttps://reactnative.dev/blog/2019/03/12/releasing-react-native-059)支援 Hook。
+=======
+>React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM.
+>React Native has supported Hooks since [the 0.59 release of React Native](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059).
+>>>>>>> df2673d1b6ec0cc6657fd58690bbf30fa1e6e0e6
 
 ## 介紹影片 {#video-introduction}
 
@@ -96,7 +101,11 @@ React 沒有提供一個方法來把可重用的行為「附加」到一個 comp
 
 我們知道 React 的開發者們專注在交付產品，沒有時間仔細去看每一個被釋出的新 API。Hook 非常新，所以在考慮學習或採用它們之前，等待更多範例和教學可能會更好。
 
+<<<<<<< HEAD
 我們也了解要添加一個新的 primitive 到 React 的標準非常高。我們已經準備了一個[詳盡的 RFC](https://github.com/reactjs/rfcs/pull/68) 給好奇的讀者，它藉由更多細節深入探討動機，並針對特定的設計決策以及先關的既有技術提供額外的觀點。
+=======
+We also understand that the bar for adding a new primitive to React is extremely high. For curious readers, we have prepared a [detailed RFC](https://github.com/reactjs/rfcs/pull/68) that dives into the motivation with more details, and provides extra perspective on the specific design decisions and related prior art.
+>>>>>>> df2673d1b6ec0cc6657fd58690bbf30fa1e6e0e6
 
 **至關重要的是，Hook 可以與既有的程式碼一起運作，因此你可以逐步採用它們。** 不用急著轉換到 Hook。我們建議避免任何「巨大的改寫」，尤其是那些既有、複雜的 class component。要開始「從 Hook 的角度思考」需要一些思維上的轉變。根據我們的經驗，最好先在新的且重要性較低的 component 中練習使用 Hook，並確保團隊中的每個人都不會對它感到不舒服。在你嘗試了 Hook 之後，請自由地[給我們一些回饋](https://github.com/facebook/react/issues/new)，不管是正面的還是負面的可以。
 
