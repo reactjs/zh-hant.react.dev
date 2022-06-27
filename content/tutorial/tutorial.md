@@ -541,7 +541,11 @@ var player = {score: 1, name: 'Jeff'};
 var newPlayer = Object.assign({}, player, {score: 2});
 // 現在 player 保持不變，而 newPlayer 則是 {score: 2, name: 'Jeff'}
 
+<<<<<<< HEAD
 // 如果你想使用 object spread 語法的話，你可以用以下的寫法：
+=======
+// Or if you are using object spread syntax, you can write:
+>>>>>>> 26caa649827e8f8cadd24dfc420ea802dcbee246
 // var newPlayer = {...player, score: 2};
 ```
 
