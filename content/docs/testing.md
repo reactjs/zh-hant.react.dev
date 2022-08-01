@@ -28,7 +28,7 @@ next: testing-recipes.html
 
 ### 推薦工具 {#tools}
 
-**[Jest](https://facebook.github.io/jest/)** 是一個 JavaScript test runner 讓你可以透過 [`jsdom`](/docs/testing-environments.html#mocking-a-rendering-surface) 存取 DOM。jsdom 只是一個很接近瀏覽器工作的方式，不過它以經足以測試 React component。Jest 有出色的迭代速度與像是 mock [module](/docs/testing-environments.html#mocking-modules) 和 [timer](/docs/testing-environments.html#mocking-timers) 的強大功能，因此你可以有更多的方式來控制你的程式碼執行。
+**[Jest](https://facebook.github.io/jest/)** 是一個 JavaScript test runner 讓你可以透過 [`jsdom`](/docs/testing-environments.html#mocking-a-rendering-surface) 存取 DOM。jsdom 只是一個很接近瀏覽器工作的方式，不過它已經足以測試 React component。Jest 有出色的迭代速度與像是 mock [module](/docs/testing-environments.html#mocking-modules) 和 [timer](/docs/testing-environments.html#mocking-timers) 的強大功能，因此你可以有更多的方式來控制你的程式碼執行。
 
 **[React Testing Library](https://testing-library.com/react)** 是一系列的 helper 讓你可以測試 React component 而不需要依賴它們的實作細節。這個方法讓重構變的輕而易舉，也讓你朝著可訪問性的最佳實踐的方向而前進。雖然它沒有提供一種「shallow」render 它的 child component 的方式，透過像是 Jest test runner 的 [mock](/docs/testing-recipes.html#mocking-modules) 可以讓你達到這個目的。
 
