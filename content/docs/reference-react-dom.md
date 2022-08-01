@@ -108,7 +108,11 @@ render(element, container[, callback])
 > 並且應該被避免，因為未來版本的 React 在某些情況下可能會非同步地 render component。如果你需要 reference 到 root `ReactComponent` instance，首選的解決方式是附加一個
 > [callback ref](/docs/refs-and-the-dom.html#callback-refs) 在 root element 上。
 >
+<<<<<<< HEAD
 > 使用 `render()` 來 hydrate 一個 server-render container 已經被棄用。使用 [`hydrateRoot()`](#hydrateroot) 作為代替。
+=======
+> Using `render()` to hydrate a server-rendered container is deprecated. Use [`hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) instead.
+>>>>>>> 8223159395aae806f8602de35e6527d35260acfb
 
 * * *
 
