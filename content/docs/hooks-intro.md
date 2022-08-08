@@ -80,7 +80,11 @@ React 沒有提供一個方法來把可重用的行為「附加」到一個 comp
 
 ### Class 讓人們和電腦同時感到困惑 {#classes-confuse-both-people-and-machines}
 
+<<<<<<< HEAD
 除了使重用、組織程式碼更加困難以外，我們發現 class 可能是學習 React 的一大障礙。你必須了解 `this` 在 JavaScript 中如何運作，而這跟它在大部分程式語言中的運作方式非常不同。你必須記得 bind 那些 event handler。如果沒有不穩定的[語法提案](https://babeljs.io/docs/en/babel-plugin-transform-class-properties/)，撰寫的程式碼會非常繁瑣。人們可以很好的理解 props、state 以及從上而下的資料流，但仍然在跟 class 奮鬥。React 中的 function component 和 class component 之間的差異以及什麼時候該使用哪一個，甚至在經驗豐富的 React 開發者之間也存在意見分歧。
+=======
+In addition to making code reuse and code organization more difficult, we've found that classes can be a large barrier to learning React. You have to understand how `this` works in JavaScript, which is very different from how it works in most languages. You have to remember to bind the event handlers. Without [ES2022 public class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#public_instance_fields), the code is very verbose. People can understand props, state, and top-down data flow perfectly well but still struggle with classes. The distinction between function and class components in React and when to use each one leads to disagreements even between experienced React developers.
+>>>>>>> 4808a469fa782cead9802619b0341b27b342e2d3
 
 此外，React 已經出現了大約五年，而我們想要確保它在下一個五年保持競爭力。如同 [Svelte](https://svelte.dev/)、[Angular](https://angular.io/)、[Glimmer](https://glimmerjs.com/)，以及其他人所展示的，component 的[提前編譯](https://en.wikipedia.org/wiki/Ahead-of-time_compilation)有很大的未來潛力。特別是如果它不侷限在模板上。最近，我們在實驗使用 [Prepack](https://prepack.io/) 來做 [component folding](https://github.com/facebook/react/issues/7323)，而我們已經看到大有可為的早期結果。然而，我們發現使用 class component 會鼓勵一些不是故意的模式，這會讓這些最佳化回到一條比較慢的路。Class 在現在的工具上也有不少問題。例如，class 沒有辦法很好的壓縮，而且它讓 hot reload 變得脆弱而且不可靠。我們想要提出一個可以讓程式碼更可能留在可最佳化的路徑上的 API。
 

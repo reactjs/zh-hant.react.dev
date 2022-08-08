@@ -134,7 +134,11 @@ var SayHello = createReactClass({
 
 這代表使用 ES6 class 時會需要為 event handler 多寫一些 boilerplate 程式碼，但這種寫法的好處是在大型的應用程式中會有稍微好一點的效能。
 
+<<<<<<< HEAD
 如果寫 boilerplate 程式碼對你來說實在是很沒有吸引力的話，你可以啟用 Babel 的**實驗性**語法提案 [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/)：
+=======
+If the boilerplate code is too unattractive to you, you may use [ES2022 Class Properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#public_instance_fields) syntax:
+>>>>>>> 4808a469fa782cead9802619b0341b27b342e2d3
 
 
 ```javascript
@@ -143,11 +147,16 @@ class SayHello extends React.Component {
     super(props);
     this.state = {message: 'Hello!'};
   }
+<<<<<<< HEAD
   // 警告：這個語法還在實驗階段！
   // 在這裡使用 arrow function 可以綁定此方法：
+=======
+  
+  // Using an arrow here binds the method:
+>>>>>>> 4808a469fa782cead9802619b0341b27b342e2d3
   handleClick = () => {
     alert(this.state.message);
-  }
+  };
 
   render() {
     return (
@@ -159,9 +168,13 @@ class SayHello extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 請注意，上述的語法還在實驗階段，也就是語法可能會改變，提案也有機會不被加入語言標準中。
 
 如果你想要保險一點，你有以下幾個選擇：
+=======
+You also have a few other options:
+>>>>>>> 4808a469fa782cead9802619b0341b27b342e2d3
 
 * 在 constructor 中綁定方法。
 * 使用 arrow function，例如 `onClick={(e) => this.handleClick(e)}`。
