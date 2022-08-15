@@ -52,7 +52,11 @@ class Welcome extends React.Component {
 
 >注意：
 >
+<<<<<<< HEAD
 >下列方法已過時，你在寫新程式應[避免使用](/blog/2018/03/27/update-on-async-rendering.html)：
+=======
+>This method is considered legacy and you should [avoid it](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>>>>>>> 5fed75dac5f4e208369b102a1337d76944111b33
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
