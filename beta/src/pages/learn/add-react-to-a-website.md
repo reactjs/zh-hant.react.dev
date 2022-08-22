@@ -226,8 +226,13 @@ Watcher 將會建立一個預處理的 **`like-button.js`**，使用適合瀏覽
 
 最初引入 JSX 是為了讓使用 React 撰寫 component 的感覺可以像是撰寫 HTML 一樣。從那時候開始，這個語法變已經變得很普遍了。然而，在有些情況下，你可能不想或是不能使用 JSX。你有兩個選擇：
 
+<<<<<<< HEAD
 - 使用像 [htm](https://github.com/developit/htm) 作為 JSX 的替代方案，它不使用 compiler 而是使用 JavaScript 的 [template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)。
 - 使用  [`React.createElement()`](/apis/createelement)，它有一個特殊的結構，解釋如下。
+=======
+- Use a JSX alternative like [htm](https://github.com/developit/htm) which uses JavaScript [template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) instead of a compiler.
+- Use [`React.createElement()`](/apis/react/createElement) which has a special structure explained below.
+>>>>>>> 37cf98d075de3133b5ae69fe80fbecb6a742530a
 
 使用 JSX，你可以像這樣撰寫 component：
 
