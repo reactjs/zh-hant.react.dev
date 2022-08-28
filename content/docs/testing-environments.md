@@ -47,11 +47,7 @@ prev: testing-recipes.html
 
 ### Mocking timer {#mocking-timers}
 
-<<<<<<< HEAD
-Component 可能使用基於像是 `setTimeout`、`setInterval` 或是 `Date.now` 的時間函式。在測試環境中，可以透過 mock 這些函式來做替換，對於你想要手動「提前」時間非常有用。這可以確保你的測試很快地執行！依賴於 timer 的測試仍然可以按順序 resolve，但速度更快[<small>（範例）</small>](/docs/testing-recipes.html#timers)。大部分的測試框架，包含 [Jest](https://jestjs.io/docs/en/timer-mocks)、[sinon](https://sinonjs.org/releases/v7.3.2/fake-timers/) 以及 [lolex](https://github.com/sinonjs/lolex) 讓你可以在測試中 mock timer。
-=======
-Components might be using time-based functions like `setTimeout`, `setInterval`, or `Date.now`. In testing environments, it can be helpful to mock these functions out with replacements that let you manually "advance" time. This is great for making sure your tests run fast! Tests that are dependent on timers would still resolve in order, but quicker [<small>(example)</small>](/docs/testing-recipes.html#timers). Most frameworks, including [Jest](https://jestjs.io/docs/en/timer-mocks), [sinon](https://sinonjs.org/releases/latest/fake-timers) and [lolex](https://github.com/sinonjs/lolex), let you mock timers in your tests.
->>>>>>> 37cf98d075de3133b5ae69fe80fbecb6a742530a
+Component 可能使用基於像是 `setTimeout`、`setInterval` 或是 `Date.now` 的時間函式。在測試環境中，可以透過 mock 這些函式來做替換，對於你想要手動「提前」時間非常有用。這可以確保你的測試很快地執行！依賴於 timer 的測試仍然可以按順序 resolve，但速度更快[<small>（範例）</small>](/docs/testing-recipes.html#timers)。大部分的測試框架，包含 [Jest](https://jestjs.io/docs/en/timer-mocks)、[sinon](https://sinonjs.org/releases/latest/fake-timers) 以及 [lolex](https://github.com/sinonjs/lolex) 讓你可以在測試中 mock timer。
 
 有時候你可能不想要 mock timer。例如，或許你想要測試一個 animation，或是與一個對時間較敏感的 endpoint 交互（像是 API 的 rate limiter）。函式庫的 timer mock 讓你在每個測試的基礎上啟用和關閉它們，所以你可以明確的選擇這些測試的執行方式。
 

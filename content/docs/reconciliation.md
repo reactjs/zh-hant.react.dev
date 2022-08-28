@@ -45,11 +45,7 @@ React 會 destroy 舊的 `Counter` 並且重新建立一個新的。
 
 >筆記：
 >
-<<<<<<< HEAD
->下列方法已過時，你在寫新程式應[避免使用他們](/blog/2018/03/27/update-on-async-rendering.html)：
-=======
->This method is considered legacy and you should [avoid it](/blog/2018/03/27/update-on-async-rendering.html) in new code:
->>>>>>> 37cf98d075de3133b5ae69fe80fbecb6a742530a
+>這個方法已經被認為已過時，你在寫新程式應[避免使用他們](/blog/2018/03/27/update-on-async-rendering.html)：
 >
 >- `UNSAFE_componentWillMount()`
 
@@ -170,5 +166,5 @@ React 會先匹配兩個 `<li>first</li>` 對應的 tree，然後匹配第二個
 由於 React 依賴啓發式的演算法，因此當以下假設沒有得到滿足，效能將會有所影響。
 
 1. 該演算法不會嘗試匹配不同 component 類型的 subtree。如果你發現你在兩種不同類型的 component 中切換，但輸出非常相似的內容，建議把它們改成同一類型。實際上，我們沒有發現在改成同一種類型後會發生問題。
-   
+
 2. Key 應該具有穩定、可預測、以及 array 內唯一的特質。不穩定的 key（例如透過 `Math.random()` 隨機生成的）會導致許多 component instance 和 DOM 節點被不必要地重新建立，這可能導致效能低下和 child component 中的 state 丟失。
