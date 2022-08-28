@@ -331,54 +331,22 @@ function useWindowPosition() {
 
 ### 如何取得先前的 prop 或 state？ {#how-to-get-the-previous-props-or-state}
 
-目前來說，你可以手動的[藉由 ref](#is-there-something-like-instance-variables)：
+有兩種情況下，你可能想取得先前的 prop 或 state。
 
-```js{6,8}
-function Counter() {
-  const [count, setCount] = useState(0);
+有時候，你需要先前的 prop 來 **清除一個 effect。**例如，你可能有一個基於 `userId` prop 來 subscribe 一個 socket 的 effect，你想要 unsubscribe _先前的_ 的 `userId` 以及 subscribe _下一個_。對於這樣的工作你不需要做任何事：
 
-  const prevCountRef = useRef();
-  useEffect(() => {
-    prevCountRef.current = count;
-  });
-  const prevCount = prevCountRef.current;
-
-  return <h1>Now: {count}, before: {prevCount}</h1>;
-}
+```js
+useEffect(() => {
+  ChatAPI.subscribeToSocket(props.userId);
+  return () => ChatAPI.unsubscribeFromSocket(props.userId);
+}, [props.userId]);
 ```
 
-這可能有點複雜，但你可以將它提取到自定義的 Hook 中：
+在上面的範例中，如果 `userId` 從 `3` 變成 `4`，`ChatAPI.unsubscribeFromSocket(3)` 會回傳第一個，接著執行 `ChatAPI.subscribeToSocket(4)`。這裡不需要取得「先前的」 `userId`，因為 cleanup function 會在它的 closure 捕獲它。
 
-```js{3,7}
-function Counter() {
-  const [count, setCount] = useState(0);
-  const prevCount = usePrevious(count);
-  return <h1>Now: {count}, before: {prevCount}</h1>;
-}
+其他時候，你可能需要**基於 prop 或 state 的變化來調整 state**。這很少需要，而且這通常是個訊號你有一些重複或多餘的 state。然而，在極少數的情況下你需要這個模式，你可以 [儲存先前的 state 或 prop 在 state 並且在 rendering 期間更新它們](#how-do-i-implement-getderivedstatefromprops)。
 
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-```
-
-請注意這對於 props、state 或任何其他被計算值是如何工作的。
-
-```js{5}
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  const calculation = count + 100;
-  const prevCalculation = usePrevious(calculation);
-  // ...
-```
-
-未來 React 可能將會內建提供 `usePrevious` Hook，因為它是一個相對常見的使用。
-
-另外請參考 [derived state 的推薦模式](#how-do-i-implement-getderivedstatefromprops)。
+我們之前提出了一個自定義的 hook 叫做 `usePrevious` 來儲存前一個值。然而，我們發現大部分的使用案例都是向上面所描述的兩種模式。如果你的使用情境非常不同，你可以[儲存一個值在 ref](#is-there-something-like-instance-variables) 並且當它需要的時候手動更新它。避免在 rendering 中讀取和更新 ref，因為這讓你 component 的行為難以預測和理解。
 
 ### 為什麼我在 function 內看到舊的 prop 或 state？ {#why-am-i-seeing-stale-props-or-state-inside-my-function}
 

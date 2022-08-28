@@ -92,15 +92,14 @@ class Toggle extends React.Component {
 
 這並非是 React 才有的行為，而是 [function 在 JavaScript 中的運作模式](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/)。總之，當你使用一個方法，卻沒有在後面加上 `()` 之時（例如當你使用 `onClick={this.handleClick}` 時），你應該要綁定這個方法。
 
-如果呼叫 `bind` 對你來說很麻煩的話，你可以用別的方式。如果你使用了還在測試中的 [class fields 語法](https://babeljs.io/docs/plugins/transform-class-properties/)的話，你可以用 class field 正確的綁定 callback：
+如果呼叫 `bind` 對你來說很麻煩的話，你可以用別的方式。你可以用 public class field 來正確的綁定 callback：
 
 ```js{2-6}
 class LoggingButton extends React.Component {
-  // 這個語法確保 `this` 是在 handleClick 中被綁定：
-  // 警告：這是一個還在*測試中*的語法：
+  // 這個語法確保 `this` 是在 handleClick 中被綁定。
   handleClick = () => {
     console.log('this is:', this);
-  }
+  };
 
   render() {
     return (

@@ -119,7 +119,7 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-我們並不建議你使用索引作為 key，尤其如果項目的順序會改變的話。這會對效能產生不好的影響，也可能會讓 component state 產生問題。請參考 Robin Pokorny 這篇[深入剖析使用索引作為 key 的負面效應](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318)ㄧ文。如果你選擇不明確分配 key 到列表項目時，React 預設將會使用索引作為 key。
+我們並不建議你使用索引作為 key，尤其如果項目的順序會改變的話。這會對效能產生不好的影響，也可能會讓 component state 產生問題。請參考 Robin Pokorny 這篇[深入剖析使用索引作為 key 的負面效應](ttps://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/)ㄧ文。如果你選擇不明確分配 key 到列表項目時，React 預設將會使用索引作為 key。
 
 如果你想了解更多，請參考[深度剖析 key 的必要性](/docs/reconciliation.html#recursing-on-children)一文。
 

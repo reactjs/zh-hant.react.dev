@@ -121,7 +121,7 @@ class Greeting extends React.Component {
 
 > 備註
 >
-> `React.PureComponent` 的 `shouldComponentUpdate()` 只對 object 進行 shallow compare。如果這些 object 包含複雜的資料結構，在深層的資料有所改變的時候將有可能回傳錯誤結果 (false-negative)。繼承 `PureComponent` 的時候，請確保你只有簡單的 prop 跟 state，或在當你知道深層的資料有所改變的時候使用 [`forceUpdate()`](/docs/react-component.html#forceupdate)。你也可以考慮改用 [immutable object](https://facebook.github.io/immutable-js/) 進行快速的深層資料比較。
+> `React.PureComponent` 的 `shouldComponentUpdate()` 只對 object 進行 shallow compare。如果這些 object 包含複雜的資料結構，在深層的資料有所改變的時候將有可能回傳錯誤結果 (false-negative)。繼承 `PureComponent` 的時候，請確保你只有簡單的 prop 跟 state，或在當你知道深層的資料有所改變的時候使用 [`forceUpdate()`](/docs/react-component.html#forceupdate)。你也可以考慮改用 [immutable objects](https://immutable-js.com/) 進行快速的深層資料比較。
 >
 > 此外，`React.PureComponent` 的 `shouldComponentUpdate()` 將會跳過整個 subtree 的 prop 更新。請確保所有 children component 也是「pure」的。
 
