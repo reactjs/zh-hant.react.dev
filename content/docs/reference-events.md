@@ -149,7 +149,7 @@ DOMEventTarget relatedTarget
 
 #### onFocus {#onfocus}
 
-The `onFocus` event is called when the element (or some element inside of it) receives focus. For example, it's called when the user clicks on a text input.
+`onFocus` 事件將會在元素 (或是元素裡面的元素) 獲得焦點時執行，舉例來說, 下方的 `onFocus` 事件會在當使用者點擊一個 input 時觸發。
 
 ```javascript
 function Example() {
