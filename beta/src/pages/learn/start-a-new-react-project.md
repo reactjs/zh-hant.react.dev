@@ -53,7 +53,7 @@ npm start
 ### 熱門替代選項 {/*popular-alternatives*/}
 
 * [Vite](https://vitejs.dev/guide/)
-* [Parcel](https://parceljs.org/)
+* [Parcel](https://parceljs.org/getting-started/webapp/)
 
 ## 用一個功能齊全的 framework 來建構 {/*building-with-a-full-featured-framework*/}
 
