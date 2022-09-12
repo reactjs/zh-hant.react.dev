@@ -52,8 +52,7 @@
             },
             {
               "title": "Fragment",
-              "path": "/apis/react/Fragment",
-              "wip": true
+              "path": "/apis/react/Fragment"
             },
             {
               "title": "isValidElement",
@@ -115,6 +114,11 @@
               "wip": true
             },
             {
+              "title": "useEvent",
+              "path": "/apis/react/useEvent",
+              "wip": true
+            },
+            {
               "title": "useId",
               "path": "/apis/react/useId",
               "wip": true
@@ -131,8 +135,7 @@
             },
             {
               "title": "useMemo",
-              "path": "/apis/react/useMemo",
-              "wip": true
+              "path": "/apis/react/useMemo"
             },
             {
               "title": "useReducer",
@@ -183,8 +186,7 @@
             },
             {
               "title": "hydrate",
-              "path": "/apis/react-dom/hydrate",
-              "wip": true
+              "path": "/apis/react-dom/hydrate"
             },
             {
               "title": "hydrateRoot",

@@ -169,4 +169,8 @@ class SignUpDialog extends React.Component {
 
 Prop 和 composition 提供你明確和安全的方式來自訂 component 的外觀和行為所需的靈活性。請記得，component 可以接受任意的 prop，包含 primitive value、React element，或者是 function。
 
+<<<<<<< HEAD
 如果你想要在 component 之間複用非 UI 的功能，我們建議抽離它到一個獨立的 JavaScript 模組。Component 可以 import 並使用它的 function、object，或者是 class，而不需要繼承它。
+=======
+If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or class, without extending it.
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6

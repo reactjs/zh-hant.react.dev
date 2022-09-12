@@ -144,4 +144,8 @@ React 將這種資料流明確表示出來，以便讓你能更容易理解你�
 
 ## 完成 {#and-thats-it}
 
+<<<<<<< HEAD
 希望這幫助你理解如何用 React 建立 component 和應用程式。雖然這可能需要你比你習慣的多打一些程式碼，請記得閱讀程式碼比起寫程式碼更常發生，而閱讀這種模組化、清晰明確的程式碼是非常容易的。當你開始建立大型的 component 函式庫時，你會很感激有這樣的明確性和模組性，而當你開始重複使用程式碼時，你的程式的行數會開始減少。:)
+=======
+Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more often than it's written, and it's less difficult to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6
