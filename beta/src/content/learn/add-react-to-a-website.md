@@ -20,11 +20,7 @@ title: 將 React 加入到網頁
 
 React 從一開始就被設計成逐步採用的方式。大多數網站都沒有（也不需要）完全使用 React 構建。本指南展示如何加入一些“互動性”到現有的 HTML 頁面。
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
-用你的網站或者是[一個空白的 HTML 檔案](https://gist.github.com/gaearon/edf814aeee85062bc9b9830aeaf27b88/archive/3b31c3cdcea7dfcfd38a81905a0052dd8e5f71ec.zip)。所需的是網路連線和一個像是 Notepad 或 VSCode 的文字編輯器。（這裡是[如何為你的編輯器設定](/learn/editor-setup/) syntax highlighting！）
-=======
-Try this out with your own website or [an empty HTML file.](https://gist.github.com/gaearon/edf814aeee85062bc9b9830aeaf27b88/archive/3b31c3cdcea7dfcfd38a81905a0052dd8e5f71ec.zip) All you need is an internet connection and a text editor like Notepad or VSCode. (Here's [how to configure your editor](/learn/editor-setup/) for syntax highlighting!)
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
+用你的網站或者是[一個空白的 HTML 檔案](https://gist.github.com/gaearon/edf814aeee85062bc9b9830aeaf27b88/archive/3b31c3cdcea7dfcfd38a81905a0052dd8e5f71ec.zip)。你所需的是網路連線和一個像是 Notepad 或 VSCode 的文字編輯器。（這裡是[如何為你的編輯器設定](/learn/editor-setup/) syntax highlighting！）
 
 ### 第一步：加入一個 root HTML 標籤 {/*step-1-add-a-root-html-tag*/}
 
@@ -46,15 +42,9 @@ Try this out with your own website or [an empty HTML file.](https://gist.github.
 
 在 HTML 頁面的 `</body>` 標籤結束之前，為以下檔案加入三個 `<script>` 標籤：
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
-- [`react.development.js`](https://unpkg.com/react@18/umd/react.development.js) 讓你定義 React component。
-- [`react-dom.development.js`](https://unpkg.com/react-dom@18/umd/react-dom.development.js) 讓 React render HTML element 到 [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model)。
-- **`like-button.js`** 是你在下一步將要撰寫 component 的地方！
-=======
 - [`react.development.js`](https://unpkg.com/react@18/umd/react.development.js) lets you define React components.
 - [`react-dom.development.js`](https://unpkg.com/react-dom@18/umd/react-dom.development.js) lets React render HTML elements to the [DOM.](https://developer.mozilla.org/docs/Web/API/Document_Object_Model)
 - **`like-button.js`** is where you'll write your component in the next step!
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
 
 你的 HTML 現在看起來應該像這樣：
 
@@ -99,11 +89,7 @@ function LikeButton() {
 
 ### 第四步：把你的 React Component 加入到頁面 {/*step-4-add-your-react-component-to-the-page*/}
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
 最後，在 **`like-button.js`** 底部加入三行程式碼。這三行程式碼找到你在第一步中加入 HTML 到 `<div>`，建立一個 React root，然後在裡面顯示「Like」按鈕的 React component：
-=======
-Lastly, add three lines to the bottom of **`like-button.js`.** These lines of code find the `<div>` you added to the HTML in the first step, create a React root, and then display the "Like" button React component inside of it:
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
 
 ```js
 const rootNode = document.getElementById('like-button-root');
@@ -120,13 +106,8 @@ root.render(React.createElement(LikeButton));
 
 你可能想要在同一個 HTML 頁面的多個地方顯示一個 React component。當頁面中由 React 驅動的部分彼此隔離時，這是最有用的。你可以透過多次呼叫 ReactDOM.createRoot() 和多個 container element 來做到這一點。例如：
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
-1. 在 **`index.html`** 中，加入一個額外的 `<div id="another-root"></div>` container element。
-2. 在 **`like-button.js`** 中，在最後加入三行：
-=======
 1. In **`index.html`,** add an additional container element `<div id="another-root"></div>`.
 2. In **`like-button.js`,** add three more lines at the end:
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
 
 ```js {6,7,8,9}
 const anotherRootNode = document.getElementById('another-root');
@@ -140,13 +121,8 @@ anotherRoot.render(React.createElement(LikeButton));
 
 壓縮的 JavaScript 會顯著降低使用者載入頁面的時間。在部署你的網站到 production 之前，將 scripts 進行壓縮是個好主意。
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
-- **如果你沒有為 script 設定壓縮步驟**，[這裡有設定方式](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)。
-- **如果你已經將你的應用程式 script 進行 minify**，如果你確保部署的 HTML 是載入 `production.min.js` 結尾的 React 版本，你的網站將是 proudction-ready 的，像是如下：
-=======
 - **If you don't have a minification step** for your scripts, [here's one way to set it up.](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)
 - **If you already minify** your application scripts, your site will be production-ready if you ensure that the deployed HTML loads the versions of React ending in `production.min.js` like so:
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
 
 ```html
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
@@ -169,19 +145,11 @@ return <button onClick={() => setLiked(true)}>Like</button>;
 
 這兩個程式碼片段是等效的。JSX 是在 JavaScript 中描述 markup 的流行語法。許多人發現它很熟悉並對於撰寫 UI 程式碼非常有幫助--無論是使用 React 或是其他 library。
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
 > 你可以使用這個[線上轉換器](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.17)來體驗將 HTML markup 轉換成 JSX。
-=======
-> You can play with transforming HTML markup into JSX using [this online converter.](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.17)
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
 
 ### 嘗試 JSX {/*try-jsx*/}
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
 在你的專案中最快速嘗試 JSX 的方式就是將 Babel compiler 作為一個 `<script>` 加入到頁面中。放在 **`like-button.js`** 之前，並且在 **`like-button.js`** 的 `<script>` 加上 `type="text/babel"` attribute：
-=======
-The quickest way to try JSX is to add the Babel compiler as a `<script>` tag to the page. Put it before **`like-button.js`,** and then add `type="text/babel"` attribute to the `<script>` tag for **`like-button.js`**:
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
 
 ```html {3,4}
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
@@ -217,11 +185,7 @@ return (
 
 <Gotcha>
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
 Babel `<script>` 編譯器非常適合學習和建立簡單的 demo。但是，**它讓你的網站變慢而且不適用在 production**。當你決定往前進時，移除 Babel `<script>` 標籤並且移除你在前面步驟加入的 `type="text/babel"` attribute。相反的，在下一章節中，你將設定一個 JSX 預處理器來將所有的 `<script>` 標籤從 JSX 轉換為 JS。
-=======
-The Babel `<script>` compiler is fine for learning and creating simple demos. However, **it makes your website slow and isn't suitable for production.** When you're ready to move forward, remove the Babel `<script>` tag and remove the `type="text/babel"` attribute you've added in this step. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags from JSX to JS.
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
 
 </Gotcha>
 
@@ -242,21 +206,14 @@ The Babel `<script>` compiler is fine for learning and creating simple demos. Ho
 
 你可以對 JSX 進行預處理，這樣每次你儲存一個包含 JSX 的檔案時，轉換會重新執行，將 JSX 檔案轉換成瀏覽器可以理解的普通的 JavaScript 檔案。設定方法如下：
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
-1. C建立一個 **`src`** 的資料夾。
+1. 建立一個 **`src`** 的資料夾。
 2. 在你的 terminal 執行這個命令：`npx babel --watch src --out-dir . --presets react-app/prod `（不需要等待它完成！這個命令啟動一個 automated watcher，觀察 `src` 內的 JSX 的編輯。）
 3. 移動你 JSX 化的 **`like-button.js`** ([它看起來應該像這樣！](https://gist.githubusercontent.com/gaearon/1884acf8834f1ef9a574a953f77ed4d8/raw/dfc664bbd25992c5278c3bf3d8504424c1104ecf/like-button.js)) 到新的 **`src`** 資料夾。
-=======
-1. Create a folder called **`src`.**
-2. In your terminal, run this command: `npx babel --watch src --out-dir . --presets react-app/prod ` (Don't wait for it to finish! This command starts an automated watcher for edits to JSX inside `src`.)
-3. Move your JSX-ified **`like-button.js`** ([it should look like this!](https://gist.githubusercontent.com/gaearon/1884acf8834f1ef9a574a953f77ed4d8/raw/dfc664bbd25992c5278c3bf3d8504424c1104ecf/like-button.js)) to the new **`src`** folder.
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
 
 Watcher 將會建立一個預處理的 **`like-button.js`**，使用適合瀏覽器的普通 JavaSripct 的程式碼。
 
 <Gotcha>
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
 如果你看到一個錯誤訊息：「You have mistakenly installed the `babel` package」，你可能漏掉了[上一步](#add-jsx-to-a-project)。在相同的資料夾執行它，然後再試一次。
 
 </Gotcha>
@@ -264,15 +221,6 @@ Watcher 將會建立一個預處理的 **`like-button.js`**，使用適合瀏覽
 我們剛才用的工具叫做 Babel，你可以從[它的文件](https://babeljs.io/docs/en/babel-cli/)中了解更多關於它的資訊。除了 JSX，它還讓你使用最新的 JavaScript 語法功能而不需要擔心弄壞瀏覽器。
 
 如果你正在適應建構工具並希望它們為你做更多的事情，[我們這裡涵蓋了最流行和最容易接近的工具鏈](/learn/start-a-new-react-project)。
-=======
-If you see an error message saying "You have mistakenly installed the `babel` package", you might have missed [the previous step.](#add-jsx-to-a-project) Perform it in the same folder, and then try again.
-
-</Gotcha>
-
-The tool you just used is called Babel, and you can learn more about it from [its documentation.](https://babeljs.io/docs/en/babel-cli/) In addition to JSX, it lets you use the most recent JavaScript syntax features without worrying about breaking older browsers.
-
-If you're getting comfortable with build tools and want them to do more for you, [we cover some of the most popular and approachable toolchains here.](/learn/start-a-new-react-project)
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
 
 <DeepDive title="React without JSX">
 
@@ -309,15 +257,9 @@ root.render(
 
 這是它們的工作原理：
 
-<<<<<<< HEAD:beta/src/pages/learn/add-react-to-a-website.md
 1. 一個 **component**，可以是一個字串，代表一個 HTML element 或是一個 function component
 2. 一個任何[你想要傳遞的 **props**](/learn/passing-props-to-a-component) 的 object
 3. 剩下的是該 component 可能擁有的 **children**，例如是文字或其他 element
-=======
-1. A **component,** which can be a string representing an HTML element or a function component
-2. An object of any [**props** you want to pass](/learn/passing-props-to-a-component)
-3. The rest are **children** the component might have, such as text strings or other elements
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/add-react-to-a-website.md
 
 如果你厭倦輸入 `React.createElement()`，一個常見的模式是指定一個 shorthand：
 

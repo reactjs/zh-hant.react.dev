@@ -22,11 +22,7 @@ title: React 開發者工具
 * [Install for **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
 * [Install for **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
 
-<<<<<<< HEAD:beta/src/pages/learn/react-developer-tools.md
 現在，如果你拜訪**用 React 建構**的網站，你將會看到 _Components_ 和 _Profiler_ 控制面板。
-=======
-Now, if you visit a website **built with React,** you will see the _Components_ and _Profiler_ panels.
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/react-developer-tools.md
 
 ![React Developer Tools extension](/images/docs/react-devtools-extension.png)
 

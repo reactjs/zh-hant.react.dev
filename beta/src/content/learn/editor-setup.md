@@ -36,13 +36,9 @@ Code linter 可以在你撰寫程式碼的時候發現問題，幫助你儘早�
 * [用 React 推薦的設定安裝 ESLint](https://www.npmjs.com/package/eslint-config-react-app)（請確認你[安裝了 Node！](https://nodejs.org/en/download/current/)）
 * [在 VSCode 中用官方擴充功能整合 ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-<<<<<<< HEAD:beta/src/pages/learn/editor-setup.md
-### 格式化 {/*formatting*/}
-=======
-**Make sure that you've enabled all the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) rules for your project.** They are essential and catch the most severe bugs early. The recommended [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) preset already includes them.
+**確認你有在你的專案內啟動所有 [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) 規則。**它們是不可少的，可以及早發現嚴重的錯誤。推薦的 [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) preset 已經包含了它們。
 
-### Formatting {/*formatting*/}
->>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6:beta/src/content/learn/editor-setup.md
+### 格式化 {/*formatting*/}
 
 當你與另一個貢獻者分享你的程式時，你最不想做的事情就是陷入關於 [tabs 與 spaces](https://www.google.com/search?q=tabs+vs+spaces) 的討論中！幸運的是，[Prettier](https://prettier.io/) 將通過重新格式化來清理你的程式碼，使其符合預設的、可配置的規則。執行 Prettier，你所有的 tab 將被轉換為 space--你的縮排、引號等也將全部被改變，以符合配置。在理想的設定中，Prettier 將在你儲存文件時執行，迅速為你進行這些編輯。
 
