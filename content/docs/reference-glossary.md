@@ -126,7 +126,7 @@ class Welcome extends React.Component {
 
 生命週期方法是用來在 component 不同階段來執行自訂功能。以下的事件都有生命週期方法：當 component 被建立和加入在 DOM 裏（[mounting](/docs/react-component.html#mounting)），當 component 更新，以及從 DOM 中 unmount 或移除時。
 
- ## [Controlled](/docs/forms.html#controlled-components) 與 [Uncontrolled Components](/docs/uncontrolled-components.html)
+## [Controlled](/docs/forms.html#controlled-components) 與 [Uncontrolled Components](/docs/uncontrolled-components.html)
 
 React 有兩個不同的方案處理表格輸入。
 
@@ -134,15 +134,15 @@ React 有兩個不同的方案處理表格輸入。
 
 一個 *uncontrolled component* 就像表格 element 一樣在 React 以外工作。當用戶輸入數據到一個表格列（input box，dropdown 等）時，不需要 React 處理任何東西，更新的數據就會被反映出來。但同時這意味著你不能強迫表格列有特定的數值。
 
-在大多數的情況下你應用使用 controlled components。
+在大多數的情況下你應該使用 controlled components。
 
 ## [Keys](/docs/lists-and-keys.html) {#keys}
 
-「key」是一個特別的 string attribute ，你需要在建立 element array 時加上。Key 幫助 React 分辨那個 element 被更改，添加，或已移除。Key 應該放在 array element 的內部，使 element 有一個穩定的標記。
+key 是建立 arrays of elements 時，你需要包含在內的一個特殊的 string attribute。key 幫助 React 辨認哪些項目已更改、新增或移除。應該替 array 內部的 element 提供 key，以使 element 具有穩定的身份。
 
-Key 只需要在同一個 array 的 sibling element 中是唯一的。它們不需要在整個應用程式或個別 component 中是唯一。
+key 只需要在同一個 array 的 sibling elements 中是唯一的。它們不需要在整個應用程式或甚至單一 component 中是唯一的。
 
-不要將類似 `Math.random()` 的值賦予給 key。Key 有一個誇重新 render 都「隱定的標記」是很重要的，這樣 React 才可以確定項目何時被添加，移除，或重新排序。在理想情況下，key 應該對應來自至於數據唯一而穩定的標記，例如 `post.id`。
+不要將 `Math.random()` 之類的值傳給 key。重要的是，key 在 re-render 時具有「穩定的身份」，以便 React 可以確定項目何時新增、移除或重新排序。理想情況下，key 應該對應到來自於你的資料中唯一且穩定的身份標識，例如 `post.id`。
 
 ## [Refs](/docs/refs-and-the-dom.html) {#refs}
 
