@@ -4,7 +4,7 @@ title: useInsertionEffect
 
 <Wip>
 
-This section is incomplete, please see the old docs for [useInsertionEffect](https://reactjs.org/docs/hooks-reference.html#useinsertioneffect).
+This section is incomplete, please see the old docs for [useInsertionEffect.](https://reactjs.org/docs/hooks-reference.html#useinsertioneffect)
 
 </Wip>
 
@@ -21,8 +21,8 @@ useInsertionEffect(didUpdate);
 
 <InlineToc />
 
-<Gotcha>
+<Pitfall>
 
 `useInsertionEffect` should be limited to css-in-js library authors. Prefer [`useEffect`](/apis/react/useEffect) or [`useLayoutEffect`](/apis/react/useLayoutEffect) instead.
 
-</Gotcha>
+</Pitfall>
