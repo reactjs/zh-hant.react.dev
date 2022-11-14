@@ -116,7 +116,7 @@ export default function TodoList() {
 You can only use curly braces in two ways inside JSX:
 
 1. **As text** directly inside a JSX tag: `<h1>{name}'s To Do List</h1>` works, but `<{tag}>Gregorio Y. Zara's To Do List</{tag}>`  will not.
-2. **As attributes** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src="{avatar}"` will pass the string `{avatar}`.
+2. **As attributes** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src="{avatar}"` will pass the string `"{avatar}"`.
 
 ## Using "double curlies": CSS and other objects in JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}
 
@@ -163,11 +163,11 @@ You can really see the JavaScript object inside the curly braces when you write 
 
 The next time you see `{{` and `}}` in JSX, know that it's nothing more than an object inside the JSX curlies!
 
-<Gotcha>
+<Pitfall>
 
 Inline `style` properties are written in camelCase. For example, HTML `<ul style="background-color: black">` would be written as `<ul style={{ backgroundColor: 'black' }}>`  in your component.
 
-</Gotcha>
+</Pitfall>
 
 ## More fun with JavaScript objects and curly braces {/*more-fun-with-javascript-objects-and-curly-braces*/}
 
@@ -426,7 +426,7 @@ body > div > div { padding: 20px; }
 
 #### Write an expression inside JSX curly braces {/*write-an-expression-inside-jsx-curly-braces*/}
 
-In the object below, the full image URL is split into four parts: base URL,  `imageId`, `imageSize`, and file extension.
+In the object below, the full image URL is split into four parts: base URL, `imageId`, `imageSize`, and file extension.
 
 We want the image URL to combine these attributes together: base URL (always `'https://i.imgur.com/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), and file extension (always `'.jpg'`). However, something is wrong with how the `<img>` tag specifies its `src`.
 
