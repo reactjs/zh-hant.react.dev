@@ -13,18 +13,15 @@
           "routes": [
             {
               "title": "Children",
-              "path": "/apis/react/Children",
-              "wip": true
+              "path": "/apis/react/Children"
             },
             {
               "title": "cloneElement",
-              "path": "/apis/react/cloneElement",
-              "wip": true
+              "path": "/apis/react/cloneElement"
             },
             {
               "title": "Component",
-              "path": "/apis/react/Component",
-              "wip": true
+              "path": "/apis/react/Component"
             },
             {
               "title": "createContext",
@@ -32,47 +29,39 @@
             },
             {
               "title": "createElement",
-              "path": "/apis/react/createElement",
-              "wip": true
+              "path": "/apis/react/createElement"
             },
             {
               "title": "createFactory",
-              "path": "/apis/react/createFactory",
-              "wip": true
+              "path": "/apis/react/createFactory"
             },
             {
               "title": "createRef",
-              "path": "/apis/react/createRef",
-              "wip": true
+              "path": "/apis/react/createRef"
             },
             {
               "title": "forwardRef",
-              "path": "/apis/react/forwardRef",
-              "wip": true
+              "path": "/apis/react/forwardRef"
             },
             {
-              "title": "Fragment",
+              "title": "Fragment (<>...</>)",
               "path": "/apis/react/Fragment"
             },
             {
               "title": "isValidElement",
-              "path": "/apis/react/isValidElement",
-              "wip": true
+              "path": "/apis/react/isValidElement"
             },
             {
               "title": "lazy",
-              "path": "/apis/react/lazy",
-              "wip": true
+              "path": "/apis/react/lazy"
             },
             {
               "title": "memo",
-              "path": "/apis/react/memo",
-              "wip": true
+              "path": "/apis/react/memo"
             },
             {
               "title": "PureComponent",
-              "path": "/apis/react/PureComponent",
-              "wip": true
+              "path": "/apis/react/PureComponent"
             },
             {
               "title": "startTransition",
@@ -86,13 +75,11 @@
             },
             {
               "title": "Suspense",
-              "path": "/apis/react/Suspense",
-              "wip": true
+              "path": "/apis/react/Suspense"
             },
             {
               "title": "useCallback",
-              "path": "/apis/react/useCallback",
-              "wip": true
+              "path": "/apis/react/useCallback"
             },
             {
               "title": "useContext",
@@ -100,8 +87,7 @@
             },
             {
               "title": "useDebugValue",
-              "path": "/apis/react/useDebugValue",
-              "wip": true
+              "path": "/apis/react/useDebugValue"
             },
             {
               "title": "useDeferredValue",
@@ -110,8 +96,7 @@
             },
             {
               "title": "useEffect",
-              "path": "/apis/react/useEffect",
-              "wip": true
+              "path": "/apis/react/useEffect"
             },
             {
               "title": "useEvent",
@@ -120,17 +105,20 @@
             },
             {
               "title": "useId",
-              "path": "/apis/react/useId",
-              "wip": true
+              "path": "/apis/react/useId"
             },
             {
               "title": "useImperativeHandle",
-              "path": "/apis/react/useImperativeHandle",
-              "wip": true
+              "path": "/apis/react/useImperativeHandle"
             },
             {
               "title": "useInsertionEffect",
               "path": "/apis/react/useInsertionEffect",
+              "wip": true
+            },
+            {
+              "title": "useLayoutEffect",
+              "path": "/apis/react/useLayoutEffect",
               "wip": true
             },
             {
@@ -166,10 +154,6 @@
           "path": "/apis/react-dom",
           "routes": [
             {
-              "title": "createRoot",
-              "path": "/apis/react-dom/client/createRoot"
-            },
-            {
               "title": "createPortal",
               "path": "/apis/react-dom/createPortal",
               "wip": true
@@ -181,21 +165,41 @@
             },
             {
               "title": "flushSync",
-              "path": "/apis/react-dom/flushSync",
-              "wip": true
+              "path": "/apis/react-dom/flushSync"
             },
             {
               "title": "hydrate",
               "path": "/apis/react-dom/hydrate"
             },
             {
-              "title": "hydrateRoot",
-              "path": "/apis/react-dom/client/hydrateRoot"
-            },
-            {
               "title": "render",
               "path": "/apis/react-dom/render"
             },
+            {
+              "title": "unmountComponentAtNode",
+              "path": "/apis/react-dom/unmountComponentAtNode",
+              "wip": true
+            }
+          ]
+        },
+        {
+          "title": "ReactDOMClient APIs",
+          "path": "/apis/react-dom/client",
+          "routes": [
+            {
+              "title": "createRoot",
+              "path": "/apis/react-dom/client/createRoot"
+            },
+            {
+              "title": "hydrateRoot",
+              "path": "/apis/react-dom/client/hydrateRoot"
+            }
+          ]
+        },
+        {
+          "title": "ReactDOMServer APIs",
+          "path": "/apis/react-dom/server",
+          "routes": [
             {
               "title": "renderToNodeStream",
               "path": "/apis/react-dom/server/renderToNodeStream",
@@ -224,11 +228,6 @@
             {
               "title": "renderToString",
               "path": "/apis/react-dom/server/renderToString",
-              "wip": true
-            },
-            {
-              "title": "unmountComponentAtNode",
-              "path": "/apis/react-dom/unmountComponentAtNode",
               "wip": true
             }
           ]
