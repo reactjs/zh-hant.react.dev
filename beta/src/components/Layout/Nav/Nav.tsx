@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {useState, useRef, useContext, useEffect, Suspense} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
@@ -18,9 +19,8 @@ import NavLink from './NavLink';
 import {SidebarContext} from 'components/Layout/useRouteMeta';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../useRouteMeta';
-import sidebarHome from '../../../sidebarHome.json';
 import sidebarLearn from '../../../sidebarLearn.json';
-import sidebarReference from '../../../sidebarReference.json';
+import sidebarAPIs from '../../../sidebarAPIs.json';
 
 declare global {
   interface Window {
@@ -93,20 +93,20 @@ const lightIcon = (
 );
 
 export default function Nav() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [showFeedback, setShowFeedback] = React.useState(false);
-  const scrollParentRef = React.useRef<HTMLDivElement>(null);
-  const feedbackAutohideRef = React.useRef<any>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const scrollParentRef = useRef<HTMLDivElement>(null);
+  const feedbackAutohideRef = useRef<any>(null);
   const section = useActiveSection();
   const {asPath} = useRouter();
-  const feedbackPopupRef = React.useRef<null | HTMLDivElement>(null);
+  const feedbackPopupRef = useRef<null | HTMLDivElement>(null);
 
   // In desktop mode, use the route tree for current route.
-  let routeTree: RouteItem = React.useContext(SidebarContext);
+  let routeTree: RouteItem = useContext(SidebarContext);
   // In mobile mode, let the user switch tabs there and back without navigating.
   // Seed the tab state from the router, but keep it independent.
-  const [tab, setTab] = React.useState(section);
-  const [prevSection, setPrevSection] = React.useState(section);
+  const [tab, setTab] = useState(section);
+  const [prevSection, setPrevSection] = useState(section);
   if (prevSection !== section) {
     setPrevSection(section);
     setTab(section);
@@ -114,13 +114,11 @@ export default function Nav() {
   if (isOpen) {
     switch (tab) {
       case 'home':
-        routeTree = sidebarHome as RouteItem;
-        break;
       case 'learn':
         routeTree = sidebarLearn as RouteItem;
         break;
       case 'apis':
-        routeTree = sidebarReference as RouteItem;
+        routeTree = sidebarAPIs as RouteItem;
         break;
     }
   }
@@ -130,7 +128,7 @@ export default function Nav() {
   }
 
   // While the overlay is open, disable body scroll.
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOpen) {
       const preferredScrollParent = scrollParentRef.current!;
       disableBodyScroll(preferredScrollParent);
@@ -141,13 +139,13 @@ export default function Nav() {
   }, [isOpen]);
 
   // Close the overlay on any navigation.
-  React.useEffect(() => {
+  useEffect(() => {
     setIsOpen(false);
   }, [asPath]);
 
   // Also close the overlay if the window gets resized past mobile layout.
   // (This is also important because we don't want to keep the body locked!)
-  React.useEffect(() => {
+  useEffect(() => {
     const media = window.matchMedia(`(max-width: 1023px)`);
     function closeIfNeeded() {
       if (!media.matches) {
@@ -167,7 +165,7 @@ export default function Nav() {
   }
 
   // Hide the Feedback widget on any click outside.
-  React.useEffect(() => {
+  useEffect(() => {
     if (!showFeedback) {
       return;
     }
@@ -187,7 +185,7 @@ export default function Nav() {
       });
   }, [showFeedback]);
 
-  function selectTab(nextTab: 'learn' | 'apis' | 'home') {
+  function selectTab(nextTab: 'learn' | 'apis') {
     setTab(nextTab);
     scrollParentRef.current!.scrollTop = 0;
   }
@@ -244,10 +242,9 @@ export default function Nav() {
           </div>
         </div>
         <div className="px-0 pt-2 w-full 2xl:max-w-xs hidden lg:flex items-center self-center border-b-0 lg:border-b border-border dark:border-border-dark">
-          <NavLink href="/" isActive={section === 'home'}>
-            Home
-          </NavLink>
-          <NavLink href="/learn" isActive={section === 'learn'}>
+          <NavLink
+            href="/learn"
+            isActive={section === 'learn' || section === 'home'}>
             Learn
           </NavLink>
           <NavLink href="/apis/react" isActive={section === 'apis'}>
@@ -311,12 +308,7 @@ export default function Nav() {
       {isOpen && (
         <div className="bg-wash dark:bg-wash-dark px-5 flex justify-end border-b border-border dark:border-border-dark items-center self-center w-full z-10">
           <TabButton
-            isActive={tab === 'home'}
-            onClick={() => selectTab('home')}>
-            Home
-          </TabButton>
-          <TabButton
-            isActive={tab === 'learn'}
+            isActive={tab === 'learn' || tab === 'home'}
             onClick={() => selectTab('learn')}>
             Learn
           </TabButton>
@@ -346,7 +338,7 @@ export default function Nav() {
             style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
             className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-6 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
             {/* No fallback UI so need to be careful not to suspend directly inside. */}
-            <React.Suspense fallback={null}>
+            <Suspense fallback={null}>
               <SidebarRouteTree
                 // Don't share state between the desktop and mobile versions.
                 // This avoids unnecessary animations and visual flicker.
@@ -354,7 +346,7 @@ export default function Nav() {
                 routeTree={routeTree}
                 isForceExpanded={isOpen}
               />
-            </React.Suspense>
+            </Suspense>
             <div className="h-20" />
           </nav>
           <div className="fixed bottom-0 hidden lg:block">

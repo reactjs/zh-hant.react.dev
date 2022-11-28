@@ -372,7 +372,11 @@ function MyComponent() {
 當一個 component suspends 時，我們 schedule 一個低優先級的 task 來 render 最近的 Suspense boundary 的 fallback。如果 component 在我們 flush fallback 之前 unsuspends，那麼我們把實際的內容傳送下去，並丟棄 fallback。
 
 #### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+<<<<<<< HEAD
 Suspense boundary 依賴於它們的 parent boundary 在它們被 hydrate 之前被 hydrate，但它們可以獨立於 sibling boundary hydrate。在被 hydrate 之前發生的 event 將會導致 boundary hydrate 的優先級高於相鄰的 boundary。[閱讀更多](https://github.com/reactwg/react-18/discussions/130)。
+=======
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before it is hydrated will cause the boundary to hydrate at a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+>>>>>>> 1a641bb88e647186f260dd2a8e56f0b083f2e46b
 
 ### `React.startTransition` {#starttransition}
 
