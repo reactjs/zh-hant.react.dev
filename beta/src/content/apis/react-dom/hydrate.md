@@ -1,11 +1,11 @@
 ---
 title: hydrate
 ---
-<Gotcha>
+<Pitfall>
 
-In React 18, `hydrate` was replaced by [`hydrateRoot`](/apis/react-dom/client/hydrateRoot). Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis).
+In React 18, `hydrate` was replaced by [`hydrateRoot`.](/apis/react-dom/client/hydrateRoot) Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
 
-</Gotcha>
+</Pitfall>
 
 <Intro>
 
@@ -65,9 +65,9 @@ export default function App() {
 
 </Sandpack>
 
-Usually you shouldn't need to call `hydrate` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state](/apis/react/useState).
+Usually you shouldn't need to call `hydrate` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state.](/apis/react/useState)
 
-For more information on hydration, see the docs for [`hydrateRoot`](/apis/react-dom/client/hydrateRoot).
+For more information on hydration, see the docs for [`hydrateRoot`.](/apis/react-dom/client/hydrateRoot)
 
 ---
 
@@ -155,13 +155,13 @@ export default function App() {
 
 This way the initial render pass will render the same content as the server, avoiding mismatches, but an additional pass will happen synchronously right after hydration.
 
-<Gotcha>
+<Pitfall>
 
 This approach will make your components slower because they have to render twice, so use it with caution.
 
 Remember to be mindful of user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so if you render something different in the client-only pass, the transition can be jarring. However, if executed well, it may be beneficial to render a “shell” of the application on the server, and only show some of the extra widgets on the client. To learn how to do this without getting the markup mismatch issues, refer to the explanation in the previous paragraph.
 
-</Gotcha>
+</Pitfall>
 
 
 
