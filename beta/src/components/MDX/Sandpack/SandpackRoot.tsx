@@ -2,18 +2,17 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {Children, useState} from 'react';
 import * as React from 'react';
 import {SandpackProvider} from '@codesandbox/sandpack-react';
 import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
-import type {SandpackSetup} from '@codesandbox/sandpack-react';
 
 type SandpackProps = {
   children: React.ReactNode;
   autorun?: boolean;
-  setup?: SandpackSetup;
   showDevTools?: boolean;
 };
 
@@ -58,34 +57,37 @@ h6 {
   font-size: 12px;
 }
 
+code {
+  font-size: 1.2em;
+}
+
 ul {
   padding-left: 20px;
 }
 `.trim();
 
 function SandpackRoot(props: SandpackProps) {
-  let {children, setup, autorun = true, showDevTools = false} = props;
-  const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
-  const codeSnippets = React.Children.toArray(children) as React.ReactElement[];
+  let {children, autorun = true, showDevTools = false} = props;
+  const [devToolsLoaded, setDevToolsLoaded] = useState(false);
+  const codeSnippets = Children.toArray(children) as React.ReactElement[];
   const files = createFileMap(codeSnippets);
 
   files['/styles.css'] = {
     code: [sandboxStyle, files['/styles.css']?.code ?? ''].join('\n\n'),
-    hidden: true,
+    hidden: !files['/styles.css']?.visible,
   };
 
   return (
-    <div className="sandpack sandpack--playground sandbox my-8">
+    <div className="sandpack sandpack--playground my-8">
       <SandpackProvider
         template="react"
         files={files}
-        customSetup={setup}
         theme={CustomTheme}
         options={{
           autorun,
           initMode: 'user-visible',
           initModeObserverOptions: {rootMargin: '1400px 0px'},
-          bundlerURL: 'https://ac83f2d6.sandpack-bundler.pages.dev',
+          bundlerURL: 'https://dad0ba0e.sandpack-bundler-4bw.pages.dev',
           logLevel: SandpackLogLevel.None,
         }}>
         <CustomPreset
@@ -98,7 +100,5 @@ function SandpackRoot(props: SandpackProps) {
     </div>
   );
 }
-
-SandpackRoot.displayName = 'Sandpack';
 
 export default SandpackRoot;

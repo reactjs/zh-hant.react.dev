@@ -57,11 +57,11 @@ React 從一開始就被設計成逐步採用的方式。大多數網站都沒�
 </html>
 ```
 
-<Gotcha>
+<Pitfall>
 
 在你部署到線上之前，確保你將 `development.js` 替換為 `production.min.js`！React 的開發版本提供了很多有用的錯誤消息，但會減慢你的網站速度*很多。*
 
-</Gotcha>
+</Pitfall>
 
 ### 第三步：建立一個 React component {/*step-3-create-a-react-component*/}
 
@@ -121,7 +121,7 @@ anotherRoot.render(React.createElement(LikeButton));
 
 壓縮的 JavaScript 會顯著降低使用者載入頁面的時間。在部署你的網站到 production 之前，將 scripts 進行壓縮是個好主意。
 
-- **If you don't have a minification step** for your scripts, [here's one way to set it up.](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)
+- **If you don't have a minification step** for your scripts, [here's one way to set it up.](https://gist.github.com/gaearon/ee0201910608f15df3f8cd66aa83f98e)
 - **If you already minify** your application scripts, your site will be production-ready if you ensure that the deployed HTML loads the versions of React ending in `production.min.js` like so:
 
 ```html
@@ -183,11 +183,11 @@ return (
 
 一開始將 JS 與 markup 混合起來可能會感覺到有點不正常，但它會讓你越來越喜歡！請查看 [Writing Markup in JSX](/learn/writing-markup-with-jsx) 的介紹。這裡是[一個帶有 JSX 的 HTML 檔案範例](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html)，你可以下載體驗嘗試。
 
-<Gotcha>
+<Pitfall>
 
 Babel `<script>` 編譯器非常適合學習和建立簡單的 demo。但是，**它讓你的網站變慢而且不適用在 production**。當你決定往前進時，移除 Babel `<script>` 標籤並且移除你在前面步驟加入的 `type="text/babel"` attribute。相反的，在下一章節中，你將設定一個 JSX 預處理器來將所有的 `<script>` 標籤從 JSX 轉換為 JS。
 
-</Gotcha>
+</Pitfall>
 
 ### 加入 JSX 到專案內 {/*add-jsx-to-a-project*/}
 
@@ -206,28 +206,41 @@ Babel `<script>` 編譯器非常適合學習和建立簡單的 demo。但是，*
 
 你可以對 JSX 進行預處理，這樣每次你儲存一個包含 JSX 的檔案時，轉換會重新執行，將 JSX 檔案轉換成瀏覽器可以理解的普通的 JavaScript 檔案。設定方法如下：
 
+<<<<<<< HEAD
 1. 建立一個 **`src`** 的資料夾。
 2. 在你的 terminal 執行這個命令：`npx babel --watch src --out-dir . --presets react-app/prod `（不需要等待它完成！這個命令啟動一個 automated watcher，觀察 `src` 內的 JSX 的編輯。）
 3. 移動你 JSX 化的 **`like-button.js`** ([它看起來應該像這樣！](https://gist.githubusercontent.com/gaearon/1884acf8834f1ef9a574a953f77ed4d8/raw/dfc664bbd25992c5278c3bf3d8504424c1104ecf/like-button.js)) 到新的 **`src`** 資料夾。
+=======
+1. Create a folder called **`src`.**
+2. In your terminal, run this command: `npx babel --watch src --out-dir . --presets react-app/prod ` (Don't wait for it to finish! This command starts an automated watcher for edits to JSX inside `src`.)
+3. Move your JSX-ified **`like-button.js`** ([it should look like this!](https://gist.githubusercontent.com/gaearon/be5ae0fbf563d6c5fe5c1563907b13d2/raw/4c0d0b8c7f4fcb341720424c28c72059f8174c62/like-button.js)) to the new **`src`** folder.
+>>>>>>> 4b68508440a985598571f78f60637b6dccdd5a1a
 
 Watcher 將會建立一個預處理的 **`like-button.js`**，使用適合瀏覽器的普通 JavaSripct 的程式碼。
 
-<Gotcha>
+<Pitfall>
 
 如果你看到一個錯誤訊息：「You have mistakenly installed the `babel` package」，你可能漏掉了[上一步](#add-jsx-to-a-project)。在相同的資料夾執行它，然後再試一次。
 
-</Gotcha>
+</Pitfall>
 
 我們剛才用的工具叫做 Babel，你可以從[它的文件](https://babeljs.io/docs/en/babel-cli/)中了解更多關於它的資訊。除了 JSX，它還讓你使用最新的 JavaScript 語法功能而不需要擔心弄壞瀏覽器。
 
 如果你正在適應建構工具並希望它們為你做更多的事情，[我們這裡涵蓋了最流行和最容易接近的工具鏈](/learn/start-a-new-react-project)。
 
-<DeepDive title="React without JSX">
+<DeepDive>
+
+#### React without JSX {/*react-without-jsx*/}
 
 最初引入 JSX 是為了讓使用 React 撰寫 component 的感覺可以像是撰寫 HTML 一樣。從那時候開始，這個語法變已經變得很普遍了。然而，在有些情況下，你可能不想或是不能使用 JSX。你有兩個選擇：
 
+<<<<<<< HEAD
 - 使用像 [htm](https://github.com/developit/htm) 作為 JSX 的替代方案，它不使用 compiler 而是使用 JavaScript 的 [template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)。
 - 使用  [`React.createElement()`](/apis/react/createElement)，它有一個特殊的結構，解釋如下。
+=======
+- Use a JSX alternative like [htm](https://github.com/developit/htm) which uses JavaScript [template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) instead of a compiler.
+- Use [`React.createElement()`](/reference/react/createElement) which has a special structure explained below.
+>>>>>>> 4b68508440a985598571f78f60637b6dccdd5a1a
 
 使用 JSX，你可以像這樣撰寫 component：
 

@@ -46,7 +46,11 @@ render() {
 >
 > 當使用 portal 時，請留意[控管鍵盤 focus](/docs/accessibility.html#programmatically-managing-focus) 對於無障礙功能會變得非常重要。
 >
+<<<<<<< HEAD
 > 使用跳窗 dialog 時，應確保每個人都可以依照 [WAI-ARIA Modal 開發規範](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal) 定義的方式與其互動。
+=======
+> For modal dialogs, ensure that everyone can interact with them by following the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/).
+>>>>>>> 4b68508440a985598571f78f60637b6dccdd5a1a
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/yzMaBd)
 
