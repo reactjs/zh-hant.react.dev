@@ -178,7 +178,7 @@ function Avatar(props) {
 
 Usually you don't need the whole `props` object itself, so you destructure it into individual props.
 
-<Gotcha>
+<Pitfall>
 
 **Don't miss the pair of `{` and `}` curlies** inside of `(` and `)` when declaring props:
 
@@ -198,7 +198,7 @@ function Avatar(props) {
 }
 ```
 
-</Gotcha>
+</Pitfall>
 
 ## Specifying a default value for a prop {/*specifying-a-default-value-for-a-prop*/}
 
@@ -345,7 +345,7 @@ export function getImageUrl(person, size = 's') {
 
 Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
 
-You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, and so on. You can explore this in more detail in [Extracting Layout Components.](TODO:/learn/extracting-layout-components)
+You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, and so on.
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 

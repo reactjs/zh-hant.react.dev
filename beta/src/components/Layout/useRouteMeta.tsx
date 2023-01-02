@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {useContext, createContext} from 'react';
 import {useRouter} from 'next/router';
 
 /**
@@ -34,6 +34,10 @@ export interface RouteItem {
   wip?: boolean;
   /** List of sub-routes */
   routes?: RouteItem[];
+  /** Adds a section header above the route item */
+  hasSectionHeader?: boolean;
+  /** Title of section header */
+  sectionHeader?: string;
 }
 
 export interface Routes {
@@ -54,7 +58,7 @@ export interface RouteMeta {
 }
 
 export function useRouteMeta(rootRoute?: RouteItem) {
-  const sidebarContext = React.useContext(SidebarContext);
+  const sidebarContext = useContext(SidebarContext);
   const routeTree = rootRoute || sidebarContext;
   const router = useRouter();
   if (router.pathname === '/404') {
@@ -70,7 +74,7 @@ export function useRouteMeta(rootRoute?: RouteItem) {
   };
 }
 
-export const SidebarContext = React.createContext<RouteItem>({title: 'root'});
+export const SidebarContext = createContext<RouteItem>({title: 'root'});
 
 // Performs a depth-first search to find the current route and its previous/next route
 function getRouteMeta(
