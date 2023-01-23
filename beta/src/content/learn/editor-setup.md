@@ -4,7 +4,11 @@ title: 編輯器設定
 
 <Intro>
 
+<<<<<<< HEAD
 一個正確設定的編輯器可以使程式碼讀起來更清晰，寫起來更快。它甚至可以幫助你在撰寫的過程中抓出 bug！如果這是你第一次設定一個編輯器，或者你想調整你目前的編輯器，我們有幾個建議。
+=======
+A properly configured editor can make code clearer to read and faster to write. It can even help you catch bugs as you write them! If this is your first time setting up an editor or you're looking to tune up your current editor, we have a few recommendations.
+>>>>>>> 38bf76a4a7bec6072d086ce8efdeef9ebb7af227
 
 </Intro>
 

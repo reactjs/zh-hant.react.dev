@@ -580,7 +580,7 @@ const [isPending, startTransition] = useTransition();
 ```js
 startTransition(() => {
   setCount(count + 1);
-})
+});
 ```
 
 `isPending` 表示當一個 transition 是 active 時顯示 pending state：
@@ -593,7 +593,7 @@ function App() {
   function handleClick() {
     startTransition(() => {
       setCount(c => c + 1);
-    })
+    });
   }
 
   return (

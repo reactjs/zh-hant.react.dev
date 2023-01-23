@@ -10,7 +10,7 @@ Components often need to change what's on the screen as a result of an interacti
 
 <YouWillLearn>
 
-* How to add a state variable with the [`useState`](/apis/react/useState) Hook
+* How to add a state variable with the [`useState`](/reference/react/useState) Hook
 * What pair of values the `useState` Hook returns
 * How to add more than one state variable
 * Why state is called local
@@ -161,7 +161,7 @@ To update a component with new data, two things need to happen:
 1. **Retain** the data between renders.
 2. **Trigger** React to render the component with new data (re-rendering).
 
-The [`useState`](/apis/react/useState) Hook provides those two things:
+The [`useState`](/reference/react/useState) Hook provides those two things:
 
 1. A **state variable** to retain the data between renders.
 2. A **state setter function** to update the variable and trigger React to render the component again.
@@ -184,11 +184,11 @@ with
 
 ```js
 const [index, setIndex] = useState(0);
-````
+```
 
 `index` is a state variable and `setIndex` is the setter function.
 
-> The `[` and `]` syntax here is called [array destructuring](TODO:/learn/a-javascript-refresher#array-destructuring) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
+> The `[` and `]` syntax here is called [array destructuring](https://javascript.info/destructuring-assignment) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
 
 This is how they work together in `handleClick`:
 
@@ -339,15 +339,15 @@ In React, `useState`, as well as any other function starting with "`use`", is ca
 
 State is just one of those features, but you will meet the other Hooks later.
 
-<Gotcha>
+<Pitfall>
 
 **Hooks—functions starting with `use`—can only be called at the top level of your components or [your own Hooks.](/learn/reusing-logic-with-custom-hooks)** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your component's needs. You "use" React features at the top of your component similar to how you "import" modules at the top of your file.
 
-</Gotcha>
+</Pitfall>
 
 ### Anatomy of `useState` {/*anatomy-of-usestate*/}
 
-When you call [`useState`](/apis/react/useState), you are telling React that you want this component to remember something:
+When you call [`useState`](/reference/react/useState), you are telling React that you want this component to remember something:
 
 ```js
 const [index, setIndex] = useState(0);
@@ -518,7 +518,9 @@ button {
 
 It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be better to combine them into a single one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. [Choosing the State Structure](/learn/choosing-the-state-structure) has more tips on this.
 
-<DeepDive title="How does React know which state to return?">
+<DeepDive>
+
+#### How does React know which state to return? {/*how-does-react-know-which-state-to-return*/}
 
 You might have noticed that the `useState` call does not receive any information about *which* state variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the state variables to return? Does it rely on some magic like parsing your functions? The answer is no.
 
@@ -924,7 +926,7 @@ export default function Gallery() {
   const [showMore, setShowMore] = useState(false);
 
   function handleNextClick() {
-    setIndex(index + 1000);
+    setIndex(index + 1);
   }
 
   function handleMoreClick() {
@@ -1448,7 +1450,7 @@ If your linter is [configured for React](/learn/editor-setup#linting), you shoul
 
 When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
 
-To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/troubleshooting-state-updates#setting-state-does-not-update-variables) later.)
+To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
 
 Can you explain why this state variable was unnecessary?
 
