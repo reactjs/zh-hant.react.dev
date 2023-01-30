@@ -6,7 +6,19 @@ next: hooks-reference.html
 prev: hooks-rules.html
 ---
 
+<<<<<<< HEAD
 *Hook* 是 React 16.8 中增加的新功能。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Reusing Logic with Custom Hooks](https://beta.reactjs.org/learn/reusing-logic-with-custom-hooks)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+>>>>>>> 5647a9485db3426d62b5a8203f4499c01bcd789b
 
 打造你自己的 Hook 可以將 component 邏輯提取到可重複使用的 function 中。
 

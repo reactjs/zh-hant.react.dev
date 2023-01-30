@@ -4,7 +4,20 @@ title: 傳送 Ref
 permalink: docs/forwarding-refs.html
 ---
 
+<<<<<<< HEAD
 傳送 ref 是一種自動把 [ref](/docs/refs-and-the-dom.html) 從一個 component 傳遞到它底下的其中一個 child 的技巧。通常來說，應用程式裡大部分的 component 都不需要用到它。然而，對某些種類的 component 來說它很有用，特別是能夠重複使用的函式庫。以下會解釋最常見的情形。
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Manipulating the DOM with Refs](https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
+> - [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+Ref forwarding is a technique for automatically passing a [ref](/docs/refs-and-the-dom.html) through a component to one of its children. This is typically not necessary for most components in the application. However, it can be useful for some kinds of components, especially in reusable component libraries. The most common scenarios are described below.
+>>>>>>> 5647a9485db3426d62b5a8203f4499c01bcd789b
 
 ## 傳送 ref 到 DOM component {#forwarding-refs-to-dom-components}
 

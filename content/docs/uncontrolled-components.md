@@ -4,7 +4,21 @@ title: Uncontrolled Component
 permalink: docs/uncontrolled-components.html
 ---
 
+<<<<<<< HEAD
 在大多數的情況下，我們推薦使用[controlled component](/docs/forms.html#controlled-components)來實作表單。在控制元件裡，表單的資料是被 React component 所處理。另一個選擇是 uncontrolled component，表單的資料是由 DOM 本身所處理的。
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`<input>`](https://beta.reactjs.org/reference/react-dom/components/input)
+> - [`<select>`](https://beta.reactjs.org/reference/react-dom/components/select)
+> - [`<textarea>`](https://beta.reactjs.org/reference/react-dom/components/textarea)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+In most cases, we recommend using [controlled components](/docs/forms.html#controlled-components) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
+>>>>>>> 5647a9485db3426d62b5a8203f4499c01bcd789b
 
 如果要寫一個 uncontrolled component，你可以[使用 ref](/docs/refs-and-the-dom.html) 來從 DOM 取得表單的資料，而不是為了每個 state 的更新寫 event handler。
 
