@@ -101,7 +101,15 @@ Suspense 讓 components 在 render 之前可以「暫停」並等待其他事情
 
 ### `React.Component` {#reactcomponent}
 
+<<<<<<< HEAD
 `React.Component` 是當你使用 [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) 定義 React component 時所用的 base class：
+=======
+> Try the new React documentation for [`Component`](https://beta.reactjs.org/reference/react/Component).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+`React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 ```javascript
 class Greeting extends React.Component {
@@ -117,7 +125,15 @@ class Greeting extends React.Component {
 
 ### `React.PureComponent` {#reactpurecomponent}
 
+<<<<<<< HEAD
 `React.PureComponent` 跟 [`React.Component`](#reactcomponent) 很相似。他們之間的差別是 [`React.Component`](#reactcomponent) 並沒有實作 [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate)，但 `React.PureComponent` 提供了一個實作以對於 prop 及 state 進行 shallow compare。
+=======
+> Try the new React documentation for [`PureComponent`](https://beta.reactjs.org/reference/react/PureComponent).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+`React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison.
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 > 備註
 >
@@ -128,6 +144,10 @@ class Greeting extends React.Component {
 * * *
 
 ### `React.memo` {#reactmemo}
+
+> Try the new React documentation for [`memo`](https://beta.reactjs.org/reference/react/memo).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -167,6 +187,10 @@ export default React.memo(MyComponent, areEqual);
 
 ### `createElement()` {#createelement}
 
+> Try the new React documentation for [`createElement`](https://beta.reactjs.org/reference/react/createElement).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 React.createElement(
   type,
@@ -182,6 +206,10 @@ React.createElement(
 * * *
 
 ### `cloneElement()` {#cloneelement}
+
+> Try the new React documentation for [`cloneElement`](https://beta.reactjs.org/reference/react/cloneElement).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```
 React.cloneElement(
@@ -207,6 +235,10 @@ React.cloneElement(
 
 ### `createFactory()` {#createfactory}
 
+> Try the new React documentation for [`createFactory`](https://beta.reactjs.org/reference/react/createFactory).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 React.createFactory(type)
 ```
@@ -221,6 +253,10 @@ React.createFactory(type)
 
 ### `isValidElement()` {#isvalidelement}
 
+> Try the new React documentation for [`isValidElement`](https://beta.reactjs.org/reference/react/isValidElement).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 React.isValidElement(object)
 ```
@@ -231,7 +267,15 @@ React.isValidElement(object)
 
 ### `React.Children` {#reactchildren}
 
+<<<<<<< HEAD
 `React.Children` 提供了一些工具可以將 `this.props.children` 作為不透明的資料結構處理。
+=======
+> Try the new React documentation for [`Children`](https://beta.reactjs.org/reference/react/Children).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+`React.Children` provides utilities for dealing with the `this.props.children` opaque data structure.
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 #### `React.Children.map` {#reactchildrenmap}
 
@@ -289,7 +333,15 @@ React.Children.toArray(children)
 
 ### `React.Fragment` {#reactfragment}
 
+<<<<<<< HEAD
 `React.Fragment` 讓你可以在一個 `render()` method 中一次回傳多個 element 而不需要建立一個額外的 DOM element：
+=======
+> Try the new React documentation for [`Fragment`](https://beta.reactjs.org/reference/react/Fragment).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element:
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 ```javascript
 render() {
@@ -306,12 +358,28 @@ render() {
 
 ### `React.createRef` {#reactcreateref}
 
+<<<<<<< HEAD
 `React.createRef` 會建立一個 [ref](/docs/refs-and-the-dom.html) 以透過 ref attribute 夾帶在一個 React element 之上。
+=======
+> Try the new React documentation for [`createRef`](https://beta.reactjs.org/reference/react/createRef).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+`React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
 
+<<<<<<< HEAD
 `React.forwardRef` 會建立一個 React component 並將 [ref](/docs/refs-and-the-dom.html) attribute 轉交給旗下的另外一個 component 。這個技巧不是很常被使用，但在以下兩個情況很適合：
+=======
+> Try the new React documentation for [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+`React.forwardRef` creates a React component that forwards the [ref](/docs/refs-and-the-dom.html) attribute it receives to another component below in the tree. This technique is not very common but is particularly useful in two scenarios:
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 * [將 ref 轉交給 DOM component](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
 * [在 higher-order-component 之中轉交 ref](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
@@ -328,7 +396,15 @@ render() {
 
 ### `React.lazy` {#reactlazy}
 
+<<<<<<< HEAD
 `React.lazy()` 讓你可以定義一個動態載入的 component。這可以在初始 render 期間延緩載入沒有被用到的 component 來減少 bundle size。
+=======
+> Try the new React documentation for [`lazy`](https://beta.reactjs.org/reference/react/lazy).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+`React.lazy()` lets you define a component that is loaded dynamically. This helps reduce the bundle size to delay loading components that aren't used during the initial render.
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 你可以閱讀我們的 [code splitting 文件](/docs/code-splitting.html#reactlazy) 來學習怎麼使用它。你可能也想要閱讀[這篇文章](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) 更深入了解如何使用這個 function。
 
@@ -341,7 +417,15 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 ### `React.Suspense` {#reactsuspense}
 
+<<<<<<< HEAD
 `React.Suspense` 讓你指定 loading indicator，避免下面 tree 中的某些 component 尚未準備好 render。未來我們計畫讓 `Suspense` 處理更多場景，像是資料的取得。你可以閱讀關於這個在[我們的 roadmap](/blog/2018/11/27/react-16-roadmap.html)。
+=======
+> Try the new React documentation for [`Suspense`](https://beta.reactjs.org/reference/react/Suspense).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 現在，lazy loading component 是 `<React.Suspense>` **唯一**支援的使用場景：
 
@@ -372,9 +456,17 @@ function MyComponent() {
 當一個 component suspends 時，我們 schedule 一個低優先級的 task 來 render 最近的 Suspense boundary 的 fallback。如果 component 在我們 flush fallback 之前 unsuspends，那麼我們把實際的內容傳送下去，並丟棄 fallback。
 
 #### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+<<<<<<< HEAD
 Suspense boundary 依賴於它們的 parent boundary 在它們被 hydrate 之前被 hydrate，但它們可以獨立於 sibling boundary hydrate。在被 hydrate 之前發生的 event 將會導致 boundary hydrate 的優先級高於相鄰的 boundary。[閱讀更多](https://github.com/reactwg/react-18/discussions/130)。
+=======
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before it is hydrated will cause the boundary to hydrate at a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 ### `React.startTransition` {#starttransition}
+
+> Try the new React documentation for [`startTransition`](https://beta.reactjs.org/reference/react/startTransition).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```js
 React.startTransition(callback)

@@ -8,7 +8,17 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
+<<<<<<< HEAD
 在我們的意見中，React 是用 JavaScript 建立大型、快速的網路應用程式最首要的方式。它對於在 Facebook 和 Instagram 的我們來說能很有效的增加規模。
+=======
+> Try the new React documentation.
+> 
+> The updated [Thinking in React](https://beta.reactjs.org/learn/thinking-in-react) guide teaches modern React and includes live examples.
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+React is, in our opinion, the premier way to build big, fast Web apps with JavaScript. It has scaled very well for us at Facebook and Instagram.
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的應用程式。在這個章節中，我們會帶領你走過一遍用 React 來建立一個可搜尋的產品資料表格的思考過程。
 
