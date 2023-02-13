@@ -4,7 +4,19 @@ title: Reconciliation
 permalink: docs/reconciliation.html
 ---
 
+<<<<<<< HEAD
 React 提供聲明式 (declarative) 的 API，讓開發者在使用 React 時，可以不用關注每次 Component 更新時底層有什麼改變。這讓開發應用程式簡單許多，但也可能讓開發者對 React 底層的相關實作不夠瞭解。因此在這篇文章中描述了實作 React 底層中「diffing」演算法時，我們採取什麼策略讓 component 的更新是可預測的，同時可以滿足要求高效能的應用程式。
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Preserving and Resetting State](https://beta.reactjs.org/learn/preserving-and-resetting-state)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+React provides a declarative API so that you don't have to worry about exactly what changes on every update. This makes writing applications a lot easier, but it might not be obvious how this is implemented within React. This article explains the choices we made in React's "diffing" algorithm so that component updates are predictable while being fast enough for high-performance apps.
+>>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
 
 ## 動機 {#motivation}
 

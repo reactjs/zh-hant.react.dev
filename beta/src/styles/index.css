@@ -153,15 +153,6 @@
     display: none;
   }
 
-  @keyframes nav-fadein {
-    from {
-      opacity: 0.5;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
   /*
    * Hopefully when scrollbar-color lands everywhere,
    * (and not just in FF), we'll be able to keep just this.
@@ -213,14 +204,15 @@
 }
 
 .code-step * {
-  color: black !important;
+  color: inherit !important;
 }
+
 .code-step code {
   background: none !important;
   padding: 2px !important;
 }
 html.dark .code-step * {
-  color: white !important;
+  color: inherit !important;
 }
 
 .mdx-heading {

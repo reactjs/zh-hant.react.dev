@@ -8,7 +8,20 @@ prev: components-and-props.html
 next: handling-events.html
 ---
 
+<<<<<<< HEAD
 這個章節會介紹在 React component 中 state 以及生命週期的概念。你可以在[這裡找到 component API 詳細的參考](/docs/react-component.html)。
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [State: A Component's Memory](https://beta.reactjs.org/learn/state-a-components-memory)
+> - [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+This page introduces the concept of state and lifecycle in a React component. You can find a [detailed component API reference here](/docs/react-component.html).
+>>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
 
 思考[前一章節](/docs/rendering-elements.html#updating-the-rendered-element)的 ticking clock 的範例。在 [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom) 中，我們只學習到一種方式來更新 UI。 我們呼叫 `root.render()` 來改變 render 的輸出：
 

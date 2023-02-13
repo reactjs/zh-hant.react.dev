@@ -50,6 +50,10 @@ React 支援所有主流瀏覽器，雖然對於一些舊版瀏覽器[需要一�
 
 ### `createPortal()` {#createportal}
 
+> Try the new React documentation for [`createPortal`](https://beta.reactjs.org/reference/react-dom/createPortal).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 createPortal(child, container)
 ```
@@ -57,6 +61,10 @@ createPortal(child, container)
 提供了一個方式將 children [render 存在於 DOM component 層次結構之外的 DOM 節點中](/docs/portals.html)。
 
 ### `flushSync()` {#flushsync}
+
+> Try the new React documentation for [`flushSync`](https://beta.reactjs.org/reference/react-dom/flushSync).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 flushSync(callback)
@@ -84,6 +92,11 @@ flushSync(() => {
 
 ## Legacy Reference {#legacy-reference}
 ### `render()` {#render}
+
+> Try the new React documentation for [`render`](https://beta.reactjs.org/reference/react-dom/render).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 render(element, container[, callback])
 ```
@@ -114,6 +127,10 @@ render(element, container[, callback])
 
 ### `hydrate()` {#hydrate}
 
+> Try the new React documentation for [`hydrate`](https://beta.reactjs.org/reference/react-dom/hydrate).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 hydrate(element, container[, callback])
 ```
@@ -136,6 +153,10 @@ React 預期在伺服器端和客戶端所 render 的內容是相同的。它可
 
 ### `unmountComponentAtNode()` {#unmountcomponentatnode}
 
+> Try the new React documentation for [`unmountComponentAtNode`](https://beta.reactjs.org/reference/react-dom/unmountComponentAtNode).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 unmountComponentAtNode(container)
 ```
@@ -150,7 +171,15 @@ unmountComponentAtNode(container)
 
 ### `findDOMNode()` {#finddomnode}
 
+<<<<<<< HEAD
 > 注意：
+=======
+> Try the new React documentation for [`findDOMNode`](https://beta.reactjs.org/reference/react-dom/findDOMNode).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+> Note:
+>>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
 >
 > `findDOMNode` 是一個用來存取底層 DOM node 應急的做法。在大多數情況下，不鼓勵使用這個應急的做法因為它會穿透 component 抽象化。[它已經在 `StrictMode` 中被棄用了。](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 
