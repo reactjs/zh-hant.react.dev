@@ -50,11 +50,7 @@ npm start
 
 > Create React App 並不處理後端或是資料庫的邏輯。你可以將它與任何 backend 一起使用。當你建立一個專案時，你會有一個資料夾與一些靜態的 HTML、CSS 和 JS。因為 Create React App 不能利用 server，所以它不能提供最好的效能。如果你追求更快的載入時間以及內建像是 routing 或 server-side logic，我們建議您使用框架。
 
-<<<<<<< HEAD
-### 熱門替代選項 {/*popular-alternatives*/}
-=======
-### Popular alternatives {/*toolkit-popular-alternatives*/}
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+### 熱門替代選項 {/*toolkit-popular-alternatives*/}
 
 * [Vite](https://vitejs.dev/guide/)
 * [Parcel](https://parceljs.org/getting-started/webapp/)
@@ -65,11 +61,7 @@ npm start
 
 [Next.js Foundations](https://nextjs.org/learn/foundations/about-nextjs) 教學很好的介紹使用 React 和 Next.js 來進行構建。
 
-<<<<<<< HEAD
-### 熱門替代選項 {/*popular-alternatives*/}
-=======
-### Popular alternatives {/*framework-popular-alternatives*/}
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+### 熱門替代選項 {/*framework-popular-alternatives*/}
 
 * [Gatsby](https://www.gatsbyjs.org/)
 * [Remix](https://remix.run/)

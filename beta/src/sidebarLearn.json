@@ -8,15 +8,11 @@
       "path": "",
       "routes": [
         {
-<<<<<<< HEAD
-          "title": "安裝",
-=======
           "hasSectionHeader": true,
-          "sectionHeader": "Get Started"
+          "sectionHeader": "開始"
         },
         {
-          "title": "Installation",
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+          "title": "安裝",
           "path": "/learn/installation",
           "routes": [
             {
@@ -195,7 +191,7 @@
             },
             {
               "title": "Removing Effect Dependencies",
-              "path": "/learn/removing-effect-dependencies"              
+              "path": "/learn/removing-effect-dependencies"
             },
             {
               "title": "Reusing Logic with Custom Hooks",

@@ -195,13 +195,8 @@ Babel `<script>` 編譯器非常適合學習和建立簡單的 demo。但是，*
 
 在你的 terminal 進入到你的專案下，並貼上這兩個命令（**請確認你已經安裝 [Node.js](https://nodejs.org/)！**）：
 
-<<<<<<< HEAD
 1. `npm init -y` （如果它失敗了，[這裡是修正方式](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d)）
-2. `npm install babel-cli@6 babel-preset-react-app@3`
-=======
-1. `npm init -y` (if it fails, [here's a fix](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
 2. `npm install @babel/cli@7 babel-preset-react-app@10`
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
 
 你只需要 npm 來安裝 JSX 預處理器。你不需要做其他任何事情。React 和應用程式的程式碼可以保持為 `<script>` 標籤不需要做任何變動。
 
@@ -211,15 +206,9 @@ Babel `<script>` 編譯器非常適合學習和建立簡單的 demo。但是，*
 
 你可以對 JSX 進行預處理，這樣每次你儲存一個包含 JSX 的檔案時，轉換會重新執行，將 JSX 檔案轉換成瀏覽器可以理解的普通的 JavaScript 檔案。設定方法如下：
 
-<<<<<<< HEAD
 1. 建立一個 **`src`** 的資料夾。
-2. 在你的 terminal 執行這個命令：`npx babel --watch src --out-dir . --presets react-app/prod `（不需要等待它完成！這個命令啟動一個 automated watcher，觀察 `src` 內的 JSX 的編輯。）
-3. 移動你 JSX 化的 **`like-button.js`** ([它看起來應該像這樣！](https://gist.githubusercontent.com/gaearon/1884acf8834f1ef9a574a953f77ed4d8/raw/dfc664bbd25992c5278c3bf3d8504424c1104ecf/like-button.js)) 到新的 **`src`** 資料夾。
-=======
-1. Create a folder called **`src`.**
-2. In your terminal, run this command: `npx babel --watch src --out-dir . --presets babel-preset-react-app/prod ` (Don't wait for it to finish! This command starts an automated watcher for edits to JSX inside `src`.)
-3. Move your JSX-ified **`like-button.js`** ([it should look like this!](https://gist.githubusercontent.com/gaearon/be5ae0fbf563d6c5fe5c1563907b13d2/raw/4c0d0b8c7f4fcb341720424c28c72059f8174c62/like-button.js)) to the new **`src`** folder.
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+2. 在你的 terminal 執行這個命令：`npx babel --watch src --out-dir . --presets babel-preset-react-app/prod `（不需要等待它完成！這個命令啟動一個 automated watcher，觀察 `src` 內的 JSX 的編輯。）
+3. 移動你 JSX 化的 **`like-button.js`** ([它看起來應該像這樣！](https://gist.githubusercontent.com/gaearon/be5ae0fbf563d6c5fe5c1563907b13d2/raw/4c0d0b8c7f4fcb341720424c28c72059f8174c62/like-button.js)) 到新的 **`src`** 資料夾。
 
 Watcher 將會建立一個預處理的 **`like-button.js`**，使用適合瀏覽器的普通 JavaSripct 的程式碼。
 
@@ -239,13 +228,8 @@ Watcher 將會建立一個預處理的 **`like-button.js`**，使用適合瀏覽
 
 最初引入 JSX 是為了讓使用 React 撰寫 component 的感覺可以像是撰寫 HTML 一樣。從那時候開始，這個語法變已經變得很普遍了。然而，在有些情況下，你可能不想或是不能使用 JSX。你有兩個選擇：
 
-<<<<<<< HEAD
 - 使用像 [htm](https://github.com/developit/htm) 作為 JSX 的替代方案，它不使用 compiler 而是使用 JavaScript 的 [template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)。
-- 使用  [`React.createElement()`](/apis/react/createElement)，它有一個特殊的結構，解釋如下。
-=======
-- Use a JSX alternative like [htm](https://github.com/developit/htm) which uses JavaScript [template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) instead of a compiler.
-- Use [`React.createElement()`](/reference/react/createElement) which has a special structure explained below.
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+- 使用  [`React.createElement()`](/reference/react/createElement)，它有一個特殊的結構，解釋如下。
 
 使用 JSX，你可以像這樣撰寫 component：
 
