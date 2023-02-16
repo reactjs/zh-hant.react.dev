@@ -4,7 +4,15 @@ title: 嚴格模式
 permalink: docs/strict-mode.html
 ---
 
-`嚴格模式`是一個用來突顯應用程式裡潛在問題的工具。如同 `Fragment` 一樣，`嚴格模式`不會 render 任何可見的 UI。它為了底下的所有的依賴們啟動了額外的檢查和警告。
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
+>
+> - [`StrictMode`](https://beta.reactjs.org/reference/react/StrictMode)
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+`嚴格模式` 是一個用來突顯應用程式裡潛在問題的工具。如同 `Fragment` 一樣，`嚴格模式` 不會 render 任何可見的 UI。它為了底下的所有的依賴們啟動了額外的檢查和警告。
 
 > 注意：
 >
@@ -152,7 +160,7 @@ With Strict Mode starting in React 18, whenever a component mounts in developmen
 ```
 * React mounts the component.
     * Layout effects are created.
-    * Effect effects are created.
+    * Effects are created.
 * React simulates effects being destroyed on a mounted component.
     * Layout effects are destroyed.
     * Effects are destroyed.
@@ -168,7 +176,7 @@ When the component unmounts, effects are destroyed as normal:
 ```
 * React unmounts the component.
   * Layout effects are destroyed.
-  * Effect effects are destroyed.
+  * Effects are destroyed.
 ```
 
 Unmounting and remounting includes:

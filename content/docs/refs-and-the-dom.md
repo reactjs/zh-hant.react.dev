@@ -11,6 +11,17 @@ redirect_from:
   - "tips/children-undefined.html"
 ---
 
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
+>
+> - [Referencing Values with Refs](https://beta.reactjs.org/learn/referencing-values-with-refs)
+> - [Manipulating the DOM with Refs](https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
+> - [`useRef`](https://beta.reactjs.org/reference/react/useRef)
+> - [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef)
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 Ref 提供了一種可以取得 DOM 節點或在 render 方法內建立 React element 的方式。
 
 在典型的 React 資料流裡，[props](/docs/components-and-props.html) 是 parent component 和 child component 唯一的互動方式。你會藉由使用新的 prop 重新 render 來改變你的 child。然而，有些情況下你需要在典型的資料流以外更改你的 child。這個被更改的 child 可能是 React component 的其中一個 instance，或他可能是個 DOM element。在這兩種情況下，React 提供了「逃生口」。

@@ -8,6 +8,12 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
+> 嘗試新的 React 文件。
+>
+> 更新後的 [Thinking in React](https://beta.reactjs.org/learn/thinking-in-react) 指南教導 modern React 並包括即時的範例：
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 在我們的意見中，React 是用 JavaScript 建立大型、快速的網路應用程式最首要的方式。它對於在 Facebook 和 Instagram 的我們來說能很有效的增加規模。
 
 React 眾多的優點之ㄧ是它讓你能在寫程式的同時去思考你的應用程式。在這個章節中，我們會帶領你走過一遍用 React 來建立一個可搜尋的產品資料表格的思考過程。

@@ -4,6 +4,14 @@ title: Portal
 permalink: docs/portals.html
 ---
 
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
+>
+> - [`createPortal`](https://beta.reactjs.org/reference/react-dom/createPortal)
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 Portal 提供一個優秀方法來讓 children 可以 render 到 parent component DOM 樹以外的 DOM 節點。
 
 ```js
@@ -46,7 +54,11 @@ render() {
 >
 > 當使用 portal 時，請留意[控管鍵盤 focus](/docs/accessibility.html#programmatically-managing-focus) 對於無障礙功能會變得非常重要。
 >
+<<<<<<< HEAD
 > 使用跳窗 dialog 時，應確保每個人都可以依照 [WAI-ARIA Modal 開發規範](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal) 定義的方式與其互動。
+=======
+> For modal dialogs, ensure that everyone can interact with them by following the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/).
+>>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
 
 [**在 CodePen 上試試看吧！**](https://codepen.io/gaearon/pen/yzMaBd)
 

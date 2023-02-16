@@ -6,6 +6,15 @@ next: hooks-effect.html
 prev: hooks-overview.html
 ---
 
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
+>
+> - [State: A Component's Memory](https://beta.reactjs.org/learn/state-a-components-memory)
+> - [`useState`](https://beta.reactjs.org/reference/react/useState)
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 *Hook* 是 React 16.8 中增加的新功能。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
 
 [介紹 Hook](/docs/hooks-intro.html) 使用過這個範例讓我們熟悉 Hook：

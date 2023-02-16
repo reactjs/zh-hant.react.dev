@@ -6,6 +6,15 @@ prev: hello-world.html
 next: rendering-elements.html
 ---
 
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
+>
+> - [Writing Markup with JSX](https://beta.reactjs.org/learn/writing-markup-with-jsx)
+> - [JavaScript in JSX with Curly Braces](https://beta.reactjs.org/learn/javascript-in-jsx-with-curly-braces)
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 考慮下面這個變數宣告：
 
 ```js

@@ -15,6 +15,10 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
+> 嘗試 [`Component`](https://beta.reactjs.org/reference/react/Component) 的 React 新文件。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 本章節包含了 React component class 的詳細 API 參考。我們假設你對 React 的基本概念已十分熟悉，例如 [Component 和 Prop](/docs/components-and-props.html) 以及 [State 和 生命週期](/docs/state-and-lifecycle.html)。如果你對這些概念還不清楚，請先閱讀相關文件。
 
 ## 概觀 {#overview}
@@ -121,11 +125,19 @@ render()
 
 當 render 被呼叫時，它將會檢視 `this.props` 和 `this.state` 中的變化，並回傳以下類別之一：
 
+<<<<<<< HEAD
 - **React element。** 通常是透過 [JSX](/docs/introducing-jsx.html) 建立的。例如，`<div />`和`<MyComponent />`這兩個 React element 會告訴 React 要 render 一個 DOM node 和一個使用者定義的 component。
 - **Array 和 fragment。** 它們會從 render 中回傳數個 element。細節請參考 [fragment](/docs/fragments.html)。
 - **Portal**。它們讓你將 children render 到不同的 DOM subtree 中。細節請參考 [portal](/docs/portals.html)。
 - **String 和 number。** 這些在 DOM 中將會被 render 為文字 node。
 - **Boolean 或 `null`。** 什麼都不 render。（此類型主要是支援 `回傳 test && <Child />` 的模式，這裡的 `test` 是一個 boolean 值）。
+=======
+- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). For example, `<div />` and `<MyComponent />` are React elements that instruct React to render a DOM node, or another user-defined component, respectively.
+- **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
+- **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
+- **String and numbers.** These are rendered as text nodes in the DOM.
+- **Booleans or `null` or `undefined`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean).
+>>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
 
 `render()` function 應該是 pure 的，這表示：它並不會改變 component 的 state，它在每次呼叫時都會回傳同樣的結果，它並不會直接和瀏覽器有所互動。
 

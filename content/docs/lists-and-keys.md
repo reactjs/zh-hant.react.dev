@@ -6,6 +6,15 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
+>
+> - [Rendering Lists](https://beta.reactjs.org/learn/rendering-lists)
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 首先，讓我們複習一下在 JavaScript 中如何改變列表。
 
 在以下的程式碼中，我們使用 [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function 來接收 `numbers` array，並將其中的每個值乘以兩倍。我們將 `map()` 回傳的新 array 設定為變數 `doubled` 的值並印出：

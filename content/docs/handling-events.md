@@ -8,6 +8,15 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
+>
+> - [Responding to Events](https://beta.reactjs.org/learn/responding-to-events)
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 使用 React element 處理事件跟使用 DOM element 處理事件是十分相似的。它們有一些語法上的差異：
 
 * 事件的名稱在 React 中都是 camelCase，而在 HTML DOM 中則是小寫。

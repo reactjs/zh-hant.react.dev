@@ -12,6 +12,12 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
+> 嘗試新的 React 文件。
+>
+> 更新的[教學](https://beta.reactjs.org/learn/tutorial-tic-tac-toe) 教導你 modern React 並包括即時的範例。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 你不需要有任何 React 的基礎知識就能使用這份學習指南。
 
 ## 在我們開始這份學習指南之前 {#before-we-start-the-tutorial}

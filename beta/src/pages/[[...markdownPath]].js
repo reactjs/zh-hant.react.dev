@@ -3,9 +3,11 @@
  */
 
 import {Fragment, useMemo} from 'react';
+import {useRouter} from 'next/router';
 import {MDXComponents} from 'components/MDX/MDXComponents';
-import {MarkdownPage} from 'components/Layout/MarkdownPage';
 import {Page} from 'components/Layout/Page';
+import sidebarLearn from '../sidebarLearn.json';
+import sidebarReference from '../sidebarReference.json';
 
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
@@ -13,13 +15,31 @@ export default function Layout({content, toc, meta}) {
     [content]
   );
   const parsedToc = useMemo(() => JSON.parse(toc, reviveNodeOnClient), [toc]);
+  const section = useActiveSection();
+  let routeTree = sidebarLearn;
+  switch (section) {
+    case 'reference':
+      routeTree = sidebarReference;
+      break;
+  }
   return (
-    <Page toc={parsedToc}>
-      <MarkdownPage meta={meta} toc={parsedToc}>
-        {parsedContent}
-      </MarkdownPage>
+    <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
+      {parsedContent}
     </Page>
   );
+}
+
+function useActiveSection() {
+  const {asPath} = useRouter();
+  if (asPath.startsWith('/reference')) {
+    return 'reference';
+  } else if (asPath.startsWith('/learn')) {
+    return 'learn';
+  } else if (asPath.startsWith('/blog')) {
+    return 'learn';
+  } else {
+    return 'home';
+  }
 }
 
 // Deserialize a client React tree from JSON.
@@ -55,7 +75,7 @@ function reviveNodeOnClient(key, val) {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 3;
+const DISK_CACHE_BREAKER = 7;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Put MDX output into JSON for client.
@@ -70,11 +90,11 @@ export async function getStaticProps(context) {
 
   // Read MDX from the file.
   let path = (context.params.markdownPath || []).join('/') || 'index';
-  let mdxWithFrontmatter;
+  let mdx;
   try {
-    mdxWithFrontmatter = fs.readFileSync(rootDir + path + '.md', 'utf8');
+    mdx = fs.readFileSync(rootDir + path + '.md', 'utf8');
   } catch {
-    mdxWithFrontmatter = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
+    mdx = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
   }
 
   // See if we have a cached output first.
@@ -87,7 +107,7 @@ export async function getStaticProps(context) {
       // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       // ~~~~ IMPORTANT: Everything that the code below may rely on.
       // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      mdxWithFrontmatter,
+      mdx,
       mdxComponentNames,
       DISK_CACHE_BREAKER,
       PREPARE_MDX_CACHE_BREAKER,
@@ -107,23 +127,38 @@ export async function getStaticProps(context) {
     );
   }
 
-  // Parse Frontmatter headers from MDX.
-  const fm = require('gray-matter');
-  const {content: mdxWithoutFrontmatter, data: meta} = fm(mdxWithFrontmatter);
-
   // If we don't add these fake imports, the MDX compiler
   // will insert a bunch of opaque components we can't introspect.
   // This will break the prepareMDX() call below.
-  let mdxWithFakeImports = mdxComponentNames
-    .map((key) => 'import ' + key + ' from "' + key + '";\n')
-    .join('\n');
-  mdxWithFakeImports += '\n' + mdxWithoutFrontmatter;
+  let mdxWithFakeImports =
+    mdx +
+    '\n\n' +
+    mdxComponentNames
+      .map((key) => 'import ' + key + ' from "' + key + '";\n')
+      .join('\n');
 
   // Turn the MDX we just read into some JS we can execute.
   const {remarkPlugins} = require('../../plugins/markdownToHtml');
-  const compileMdx = require('@mdx-js/mdx');
+  const {compile: compileMdx} = await import('@mdx-js/mdx');
+  const visit = (await import('unist-util-visit')).default;
   const jsxCode = await compileMdx(mdxWithFakeImports, {
-    remarkPlugins,
+    remarkPlugins: [
+      ...remarkPlugins,
+      (await import('remark-gfm')).default,
+      (await import('remark-frontmatter')).default,
+    ],
+    rehypePlugins: [
+      // Support stuff like ```js App.js {1-5} active by passing it through.
+      function rehypeMetaAsAttributes() {
+        return (tree) => {
+          visit(tree, 'element', (node) => {
+            if (node.tagName === 'code' && node.data && node.data.meta) {
+              node.properties.meta = node.data.meta;
+            }
+          });
+        };
+      },
+    ],
   });
   const {transform} = require('@babel/core');
   const jsCode = await transform(jsxCode, {
@@ -133,15 +168,20 @@ export async function getStaticProps(context) {
 
   // Prepare environment for MDX.
   let fakeExports = {};
-  // For each fake MDX import, give back the string component name.
-  // It will get serialized later.
-  const fakeRequire = (key) => key;
-  const evalJSCode = new Function('require', 'exports', 'mdx', jsCode);
-  const createElement = require('react').createElement;
+  const fakeRequire = (name) => {
+    if (name === 'react/jsx-runtime') {
+      return require('react/jsx-runtime');
+    } else {
+      // For each fake MDX import, give back the string component name.
+      // It will get serialized later.
+      return name;
+    }
+  };
+  const evalJSCode = new Function('require', 'exports', jsCode);
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // THIS IS A BUILD-TIME EVAL. NEVER DO THIS WITH UNTRUSTED MDX (LIKE FROM CMS)!!!
   // In this case it's okay because anyone who can edit our MDX can also edit this file.
-  evalJSCode(fakeRequire, fakeExports, createElement);
+  evalJSCode(fakeRequire, fakeExports);
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const reactTree = fakeExports.default({});
 
@@ -150,6 +190,10 @@ export async function getStaticProps(context) {
   if (path === 'index') {
     toc = [];
   }
+
+  // Parse Frontmatter headers from MDX.
+  const fm = require('gray-matter');
+  const meta = fm(mdx).data;
 
   const output = {
     props: {

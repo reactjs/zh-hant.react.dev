@@ -101,6 +101,10 @@ Suspense 讓 components 在 render 之前可以「暫停」並等待其他事情
 
 ### `React.Component` {#reactcomponent}
 
+> 嘗試 [`Component`](https://beta.reactjs.org/reference/react/Component) 的 React 新文件。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 `React.Component` 是當你使用 [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) 定義 React component 時所用的 base class：
 
 ```javascript
@@ -117,6 +121,10 @@ class Greeting extends React.Component {
 
 ### `React.PureComponent` {#reactpurecomponent}
 
+> 嘗試 [`PureComponent`](https://beta.reactjs.org/reference/react/PureComponent) 的 React 新文件。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 `React.PureComponent` 跟 [`React.Component`](#reactcomponent) 很相似。他們之間的差別是 [`React.Component`](#reactcomponent) 並沒有實作 [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate)，但 `React.PureComponent` 提供了一個實作以對於 prop 及 state 進行 shallow compare。
 
 > 備註
@@ -128,6 +136,10 @@ class Greeting extends React.Component {
 * * *
 
 ### `React.memo` {#reactmemo}
+
+> Try the new React documentation for [`memo`](https://beta.reactjs.org/reference/react/memo).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -167,6 +179,10 @@ export default React.memo(MyComponent, areEqual);
 
 ### `createElement()` {#createelement}
 
+> Try the new React documentation for [`createElement`](https://beta.reactjs.org/reference/react/createElement).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 React.createElement(
   type,
@@ -182,6 +198,10 @@ React.createElement(
 * * *
 
 ### `cloneElement()` {#cloneelement}
+
+> Try the new React documentation for [`cloneElement`](https://beta.reactjs.org/reference/react/cloneElement).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```
 React.cloneElement(
@@ -207,6 +227,10 @@ React.cloneElement(
 
 ### `createFactory()` {#createfactory}
 
+> Try the new React documentation for [`createFactory`](https://beta.reactjs.org/reference/react/createFactory).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 React.createFactory(type)
 ```
@@ -221,6 +245,10 @@ React.createFactory(type)
 
 ### `isValidElement()` {#isvalidelement}
 
+> Try the new React documentation for [`isValidElement`](https://beta.reactjs.org/reference/react/isValidElement).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 React.isValidElement(object)
 ```
@@ -230,6 +258,10 @@ React.isValidElement(object)
 * * *
 
 ### `React.Children` {#reactchildren}
+
+> 嘗試 [`Children`](https://beta.reactjs.org/reference/react/Children) 的 React 新文件。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.Children` 提供了一些工具可以將 `this.props.children` 作為不透明的資料結構處理。
 
@@ -289,6 +321,10 @@ React.Children.toArray(children)
 
 ### `React.Fragment` {#reactfragment}
 
+> 嘗試 [`Fragment`](https://beta.reactjs.org/reference/react/Fragment) 的 React 新文件。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 `React.Fragment` 讓你可以在一個 `render()` method 中一次回傳多個 element 而不需要建立一個額外的 DOM element：
 
 ```javascript
@@ -306,10 +342,18 @@ render() {
 
 ### `React.createRef` {#reactcreateref}
 
+> 嘗試 [`createRef`](https://beta.reactjs.org/reference/react/createRef) 的 React 新文件。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 `React.createRef` 會建立一個 [ref](/docs/refs-and-the-dom.html) 以透過 ref attribute 夾帶在一個 React element 之上。
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
+
+> 嘗試 [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef) 的 React 新文件。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.forwardRef` 會建立一個 React component 並將 [ref](/docs/refs-and-the-dom.html) attribute 轉交給旗下的另外一個 component 。這個技巧不是很常被使用，但在以下兩個情況很適合：
 
@@ -328,6 +372,10 @@ render() {
 
 ### `React.lazy` {#reactlazy}
 
+> 嘗試 [`lazy`](https://beta.reactjs.org/reference/react/lazy) 的 React 新文件。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
 `React.lazy()` 讓你可以定義一個動態載入的 component。這可以在初始 render 期間延緩載入沒有被用到的 component 來減少 bundle size。
 
 你可以閱讀我們的 [code splitting 文件](/docs/code-splitting.html#reactlazy) 來學習怎麼使用它。你可能也想要閱讀[這篇文章](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) 更深入了解如何使用這個 function。
@@ -340,6 +388,10 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 請注意當你使用 `lazy` component 的時候，你的 render tree 上層中必須包含一個 `<React.Suspense>` 來指定 loading indicator。
 
 ### `React.Suspense` {#reactsuspense}
+
+> 嘗試 [`Suspense`](https://beta.reactjs.org/reference/react/Suspense) 的 React 新文件。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.Suspense` 讓你指定 loading indicator，避免下面 tree 中的某些 component 尚未準備好 render。未來我們計畫讓 `Suspense` 處理更多場景，像是資料的取得。你可以閱讀關於這個在[我們的 roadmap](/blog/2018/11/27/react-16-roadmap.html)。
 
@@ -375,6 +427,10 @@ function MyComponent() {
 Suspense boundary 依賴於它們的 parent boundary 在它們被 hydrate 之前被 hydrate，但它們可以獨立於 sibling boundary hydrate。在被 hydrate 之前發生的 event 將會導致 boundary hydrate 的優先級高於相鄰的 boundary。[閱讀更多](https://github.com/reactwg/react-18/discussions/130)。
 
 ### `React.startTransition` {#starttransition}
+
+> Try the new React documentation for [`startTransition`](https://beta.reactjs.org/reference/react/startTransition).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```js
 React.startTransition(callback)
