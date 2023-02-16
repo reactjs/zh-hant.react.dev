@@ -6,21 +6,17 @@ next: hooks-rules.html
 prev: hooks-state.html
 ---
 
-<<<<<<< HEAD
-*Hook* 是 React 16.8 中增加的新功能。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
-=======
-> Try the new React documentation.
-> 
-> These new documentation pages teach modern React and include live examples:
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
 >
 > - [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects)
 > - [You Might Not Need an Effect](https://beta.reactjs.org/learn/you-might-not-need-an-effect)
 > - [`useEffect`](https://beta.reactjs.org/reference/react/useEffect)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+*Hook* 是 React 16.8 中增加的新功能。它讓你不必寫 class 就能使用 state 以及其他 React 的功能。
 
 *Effect Hook* 讓你可以使用 function component 中的 side effect：
 

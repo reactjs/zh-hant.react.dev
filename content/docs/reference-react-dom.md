@@ -171,15 +171,11 @@ unmountComponentAtNode(container)
 
 ### `findDOMNode()` {#finddomnode}
 
-<<<<<<< HEAD
-> 注意：
-=======
-> Try the new React documentation for [`findDOMNode`](https://beta.reactjs.org/reference/react-dom/findDOMNode).
+> 嘗試 [`findDOMNode`](https://beta.reactjs.org/reference/react-dom/findDOMNode) 的 React 新文件。
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
-> Note:
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+> 注意：
 >
 > `findDOMNode` 是一個用來存取底層 DOM node 應急的做法。在大多數情況下，不鼓勵使用這個應急的做法因為它會穿透 component 抽象化。[它已經在 `StrictMode` 中被棄用了。](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 

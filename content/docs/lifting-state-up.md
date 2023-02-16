@@ -9,19 +9,15 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
-<<<<<<< HEAD
-通常來說，有一些 component 需要反映相同的資料變化。我們建議將共享的 state 提升到最靠近它們的共同 ancestor。讓我們來看這是如何運作的。
-=======
-> Try the new React documentation.
-> 
-> These new documentation pages teach modern React and include live examples:
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
 >
 > - [Sharing State Between Components](https://beta.reactjs.org/learn/sharing-state-between-components)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
-Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. Let's see how this works in action.
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+通常來說，有一些 component 需要反映相同的資料變化。我們建議將共享的 state 提升到最靠近它們的共同 ancestor。讓我們來看這是如何運作的。
 
 在這個章節，我們將建立一個溫度計算器來計算水是否會在給定的溫度下沸騰。
 

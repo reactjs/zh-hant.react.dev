@@ -4,19 +4,15 @@ title: Portal
 permalink: docs/portals.html
 ---
 
-<<<<<<< HEAD
-Portal 提供一個優秀方法來讓 children 可以 render 到 parent component DOM 樹以外的 DOM 節點。
-=======
-> Try the new React documentation.
-> 
-> These new documentation pages teach modern React and include live examples:
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
 >
 > - [`createPortal`](https://beta.reactjs.org/reference/react-dom/createPortal)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
-Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+Portal 提供一個優秀方法來讓 children 可以 render 到 parent component DOM 樹以外的 DOM 節點。
 
 ```js
 ReactDOM.createPortal(child, container)

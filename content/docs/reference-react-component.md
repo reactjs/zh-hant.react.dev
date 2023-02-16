@@ -15,15 +15,11 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-<<<<<<< HEAD
-本章節包含了 React component class 的詳細 API 參考。我們假設你對 React 的基本概念已十分熟悉，例如 [Component 和 Prop](/docs/components-and-props.html) 以及 [State 和 生命週期](/docs/state-and-lifecycle.html)。如果你對這些概念還不清楚，請先閱讀相關文件。
-=======
-> Try the new React documentation for [`Component`](https://beta.reactjs.org/reference/react/Component).
+> 嘗試 [`Component`](https://beta.reactjs.org/reference/react/Component) 的 React 新文件。
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
-This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+本章節包含了 React component class 的詳細 API 參考。我們假設你對 React 的基本概念已十分熟悉，例如 [Component 和 Prop](/docs/components-and-props.html) 以及 [State 和 生命週期](/docs/state-and-lifecycle.html)。如果你對這些概念還不清楚，請先閱讀相關文件。
 
 ## 概觀 {#overview}
 

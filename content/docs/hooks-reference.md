@@ -514,16 +514,12 @@ FancyInput = forwardRef(FancyInput);
 
 ### `useLayoutEffect` {#uselayouteffect}
 
-<<<<<<< HEAD
-與宣告 `useEffect` 本身相同，但它會在所有 DOM 改變後，同步調用。使用它來讀取 DOM layout 並同步重新 render。在瀏覽器執行繪製之前，`useLayoutEffect` 內部的更新將被同步刷新。
-=======
-> Try the new React documentation for [`useLayoutEffect`](https://beta.reactjs.org/reference/react/useLayoutEffect).
+> 嘗試 [`useLayoutEffect`](https://beta.reactjs.org/reference/react/useLayoutEffect) 的 Reacy 新文件。
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
-The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+與宣告 `useEffect` 本身相同，但它會在所有 DOM 改變後，同步調用。使用它來讀取 DOM layout 並同步重新 render。在瀏覽器執行繪製之前，`useLayoutEffect` 內部的更新將被同步刷新。
 
 盡可能使用標準的 `useEffect` 來避免阻礙視覺上的更新。
 

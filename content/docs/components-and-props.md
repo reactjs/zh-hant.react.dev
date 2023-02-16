@@ -16,20 +16,16 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
-<<<<<<< HEAD
-Component 使你可以將 UI 拆分成獨立且可複用的程式碼，並且專注於各別程式碼的思考。本章節旨在介紹 component 的相關概念，你也可以在此參閱[詳細的 API 文件](/docs/react-component.html)。
-=======
-> Try the new React documentation.
-> 
-> These new documentation pages teach modern React and include live examples:
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
 >
 > - [Your First Component](https://beta.reactjs.org/learn/your-first-component)
 > - [Passing Props to a Component](https://beta.reactjs.org/learn/passing-props-to-a-component)
->
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
-Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a [detailed component API reference here](/docs/react-component.html).
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+Component 使你可以將 UI 拆分成獨立且可複用的程式碼，並且專注於各別程式碼的思考。本章節旨在介紹 component 的相關概念，你也可以在此參閱[詳細的 API 文件](/docs/react-component.html)。
+> 嘗試新的 React 文件。
 
 概念上來說，component 就像是 JavaScript 的 function，它接收任意的參數（稱之為「props」）並且回傳描述畫面的 React element。
 

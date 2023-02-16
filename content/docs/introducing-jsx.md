@@ -6,20 +6,16 @@ prev: hello-world.html
 next: rendering-elements.html
 ---
 
-<<<<<<< HEAD
-考慮下面這個變數宣告：
-=======
-> Try the new React documentation.
-> 
-> These new documentation pages teach modern React and include live examples:
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
 >
 > - [Writing Markup with JSX](https://beta.reactjs.org/learn/writing-markup-with-jsx)
 > - [JavaScript in JSX with Curly Braces](https://beta.reactjs.org/learn/javascript-in-jsx-with-curly-braces)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
-Consider this variable declaration:
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+考慮下面這個變數宣告：
 
 ```js
 const element = <h1>你好，世界！</h1>;

@@ -14,12 +14,9 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-<<<<<<< HEAD
-為了能兼具效能與跨瀏覽器的兼容性，React 實作了一套獨立於瀏覽器的 DOM 系統，我們藉由這個機會解決瀏覽器 DOM 的美中不足之處。
-=======
-> Try the new React documentation.
-> 
-> These new documentation pages teach modern React and include live examples:
+> 嘗試新的 React 文件。
+>
+> 這些新的文件頁面教導 modern React 並包括即時範例：
 >
 > - [Common components (e.g. `<div>`)](https://beta.reactjs.org/reference/react-dom/components/common)
 > - [`<input>`](https://beta.reactjs.org/reference/react-dom/components/input)
@@ -28,10 +25,9 @@ redirect_from:
 > - [`<select>`](https://beta.reactjs.org/reference/react-dom/components/select)
 > - [`<textarea>`](https://beta.reactjs.org/reference/react-dom/components/textarea)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
-React implements a browser-independent DOM system for performance and cross-browser compatibility. We took the opportunity to clean up a few rough edges in browser DOM implementations.
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+為了能兼具效能與跨瀏覽器的兼容性，React 實作了一套獨立於瀏覽器的 DOM 系統，我們藉由這個機會解決瀏覽器 DOM 的美中不足之處。
 
 在 React 裡，所有 DOM property 和 attribute（包括 event handler）都應該以 camelCase 命名。舉例來說，HTML 的 attribute `tabindex` 在 React 中對應到 `tabIndex`。`aria-*` 和 `data-*` attribute 則是例外，需要保持全部小寫。舉例來說，`aria-label` 保持原樣即可。
 

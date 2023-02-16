@@ -18,17 +18,13 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-<<<<<<< HEAD
-本章節是 React 文件與相關資訊的概覽。
-=======
-> Try the new React documentation.
-> 
-> The new [Quick Start](https://beta.reactjs.org/learn) teaches modern React and includes live examples.
+> 嘗試新的 React 文件。
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> 新的 [Quick Start](https://beta.reactjs.org/learn) 頁面教導 modern React 並包括即時範例。
+>
+> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
 
-This page is an overview of the React documentation and related resources.
->>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
+本章節是 React 文件與相關資訊的概覽。
 
 **React** 是一個實作使用者介面的 JavaScript 函式庫。請到我們的[主頁](/)或[教學](/tutorial/tutorial.html)中學習什麼是 React。
 
