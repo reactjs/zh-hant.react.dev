@@ -4,7 +4,7 @@ title: 在 JSX 中使用 JavaScript 的語法
 
 <Intro>
 
-JSX 允許你在 JavaScript 文件中編寫類似 HTML 標籤的代碼，使渲染邏輯和內容保持在同樣的地方。有時你會想在標籤中添加一些 JavaScript 邏輯或引用一個動態屬性。在這種情況下，你可以在 JSX 中使用花括號來編寫 JavaScript 。
+JSX 允許你在 JavaScript 文件中編寫類似 HTML 標籤的代碼，使渲染邏輯和內容保持在同樣的地方。有時你會想在標籤中添加一些 JavaScript 邏輯或引用一個動態屬性。在這種情況下，你可以在 JSX 中使用花括號來編寫 JavaScript。
 
 </Intro>
 
@@ -67,7 +67,7 @@ export default function Avatar() {
 
 </Sandpack>
 
-注意 `className="avatar"` 和 `src={avatar}` 之間的區別，前者指定了一個 `"avatar"` 的CSS類名，使圖片變成圓形，而後者讀取了 JavaScript 變量 `avatar` 的值。這是因為花括號可以讓你在標籤中使用 JavaScript !
+注意 `className="avatar"` 和 `src={avatar}` 之間的區別，前者指定了一個 `"avatar"` 的CSS類名，使圖片變成圓形，而後者讀取了 JavaScript 變量 `avatar` 的值。這是因為花括號可以讓你在標籤中使用 JavaScript!
 
 ## 使用花括號: 進入 JavaScript 世界的窗口 {/*using-curly-braces-a-window-into-the-javascript-world*/}
 
@@ -86,7 +86,7 @@ export default function TodoList() {
 
 </Sandpack>
 
-試著把 `name` 的值從 `Gregorio Y. Zara` 改為 `Hedy Lamarr` 。看到待辦事項列表的標題如何變化了嗎？
+試著把 `name` 的值從 `Gregorio Y. Zara` 改為 `Hedy Lamarr`。看到待辦事項列表的標題如何變化了嗎？
 
 任何的 JavaScript 表達式都可以在花括號之間使用，包括像 `formatDate()` 這樣的函數調用：
 
@@ -115,7 +115,7 @@ export default function TodoList() {
 
 你只能在 JSX 中以兩種方式使用花括號。
 
-1. **作為文本**直接在JSX標籤內使用。 `<h1>{name}'s To Do List</h1>` 可以使用，但 `<{tag}>Gregorio Y. Zara's To Do List</{tag}>` 就不行。
+1. **作為文本** 直接在JSX標籤內使用。 `<h1>{name}'s To Do List</h1>` 可以使用，但 `<{tag}>Gregorio Y. Zara's To Do List</{tag}>` 就不行。
 2. **作為 attributes** 緊隨 `=` 符號之後：`src={avatar}` 將讀取 `avatar` 變量，但 `src="{avatar}"` 將傳遞 string `"{avatar}"`。
 
 ## 使用 "雙花括號"：JSX 中的 CSS 和其他對象 {/*using-double-curlies-css-and-other-objects-in-jsx*/}
@@ -295,7 +295,7 @@ body > div > div { padding: 20px; }
 
 發生這種情況是因為這個例子將*一個對象本身*渲染到標籤中，而不是一個字符串。 `<h1>{person}'s Todos</h1>` 將試圖渲染整個 `person` 對象! 使用原始對像作為文本內容會拋出一個錯誤，因為React不知道你想如何顯示它們。
 
-要解決這個問題，將 `<h1>{person}'s Todos</h1>` 改為 `<h1>{person.name}'s Todos</h1>` 。
+要解決這個問題，將 `<h1>{person}'s Todos</h1>` 改為 `<h1>{person.name}'s Todos</h1>`。
 
 <Sandpack>
 
