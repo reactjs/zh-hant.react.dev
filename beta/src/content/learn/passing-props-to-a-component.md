@@ -4,21 +4,21 @@ title: 傳遞 Props 到 Component 中
 
 <Intro>
 
-React components 使用 *props* 相互通信。每個父組件可以通過給子組件傳遞 props 來傳遞一些信息。 Props 可能讓你想起 HTML attributes，但你可以通過它們傳遞任何 JavaScript 值，包括對象、數組和函數。
+React components 使用 *props* 相互通信。每個 parent component 可以通過向 children component 傳遞 props 來傳遞一些信息。 Props 可能讓你想起 HTML attributes，但你可以通過它們傳遞任何 JavaScript 值，包括 object、array 和函式。
 
 </Intro>
 
 <YouWillLearn>
 
 * 如何向 component 傳遞 props
-* 如何從 component 中讀取props
+* 如何從 component 中讀取 props
 * 如何為 props 指定默認值
-* 如何向 component 傳遞一些JSX
+* 如何向 component 傳遞一些 JSX
 * props 如何隨著時間變化
 
 </YouWillLearn>
 
-## 熟悉 props {/*familiar-props*/}
+## 認識 props {/*familiar-props*/}
 
 Props 是你傳遞給 JSX 標籤的信息。例如，`className`、`src`、`alt`、`width` 和 `height` 是你可以傳遞給 `<img>` 標籤的一些 props：
 
@@ -51,7 +51,7 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-可以傳遞給 `<img>` 標籤的 props 已被預定義了（ReactDOM 符合 [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element) 標準）。但是，你可以向自己的組件（例如 `<Avatar>`）傳遞任何 props 以自定義它們。以下是如何操作：
+可以傳遞給 `<img>` 標籤的 props 已被預定義了（ReactDOM 符合 [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element) 的標準）。但是，你可以向自己的 component（例如 `<Avatar>`）傳遞任何 props 以自定義它們。以下是如何操作：
 
 ## 向 Component 傳遞 props {/*passing-props-to-a-component*/}
 
@@ -69,7 +69,7 @@ export default function Profile() {
 
 ### 第一步：向 child component 傳遞 props {/*step-1-pass-props-to-the-child-component*/}
 
-首先，向 `Avatar` 傳遞一些 props。例如，讓我們傳遞兩個 props：`person`（一個對象）和 `size`（一個數字）：
+首先，向 `Avatar` 傳遞一些 props。例如，讓我們傳遞兩個 props：`person`（一個 object）和 `size`（一個 number）：
 
 ```js
 export default function Profile() {
@@ -82,13 +82,13 @@ export default function Profile() {
 }
 ```
 
-> 如果 `person=` 後面的雙花括號讓你感到困惑，請記住，[它們只是 JSX 花括號中的一個對象](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx)。
+> 如果 `person=` 後面的雙大括號讓你感到困惑，請記住，[它們只是 JSX 大括號中的一個 object](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx)。
 
 現在，你可以在 `Avatar` component 內部讀取這些 props。
 
 ### 第二步：在 child component 中讀取 props {/*step-2-read-props-inside-the-child-component*/}
 
-你可以通過在 `function Avatar` 之後的 `({` 和 `})` 內部用逗號分隔它們的名稱 `person,size` 來讀取這些 props。這使你可以在 `Avatar` 代碼中使用它們，就像使用變量一樣。
+你可以通過在 `function Avatar` 之後的 `({` 和 `})` 內部用逗號分隔它們的名稱 `person,size` 來讀取這些 props。這使你可以在 `Avatar` 代碼中使用它們，就像使用變數一樣。
 
 ```js
 function Avatar({ person, size }) {
@@ -166,7 +166,7 @@ body { min-height: 120px; }
 
 Props 讓你獨立思考 parent 和 child components。例如，你可以在 `Profile` 內部更改 `person` 或 `size`，而無需考慮 `Avatar` 如何使用它們。同樣的，你可以更改 `Avatar` 如何使用這些 props，不必考慮到 `Profile`。
 
-你可以將 props 視為可以調節的“旋鈕”。它們扮演著函數所需的參數的相同角色——實際上，props _就是_ 你組件的唯一參數！ React component 函數接受一個單獨的參數，一個名為 props 的對象：
+你可以將 props 視為可以調節的“旋鈕”。它們扮演著函式所需的參數的相同角色——實際上，props _就是_ component 唯一的參數！ React component 函式接受一個單獨的參數，一個名為 props 的 object：
 
 ```js
 function Avatar(props) {
@@ -175,18 +175,18 @@ function Avatar(props) {
   // ...
 }
 ```
-通常你不需要整個 `props` 對象本身，所以你可以使用解構將其拆分成單個 props 變量。
+通常你不需要整個 `props` object 本身，所以你可以使用解構將其拆分成單個 props 變數。
 
 <Pitfall>
 
-在聲明 props 時，**不要忘記**在 `(` 和 `)` **內部使用一對 `{` 和 `}` 花括號**：
+在聲明 props 時，**不要忘記**在 `(` 和 `)` **內部使用一對 `{` 和 `}` 大括號**：
 
 ```js
 function Avatar({ person, size }) {
   // ...
 }
 ```
-此語法稱為 ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) 等同於從函數參數讀取屬性：
+此語法稱為 ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) 等同於從函式參數讀取 properties：
 
 ```js
 function Avatar(props) {
@@ -230,7 +230,7 @@ function Profile({ person, size, isSepia, thickBorder }) {
 }
 ```
 
-重複代碼沒有錯——它可以更易讀。 但有時你可能會看重簡潔。 一些 components 將它們的所有 props 轉發給它們的子組件，就像這個 `Profile` 如何處理 `Avatar` 一樣。 因為他們不直接使用他們的任何 props，所以使用更簡潔的”展開“語法是有意義的：
+重複代碼沒有錯——它可以更易讀。 但有時你可能會看重簡潔。 一些 components 將它們的所有 props 轉發給它們的 children component，就像這個 `Profile` 如何處理 `Avatar` 一樣。 因為他們不直接使用他們的任何 props，所以使用更簡潔的”展開“語法是有意義的：
 
 ```js
 function Profile(props) {
@@ -244,7 +244,7 @@ function Profile(props) {
 
 這將會轉發所有 `Profile` 的 props 給 `Avatar` 而無需列出每個 props 的名字。
 
-**有節制地使用擴展語法。** 如果你在所有其他 component 中都使用它，那就有問題了。 通常，它表示你應該拆分 components 並將子組件作為 JSX 傳遞。 接下來會詳細介紹！
+**有節制地使用擴展語法。** 如果你在所有其他 component 中都使用它，那就有問題了。 通常，它表示你應該拆分 components 並將 children component 作為 JSX 傳遞。 接下來會詳細介紹！
 
 ## 傳遞 JSX 为 children {/*passing-jsx-as-children*/}
 
@@ -256,7 +256,7 @@ function Profile(props) {
 </div>
 ```
 
-有時你會希望以相同的方式嵌套自己的組件：
+有時你會希望以相同的方式嵌套自己的 component：
 
 ```js
 <Card>
@@ -264,7 +264,7 @@ function Profile(props) {
 </Card>
 ```
 
-當你將內容嵌套在 JSX 標籤中時，parent component 將在名為 children 的 prop 中接收該內容。 例如，下面的 `Card` 組件將接收一個為 `<Avatar/>` 的 `children` 屬性並將其渲染在被嵌套的 div 中：
+當你將內容嵌套在 JSX 標籤中時，parent component 將在名為 children 的 prop 中接收該內容。 例如，下面的 `Card` component 將接收一個為 `<Avatar/>` 的 `children` prop 並將其渲染在被嵌套的 div 中：
 
 <Sandpack>
 
@@ -340,7 +340,7 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-嘗試使用一些文本替換 `<Card>` 中的 `<Avatar>` 以查看 `Card` 組件如何包裝任何嵌套內容。 它不需要“知道”其內部渲染的是什麼。 你會在很多地方看到這種靈活的模式。
+嘗試使用一些文本替換 `<Card>` 中的 `<Avatar>` 以查看 `Card` component 如何包裝任何嵌套內容。 它不需要“知道”其內部渲染的是什麼。 你會在很多地方看到這種靈活的模式。
 
 你可以將擁有 `children` prop 的 component 看作是具有可以由其 parent component 用任意 JSX “填充”的“孔”。你通常會使用 children prop 來創建可視化包裝器，例如面板，網格等。
 
@@ -402,7 +402,7 @@ export default function App() {
 
 這個例子說明了**一個 component 可能會隨著時間的推移接收到不同的 props。** Props 並不總是靜態的！ 在這裡，`time` prop 每秒都在變化，而 `color` prop 會在你選擇另一種顏色時發生變化。 Props 反映 component 在任何時間點的數據，而不僅僅是在開始時。
 
-然而，props 是 [immutable](https://zh.wikipedia.org/wiki/%E4%B8%8D%E5%8F%AF%E8%AE%8A%E7%89%A9%E4%BB%B6)——計算機科學中的一個術語，意思是“不可改變的”。 當 component 需要更改其 props 時（例如，響應用戶交互或新數據），它將不得不“請求”其 parent component 向它傳遞 _不同的 props_ —— 一個新的對象！ 舊的 props 將被丟棄，最終 JavaScript 引擎將回收它們佔用的內存。
+然而，props 是 [immutable](https://zh.wikipedia.org/wiki/%E4%B8%8D%E5%8F%AF%E8%AE%8A%E7%89%A9%E4%BB%B6)——計算機科學中的一個術語，意思是“不可改變的”。 當 component 需要更改其 props 時（例如，響應用戶交互或新數據），它將不得不“請求”其 parent component 向它傳遞 _不同的 props_ —— 一個新的 object！ 舊的 props 將被丟棄，最終 JavaScript 引擎將回收它們佔用的內存。
 
 **不要試圖“改變 props”。** 當你需要響應用戶輸入（比如改變選擇的顏色）時，你將需要“設置狀態”，你可以在 [State： Component 的記憶。](/learn/state-a-components-memory) 學習。
 
@@ -424,7 +424,7 @@ export default function App() {
 
 #### 提取 component {/*extract-a-component*/}
 
-這個 `Gallery` component 包含兩個非常相似的 profile 標籤。 從中提取一個 `Profile` 組件以減少重複。 你需要選擇什麼 props 應該被傳遞。
+這個 `Gallery` component 包含兩個非常相似的 profile 標籤。 從中提取一個 `Profile` component 以減少重複。 你需要選擇什麼 props 應該被傳遞。
 
 <Sandpack>
 
@@ -625,7 +625,7 @@ li { margin: 5px; }
 
 請注意，如果 `awards` 是 array，則不需要單獨的 `awardCount` prop。 然後你可以使用 `awards.length` 來統計獎勵的數量。 請記住，props 可以接受任何值，這也包括 array！
 
-另一種解決方案，與本頁前面的示例更相似，是將關於一個人的所有信息包含到單個對像中，並將該對像作為一個 prop 傳遞：
+另一種解決方案，與本頁前面的示例更相似，是將關於一個人的所有信息包含到單個 object 中，並將該 object 作為一個 prop 傳遞：
 
 <Sandpack>
 
@@ -720,15 +720,15 @@ li { margin: 5px; }
 
 </Sandpack>
 
-雖然語法看起來略有不同，因為你描述的是 JavaScript 對象的 properties 而不是 JSX attributes 的集合，但這些示例大部分是等效的，你可以選擇任何一種方法。
+雖然語法看起來略有不同，因為你描述的是 JavaScript object 的 properties 而不是 JSX attributes 的集合，但這些示例大部分是等效的，你可以選擇任何一種方法。
 
 </Solution>
 
 #### 根據 prop 調整圖像大小 {/*adjust-the-image-size-based-on-a-prop*/}
 
-在這個例子中，`Avatar` 收到一個數字 `size` prop，它決定了 `<img>` 的寬度和高度。 在此示例中，`size` 屬性設置為 `40`。 但是，如果你在新標籤中打開圖像，你會注意到圖像本身更大（`160` 像素）。 實際圖像大小取決於你請求的縮略圖大小。
+在這個例子中，`Avatar` 收到一個數字 `size` prop，它決定了 `<img>` 的寬度和高度。 在此示例中，`size` properties 設置為 `40`。 但是，如果你在新標籤中打開圖像，你會注意到圖像本身更大（`160` 像素）。 實際圖像大小取決於你請求的縮略圖大小。
 
-更改 `Avatar` component 以根據 `size` prop 請求最接近的圖像尺寸。 具體來說，如果 `size` 小於 `90`，則將 `s`（“small”）而不是 `b`（“big”）傳遞給 `getImageUrl` 函數。 通過使用不同值的 `size` prop 渲染頭像並在新標籤中打開圖像來驗證你的更改是否有效。
+更改 `Avatar` component 以根據 `size` prop 請求最接近的圖像尺寸。 具體來說，如果 `size` 小於 `90`，則將 `s`（“small”）而不是 `b`（“big”）傳遞給 `getImageUrl` 函式。 通過使用不同值的 `size` prop 渲染頭像並在新標籤中打開圖像來驗證你的更改是否有效。
 
 <Sandpack>
 
@@ -841,7 +841,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-你還可以通過 [`window.devicePixelRatio`](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/devicePixelRatio) 來為高 DPI 屏幕顯示更清晰的圖像：
+你還可以通過 [`window.devicePixelRatio`](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/devicePixelRatio) 來為高 DPI 的屏幕顯示更清晰的圖像：
 
 <Sandpack>
 
@@ -912,7 +912,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-Props 讓你可以將這樣的邏輯封裝在 `Avatar` component 中（如果需要，稍後可以更改它），這樣每個人使用 `<Avatar>` 組件时，無需考慮如何請求圖像和調整圖像大小。
+Props 讓你可以將這樣的邏輯封裝在 `Avatar` component 中（如果需要，稍後可以更改它），這樣每個人使用 `<Avatar>` component 时，無需考慮如何請求圖像和調整圖像大小。
 
 </Solution>
 
