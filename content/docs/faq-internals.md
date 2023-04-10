@@ -1,23 +1,24 @@
 ---
 id: faq-internals
-title: Virtual DOM and Internals
+title: Virtual DOM 及它的本質
 permalink: docs/faq-internals.html
 layout: docs
 category: FAQ
 ---
 
-### What is the Virtual DOM? {#what-is-the-virtual-dom}
+### 什麼是 Virtual DOM? {#what-is-the-virtual-dom}
 
-The virtual DOM (VDOM) is a programming concept where an ideal, or "virtual", representation of a UI is kept in memory and synced with the "real" DOM by a library such as ReactDOM. This process is called [reconciliation](/docs/reconciliation.html).
+Virtual DOM (VDOM) 是一種程式概念，其中 UI 的理想或"Virtual"表示保存在內存中，並通過 ReactDOM 等函式庫與"真實"DOM 同步。這個過程叫做 [reconciliation](/docs/reconciliation.html)。
 
-This approach enables the declarative API of React: You tell React what state you want the UI to be in, and it makes sure the DOM matches that state. This abstracts out the attribute manipulation, event handling, and manual DOM updating that you would otherwise have to use to build your app.
+這種方法啟用了 React 的 declarative API：您告訴 React 您希望 UI 處於什麼狀態，它會確保 DOM 與該狀態匹配。這抽像出了您在構建應用程序時必須使用的屬性操作、事件處理和手動 DOM 更新。
 
-Since "virtual DOM" is more of a pattern than a specific technology, people sometimes say it to mean different things. In React world, the term "virtual DOM" is usually associated with [React elements](/docs/rendering-elements.html) since they are the objects representing the user interface. React, however, also uses internal objects called "fibers" to hold additional information about the component tree. They may also be considered a part of "virtual DOM" implementation in React.
 
-### Is the Shadow DOM the same as the Virtual DOM? {#is-the-shadow-dom-the-same-as-the-virtual-dom}
+由於"Virtual DOM"與其說是一種特定技術，不如說是一種模式，因此人們有時會說它有不同的含義。 在 React 世界中，術語"Virtual DOM"通常與 [React elements](/docs/rendering-elements.html) 因為它們是代表用戶界面的物件。然而，React 還使用稱為"fibers"的內部物件來保存有關 component tree 的附加資訊。它們也可以被視為 React 中"Virtual DOM"實現的一部分。
 
-No, they are different. The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components. The virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.
+### Shadow DOM 和 Virtual DOM 一樣嗎？{#is-the-shadow-dom-the-same-as-the-virtual-dom}
 
-### What is "React Fiber"? {#what-is-react-fiber}
+不，它們是不同的。Shadow DOM 是一種瀏覽器技術，主要設計用於在 Web 組件中定義 variables 和 CSS。Virtual DOM 是一個概念，由函式庫在瀏覽器 API 之上用 JavaScript 實現。
 
-Fiber is the new reconciliation engine in React 16. Its main goal is to enable incremental rendering of the virtual DOM. [Read more](https://github.com/acdlite/react-fiber-architecture).
+### 什麼是"React Fiber"? {#what-is-react-fiber}
+
+Fiber 是 React 16 中新的 reconciliation 引擎。它的主要目標是啟用 Virtual DOM 的增量渲染。[閱讀更多](https://github.com/acdlite/react-fiber-architecture)。
