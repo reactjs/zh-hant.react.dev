@@ -1,26 +1,26 @@
 ---
-title: Passing Props to a Component
+title: 傳遞 Props 到 Component 中
 ---
 
 <Intro>
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions.
+React components 使用 *props* 相互通信。每個 parent component 可以通過向 children component 傳遞 props 來傳遞一些信息。 Props 可能讓你想起 HTML attributes，但你可以通過它們傳遞任何 JavaScript 值，包括 object、array 和函式。
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass props to a component
-* How to read props from a component
-* How to specify default values for props
-* How to pass some JSX to a component
-* How props change over time
+* 如何向 component 傳遞 props
+* 如何從 component 中讀取 props
+* 如何為 props 指定默認值
+* 如何向 component 傳遞一些 JSX
+* props 如何隨著時間變化
 
 </YouWillLearn>
 
-## Familiar props {/*familiar-props*/}
+## 認識 props {/*familiar-props*/}
 
-Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
+Props 是你傳遞給 JSX 標籤的信息。例如，`className`、`src`、`alt`、`width` 和 `height` 是你可以傳遞給 `<img>` 標籤的一些 props：
 
 <Sandpack>
 
@@ -51,11 +51,11 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
+可以傳遞給 `<img>` 標籤的 props 已被預定義了（ReactDOM 符合 [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element) 的標準）。但是，你可以向自己的 component（例如 `<Avatar>`）傳遞任何 props 以自定義它們。以下是如何操作：
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## 向 Component 傳遞 props {/*passing-props-to-a-component*/}
 
-In this code, the `Profile` component isn't passing any props to its child component, `Avatar`:
+在這段代碼中，`Profile` component 沒有向它的 child component， `Avatar` 傳遞任何 props：
 
 ```js
 export default function Profile() {
@@ -65,11 +65,11 @@ export default function Profile() {
 }
 ```
 
-You can give `Avatar` some props in two steps.
+你可以通過兩個步驟為 `Avatar` 提供一些 props。
 
-### Step 1: Pass props to the child component {/*step-1-pass-props-to-the-child-component*/}
+### 第一步：向 child component 傳遞 props {/*step-1-pass-props-to-the-child-component*/}
 
-First, pass some props to `Avatar`. For example, let's pass two props: `person` (an object), and `size` (a number):
+首先，向 `Avatar` 傳遞一些 props。例如，讓我們傳遞兩個 props：`person`（一個 object）和 `size`（一個 number）：
 
 ```js
 export default function Profile() {
@@ -82,13 +82,13 @@ export default function Profile() {
 }
 ```
 
-> If double curly braces after `person=` confuse you, remember [they are merely an object](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) inside the JSX curlies.
+> 如果 `person=` 後面的雙大括號讓你感到困惑，請記住，[它們只是 JSX 大括號中的一個 object](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx)。
 
-Now you can read these props inside the `Avatar` component.
+現在，你可以在 `Avatar` component 內部讀取這些 props。
 
-### Step 2: Read props inside the child component {/*step-2-read-props-inside-the-child-component*/}
+### 第二步：在 child component 中讀取 props {/*step-2-read-props-inside-the-child-component*/}
 
-You can read these props by listing their names `person, size` separated by the commas inside `({` and `})` directly after `function Avatar`. This lets you use them inside the `Avatar` code, like you would with a variable.
+你可以通過在 `function Avatar` 之後的 `({` 和 `})` 內部用逗號分隔它們的名稱 `person,size` 來讀取這些 props。這使你可以在 `Avatar` 代碼中使用它們，就像使用變數一樣。
 
 ```js
 function Avatar({ person, size }) {
@@ -96,9 +96,9 @@ function Avatar({ person, size }) {
 }
 ```
 
-Add some logic to `Avatar` that uses the `person` and `size` props for rendering, and you're done.
+為 `Avatar` 添加一些使用 `person` 和 `size` props 進行渲染的邏輯，然後就完成了。
 
-Now you can configure `Avatar` to render in many different ways with different props. Try tweaking the values!
+現在，你可以使用不同的 props 配置 `Avatar` 以多種不同的方式進行呈現。試著調整這些值！
 
 <Sandpack>
 
@@ -164,9 +164,9 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-Props let you think about parent and child components independently. For example, you can change the `person` or the `size` props inside `Profile` without having to think about how `Avatar` uses them. Similarly, you can change how the `Avatar` uses these props, without looking at the `Profile`.
+Props 讓你獨立思考 parent 和 child components。例如，你可以在 `Profile` 內部更改 `person` 或 `size`，而無需考慮 `Avatar` 如何使用它們。同樣的，你可以更改 `Avatar` 如何使用這些 props，不必考慮到 `Profile`。
 
-You can think of props like "knobs" that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React component functions accept a single argument, a `props` object:
+你可以將 props 視為可以調節的“旋鈕”。它們扮演著函式所需的參數的相同角色——實際上，props _就是_ component 唯一的參數！ React component 函式接受一個單獨的參數，一個名為 props 的 object：
 
 ```js
 function Avatar(props) {
@@ -175,20 +175,18 @@ function Avatar(props) {
   // ...
 }
 ```
-
-Usually you don't need the whole `props` object itself, so you destructure it into individual props.
+通常你不需要整個 `props` object 本身，所以你可以使用解構將其拆分成單個 props 變數。
 
 <Pitfall>
 
-**Don't miss the pair of `{` and `}` curlies** inside of `(` and `)` when declaring props:
+在聲明 props 時，**不要忘記**在 `(` 和 `)` **內部使用一對 `{` 和 `}` 大括號**：
 
 ```js
 function Avatar({ person, size }) {
   // ...
 }
 ```
-
-This syntax is called ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) and is equivalent to reading properties from a function parameter:
+此語法稱為 ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) 等同於從函式參數讀取 properties：
 
 ```js
 function Avatar(props) {
@@ -200,23 +198,22 @@ function Avatar(props) {
 
 </Pitfall>
 
-## Specifying a default value for a prop {/*specifying-a-default-value-for-a-prop*/}
+## 為 prop 指定默認值 {/*specifying-a-default-value-for-a-prop*/}
 
-If you want to give a prop a default value to fall back on when no value is specified, you can do it with the destructuring by putting `=` and the default value right after the parameter:
+如果你想給一個 prop 一個默認值以在沒有指定值時使用，你可以通過在參數後面放置 `=` 和默認值來實現解構：
 
 ```js
 function Avatar({ person, size = 100 }) {
   // ...
 }
 ```
+現在，如果在沒有 `size` prop 的情況下渲染 `<Avatar person={...} />`，則 `size` 將被設置為 `100`。
 
-Now, if `<Avatar person={...} />` is rendered with no `size` prop, the `size` will be set to `100`.
+默認值僅在缺少 `size` prop 或傳遞 `size={undefined}` 時使用。 但是，如果你傳遞 `size={null}` 或 `size={0}`，默認值將**不**被使用。
 
-The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
+## 使用 JSX 展開语法轉發 props {/*forwarding-props-with-the-jsx-spread-syntax*/}
 
-## Forwarding props with the JSX spread syntax {/*forwarding-props-with-the-jsx-spread-syntax*/}
-
-Sometimes, passing props gets very repetitive:
+有時，傳遞 props 會變得非常重複：
 
 ```js
 function Profile({ person, size, isSepia, thickBorder }) {
@@ -233,7 +230,7 @@ function Profile({ person, size, isSepia, thickBorder }) {
 }
 ```
 
-There's nothing wrong with repetitive code—it can be more legible. But at times you may value conciseness. Some components forward all of their props to their children, like how this `Profile` does with `Avatar`. Because they don't use any of their props directly, it can make sense to use a more concise "spread" syntax:
+重複代碼沒有錯——它可以更易讀。 但有時你可能會看重簡潔。 一些 components 將它們的所有 props 轉發給它們的 children component，就像這個 `Profile` 如何處理 `Avatar` 一樣。 因為他們不直接使用他們的任何 props，所以使用更簡潔的”展開“語法是有意義的：
 
 ```js
 function Profile(props) {
@@ -245,13 +242,13 @@ function Profile(props) {
 }
 ```
 
-This forwards all of `Profile`'s props to the `Avatar` without listing each of their names.
+這將會轉發所有 `Profile` 的 props 給 `Avatar` 而無需列出每個 props 的名字。
 
-**Use spread syntax with restraint.** If you're using it in every other component, something is wrong. Often, it indicates that you should split your components and pass children as JSX. More on that next!
+**有節制地使用擴展語法。** 如果你在所有其他 component 中都使用它，那就有問題了。 通常，它表示你應該拆分 components 並將 children component 作為 JSX 傳遞。 接下來會詳細介紹！
 
-## Passing JSX as children {/*passing-jsx-as-children*/}
+## 傳遞 JSX 为 children {/*passing-jsx-as-children*/}
 
-It is common to nest built-in browser tags:
+嵌套瀏覽器標籤是很常見的：
 
 ```js
 <div>
@@ -259,7 +256,7 @@ It is common to nest built-in browser tags:
 </div>
 ```
 
-Sometimes you'll want to nest your own components the same way:
+有時你會希望以相同的方式嵌套自己的 component：
 
 ```js
 <Card>
@@ -267,7 +264,7 @@ Sometimes you'll want to nest your own components the same way:
 </Card>
 ```
 
-When you nest content inside a JSX tag, the parent component will receive that content in a prop called `children`. For example, the `Card` component below will receive a `children` prop set to `<Avatar />` and render it in a wrapper div:
+當你將內容嵌套在 JSX 標籤中時，parent component 將在名為 children 的 prop 中接收該內容。 例如，下面的 `Card` component 將接收一個為 `<Avatar/>` 的 `children` prop 並將其渲染在被嵌套的 div 中：
 
 <Sandpack>
 
@@ -343,17 +340,17 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
+嘗試使用一些文本替換 `<Card>` 中的 `<Avatar>` 以查看 `Card` component 如何包裝任何嵌套內容。 它不需要“知道”其內部渲染的是什麼。 你會在很多地方看到這種靈活的模式。
 
-You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, and so on.
+你可以將擁有 `children` prop 的 component 看作是具有可以由其 parent component 用任意 JSX “填充”的“孔”。你通常會使用 children prop 來創建可視化包裝器，例如面板，網格等。
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 
-## How props change over time {/*how-props-change-over-time*/}
+## props 如何隨時間變化 {/*how-props-change-over-time*/}
 
-The `Clock` component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
+下面的 `Clock` component 從其 parent component 接收兩個 prop：`顏色` 和 `時間`。 （省略了 parent component 的代碼，因為它使用了我們暫時不會深入探討的 [state](/learn/state-a-components-memory)。）
 
-Try changing the color in the select box below:
+嘗試在下面的選擇框中更改顏色：
 
 <Sandpack>
 
@@ -403,21 +400,21 @@ export default function App() {
 
 </Sandpack>
 
-This example illustrates that **a component may receive different props over time.** Props are not always static! Here, the `time` prop changes every second, and the `color` prop changes when you select another color. Props reflect a component's data at any point in time, rather than only in the beginning.
+這個例子說明了**一個 component 可能會隨著時間的推移接收到不同的 props。** Props 並不總是靜態的！ 在這裡，`time` prop 每秒都在變化，而 `color` prop 會在你選擇另一種顏色時發生變化。 Props 反映 component 在任何時間點的數據，而不僅僅是在開始時。
 
-However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)—a term from computer science meaning "unchangeable". When a component needs to change its props (for example, in response to a user interaction or new data), it will have to "ask" its parent component to pass it _different props_—a new object! Its old props will then be cast aside, and eventually the JavaScript engine will reclaim the memory taken by them.
+然而，props 是 [immutable](https://zh.wikipedia.org/wiki/%E4%B8%8D%E5%8F%AF%E8%AE%8A%E7%89%A9%E4%BB%B6)——計算機科學中的一個術語，意思是“不可改變的”。 當 component 需要更改其 props 時（例如，響應用戶交互或新數據），它將不得不“請求”其 parent component 向它傳遞 _不同的 props_ —— 一個新的 object！ 舊的 props 將被丟棄，最終 JavaScript 引擎將回收它們佔用的內存。
 
-**Don't try to "change props".** When you need to respond to the user input (like changing the selected color), you will need to "set state", which you can learn about in [State: A Component's Memory.](/learn/state-a-components-memory)
+**不要試圖“改變 props”。** 當你需要響應用戶輸入（比如改變選擇的顏色）時，你將需要“設置狀態”，你可以在 [State： Component 的記憶。](/learn/state-a-components-memory) 學習。
 
 <Recap>
 
-* To pass props, add them to the JSX, just like you would with HTML attributes.
-* To read props, use the `function Avatar({ person, size })` destructuring syntax.
-* You can specify a default value like `size = 100`, which is used for missing and `undefined` props.
-* You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
-* Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
-* Props are read-only snapshots in time: every render receives a new version of props.
-* You can't change props. When you need interactivity, you'll need to set state.
+* 要傳遞 props，將它們添加到 JSX，就像使用 HTML attributes 一樣。
+* 要讀取 props，請使用 `function Avatar({ person, size })` 解構語法。
+* 你可以指定一個默認值，例如 `size = 100`，用於缺失和 `undefined`  的props。
+* 你可以使用 `<Avatar {...props} />` JSX 展開語法轉發所有 props，但不要過度使用它！
+* 像 `<Card><Avatar /></Card>` 這樣的嵌套 JSX 將顯示為 `Card` component 的 `children`  props。
+* Props 是時間上的只讀快照：每次渲染都會收到一個新版本的 props。
+* 你不能改變 props。 當你需要交互時，你需要設置 state。
 
 </Recap>
 
@@ -425,9 +422,9 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)�
 
 <Challenges>
 
-#### Extract a component {/*extract-a-component*/}
+#### 提取 component {/*extract-a-component*/}
 
-This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You'll need to choose what props to pass to it.
+這個 `Gallery` component 包含兩個非常相似的 profile 標籤。 從中提取一個 `Profile` component 以減少重複。 你需要選擇什麼 props 應該被傳遞。
 
 <Sandpack>
 
@@ -520,15 +517,15 @@ li { margin: 5px; }
 
 <Hint>
 
-Start by extracting the markup for one of the scientists. Then find the pieces that don't match it in the second example, and make them configurable by props.
+首先提取其中一位 scientists 的標籤。 然後在第二個例子中找到不匹配的部分，並使它們可以通過 props 進行配置。
 
 </Hint>
 
 <Solution>
 
-In this solution, the `Profile` component accepts multiple props: `imageId` (a string), `name` (a string), `profession` (a string), `awards` (an array of strings), `discovery` (a string), and `imageSize` (a number).
+在此解決方案中，`Profile` component 接受多個 props：`imageId`（一個 string）、`name`（一個 string）、`profession`（一個 string）、`awards`（一個 array of string）、`discovery` （一個 string）和 `imageSize`（一個 number）。
 
-Note that the `imageSize` prop has a default value, which is why we don't pass it to the component.
+請注意，`imageSize` prop 有一個默認值，這就是我們不將其傳遞給 component 的原因。
 
 <Sandpack>
 
@@ -626,9 +623,9 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Note how you don't need a separate `awardCount` prop if `awards` is an array. Then you can use `awards.length` to count the number of awards. Remember that props can take any values, and that includes arrays too!
+請注意，如果 `awards` 是 array，則不需要單獨的 `awardCount` prop。 然後你可以使用 `awards.length` 來統計獎勵的數量。 請記住，props 可以接受任何值，這也包括 array！
 
-Another solution, which is more similar to the earlier examples on this page, is to group all information about a person in a single object, and pass that object as one prop:
+另一種解決方案，與本頁前面的示例更相似，是將關於一個人的所有信息包含到單個 object 中，並將該 object 作為一個 prop 傳遞：
 
 <Sandpack>
 
@@ -723,15 +720,15 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Although the syntax looks slightly different because you're describing properties of a JavaScript object rather than a collection of JSX attributes, these examples are mostly equivalent, and you can pick either approach.
+雖然語法看起來略有不同，因為你描述的是 JavaScript object 的 properties 而不是 JSX attributes 的集合，但這些示例大部分是等效的，你可以選擇任何一種方法。
 
 </Solution>
 
-#### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
+#### 根據 prop 調整圖像大小 {/*adjust-the-image-size-based-on-a-prop*/}
 
-In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
+在這個例子中，`Avatar` 收到一個數字 `size` prop，它決定了 `<img>` 的寬度和高度。 在此示例中，`size` properties 設置為 `40`。 但是，如果你在新標籤中打開圖像，你會注意到圖像本身更大（`160` 像素）。 實際圖像大小取決於你請求的縮略圖大小。
 
-Change the `Avatar` component to request the closest image size based on the `size` prop. Specifically, if the `size` is less than `90`, pass `'s'` ("small") rather than `'b'` ("big") to the `getImageUrl` function. Verify that your changes work by rendering avatars with different values of the `size` prop and opening images in a new tab.
+更改 `Avatar` component 以根據 `size` prop 請求最接近的圖像尺寸。 具體來說，如果 `size` 小於 `90`，則將 `s`（“small”）而不是 `b`（“big”）傳遞給 `getImageUrl` 函式。 通過使用不同值的 `size` prop 渲染頭像並在新標籤中打開圖像來驗證你的更改是否有效。
 
 <Sandpack>
 
@@ -782,7 +779,7 @@ export function getImageUrl(person, size) {
 
 <Solution>
 
-Here is how you could go about it:
+以下是你可以採取的方法：
 
 <Sandpack>
 
@@ -844,7 +841,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-You could also show a sharper image for high DPI screens by taking [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) into account:
+你還可以通過 [`window.devicePixelRatio`](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/devicePixelRatio) 來為高 DPI 的屏幕顯示更清晰的圖像：
 
 <Sandpack>
 
@@ -915,13 +912,13 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-Props let you encapsulate logic like this inside the `Avatar` component (and change it later if needed) so that everyone can use the `<Avatar>` component without thinking about how the images are requested and resized.
+Props 讓你可以將這樣的邏輯封裝在 `Avatar` component 中（如果需要，稍後可以更改它），這樣每個人使用 `<Avatar>` component 时，無需考慮如何請求圖像和調整圖像大小。
 
 </Solution>
 
-#### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
+#### 在 `children` prop 中傳遞 JSX {/*passing-jsx-in-a-children-prop*/}
 
-Extract a `Card` component from the markup below, and use the `children` prop to pass different JSX to it:
+從下面的標籤中提取一個 `Card` component，並使用 `children` 屬性將不同的 JSX 傳遞給它：
 
 <Sandpack>
 
@@ -979,13 +976,13 @@ h1 {
 
 <Hint>
 
-Any JSX you put inside of a component's tag will be passed as the `children` prop to that component.
+你放入 component 標籤內的任何 JSX 都將作為 children prop 傳遞給該 component。
 
 </Hint>
 
 <Solution>
 
-This is how you can use the `Card` component in both places:
+這是如何在兩個地方使用 `Card` component 的方法：
 
 <Sandpack>
 
@@ -1047,7 +1044,7 @@ h1 {
 
 </Sandpack>
 
-You can also make `title` a separate prop if you want every `Card` to always have a title:
+如果你希望每個 `Card` 總是擁有一個標題，你也可以將 `title` 設為一個單獨的 prop：
 
 <Sandpack>
 
