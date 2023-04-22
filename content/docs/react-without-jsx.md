@@ -4,6 +4,12 @@ title: 不使用 JSX 開發 React
 permalink: docs/react-without-jsx.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 JSX 對於使用 React 並不是不可或缺的。當你不想在開發環境中設置編譯時，不使用 JSX 開發 React 格外方便。
 
 每個 JSX 元素都只是呼叫 `React.createElement(component, props, ...children)` 的語法糖。所有任何你能用 JSX 做的事，你都能用純 JavaScript 做到。

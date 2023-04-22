@@ -4,13 +4,15 @@ title: 嚴格模式
 permalink: docs/strict-mode.html
 ---
 
-> 嘗試新的 React 文件。
+<div class="scary">
+
+> 這些文檔很舊，不會更新。 前往 [react.dev](https://react.dev/) 獲取新的 React 文檔。
 >
 > 這些新的文件頁面教導 modern React 並包括即時範例：
 >
 > - [`StrictMode`](https://beta.reactjs.org/reference/react/StrictMode)
->
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 `嚴格模式` 是一個用來突顯應用程式裡潛在問題的工具。如同 `Fragment` 一樣，`嚴格模式` 不會 render 任何可見的 UI。它為了底下的所有的依賴們啟動了額外的檢查和警告。
 

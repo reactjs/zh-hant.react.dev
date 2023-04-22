@@ -4,14 +4,16 @@ title: 傳送 Ref
 permalink: docs/forwarding-refs.html
 ---
 
-> 嘗試新的 React 文件。
+<div class="scary">
+
+> 這些文檔很舊，不會更新。 前往 [react.dev](https://react.dev/) 獲取新的 React 文檔。
 >
 > 這些新的文件頁面教導 modern React 並包括即時範例：
 >
 > - [Manipulating the DOM with Refs](https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
 > - [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef)
->
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 傳送 ref 是一種自動把 [ref](/docs/refs-and-the-dom.html) 從一個 component 傳遞到它底下的其中一個 child 的技巧。通常來說，應用程式裡大部分的 component 都不需要用到它。然而，對某些種類的 component 來說它很有用，特別是能夠重複使用的函式庫。以下會解釋最常見的情形。
 

@@ -6,13 +6,17 @@ layout: docs
 category: Reference
 ---
 
-> 嘗試新的 React 文件。
+<div class="scary">
+
+> 這些文檔很舊，不會更新。 前往 [react.dev](https://react.dev/) 獲取新的 React 文檔。
 >
 > 這些新的文件頁面教導 modern React 並包括即時範例：
 >
 > - [Common components (e.g. `<div>`)](https://beta.reactjs.org/reference/react-dom/components/common)
 >
 > 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 這份參考指南紀錄了 `SyntheticEvent` 這個形成 React 事件系統的 wrapper。想了解更多，請參考[事件處理](/docs/handling-events.html)。
 

@@ -8,6 +8,15 @@ prev: getting-started.html
 next: create-a-new-react-app.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project) for the recommended ways to add React.
+
+</div>
+
 按自己所需可多可少的採用 React。
 
 React 在剛推出的時候就容許被逐步採用，**你可以按自己所需可多可少的**採用 React。 或許你只想在現存的網頁上增加少量的互動性。採用 React component 會是個非常好的選擇。

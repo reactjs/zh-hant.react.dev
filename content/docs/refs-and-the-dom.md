@@ -11,7 +11,9 @@ redirect_from:
   - "tips/children-undefined.html"
 ---
 
-> 嘗試新的 React 文件。
+<div class="scary">
+
+> 這些文檔很舊，不會更新。 前往 [react.dev](https://react.dev/) 獲取新的 React 文檔。
 >
 > 這些新的文件頁面教導 modern React 並包括即時範例：
 >
@@ -19,8 +21,8 @@ redirect_from:
 > - [Manipulating the DOM with Refs](https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
 > - [`useRef`](https://beta.reactjs.org/reference/react/useRef)
 > - [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef)
->
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 Ref 提供了一種可以取得 DOM 節點或在 render 方法內建立 React element 的方式。
 

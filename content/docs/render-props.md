@@ -4,6 +4,15 @@ title: Render Props
 permalink: docs/render-props.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> Render props are used in modern React, but aren't very common.  
+> For many cases, they have been replaced by [custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks).
+
+</div>
+
 [「render prop」](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce)這個詞指的是一種用一個其值為函式的 prop 來在 React component 之間共享程式碼的技巧。
 
 一個帶有 render prop 的 component 不會執行自己的 render 邏輯，而會接受一個回傳 React element 的函式並呼叫。

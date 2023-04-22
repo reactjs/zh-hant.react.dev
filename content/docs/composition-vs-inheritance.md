@@ -8,6 +8,12 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 React 具有強大的 composition 模型，我們建議你在 component 之間使用 composition 來複用你的程式碼，而不是使用繼承。
 
 在這個章節中，我們將考慮一些新 React 開發者常常遇到的繼承問題，並示範如何透過 composition 來解決它們。

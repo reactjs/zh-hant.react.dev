@@ -13,6 +13,12 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 基本上，JSX 單純只是 `React.createElement(component, props, ...children)` function 的一個語法糖。以下 JSX 程式碼：
 
 ```js

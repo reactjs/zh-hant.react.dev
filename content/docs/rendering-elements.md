@@ -8,6 +8,18 @@ prev: introducing-jsx.html
 next: components-and-props.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach how to write JSX and show it on an HTML page:
+>
+> - [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
+> - [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project#step-2-render-react-components-anywhere-on-the-page)
+
+</div>
+
 建立 React 應用程式最小的單位是 element。
 
 一個 element 描述你想要在螢幕上所看到的：

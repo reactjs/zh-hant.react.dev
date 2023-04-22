@@ -4,6 +4,17 @@ title: Code-Splitting
 permalink: docs/code-splitting.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`lazy`](https://react.dev/reference/react/lazy)
+> - [`<Suspense>`](https://react.dev/reference/react/Suspense)
+
+</div>
+
 ## Bundling {#bundling}
 
 大部分 React 應用程式會使用像是 [Webpack](https://webpack.js.org/)、[Rollup](https://rollupjs.org/) 或 [Browserify](http://browserify.org/) 的工具來 bundle 它們的檔案。Bundle 是將 import 的檔案合併為單一的檔案過程：「Bundle」。網頁可以引入 bundle，以一次載入整個應用程式。
