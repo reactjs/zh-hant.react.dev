@@ -15,14 +15,17 @@ redirect_from:
 prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
+<div class="scary">
 
-> 嘗試新的 React 文件。
+> 這些文檔很舊，不會更新。 前往 [react.dev](https://react.dev/) 獲取新的 React 文檔。
 >
 > 這些新的文件頁面教導 modern React 並包括即時範例：
 >
 > - [Your First Component](https://beta.reactjs.org/learn/your-first-component)
 > - [Passing Props to a Component](https://beta.reactjs.org/learn/passing-props-to-a-component)
 > 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 Component 使你可以將 UI 拆分成獨立且可複用的程式碼，並且專注於各別程式碼的思考。本章節旨在介紹 component 的相關概念，你也可以在此參閱[詳細的 API 文件](/docs/react-component.html)。
 > 嘗試新的 React 文件。

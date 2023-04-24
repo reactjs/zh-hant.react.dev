@@ -6,6 +6,14 @@ redirect_from:
   - "docs/webcomponents.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> See [Custom HTML elements](https://react.dev/reference/react-dom/components#custom-html-elements) in the new docs.
+>
+</div>
+
 React 和 [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components) 是為了解決不同的問題所建立的。Web Component 為了可重複使用的 component 提供了強大的封裝，而 React 提供了一個宣告式函式庫，使 DOM 與你的資料保持同步。這兩個目標是相輔相成的。作為開發人員，你可以自由地在 Web Component 中使用 React，或在 React 中使用 Web Component，或兩者都是。
 
 大部分使用 React 的人沒有使用 Web Component，但你可能會想要使用，尤其是你用到了使用 Web Component 所寫的第三方的 UI component。

@@ -6,6 +6,19 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react-dom`: Components](https://react.dev/reference/react-dom/components)
+> - [`react-dom`: APIs](https://react.dev/reference/react-dom)
+> - [`react-dom`: Client APIs](https://react.dev/reference/react-dom/client)
+> - [`react-dom`: Server APIs](https://react.dev/reference/react-dom/server)
+
+</div>
+
 `react-dom` 提供了 DOM 的特定方法讓你可以在你的應用程式頂層使用，如果有需要，也可以作為一個逃生窗口來脫離 React 模型。
 
 ```js
@@ -50,9 +63,13 @@ React 支援所有主流瀏覽器，雖然對於一些舊版瀏覽器[需要一�
 
 ### `createPortal()` {#createportal}
 
-> Try the new React documentation for [`createPortal`](https://beta.reactjs.org/reference/react-dom/createPortal).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`createPortal`](https://react.dev/reference/react-dom/createPortal).
+
+</div>
 
 ```javascript
 createPortal(child, container)
@@ -62,9 +79,13 @@ createPortal(child, container)
 
 ### `flushSync()` {#flushsync}
 
-> Try the new React documentation for [`flushSync`](https://beta.reactjs.org/reference/react-dom/flushSync).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`flushSync`](https://react.dev/reference/react-dom/flushSync).
+
+</div>
 
 ```javascript
 flushSync(callback)
@@ -93,9 +114,13 @@ flushSync(() => {
 ## Legacy Reference {#legacy-reference}
 ### `render()` {#render}
 
-> Try the new React documentation for [`render`](https://beta.reactjs.org/reference/react-dom/render).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`render`](https://react.dev/reference/react-dom/render).
+
+</div>
 
 ```javascript
 render(element, container[, callback])
@@ -127,9 +152,13 @@ render(element, container[, callback])
 
 ### `hydrate()` {#hydrate}
 
-> Try the new React documentation for [`hydrate`](https://beta.reactjs.org/reference/react-dom/hydrate).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`hydrate`](https://react.dev/reference/react-dom/hydrate).
+
+</div>
 
 ```javascript
 hydrate(element, container[, callback])
@@ -153,9 +182,13 @@ React 預期在伺服器端和客戶端所 render 的內容是相同的。它可
 
 ### `unmountComponentAtNode()` {#unmountcomponentatnode}
 
-> Try the new React documentation for [`unmountComponentAtNode`](https://beta.reactjs.org/reference/react-dom/unmountComponentAtNode).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`unmountComponentAtNode`](https://react.dev/reference/react-dom/unmountComponentAtNode).
+
+</div>
 
 ```javascript
 unmountComponentAtNode(container)
@@ -171,9 +204,13 @@ unmountComponentAtNode(container)
 
 ### `findDOMNode()` {#finddomnode}
 
-> 嘗試 [`findDOMNode`](https://beta.reactjs.org/reference/react-dom/findDOMNode) 的 React 新文件。
+<div class="scary">
+
+> This content is out of date.
 >
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`findDOMNode`](https://react.dev/reference/react-dom/findDOMNode).
+
+</div>
 
 > 注意：
 >

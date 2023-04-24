@@ -18,11 +18,14 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-> 嘗試新的 React 文件。
+<div class="scary">
+
+> 這些文檔很舊，不會更新。 前往 [react.dev](https://react.dev/) 獲取新的 React 文檔。
+>
 >
 > 新的 [Quick Start](https://beta.reactjs.org/learn) 頁面教導 modern React 並包括即時範例。
->
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 本章節是 React 文件與相關資訊的概覽。
 

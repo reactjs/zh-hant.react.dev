@@ -13,6 +13,19 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react`: Components](https://react.dev/reference/react/components)
+> - [`react`: Hooks](https://react.dev/reference/react/)
+> - [`react`: APIs](https://react.dev/reference/react/apis)
+> - [`react`: Legacy APIs](https://react.dev/reference/react/legacy)
+
+</div>
+
 `React` 是 React 函式庫的進入點。 如果你使用 `<script>` 標籤載入 React,這些頂層 API 可以在 `React` 全域變數使用。如果你使用 ES6 撰寫並使用 npm，你可以寫成 `import React from 'react'` 。如果你使用 ES5 撰寫並使用 npm，你可以寫成 `var React = require('react')` 。
 
 ## 概觀 {#overview}
@@ -101,9 +114,13 @@ Suspense 讓 components 在 render 之前可以「暫停」並等待其他事情
 
 ### `React.Component` {#reactcomponent}
 
-> 嘗試 [`Component`](https://beta.reactjs.org/reference/react/Component) 的 React 新文件。
+<div class="scary">
+
+> This content is out of date.
 >
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`Component`](https://react.dev/reference/react/Component).
+
+</div>
 
 `React.Component` 是當你使用 [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) 定義 React component 時所用的 base class：
 
@@ -121,9 +138,13 @@ class Greeting extends React.Component {
 
 ### `React.PureComponent` {#reactpurecomponent}
 
-> 嘗試 [`PureComponent`](https://beta.reactjs.org/reference/react/PureComponent) 的 React 新文件。
+<div class="scary">
+
+> This content is out of date.
 >
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`PureComponent`](https://react.dev/reference/react/PureComponent).
+
+</div>
 
 `React.PureComponent` 跟 [`React.Component`](#reactcomponent) 很相似。他們之間的差別是 [`React.Component`](#reactcomponent) 並沒有實作 [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate)，但 `React.PureComponent` 提供了一個實作以對於 prop 及 state 進行 shallow compare。
 
@@ -137,9 +158,13 @@ class Greeting extends React.Component {
 
 ### `React.memo` {#reactmemo}
 
-> Try the new React documentation for [`memo`](https://beta.reactjs.org/reference/react/memo).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`memo`](https://react.dev/reference/react/memo).
+
+</div>
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -179,9 +204,13 @@ export default React.memo(MyComponent, areEqual);
 
 ### `createElement()` {#createelement}
 
-> Try the new React documentation for [`createElement`](https://beta.reactjs.org/reference/react/createElement).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`createElement`](https://react.dev/reference/react/createElement).
+
+</div>
 
 ```javascript
 React.createElement(
@@ -199,9 +228,13 @@ React.createElement(
 
 ### `cloneElement()` {#cloneelement}
 
-> Try the new React documentation for [`cloneElement`](https://beta.reactjs.org/reference/react/cloneElement).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`cloneElement`](https://react.dev/reference/react/cloneElement).
+
+</div>
 
 ```
 React.cloneElement(
@@ -227,9 +260,13 @@ React.cloneElement(
 
 ### `createFactory()` {#createfactory}
 
-> Try the new React documentation for [`createFactory`](https://beta.reactjs.org/reference/react/createFactory).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`createFactory`](https://react.dev/reference/react/createFactory).
+
+</div>
 
 ```javascript
 React.createFactory(type)
@@ -245,9 +282,13 @@ React.createFactory(type)
 
 ### `isValidElement()` {#isvalidelement}
 
-> Try the new React documentation for [`isValidElement`](https://beta.reactjs.org/reference/react/isValidElement).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`isValidElement`](https://react.dev/reference/react/isValidElement).
+
+</div>
 
 ```javascript
 React.isValidElement(object)
@@ -259,9 +300,13 @@ React.isValidElement(object)
 
 ### `React.Children` {#reactchildren}
 
-> 嘗試 [`Children`](https://beta.reactjs.org/reference/react/Children) 的 React 新文件。
+<div class="scary">
+
+> This content is out of date.
 >
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`Children`](https://react.dev/reference/react/Children).
+
+</div>
 
 `React.Children` 提供了一些工具可以將 `this.props.children` 作為不透明的資料結構處理。
 
@@ -321,9 +366,13 @@ React.Children.toArray(children)
 
 ### `React.Fragment` {#reactfragment}
 
-> 嘗試 [`Fragment`](https://beta.reactjs.org/reference/react/Fragment) 的 React 新文件。
+<div class="scary">
+
+> This content is out of date.
 >
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`Fragment`](https://react.dev/reference/react/Fragment).
+
+</div>
 
 `React.Fragment` 讓你可以在一個 `render()` method 中一次回傳多個 element 而不需要建立一個額外的 DOM element：
 
@@ -342,18 +391,26 @@ render() {
 
 ### `React.createRef` {#reactcreateref}
 
-> 嘗試 [`createRef`](https://beta.reactjs.org/reference/react/createRef) 的 React 新文件。
+<div class="scary">
+
+> This content is out of date.
 >
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`createRef`](https://react.dev/reference/react/createRef).
+
+</div>
 
 `React.createRef` 會建立一個 [ref](/docs/refs-and-the-dom.html) 以透過 ref attribute 夾帶在一個 React element 之上。
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
 
-> 嘗試 [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef) 的 React 新文件。
+<div class="scary">
+
+> This content is out of date.
 >
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`forwardRef`](https://react.dev/reference/react/forwardRef).
+
+</div>
 
 `React.forwardRef` 會建立一個 React component 並將 [ref](/docs/refs-and-the-dom.html) attribute 轉交給旗下的另外一個 component 。這個技巧不是很常被使用，但在以下兩個情況很適合：
 
@@ -372,9 +429,13 @@ render() {
 
 ### `React.lazy` {#reactlazy}
 
-> 嘗試 [`lazy`](https://beta.reactjs.org/reference/react/lazy) 的 React 新文件。
+<div class="scary">
+
+> This content is out of date.
 >
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`lazy`](https://react.dev/reference/react/lazy).
+
+</div>
 
 `React.lazy()` 讓你可以定義一個動態載入的 component。這可以在初始 render 期間延緩載入沒有被用到的 component 來減少 bundle size。
 
@@ -389,9 +450,13 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 ### `React.Suspense` {#reactsuspense}
 
-> 嘗試 [`Suspense`](https://beta.reactjs.org/reference/react/Suspense) 的 React 新文件。
+<div class="scary">
+
+> This content is out of date.
 >
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`Suspense`](https://react.dev/reference/react/Suspense).
+
+</div>
 
 `React.Suspense` 讓你指定 loading indicator，避免下面 tree 中的某些 component 尚未準備好 render。未來我們計畫讓 `Suspense` 處理更多場景，像是資料的取得。你可以閱讀關於這個在[我們的 roadmap](/blog/2018/11/27/react-16-roadmap.html)。
 
@@ -428,9 +493,13 @@ Suspense boundary 依賴於它們的 parent boundary 在它們被 hydrate 之前
 
 ### `React.startTransition` {#starttransition}
 
-> Try the new React documentation for [`startTransition`](https://beta.reactjs.org/reference/react/startTransition).
+<div class="scary">
+
+> This content is out of date.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+> Read the new React documentation for [`startTransition`](https://react.dev/reference/react/startTransition).
+
+</div>
 
 ```js
 React.startTransition(callback)

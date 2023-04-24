@@ -8,7 +8,9 @@ prev: components-and-props.html
 next: handling-events.html
 ---
 
-> 嘗試新的 React 文件。
+<div class="scary">
+
+> 這些文檔很舊，不會更新。 前往 [react.dev](https://react.dev/) 獲取新的 React 文檔。
 >
 > 這些新的文件頁面教導 modern React 並包括即時範例：
 >
@@ -16,6 +18,8 @@ next: handling-events.html
 > - [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects)
 >
 > 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 這個章節會介紹在 React component 中 state 以及生命週期的概念。你可以在[這裡找到 component API 詳細的參考](/docs/react-component.html)。
 

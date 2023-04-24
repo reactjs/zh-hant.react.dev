@@ -15,9 +15,15 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-> 嘗試 [`Component`](https://beta.reactjs.org/reference/react/Component) 的 React 新文件。
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
 >
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+> These new documentation pages teach modern React:
+>
+> - [`React.Component`](https://react.dev/reference/react/Component)
+
+</div>
 
 本章節包含了 React component class 的詳細 API 參考。我們假設你對 React 的基本概念已十分熟悉，例如 [Component 和 Prop](/docs/components-and-props.html) 以及 [State 和 生命週期](/docs/state-and-lifecycle.html)。如果你對這些概念還不清楚，請先閱讀相關文件。
 

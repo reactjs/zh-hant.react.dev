@@ -14,7 +14,9 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
-> 嘗試新的 React 文件。
+<div class="scary">
+
+> 這些文檔很舊，不會更新。 前往 [react.dev](https://react.dev/) 獲取新的 React 文檔。
 >
 > 這些新的文件頁面教導 modern React 並包括即時範例：
 >
@@ -24,8 +26,8 @@ redirect_from:
 > - [`<progress>`](https://beta.reactjs.org/reference/react-dom/components/progress)
 > - [`<select>`](https://beta.reactjs.org/reference/react-dom/components/select)
 > - [`<textarea>`](https://beta.reactjs.org/reference/react-dom/components/textarea)
->
-> 新的文件將會很快取代目前的文件，它將會被歸檔。[提供回饋。](https://github.com/reactjs/reactjs.org/issues/3308)
+
+</div>
 
 為了能兼具效能與跨瀏覽器的兼容性，React 實作了一套獨立於瀏覽器的 DOM 系統，我們藉由這個機會解決瀏覽器 DOM 的美中不足之處。
 
