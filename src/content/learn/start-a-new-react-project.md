@@ -10,7 +10,7 @@ title: 開始一個新的 React 專案
 
 <Note>
 
-**你需要在你的本機開發環境安裝 [Node.js](https://nodejs.org/en/)。** 你*也*可以選擇使用 Node.js 在 production 環境，但你不需要這麼做。許多 React 框架支援導出靜態的 HTML/CSS/JS 文件。
+**你需要在你的本機開發環境安裝 [Node.js](https://nodejs.org/en/)。** 你*也*可以選擇使用 Node.js 在 production 環境，但你不需要這麼做。許多 React 框架支援匯出靜態的 HTML/CSS/JS 文件。
 
 </Note>
 
@@ -30,7 +30,7 @@ Next.js 是由 [Vercel](https://vercel.com/) 維護。你可以將 [Next.js 應�
 
 ### Remix {/*remix*/}
 
-**[Remix](https://remix.run/) 是一個具有巢狀路由（nested route）的全端 React 框架。** 它讓你將應用程序分成可以並行載入資料並根據使用者的操作刷新。要建立新的 Remix 專案，執行：
+**[Remix](https://remix.run/) 是一個具有巢狀路由（nested route）的全端 React 框架。** 它讓你將應用程式分解成巢狀的部分，這些部分可以平行載入資料，並根據使用者的操作更新。要建立新的 Remix 專案，執行：
 
 <TerminalBlock>
 npx create-remix
@@ -42,7 +42,7 @@ Remix 是由 [Shopify](https://www.shopify.com/) 維護。當你建立 Remix 專
 
 ### Gatsby {/*gatsby*/}
 
-**[Gatsby](https://www.gatsbyjs.com/) 是一個用於快速 CMS 支援網站的 React 框架。** 它豐富的外掛生態系統和 GraphQL 資料層，簡化了將內容、API 和服務整合到一個網站中。要建立新的 Gatsby 專案，請執行以下命令：
+**[Gatsby](https://www.gatsbyjs.com/) 是一個用於快速 CMS 支援網站的 React 框架。** 它豐富的外掛生態系，以及 GraphQL 資料層，簡化了將內容、API 和服務整合到一個網站中。要建立新的 Gatsby 專案，請執行以下命令：
 
 <TerminalBlock>
 npx create-gatsby
@@ -50,40 +50,40 @@ npx create-gatsby
 
 如果你是第一次使用 Gatsby，請參考 [Gatsby 教學](https://www.gatsbyjs.com/docs/tutorial/)。
 
-Gatsby 由 [Netlify](https://www.netlify.com/) 維護。你可以將完全靜態的 [Gatsby 網站部署]((https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting))到任何靜態主機上。如果你選擇使用 server-only 的功能，請確保你的主機提供商支援它們用於 Gatsby。
+Gatsby 由 [Netlify](https://www.netlify.com/) 維護。你可以將完全靜態的 [Gatsby 網站部署](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting)到任何靜態主機上。如果你選擇使用 server-only 的功能，請確保你的主機供應商支援它們用於 Gatsby。
 
 ### Expo（針對 native apps） {/*expo*/}
 
-**[Expo](https://expo.dev/) 是一個 React 框架，讓你可以在 Android、iOS 和 Web 應用程式建立通用的 native UI。** 它提供了一個 [React Native](https://reactnative.dev/) 的 SDK，使原生部分更容易使用。要建立新的 Expo 專案，請執行：
+**[Expo](https://expo.dev/) 讓你可以建立有著完全原生的 UI ，且通用於 Android、iOS 和 Web 的應用程式。** 它提供了一個 [React Native](https://reactnative.dev/) 的 SDK，使原生部分更容易使用。要建立新的 Expo 專案，請執行：
 
 <TerminalBlock>
 npx create-expo-app
 </TerminalBlock>
 
-如果你是你一次使用 Expo，請參考 [Expo 教學](https://docs.expo.dev/tutorial/introduction/)。
+如果你是第一次使用 Expo，請參考 [Expo 教學](https://docs.expo.dev/tutorial/introduction/)。
 
 Expo 由 [Expo（公司）](https://expo.dev/about)維護。使用 Expo 構建應用程式是免費的，你可以無限制地將它們提交到 Google 和 Apple 應用商店。另外，Expo 還提供可選的付費雲服務。
 
 <DeepDive>
 
-#### 我可以不使用框架來使用 React 嗎？ {/*can-i-use-react-without-a-framework*/}
+#### 我可以只使用 React 而沒有框架嗎？ {/*can-i-use-react-without-a-framework*/}
 
-你絕對可以在沒有框架的情況下使用 React--這是你如何[在頁面的一部分中使用 React。](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) **然而，如果你正在完全使用 React 建立新應用程式或網站，我們建議你使用框架。**
+你絕對可以在沒有框架的情況下使用 React--這是你如何[在頁面的一部分中使用 React。](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) **然而，如果你正在完全使用 React 建立一個新的應用程式或網站，我們建議你使用框架。**
 
-這是為什麼。
+以下是為什麼這麼做的原因。
 
-即使一開始不需要 routing 或是 data fetching，你可能還是想要增加一些相關的函式庫。隨著每個新功能的加入，JavaScript bundle 會越來越大，你可能需要找出如何為每個 routing 單獨拆分程式碼。當 data fetching 需求變得更加複雜時，你可能會遇到 server-clent 的網路 waterfall 現象，這會使你的應用程式感覺非常緩慢。當你的使用者中包含了有低速網路和廉價設備的受眾時，你可能需要從 component 產成 HTML 以提早顯示內容 - 在伺服器上或在建置期間執行此操作。更改設定以在伺服器上或在建置期間執行部分程式碼可能非常棘手。
+即使在一開始可能不需要 routing 或是 data fetching，你可能還是想要增加一些相關的函式庫。隨著每個新功能的加入，JavaScript bundle 會越來越大，你可能需要找出如何為每個 routing 單獨拆分程式碼。當 data fetching 需求變得更加複雜時，你可能會遇到 server-client 的 network waterfalls，這會使你的應用程式感覺非常緩慢。當你的使用者中包含了有低速網路和低階設備的受眾時，你可能需要從 component 產成 HTML 以提早顯示內容 - 無論是在伺服器上或在建置期間。更改設定以在伺服器上或在建置期間執行部分程式碼可能非常棘手。
 
-**這些問題並非 React 特有的。這就是為什麼 Svelte 有 SvelteKit，Vue 有 Nuxt 等等。** 要自己解決這些問題，你需要將 bundle 工具與 routing 和 data fetching 函式庫整合在一起。一開始設定不難，但隨著時間的推移，製作能夠快速載入應用程式所涉及的微妙之處很多。你希望以最少量的應用程式程式碼發送它，在單個 client-server 回合中完成，與頁面所需的任何資料並行。你可能希望在 JavaScript 程式碼執行之前就可與頁互動面，以支援漸進式增強（progressive enhancement）功能。你可能還想產生完全靜態的 HTML 文件來顯示行銷網頁，在禁用 JavaScript 時也可以在任何地方托管且正常運作。建立這些功能需要真正付出努力。
+**這些問題並非 React 特有的。這就是為什麼 Svelte 有 SvelteKit，Vue 有 Nuxt 等等。** 要自己解決這些問題，你需要將 bundle 工具與 routing 和 data fetching 函式庫整合在一起。一開始設定不難，但隨著時間的推移，但要製作一個即使隨時間的推移也能快速載入的應用程式，會涉及很多細節。你希望傳送最少量的程式碼，在單個 client-server 往返，且與頁面所需的任何資料並行。你可能希望在 JavaScript 程式碼執行之前就可與頁互動面，以支援漸進式增強（progressive enhancement）功能。你可能還想產生完全靜態的 HTML 文件來顯示行銷網頁，在禁用 JavaScript 時也可以在任何地方托管且正常運作。而自己構建這些功能會很費工。
 
-**這個頁面上的 React 框架可以自動解決這些問題，而不需要你做任何額外的工作。** 它們讓你可以從非常簡單的開始，然後根據你的需求擴展應用程式。每個 React 框架都有一個社群，因此更容易找到答案和升級工具。框架還可以給你的程式碼提供結構，幫助你和其他人在不同項目之間保持 context 和技能。相反地，使用客製化設定會更容易陷入不支援依賴版本中，最終你將建立自己的框架 - 雖然沒有社區或升級路徑（如果像我們過去製作過的那些一樣混亂設計）。
+**這個頁面上的 React 框架可以自動解決這些問題，而不需要你做任何額外的工作。** 它們讓你可以從非常簡單的開始，然後根據你的需求擴展應用程式。每個 React 框架都有一個社群，因此更容易找到答案和升級工具。框架還可以給你的程式碼提供結構，幫助你和其他人在不同項目之間維持一定的脈絡和技能。相反地，使用客製化設定會更容易陷入不支援依賴版本中，最終你將建立自己的框架 - 雖然沒有社區或升級路徑（就像我們過去做過的那些，更加混亂的設計）。
 
-如果你仍然不信服，或者你的應用程式有這些框架無法很好地滿足的非常規限制，並且你想要自己克制設定，我們不能阻止你 - 去做吧！從 npm 中獲取 `react` 和`react-dom`，使用像 [Vite](https://vitejs.dev/) 或 [Parcel](https://parceljs.org/) 這樣的 bundle 工具設定自己的客製構建過程，並根據需求新增其他工具以進行 routing、static generation 或 server-side rendering 等操作。
+如果你仍然不信服，或者你的應用程式有這些框架無法很好地滿足的非常規限制，並且你想要自己客制設定，我們不能阻止你 - 去做吧！從 npm 中獲取 `react` 和`react-dom`，使用像 [Vite](https://vitejs.dev/) 或 [Parcel](https://parceljs.org/) 這樣的 bundle 工具設定自己的客製構建過程，並根據需求新增 routing、static generation 或 server-side rendering 等等的工具。
 </DeepDive>
 
 ## 前沿的 React 框架 {/*bleeding-edge-react-frameworks*/}
 
-當我們探索如何繼續改進 React 時，我們意識到更緊密地將 React 與框架（特別是 routing、bundling 和伺服器技術）整合起來，是幫助 React 使用者構建更好應用程式的最大機會。Next.js 團隊已同意與我們合作，在研究、開發、整合和測試像是 [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) 這樣不依賴於特定框架（framework-agnostic）的前沿 React 功能方面進行協作。
+當我們探索如何繼續改進 React 時，我們意識到更緊密地將 React 與框架整合（特別是 routing、bundling 和伺服器技術），是我們幫助 React 使用者構建更好應用程式的大好機會。Next.js 團隊已同意與我們合作研究、開發、整合和測試與框架無關（framework-agnostic）的前沿 React 功能，像是 [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) 。
 
 這些功能每天都越來越接近 production-ready，我們已與其他 bundler 和框架開發人員進行了交談，以整合它們。我們的希望是，在一年或兩年內，此頁面上列出的所有框架都將完全支持這些功能。（如果你是一位框架作者，有興趣與我們合作實驗這些功能，請告訴我們！）
 
@@ -128,6 +128,6 @@ Next.js 的 App Router 也整合了[使用 Suspense 進行 data fetching](/blog/
 </Suspense>
 ```
 
-Server Component 和 Suspense 是 React 的功能，而不是 Next.js 的。然而，在框架層面採用它們需要計畫和以及複雜的實現工作。目前，Next.js APP Router 是最完整的實現方式。React 團隊正在與 bundler開發人員合作，使這些功能在下一代框架中更容易實現。
+Server Components 和 Suspense 是 React 的功能，而不是 Next.js 的。然而，在框架層面採用它們需要計畫和以及複雜的實現工作。目前，Next.js APP Router 是最完整的實現方式。React 團隊正在與 bundler開發人員合作，使這些功能在下一代框架中更容易實現。
 
 </DeepDive>
