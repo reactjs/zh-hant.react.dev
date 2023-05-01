@@ -1,24 +1,24 @@
 ---
-title: Conditional Rendering
+title: 條件 Rendering
 ---
 
 <Intro>
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+有時候你的 Component 會需要根據不同的條件來展示不同的內容。在 React 中，你可以使用 JavaScript 中 `if` 陳述式、`&&` 以及 `? :` 運算子等語法來根據條件 render 不同的 JSX。
 
 </Intro>
 
 <YouWillLearn>
 
-* How to return different JSX depending on a condition
-* How to conditionally include or exclude a piece of JSX
-* Common conditional syntax shortcuts you’ll encounter in React codebases
+* 如何根據不同條件回傳不同 JSX
+* 如何有條件地包含或移除一段 JSX
+* React codebases 中常見的條件式簡短語法
 
 </YouWillLearn>
 
-## Conditionally returning JSX {/*conditionally-returning-jsx*/}
+## 條件性地回傳 JSX {/*conditionally-returning-jsx*/}
 
-Let’s say you have a `PackingList` component rendering several `Item`s, which can be marked as packed or not:
+舉例來說，你在 `PackingList` component 中 render 了數個可以被標記為打包完成與否的 `Item` component：
 
 <Sandpack>
 
@@ -52,9 +52,9 @@ export default function PackingList() {
 
 </Sandpack>
 
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✔) to packed items if `isPacked={true}`.
+注意有些 `Item` component 的 `isPacked` prop 的值是 `true` 而非 `false`。而你想要在 `isPacked={true}` 的情況下，為已打包的項目加上一個勾號 (✔)。
 
-You can write this as an [`if`/`else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) like so:
+你可以將此情境用以下 [`if`/`else` 陳述式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) 來表示：
 
 ```js
 if (isPacked) {
@@ -63,7 +63,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If the `isPacked` prop is `true`, this code **returns a different JSX tree.** With this change, some of the items get a checkmark at the end:
+如果 `isPacked` prop 的值為 `true`，這段程式碼會**回傳一個不同的 JSX tree**。藉由此更動，部分項目內容的最後會有一個勾號。
 
 <Sandpack>
 
@@ -100,13 +100,13 @@ export default function PackingList() {
 
 </Sandpack>
 
-Try editing what gets returned in either case, and see how the result changes!
+請嘗試更改在不同情況下回傳的內容，並觀察結果會有何不同！
 
-Notice how you're creating branching logic with JavaScript's `if` and `return` statements. In React, control flow (like conditions) is handled by JavaScript.
+注意你是如何使用 JavaScript 的 `if` 和 `return` 陳述式建立分支邏輯的。在 React 中，控制流程 (例如條件) 是交由 JavaScript 來處理的。
 
-### Conditionally returning nothing with `null` {/*conditionally-returning-nothing-with-null*/}
+### 條件式地使用 `null` 代表不回傳任何內容 {/*conditionally-returning-nothing-with-null*/}
 
-In some situations, you won't want to render anything at all. For example, say you don't want to show packed items at all. A component must return something. In this case, you can return `null`:
+在某些情況下，你可能不想 render 任何東西。舉例來說，你不想顯示任何已經打包好的項目，但 component 必須要有個回傳值。在這種情況下，你可以返回 `null`：
 
 ```js
 if (isPacked) {
@@ -115,7 +115,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If `isPacked` is true, the component will return nothing, `null`. Otherwise, it will return JSX to render.
+如果 `isPacked` 的值為 `true`，component 不回傳任何東西 (意即 `null`)。否則，component 會回傳要 render 的 JSX。
 
 <Sandpack>
 
@@ -152,23 +152,23 @@ export default function PackingList() {
 
 </Sandpack>
 
-In practice, returning `null` from a component isn't common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the component in the parent component's JSX. Here's how to do that!
+在實際開發中，component 回傳結果為 `null` 可能並不在 render 該 component 的開發者的預期之內，所以此方法並不常使用。較為常見的方法是在 parent component 的 JSX 中，條件性地決定是包含或移除此 component。實作方法如下！
 
-## Conditionally including JSX {/*conditionally-including-jsx*/}
+## 條件性地包含 JSX {/*conditionally-including-jsx*/}
 
-In the previous example, you controlled which (if any!) JSX tree would be returned by the component. You may already have noticed some duplication in the render output:
+在先前的範例中，你可以控制哪個 JSX tree 會被 component 回傳 (如果有的話！)。而你可能已經注意到 render 內容中有一些重複的部分：
 
 ```js
 <li className="item">{name} ✔</li>
 ```
 
-is very similar to
+與下方段落非常相似
 
 ```js
 <li className="item">{name}</li>
 ```
 
-Both of the conditional branches return `<li className="item">...</li>`:
+兩個條件分支都會回傳 `<li className="item">...</li>`:
 
 ```js
 if (isPacked) {
@@ -177,13 +177,13 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-While this duplication isn't harmful, it could make your code harder to maintain. What if you want to change the `className`? You'd have to do it in two places in your code! In such a situation, you could conditionally include a little JSX to make your code more [DRY.](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+雖然這個重複不會造成太大影響，但它可能會讓你的程式碼維護起來較不容易。假如你想要修改 `className` 的值呢？你會需要修改兩處程式碼！在這種情況下，你可以有條件地包含一些 JSX，讓你的程式碼更符合 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) 的原則。
 
-### Conditional (ternary) operator (`? :`) {/*conditional-ternary-operator--*/}
+### 條件 (三元) 運算子 (`? :`) {/*conditional-ternary-operator--*/}
 
-JavaScript has a compact syntax for writing a conditional expression -- the [conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) or "ternary operator".
+JavaScript 有一個簡潔的語法可以用來撰寫條件表達式--[條件運算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 或「三元運算子」。
 
-Instead of this:
+由此種寫法：
 
 ```js
 if (isPacked) {
@@ -192,7 +192,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-You can write this:
+你可以改為以下寫法：
 
 ```js
 return (
@@ -202,17 +202,17 @@ return (
 );
 ```
 
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`"*.
+你可以把這段程式碼解讀為：「如果 `isPacked` 的值為 `true`，則 (`?`) render `name + ' ✔'`；否則 (`:`)，render `name` 」。
 
 <DeepDive>
 
-#### Are these two examples fully equivalent? {/*are-these-two-examples-fully-equivalent*/}
+#### 上述兩個範例是完全等價的嗎？ {/*are-these-two-examples-fully-equivalent*/}
 
-If you're coming from an object-oriented programming background, you might assume that the two examples above are subtly different because one of them may create two different "instances" of `<li>`. But JSX elements aren't "instances" because they don't hold any internal state and aren't real DOM nodes. They're lightweight descriptions, like blueprints. So these two examples, in fact, *are* completely equivalent. [Preserving and Resetting State](/learn/preserving-and-resetting-state) goes into detail about how this works.
+如果你有物件導向開發的相關背景，你或許會因為其中一個範例有可能會建立兩個不同的 `<li>` instance，從而認為上面的兩個範例略有不同。但 JSX 元素其實並不是 instance，因為它們沒有保存任何內部狀態，也不是真正的 DOM 節點。它們是像藍圖一樣的輕量化描述。所以上述兩個例子事實上 *是* 完全等價的。 [保存與重設狀態](/learn/preserving-and-resetting-state) 中詳細介紹了它的運作原理。
 
 </DeepDive>
 
-Now let's say you want to wrap the completed item's text into another HTML tag, like `<del>` to strike it out. You can add even more newlines and parentheses so that it's easier to nest more JSX in each of the cases:
+現在假設你想將打包完成項目的文字用另一個 HTML 標籤包起來，像是藉由 `<del>` 為文字加上刪除線。你可以藉由增加換行和括弧，以方便為兩種情況加入更多 JSX：
 
 <Sandpack>
 
@@ -256,11 +256,11 @@ export default function PackingList() {
 
 </Sandpack>
 
-This style works well for simple conditions, but use it in moderation. If your components get messy with too much nested conditional markup, consider extracting child components to clean things up. In React, markup is a part of your code, so you can use tools like variables and functions to tidy up complex expressions.
+這種寫法適用於條件式簡單的情況，但要適度的使用。如果你的 component 因包含太多巢狀的條件標記而變得雜亂，應該要考慮提取出 child component 以進行程式碼整理。在 React 中，標記是你程式碼的一部分，所以你可以使用像是變數和函式這樣的工具來整理複雜的表達式。
 
-### Logical AND operator (`&&`) {/*logical-and-operator-*/}
+### 邏輯 AND 運算子 (`&&`) {/*logical-and-operator-*/}
 
-Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
+另一個常見的簡短語法是 [JavaScript 邏輯 AND (`&&`) 運算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.)。在 React component 中，時常會遇到在條件成立時 render 一些 JSX，否則不呈現任何東西的情境。藉由使用 `&&`，你可以只有在 `isPacked` 的值為 `true` 時呈現勾號：
 
 ```js
 return (
@@ -270,9 +270,9 @@ return (
 );
 ```
 
-You can read this as *"if `isPacked`, then (`&&`) render the checkmark, otherwise, render nothing"*.
+你可以把這段程式碼解讀為：「如果 `isPacked` 為真，就（`?`）render 勾號；否則（`:`），什麼都不 render 」。
 
-Here it is in action:
+實際用法如下：
 
 <Sandpack>
 
@@ -310,30 +310,30 @@ export default function PackingList() {
 
 </Sandpack>
 
-A [JavaScript && expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) returns the value of its right side (in our case, the checkmark) if the left side (our condition) is `true`. But if the condition is `false`, the whole expression becomes `false`. React considers `false` as a "hole" in the JSX tree, just like `null` or `undefined`, and doesn't render anything in its place.
+[JavaScript && 運算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) 會在左側的條件為 `true` 時返回它右側的值（在範例中是勾號）。但如果條件為 `false`，整個表達式的結果就會變成 `false`。跟 `null` 或 `undefined` 一樣，React 會將 `false` 視為像是 JSX tree 中的一個 「洞」，因此不會 render 任何東西。
 
 
 <Pitfall>
 
-**Don't put numbers on the left side of `&&`.**
+**不要在 `&&` 左側使用數值。**
 
-To test the condition, JavaScript converts the left side to a boolean automatically. However, if the left side is `0`, then the whole expression gets that value (`0`), and React will happily render `0` rather than nothing.
+為了判定條件結果，JavaScript 會自動將左側轉換為布林值。但如果左側的值是 `0`，則整個表達式會取用它的值 (`0`)，React 也因此會 render `0`，而不是什麼都不 render。
 
-For example, a common mistake is to write code like `messageCount && <p>New messages</p>`. It's easy to assume that it renders nothing when `messageCount` is `0`, but it really renders the `0` itself!
+例如，常見的一個錯誤是撰寫像 `messageCount && <p>New messages</p>` 這樣的程式碼。人們很容易就誤以為當  `messageCount` 的值為 `0` 時，它什麼都不會 render ，但實際上它會呈現出 `0` 本身！
 
-To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
+要修正這個問題，可以將左側轉換為回傳布林值： `messageCount > 0 && <p>New messages</p>`。
 
 </Pitfall>
 
-### Conditionally assigning JSX to a variable {/*conditionally-assigning-jsx-to-a-variable*/}
+### 有條件地將 JSX 指定給變數 {/*conditionally-assigning-jsx-to-a-variable*/}
 
-When the shortcuts get in the way of writing plain code, try using an `if` statement and a variable. You can reassign variables defined with [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), so start by providing the default content you want to display, the name:
+當使用簡短語法造成在寫程式碼本身有所不便時，你可以嘗試使用 `if` 陳述式和一個變數。使用 [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) 宣告的變數的值是允許你修改的, 所以可以先將你預設希望顯示的內容指定給這個變數，也就是 name：
 
 ```js
 let itemContent = name;
 ```
 
-Use an `if` statement to reassign a JSX expression to `itemContent` if `isPacked` is `true`:
+接著在 `isPacked` 的值為 `true` 時，使用 `if` 陳述式重新將 `itemContent` 的值指定為一個 JSX 表達式。 
 
 ```js
 if (isPacked) {
@@ -341,7 +341,7 @@ if (isPacked) {
 }
 ```
 
-[Curly braces open the "window into JavaScript".](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) Embed the variable with curly braces in the returned JSX tree, nesting the previously calculated expression inside of JSX:
+[大括弧打開了引入 Javascript 的大門。](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) 藉由大括弧可以將變數嵌入回傳的 JSX tree 中，進而將先前計算的表達式巢狀地嵌在 JSX 中：
 
 ```js
 <li className="item">
@@ -349,7 +349,7 @@ if (isPacked) {
 </li>
 ```
 
-This style is the most verbose, but it's also the most flexible. Here it is in action:
+這種寫法是最冗長的，卻也是最靈活的。實際用法如下：
 
 <Sandpack>
 
@@ -391,7 +391,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Like before, this works not only for text, but for arbitrary JSX too:
+與前述相同，這寫法不只適用於文字，也同樣適用於任意的 JSX ：
 
 <Sandpack>
 
@@ -437,16 +437,16 @@ export default function PackingList() {
 
 </Sandpack>
 
-If you're not familiar with JavaScript, this variety of styles might seem overwhelming at first. However, learning them will help you read and write any JavaScript code -- and not just React components! Pick the one you prefer for a start, and then consult this reference again if you forget how the other ones work.
+如果你不熟悉 JavaScript，一開始可能會對這些不同的寫法感到不知所措。但學會它們有助於你閱讀和撰寫任何 JavaScript 程式碼——而不僅僅是 React component！挑一個你偏好的寫法作為起始，如果忘記了其他的寫法再回來參考即可。
 
 <Recap>
 
-* In React, you control branching logic with JavaScript.
-* You can return a JSX expression conditionally with an `if` statement.
-* You can conditionally save some JSX to a variable and then include it inside other JSX by using the curly braces.
-* In JSX, `{cond ? <A /> : <B />}` means *"if `cond`, render `<A />`, otherwise `<B />`"*.
-* In JSX, `{cond && <A />}` means *"if `cond`, render `<A />`, otherwise nothing"*.
-* The shortcuts are common, but you don't have to use them if you prefer plain `if`.
+* 在 React 中，你透過 JavaScript 控制邏輯的分支。
+* 你可以使用 `if` 表達式有條件地回傳 JSX 表達式。
+* 你可以有條件地將一些 JSX 指定到一個變數，然後使用大括弧將它包起來以巢狀地嵌入其他 JSX 中。
+* 在 JSX 中， `{cond ? <A /> : <B />}` 表示 *「如果 `cond` 為真，則 render `<A />`，否則 render `<B />`」*。
+* 在 JSX 中， `{cond && <A />}` 表示 *「如果 `cond` 為真，則 render `<A />`，否則什麼都不 render」*。
+* 簡短寫法很常見，但如果你偏好單純的 `if` 陳述式，完全可以不使用這些簡短寫法。
 
 </Recap>
 
@@ -454,9 +454,9 @@ If you're not familiar with JavaScript, this variety of styles might seem overwh
 
 <Challenges>
 
-#### Show an icon for incomplete items with `? :` {/*show-an-icon-for-incomplete-items-with--*/}
+#### 使用 `? :` 為未打包完成的項目加上圖示 {/*show-an-icon-for-incomplete-items-with--*/}
 
-Use the conditional operator (`cond ? a : b`) to render a ❌ if `isPacked` isn’t `true`.
+使用條件運算子（`cond ? a : b`）在 `isPacked` 的值不是 `true` 時 render 一個 ❌。
 
 <Sandpack>
 
@@ -534,15 +534,15 @@ export default function PackingList() {
 
 </Solution>
 
-#### Show the item importance with `&&` {/*show-the-item-importance-with-*/}
+#### 使用 `&&` 顯示項目的重要性 {/*show-the-item-importance-with-*/}
 
-In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero importance. Your item list should end up looking like this:
+在這個範例中，每個 `Item` 都會收到一個數值型別的 `importance` prop。使用 `&&` 運算子為重要性不是零的項目 render 斜體的 「_(Importance: X)_」。你的項目列表最終應該如下所示：
 
 * Space suit _(Importance: 9)_
 * Helmet with a golden leaf
 * Photo of Tam _(Importance: 6)_
 
-Don't forget to add a space between the two labels!
+不要忘記在兩段標籤之間加上一個空格！
 
 <Sandpack>
 
@@ -582,7 +582,7 @@ export default function PackingList() {
 
 <Solution>
 
-This should do the trick:
+你可以這樣實作：
 
 <Sandpack>
 
@@ -624,15 +624,15 @@ export default function PackingList() {
 
 </Sandpack>
 
-Note that you must write `importance > 0 && ...` rather than `importance && ...` so that if the `importance` is `0`, `0` isn't rendered as the result!
+要注意的是你必須寫成 `importance > 0 && ...` 而不是 `importance && ...` ，這樣如果 `importance` 的值為 `0` 時，才不會把 `0` 做為結果 render 出來。
 
-In this solution, two separate conditions are used to insert a space between then name and the importance label. Alternatively, you could use a fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
+解答中為了在 name 和 importance 標籤之間插入一個空格，使用了兩段不同的條件。你也可以使用帶有空格前綴的 fragment： `importance > 0 && <> <i>...</i></>`，或是直接在 `<i>` 內部添加一個空格： `importance > 0 && <i> ...</i>`。
 
 </Solution>
 
-#### Refactor a series of `? :` to `if` and variables {/*refactor-a-series-of---to-if-and-variables*/}
+#### 將多個 `? :` 用 `if` 和變數重構 {/*refactor-a-series-of---to-if-and-variables*/}
 
-This `Drink` component uses a series of `? :` conditions to show different information depending on whether the `name` prop is `"tea"` or `"coffee"`. The problem is that the information about each drink is spread across multiple conditions. Refactor this code to use a single `if` statement instead of three `? :` conditions.
+`Drink` component 使用了多個 `? :` 條件式來根據 `name` prop 的值是 `"tea"` 或 `"coffee"`" 顯示不同的資訊。問題在於每種飲料的資訊散落在多個條件式中。將此段程式碼從三個 `? :` 條件式重構為使用單個 `if` 陳述式。
 
 <Sandpack>
 
@@ -665,11 +665,11 @@ export default function DrinkList() {
 
 </Sandpack>
 
-Once you've refactored the code to use `if`, do you have further ideas on how to simplify it?
+當你使用 `if` 完成了程式碼重構後，你是否有想法能進一步簡化程式碼呢？
 
 <Solution>
 
-There are multiple ways you could go about this, but here is one starting point:
+要進一步簡化程式碼有不同方式，下方這個做法可以做為一個切入點：
 
 <Sandpack>
 
@@ -712,9 +712,9 @@ export default function DrinkList() {
 
 </Sandpack>
 
-Here the information about each drink is grouped together instead of being spread across multiple conditions. This makes it easier to add more drinks in the future.
+在這個做法中，每個飲料的相關資訊被集中在了一起，而非分散在多個條件語句中。這麼做可以讓未來在添加更多的飲料時較為方便。
 
-Another solution would be to remove the condition altogether by moving the information into objects:
+另一個做法是藉由將資訊移入 object 中來避免條件語句：
 
 <Sandpack>
 
