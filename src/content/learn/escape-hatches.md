@@ -16,14 +16,14 @@ title: 逃脫出口
 * [如何從 component 中移除不必要的 Effect](/learn/you-might-not-need-an-effect)
 * [Effect 和 component 的生命週期有什麼區別](/learn/lifecycle-of-reactive-effects)
 * [如何防止某些數值重新觸發 Effect](/learn/separating-events-from-effects)
-* [如何降低 Effect 重新運行的頻率](/learn/removing-effect-dependencies)
+* [如何降低 Effect 重新執行的頻率](/learn/removing-effect-dependencies)
 * [如何在不同 component 中共享邏輯](/learn/reusing-logic-with-custom-hooks)
 
 </YouWillLearn>
 
 ## 藉由 Ref 參照數值 {/*referencing-values-with-refs*/}
 
-當你想要在一個 component「記住」一些資訊，但是不想要讓資訊 [觸發新的 render](/learn/render-and-commit)，可以使用 *ref* ：
+當你想要在一個 component「記住」一些資訊，但是不想要讓資訊[觸發新的 render](/learn/render-and-commit)，可以使用 *ref* ：
 
 ```js
 const ref = useRef(0);
@@ -54,7 +54,7 @@ export default function Counter() {
 
 </Sandpack>
 
-Ref 就像 component 的秘密口袋，不會被 React 追蹤。例如，你可以使用 ref 來儲存 [逾時的 ID](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value)、[DOM element](https://developer.mozilla.org/zh-TW/docs/Web/API/Element)，以及其他不影響 component rendering 輸出的 object。
+Ref 就像 component 的秘密口袋，不會被 React 追蹤。例如，你可以使用 ref 來儲存[逾時的 ID](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value)、[DOM element](https://developer.mozilla.org/zh-TW/docs/Web/API/Element)，以及其他不影響 component rendering 輸出的 object。
 
 <LearnMore path="/learn/referencing-values-with-refs">
 
@@ -97,9 +97,9 @@ export default function Form() {
 
 </LearnMore>
 
-## 藉由 Effect 同步化 {/*synchronizing-with-effects*/}
+## 藉由 Effect 同步 {/*synchronizing-with-effects*/}
 
-有一些 component 需要與外部系統同步化。例如，你可能想根據 React 的 state 控制一個非 React 的 component、建立與伺服器的連線，或者當 component 出現在螢幕時發送一個分析日誌。與處理特定事件的 event handler 不同， *Effect* 在 rendering 後執行。使用它讓你的 component 與 React 的外部系統同步化。
+有一些 component 需要與外部系統同步。例如，你可能想根據 React 的 state 控制一個非 React 的 component、建立與伺服器的連線，或者當 component 出現在螢幕時發送一個分析日誌。與處理特定事件的 event handler 不同， *Effect* 在 rendering 後執行。使用它讓你的 component 與 React 的外部系統同步。
 
 按幾次 Play/Pause，看看影片播放器如何與 `isPlaying` prop 的值保持同步：
 
@@ -145,7 +145,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-許多 Effect 還需要「清除」自己。例如，一個與聊天伺服器建立連線的 Effect，應該 return 一個 *cleanup function * 來告訴 React 該 component 要如何與伺服器斷開：
+許多 Effect 還需要「清除」自己。例如，一個與聊天伺服器建立連線的 Effect，應該回傳一個 *cleanup function * 來告訴 React 該 component 要如何與伺服器斷開：
 
 <Sandpack>
 
@@ -187,7 +187,7 @@ input { display: block; margin-bottom: 20px; }
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-閱讀 **[藉由 Effect 同步化](/learn/synchronizing-with-effects)** 來學習如何讓 component 與外部系統同步。
+閱讀 **[藉由 Effect 同步](/learn/synchronizing-with-effects)** 來學習如何讓 component 與外部系統同步。
 
 </LearnMore>
 
@@ -237,7 +237,7 @@ function Form() {
 
 ## 反應性 Effect 的生命週期 {/*lifecycle-of-reactive-effects*/}
 
-Effect 有一個與 component 不同的生命週期。Component 會 mount、update、unmount。Effect 只會做兩件事情：開始同步化，以及在之後結束同步化。如果 Effect 依賴於隨時間變化的 prop 或 state，那麼這個週期可以發生很多次。
+Effect 有一個與 component 不同的生命週期。Component 會 mount、update、unmount。Effect 只會做兩件事情：開始同步，以及在之後結束同步。如果 Effect 依賴於隨時間變化的 prop 或 state，那麼這個週期可以發生很多次。
 
 這個 Effect 依賴於 `roomId` 的 prop 值。Prop 是 *反應性的值* ，這意味著可能會在 re-render 時改變。注意假設 `roomId` 改變時，這個 Effect 會 *重新同步* （並且重新連接到伺服器）。
 
@@ -320,7 +320,7 @@ React 提供一個 linter 規則，可以驗證你是否已經正確地指定 Ef
 
 Event handler 只在你做了相同的互動時才重新執行。與 event handler 不同，假設 Effect 讀取的任何值，像是 prop 或 state，與上一次 render 的不一樣， Effect 就會重新執行同步。有些時候，你想要混合兩種行為：Effect 的重新執行只對某些值反應，而其他的值不會。
 
-所有在 Effect 中的程式碼都是 *反應性* 的。假如某些它讀取的反應性的值，在 re-render 時發生變化，它就會再運行一次。例如：假如 `roomId` 或 `theme` 之一已經改變，那麼這個 Effect 將會重新連接到聊天室。
+所有在 Effect 中的程式碼都是 *反應性* 的。假如某些它讀取的反應性的值，在 re-render 時發生變化，它就會再執行一次。例如：假如 `roomId` 或 `theme` 之一已經改變，那麼這個 Effect 將會重新連接到聊天室。
 
 <Sandpack>
 
@@ -591,9 +591,9 @@ label { display: block; margin-top: 10px; }
 
 ## 移除 Effect 的依賴 {/*removing-effect-dependencies*/}
 
-當你寫了一個 Effect，linter 將會驗證你是否已經將所有反應性的值（像是 prop 和 State）包含在 Effect 的依賴列表內。這確保了 Effect 會與 component 中最新的 prop 和 state 保持同步。不必要的依賴可能會導致你的 Effect 太過頻繁的執行，甚至會創建一個無窮迴圈。移除他們的方法取決於具體情況。
+當你寫了一個 Effect，linter 將會驗證你是否已經將所有反應性的值（像是 prop 和 state）包含在 Effect 的依賴列表內。這確保了 Effect 會與 component 中最新的 prop 和 state 保持同步。不必要的依賴可能會導致你的 Effect 太過頻繁的執行，甚至會建立一個無窮迴圈。移除他們的方法取決於具體情況。
 
-例如，這個 Effect 依賴於 `options` object，會導致在你每次編輯 input 時都被重新創建：
+例如，這個 Effect 依賴於 `options` object，會導致在你每次編輯 input 時都被重新建立：
 
 <Sandpack>
 
@@ -668,7 +668,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-你不會希望每次你開始打字聊天時，聊天室都要重新連接。為了修復這個問題，將 `options` object 的創建移到 Effect 內，這樣 Effect 就只依賴於 `roomId` string：
+你不會希望每次你開始打字聊天時，聊天室都要重新連接。為了修復這個問題，將 `options` object 的建立移到 Effect 內，這樣 Effect 就只依賴於 `roomId` string：
 
 <Sandpack>
 
@@ -752,9 +752,9 @@ button { margin-left: 10px; }
 
 ## 藉由 custom Hook 複用邏輯 {/*reusing-logic-with-custom-hooks*/}
 
-React 有內建的 Hook 像是 `useState`、`useContext`，和 `useEffect`。有些時候，你會想要有一個更具特定目的 Hook：例如，擷取資料、持續追蹤使用者是否在線上，或者連線到一個聊天室。要做到這點，可以視應用程式的需求創建屬於自己的 Hook。
+React 有內建的 Hook 像是 `useState`、`useContext`，和 `useEffect`。有些時候，你會想要有一個更具特定目的 Hook：例如，擷取資料、持續追蹤使用者是否在線上，或者連線到一個聊天室。要做到這點，可以視應用程式的需求建立屬於自己的 Hook。
 
-在這個範例中， `usePointerPosition`  custom Hook 追蹤了游標的位置，而 `useDelayedValue` custom Hook return 一個相對於你傳入的值有一定毫秒數延遲的值。移動游標到沙箱預覽區域，可以看到游標後有一連串在移動的點：
+在這個範例中，`usePointerPosition` custom Hook 追蹤了游標的位置，而 `useDelayedValue` custom Hook 回傳一個相對於你傳入的值有一定毫秒數延遲的值。移動游標到沙箱預覽區域，可以看到游標後有一連串在移動的點：
 
 <Sandpack>
 
@@ -835,7 +835,7 @@ body { min-height: 300px; }
 
 </Sandpack>
 
-你可以創建 custom Hook，將它們組合在一起，在他們之間傳遞資料，並且在不同的 component 複用。隨著你的應用逐漸成長，你將會手寫更少的 Effect，因為你能夠複用你已經寫好的 custom Gook。而且還有很多優秀的 custom Hook 由 React 社群維護。
+你可以建立 custom Hook，將它們組合在一起，在他們之間傳遞資料，並且在不同的 component 複用。隨著你的應用逐漸成長，你將會手寫更少的 Effect，因為你能夠複用你已經寫好的 custom Hook。而且還有很多優秀的 custom Hook 由 React 社群維護。
 
 <LearnMore path="/learn/reusing-logic-with-custom-hooks">
 
@@ -845,4 +845,4 @@ body { min-height: 300px; }
 
 ## 接下來呢？ {/*whats-next*/}
 
-前往 [藉由 Ref 參照數值](/learn/referencing-values-with-refs) 來開始一頁頁地閱讀這個篇章！
+前往[藉由 Ref 參照數值](/learn/referencing-values-with-refs)來開始一頁頁地閱讀這個篇章！
