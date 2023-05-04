@@ -1,35 +1,35 @@
 ---
-title: Escape Hatches
+title: 逃脫出口
 ---
 
 <Intro>
 
-Some of your components may need to control and synchronize with systems outside of React. For example, you might need to focus an input using the browser API, play and pause a video player implemented without React, or connect and listen to messages from a remote server. In this chapter, you'll learn the escape hatches that let you "step outside" React and connect to external systems. Most of your application logic and data flow should not rely on these features.
+在某些 component 中，可能需要對 React 外部的系統進行控制和同步。例如，你可能會使用瀏覽器 API 來聚焦 input、在不使用 React 的情況下實作影片播放器的播放和暫停，或者向遠端伺服器進行連接和收聽訊息。在這個章節，你將學習藉由逃脫出口「走出」React 與外部系統連接。在大部分的應用程式邏輯和資料流中，不應該仰賴這些功能。
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to "remember" information without re-rendering](/learn/referencing-values-with-refs)
-* [How to access DOM elements managed by React](/learn/manipulating-the-dom-with-refs)
-* [How to synchronize components with external systems](/learn/synchronizing-with-effects)
-* [How to remove unnecessary Effects from your components](/learn/you-might-not-need-an-effect)
-* [How an Effect's lifecycle is different from a component's](/learn/lifecycle-of-reactive-effects)
-* [How to prevent some values from re-triggering Effects](/learn/separating-events-from-effects)
-* [How to make your Effect re-run less often](/learn/removing-effect-dependencies)
-* [How to share logic between components](/learn/reusing-logic-with-custom-hooks)
+* [如何「記住」資訊而不觸發 re-rendering](/learn/referencing-values-with-refs)
+* [如何存取由 React 管理的 DOM element](/learn/manipulating-the-dom-with-refs)
+* [如何使 component 與外部系統同步](/learn/synchronizing-with-effects)
+* [如何從 component 中移除不必要的 Effect](/learn/you-might-not-need-an-effect)
+* [Effect 和 component 的生命週期有什麼區別](/learn/lifecycle-of-reactive-effects)
+* [如何防止某些數值重新觸發 Effect](/learn/separating-events-from-effects)
+* [如何降低 Effect 重新執行的頻率](/learn/removing-effect-dependencies)
+* [如何在不同 component 中共享邏輯](/learn/reusing-logic-with-custom-hooks)
 
 </YouWillLearn>
 
-## Referencing values with refs {/*referencing-values-with-refs*/}
+## 藉由 Ref 參照數值 {/*referencing-values-with-refs*/}
 
-When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
+當你想要在一個 component「記住」一些資訊，但是不想要讓資訊[觸發新的 render](/learn/render-and-commit)，可以使用 *ref* ：
 
 ```js
 const ref = useRef(0);
 ```
 
-Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not! You can access the current value of that ref through the `ref.current` property.
+就像 state 一樣， ref 總是在 re-render 之間保留。然而設定 state 會 re-render component，但改變 ref 不會！你可以通過 `ref.current` 的屬性來存取目前 ref 的值。
 
 <Sandpack>
 
@@ -54,17 +54,17 @@ export default function Counter() {
 
 </Sandpack>
 
-A ref is like a secret pocket of your component that React doesn't track. For example, you can use refs to store [timeout IDs](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [DOM elements](https://developer.mozilla.org/en-US/docs/Web/API/Element), and other objects that don't impact the component's rendering output.
+Ref 就像 component 的秘密口袋，不會被 React 追蹤。例如，你可以使用 ref 來儲存[逾時的 ID](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value)、[DOM element](https://developer.mozilla.org/zh-TW/docs/Web/API/Element)，以及其他不影響 component rendering 輸出的 object。
 
 <LearnMore path="/learn/referencing-values-with-refs">
 
-Read **[Referencing Values with Refs](/learn/referencing-values-with-refs)** to learn how to use refs to remember information.
+閱讀 **[藉由 ref 參照數值](/learn/referencing-values-with-refs)** 來學習如何使用 ref 記憶資訊。
 
 </LearnMore>
 
-## Manipulating the DOM with refs {/*manipulating-the-dom-with-refs*/}
+## 藉由 ref 操縱 DOM {/*manipulating-the-dom-with-refs*/}
 
-React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
+Component 幾乎不需要操作 DOM，因為 React 會自動更新 DOM 來匹配 render 的輸出。然而有些時候，你可能會需要存取由 React 管理的 DOM element。例如，聚焦一個 node，滾動到它的位置，或者測量它的寬高和位置。React 中沒有內建做這些事情的方法，所以你會需要 ref 來參照 DOM node。例如，點擊按鈕來聚焦一個由 ref 參照的 input。
 
 <Sandpack>
 
@@ -93,15 +93,15 @@ export default function Form() {
 
 <LearnMore path="/learn/manipulating-the-dom-with-refs">
 
-Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)** to learn how to access DOM elements managed by React.
+閱讀 **[藉由 ref 操縱 DOM](/learn/manipulating-the-dom-with-refs)** 來學習如何存取由 React 管理的 DOM element。
 
 </LearnMore>
 
-## Synchronizing with Effects {/*synchronizing-with-effects*/}
+## 藉由 Effect 同步 {/*synchronizing-with-effects*/}
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
+有一些 component 需要與外部系統同步。例如，你可能想根據 React 的 state 控制一個非 React 的 component、建立與伺服器的連線，或者當 component 出現在螢幕時發送一個分析日誌。與處理特定事件的 event handler 不同， *Effect* 在 rendering 後執行。使用它讓你的 component 與 React 的外部系統同步。
 
-Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
+按幾次 Play/Pause，看看影片播放器如何與 `isPlaying` prop 的值保持同步：
 
 <Sandpack>
 
@@ -145,7 +145,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
+許多 Effect 還需要「清除」自己。例如，一個與聊天伺服器建立連線的 Effect，應該回傳一個 *cleanup function * 來告訴 React 該 component 要如何與伺服器斷開：
 
 <Sandpack>
 
@@ -165,7 +165,7 @@ export default function ChatRoom() {
 
 ```js chat.js
 export function createConnection() {
-  // A real implementation would actually connect to the server
+  // 真正在實作時會實際連線到伺服器
   return {
     connect() {
       console.log('✅ Connecting...');
@@ -183,30 +183,30 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-In development, React will immediately run and clean up your Effect one extra time. This is why you see `"✅ Connecting..."` printed twice. This ensures that you don't forget to implement the cleanup function.
+在開發時，React 會立即執行並清除一次額外的 Effect，這就是為什麼會看到 `"✅ Connecting..."` 印了兩次。這是為了確保你不要忘記實作 cleanup function。
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to learn how to synchronize components with external systems.
+閱讀 **[藉由 Effect 同步](/learn/synchronizing-with-effects)** 來學習如何讓 component 與外部系統同步。
 
 </LearnMore>
 
-## You Might Not Need An Effect {/*you-might-not-need-an-effect*/}
+## 你可能不需要 Effect {/*you-might-not-need-an-effect*/}
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+Effect 是 React 逃脫出口的範例。他讓你「走出」React 並且讓 component 與外部系統同步。假如不涉及外部系統（例如，假設你要在某些 prop 或 state 改變時更新 component 的 state），不應該使用 Effect。移除不必要的 Effect 將會讓程式碼更易讀，執行速度更快，以及更不容易出錯。
 
-There are two common cases in which you don't need Effects:
-- **You don't need Effects to transform data for rendering.**
-- **You don't need Effects to handle user events.**
+有兩個常見的情境，不需要使用 Effect：
+- **你不需要 Effect 來為了 rendering 去轉換資料。**
+- **你不需要 Effect 來處理使用者事件。**
 
-For example, you don't need an Effect to adjust some state based on other state:
+例如，你不需要使用 Effect 來根據其他的 state 去改變某些 state：
 
 ```js {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
 
-  // 🔴 Avoid: redundant state and unnecessary Effect
+  // 🔴 避免：多餘地 state 和不必要地 Effect
   const [fullName, setFullName] = useState('');
   useEffect(() => {
     setFullName(firstName + ' ' + lastName);
@@ -215,31 +215,31 @@ function Form() {
 }
 ```
 
-Instead, calculate as much as you can while rendering:
+取而代之，盡可能在 rendering 進行計算：
 
 ```js {4-5}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
-  // ✅ Good: calculated during rendering
+  // ✅ 好的：在 rendering 過程進行計算
   const fullName = firstName + ' ' + lastName;
   // ...
 }
 ```
 
-However, you *do* need Effects to synchronize with external systems. 
+然而，你需要 Effect 來 *處理* 與外部系統的同步。
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
-Read **[You Might Not Need an Effect](/learn/you-might-not-need-an-effect)** to learn how to remove unnecessary Effects.
+閱讀 **[你可能不需要 Effect](/learn/you-might-not-need-an-effect)** 來學習如何移除不必要的 Effect。
 
 </LearnMore>
 
-## Lifecycle of reactive effects {/*lifecycle-of-reactive-effects*/}
+## 反應性 Effect 的生命週期 {/*lifecycle-of-reactive-effects*/}
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
+Effect 有一個與 component 不同的生命週期。Component 會 mount、update、unmount。Effect 只會做兩件事情：開始同步，以及在之後結束同步。如果 Effect 依賴於隨時間變化的 prop 或 state，那麼這個週期可以發生很多次。
 
-This Effect depends on the value of the `roomId` prop. Props are *reactive values,* which means they can change on a re-render. Notice that the Effect *re-synchronizes* (and re-connects to the server) if `roomId` changes:
+這個 Effect 依賴於 `roomId` 的 prop 值。Prop 是 *反應性的值* ，這意味著可能會在 re-render 時改變。注意假設 `roomId` 改變時，這個 Effect 會 *重新同步* （並且重新連接到伺服器）。
 
 <Sandpack>
 
@@ -283,7 +283,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // 真正在實作時會實際連線到伺服器
   return {
     connect() {
       console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
@@ -302,25 +302,25 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-React provides a linter rule to check that you've specified your Effect's dependencies correctly. If you forget to specify `roomId` in the list of dependencies in the above example, the linter will find that bug automatically.
+React 提供一個 linter 規則，可以驗證你是否已經正確地指定 Effect 的依賴。假設你忘記在上面範例的依賴列表中指定 `roomId`，linter 會自動地發現這個 bug。
 
 <LearnMore path="/learn/lifecycle-of-reactive-effects">
 
-Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to learn how an Effect's lifecycle is different from a component's.
+閱讀 **[回應性事件的生命週期](/learn/lifecycle-of-reactive-effects)** 來學習 Effect 的生命週期和 component 的有什麼不同。
 
 </LearnMore>
 
-## Separating events from Effects {/*separating-events-from-effects*/}
+## 從 Effect 分離事件 {/*separating-events-from-effects*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+這個章節會介紹一個 **實驗性 API，它還沒有被發布** 在 React 的正式版本。
 
 </Wip>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
+Event handler 只在你做了相同的互動時才重新執行。與 event handler 不同，假設 Effect 讀取的任何值，像是 prop 或 state，與上一次 render 的不一樣， Effect 就會重新執行同步。有些時候，你想要混合兩種行為：Effect 的重新執行只對某些值反應，而其他的值不會。
 
-All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed:
+所有在 Effect 中的程式碼都是 *反應性* 的。假如某些它讀取的反應性的值，在 re-render 時發生變化，它就會再執行一次。例如：假如 `roomId` 或 `theme` 之一已經改變，那麼這個 Effect 將會重新連接到聊天室。
 
 <Sandpack>
 
@@ -397,7 +397,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // 真正在實作會實際連線到伺服器
   let connectedCallback;
   let timeout;
   return {
@@ -448,7 +448,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-This is not ideal. You want to re-connect to the chat only if the `roomId` has changed. Switching the `theme` shouldn't re-connect to the chat! Move the code reading `theme` out of your Effect into an *Effect Event*:
+然而這不理想。假設你只想要在 `roomId` 改變時才重新連接到聊天室。那麼切換 `theme` 時就不應該重新連接到聊天室！將 `theme` 的程式碼從 Effect 移到 *Effect 事件* 中：
 
 <Sandpack>
 
@@ -530,7 +530,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // 真正在實作時會實際連線到伺服器
   let connectedCallback;
   let timeout;
   return {
@@ -581,19 +581,19 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Code inside Effect Events isn't reactive, so changing the `theme` no longer makes your Effect re-connect.
+在 Effect 事件內的程式碼沒有反應性，所以改變 `theme` 不在會讓你的 Effect 重新連接。
 
 <LearnMore path="/learn/separating-events-from-effects">
 
-Read **[Separating Events from Effects](/learn/separating-events-from-effects)** to learn how to prevent some values from re-triggering Effects.
+閱讀 **[從 Effect 分離事件](/learn/separating-events-from-effects)** 來學習如何防止某些值重新觸發 Effect。
 
 </LearnMore>
 
-## Removing Effect dependencies {/*removing-effect-dependencies*/}
+## 移除 Effect 的依賴 {/*removing-effect-dependencies*/}
 
-When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
+當你寫了一個 Effect，linter 將會驗證你是否已經將所有反應性的值（像是 prop 和 state）包含在 Effect 的依賴列表內。這確保了 Effect 會與 component 中最新的 prop 和 state 保持同步。不必要的依賴可能會導致你的 Effect 太過頻繁的執行，甚至會建立一個無窮迴圈。移除他們的方法取決於具體情況。
 
-For example, this Effect depends on the `options` object which gets re-created every time you edit the input:
+例如，這個 Effect 依賴於 `options` object，會導致在你每次編輯 input 時都被重新建立：
 
 <Sandpack>
 
@@ -649,7 +649,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // 真正在實作時會實際連線到伺服器
   return {
     connect() {
       console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
@@ -668,7 +668,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You don't want the chat to re-connect every time you start typing a message in that chat. To fix this problem, move creation of the `options` object inside the Effect so that the Effect only depends on the `roomId` string:
+你不會希望每次你開始打字聊天時，聊天室都要重新連接。為了修復這個問題，將 `options` object 的建立移到 Effect 內，這樣 Effect 就只依賴於 `roomId` string：
 
 <Sandpack>
 
@@ -723,7 +723,7 @@ export default function App() {
 
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // 真正在實作時會實際連線到伺服器
   return {
     connect() {
       console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
@@ -742,19 +742,19 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that you didn't start by editing the dependency list to remove the `options` dependency. That would be wrong. Instead, you changed the surrounding code so that the dependency became *unnecessary.* Think of the dependency list as a list of all the reactive values used by your Effect's code. You don't intentionally choose what to put on that list. The list describes your code. To change the dependency list, change the code.
+注意一下你並沒有在一開始就修改依賴列表將 `options` 依賴移除。那樣是不對的。相反地，因為你改變了周圍的程式碼所以這個依賴關係才變得 *不必要* 。可以想像依賴列表就像是你的 Effect 程式碼中所有反應性的值的列表。你沒有刻意地選擇哪些要放入列表內。這個清單就描述了你的程式碼。要改變依賴列表，就先改程式碼。
 
 <LearnMore path="/learn/removing-effect-dependencies">
 
-Read **[Removing Effect Dependencies](/learn/removing-effect-dependencies)** to learn how to make your Effect re-run less often.
+閱讀 **[移除 Effect 的依賴](/learn/removing-effect-dependencies)** 來學習如何讓你的 Effect 重新執行的頻率降低。
 
 </LearnMore>
 
-## Reusing logic with custom Hooks {/*reusing-logic-with-custom-hooks*/}
+## 藉由 custom Hook 複用邏輯 {/*reusing-logic-with-custom-hooks*/}
 
-React comes with built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you’ll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. To do this, you can create your own Hooks for your application's needs.
+React 有內建的 Hook 像是 `useState`、`useContext`，和 `useEffect`。有些時候，你會想要有一個更具特定目的 Hook：例如，擷取資料、持續追蹤使用者是否在線上，或者連線到一個聊天室。要做到這點，可以視應用程式的需求建立屬於自己的 Hook。
 
-In this example, the `usePointerPosition` custom Hook tracks the cursor position, while `useDelayedValue` custom Hook returns a value that's "lagging behind" the value you passed by a certain number of milliseconds. Move the cursor over the sandbox preview area to see a moving trail of dots following the cursor:
+在這個範例中，`usePointerPosition` custom Hook 追蹤了游標的位置，而 `useDelayedValue` custom Hook 回傳一個相對於你傳入的值有一定毫秒數延遲的值。移動游標到沙箱預覽區域，可以看到游標後有一連串在移動的點：
 
 <Sandpack>
 
@@ -835,14 +835,14 @@ body { min-height: 300px; }
 
 </Sandpack>
 
-You can create custom Hooks, compose them together, pass data between them, and reuse them between components. As your app grows, you will write fewer Effects by hand because you'll be able to reuse custom Hooks you already wrote. There are also many excellent custom Hooks maintained by the React community.
+你可以建立 custom Hook，將它們組合在一起，在他們之間傳遞資料，並且在不同的 component 複用。隨著你的應用逐漸成長，你將會手寫更少的 Effect，因為你能夠複用你已經寫好的 custom Hook。而且還有很多優秀的 custom Hook 由 React 社群維護。
 
 <LearnMore path="/learn/reusing-logic-with-custom-hooks">
 
-Read **[Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)** to learn how to share logic between components.
+閱讀 **[藉由 custom Hook 複用邏輯](/learn/reusing-logic-with-custom-hooks)** 來學習如何在 component 之間共享邏輯。
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## 接下來呢？ {/*whats-next*/}
 
-Head over to [Referencing Values with Refs](/learn/referencing-values-with-refs) to start reading this chapter page by page!
+前往[藉由 Ref 參照數值](/learn/referencing-values-with-refs)來開始一頁頁地閱讀這個篇章！
