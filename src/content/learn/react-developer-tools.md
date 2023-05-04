@@ -10,13 +10,13 @@ title: React 開發者工具
 
 <YouWillLearn>
 
-* 如何安裝 React Developer Tools
+* 如何安裝 React 開發者工具
 
 </YouWillLearn>
 
-## Browser extension {/*browser-extension*/}
+## 瀏覽器擴充元件 {/*browser-extension*/}
 
-要 debug 用 React 建構的網站最簡單的方式是安裝 React 開發者瀏覽器擴充元件。它可以在一些流行的瀏覽器上使用：
+要除錯用 React 建構的網站最簡單的方式是安裝 React 開發者瀏覽器擴充元件。它可以在一些流行的瀏覽器上使用：
 
 * [Install for **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 * [Install for **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
@@ -52,7 +52,7 @@ react-devtools
 
 ![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
 
-## Mobile (React Native) {/*mobile-react-native*/}
+## 行動裝置（React Native） {/*mobile-react-native*/}
 React 開發者工具也可以用來檢測由 [React Native](https://reactnative.dev/) 建構的應用程式。
 
 使用 React 開發者工具最簡單的方式就是全域安裝它：
@@ -73,4 +73,4 @@ react-devtools
 
 > 如果在幾秒鐘內沒有連接上開發者工具，請嘗試重新載入應用程式。
 
-[學習更多關於 React Native 的 debugging。](https://reactnative.dev/docs/debugging)
+[學習更多關於除錯 React Native 的方式。](https://reactnative.dev/docs/debugging)
