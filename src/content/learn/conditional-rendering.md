@@ -4,14 +4,14 @@ title: 條件 Rendering
 
 <Intro>
 
-有時候你的 Component 會需要根據不同的條件來展示不同的內容。在 React 中，你可以使用 JavaScript 中 `if` 陳述式、`&&` 以及 `? :` 運算子等語法來根據條件 render 不同的 JSX。
+有時候你的 component 會需要根據不同的條件來顯示不同的內容。在 React 中，你可以使用 JavaScript 中 `if` 陳述式、`&&` 以及 `? :` 運算子等語法來根據條件 render 不同的 JSX。
 
 </Intro>
 
 <YouWillLearn>
 
 * 如何根據不同條件回傳不同 JSX
-* 如何有條件地包含或移除一段 JSX
+* 如何有條件地包含或排除一段 JSX
 * React codebases 中常見的條件式簡短語法
 
 </YouWillLearn>
@@ -183,7 +183,7 @@ return <li className="item">{name}</li>;
 
 JavaScript 有一個簡潔的語法可以用來撰寫條件表達式--[條件運算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) 或「三元運算子」。
 
-由此種寫法：
+不使用這種寫法：
 
 ```js
 if (isPacked) {
@@ -208,7 +208,7 @@ return (
 
 #### 上述兩個範例是完全等價的嗎？ {/*are-these-two-examples-fully-equivalent*/}
 
-如果你有物件導向開發的相關背景，你或許會因為其中一個範例有可能會建立兩個不同的 `<li>` instance，從而認為上面的兩個範例略有不同。但 JSX 元素其實並不是 instance，因為它們沒有保存任何內部狀態，也不是真正的 DOM 節點。它們是像藍圖一樣的輕量化描述。所以上述兩個例子事實上 *是* 完全等價的。 [保存與重設狀態](/learn/preserving-and-resetting-state) 中詳細介紹了它的運作原理。
+如果你有物件導向開發的相關背景，你或許會因為其中一個範例有可能會建立兩個不同的 `<li>` instance，從而認為上面的兩個範例略有不同。但 JSX 元素其實並不是 instance，因為它們沒有保存任何內部狀態，也不是真正的 DOM 節點。它們是像藍圖一樣的輕量化描述。所以上述兩個例子事實上 *是* 全等價的。[保留與重設狀態](/learn/preserving-and-resetting-state) 詳細介紹了它的運作原理。
 
 </DeepDive>
 
@@ -310,7 +310,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-[JavaScript && 運算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) 會在左側的條件為 `true` 時返回它右側的值（在範例中是勾號）。但如果條件為 `false`，整個表達式的結果就會變成 `false`。跟 `null` 或 `undefined` 一樣，React 會將 `false` 視為像是 JSX tree 中的一個 「洞」，因此不會 render 任何東西。
+[JavaScript && 運算子](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) 會在左側的條件為 `true` 時回傳它右側的值（在範例中是勾號）。但如果條件為 `false`，整個表達式的結果就會變成 `false`。跟 `null` 或 `undefined` 一樣，React 會將 `false` 視為像是 JSX tree 中的一個 「洞」，因此不會 render 任何東西。
 
 
 <Pitfall>
@@ -341,7 +341,7 @@ if (isPacked) {
 }
 ```
 
-[大括弧打開了引入 Javascript 的大門。](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) 藉由大括弧可以將變數嵌入回傳的 JSX tree 中，進而將先前計算的表達式巢狀地嵌在 JSX 中：
+[大括弧打開了引入 JavaScript 的大門。](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) 由大括弧可以將變數嵌入回傳的 JSX tree 中，進而將先前計算的表達式巢狀地嵌在 JSX 中：
 
 ```js
 <li className="item">
@@ -626,7 +626,7 @@ export default function PackingList() {
 
 要注意的是你必須寫成 `importance > 0 && ...` 而不是 `importance && ...` ，這樣如果 `importance` 的值為 `0` 時，才不會把 `0` 做為結果 render 出來。
 
-解答中為了在 name 和 importance 標籤之間插入一個空格，使用了兩段不同的條件。你也可以使用帶有空格前綴的 fragment： `importance > 0 && <> <i>...</i></>`，或是直接在 `<i>` 內部添加一個空格： `importance > 0 && <i> ...</i>`。
+解答中為了在 name 和 importance 標籤之間插入一個空格，使用了兩段不同的條件。你也可以使用帶有空格前綴的 fragment： `importance > 0 && <> <i>...</i></>`，或是直接在 `<i>` 內部增加一個空格： `importance > 0 && <i> ...</i>`。
 
 </Solution>
 
@@ -712,7 +712,7 @@ export default function DrinkList() {
 
 </Sandpack>
 
-在這個做法中，每個飲料的相關資訊被集中在了一起，而非分散在多個條件語句中。這麼做可以讓未來在添加更多的飲料時較為方便。
+在這個做法中，每個飲料的相關資訊被集中在了一起，而非分散在多個條件語句中。這麼做可以讓未來在增加更多的飲料時較為方便。
 
 另一個做法是藉由將資訊移入 object 中來避免條件語句：
 
