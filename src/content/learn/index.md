@@ -1,29 +1,29 @@
 ---
-title: Quick Start
+title: 快速開始
 ---
 
 <Intro>
 
-Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.
+歡迎來到 React 文件！本頁將為你介紹日常使用的 80% React 概念。
 
 </Intro>
 
 <YouWillLearn>
 
-- How to create and nest components
-- How to add markup and styles
-- How to display data
-- How to render conditions and lists
-- How to respond to events and update the screen
-- How to share data between components
+- 如何建立和巢狀 component
+- 如何加入 markup 和樣式
+- 如何顯示資料
+- 如何 render 條件和列表
+- 如何回應事件和更新畫面
+- 如何在 component 之間共享資料
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## 建立和巢狀 component {/*components*/}
 
-React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React 應用程式是由 *components* 組成的。Component 是具有自己的邏輯和外觀的 UI（使用者介面）的一部分。Component 可以像按鈕一樣小，也可以像整個頁面一樣大。
 
-React components are JavaScript functions that return markup:
+React component 是回傳 markup 的 JavaScript 函式。
 
 ```js
 function MyButton() {
@@ -33,7 +33,7 @@ function MyButton() {
 }
 ```
 
-Now that you've declared `MyButton`, you can nest it into another component:
+現在你已經宣告 `MyButton`，你可以將它嵌入另一個 component 中。
 
 ```js {5}
 export default function MyApp() {
@@ -46,9 +46,9 @@ export default function MyApp() {
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+注意 `<MyButton />` 開頭是大寫字母，這就是你知道它是 React component 的方式。React component 名稱一定要以大寫字母開頭，而 HTML markup 則必須為小寫字母。
 
-Have a look at the result:
+請看一下結果：
 
 <Sandpack>
 
@@ -73,7 +73,7 @@ export default function MyApp() {
 
 </Sandpack>
 
-The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
+`export default` 關鍵字指定檔案中的主要 component。如果你對某些 JavaScript 語法不熟悉，[MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) 和 [javascript.info](https://javascript.info/import-export) 都有很棒的參考資料。
 
 ## Writing markup with JSX {/*writing-markup-with-jsx*/}
 
