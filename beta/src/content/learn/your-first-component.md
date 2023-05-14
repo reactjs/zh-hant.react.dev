@@ -16,9 +16,9 @@ title: 你的第一個 Component
 
 </YouWillLearn>
 
-## Component：建構 UI 的模塊 {/*components-ui-building-blocks*/}
+## Component：UI 的建構塊 {/*components-ui-building-blocks*/}
 
-在網頁中，HTML 允許我們透過使用內建標籤來創建富有結構的文檔，像是 `<h1>` 與 `<li>`：
+在網頁中，HTML 允許我們透過使用內建標籤來創建富有結構的文件，像是 `<h1>` 與 `<li>`：
 
 ```html
 <article>
@@ -35,7 +35,7 @@ title: 你的第一個 Component
 
 React 允許你將 markup、CSS 以及 JavaScript 結合為自定義「component」, **即應用程式中可複用的 UI 元素**。上文中的程式碼可以改寫為一個能夠 render 在各個頁面上的 `<TableOfContents />` component，實際上，使用的依舊是 `<article>`、`<h1>` 等相同的標籤。
 
-就像是 HTML 標籤一樣，你可以編寫、排序以及使用嵌套結構來設計整個頁面。例如，你正在看閱讀的文檔頁面就是由 React component 所組成：
+就像是 HTML 標籤一樣，你可以編寫、排序以及使用巢狀結構來設計整個頁面。例如，你正在看閱讀的文件頁面就是由 React component 所組成：
 
 ```js
 <PageLayout>
@@ -78,9 +78,9 @@ img { height: 200px; }
 
 以下為建構 component 的方法：
 
-### 第一步： 導出 component {/*step-1-export-the-component*/}
+### 第一步： Export component {/*step-1-export-the-component*/}
 
-`export default` 前綴是一種 [JavaScript 標準語法](https://developer.mozilla.org/zh-TW/docs/web/javascript/reference/statements/export) （並非 React 特性）。它允許你標記檔案中的主要函式，以便你之後可以在其他檔案導入它。（更多導入內容請參閱 [導入及導出 Component](/learn/importing-and-exporting-components) ！）
+`export default` 前綴是一種 [JavaScript 標準語法](https://developer.mozilla.org/zh-TW/docs/web/javascript/reference/statements/export) （並非 React 特性）。它允許你標記檔案中的主要函式，以便你之後可以在其他檔案 import 它。（更多 import 內容請參閱 [Importing 與 Exporting Component](/learn/importing-and-exporting-components) ！）
 
 ### 第二步：定義函式 {/*step-2-define-the-function*/}
 
@@ -120,7 +120,7 @@ return (
 
 ## 使用 component {/*using-a-component*/}
 
-現在，你已經定義了 `Profile` component，你可以將它們嵌套進其他的 component 中。舉例來說，你可以導出一個包含多個 `Profile` component 的 `Gallery` component：
+現在，你已經定義了 `Profile` component，你可以將它們嵌套進其他的 component 中。舉例來說，你可以 export 一個包含多個 `Profile` component 的 `Gallery` component：
 
 <Sandpack>
 
@@ -172,7 +172,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 ### 嵌套與組織 component {/*nesting-and-organizing-components*/}
 
-Component 為常規的 JavaScript 函式，所以你可以將多個 component 放在同一個檔案中。這在 component 相對較小或是彼此關係緊密時是非常方便的。如果檔案變得過於擁擠，你可以隨時將 `Profile` 移至不同的檔案。你可以立即在 [導入相關章節](/learn/importing-and-exporting-components) 學習如何做到這些。
+Component 為常規的 JavaScript 函式，所以你可以將多個 component 放在同一個檔案中。這在 component 相對較小或是彼此關係緊密時是非常方便的。如果檔案變得過於擁擠，你可以隨時將 `Profile` 移至不同的檔案。你可以立即在 [import 相關章節](/learn/importing-and-exporting-components) 學習如何做到這些。
 
 由於 `Profile` component 在 `Gallery` 中被 render－甚至數次！－我們可以將 `Gallery` 稱為 **parent component**，將每個 `Profile` 視為「child」render。這是 React 神奇所在之一，你可以透過定義 component 一次，然後根據需求在多個地方多次使用。
 
@@ -211,13 +211,12 @@ function Profile() {
 
 #### 萬物皆是 component {/*components-all-the-way-down*/}
 
-你的 React 應用程式從「根」component 開始。通常，它會在你啟動新專案時自動創建。 舉例來說，如果使用 [CodeSandbox](https://codesandbox.io/) 或 [Create React App](https://create-react-app.dev/)，根 component 會被定義在 `src/App.js`。如果你是使用 [Next.js](https://nextjs.org/) 框架，根 component 則會被定義在 `pages/index.js`。在這些例子當中，你已經導出了根 component。
 
 大多數 React 應用程式只有 component。這意味著你不僅可以將 component 用於具有複用性的部分，例如按鈕，還可以用於更大規模的地方，像是側邊欄、列表以及完成最終的完整頁面！Component 是組織 UI 程式碼與 markup 的一種便捷方式，即便部分的 component 只使用了一次。
 
 像是 Next.js 這樣的框架會做更多事情，與使用空白 HTML 檔案並且讓 React 使用 JavaScript「接手」管理頁面不同，它們 *還會* 根據你的 React component 自動生成 HTML。這使得你的應用程式可以在 JavaScript 載入之前就顯示部分內容。
 
-儘管如此，許多網站僅使用 React 來[增添「互動性」](/learn/add-react-to-a-website)，它們有許多根 component，而不是整個頁面中的單個 component。你可以根據需求盡可能多或盡可能少地使用 React。
+儘管如此，許多網站僅使用 React 來[增添「互動性」](/learn/add-react-to-a-website)，它們有許多 root component，而不是整個頁面中的單個 component。你可以根據需求盡可能多或盡可能少地使用 React。
 
 </DeepDive>
 
@@ -238,9 +237,9 @@ function Profile() {
 
 <Challenges>
 
-#### 導出 component {/*export-the-component*/}
+#### Export component {/*export-the-component*/}
 
-由於根 component 沒有被導出，導致這個沙盒無法運作：
+由於 root component 沒有被 export，導致這個沙箱無法運作：
 
 <Sandpack>
 
@@ -286,7 +285,7 @@ img { height: 181px; }
 
 </Sandpack>
 
-你可能會想知道，為什麼單獨寫 `export` 時不足以修復這個問題。你可以在 [導入與導出 Component](/learn/importing-and-exporting-components) 中了解 `export` 與 `export default` 之間的區別。
+你可能會想知道，為什麼單獨寫 `export` 時不足以修復這個問題。你可以在 [Importing 與 Exporting Component](/learn/importing-and-exporting-components) 中了解 `export` 與 `export default` 之間的區別。
 
 </Solution>
 
@@ -431,7 +430,7 @@ img { margin: 0 10px 10px 0; }
 
 #### 自定義 component {/*your-own-component*/}
 
-從頭編寫一個 component。 你可以給定它任何有效名稱，然後回傳任何 markup。如果你沒有想法，你可以編寫一個顯示 `<h1>Good job!</h1>` 的 `Congratulations` component。別忘了導出它！
+從頭編寫一個 component。 你可以給定它任何有效名稱，然後回傳任何 markup。如果你沒有想法，你可以編寫一個顯示 `<h1>Good job!</h1>` 的 `Congratulations` component。別忘了 export 它！
 
 <Sandpack>
 
