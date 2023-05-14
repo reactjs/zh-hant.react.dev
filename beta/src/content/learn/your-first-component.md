@@ -76,7 +76,7 @@ img { height: 200px; }
 
 </Sandpack>
 
-以下為建構 component 的方法：
+以下為建構 component 的方法： 
 
 ### 第一步： 導出 component {/*step-1-export-the-component*/}
 
