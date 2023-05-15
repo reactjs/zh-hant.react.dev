@@ -88,7 +88,7 @@ img { height: 200px; }
 
 <Pitfall>
 
-React component 為常規的 JavaScript 函式，但**它們的名稱必須以大寫字母為開頭**，否則將無法運行！
+React component 為常規的 JavaScript 函式，但**它們的名稱必須以大寫字母為開頭**，否則將無法運行！ 
 
 </Pitfall>
 
