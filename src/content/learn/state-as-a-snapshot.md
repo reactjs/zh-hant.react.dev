@@ -1,27 +1,27 @@
 ---
-title: State as a Snapshot
+title: 如同快照的 State
 ---
 
 <Intro>
 
-State variables might look like regular JavaScript variables that you can read and write to. However, state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render.
+State 變數或許和可讀寫的普通 JavaScript 變數看起來很像。然而，state 的行為更像是一張快照（snapshot）。設定 state 並不會改變你已有的 state 變數，而是會觸發重新 render。
 
 </Intro>
 
 <YouWillLearn>
 
-* How setting state triggers re-renders
-* When and how state updates
-* Why state does not update immediately after you set it
-* How event handlers access a "snapshot" of the state
+* 設定 state 是如何觸發重新 render
+* state 更新的時機和方式
+* state 在設定後並未立即更新的原因
+* event handler 是如何取得 state 的「快照」
 
 </YouWillLearn>
 
-## Setting state triggers renders {/*setting-state-triggers-renders*/}
+## 設定 state 會觸發 render {/*setting-state-triggers-renders*/}
 
-You might think of your user interface as changing directly in response to the user event like a click. In React, it works a little differently from this mental model. On the previous page, you saw that [setting state requests a re-render](/learn/render-and-commit#step-1-trigger-a-render) from React. This means that for an interface to react to the event, you need to *update the state*.
+你可能會認為使用者介面會直接對點擊等使用者事件做出改變以作為回應。在 React 裡，它的運作方式和這種思維模型有點不同。在前一章，你看過來自 React 的[設定 state 來請求重新 render](/learn/render-and-commit#step-1-trigger-a-render)。這意味著介面若要為特定的事件做出回應，則需要*更新 state*。
 
-In this example, when you press "send", `setIsSent(true)` tells React to re-render the UI:
+在此範例中，當你點擊「傳送」，`setIsSent(true)` 會通知 React 重新 render UI：
 
 <Sandpack>
 
@@ -61,25 +61,25 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-Here's what happens when you click the button:
+以下是當你點擊按鈕時所發生的事情：
 
-1. The `onSubmit` event handler executes.
-2. `setIsSent(true)` sets `isSent` to `true` and queues a new render.
-3. React re-renders the component according to the new `isSent` value.
+1. 執行 `onSubmit` event handler。
+2. `setIsSent(true)` 將 `isSent` 設定為 `true`，並安排新的一次 render。
+3. React 根據 `isSent` 新的值，重新 render component。
 
-Let's take a closer look at the relationship between state and rendering.
+接著就讓我們來仔細看看 state 和 rendering 之間的關係吧！
 
-## Rendering takes a snapshot in time {/*rendering-takes-a-snapshot-in-time*/}
+## Rendering 會即時生成一張快照 {/*rendering-takes-a-snapshot-in-time*/}
 
-["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
+[「Rendering」](/learn/render-and-commit#step-2-react-renders-your-components)意味著 React 正在呼叫你的 component，它其實就是一個函式。函式回傳的 JSX 就像是一張 UI 的即時快照。它的 props、event handler 和區域變數都是**利用當下 render 的 state** 計算出來的。
 
-Unlike a photograph or a movie frame, the UI "snapshot" you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
+與照片或電影畫面不同的是，你所回傳的 UI「快照」是具有互動性的。它包含了像是 event handler 的邏輯，明確說明要如何針對輸入做出回應。React 會更新畫面以符合這張快照，並連結 event handler。因此，按下按鈕將會觸發 JSX 裡的 click handler。
 
-When React re-renders a component:
+當 React 重新 render component 時：
 
-1. React calls your function again.
-2. Your function returns a new JSX snapshot.
-3. React then updates the screen to match the snapshot you've returned.
+1. React 再次呼叫函式。
+2. 函式回傳一張全新的 JSX 快照。
+3. 接著，React 更新畫面，使畫面與你回傳的快照相符。
 
 <IllustrationBlock sequential>
     <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
@@ -87,7 +87,7 @@ When React re-renders a component:
     <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
+State 是 component 的記憶，它和那種函式回傳後就消失的一般變數不同。State 其實「存在於」React 本身 - 如同放在架子上！- 在函式之外。當 React 呼叫 component，它會是你特定 render 的 state 快照。Component 回傳的 UI 快照內的 JSX 裡有最新的 props 和 event handler，全都是**使用那一次 render 的 state 值**所計算出來的。
 
 <IllustrationBlock sequential>
   <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
@@ -95,9 +95,9 @@ As a component's memory, state is not like a regular variable that disappears af
   <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
 </IllustrationBlock>
 
-Here's a little experiment to show you how this works. In this example, you might expect that clicking the "+3" button would increment the counter three times because it calls `setNumber(number + 1)` three times.
+以下是一個簡單範例，用來呈現其運作方式。在此範例中，你可能會預期點擊「＋3」按鈕將遞增計數器三次，因為它呼叫了三次 `setNumber(number + 1)`。
 
-See what happens when you click the "+3" button:
+看看當你點擊「+3」按鈕會發生什麼事：
 
 <Sandpack>
 
@@ -127,9 +127,9 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Notice that `number` only increments once per click!
+注意，`number` 在每次點擊只會遞增一次！
 
-**Setting state only changes it for the *next* render.** During the first render, `number` was `0`. This is why, in *that render's* `onClick` handler, the value of `number` is still `0` even after `setNumber(number + 1)` was called:
+**設定 state 只會為*下一次* render 改變 state。** 在第一次 render 中，`number` 為 `0`。這是為什麼在*該次 render 的* onClick handler 中，即便在呼叫了 `setnumber(number + 1)`後， `number` 的值仍然為 `0` 的原因：
 
 ```js
 <button onClick={() => {
@@ -139,18 +139,18 @@ Notice that `number` only increments once per click!
 }}>+3</button>
 ```
 
-Here is what this button's click handler tells React to do:
+以下是這個按鈕的 click handler 通知 React 要做的事：
 
-1. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
-2. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
-3. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
+1. `setNumber(number + 1)`: `number` 為 `0`，因此 `setNumber(0 + 1)`。
+    - React 準備在下一次 render 將 `number` 更改為 `1`。
+2. `setNumber(number + 1)`: `number` 為 `0`，因此 `setNumber(0 + 1)`。
+    - React 準備在下一次 render 將 `number` 更改為 `1`。
+3. `setNumber(number + 1)`: `number` 為 `0`，因此 `setNumber(0 + 1)`。
+    - React 準備在下一次 render 將 `number` 更改為 `1`。
 
-Even though you called `setNumber(number + 1)` three times, in *this render's* event handler `number` is always `0`, so you set the state to `1` three times. This is why, after your event handler finishes, React re-renders the component with `number` equal to `1` rather than `3`.
+雖然呼叫了 `setNumber(number + 1)` 三次，在*這一次 render 的* event handler 內的 `number` 一直都是 `0`，所以等同於你把 state 設定為 `1` 三次。這就是為什麼在 event handler 執行結束後，React 用等於 `1` 而非 `3` 的 `number` 來重新 render component。
 
-You can also visualize this by mentally substituting state variables with their values in your code. Since the `number` state variable is `0` for *this render*, its event handler looks like this:
+你也可以透過在心裡將程式碼中的 state 變數替換為它們的值來視覺化這一切。由於在*這一次 render* 中，state 變數 `number` 的值為 `0`，它的 event handler 看起來就像是這樣：
 
 ```js
 <button onClick={() => {
@@ -160,7 +160,7 @@ You can also visualize this by mentally substituting state variables with their 
 }}>+3</button>
 ```
 
-For the next render, `number` is `1`, so *that render's* click handler looks like this:
+對下一次的 render 來說，`number` 為 `1`，因此*該次 render 的* click handler 看起來就像是這樣：
 
 ```js
 <button onClick={() => {
@@ -170,11 +170,11 @@ For the next render, `number` is `1`, so *that render's* click handler looks lik
 }}>+3</button>
 ```
 
-This is why clicking the button again will set the counter to `2`, then to `3` on the next click, and so on.
+這就是為什麼再次點擊按鈕會將計數器設定為 `2`，然後在下一次點擊時會設定為 `3`，依此類推。
 
-## State over time {/*state-over-time*/}
+## 隨著時間改變的 state {/*state-over-time*/}
 
-Well, that was fun. Try to guess what clicking this button will alert:
+嗯，那真是有趣。試著猜猜看點擊這個按鈕會彈出什麼提示框：
 
 <Sandpack>
 
@@ -203,14 +203,14 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-If you use the substitution method from before, you can guess that the alert shows "0":
+如果你使用之前提到的替換法，你可以猜到提示框會顯示「0」：
 
 ```js
 setNumber(0 + 5);
 alert(0);
 ```
 
-But what if you put a timer on the alert, so it only fires _after_ the component re-rendered? Would it say "0" or "5"? Have a guess!
+但要是你在提示框上設定計時器，使其在 component 重新 render _之後_ 才觸發呢？那麼它會顯示「5」還是「0」？猜猜看！
 
 <Sandpack>
 
@@ -241,7 +241,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Surprised? If you use the substitution method, you can see the "snapshot" of the state passed to the alert.
+驚不驚訝？如果你使用替換法，你就可以看到傳入提示框的 state「快照」。
 
 ```js
 setNumber(0 + 5);
@@ -250,16 +250,16 @@ setTimeout(() => {
 }, 3000);
 ```
 
-The state stored in React may have changed by the time the alert runs, but it was scheduled using a snapshot of the state at the time the user interacted with it!
+儲存在 React 裡的 state 在提示框執行時可能已改變，但它是用使用者與其互動當下的 state 快照來安排的！
 
-**A state variable's value never changes within a render,** even if its event handler's code is asynchronous. Inside *that render's* `onClick`, the value of `number` continues to be `0` even after `setNumber(number + 5)` was called. Its value was "fixed" when React "took the snapshot" of the UI by calling your component.
+**在同一次 render 裡，state 變數的值永遠不會改變**，就算它的 event handler 的程式碼是非同步的。在*該次 render 的* `onClick` 內，即使在呼叫 `setNumber(number + 5)`之後，`number` 的值仍然為 `0`。當 React 透過呼叫 component 來替 UI「拍攝快照」時，state 的值「固定不變」。
 
-Here is an example of how that makes your event handlers less prone to timing mistakes. Below is a form that sends a message with a five-second delay. Imagine this scenario:
+以下是一個範例，說明這如何使 event handler 不容易出現時序錯誤。下面是一個表單，延遲五秒後會發送一則訊息。想像一下以下的情況：
 
-1. You press the "Send" button, sending "Hello" to Alice.
-2. Before the five-second delay ends, you change the value of the "To" field to "Bob".
+1. 你按下「傳送」按鈕，向 Alice 傳送「Hi」。
+2. 在五秒的延遲結束之前，你將「To」欄位的值更改為「Bob」。
 
-What do you expect the `alert` to display? Would it display, "You said Hello to Alice"? Or would it display, "You said Hello to Bob"? Make a guess based on what you know, and then try it:
+你預期 `alert` 顯示什麼？它會顯示「You said Hello to Alice」還是「You said Hello to Bob」？根據所學猜一猜並試試看：
 
 <Sandpack>
 
@@ -305,19 +305,19 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-**React keeps the state values "fixed" within one render's event handlers.** You don't need to worry whether the state has changed while the code is running.
+**React 會使 state 值在同一次 render 內的 event handler 保持「固定不變」。** 你不需要擔心 state 在程式碼執行時有所異動。
 
-But what if you wanted to read the latest state before a re-render? You'll want to use a [state updater function](/learn/queueing-a-series-of-state-updates), covered on the next page!
+但要是你希望在重新 render 之前讀取最新的 state 呢？你將會需要使用 [state 的更新函式](/learn/queueing-a-series-of-state-updates)，這會下一章節中介紹！
 
 <Recap>
 
-* Setting state requests a new render.
-* React stores state outside of your component, as if on a shelf.
-* When you call `useState`, React gives you a snapshot of the state *for that render*.
-* Variables and event handlers don't "survive" re-renders. Every render has its own event handlers.
-* Every render (and functions inside it) will always "see" the snapshot of the state that React gave to *that* render.
-* You can mentally substitute state in event handlers, similarly to how you think about the rendered JSX.
-* Event handlers created in the past have the state values from the render in which they were created.
+* 設定 state 會請求一次新的 render。
+* React 將 state 儲存在 component 外，好比在架子上一樣。
+* 當你呼叫 `useState`，React 會*為該次 render* 拍一張 state 的快照。
+* 變數和 event handler 不會在重新 render 時「存活」。每次 render 都有自己的 event handler。
+* 每次 render（和其內部的函式）始終會「看到」React 為*該次* render 所提供的 state 快照。
+* 你可以在內心替换 event handler 中的 state，類似於替換被 render 的 JSX。
+* 過去建立的 event handler 保有它們被建立的那一次 render 中的 state 值。
 
 </Recap>
 
@@ -325,9 +325,9 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 <Challenges>
 
-#### Implement a traffic light {/*implement-a-traffic-light*/}
+#### 實作紅綠燈 {/*implement-a-traffic-light*/}
 
-Here is a crosswalk light component that toggles when the button is pressed:
+以下是一個紅綠燈 component，按按鈕可以切換它的狀態：
 
 <Sandpack>
 
@@ -362,13 +362,13 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Add an `alert` to the click handler. When the light is green and says "Walk", clicking the button should say "Stop is next". When the light is red and says "Stop", clicking the button should say "Walk is next".
+請在 click handler 裡加入一個 `alert`。當燈是綠色的並顯示「Walk」時，點擊按鈕應顯示「Stop is next」。當燈是紅色的並顯示「Stop」時，點擊按鈕應顯示「Walk is next」。
 
-Does it make a difference whether you put the `alert` before or after the `setWalk` call?
+無論你將 `alert` 放在呼叫 `setWalk` 之前還是之後，是否會有不同呢？
 
 <Solution>
 
-Your `alert` should look like this:
+`alert` 看起來應該像這樣：
 
 <Sandpack>
 
@@ -404,17 +404,17 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Whether you put it before or after the `setWalk` call makes no difference. That render's value of `walk` is fixed. Calling `setWalk` will only change it for the *next* render, but will not affect the event handler from the previous render.
+無論你把它放在呼叫 `setWalk` 之前或之後都是一樣的。該次 render 的 `walk` 值是固定的。呼叫 `setWalk` 只會在*下一次* render 中改變它，但不會影響前一次 render 中的 event handler。
 
-This line might seem counter-intuitive at first:
+這一行程式碼乍看之下可能會令人感到困惑：
 
 ```js
 alert(walk ? 'Stop is next' : 'Walk is next');
 ```
 
-But it makes sense if you read it as: "If the traffic light shows 'Walk now', the message should say 'Stop is next.'" The `walk` variable inside your event handler matches that render's value of `walk` and does not change.
+但如果你這樣解讀它就變得合理了：「如果紅綠燈顯示『Walk now』，那麼訊息應該顯示『Stop is next』」。在 event handler 中的 `walk` 變數與該次 render 的 `walk` 值相符，且不會改變。
 
-You can verify that this is correct by applying the substitution method. When `walk` is `true`, you get:
+你可以透過應用替換法來驗證這是正確的。當 `walk` 為 `true` 時，你可以得到：
 
 ```js
 <button onClick={() => {
@@ -428,7 +428,7 @@ You can verify that this is correct by applying the substitution method. When `w
 </h1>
 ```
 
-So clicking "Change to Stop" queues a render with `walk` set to `false`, and alerts "Stop is next".
+因此，點擊「Change to Stop」時，會安排一次把 `walk` 設定為 `false` 的 render，並跳出「Stop is next」的提示框。
 
 </Solution>
 
