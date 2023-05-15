@@ -1,25 +1,25 @@
 ---
-title: Installation
+title: 安裝
 ---
 
 <Intro>
 
-React has been designed from the start for gradual adoption. You can use as little or as much React as you need. Whether you want to get a taste of React, add some interactivity to an HTML page, or start a complex React-powered app, this section will help you get started.
+React 從一開始就被設計成可以逐步採用。你可以根據自己的需要使用更多或更少的 React。不論你想要嘗試 React、在 HTML 頁面中增加一些互動功能，或是開始一個複雜的 React 應用程式，本章節將幫助你入門。
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to start a new React project](/learn/start-a-new-react-project)
-* [How to add React to an existing project](/learn/add-react-to-an-existing-project)
-* [How to set up your editor](/learn/editor-setup)
-* [How to install React Developer Tools](/learn/react-developer-tools)
+* [如何開始一個新的 React 專案](/learn/start-a-new-react-project)
+* [如何將 React 加入到一個現有的專案](/learn/add-react-to-an-existing-project)
+* [如何設定編輯器](/learn/editor-setup)
+* [如何安裝 React 開發者工具](/learn/react-developer-tools)
 
 </YouWillLearn>
 
-## Try React {/*try-react*/}
+## 嘗試 React {/*try-react*/}
 
-You don't need to install anything to play with React. Try editing this sandbox!
+你不需要安裝任何東西來嘗試 React。試試看編輯這個 sandbox！
 
 <Sandpack>
 
@@ -35,23 +35,22 @@ export default function App() {
 
 </Sandpack>
 
-You can edit it directly or open it in a new tab by pressing the "Fork" button in the upper right corner.
+你可以直接編輯它，或按右上角的「Fork」按鈕在新的頁面中打開它。
 
-Most pages in the React documentation contain sandboxes like this. Outside of the React documentation, there are many online sandboxes that support React: for example, [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react), or [CodePen.](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb)
+React 文件中的大多數頁面都包含像這樣的 sandbox 範例。在 React 文件之外，有許多支援 React 的線上 sandbox，例如 [CodeSandbox]((https://codesandbox.io/s/new))、[StackBlitz](https://stackblitz.com/fork/react) 或 [CodePen](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb)。
 
-### Try React locally {/*try-react-locally*/}
+### 在本機端嘗試 React {/*try-react-locally*/}
 
-To try React locally on your computer, [download this HTML page.](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html) Open it in your editor and in your browser!
+在你的電腦本機端嘗試 React，[下載這個 HTML 頁面。](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html) 在你的編輯器和瀏覽器打開它！
 
-## Start a new React project {/*start-a-new-react-project*/}
+## 開始一個新的 React 專案 {/*start-a-new-react-project*/}
 
-If you want to build an app or a website fully with React, [start a new React project.](/learn/start-a-new-react-project)
+如果你想要完全使用 React 建立一個應用程式或是網站，[開始一個新的 React 專案。](/learn/start-a-new-react-project)
 
-## Add React to an existing project {/*add-react-to-an-existing-project*/}
+## 將 React 加入到一個現有的專案 {/*add-react-to-an-existing-project*/}
 
-If want to try using React in your existing app or a website, [add React to an existing project.](/learn/add-react-to-an-existing-project)
+如果你想要在你現有的應用程式或網站嘗試使用 React，[將 React 加入到一個現有的專案。](/learn/add-react-to-an-existing-project)
 
-## Next steps {/*next-steps*/}
+## 下一步 {/*next-steps*/}
 
-Head to the [Quick Start](/learn) guide for a tour of the most important React concepts you will encounter every day.
-
+前往[快速入門](/learn)指南，了解你每天會遇到的 React 重要概念。
