@@ -80,7 +80,7 @@ img { height: 200px; }
 
 ### 第一步： Export component {/*step-1-export-the-component*/}
 
-`export default` 前綴是一種 [JavaScript 標準語法](https://developer.mozilla.org/zh-TW/docs/web/javascript/reference/statements/export) （並非 React 特性）。它允許你標記檔案中的主要函式，以便你之後可以在其他檔案 import 它。（更多 import 內容請參閱 [Importing 與 Exporting Component](/learn/importing-and-exporting-components) ！）
+`export default` 前綴是一種 [JavaScript 標準語法](https://developer.mozilla.org/zh-TW/docs/web/javascript/reference/statements/export) （並非 React 特性）。它允許你標記檔案中的主要函式，以便你之後可以在其他檔案 import 它。（更多 export 內容請參閱 [Importing 與 Exporting Component](/learn/importing-and-exporting-components) ！）
 
 ### 第二步：定義函式 {/*step-2-define-the-function*/}
 
@@ -211,6 +211,7 @@ function Profile() {
 
 #### 萬物皆是 component {/*components-all-the-way-down*/}
 
+你的 React 應用程式從「root」component 開始。通常，它會在你啟動新專案時自動創建。 舉例來說，如果使用 [CodeSandbox](https://codesandbox.io/) 或 [Create React App](https://create-react-app.dev/)，root component 會被定義在 `src/App.js`。如果你是使用 [Next.js](https://nextjs.org/) 框架，root component 則會被定義在 `pages/index.js`。在這些例子當中，你已經 export 了 root component。
 
 大多數 React 應用程式只有 component。這意味著你不僅可以將 component 用於具有複用性的部分，例如按鈕，還可以用於更大規模的地方，像是側邊欄、列表以及完成最終的完整頁面！Component 是組織 UI 程式碼與 markup 的一種便捷方式，即便部分的 component 只使用了一次。
 
@@ -289,7 +290,7 @@ img { height: 181px; }
 
 </Solution>
 
-#### 修復回傳內容 {/*fix-the-return-statement*/}
+#### 修復回傳git內容 {/*fix-the-return-statement*/}
 
 `return` 內容出了點問題，你能夠修復它嗎？
 
