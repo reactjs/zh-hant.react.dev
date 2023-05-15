@@ -4,7 +4,7 @@ title: 如同快照的 State
 
 <Intro>
 
-state 變數或許和可讀寫的普通 JavaScript 變數看起來很像。然而，state 的行為更像是一張快照（snapshot）。設定 state 並不會改變你已有的 state 變數，而是會觸發重新 render。
+State 變數或許和可讀寫的普通 JavaScript 變數看起來很像。然而，state 的行為更像是一張快照（snapshot）。設定 state 並不會改變你已有的 state 變數，而是會觸發重新 render。
 
 </Intro>
 
@@ -14,6 +14,7 @@ state 變數或許和可讀寫的普通 JavaScript 變數看起來很像。然�
 * state 更新的時機和方式
 * state 在設定後並未立即更新的原因
 * event handler 是如何取得 state 的「快照」
+
 </YouWillLearn>
 
 ## 設定 state 會觸發 render {/*setting-state-triggers-renders*/}
@@ -21,6 +22,7 @@ state 變數或許和可讀寫的普通 JavaScript 變數看起來很像。然�
 你可能會認為使用者介面會直接對點擊等使用者事件做出改變以作為回應。在 React 裡，它的運作方式和這種思維模型有點不同。在前一章，你看過來自 React 的[設定 state 來請求重新 render](/learn/render-and-commit#step-1-trigger-a-render)。這意味著介面若要為特定的事件做出回應，則需要*更新 state*。
 
 在此範例中，當你點擊「傳送」，`setIsSent(true)` 會通知 React 重新 render UI：
+
 <Sandpack>
 
 ```js
@@ -43,7 +45,7 @@ export default function Form() {
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
-      <button type="submit">傳送</button>
+      <button type="submit">Send</button>
     </form>
   );
 }
@@ -61,7 +63,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 以下是當你點擊按鈕時所發生的事情：
 
-1. 執行`onSubmit` event handler。
+1. 執行 `onSubmit` event handler。
 2. `setIsSent(true)` 將 `isSent` 設定為 `true`，並安排新的一次 render。
 3. React 根據 `isSent` 新的值，重新 render component。
 
@@ -69,7 +71,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 ## Rendering 會即時生成一張快照 {/*rendering-takes-a-snapshot-in-time*/}
 
-[「Rendering」](/learn/render-and-commit#step-2-react-renders-your-components)意味著 React 正在呼叫你的 component -- 它其實就是一個函式。函式回傳的 JSX 就像是一張 UI 的即時快照。它的 props、event handler 和區域變數都是**利用當下 render 的 state** 計算出來的。
+[「Rendering」](/learn/render-and-commit#step-2-react-renders-your-components)意味著 React 正在呼叫你的 component，它其實就是一個函式。函式回傳的 JSX 就像是一張 UI 的即時快照。它的 props、event handler 和區域變數都是**利用當下 render 的 state** 計算出來的。
 
 與照片或電影畫面不同的是，你所回傳的 UI「快照」是具有互動性的。它包含了像是 event handler 的邏輯，明確說明要如何針對輸入做出回應。React 會更新畫面以符合這張快照，並連結 event handler。因此，按下按鈕將會觸發 JSX 裡的 click handler。
 
@@ -80,20 +82,21 @@ label, textarea { margin-bottom: 10px; display: block; }
 3. 接著，React 更新畫面，使畫面與你回傳的快照相符。
 
 <IllustrationBlock sequential>
-    <Illustration caption="React 執行函式" src="/images/docs/illustrations/i_render1.png" />
-    <Illustration caption="計算快照" src="/images/docs/illustrations/i_render2.png" />
-    <Illustration caption="更新 DOM tree" src="/images/docs/illustrations/i_render3.png" />
+    <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
+    <Illustration caption="Calculating the snapshot" src="/images/docs/illustrations/i_render2.png" />
+    <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-state 是 component 的記憶，它和那種函式回傳後就消失的一般變數不同。state 其實「存在於」React 本身 - 如同放在架子上！- 在函式之外。當 React 呼叫 component，它會替那一次 render 拍一張 state 快照。component 回傳的 UI 快照內的 JSX 裡有最新的 props 和 event handler，全都是**使用那一次 render 的 state 值**所計算出來的。
+State 是 component 的記憶，它和那種函式回傳後就消失的一般變數不同。State 其實「存在於」React 本身 - 如同放在架子上！- 在函式之外。當 React 呼叫 component，它會是你特定 render 的 state 快照。Component 回傳的 UI 快照內的 JSX 裡有最新的 props 和 event handler，全都是**使用那一次 render 的 state 值**所計算出來的。
 
 <IllustrationBlock sequential>
-  <Illustration caption="你通知 React 更新 state" src="/images/docs/illustrations/i_state-snapshot1.png" />
-  <Illustration caption="React 更新 state 值" src="/images/docs/illustrations/i_state-snapshot2.png" />
-  <Illustration caption="React 將 state 值的快照傳入 component 裡" src="/images/docs/illustrations/i_state-snapshot3.png" />
+  <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
+  <Illustration caption="React updates the state value" src="/images/docs/illustrations/i_state-snapshot2.png" />
+  <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
 </IllustrationBlock>
 
-以下是一個簡單範例，用來展示其運作方式。在此範例中，你可能會預期點擊「＋3」按鈕將遞增計數器三次，因為它呼叫了三次 `setNumber(number + 1)`。
+以下是一個簡單範例，用來呈現其運作方式。在此範例中，你可能會預期點擊「＋3」按鈕將遞增計數器三次，因為它呼叫了三次 `setNumber(number + 1)`。
+
 看看當你點擊「+3」按鈕會發生什麼事：
 
 <Sandpack>
@@ -126,7 +129,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 注意，`number` 在每次點擊只會遞增一次！
 
-**設定 state 只會為*下一次* render 改變 state 。** 在第一次 render 中，`number` 為 `0`。這是為什麼在*該次 render 的* onClick handler 中，即便在呼叫了 `setnumber(number + 1)`後， `number` 的值仍然為 `0` 的原因：
+**設定 state 只會為*下一次* render 改變 state。** 在第一次 render 中，`number` 為 `0`。這是為什麼在*該次 render 的* onClick handler 中，即便在呼叫了 `setnumber(number + 1)`後， `number` 的值仍然為 `0` 的原因：
 
 ```js
 <button onClick={() => {
@@ -145,11 +148,9 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 3. `setNumber(number + 1)`: `number` 為 `0`，因此 `setNumber(0 + 1)`。
     - React 準備在下一次 render 將 `number` 更改為 `1`。
 
-
 雖然呼叫了 `setNumber(number + 1)` 三次，在*這一次 render 的* event handler 內的 `number` 一直都是 `0`，所以等同於你把 state 設定為 `1` 三次。這就是為什麼在 event handler 執行結束後，React 用等於 `1` 而非 `3` 的 `number` 來重新 render component。
 
-你也可以透過在心裡將程式碼中的 state 變數替換為它們的值來視覺化這一切。
-由於在*這一次 render* 中，state 變數 `number` 的值為 `0`，它的 event handler 看起來就像是這樣：
+你也可以透過在心裡將程式碼中的 state 變數替換為它們的值來視覺化這一切。由於在*這一次 render* 中，state 變數 `number` 的值為 `0`，它的 event handler 看起來就像是這樣：
 
 ```js
 <button onClick={() => {
@@ -169,9 +170,10 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 }}>+3</button>
 ```
 
-這就是為什麼再次點擊按鈕會將計數器設置為 `2`，然後在下一次點擊時會設置為 `3`，依此類推。
+這就是為什麼再次點擊按鈕會將計數器設定為 `2`，然後在下一次點擊時會設定為 `3`，依此類推。
 
 ## 隨著時間改變的 state {/*state-over-time*/}
+
 嗯，那真是有趣。試著猜猜看點擊這個按鈕會彈出什麼提示框：
 
 <Sandpack>
@@ -203,13 +205,12 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 如果你使用之前提到的替換法，你可以猜到提示框會顯示「0」：
 
-
 ```js
 setNumber(0 + 5);
 alert(0);
 ```
 
-但要是你在提示框上設置計時器，使其在 component 重新 render _之後_ 才觸發呢？那麼它會顯示「5」還是「0」？猜猜看！
+但要是你在提示框上設定計時器，使其在 component 重新 render _之後_ 才觸發呢？那麼它會顯示「5」還是「0」？猜猜看！
 
 <Sandpack>
 
@@ -248,6 +249,7 @@ setTimeout(() => {
   alert(0);
 }, 3000);
 ```
+
 儲存在 React 裡的 state 在提示框執行時可能已改變，但它是用使用者與其互動當下的 state 快照來安排的！
 
 **在同一次 render 裡，state 變數的值永遠不會改變**，就算它的 event handler 的程式碼是非同步的。在*該次 render 的* `onClick` 內，即使在呼叫 `setNumber(number + 5)`之後，`number` 的值仍然為 `0`。當 React 透過呼叫 component 來替 UI「拍攝快照」時，state 的值「固定不變」。
@@ -291,7 +293,7 @@ export default function Form() {
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
-      <button type="submit">傳送</button>
+      <button type="submit">Send</button>
     </form>
   );
 }
@@ -304,15 +306,18 @@ label, textarea { margin-bottom: 10px; display: block; }
 </Sandpack>
 
 **React 會使 state 值在同一次 render 內的 event handler 保持「固定不變」。** 你不需要擔心 state 在程式碼執行時有所異動。
-但要是你希望在重新 render 之前讀取最新的 state 呢？你將會需要使用 [state 的更新函數](/learn/queueing-a-series-of-state-updates)，這會下一章節中介紹！
+
+但要是你希望在重新 render 之前讀取最新的 state 呢？你將會需要使用 [state 的更新函式](/learn/queueing-a-series-of-state-updates)，這會下一章節中介紹！
+
 <Recap>
+
 * 設定 state 會請求一次新的 render。
 * React 將 state 儲存在 component 外，好比在架子上一樣。
 * 當你呼叫 `useState`，React 會*為該次 render* 拍一張 state 的快照。
 * 變數和 event handler 不會在重新 render 時「存活」。每次 render 都有自己的 event handler。
 * 每次 render（和其內部的函式）始終會「看到」React 為*該次* render 所提供的 state 快照。
 * 你可以在內心替换 event handler 中的 state，類似於替換被 render 的 JSX。
-* 過去創建的 event handler 保有它們被創建的那一次 render 中的 state 值。
+* 過去建立的 event handler 保有它們被建立的那一次 render 中的 state 值。
 
 </Recap>
 
@@ -321,6 +326,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 <Challenges>
 
 #### 實作紅綠燈 {/*implement-a-traffic-light*/}
+
 以下是一個紅綠燈 component，按按鈕可以切換它的狀態：
 
 <Sandpack>
@@ -356,13 +362,14 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-請在 click handler 裡添加一個 `alert`。當燈是綠色的並顯示「Walk」時，點擊按鈕應顯示「Stop is next」。當燈是紅色的並顯示「Stop」時，點擊按鈕應顯示「Walk is next」。
+請在 click handler 裡加入一個 `alert`。當燈是綠色的並顯示「Walk」時，點擊按鈕應顯示「Stop is next」。當燈是紅色的並顯示「Stop」時，點擊按鈕應顯示「Walk is next」。
 
 無論你將 `alert` 放在呼叫 `setWalk` 之前還是之後，是否會有不同呢？
 
 <Solution>
 
 `alert` 看起來應該像這樣：
+
 <Sandpack>
 
 ```js
@@ -422,6 +429,7 @@ alert(walk ? 'Stop is next' : 'Walk is next');
 ```
 
 因此，點擊「Change to Stop」時，會安排一次把 `walk` 設定為 `false` 的 render，並跳出「Stop is next」的提示框。
+
 </Solution>
 
 </Challenges>
