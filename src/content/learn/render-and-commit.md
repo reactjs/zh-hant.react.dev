@@ -29,7 +29,7 @@ title: Render 和 Commit
   <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
-## 步驟 1: 觸發 render {/*step-1-trigger-a-render*/}
+## 步驟 1：觸發 render {/*step-1-trigger-a-render*/}
 
 有兩個原因會使 component 進行 render：
 
@@ -75,7 +75,7 @@ export default function Image() {
   <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
 
-## 步驟 2: React render 你的 component {/*step-2-react-renders-your-components*/}
+## 步驟 2：React render 你的 component {/*step-2-react-renders-your-components*/}
 
 在觸發 render 之後，React 將呼叫你的 component 以確定什麼該顯示在螢幕畫面上。**「Rendering」 指的是 React 正在呼叫你的 component.**
 
@@ -146,7 +146,7 @@ Rendering 必須永遠是一個[純運算](/learn/keeping-components-pure)
 
 </DeepDive>
 
-## 步驟 3: React 把更改 commit 到 DOM {/*step-3-react-commits-changes-to-the-dom*/}
+## 步驟 3：React 把更改 commit 到 DOM {/*step-3-react-commits-changes-to-the-dom*/}
 
 在 rendering（呼叫）你的 component 後，React 將會更改你的 DOM。
 
