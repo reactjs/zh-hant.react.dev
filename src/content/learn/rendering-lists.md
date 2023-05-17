@@ -1,74 +1,70 @@
 ---
-title: Rendering Lists
+title: 列表 Rendering
 ---
 
 <Intro>
-
-You will often want to display multiple similar components from a collection of data. You can use the [JavaScript array methods](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) to manipulate an array of data. On this page, you'll use [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) with React to filter and transform your array of data into an array of components.
-
+你經常會需要用多個相似的 Component 來展示一系列的資料。這個時候你可以在 React 中使用 JavaScript 的 [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 和 [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 來篩選資料並轉換成包含多個 Component 的陣列。 
 </Intro>
 
 <YouWillLearn>
-
-* How to render components from an array using JavaScript's `map()`
-* How to render only specific components using JavaScript's `filter()`
-* When and why to use React keys
+* 如何使用 JavaScript 的 `map()` 方法處理陣列資料 render component
+* 如何使用 JavaScript 的 `filter()` 方法處理陣列資料 render 特定的 component
+* 什麼時候使用及為什麼使用 React 中的 key
 
 </YouWillLearn>
 
-## Rendering data from arrays {/*rendering-data-from-arrays*/}
-
-Say that you have a list of content.
+## 從陣列中 Render 資料 {/*rendering-data-from-arrays*/}
+這裡有一個列表
 
 ```js
 <ul>
-  <li>Creola Katherine Johnson: mathematician</li>
-  <li>Mario José Molina-Pasquel Henríquez: chemist</li>
-  <li>Mohammad Abdus Salam: physicist</li>
-  <li>Percy Lavon Julian: chemist</li>
-  <li>Subrahmanyan Chandrasekhar: astrophysicist</li>
+  <li>凱瑟琳·約翰遜：數學家</li>
+  <li>馬里奧·莫利納：化學家</li>
+  <li>穆罕默德·阿卜杜勒·薩拉姆：物理學家</li>
+  <li>珀西·萊溫·朱利亞：化學家</li>
+  <li>蘇布拉馬尼揚·錢德拉塞卡：天體物理學家</li>
 </ul>
 ```
 
-The only difference among those list items is their contents, their data. You will often need to show several instances of the same component using different data when building interfaces: from lists of comments to galleries of profile images. In these situations, you can store that data in JavaScript objects and arrays and use methods like [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to render lists of components from them.
+我們可以觀察到，在這個列表中，唯一的差異就在於各個項目的內容。在未來某些情境中，你會經常需要使用不同的資料建造出相似的 component，像是評論列表或是個人資料的圖片列表等。在這些情境下，你可以把需要用到的資料存入 JavaScript 的物件或陣列，然後使用 [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 和 [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 的方法來 render 一個 component 列表。
 
-Here’s a short example of how to generate a list of items from an array:
 
-1. **Move** the data into an array:
+這裡有個使用陣列產生一個列表項目的簡單範例: 
+
+1. 首先，將資料**儲存**到陣列中:
 
 ```js
 const people = [
-  'Creola Katherine Johnson: mathematician',
-  'Mario José Molina-Pasquel Henríquez: chemist',
-  'Mohammad Abdus Salam: physicist',
-  'Percy Lavon Julian: chemist',
-  'Subrahmanyan Chandrasekhar: astrophysicist'
+  '凱瑟琳·約翰遜：數學家',
+  '馬里奧·莫利納：化學家',
+  '穆罕默德·阿卜杜勒·薩拉姆：物理學家',
+  '珀西·萊溫·朱利亞：化學家',
+  '蘇布拉馬尼揚·錢德拉塞卡：天體物理學家'
 ];
 ```
-
-2. **Map** the `people` members into a new array of JSX nodes, `listItems`:
+2. **遍歷** `people` 中的每一個項目，轉換為新的 JSX nodes 陣列 `listItems`:
 
 ```js
 const listItems = people.map(person => <li>{person}</li>);
 ```
 
-3. **Return** `listItems` from your component wrapped in a `<ul>`:
+3. 把 `listItems` 用 `<ul>` 包起來，並且 **回傳** 它:
 
 ```js
 return <ul>{listItems}</ul>;
 ```
 
-Here is the result:
+來看看運作結果:
 
 <Sandpack>
 
 ```js
 const people = [
-  'Creola Katherine Johnson: mathematician',
-  'Mario José Molina-Pasquel Henríquez: chemist',
-  'Mohammad Abdus Salam: physicist',
-  'Percy Lavon Julian: chemist',
-  'Subrahmanyan Chandrasekhar: astrophysicist'
+  '凱瑟琳·約翰遜：數學家',
+  '馬里奧·莫利納：化學家',
+  '穆罕默德·阿卜杜勒·薩拉姆：物理學家',
+  '珀西·萊溫·朱利亞：化學家',
+  '蘇布拉馬尼揚·錢德拉塞卡：天體物理學家'
 ];
 
 export default function List() {
@@ -85,7 +81,7 @@ li { margin-bottom: 10px; }
 
 </Sandpack>
 
-Notice the sandbox above displays a console error:
+請注意上面的範例中，在控制台顯示了一項錯誤訊息:
 
 <ConsoleBlock level="error">
 
@@ -93,47 +89,44 @@ Warning: Each child in a list should have a unique "key" prop.
 
 </ConsoleBlock>
 
-You'll learn how to fix this error later on this page. Before we get to that, let's add some structure to your data.
+我們等等會學到如何修復它。在這之前，我們先將這個陣列資料更加結構化。
 
-## Filtering arrays of items {/*filtering-arrays-of-items*/}
+## 篩選陣列裡的每個項目 {/*filtering-arrays-of-items*/}
 
-This data can be structured even more.
+將 `people` 資料變得更結構化。
 
 ```js
 const people = [{
-  id: 0,
-  name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
+  name: '凱瑟琳·約翰遜',
+  profession: '數學家',
 }, {
-  id: 1,
-  name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
+  name: '馬里奧·莫利納',
+  profession: '化學家',
 }, {
-  id: 2,
-  name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
+  name: '穆罕默德·阿卜杜勒·薩拉姆',
+  profession: '物理學家',
 }, {
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',  
+  name: '珀西·萊溫·朱利亞',
+  profession: '化學家',  
 }, {
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
+  name: '蘇布拉馬尼揚·錢德拉塞卡',
+  profession: '天體物理學家',
 }];
 ```
 
-Let's say you want a way to only show people whose profession is `'chemist'`. You can use JavaScript's `filter()` method to return just those people. This method takes an array of items, passes them through a “test” (a function that returns `true` or `false`), and returns a new array of only those items that passed the test (returned `true`).
+假如你只想在列表上顯示誰是 `'化學家'`，你可以使用 JavaScript 的 `filter()` 方法來篩選符合條件的項目。這個方法會讓陣列中的每個項目進行 "篩選" (一個回傳 `true` 或 `false` 的函式)，最後回傳一個滿足篩選條件項目的新陣列。
 
-You only want the items where `profession` is `'chemist'`. The "test" function for this looks like `(person) => person.profession === 'chemist'`. Here's how to put it together:
+如果你只想顯示 `profession` 是 `'化學家'` 的人，這個 "篩選" 的函示應該長這樣: `(person) => person.profession === '化學家'`。以下我們來看看怎麼把他們組合在一起:
 
-1. **Create** a new array of just “chemist” people, `chemists`, by calling `filter()` on the `people` filtering by `person.profession === 'chemist'`:
+1. **建立** 一個只有 `'化學家'` 的新陣列，這裡用到 `filter()` 方法篩選 `people` 陣列中所有符合 `person.profession === '化學家'` 的條件:
 
 ```js
 const chemists = people.filter(person =>
-  person.profession === 'chemist'
+  person.profession === '化學家'
 );
 ```
 
-2. Now **map** over `chemists`:
+2. 使用 **map** 方法組合 `化學家` 符合條件的項目:
 
 ```js {1,13}
 const listItems = chemists.map(person =>
@@ -145,13 +138,13 @@ const listItems = chemists.map(person =>
      <p>
        <b>{person.name}:</b>
        {' ' + person.profession + ' '}
-       known for {person.accomplishment}
+       因{person.accomplishment}而聞名世界
      </p>
   </li>
 );
 ```
 
-3. Lastly, **return** the `listItems` from your component:
+3. 最後，回傳 `listItems` :
 
 ```js
 return <ul>{listItems}</ul>;
@@ -165,7 +158,7 @@ import { getImageUrl } from './utils.js';
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === 'chemist'
+    person.profession === '化學家'
   );
   const listItems = chemists.map(person =>
     <li>
@@ -176,7 +169,7 @@ export default function List() {
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
-        known for {person.accomplishment}
+        因{person.accomplishment}而聞名世界
       </p>
     </li>
   );
@@ -187,33 +180,33 @@ export default function List() {
 ```js data.js
 export const people = [{
   id: 0,
-  name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  name: '凱瑟琳·約翰遜',
+  profession: '數學家',
+  accomplishment: '計算太空飛行的相關數值',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  name: '馬里奧·莫利納',
+  profession: '化學家',
+  accomplishment: '發現北極臭氧空洞',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  name: '穆罕默德·阿卜杜勒·薩拉姆',
+  profession: '物理學家',
+  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  name: '珀西·萊溫·朱利亞',
+  profession: '化學家',
+  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  name: '蘇布拉馬尼揚·錢德拉塞卡',
+  profession: '天體物理學家',
+  accomplishment: '計算白矮星質量',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -244,29 +237,29 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Pitfall>
 
-Arrow functions implicitly return the expression right after `=>`, so you didn't need a `return` statement:
+箭頭函式會隱式的回傳 `=>` 之後的表達式，所以你可以省略 `return`
 
 ```js
 const listItems = chemists.map(person =>
-  <li>...</li> // Implicit return!
+  <li>...</li> // 隱式回傳!
 );
 ```
 
-However, **you must write `return` explicitly if your `=>` is followed by a `{` curly brace!**
+不過，**如果你的 `=>` 後面接著一對大括弧 `{`，那你必須使用 `return` 指定回傳值!**
 
 ```js
-const listItems = chemists.map(person => { // Curly brace
+const listItems = chemists.map(person => { // 大括號
   return <li>...</li>;
 });
 ```
 
-Arrow functions containing `=> {` are said to have a ["block body".](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) They let you write more than a single line of code, but you *have to* write a `return` statement yourself. If you forget it, nothing gets returned!
+箭頭函式 `=> {` 後面的部分被稱為 ["block body"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body)， 這支援多行程式碼的寫法，但*必須*使用 `return` 指定回傳值。如果你忘記使用 `return`，那這個函式什麼都不會回傳。
 
 </Pitfall>
 
-## Keeping list items in order with `key` {/*keeping-list-items-in-order-with-key*/}
+## 用 `key` 保持列表項目的排序 {/*keeping-list-items-in-order-with-key*/}
 
-Notice that all the sandboxes above show an error in the console:
+請注意上面所有的範例，控制台都顯示了一個錯誤訊息：
 
 <ConsoleBlock level="error">
 
@@ -274,7 +267,7 @@ Warning: Each child in a list should have a unique "key" prop.
 
 </ConsoleBlock>
 
-You need to give each array item a `key` -- a string or a number that uniquely identifies it among other items in that array:
+你必須給陣列裡的每一個項目指定一個 `key` -- 它可以是數字或是字串，只要是可用來當作陣列裡每個項目的唯一識別就行。
 
 ```js
 <li key={person.id}>...</li>
@@ -282,13 +275,13 @@ You need to give each array item a `key` -- a string or a number that uniquely i
 
 <Note>
 
-JSX elements directly inside a `map()` call always need keys!
+在 `map()` 方法裡回傳 JSX elements 時，總是需要指定 key 屬性!
 
 </Note>
 
-Keys tell React which array item each component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. A well-chosen `key` helps React infer what exactly has happened, and make the correct updates to the DOM tree.
+這些 `key` 會告訴 React ，每個 component 對應著陣列裡的哪一項，React 就可以把它們對應起來。這在某些需要被操作的陣列上非常重要，例如排序、新增或是刪除資料等。一個合適的 `key` 可以幫助 React 推斷發生什麼事，從而正確的更新 DOM Tree。
 
-Rather than generating keys on the fly, you should include them in your data:
+`key` 應該先準備好在資料中，而不是在運行時隨手產生:
 
 <Sandpack>
 
@@ -306,7 +299,7 @@ export default function List() {
       <p>
         <b>{person.name}</b>
           {' ' + person.profession + ' '}
-          known for {person.accomplishment}
+          因{person.accomplishment}而聞名世界
       </p>
     </li>
   );
@@ -317,33 +310,33 @@ export default function List() {
 ```js data.js active
 export const people = [{
   id: 0, // Used in JSX as a key
-  name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  name: '凱瑟琳·約翰遜',
+  profession: '數學家',
+  accomplishment: '計算太空飛行的相關數值',
   imageId: 'MK3eW3A'
 }, {
   id: 1, // Used in JSX as a key
-  name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  name: '馬里奧·莫利納',
+  profession: '化學家',
+  accomplishment: '發現北極臭氧空洞',
   imageId: 'mynHUSa'
 }, {
   id: 2, // Used in JSX as a key
-  name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  name: '穆罕默德·阿卜杜勒·薩拉姆',
+  profession: '物理學家',
+  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
   imageId: 'bE7W1ji'
 }, {
   id: 3, // Used in JSX as a key
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  name: '珀西·萊溫·朱利亞',
+  profession: '化學家',
+  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
   imageId: 'IOjWm71'
 }, {
   id: 4, // Used in JSX as a key
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  name: '蘇布拉馬尼揚·錢德拉塞卡',
+  profession: '天體物理學家',
+  accomplishment: '計算白矮星質量',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -374,11 +367,11 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <DeepDive>
 
-#### Displaying several DOM nodes for each list item {/*displaying-several-dom-nodes-for-each-list-item*/}
+#### 在列表中的每個項目展示多個 DOM nodes {/*displaying-several-dom-nodes-for-each-list-item*/}
 
-What do you do when each item needs to render not one, but several DOM nodes?
+如果你想讓每個列表項目都輸出多個 DOM nodes 而不是一個的話，你該怎麼做?
 
-The short [`<>...</>` Fragment](/reference/react/Fragment) syntax won't let you pass a key, so you need to either group them into a single `<div>`, or use the slightly longer and [more explicit `<Fragment>` syntax:](/reference/react/Fragment#rendering-a-list-of-fragments)
+[`<>...</> Fragment`](/reference/react/Fragment) 簡短的語法沒有辦法賦予 `key` 值，所以你只能使用 `<div>` 標籤將內容包起來，或是使用長一點且更明確的 [`<Fragment>`](/reference/react/Fragment#rendering-a-list-of-fragments) 語法
 
 ```js
 import { Fragment } from 'react';
@@ -393,46 +386,46 @@ const listItems = people.map(person =>
 );
 ```
 
-Fragments disappear from the DOM, so this will produce a flat list of `<h1>`, `<p>`, `<h1>`, `<p>`, and so on.
+Fragments 標籤不會顯示在 DOM 上，所以這串程式碼換轉換成 `<h1>`, `<p>`, `<h1>`, `<p>` 列表。
 
 </DeepDive>
 
-### Where to get your `key` {/*where-to-get-your-key*/}
+### 如何設定 `key` {/*如何設定-key*/}
 
-Different sources of data provide different sources of keys:
+不同的資料來源提供不同方式來獲取 `key` 值:
 
-* **Data from a database:** If your data is coming from a database, you can use the database keys/IDs, which are unique by nature.
-* **Locally generated data:** If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) or a package like [`uuid`](https://www.npmjs.com/package/uuid) when creating items.
+* **來自資料庫的資料** 如果你的資料是來自於資料庫，你可以使用資料庫的 keys/IDs ，它們本身就具有唯一性。
+* **本地產生資料** 如果你的資料生產和保存都在本地 (例如筆記軟體的筆記)，那麼你可使用計數器、 [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) 或是套件 [`uuid`](https://www.npmjs.com/package/uuid) 來產生這些 `key` 值。
 
-### Rules of keys {/*rules-of-keys*/}
+### key 的規則 {/*rules-of-keys*/}
 
-* **Keys must be unique among siblings.** However, it’s okay to use the same keys for JSX nodes in _different_ arrays.
-* **Keys must not change** or that defeats their purpose! Don't generate them while rendering.
+* **在同一群體內 key 值必須是唯一的，** 不過，在 JSX nodes 裡不同的列表，是沒有關係的。
+* **key 不能改變，** 否則就失去使用 `key` 的意義，所以不要在 rendering 時動態生產 `key` 值
 
-### Why does React need keys? {/*why-does-react-need-keys*/}
+### 為什麼 React 需要 key? {/*why-does-react-need-keys*/}
 
-Imagine that files on your desktop didn't have names. Instead, you'd refer to them by their order -- the first file, the second file, and so on. You could get used to it, but once you delete a file, it would get confusing. The second file would become the first file, the third file would be the second file, and so on.
+想像一下你桌面上的文件都沒有名稱，你需要過文件的順序來區分它們，第一個文件，第二個文件，以此類推。也許你可以很快習慣這種方式，但如果你拿走其中一個文件，這種區分方式就會變得很混亂。原來的第二文件可能變成第一個文件，原來的第三個元件可能變成第一個文件...
 
-File names in a folder and JSX keys in an array serve a similar purpose. They let us uniquely identify an item between its siblings. A well-chosen key provides more information than the position within the array. Even if the _position_ changes due to reordering, the `key` lets React identify the item throughout its lifetime.
+文件夾裡的文件跟 React 需要 `key` 值的道理是相似的，這可以讓我們在群體中快速辨識出某一項，而合適的 `key` 能提供的資訊不只是項目在陣列中的位置。即使項目的位置在一些操作中被改變，`key` 也能幫助 React 在整個生命週期中一直認得它。
 
 <Pitfall>
 
-You might be tempted to use an item's index in the array as its key. In fact, that's what React will use if you don't specify a `key` at all. But the order in which you render items will change over time if an item is inserted, deleted, or if the array gets reordered. Index as a key often leads to subtle and confusing bugs.
+你可能會想用陣列中的索引值來當作 `key` 值，實際上，當你沒有指定 `key` 值時，React 的預設行為會這樣做。但如果操作陣列像是插入、刪除項目或重新排序等改變陣列，使用索引值作為 key 值往往會產生微妙且令人困惑的錯誤。
 
-Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
+類似的概念還有，不要在運行過程中隨機產生 `key`，例如像是 `key={Math.random()}`。這會導致每一次 component 重新 render 時的 `key` 都不一樣。不但會造成運行變慢的問題，也可能造成使用者輸入的資料不符預期，所以才我們需要提供一個穩定的值。
 
-Note that your components won't receive `key` as a prop. It's only used as a hint by React itself. If your component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
+請注意 component 不會將 `key` 當成 props 的一部分。`key` 的存在只用於提示 React 本身。如果你的 component 需要一個 ID，那麼請另外傳送 prop 給 component: `<Profile key={id} userId={id} />`。
 
 </Pitfall>
 
 <Recap>
 
-On this page you learned:
+在這篇文章中，你學會了:
 
-* How to move data out of components and into data structures like arrays and objects.
-* How to generate sets of similar components with JavaScript's `map()`.
-* How to create arrays of filtered items with JavaScript's `filter()`.
-* Why and how to set `key` on each component in a collection so React can keep track of each of them even if their position or data changes.
+* 如何從 component 抽出資料，並把它們放入像是陣列或是物件結構中。
+* 如何使用 JavaScript 的 `map` 方法來產生一組相似的 component。
+* 如何使用 JavaScript 的 `filter` 方法來篩選陣列。
+* 為什麼以及如何給 component 中的每個群體 `key` 值，使 React 能在資料位置被改變或是發生變化時，能持續追蹤這些 component。
 
 </Recap>
 
@@ -440,11 +433,11 @@ On this page you learned:
 
 <Challenges>
 
-#### Splitting a list in two {/*splitting-a-list-in-two*/}
+#### 將列表一分為二 {/*splitting-a-list-in-two*/}
 
-This example shows a list of all people.
+下面有一個人員的列表的範例
 
-Change it to show two separate lists one after another: **Chemists** and **Everyone Else.** Like previously, you can determine whether a person is a chemist by checking if `person.profession === 'chemist'`.
+請試著將列表分為前後兩個列表: 分別是 **化學家** 與 **其他科學家**。像剛剛學會的一樣，你可以透過 `person.profession === '化學家'` 這項條件來判斷一個人不是化學家。
 
 <Sandpack>
 
@@ -462,13 +455,13 @@ export default function List() {
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
-        known for {person.accomplishment}
+        因{person.accomplishment}而聞名世界
       </p>
     </li>
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>科學家</h1>
       <ul>{listItems}</ul>
     </article>
   );
@@ -478,33 +471,33 @@ export default function List() {
 ```js data.js
 export const people = [{
   id: 0,
-  name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  name: '凱瑟琳·約翰遜',
+  profession: '數學家',
+  accomplishment: '計算太空飛行的相關數值',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  name: '馬里奧·莫利納',
+  profession: '化學家',
+  accomplishment: '發現北極臭氧空洞',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  name: '穆罕默德·阿卜杜勒·薩拉姆',
+  profession: '物理學家',
+  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  name: '珀西·萊溫·朱利亞',
+  profession: '化學家',
+  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  name: '蘇布拉馬尼揚·錢德拉塞卡',
+  profession: '天體物理學家',
+  accomplishment: '計算白矮星質量',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -535,7 +528,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Solution>
 
-You could use `filter()` twice, creating two separate arrays, and then `map` over both of them:
+你可以使用 `filter()` 來取得兩個獨立的陣列，然後使用 `map` 方法遍歷它們來得到結果。
 
 <Sandpack>
 
@@ -545,15 +538,15 @@ import { getImageUrl } from './utils.js';
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === 'chemist'
+    person.profession === '化學家'
   );
   const everyoneElse = people.filter(person =>
-    person.profession !== 'chemist'
+    person.profession !== '化學家'
   );
   return (
     <article>
-      <h1>Scientists</h1>
-      <h2>Chemists</h2>
+      <h1>科學家列表</h1>
+      <h2>化學家</h2>
       <ul>
         {chemists.map(person =>
           <li key={person.id}>
@@ -564,12 +557,12 @@ export default function List() {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              因{person.accomplishment}而聞名世界
             </p>
           </li>
         )}
       </ul>
-      <h2>Everyone Else</h2>
+      <h2>其他科學家</h2>
       <ul>
         {everyoneElse.map(person =>
           <li key={person.id}>
@@ -580,7 +573,7 @@ export default function List() {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              因{person.accomplishment}而聞名世界
             </p>
           </li>
         )}
@@ -593,33 +586,33 @@ export default function List() {
 ```js data.js
 export const people = [{
   id: 0,
-  name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  name: '凱瑟琳·約翰遜',
+  profession: '數學家',
+  accomplishment: '計算太空飛行的相關數值',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  name: '馬里奧·莫利納',
+  profession: '化學家',
+  accomplishment: '發現北極臭氧空洞',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  name: '穆罕默德·阿卜杜勒·薩拉姆',
+  profession: '物理學家',
+  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  name: '珀西·萊溫·朱利亞',
+  profession: '化學家',
+  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  name: '蘇布拉馬尼揚·錢德拉塞卡',
+  profession: '天體物理學家',
+  accomplishment: '計算白矮星質量',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -648,9 +641,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-In this solution, the `map` calls are placed directly inline into the parent `<ul>` elements, but you could introduce variables for them if you find that more readable.
+這個方案中，我們直接在父層 `ul` element 中執行 `map` 方法。但如果你想增加程式碼的可讀性，你也可以使用變數保存 `map` 之後的結果。
 
-There is still a bit duplication between the rendered lists. You can go further and extract the repetitive parts into a `<ListSection>` component:
+現在取得的列表中仍然存在一些重複的程式碼，我們可以將重複的部分抽成一個 `<ListSection>` component:
 
 <Sandpack>
 
@@ -672,7 +665,7 @@ function ListSection({ title, people }) {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              因{person.accomplishment}而聞名世界
             </p>
           </li>
         )}
@@ -683,20 +676,20 @@ function ListSection({ title, people }) {
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === 'chemist'
+    person.profession === '化學家'
   );
   const everyoneElse = people.filter(person =>
-    person.profession !== 'chemist'
+    person.profession !== '化學家'
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>科學家列表</h1>
       <ListSection
-        title="Chemists"
+        title="化學家"
         people={chemists}
       />
       <ListSection
-        title="Everyone Else"
+        title="其他科學家"
         people={everyoneElse}
       />
     </article>
@@ -707,33 +700,33 @@ export default function List() {
 ```js data.js
 export const people = [{
   id: 0,
-  name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  name: '凱瑟琳·約翰遜',
+  profession: '數學家',
+  accomplishment: '計算太空飛行的相關數值',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  name: '馬里奧·莫利納',
+  profession: '化學家',
+  accomplishment: '發現北極臭氧空洞',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  name: '穆罕默德·阿卜杜勒·薩拉姆',
+  profession: '物理學家',
+  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  name: '珀西·萊溫·朱利亞',
+  profession: '化學家',
+  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  name: '蘇布拉馬尼揚·錢德拉塞卡',
+  profession: '天體物理學家',
+  accomplishment: '計算白矮星質量',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -762,9 +755,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-A very attentive reader might notice that with two `filter` calls, we check each person's profession twice. Checking a property is very fast, so in this example it's fine. If your logic was more expensive than that, you could replace the `filter` calls with a loop that manually constructs the arrays and checks each person once.
+細心的讀者可能會注意到我們使用了兩個 `filter` 透過職業對每個人進行了兩次篩選。檢查一個屬性並不會花太多時間，因此在這個範例是沒什麼問題。但如果你的程式碼邏輯比這裡複雜且花費更多效能，那你可以使用迴圈進行一次檢查來代替兩次的 `filter` 做的事情。
 
-In fact, if `people` never change, you could move this code out of your component. From React's perspective, all that matters is that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
+實際上，如果 `people` 的資料不會改變，你可以直接把這段程式碼移到 component 外面。從 React 的角度來看，它只關心你最後給他的是不是包含 JSX nodes 的陣列，並不會在乎陣列是怎麼來的:
 
 <Sandpack>
 
@@ -775,7 +768,7 @@ import { getImageUrl } from './utils.js';
 let chemists = [];
 let everyoneElse = [];
 people.forEach(person => {
-  if (person.profession === 'chemist') {
+  if (person.profession === '化學家') {
     chemists.push(person);
   } else {
     everyoneElse.push(person);
@@ -796,7 +789,7 @@ function ListSection({ title, people }) {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              因{person.accomplishment}而聞名世界
             </p>
           </li>
         )}
@@ -808,13 +801,13 @@ function ListSection({ title, people }) {
 export default function List() {
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>科學家列表</h1>
       <ListSection
-        title="Chemists"
+        title="化學家"
         people={chemists}
       />
       <ListSection
-        title="Everyone Else"
+        title="其他科學家"
         people={everyoneElse}
       />
     </article>
@@ -825,33 +818,33 @@ export default function List() {
 ```js data.js
 export const people = [{
   id: 0,
-  name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  name: '凱瑟琳·約翰遜',
+  profession: '數學家',
+  accomplishment: '計算太空飛行的相關數值',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  name: '馬里奧·莫利納',
+  profession: '化學家',
+  accomplishment: '發現北極臭氧空洞',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  name: '穆罕默德·阿卜杜勒·薩拉姆',
+  profession: '物理學家',
+  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  name: '珀西·萊溫·朱利亞',
+  profession: '化學家',
+  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  name: '蘇布拉馬尼揚·錢德拉塞卡',
+  profession: '天體物理學家',
+  accomplishment: '計算白矮星質量',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -884,11 +877,11 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 #### Nested lists in one component {/*nested-lists-in-one-component*/}
 
-Make a list of recipes from this array! For each recipe in the array, display its name as an `<h2>` and list its ingredients in a `<ul>`.
+請根據你的陣列產生食譜列表! 在食譜列表中，請使用 `<h2>` 顯示菜色的名稱，並使用 `<ul>` 列出它所需的原料。
 
 <Hint>
 
-This will require nesting two different `map` calls.
+這裡會需要使用兩層巢狀的`map`。
 
 </Hint>
 
@@ -900,7 +893,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>食譜</h1>
     </div>
   );
 }
@@ -909,16 +902,16 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: '希臘沙拉',
+  ingredients:  ['番茄', '黃瓜', '洋蔥', '橄欖', '菲達乳酪']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: '夏威夷披薩',
+  ingredients:  ['比薩餅皮', '比薩醬', '莫扎瑞拉乳酪', '火腿', '鳳梨']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: '鷹嘴豆泥',
+  ingredients: ['鷹嘴豆', '橄欖油', '大蒜瓣', '檸檬', '芝麻醬']
 }];
 ```
 
@@ -926,7 +919,7 @@ export const recipes = [{
 
 <Solution>
 
-Here is one way you could go about it:
+這是一種可能的解法:
 
 <Sandpack>
 
@@ -936,7 +929,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>食譜</h1>
       {recipes.map(recipe =>
         <div key={recipe.id}>
           <h2>{recipe.name}</h2>
@@ -957,28 +950,28 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: '希臘沙拉',
+  ingredients:  ['番茄', '黃瓜', '洋蔥', '橄欖', '菲達乳酪']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: '夏威夷披薩',
+  ingredients:  ['比薩餅皮', '比薩醬', '莫扎瑞拉乳酪', '火腿', '鳳梨']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: '鷹嘴豆泥',
+  ingredients: ['鷹嘴豆', '橄欖油', '大蒜瓣', '檸檬', '芝麻醬']
 }];
 ```
 
 </Sandpack>
 
-Each of the `recipes` already includes an `id` field, so that's what the outer loop uses for its `key`. There is no ID you could use to loop over ingredients. However, it's reasonable to assume that the same ingredient won't be listed twice within the same recipe, so its name can serve as a `key`. Alternatively, you could change the data structure to add IDs, or use index as a `key` (with the caveat that you can't safely reorder ingredients).
+`recipes`陣列中每一個項目都擁有一個 `id`，所以外層的循環可以直接拿到並且作為 `key`。不過在循環原料的時候，就沒有現成的 `id` 可以使用了。但我們合理推測一下，一份食譜裡不會有重複的原料，所以原料的名字就適合作為 `key`。此外，你也可以在原本的資料上加上新的 `id`，或是使用索引值來當作 `key` （還是需要注意使用索引值，會讓你無法正常的對原料進行排序）。
 
 </Solution>
 
-#### Extracting a list item component {/*extracting-a-list-item-component*/}
+#### 把列表提取成一個 component {/*extracting-a-list-item-component*/}
 
-This `RecipeList` component contains two nested `map` calls. To simplify it, extract a `Recipe` component from it which will accept `id`, `name`, and `ingredients` props. Where do you place the outer `key` and why?
+`RecipeList` component 的程式碼有兩層巢狀的 `map`。為了讓程式碼簡化，我們會抽出一個 `Recipe` component 並接受 `id`、`name` 和 `ingredients` 作為 props，在這種情況下，你會把外層的 `key` 放在哪裡? 原因是什麼?
 
 <Sandpack>
 
@@ -988,7 +981,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>食譜</h1>
       {recipes.map(recipe =>
         <div key={recipe.id}>
           <h2>{recipe.name}</h2>
@@ -1009,16 +1002,16 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: '希臘沙拉',
+  ingredients:  ['番茄', '黃瓜', '洋蔥', '橄欖', '菲達乳酪']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: '夏威夷披薩',
+  ingredients:  ['比薩餅皮', '比薩醬', '莫扎瑞拉乳酪', '火腿', '鳳梨']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: '鷹嘴豆泥',
+  ingredients: ['鷹嘴豆', '橄欖油', '大蒜瓣', '檸檬', '芝麻醬']
 }];
 ```
 
@@ -1026,7 +1019,7 @@ export const recipes = [{
 
 <Solution>
 
-You can copy-paste the JSX from the outer `map` into a new `Recipe` component and return that JSX. Then you can change `recipe.name` to `name`, `recipe.id` to `id`, and so on, and pass them as props to the `Recipe`:
+你可以將外層 `map` 中的 JSX 複製並貼到一個新的 `Recipe` component 中，並將其作為該 component 的回傳值。然後，將原先的 `recipe.name` 更改為 `name`，`recipe.id` 更改為 `id`，依此類推，最後將它們作為 `props` 傳遞給 `Recipe` component。
 
 <Sandpack>
 
@@ -1051,10 +1044,10 @@ function Recipe({ id, name, ingredients }) {
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>食譜</h1>
       {recipes.map(recipe =>
         <Recipe {...recipe} key={recipe.id} />
-      )}
+      )}｀
     </div>
   );
 }
@@ -1063,30 +1056,30 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: '希臘沙拉',
+  ingredients:  ['番茄', '黃瓜', '洋蔥', '橄欖', '菲達乳酪']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: '夏威夷披薩',
+  ingredients:  ['比薩餅皮', '比薩醬', '莫扎瑞拉乳酪', '火腿', '鳳梨']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: '鷹嘴豆泥',
+  ingredients: ['鷹嘴豆', '橄欖油', '大蒜瓣', '檸檬', '芝麻醬']
 }];
 ```
 
 </Sandpack>
 
-Here, `<Recipe {...recipe} key={recipe.id} />` is a syntax shortcut saying "pass all properties of the `recipe` object as props to the `Recipe` component". You could also write each prop explicitly: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
+這裡使用 `<Recipe {...recipe} key={recipe.id} />` 是一種簡寫方式，它表示將 `recipe` 物件中的每個屬性都作為 props 傳遞給 `Recipe` component。這種簡寫方式與直接明確列出每個 prop 是一樣的，例如 `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`。
 
-**Note that the `key` is specified on the `<Recipe>` itself rather than on the root `<div>` returned from `Recipe`.** This is because this `key` is needed directly within the context of the surrounding array. Previously, you had an array of `<div>`s so each of them needed a `key`, but now you have an array of `<Recipe>`s. In other words, when you extract a component, don't forget to leave the `key` outside the JSX you copy and paste.
+**注意這裡的 `key` 是在 `<Recipe>` component 本身上的，而不是在 `Recipe` 內回傳的 `<div>` 上。** 這是因為這個 `key` 只有在陣列上下文中使用才有意義。之前的寫法中，你有一個 `<div>` 的陣列，所以每個 `<div>` 都需要一個 `key`，但現在你有了一個 `<Recipe>` 的陣列。換句話說，當你提取一個 component 時，不要忘記將 `key` 放在你複製和貼上的 JSX 外層 component 上。
 
 </Solution>
 
-#### List with a separator {/*list-with-a-separator*/}
+#### 帶有分隔線的列表 {/*list-with-a-separator*/}
 
-This example renders a famous haiku by Katsushika Hokusai, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
+這個範例展示了葛飾北斎一首著名的俳句，它的每一行都由 `<p>` 標籤包覆。你需要在段落之間插入分隔線，結果大概會像這個樣子: 
 
 ```js
 <article>
@@ -1098,7 +1091,7 @@ This example renders a famous haiku by Katsushika Hokusai, with each line wrappe
 </article>
 ```
 
-A haiku only contains three lines, but your solution should work with any number of lines. Note that `<hr />` elements only appear *between* the `<p>` elements, not in the beginning or the end!
+一句俳句通常只有三行，但是你的解答應當適用於任何行數。注意 `<hr />` elements 只會存在於 `<p>` *之間*，而不會出現在開頭或是結尾！
 
 <Sandpack>
 
@@ -1141,17 +1134,17 @@ hr {
 
 </Sandpack>
 
-(This is a rare case where index as a key is acceptable because a poem's lines will never reorder.)
+(這是一個比較少見可以把索引值當作 `key` 的範例，因爲詩句之間的順序是固定的。)
 
 <Hint>
 
-You'll either need to convert `map` to a manual loop, or use a fragment.
+你可以嘗試把原本的 `map` 改成手動循環， 或著嘗試使用 fragment 語法。
 
 </Hint>
 
 <Solution>
 
-You can write a manual loop, inserting `<hr />` and `<p>...</p>` into the output array as you go:
+你可以寫一個迴圈把  `<hr />` 和 `<p>...</p>` 插入到輸出的陣列中: 
 
 <Sandpack>
 
@@ -1206,10 +1199,10 @@ hr {
 
 </Sandpack>
 
-Using the original line index as a `key` doesn't work anymore because each separator and paragraph are now in the same array. However, you can give each of them a distinct key using a suffix, e.g. `key={i + '-text'}`.
+原本使用詩句索引值作為 `key` 的方法已經行不通了，因爲現在陣列裡同時包含了分隔線和詩句。但是，你可以用添加後綴的方式給它們賦予獨一無二的 `key` 值，像是 `key={i + '-text'}` 這樣。
 
-Alternatively, you could render a collection of fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
 
+或著，你可以生產一個 fragment 包含  `<hr />` 和 `<p>...</p>`，但因為 fragment 簡寫  `<>...</>` 不支援設定 `key`，所以你需要寫成 `<Fragment>` 形式。
 <Sandpack>
 
 ```js
@@ -1254,7 +1247,7 @@ hr {
 
 </Sandpack>
 
-Remember, fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
+記住，使用 fragment 語法 (通常寫作 `<> </>`) 來包覆 JSX nodes 可避免引入額外的 `div`。
 
 </Solution>
 
