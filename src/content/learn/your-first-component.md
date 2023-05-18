@@ -1,24 +1,24 @@
 ---
-title: Your First Component
+title: 你的第一個 Component
 ---
 
 <Intro>
 
-*Components* are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
+*Component* 是 React 的核心概念之一，它們是建構使用者介面 (UI) 的基礎，是你踏上 React 旅程的完美開端！
 
 </Intro>
 
 <YouWillLearn>
 
-* What a component is
-* What role components play in a React application
-* How to write your first React component
+* 什麼是 component
+* Component 在 React 中扮演了什麼角色
+* 如何編寫你的第一個 React component
 
 </YouWillLearn>
 
-## Components: UI building blocks {/*components-ui-building-blocks*/}
+## Component：UI 的建構塊 {/*components-ui-building-blocks*/}
 
-On the Web, HTML lets us create rich structured documents with its built-in set of tags like `<h1>` and `<li>`:
+在網頁中，HTML 允許我們透過使用內建標籤來創建富有結構的文件，像是 `<h1>` 與 `<li>`：
 
 ```html
 <article>
@@ -31,11 +31,11 @@ On the Web, HTML lets us create rich structured documents with its built-in set 
 </article>
 ```
 
-This markup represents this article `<article>`, its heading `<h1>`, and an (abbreviated) table of contents as an ordered list `<ol>`. Markup like this, combined with CSS for style, and JavaScript for interactivity, lies behind every sidebar, avatar, modal, dropdown—every piece of UI you see on the Web.
+此 markup 以 `<article>` 來表示文章，以 `<h1>` 來表示它的標題， 並且使用 `<ol>` 來表示有序的（縮寫）列表內容，這些 markup 結合了 CSS 樣式，以及使用 JavaScript 展現互動性，每一個側邊欄、頭像、互動視窗的背後都是這麼運作的－你在網頁上所看到的每一個 UI 模組。
 
-React lets you combine your markup, CSS, and JavaScript into custom "components", **reusable UI elements for your app.** The table of contents code you saw above could be turned into a `<TableOfContents />` component you could render on every page. Under the hood, it still uses the same HTML tags like `<article>`, `<h1>`, etc.
+React 允許你將 markup、CSS 以及 JavaScript 結合為自定義「component」, **即應用程式中可複用的 UI 元素**。上文中的程式碼可以改寫為一個能夠 render 在各個頁面上的 `<TableOfContents />` component，實際上，使用的依舊是 `<article>`、`<h1>` 等相同的標籤。
 
-Just like with HTML tags, you can compose, order and nest components to design whole pages. For example, the documentation page you're reading is made out of React components:
+就像是 HTML 標籤一樣，你可以編寫、排序以及使用巢狀結構來設計整個頁面。例如，你正在看閱讀的文件頁面就是由 React component 所組成：
 
 ```js
 <PageLayout>
@@ -51,11 +51,11 @@ Just like with HTML tags, you can compose, order and nest components to design w
 </PageLayout>
 ```
 
-As your project grows, you will notice that many of your designs can be composed by reusing components you already wrote, speeding up your development. Our table of contents above could be added to any screen with `<TableOfContents />`! You can even jumpstart your project with the thousands of components shared by the React open source community like [Chakra UI](https://chakra-ui.com/) and [Material UI.](https://material-ui.com/)
+隨著專案的成長，你會發現有許多設計可以透過複用已經完成的 component 來實現，進而加速你的開發時程。上文所提到的列表內容，可以透過 `<TableOfContents />` component 添加到任意頁面中！你甚至可以使用 React 開源社群（例如 [Chakra UI](https://chakra-ui.com/) 與 [Material UI](https://material-ui.com/)）所分享的大量 component 來快速啟動開發。
 
-## Defining a component {/*defining-a-component*/}
+## 定義 component {/*defining-a-component*/}
 
-Traditionally when creating web pages, web developers marked up their content and then added interaction by sprinkling on some JavaScript. This worked great when interaction was a nice-to-have on the web. Now it is expected for many sites and all apps. React puts interactivity first while still using the same technology: **a React component is a JavaScript function that you can _sprinkle with markup_.** Here's what that looks like (you can edit the example below):
+傳統網頁開發時，網頁開發者會使用標記式語言來描述內容，然後透過 JavaScript 來實現互動，這種方式展現了良好的網頁互動。現今許多的網頁與應用程式都需具有互動性。React 將互動性視為重要指標，並且使用了相同的技術：**React component 是一個可以使用 markup 進行擴展的 JavaScript 函式**，如下所示（你可以編輯下方的範例）：
 
 <Sandpack>
 
@@ -76,33 +76,33 @@ img { height: 200px; }
 
 </Sandpack>
 
-And here's how to build a component:
+以下為建構 component 的方法：
 
-### Step 1: Export the component {/*step-1-export-the-component*/}
+### 第一步： Export component {/*step-1-export-the-component*/}
 
-The `export default` prefix is a [standard JavaScript syntax](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (not specific to React). It lets you mark the main function in a file so that you can later import it from other files. (More on importing in [Importing and Exporting Components](/learn/importing-and-exporting-components)!)
+`export default` 前綴是一種 [JavaScript 標準語法](https://developer.mozilla.org/zh-TW/docs/web/javascript/reference/statements/export) （並非 React 特性）。它允許你標記檔案中的主要函式，以便你之後可以在其他檔案 import 它。（更多 import 內容請參閱 [Importing 及 Exporting Component](/learn/importing-and-exporting-components) ！）
 
-### Step 2: Define the function {/*step-2-define-the-function*/}
+### 第二步：定義函式 {/*step-2-define-the-function*/}
 
-With `function Profile() { }` you define a JavaScript function with the name `Profile`.
+透過 `function Profile() { }` 定義名為 `Profile` 的 JavaScript 函式。
 
 <Pitfall>
 
-React components are regular JavaScript functions, but **their names must start with a capital letter** or they won't work!
+React component 為常規的 JavaScript 函式，但**它們的名稱必須以大寫字母為開頭**，否則將無法運行！
 
 </Pitfall>
 
-### Step 3: Add markup {/*step-3-add-markup*/}
+### 第三步：添加 markup {/*step-3-add-markup*/}
 
-The component returns an `<img />` tag with `src` and `alt` attributes. `<img />` is written like HTML, but it is actually JavaScript under the hood! This syntax is called [JSX](/learn/writing-markup-with-jsx), and it lets you embed markup inside JavaScript.
+Component 會回傳一個帶有 `src` 與 `alt` 屬性的 `<img />` 標籤。`<img />` 寫得像 HTML，但它實際上是 JavaScript！這種語法被稱為 [JSX](/learn/writing-markup-with-jsx)，它允許你在 JavaScript 中嵌入 markup。
 
-Return statements can be written all on one line, as in this component:
+回傳的內容可以全寫在同一行，如下方 component：
 
 ```js
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
-But if your markup isn't all on the same line as the `return` keyword, you must wrap it in a pair of parentheses:
+但是，如果你的 markup 與 `return` 關鍵字不在同一行，則必須使將它們包裹在一對括號中，如下所示：
 
 ```js
 return (
@@ -114,13 +114,13 @@ return (
 
 <Pitfall>
 
-Without parentheses, any code on the lines after `return` [will be ignored](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
+沒有使用括號包裹的話，任何在 `return` 下一行的程式碼都 [將被忽略](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)！
 
 </Pitfall>
 
-## Using a component {/*using-a-component*/}
+## 使用 component {/*using-a-component*/}
 
-Now that you've defined your `Profile` component, you can nest it inside other components. For example, you can export a `Gallery` component that uses multiple `Profile` components:
+現在，你已經定義了 `Profile` component，你可以將它們嵌套進其他的 component 中。舉例來說，你可以 export 一個包含多個 `Profile` component 的 `Gallery` component：
 
 <Sandpack>
 
@@ -152,14 +152,14 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-### What the browser sees {/*what-the-browser-sees*/}
+### 瀏覽器所看到的 {/*what-the-browser-sees*/}
 
-Notice the difference in casing:
+注意下方兩者的區別：
 
-* `<section>` is lowercase, so React knows we refer to an HTML tag.
-* `<Profile />` starts with a capital `P`, so React knows that we want to use our component called `Profile`.
+* `<section>` 是小寫的，所以 React 知道我們指的是 HTML 標籤。
+* `<Profile />` 的開頭為大寫字母 `P`，所以 React 知道我們想要使用的是名為 `Profile` 的 component。
 
-And `Profile` contains even more HTML: `<img />`. In the end, this is what the browser sees:
+`Profile` 包含了更多 HTML：`<img />`。瀏覽器最後看見的內容會是這樣：
 
 ```html
 <section>
@@ -170,15 +170,15 @@ And `Profile` contains even more HTML: `<img />`. In the end, this is what the b
 </section>
 ```
 
-### Nesting and organizing components {/*nesting-and-organizing-components*/}
+### 巢狀與組織 component {/*nesting-and-organizing-components*/}
 
-Components are regular JavaScript functions, so you can keep multiple components in the same file. This is convenient when components are relatively small or tightly related to each other. If this file gets crowded, you can always move `Profile` to a separate file. You will learn how to do this shortly on the [page about imports.](/learn/importing-and-exporting-components)
+Component 為常規的 JavaScript 函式，所以你可以將多個 component 放在同一個檔案中。這在 component 相對較小或是彼此關係緊密時是非常方便的。如果檔案變得過於擁擠，你可以隨時將 `Profile` 移至不同的檔案。你可以立即在 [import 相關章節](/learn/importing-and-exporting-components) 學習如何做到這些。
 
-Because the `Profile` components are rendered inside `Gallery`—even several times!—we can say that `Gallery` is a **parent component,** rendering each `Profile` as a "child". This is part of the magic of React: you can define a component once, and then use it in as many places and as many times as you like.
+由於 `Profile` component 在 `Gallery` 中被 render－甚至數次！－我們可以將 `Gallery` 稱為 **parent component**，將每個 `Profile` 視為「child」render。這是 React 神奇所在之一，你可以透過定義 component 一次，然後根據需求在多個地方多次使用。
 
 <Pitfall>
 
-Components can render other components, but **you must never nest their definitions:**
+Component 可以 render 其他的 component，但是**請不要巢狀定義它們：**
 
 ```js {2-5}
 export default function Gallery() {
@@ -190,7 +190,7 @@ export default function Gallery() {
 }
 ```
 
-The snippet above is [very slow and causes bugs.](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state) Instead, define every component at the top level:
+上方這段程式碼[非常慢，並且將導致 bug 的發生](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state)。因此，你應該在頂層定義每個 component：
 
 ```js {5-8}
 export default function Gallery() {
@@ -203,34 +203,32 @@ function Profile() {
 }
 ```
 
-When a child component needs some data from a parent, [pass it by props](/learn/passing-props-to-a-component) instead of nesting definitions.
+當 child component 需要獲取 parent 的數據，你需要 [透過 props 傳遞](/learn/passing-props-to-a-component)，而不是巢狀定義。
 
 </Pitfall>
 
 <DeepDive>
 
-#### Components all the way down {/*components-all-the-way-down*/}
+#### 萬物皆是 component {/*components-all-the-way-down*/}
 
-Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or [Create React App](https://create-react-app.dev/), the root component is defined in `src/App.js`. If you use the framework [Next.js](https://nextjs.org/), the root component is defined in `pages/index.js`. In these examples, you've been exporting root components.
+大多數 React 應用程式只有 component。這意味著你不僅可以將 component 用於具有複用性的部分，例如按鈕，還可以用於更大規模的地方，像是側邊欄、列表以及完成最終的完整頁面！Component 是組織 UI 程式碼與 markup 的一種便捷方式，即便部分的 component 只使用了一次。
 
-Most React apps use components all the way down. This means that you won't only use components for reusable pieces like buttons, but also for larger pieces like sidebars, lists, and ultimately, complete pages! Components are a handy way to organize UI code and markup, even if some of them are only used once.
+像是 Next.js 這樣的框架會做更多事情，與使用空白 HTML 檔案並且讓 React 使用 JavaScript「接手」管理頁面不同，它們 _還會_ 根據你的 React component 自動生成 HTML。這使得你的應用程式可以在 JavaScript 載入之前就顯示部分內容。
 
-[React-based frameworks](/learn/start-a-new-react-project) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
-
-Still, many websites only use React to [add interactivity to existing HTML pages.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) They have many root components instead of a single one for the entire page. You can use as much—or as little—React as you need.
+儘管如此，許多網站僅使用 React 來[增添「互動性」](/learn/add-react-to-a-website)，它們有許多 root component，而不是整個頁面中的單個 component。你可以根據需求盡可能多或盡可能少地使用 React。
 
 </DeepDive>
 
 <Recap>
 
-You've just gotten your first taste of React! Let's recap some key points.
+你剛剛第一次體驗了 React！讓我們來回顧一些重點。
 
-* React lets you create components, **reusable UI elements for your app.**
-* In a React app, every piece of UI is a component.
-* React components are regular JavaScript functions except:
+* React 允許你創建 component，**應用程式中可複用的 UI 元素**。
+* 在 React 應用程式中，所有的 UI 模塊都是一個 component。
+* React component 是常規的 JavaScript 函式，除了：
 
-  1. Their names always begin with a capital letter.
-  2. They return JSX markup.
+  1. 它們的名字總是以大寫字母為開頭。
+  2. 它們回傳 JSX markup。
 
 </Recap>
 
@@ -238,9 +236,9 @@ You've just gotten your first taste of React! Let's recap some key points.
 
 <Challenges>
 
-#### Export the component {/*export-the-component*/}
+#### Export component {/*export-the-component*/}
 
-This sandbox doesn't work because the root component is not exported:
+由於 root component 沒有被 export，導致這個沙箱無法運作：
 
 <Sandpack>
 
@@ -261,11 +259,11 @@ img { height: 181px; }
 
 </Sandpack>
 
-Try to fix it yourself before looking at the solution!
+請試著在查閱解答前自行修復它！
 
 <Solution>
 
-Add `export default` before the function definition like so:
+在函式定義前加上 `export default`，如下所示：
 
 <Sandpack>
 
@@ -286,17 +284,17 @@ img { height: 181px; }
 
 </Sandpack>
 
-You might be wondering why writing `export` alone is not enough to fix this example. You can learn the difference between `export` and `export default` in [Importing and Exporting Components.](/learn/importing-and-exporting-components)
+你可能會想知道，為什麼單獨寫 `export` 時不足以修復這個問題。你可以在 [Importing 及 Exporting Component](/learn/importing-and-exporting-components) 中了解 `export` 與 `export default` 之間的區別。
 
 </Solution>
 
-#### Fix the return statement {/*fix-the-return-statement*/}
+#### 修復回傳內容 {/*fix-the-return-statement*/}
 
-Something isn't right about this `return` statement. Can you fix it?
+`return` 內容出了點問題，你能夠修復它嗎？
 
 <Hint>
 
-You may get an "Unexpected token" error while trying to fix this. In that case, check that the semicolon appears *after* the closing parenthesis. Leaving a semicolon inside `return ( )` will cause an error.
+當你嘗試修復它的時候，你可能會收到「Unexpected token」的報錯。在這個情形下，請確認分號是否位於右括號 _之後_。在 `return ( )` 內留下分號將會導致錯誤發生。
 
 </Hint>
 
@@ -318,7 +316,7 @@ img { height: 180px; }
 
 <Solution>
 
-You can fix this component by moving the return statement to one line like so:
+你可以透過將回傳的內容移至同一行來修復這個問題，如下：
 
 <Sandpack>
 
@@ -334,7 +332,7 @@ img { height: 180px; }
 
 </Sandpack>
 
-Or by wrapping the returned JSX markup in parentheses that open right after `return`:
+或者使用括號包裹回傳的 JSX markup，將左括號放在 `return` 的後面：
 
 <Sandpack>
 
@@ -357,9 +355,9 @@ img { height: 180px; }
 
 </Solution>
 
-#### Spot the mistake {/*spot-the-mistake*/}
+#### 發現錯誤 {/*spot-the-mistake*/}
 
-Something's wrong with how the `Profile` component is declared and used. Can you spot the mistake? (Try to remember how React distinguishes components from the regular HTML tags!)
+`Profile` component 的宣告及使用發生了問題，你能指出其中的錯誤嗎？（試著回憶 React 是如何判別 component 與常規的 HTML 標籤！）
 
 <Sandpack>
 
@@ -393,9 +391,9 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <Solution>
 
-React component names must start with a capital letter.
+React component 的命名必須以大寫字母為首。
 
-Change `function profile()` to `function Profile()`, and then change every `<profile />` to `<Profile />`:
+將 `function profile()` 改為 `function Profile()`，然後將所有的 `<profile />` 改為 `<Profile />`：
 
 <Sandpack>
 
@@ -429,9 +427,9 @@ img { margin: 0 10px 10px 0; }
 
 </Solution>
 
-#### Your own component {/*your-own-component*/}
+#### 自定義 component {/*your-own-component*/}
 
-Write a component from scratch. You can give it any valid name and return any markup. If you're out of ideas, you can write a `Congratulations` component that shows `<h1>Good job!</h1>`. Don't forget to export it!
+從頭編寫一個 component。 你可以給定它任何有效名稱，然後回傳任何 markup。如果你沒有想法，你可以編寫一個顯示 `<h1>Good job!</h1>` 的 `Congratulations` component。別忘了 export 它！
 
 <Sandpack>
 
