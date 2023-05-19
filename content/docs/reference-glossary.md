@@ -126,7 +126,7 @@ class Welcome extends React.Component {
 
 生命週期方法是用來在 component 不同階段來執行自訂功能。以下的事件都有生命週期方法：當 component 被建立和加入在 DOM 裏（[mounting](/docs/react-component.html#mounting)），當 component 更新，以及從 DOM 中 unmount 或移除時。
 
-## [Controlled](/docs/forms.html#controlled-components) 與 [Uncontrolled Components](/docs/uncontrolled-components.html)
+## [Controlled](/docs/forms.html#controlled-components) 與 [Uncontrolled Components](/docs/uncontrolled-components.html) {#controlled-與-uncontrolled-componentsdocsuncontrolled-componentshtml}
 
 React 有兩個不同的方案處理表格輸入。
 
