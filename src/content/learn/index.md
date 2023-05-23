@@ -125,7 +125,7 @@ return (
 );
 ```
 
-你也可以從 JSX attribute 「逃脫」 到 JavaScript，但你必須使用大括號*而不是*引號。例如，`className="avatar"` 將 `"avatar"` string 作為 CSS class 傳遞，但 `src={user.imageUrl}` 讀取 JavaScript `user.imageUrl` 變數值，將該值作為 `src` attrubute 傳遞：
+你也可以從 JSX attribute 「逃脫到 JavaScript」 ，但你必須使用大括號*而不是*引號。例如，`className="avatar"` 將 `"avatar"` string 作為 CSS class 傳遞，但 `src={user.imageUrl}` 讀取 JavaScript `user.imageUrl` 變數值，將該值作為 `src` attrubute 傳遞：
 
 ```js {3,4}
 return (
@@ -177,7 +177,7 @@ export default function Profile() {
 
 </Sandpack>
 
-在上述範例中，`style={{}}` 並非特殊語法，而是 JSX 大括弧 `{}` 內的一個普通 `{}` object。當你的樣式取決於 JavaScript 變數時，可以使用 `style` 屬性。
+在上述範例中，`style={{}}` 並非特殊語法，而是在 `style={ }` JSX 大括號中的一個普通的 `{}` object。當你的樣式取決於 JavaScript 變數時，可以使用 `style` 屬性。
 
 ## 條件式 rendering {/*conditional-rendering*/}
 
