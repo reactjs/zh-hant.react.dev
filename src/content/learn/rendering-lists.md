@@ -18,11 +18,11 @@ title: 列表 Rendering
 
 ```js
 <ul>
-  <li>凱瑟琳·約翰遜：數學家</li>
-  <li>馬里奧·莫利納：化學家</li>
-  <li>穆罕默德·阿卜杜勒·薩拉姆：物理學家</li>
-  <li>珀西·萊溫·朱利亞：化學家</li>
-  <li>蘇布拉馬尼揚·錢德拉塞卡：天體物理學家</li>
+  <li>Creola Katherine Johnson: mathematician</li>
+  <li>Mario José Molina-Pasquel Henríquez: chemist</li>
+  <li>Mohammad Abdus Salam: physicist</li>
+  <li>Percy Lavon Julian: chemist</li>
+  <li>Subrahmanyan Chandrasekhar: astrophysicist</li>
 </ul>
 ```
 
@@ -35,11 +35,11 @@ title: 列表 Rendering
 
 ```js
 const people = [
-  '凱瑟琳·約翰遜：數學家',
-  '馬里奧·莫利納：化學家',
-  '穆罕默德·阿卜杜勒·薩拉姆：物理學家',
-  '珀西·萊溫·朱利亞：化學家',
-  '蘇布拉馬尼揚·錢德拉塞卡：天體物理學家'
+  'Creola Katherine Johnson: mathematician',
+  'Mario José Molina-Pasquel Henríquez: chemist',
+  'Mohammad Abdus Salam: physicist',
+  'Percy Lavon Julian: chemist',
+  'Subrahmanyan Chandrasekhar: astrophysicist'
 ];
 ```
 2. **遍歷** `people` 中的每一個項目，轉換為新的 JSX nodes  array  `listItems`:
@@ -60,11 +60,11 @@ return <ul>{listItems}</ul>;
 
 ```js
 const people = [
-  '凱瑟琳·約翰遜：數學家',
-  '馬里奧·莫利納：化學家',
-  '穆罕默德·阿卜杜勒·薩拉姆：物理學家',
-  '珀西·萊溫·朱利亞：化學家',
-  '蘇布拉馬尼揚·錢德拉塞卡：天體物理學家'
+  'Creola Katherine Johnson: mathematician',
+  'Mario José Molina-Pasquel Henríquez: chemist',
+  'Mohammad Abdus Salam: physicist',
+  'Percy Lavon Julian: chemist',
+  'Subrahmanyan Chandrasekhar: astrophysicist'
 ];
 
 export default function List() {
@@ -97,20 +97,25 @@ Warning: Each child in a list should have a unique "key" prop.
 
 ```js
 const people = [{
-  name: '凱瑟琳·約翰遜',
-  profession: '數學家',
+  id: 0,
+  name: 'Creola Katherine Johnson',
+  profession: 'mathematician',
 }, {
-  name: '馬里奧·莫利納',
-  profession: '化學家',
+  id: 1,
+  name: 'Mario José Molina-Pasquel Henríquez',
+  profession: 'chemist',
 }, {
-  name: '穆罕默德·阿卜杜勒·薩拉姆',
-  profession: '物理學家',
+  id: 2,
+  name: 'Mohammad Abdus Salam',
+  profession: 'physicist',
 }, {
-  name: '珀西·萊溫·朱利亞',
-  profession: '化學家',  
+  id: 3,
+  name: 'Percy Lavon Julian',
+  profession: 'chemist',  
 }, {
-  name: '蘇布拉馬尼揚·錢德拉塞卡',
-  profession: '天體物理學家',
+  id: 4,
+  name: 'Subrahmanyan Chandrasekhar',
+  profession: 'astrophysicist',
 }];
 ```
 
@@ -122,7 +127,7 @@ const people = [{
 
 ```js
 const chemists = people.filter(person =>
-  person.profession === '化學家'
+  person.profession === 'chemist'
 );
 ```
 
@@ -138,7 +143,7 @@ const listItems = chemists.map(person =>
      <p>
        <b>{person.name}:</b>
        {' ' + person.profession + ' '}
-       因{person.accomplishment}而聞名世界
+       known for {person.accomplishment}
      </p>
   </li>
 );
@@ -158,7 +163,7 @@ import { getImageUrl } from './utils.js';
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === '化學家'
+    person.profession === 'chemist'
   );
   const listItems = chemists.map(person =>
     <li>
@@ -169,7 +174,7 @@ export default function List() {
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
-        因{person.accomplishment}而聞名世界
+        known for {person.accomplishment}
       </p>
     </li>
   );
@@ -180,33 +185,33 @@ export default function List() {
 ```js data.js
 export const people = [{
   id: 0,
-  name: '凱瑟琳·約翰遜',
-  profession: '數學家',
-  accomplishment: '計算太空飛行的相關數值',
+  name: 'Creola Katherine Johnson',
+  profession: 'mathematician',
+  accomplishment: 'spaceflight calculations',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: '馬里奧·莫利納',
-  profession: '化學家',
-  accomplishment: '發現北極臭氧空洞',
+  name: 'Mario José Molina-Pasquel Henríquez',
+  profession: 'chemist',
+  accomplishment: 'discovery of Arctic ozone hole',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: '穆罕默德·阿卜杜勒·薩拉姆',
-  profession: '物理學家',
-  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
+  name: 'Mohammad Abdus Salam',
+  profession: 'physicist',
+  accomplishment: 'electromagnetism theory',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: '珀西·萊溫·朱利亞',
-  profession: '化學家',
-  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
+  name: 'Percy Lavon Julian',
+  profession: 'chemist',
+  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: '蘇布拉馬尼揚·錢德拉塞卡',
-  profession: '天體物理學家',
-  accomplishment: '計算白矮星質量',
+  name: 'Subrahmanyan Chandrasekhar',
+  profession: 'astrophysicist',
+  accomplishment: 'white dwarf star mass calculations',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -299,7 +304,7 @@ export default function List() {
       <p>
         <b>{person.name}</b>
           {' ' + person.profession + ' '}
-          因{person.accomplishment}而聞名世界
+          known for {person.accomplishment}
       </p>
     </li>
   );
@@ -310,33 +315,33 @@ export default function List() {
 ```js data.js active
 export const people = [{
   id: 0, // Used in JSX as a key
-  name: '凱瑟琳·約翰遜',
-  profession: '數學家',
-  accomplishment: '計算太空飛行的相關數值',
+  name: 'Creola Katherine Johnson',
+  profession: 'mathematician',
+  accomplishment: 'spaceflight calculations',
   imageId: 'MK3eW3A'
 }, {
   id: 1, // Used in JSX as a key
-  name: '馬里奧·莫利納',
-  profession: '化學家',
-  accomplishment: '發現北極臭氧空洞',
+  name: 'Mario José Molina-Pasquel Henríquez',
+  profession: 'chemist',
+  accomplishment: 'discovery of Arctic ozone hole',
   imageId: 'mynHUSa'
 }, {
   id: 2, // Used in JSX as a key
-  name: '穆罕默德·阿卜杜勒·薩拉姆',
-  profession: '物理學家',
-  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
+  name: 'Mohammad Abdus Salam',
+  profession: 'physicist',
+  accomplishment: 'electromagnetism theory',
   imageId: 'bE7W1ji'
 }, {
   id: 3, // Used in JSX as a key
-  name: '珀西·萊溫·朱利亞',
-  profession: '化學家',
-  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
+  name: 'Percy Lavon Julian',
+  profession: 'chemist',
+  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
   imageId: 'IOjWm71'
 }, {
   id: 4, // Used in JSX as a key
-  name: '蘇布拉馬尼揚·錢德拉塞卡',
-  profession: '天體物理學家',
-  accomplishment: '計算白矮星質量',
+  name: 'Subrahmanyan Chandrasekhar',
+  profession: 'astrophysicist',
+  accomplishment: 'white dwarf star mass calculations',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -455,13 +460,13 @@ export default function List() {
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
-        因{person.accomplishment}而聞名世界
+        known for {person.accomplishment}
       </p>
     </li>
   );
   return (
     <article>
-      <h1>科學家</h1>
+      <h1>Scientists</h1>
       <ul>{listItems}</ul>
     </article>
   );
@@ -471,33 +476,33 @@ export default function List() {
 ```js data.js
 export const people = [{
   id: 0,
-  name: '凱瑟琳·約翰遜',
-  profession: '數學家',
-  accomplishment: '計算太空飛行的相關數值',
+  name: 'Creola Katherine Johnson',
+  profession: 'mathematician',
+  accomplishment: 'spaceflight calculations',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: '馬里奧·莫利納',
-  profession: '化學家',
-  accomplishment: '發現北極臭氧空洞',
+  name: 'Mario José Molina-Pasquel Henríquez',
+  profession: 'chemist',
+  accomplishment: 'discovery of Arctic ozone hole',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: '穆罕默德·阿卜杜勒·薩拉姆',
-  profession: '物理學家',
-  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
+  name: 'Mohammad Abdus Salam',
+  profession: 'physicist',
+  accomplishment: 'electromagnetism theory',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: '珀西·萊溫·朱利亞',
-  profession: '化學家',
-  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
+  name: 'Percy Lavon Julian',
+  profession: 'chemist',
+  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: '蘇布拉馬尼揚·錢德拉塞卡',
-  profession: '天體物理學家',
-  accomplishment: '計算白矮星質量',
+  name: 'Subrahmanyan Chandrasekhar',
+  profession: 'astrophysicist',
+  accomplishment: 'white dwarf star mass calculations',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -538,15 +543,15 @@ import { getImageUrl } from './utils.js';
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === '化學家'
+    person.profession === 'chemist'
   );
   const everyoneElse = people.filter(person =>
-    person.profession !== '化學家'
+    person.profession !== 'chemist'
   );
   return (
     <article>
-      <h1>科學家列表</h1>
-      <h2>化學家</h2>
+      <h1>Scientists</h1>
+      <h2>Chemists</h2>
       <ul>
         {chemists.map(person =>
           <li key={person.id}>
@@ -557,12 +562,12 @@ export default function List() {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              因{person.accomplishment}而聞名世界
+              known for {person.accomplishment}
             </p>
           </li>
         )}
       </ul>
-      <h2>其他科學家</h2>
+      <h2>Everyone Else</h2>
       <ul>
         {everyoneElse.map(person =>
           <li key={person.id}>
@@ -573,7 +578,7 @@ export default function List() {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              因{person.accomplishment}而聞名世界
+              known for {person.accomplishment}
             </p>
           </li>
         )}
@@ -586,33 +591,33 @@ export default function List() {
 ```js data.js
 export const people = [{
   id: 0,
-  name: '凱瑟琳·約翰遜',
-  profession: '數學家',
-  accomplishment: '計算太空飛行的相關數值',
+  name: 'Creola Katherine Johnson',
+  profession: 'mathematician',
+  accomplishment: 'spaceflight calculations',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: '馬里奧·莫利納',
-  profession: '化學家',
-  accomplishment: '發現北極臭氧空洞',
+  name: 'Mario José Molina-Pasquel Henríquez',
+  profession: 'chemist',
+  accomplishment: 'discovery of Arctic ozone hole',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: '穆罕默德·阿卜杜勒·薩拉姆',
-  profession: '物理學家',
-  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
+  name: 'Mohammad Abdus Salam',
+  profession: 'physicist',
+  accomplishment: 'electromagnetism theory',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: '珀西·萊溫·朱利亞',
-  profession: '化學家',
-  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
+  name: 'Percy Lavon Julian',
+  profession: 'chemist',
+  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: '蘇布拉馬尼揚·錢德拉塞卡',
-  profession: '天體物理學家',
-  accomplishment: '計算白矮星質量',
+  name: 'Subrahmanyan Chandrasekhar',
+  profession: 'astrophysicist',
+  accomplishment: 'white dwarf star mass calculations',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -665,7 +670,7 @@ function ListSection({ title, people }) {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              因{person.accomplishment}而聞名世界
+              known for {person.accomplishment}
             </p>
           </li>
         )}
@@ -676,20 +681,20 @@ function ListSection({ title, people }) {
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === '化學家'
+    person.profession === 'chemist'
   );
   const everyoneElse = people.filter(person =>
-    person.profession !== '化學家'
+    person.profession !== 'chemist'
   );
   return (
     <article>
-      <h1>科學家列表</h1>
+      <h1>Scientists</h1>
       <ListSection
-        title="化學家"
+        title="Chemists"
         people={chemists}
       />
       <ListSection
-        title="其他科學家"
+        title="Everyone Else"
         people={everyoneElse}
       />
     </article>
@@ -700,33 +705,33 @@ export default function List() {
 ```js data.js
 export const people = [{
   id: 0,
-  name: '凱瑟琳·約翰遜',
-  profession: '數學家',
-  accomplishment: '計算太空飛行的相關數值',
+  name: 'Creola Katherine Johnson',
+  profession: 'mathematician',
+  accomplishment: 'spaceflight calculations',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: '馬里奧·莫利納',
-  profession: '化學家',
-  accomplishment: '發現北極臭氧空洞',
+  name: 'Mario José Molina-Pasquel Henríquez',
+  profession: 'chemist',
+  accomplishment: 'discovery of Arctic ozone hole',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: '穆罕默德·阿卜杜勒·薩拉姆',
-  profession: '物理學家',
-  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
+  name: 'Mohammad Abdus Salam',
+  profession: 'physicist',
+  accomplishment: 'electromagnetism theory',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: '珀西·萊溫·朱利亞',
-  profession: '化學家',
-  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
+  name: 'Percy Lavon Julian',
+  profession: 'chemist',
+  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: '蘇布拉馬尼揚·錢德拉塞卡',
-  profession: '天體物理學家',
-  accomplishment: '計算白矮星質量',
+  name: 'Subrahmanyan Chandrasekhar',
+  profession: 'astrophysicist',
+  accomplishment: 'white dwarf star mass calculations',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -768,7 +773,7 @@ import { getImageUrl } from './utils.js';
 let chemists = [];
 let everyoneElse = [];
 people.forEach(person => {
-  if (person.profession === '化學家') {
+  if (person.profession === 'chemist') {
     chemists.push(person);
   } else {
     everyoneElse.push(person);
@@ -789,7 +794,7 @@ function ListSection({ title, people }) {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              因{person.accomplishment}而聞名世界
+              known for {person.accomplishment}
             </p>
           </li>
         )}
@@ -801,13 +806,13 @@ function ListSection({ title, people }) {
 export default function List() {
   return (
     <article>
-      <h1>科學家列表</h1>
+      <h1>Scientists</h1>
       <ListSection
-        title="化學家"
+        title="Chemists"
         people={chemists}
       />
       <ListSection
-        title="其他科學家"
+        title="Everyone Else"
         people={everyoneElse}
       />
     </article>
@@ -818,33 +823,33 @@ export default function List() {
 ```js data.js
 export const people = [{
   id: 0,
-  name: '凱瑟琳·約翰遜',
-  profession: '數學家',
-  accomplishment: '計算太空飛行的相關數值',
+  name: 'Creola Katherine Johnson',
+  profession: 'mathematician',
+  accomplishment: 'spaceflight calculations',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: '馬里奧·莫利納',
-  profession: '化學家',
-  accomplishment: '發現北極臭氧空洞',
+  name: 'Mario José Molina-Pasquel Henríquez',
+  profession: 'chemist',
+  accomplishment: 'discovery of Arctic ozone hole',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: '穆罕默德·阿卜杜勒·薩拉姆',
-  profession: '物理學家',
-  accomplishment: '基本粒子間弱相互作用和電磁相互作用的統一理論',
+  name: 'Mohammad Abdus Salam',
+  profession: 'physicist',
+  accomplishment: 'electromagnetism theory',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: '珀西·萊溫·朱利亞',
-  profession: '化學家',
-  accomplishment: '研究開創性的可的松藥物、類固醇和避孕藥',
+  name: 'Percy Lavon Julian',
+  profession: 'chemist',
+  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: '蘇布拉馬尼揚·錢德拉塞卡',
-  profession: '天體物理學家',
-  accomplishment: '計算白矮星質量',
+  name: 'Subrahmanyan Chandrasekhar',
+  profession: 'astrophysicist',
+  accomplishment: 'white dwarf star mass calculations',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -893,7 +898,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>食譜</h1>
+      <h1>Recipes</h1>
     </div>
   );
 }
@@ -902,16 +907,16 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: '希臘沙拉',
-  ingredients:  ['番茄', '黃瓜', '洋蔥', '橄欖', '菲達乳酪']
+  name: 'Greek Salad',
+  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: '夏威夷披薩',
-  ingredients:  ['比薩餅皮', '比薩醬', '莫扎瑞拉乳酪', '火腿', '鳳梨']
+  name: 'Hawaiian Pizza',
+  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
 }, {
   id: 'hummus',
-  name: '鷹嘴豆泥',
-  ingredients: ['鷹嘴豆', '橄欖油', '大蒜瓣', '檸檬', '芝麻醬']
+  name: 'Hummus',
+  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
 }];
 ```
 
@@ -929,7 +934,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>食譜</h1>
+      <h1>Recipes</h1>
       {recipes.map(recipe =>
         <div key={recipe.id}>
           <h2>{recipe.name}</h2>
@@ -950,16 +955,16 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: '希臘沙拉',
-  ingredients:  ['番茄', '黃瓜', '洋蔥', '橄欖', '菲達乳酪']
+  name: 'Greek Salad',
+  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: '夏威夷披薩',
-  ingredients:  ['比薩餅皮', '比薩醬', '莫扎瑞拉乳酪', '火腿', '鳳梨']
+  name: 'Hawaiian Pizza',
+  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
 }, {
   id: 'hummus',
-  name: '鷹嘴豆泥',
-  ingredients: ['鷹嘴豆', '橄欖油', '大蒜瓣', '檸檬', '芝麻醬']
+  name: 'Hummus',
+  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
 }];
 ```
 
@@ -981,7 +986,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>食譜</h1>
+      <h1>Recipes</h1>
       {recipes.map(recipe =>
         <div key={recipe.id}>
           <h2>{recipe.name}</h2>
@@ -1002,16 +1007,16 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: '希臘沙拉',
-  ingredients:  ['番茄', '黃瓜', '洋蔥', '橄欖', '菲達乳酪']
+  name: 'Greek Salad',
+  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: '夏威夷披薩',
-  ingredients:  ['比薩餅皮', '比薩醬', '莫扎瑞拉乳酪', '火腿', '鳳梨']
+  name: 'Hawaiian Pizza',
+  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
 }, {
   id: 'hummus',
-  name: '鷹嘴豆泥',
-  ingredients: ['鷹嘴豆', '橄欖油', '大蒜瓣', '檸檬', '芝麻醬']
+  name: 'Hummus',
+  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
 }];
 ```
 
@@ -1044,10 +1049,10 @@ function Recipe({ id, name, ingredients }) {
 export default function RecipeList() {
   return (
     <div>
-      <h1>食譜</h1>
+      <h1>Recipes</h1>
       {recipes.map(recipe =>
         <Recipe {...recipe} key={recipe.id} />
-      )}｀
+      )}
     </div>
   );
 }
@@ -1056,16 +1061,16 @@ export default function RecipeList() {
 ```js data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: '希臘沙拉',
-  ingredients:  ['番茄', '黃瓜', '洋蔥', '橄欖', '菲達乳酪']
+  name: 'Greek Salad',
+  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: '夏威夷披薩',
-  ingredients:  ['比薩餅皮', '比薩醬', '莫扎瑞拉乳酪', '火腿', '鳳梨']
+  name: 'Hawaiian Pizza',
+  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
 }, {
   id: 'hummus',
-  name: '鷹嘴豆泥',
-  ingredients: ['鷹嘴豆', '橄欖油', '大蒜瓣', '檸檬', '芝麻醬']
+  name: 'Hummus',
+  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
 }];
 ```
 
