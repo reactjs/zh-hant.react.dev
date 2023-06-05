@@ -9,6 +9,7 @@ title: 列表 Rendering
 </Intro>
 
 <YouWillLearn>
+
 * 如何使用 JavaScript 的 `map()` 方法處理 array 資料 render component
 * 如何使用 JavaScript 的 `filter()` 方法處理 array 資料 render 特定的 component
 * 什麼時候使用及為什麼使用 React 中的 key
@@ -16,7 +17,7 @@ title: 列表 Rendering
 </YouWillLearn>
 
 ## 從 array 中 render 資料 {/*rendering-data-from-arrays*/}
-這裡有一個列表
+假設你有一個內容列表。
 
 ```js
 <ul>
@@ -28,11 +29,10 @@ title: 列表 Rendering
 </ul>
 ```
 
-在這個列表唯一的差異就在於各個內容和資料。在建立介面時，你會經常需要使用不同的資料顯示相同的 component instance：從是評論列表或是個人資料圖片庫。在這些情境下，你可以把需要用到的資料存入 JavaScript 的 object 或 array，並使用 [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 和 [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 的方法來 render 一個 component 列表。
+在這個列表唯一的差異就在於各個內容和資料。當你建立介面時，常常需要使用不同資料顯示相同的 component，從評論列表到個人資料圖庫。在這些情況下，你可以將資料儲存在 JavaScript 的 object 和array 中，並使用 [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 和 [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 的方法來 render 一個 component 列表。
 
 
 這裡有個使用 array 產生一個列表項目的簡單範例：
-
 1. 將資料**移入**陣列：
 
 ```js
@@ -255,12 +255,12 @@ const listItems = chemists.map(person =>
 然而，**如果你的 `=>` 後面跟著 `{` 大括號，那你必須明確地撰寫 `return` 陳述式！**
 
 ```js
-const listItems = chemists.map(person => { // 大括號
+const listItems = chemists.map(person => { // Curly brace
   return <li>...</li>;
 });
 ```
 
-包含 `=> {` 的箭頭函式被稱為「區塊主體」。它們允許你撰寫超過一行的程式碼，但你*必須*自己撰寫 `return` 陳述式。如果你忘記了它，則不會回傳任何東西！
+包含 `=> {` 的箭頭函式被稱為「區塊主體函式」。它們讓你可以撰寫多行程式碼，但你*必須*自己撰寫 `return` 陳述式。如果你忘了寫，函式就不會回傳任何值！詳細說明可以參考[這裡](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body)。
 
 </Pitfall>
 
