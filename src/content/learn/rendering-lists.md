@@ -4,7 +4,7 @@ title: 列表 Rendering
 
 <Intro>
 
-你經常會需要用多個相似的 component 來顯示一系列的資料。這個時候你可以在 React 中使用 JavaScript 的 [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 和 [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 來過濾資料並轉換成包含多個 component 的 array 。 
+你經常會需要用多個相似的 component 來顯示一系列的資料。這個時候你可以在 React 中使用 JavaScript 的 [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 和 [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 來過濾資料並轉換成包含多個 component 的 array。
 
 </Intro>
 
@@ -32,8 +32,8 @@ title: 列表 Rendering
 
 在這個列表唯一的差異就在於各個內容和資料。當你建立介面時，常常需要使用不同資料顯示相同的 component，從評論列表到個人資料圖庫。在這些情況下，你可以將資料儲存在 JavaScript 的 object 和array 中，並使用 [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) 和 [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) 的方法來 render 一個 component 列表。
 
-
 這裡有個使用 array 產生一個列表項目的簡單範例：
+
 1. 將資料**移入**陣列：
 
 ```js
@@ -45,6 +45,7 @@ const people = [
   'Subrahmanyan Chandrasekhar: astrophysicist'
 ];
 ```
+
 2. 對 `people` 成員進行 **Map**，以建立新的 JSX 節點 array，`listItems`：
 
 ```js
@@ -112,11 +113,9 @@ const people = [{
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
 }, {
-  id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',  
+  profession: 'chemist',
 }, {
-  id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
 }];
@@ -126,7 +125,7 @@ const people = [{
 
 你只想要 `profession` 為 `'chemist'` 的項目。此「測試」函式看起來像 `(person) => person.profession === 'chemist'`。以下是如何將它們組合起來的方式：
 
-1. 透過在 `people` 上呼叫 `filter()` 以 `person.profession === 'chemist'` 為過濾條件，**建立**一個僅包含「化學家」的新 array `chemists`：
+1. 透過在 `people` 上呼叫 `filter()` 以 `person.profession === 'chemist'` 為過濾條件，**建立**一個僅包含「化學家」的新 `chemists` array：
 
 ```js
 const chemists = people.filter(person =>
@@ -134,7 +133,7 @@ const chemists = people.filter(person =>
 );
 ```
 
-2. 現在對 `﻿chemists` 進行 `map()`：
+2. 現在對 `chemists` 進行 `map()`：
 
 ```js {1,13}
 const listItems = chemists.map(person =>
@@ -152,7 +151,7 @@ const listItems = chemists.map(person =>
 );
 ```
 
-3. 最後，從你的 component 中**回傳** `listItems`： 
+3. 最後，從你的 component 中**回傳** `listItems`：
 
 ```js
 return <ul>{listItems}</ul>;
@@ -231,9 +230,9 @@ export function getImageUrl(person) {
 
 ```css
 ul { list-style-type: none; padding: 0px 10px; }
-li { 
-  margin-bottom: 10px; 
-  display: grid; 
+li {
+  margin-bottom: 10px;
+  display: grid;
   grid-template-columns: auto 1fr;
   gap: 20px;
   align-items: center;
@@ -249,7 +248,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 ```js
 const listItems = chemists.map(person =>
-  <li>...</li> // 隱式回傳!
+  <li>...</li> // Implicit return!
 );
 ```
 
@@ -361,9 +360,9 @@ export function getImageUrl(person) {
 
 ```css
 ul { list-style-type: none; padding: 0px 10px; }
-li { 
-  margin-bottom: 10px; 
-  display: grid; 
+li {
+  margin-bottom: 10px;
+  display: grid;
   grid-template-columns: auto 1fr;
   gap: 20px;
   align-items: center;
@@ -377,7 +376,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 #### 為每個列表顯示多個 DOM nodes {/*displaying-several-dom-nodes-for-each-list-item*/}
 
-如果你想讓每個列表項目都 render 多個 DOM nodes 而不是一個的話，你該怎麼做?
+如果你想讓每個列表項目都 render 多個 DOM nodes 而不是一個的話，你該怎麼做？
 
 [`<>...</>` Fragment](/reference/react/Fragment) 簡短的語法沒有辦法賦予 key 值，所以你只能使用 `<div>` 將內容包起來，或是使用長一點且更明確的 [`<Fragment>`](/reference/react/Fragment#rendering-a-list-of-fragments) 語法
 
@@ -403,18 +402,19 @@ Fragments 不會顯示在 DOM 上，所以這串程式碼換轉換成 `<h1>`、`
 不同的資料來源提供不同的 keys：
 
 * **來自資料庫的資料：**如果你的資料是來自於資料庫，你可以使用資料庫的 keys/IDs ，它們本身就具有唯一性。
-* **本機產生的資料：**如果你資料的產生和儲存都在本機 (例如筆記軟體的筆記)，那麼你可使用計數器、 [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) 或是像 [`uuid`](https://www.npmjs.com/package/uuid) 的套件來產生這些 key 值。
+* **本機產生的資料：**如果你資料的產生和儲存都在本機 (例如筆記軟體的筆記)，那麼你可使用計數器、[`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) 或是像 [`uuid`](https://www.npmjs.com/package/uuid) 的套件來產生這些 key 值。
 
 ### Key 的規則 {/*rules-of-keys*/}
 
 * **Siblings 之間的 key 必須是唯一的。** 然而，在_不同_的 array 中使用相同的 key，對於 JSX node 是可以的。
-* **Key 不能改變** 否則就失去使用它的意義！所以不要在 rendering 時動態產生它們。
+* **Key 不能改變**否則就失去使用它的意義！所以不要在 rendering 時動態產生它們。
 
-### 為什麼 React 需要 key? {/*why-does-react-need-keys*/}
+### 為什麼 React 需要 key？ {/*why-does-react-need-keys*/}
 
 想像你的桌面上沒有檔案名稱。相反的，而是按順序來區分它們 -- 第一個檔案、第二個檔案等等。你可能會慢慢習慣，但一旦刪除了檔案，就會變得很混亂。第二個檔案就會變成第一個檔案，第三個檔案就會變成第二個檔案，以此類推。
 
 在資料夾中的檔案名稱和 array 中的 JSX key 有類似的功能。它們讓我們可以在 siblings 之間識別一個項目。一個選擇得當的 key 提供的訊息比array 中的索引來得更好。即使_位置_由於重新排序而改變，`key` 也可以讓 React 在其生命週期中識別該項目。
+
 <Pitfall>
 
 你可能會想用 array 中的索引值來當作 `key` 值，實際上，當你沒有指定 `key` 值時，React 會使用它。但是，如果插入、刪除項目或重新排序 array，你 render 項目的順序將會改變。索引作為 key 往往會導致微妙且令人困惑的錯誤。
@@ -888,7 +888,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Hint>
 
-這裡會需要使用兩層巢狀的`map` 呼叫。
+這裡會需要使用兩層巢狀的 `map` 呼叫。
 
 </Hint>
 
@@ -1086,7 +1086,7 @@ export const recipes = [{
 
 #### 帶有分隔線的列表 {/*list-with-a-separator*/}
 
-這個範例展示了葛飾北斎一首著名的俳句，它的每一行都由 `<p>` 標籤包覆。你需要在段落之間插入分隔線，結果大概會像這個樣子： 
+這個範例展示了葛飾北斎一首著名的俳句，它的每一行都由 `<p>` 標籤包覆。你需要在段落之間插入分隔線，結果大概會像這個樣子：
 
 ```js
 <article>
@@ -1208,8 +1208,8 @@ hr {
 
 原本使用詩句索引值作為 `key` 的方法已經行不通了，因爲現在 array 裡同時包含了分隔線和詩句。但是，你可以用加入後綴的方式給它們賦予獨一無二的 `key` 值，像是 `key={i + '-text'}` 這樣。
 
-
 或著，你可以生產一個 fragment 包含 `<hr />` 和 `<p>...</p>`，但因為 fragment 簡寫 `<>...</>` 不支援設定 `key`，所以你需要寫成 `<Fragment>` 形式。
+
 <Sandpack>
 
 ```js
