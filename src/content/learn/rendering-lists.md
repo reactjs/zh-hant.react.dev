@@ -17,6 +17,7 @@ title: 列表 Rendering
 </YouWillLearn>
 
 ## 從 array 中 render 資料 {/*rendering-data-from-arrays*/}
+
 假設你有一個內容列表。
 
 ```js
