@@ -1,5 +1,5 @@
 ---
-title: 條件 Rendering
+title: 條件式 Rendering
 ---
 
 <Intro>

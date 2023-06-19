@@ -1,5 +1,5 @@
 ---
-title: 在 JSX 中使用 JavaScript 的語法
+title: 在 JSX 中使用 JavaScript 的大括號
 ---
 
 <Intro>
