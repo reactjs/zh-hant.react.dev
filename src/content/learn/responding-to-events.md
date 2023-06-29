@@ -1,24 +1,24 @@
 ---
-title: Responding to Events
+title: 回應 Event
 ---
 
 <Intro>
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to interactions like clicking, hovering, focusing form inputs, and so on.
+React 允許你在 JSX 中加入 *event handler*。Event handler 是由你撰寫的函式，會在互動（例如點擊、hover、表單輸入欄位聚焦等）時被觸發。
 
 </Intro>
 
 <YouWillLearn>
 
-* Different ways to write an event handler
-* How to pass event handling logic from a parent component
-* How events propagate and how to stop them
+* 撰寫 event handler 的不同方式
+* 如何從 parent component 傳遞處理事件的邏輯
+* 事件如何傳遞，以及如何停止它們
 
 </YouWillLearn>
 
-## Adding event handlers {/*adding-event-handlers*/}
+## 新增 event handler {/*adding-event-handlers*/}
 
-To add an event handler, you will first define a function and then [pass it as a prop](/learn/passing-props-to-a-component) to the appropriate JSX tag. For example, here is a button that doesn't do anything yet:
+要新增 event handler，首先你必須先定義一個函式，然後將它[當作 prop 傳遞](/learn/passing-props-to-a-component)給適當的 JSX 標籤。例如，這是一個目前還沒有做任何事情的按鈕：
 
 <Sandpack>
 
@@ -34,11 +34,12 @@ export default function Button() {
 
 </Sandpack>
 
-You can make it show a message when a user clicks by following these three steps:
+根據以下三個步驟，你可以讓它在使用者點擊時顯示訊息：
 
-1. Declare a function called `handleClick` *inside* your `Button` component.
-2. Implement the logic inside that function (use `alert` to show the message).
-3. Add `onClick={handleClick}` to the `<button>` JSX.
+1. 在你的 `Button` component *中*宣告一個名為 `handleClick` 的函式。
+2. 在該函式中實作邏輯（使用 `alert` 來顯示訊息）。
+3. 將 `onClick={handleClick}` 加到 `<button>` JSX。
+
 
 <Sandpack>
 
@@ -62,14 +63,14 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
+你定義了 `handleClick` 函式，然後將它[當作 prop 傳遞](/learn/passing-props-to-a-component)給 `<button>`。`handleClick` 是一個**event handler**。Event handler 函式：
 
-* Are usually defined *inside* your components.
-* Have names that start with `handle`, followed by the name of the event.
+* 通常定義在你的 component *中*。
+* 名稱以 `handle` 開頭，後面接著事件名稱。
 
-By convention, it is common to name event handlers as `handle` followed by the event name. You'll often see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
+按照慣例，通常會將 event handler 命名為 `handle` 後面接著事件名稱。你會經常看到 `onClick={handleClick}`、`onMouseEnter={handleMouseEnter}` 等等。
 
-Alternatively, you can define an event handler inline in the JSX:
+或者，你可以在 JSX 中 inline 定義 event handler：
 
 ```jsx
 <button onClick={function handleClick() {
@@ -77,7 +78,7 @@ Alternatively, you can define an event handler inline in the JSX:
 }}>
 ```
 
-Or, more concisely, using an arrow function:
+或者，更簡潔地使用箭頭函式：
 
 ```jsx
 <button onClick={() => {
@@ -85,54 +86,53 @@ Or, more concisely, using an arrow function:
 }}>
 ```
 
-All of these styles are equivalent. Inline event handlers are convenient for short functions.
+這些風格都是相等的。Inline event handler 對於簡短的函式很方便。
 
 <Pitfall>
 
-Functions passed to event handlers must be passed, not called. For example:
+傳遞給 event handler 的函式必須被傳遞，而不是呼叫。例如：
 
-| passing a function (correct)     | calling a function (incorrect)     |
+| 傳遞函式（正確）                  | 呼叫函式（錯誤）                     |
 | -------------------------------- | ---------------------------------- |
 | `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
 
-The difference is subtle. In the first example, the `handleClick` function is passed as an `onClick` event handler. This tells React to remember it and only call your function when the user clicks the button.
+差異很微妙。在第一個範例中，`handleClick` 函式被傳遞給 `onClick` 作為 event handler。這告訴 React 記住它，並且只在使用者點擊按鈕時呼叫你的函式。
 
-In the second example, the `()` at the end of `handleClick()` fires the function *immediately* during [rendering](/learn/render-and-commit), without any clicks. This is because JavaScript inside the [JSX `{` and `}`](/learn/javascript-in-jsx-with-curly-braces) executes right away.
+在第二個範例中，`handleClick()` 結尾的 `()` 在 [render](/learn/render-and-commit) 時*立即*觸發函式，而不需要任何點擊。這是因為 [JSX `{` 和 `}`](/learn/javascript-in-jsx-with-curly-braces) 內的 JavaScript 會立即執行。
 
-When you write code inline, the same pitfall presents itself in a different way:
+當你撰寫 inline 程式碼時，相同的陷阱會以不同的方式呈現：
 
-| passing a function (correct)            | calling a function (incorrect)    |
+| 傳遞函式（正確）                          | 呼叫函式（錯誤）                   |
 | --------------------------------------- | --------------------------------- |
 | `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
 
-
-Passing inline code like this won't fire on click—it fires every time the component renders:
+像這樣傳遞 inline 程式碼不會在點擊時觸發，它會在每次 component render 時觸發：
 
 ```jsx
 // This alert fires when the component renders, not when clicked!
 <button onClick={alert('You clicked me!')}>
 ```
 
-If you want to define your event handler inline, wrap it in an anonymous function like so:
+如果你想要 inline 定義 event handler，請像這樣將它包裹在匿名函式中：
 
 ```jsx
 <button onClick={() => alert('You clicked me!')}>
 ```
 
-Rather than executing the code inside with every render, this creates a function to be called later.
+這會建立一個稍後被呼叫的函式，而不是在每次 render 時執行程式碼。
 
-In both cases, what you want to pass is a function:
+在這兩種情況下，你想要傳遞的是一個函式：
 
-* `<button onClick={handleClick}>` passes the `handleClick` function.
-* `<button onClick={() => alert('...')}>` passes the `() => alert('...')` function.
+* `<button onClick={handleClick}>` 傳遞 `handleClick` 函式。
+* `<button onClick={() => alert('...')}>` 傳遞 `() => alert('...')` 函式。
 
-[Read more about arrow functions.](https://javascript.info/arrow-functions-basics)
+[閱讀更多關於箭頭函式的資訊。](https://javascript.info/arrow-functions-basics)
 
 </Pitfall>
 
-### Reading props in event handlers {/*reading-props-in-event-handlers*/}
+### 在 event handler 中讀取 prop {/*reading-props-in-event-handlers*/}
 
-Because event handlers are declared inside of a component, they have access to the component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
+因為 event handler 是在 component 內宣告的，所以它們可以存取 component 的 prop。這是一個按鈕，當點擊它時，會顯示它的 `message` prop 的訊息：
 
 <Sandpack>
 
@@ -165,13 +165,13 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-This lets these two buttons show different messages. Try changing the messages passed to them.
+這讓這兩個按鈕可以顯示不同的訊息。試著改變傳遞給它們的訊息。
 
-### Passing event handlers as props {/*passing-event-handlers-as-props*/}
+### 將 event handler 作為 prop 傳遞 {/*passing-event-handlers-as-props*/}
 
-Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image. 
+通常你會想要 parent component 指定 child component 的 event handler。以按鈕為例：根據你在哪裡使用 `Button` component，你可能想要執行不同的函式，也許一個播放電影，另一個上傳圖片。
 
-To do this, pass a prop the component receives from its parent as the event handler like so:
+要做到這一點，像這樣將 component 從 parent 接收到的 prop 作為 event handler：
 
 <Sandpack>
 
@@ -220,22 +220,22 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Here, the `Toolbar` component renders a `PlayButton` and an `UploadButton`:
+在這裡，`Toolbar` component render 了一個 `PlayButton` 和一個 `UploadButton`：
 
-- `PlayButton` passes `handlePlayClick` as the `onClick` prop to the `Button` inside.
-- `UploadButton` passes `() => alert('Uploading!')` as the `onClick` prop to the `Button` inside.
+- `PlayButton` 將 `handlePlayClick` 作為 `onClick` prop 傳遞給內部的 `Button`。
+- `UploadButton` 將 `() => alert('Uploading!')` 作為 `onClick` prop 傳遞給內部的 `Button`。
 
-Finally, your `Button` component accepts a prop called `onClick`. It passes that prop directly to the built-in browser `<button>` with `onClick={onClick}`. This tells React to call the passed function on click.
+最後，你的 `Button` component 接受一個名為 `onClick` 的 prop，它將該 prop 透過 `onClick={onClick}` 直接傳遞給瀏覽器內建的 `<button>`。這告訴 React 在點擊時呼叫被傳遞的函式。
 
-If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), it's common for components like buttons to contain styling but not specify behavior. Instead, components like `PlayButton` and `UploadButton` will pass event handlers down.
+如果你使用 [設計系統](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969)，像按鈕這樣的 component 只包含樣式但不指定行為是很常見的。相反地，像 `PlayButton` 和 `UploadButton` 這樣的 component 會向下傳遞 event handler。
 
-### Naming event handler props {/*naming-event-handler-props*/}
+### 為 event handler prop 命名 {/*naming-event-handler-props*/}
 
-Built-in components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
+內建的 component 例如 `<button>` 和 `<div>` 只支援 `onClick` 這樣的 [瀏覽器事件名稱](/reference/react-dom/components/common#common-props)。然而，當你建立自己的 component 時，你可以用任何你喜歡的方式命名它們的 event handler prop。
 
-By convention, event handler props should start with `on`, followed by a capital letter.
+按照慣例，event handler prop 應該以 `on` 開頭，後面跟著一個大寫字母。
 
-For example, the `Button` component's `onClick` prop could have been called `onSmash`:
+例如，這個 `Button` component 的 `onClick` prop 可以被命名為 `onSmash`：
 
 <Sandpack>
 
@@ -268,9 +268,9 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-In this example, `<button onClick={onSmash}>` shows that the browser `<button>` (lowercase) still needs a prop called `onClick`, but the prop name received by your custom `Button` component is up to you!
+在這個例子中，`<button onClick={onSmash}>` 顯示了瀏覽器 `<button>` (小寫) 仍然需要一個名為 `onClick` 的 prop，但是你自訂的 `Button` component 收到的 prop 名稱由你決定！
 
-When your component supports multiple interactions, you might name event handler props for app-specific concepts. For example, this `Toolbar` component receives `onPlayMovie` and `onUploadImage` event handlers:
+當你的 component 支援多個互動時，你可能會為特定應用的概念命名 event handler prop。例如，這個 `Toolbar` component 收到 `onPlayMovie` 和 `onUploadImage` event handler：
 
 <Sandpack>
 
@@ -312,19 +312,19 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+注意 `App` component 不需要知道 `Toolbar` 將會如何處理 `onPlayMovie` 或 `onUploadImage`，這是 `Toolbar` 的實作細節。在這裡，`Toolbar` 將它們作為 `onClick` handler 傳遞給它的 `Button`，但是它也可以在之後透過鍵盤快捷鍵觸發它們。像 `onPlayMovie` 這樣依據特定應用互動命名的 prop 讓你有彈性在之後改變它們的使用方式。
   
 <Note>
 
-Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+請確保你使用適當的 HTML tag 來處理你的 event handler。例如，要處理點擊時，請使用 [`<button onClick={handleClick}>`](https://developer.mozilla.org/zh-TW/docs/Web/HTML/Element/button) 而不是 `<div onClick={handleClick}>`。使用真正的瀏覽器 `<button>` 會啟用內建的瀏覽器行為，例如鍵盤導覽。如果你不喜歡預設的瀏覽器按鈕樣式，並且想要讓它看起來像連結或其他不同的 UI 元件，你可以透過 CSS 達成。[學習更多關於撰寫無障礙的標記。](https://developer.mozilla.org/zh-TW/docs/Learn/Accessibility/HTML)
   
 </Note>
 
-## Event propagation {/*event-propagation*/}
+## 事件傳遞 {/*event-propagation*/}
 
-Event handlers will also catch events from any children your component might have. We say that an event "bubbles" or "propagates" up the tree: it starts with where the event happened, and then goes up the tree.
+Event handler 也會捕捉到來自你的 component 所有 child 的事件，我們稱這個事件「冒泡」或「傳遞」到上層：它從事件發生的地方開始，然後往上層傳遞。
 
-This `<div>` contains two buttons. Both the `<div>` *and* each button have their own `onClick` handlers. Which handlers do you think will fire when you click a button?
+這個 `<div>` 包含兩個按鈕。`<div>` *和*每個按鈕都有它們自己的 `onClick` handler。當你點擊按鈕時，你認為哪個 handler 會被觸發？
 
 <Sandpack>
 
@@ -355,19 +355,19 @@ button { margin: 5px; }
 
 </Sandpack>
 
-If you click on either button, its `onClick` will run first, followed by the parent `<div>`'s `onClick`. So two messages will appear. If you click the toolbar itself, only the parent `<div>`'s `onClick` will run.
+如果你點擊其中一個按鈕，它的 `onClick` 會先執行，接著是 parent `<div>` 的 `onClick`，所以會出現兩個訊息。如果你點擊 toolbar 本身，只有 parent `<div>` 的 `onClick` 會執行。
 
 <Pitfall>
 
-All events propagate in React except `onScroll`, which only works on the JSX tag you attach it to.
+在 React 中所有事件都會傳遞，除了 `onScroll`，它只會在你附加它的 JSX tag 上有作用。
 
 </Pitfall>
 
-### Stopping propagation {/*stopping-propagation*/}
+### 停止傳遞 {/*stopping-propagation*/}
 
-Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event". You can use this object to read information about the event.
+Event handler 會接收一個 **event object** 作為它們唯一的參數。依照慣例，它通常被稱為 `e`，代表「event」。你可以使用這個 object 來讀取事件的資訊。
 
-That event object also lets you stop the propagation. If you want to prevent an event from reaching parent components, you need to call `e.stopPropagation()` like this `Button` component does:
+這個 event object 也可以讓你停止事件傳遞。如果你想要阻止事件傳遞到 parent component，你需要像這個 `Button` component 一樣呼叫 `e.stopPropagation()`：
 
 <Sandpack>
 
@@ -409,22 +409,22 @@ button { margin: 5px; }
 
 </Sandpack>
 
-When you click on a button:
+當你點擊按鈕時，
 
-1. React calls the `onClick` handler passed to `<button>`. 
-2. That handler, defined in `Button`, does the following:
-   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
-   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
-3. That function, defined in the `Toolbar` component, displays the button's own alert.
-4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+1. React 呼叫傳給 `<button>` 的 `onClick` handler。
+2. 這個在 `Button` 裡面定義的 handler 做了以下事情：
+   * 呼叫 `e.stopPropagation()`，阻止事件繼續傳遞。
+   * 呼叫 `onClick` 函式，這是從 `Toolbar` component 傳遞過來的 prop。
+3. 這個在 `Toolbar` component 裡面定義的函式會顯示按鈕自己的 alert。
+4. 因為事件被阻止傳遞，parent `<div>` 的 `onClick` handler **不會**執行。
 
-As a result of `e.stopPropagation()`, clicking on the buttons now only shows a single alert (from the `<button>`) rather than the two of them (from the `<button>` and the parent toolbar `<div>`). Clicking a button is not the same thing as clicking the surrounding toolbar, so stopping the propagation makes sense for this UI.
+因為 `e.stopPropagation()`，點擊按鈕只會顯示單一個 alert（來自 `<button>`），而不是兩個（來自 `<button>` 和 parent toolbar `<div>`）。點擊按鈕和點擊包含它的 toolbar 本身不是同一件事，所以阻止傳遞對這個 UI 來說是有意義的。
 
 <DeepDive>
 
-#### Capture phase events {/*capture-phase-events*/}
+#### 捕捉階段事件 {/*capture-phase-events*/}
 
-In rare cases, you might need to catch all events on child elements, *even if they stopped propagation*. For example, maybe you want to log every click to analytics, regardless of the propagation logic. You can do this by adding `Capture` at the end of the event name:
+在少數情況下，你可能需要捕捉所有 child element 的事件，*即使它們停止傳遞*。例如，也許你想要記錄每個點擊來做分析，不管傳遞的邏輯如何。你可以在事件名稱的最後面加上 `Capture` 來做到這件事：
 
 ```js
 <div onClickCapture={() => { /* this runs first */ }}>
@@ -433,19 +433,19 @@ In rare cases, you might need to catch all events on child elements, *even if th
 </div>
 ```
 
-Each event propagates in three phases: 
+每個事件會有三個傳遞的階段：
 
-1. It travels down, calling all `onClickCapture` handlers.
-2. It runs the clicked element's `onClick` handler. 
-3. It travels upwards, calling all `onClick` handlers.
+1. 往下傳遞，呼叫所有 `onClickCapture` handler。
+2. 執行被點擊 element 的 `onClick` handler。
+3. 往上傳遞，呼叫所有 `onClick` handler。
 
-Capture events are useful for code like routers or analytics, but you probably won't use them in app code.
+捕捉事件對於像是路由或是分析用的程式碼很有用，但你可能不會在應用程式的程式碼裡面使用它們。
 
 </DeepDive>
 
-### Passing handlers as alternative to propagation {/*passing-handlers-as-alternative-to-propagation*/}
+### 傳遞 handler 作為事件傳遞的替代方案 {/*passing-handlers-as-alternative-to-propagation*/}
 
-Notice how this click handler runs a line of code _and then_ calls the `onClick` prop passed by the parent:
+注意這個點擊 handler 先執行了一行程式碼，_然後_呼叫 parent 傳遞過來的 `onClick` prop：
 
 ```js {4,5}
 function Button({ onClick, children }) {
@@ -460,13 +460,13 @@ function Button({ onClick, children }) {
 }
 ```
 
-You could add more code to this handler before calling the parent `onClick` event handler, too. This pattern provides an *alternative* to propagation. It lets the child component handle the event, while also letting the parent component specify some additional behavior. Unlike propagation, it's not automatic. But the benefit of this pattern is that you can clearly follow the whole chain of code that executes as a result of some event.
+你也可以在呼叫 parent `onClick` handler 之前在這個 handler 裡面加上更多的程式碼。這個模式提供了一個事件傳遞的*替代方案*，它讓 child component 處理事件，同時也讓 parent component 指定一些額外的行為。不像事件傳遞，這個模式不是自動的。，但它的好處是讓你可以清楚地追蹤整個由某個事件觸發的程式碼鏈。
 
-If you rely on propagation and it's difficult to trace which handlers execute and why, try this approach instead.
+如果你依賴事件傳遞，而且很難追蹤哪些 handler 會執行以及為什麼會執行，試試看這個方法。
 
-### Preventing default behavior {/*preventing-default-behavior*/}
+### 阻止預設行為 {/*preventing-default-behavior*/}
 
-Some browser events have default behavior associated with them. For example, a `<form>` submit event, which happens when a button inside of it is clicked, will reload the whole page by default:
+有些瀏覽器事件有對應的預設行為。例如，當 `<form>` 裡面的按鈕被點擊時所造成的提交事件，預設會重新載入整個頁面：
 
 <Sandpack>
 
@@ -487,7 +487,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-You can call `e.preventDefault()` on the event object to stop this from happening:
+你可以在 event object 上呼叫 `e.preventDefault()` 來阻止這件事情發生：
 
 <Sandpack>
 
@@ -511,28 +511,28 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both useful, but are unrelated:
+不要把 `e.stopPropagation()` 和 `e.preventDefault()` 搞混了。它們都很有用，但是沒有關係：
 
-* [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) stops the event handlers attached to the tags above from firing.
-* [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) prevents the default browser behavior for the few events that have it.
+* [`e.stopPropagation()`](https://developer.mozilla.org/zh-TW/docs/Web/API/Event/stopPropagation) 會阻止上層 tag 的 event handler 被執行。
+* [`e.preventDefault()` ](https://developer.mozilla.org/zh-TW/docs/Web/API/Event/preventDefault) 可以阻止某些具有預設行為的事件造成瀏覽器的預設行為。
 
-## Can event handlers have side effects? {/*can-event-handlers-have-side-effects*/}
+## Event handler 可以有副作用嗎？ {/*can-event-handlers-have-side-effects*/}
 
-Absolutely! Event handlers are the best place for side effects.
+當然可以！Event handler 是處理副作用的最佳地點。
 
-Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
+不像 rendering 函式，event handler 不需要是 [pure](/learn/keeping-components-pure) 的，所以它是一個很好的地方來*改變*一些東西。例如，根據輸入的內容改變 input 的值，或是根據按鈕的點擊改變列表。然而，為了改變一些資訊，你首先需要一些方式來儲存它。在 React，這是透過使用 [state，component 的記憶](/learn/state-a-components-memory) 來完成的。你將會在下一頁學到所有關於它的知識。
 
 <Recap>
 
-* You can handle events by passing a function as a prop to an element like `<button>`.
-* Event handlers must be passed, **not called!** `onClick={handleClick}`, not `onClick={handleClick()}`.
-* You can define an event handler function separately or inline.
-* Event handlers are defined inside a component, so they can access props.
-* You can declare an event handler in a parent and pass it as a prop to a child.
-* You can define your own event handler props with application-specific names.
-* Events propagate upwards. Call `e.stopPropagation()` on the first argument to prevent that.
-* Events may have unwanted default browser behavior. Call `e.preventDefault()` to prevent that.
-* Explicitly calling an event handler prop from a child handler is a good alternative to propagation.
+* 你可以透過將函式當作 prop 傳遞給像 `<button>` 這樣的 element 來處理事件。
+* Event handler 必須要被傳遞，**不是被呼叫！** `onClick={handleClick}`，而不是 `onClick={handleClick()}`。
+* 你可以另外定義或是 inline 定義 event handler 函式。
+* Event handler 是定義在 component 裡面的，所以它們可以存取 props。
+* 你可以在 parent 裡面定義 event handler，然後將它當作 prop 傳遞給 child。
+* 你可以定義自己的 event handler prop，並且給它一個針對特定應用的名稱。
+* Event 會向上傳遞。在第一個參數上呼叫 `e.stopPropagation()` 可以阻止這件事情發生。
+* Event 可能會有你不想要的預設瀏覽器行為。呼叫 `e.preventDefault()` 可以阻止這件事情發生。
+* 從 child handler 明確地呼叫 event handler prop 是一個很好的事件傳遞的替代方案。
 
 </Recap>
 
@@ -540,9 +540,9 @@ Unlike rendering functions, event handlers don't need to be [pure](/learn/keepin
 
 <Challenges>
 
-#### Fix an event handler {/*fix-an-event-handler*/}
+#### 修正 event handler {/*fix-an-event-handler*/}
 
-Clicking this button is supposed to switch the page background between white and black. However, nothing happens when you click it. Fix the problem. (Don't worry about the logic inside `handleClick`—that part is fine.)
+點擊這個按鈕應該會在白色和黑色之間切換頁面的背景。然而，當你點擊它時什麼事情都沒有發生。請修正這個問題。（不用擔心 `handleClick` 裡面的邏輯，那部分是沒問題的。）
 
 <Sandpack>
 
@@ -569,7 +569,7 @@ export default function LightSwitch() {
 
 <Solution>
 
-The problem is that `<button onClick={handleClick()}>` _calls_ the `handleClick` function while rendering instead of _passing_ it. Removing the `()` call so that it's `<button onClick={handleClick}>` fixes the issue:
+問題在於 `<button onClick={handleClick()}>` 在 render 時_呼叫_了 `handleClick` 函式，而不是傳遞它。移除 `()` 呼叫，讓它變成 `<button onClick={handleClick}>` 就可以修正這個問題：
 
 <Sandpack>
 
@@ -594,7 +594,7 @@ export default function LightSwitch() {
 
 </Sandpack>
 
-Alternatively, you could wrap the call into another function, like `<button onClick={() => handleClick()}>`:
+或者，你可以將呼叫包裝到另一個函式裡面，像是 `<button onClick={() => handleClick()}>`：
 
 <Sandpack>
 
@@ -621,11 +621,11 @@ export default function LightSwitch() {
 
 </Solution>
 
-#### Wire up the events {/*wire-up-the-events*/}
+#### 連接事件 {/*wire-up-the-events*/}
 
-This `ColorSwitch` component renders a button. It's supposed to change the page color. Wire it up to the `onChangeColor` event handler prop it receives from the parent so that clicking the button changes the color.
+這個 `ColorSwitch` component render 了一個按鈕，它應該要改變頁面的顏色。將它連接到從 parent 接收來的 `onChangeColor` event handler prop，讓點擊按鈕的時候可以改變顏色。
 
-After you do this, notice that clicking the button also increments the page click counter. Your colleague who wrote the parent component insists that `onChangeColor` does not increment any counters. What else might be happening? Fix it so that clicking the button *only* changes the color, and does _not_ increment the counter.
+在你完成之後，注意到點擊按鈕也會增加頁面點擊計數器。你寫了 parent component 的同事堅持 `onChangeColor` 不會增加任何計數器，還有什麼可能發生了？請修正它，讓點擊按鈕*只會*改變顏色，而_不會_增加計數器。
 
 <Sandpack>
 
@@ -679,9 +679,9 @@ export default function App() {
 
 <Solution>
 
-First, you need to add the event handler, like `<button onClick={onChangeColor}>`.
+首先，你需要加上 event handler，像是 `<button onClick={onChangeColor}>`。
 
-However, this introduces the problem of the incrementing counter. If `onChangeColor` does not do this, as your colleague insists, then the problem is that this event propagates up, and some handler above does it. To solve this problem, you need to stop the propagation. But don't forget that you should still call `onChangeColor`.
+然而，這會導致計數器增加的問題。如果 `onChangeColor` 不會這麼做，就像你的同事堅持的那樣，那麼問題就是這個 event 會向上傳遞，然後上面的某個 handler 會這麼做。為了解決這個問題，你需要停止 event 的傳遞，但是不要忘記你還是需要呼叫 `onChangeColor`。
 
 <Sandpack>
 
