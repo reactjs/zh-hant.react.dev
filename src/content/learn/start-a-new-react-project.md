@@ -89,14 +89,9 @@ Expo 由 [Expo（公司）](https://expo.dev/about)維護。使用 Expo 構建�
 
 ### Next.js (App Router) {/*nextjs-app-router*/}
 
-**[Next.js 的 App Router](https://beta.nextjs.org/docs/getting-started) 是 Next.js API 的重新設計，旨在實現 React 團隊的全端架構願景。** 它允許你在執行於伺服器上或甚至是構建期間的非同步（asynchronous） component 中取得資料。
+**[Next.js 的 App Router](https://nextjs.org/docs) 是 Next.js API 的重新設計，旨在實現 React 團隊的全端架構願景。**它允許你在執行於伺服器上或甚至是構建期間的非同步（asynchronous） component 中取得資料。
 
-Next.js 由 [Vercel](https://vercel.com/) 維護。你可以將 Next.js 應用程式部署到任何 Node.js 或 serverless 主機，或是你自己的伺服器上。Next.js 還支援[靜態匯出](https://beta.nextjs.org/docs/configuring/static-export)，不需要伺服器即可執行。
-<Pitfall>
-
-Next.js 的 App Router 目前仍在測試（beta）階段，尚未建議用於 production 環境（截至 2023 年 3 月）。如果想要在現有的 Next.js 專案中嘗試使用它，[請參考這個漸進式遷移指南](https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app)。
-
-</Pitfall>
+Next.js 由 [Vercel](https://vercel.com/) 維護。你可以將 [Next.js 應用程式部署]((https://nextjs.org/docs/deployment))到任何 Node.js 或 serverless 主機，或是你自己的伺服器上。Next.js 還支援[靜態匯出](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)，不需要伺服器即可執行。
 
 <DeepDive>
 
