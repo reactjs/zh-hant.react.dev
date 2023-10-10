@@ -154,7 +154,7 @@ export default function TeaSet() {
 
 當你想要 *改變* 某些以用戶輸入為響應的內容時，你應該要 [set state](/learn/state-a-components-memory) 而非直接更改變數。你永遠都不該在 component 渲染過程中改變已存在的變數或物件。
 
-React 提供了「嚴格模式」，在開發過程中它會呼叫每個 component 的函數兩次。 **透過呼叫兩次 component 的函數，嚴格模式有助於找到違反這些規則的 components。**
+React 提供了「Strict Mode」，在開發過程中它會呼叫每個 component 的函式兩次。**透過呼叫兩次 component 的函式，Strict Mode 有助於找到違反這些規則的 component。**
 
 請注意在原本的範例，它顯示了「Guest #2」、 「Guest #4」以及「Guest #6」，而不是「Guest #1」、「Guest #2」及「Guest #3」。原本的函數是 impure 的，所以呼叫兩次後就破壞了它。但在修正後的 pure 版本中，即使每次呼叫了兩次函數還是能夠正常運作。 **純函數只進行運算，因此呼叫兩次後也不會改變任何事** -- 就像是呼叫 `double(2)` 兩次也不會改變它的回傳值，求解 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 兩次不會改變 <MathI>y</MathI> 的值。相同的輸入永遠會有相同的輸出。
 
