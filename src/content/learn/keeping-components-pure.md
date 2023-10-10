@@ -17,7 +17,7 @@ title: 保持 Component 的 Pure
 
 </YouWillLearn>
 
-## 純粹性：Component 像是公式 {/*purity-components-as-formulas*/}
+## Purity：Component 作為公式 {/*purity-components-as-formulas*/}
 
 在計算機科學中（尤其是函數程式設計），「[純函數](https://wikipedia.org/wiki/Pure_function)」具有以下的特徵：
 
