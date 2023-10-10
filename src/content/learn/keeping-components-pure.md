@@ -186,7 +186,7 @@ export default function TeaGathering() {
 
 </Sandpack>
 
-如果 `cups` 變數或者是 `[]` 陣列是在 `TeaGathering` 函數之外建立的，這就會是個大問題！你會在將項目放入陣列時改變一個 *預先存在的* 物件。
+如果 `cups` 變數或者是 `[]` array 是在 `TeaGathering` 函式之外建立的，這就會是個大問題！你會在將項目放入陣列時改變一個*預先存在的* object。
 
 不過，由於你是在 `TeaGathering` 內的 *同個 render 過程中* 建立它們的，所以不會有問題。在 `TeaGathering` 範圍外的任何程式碼都不會知道發生了這個情況。這稱為**「local mutation」**- 這就像是 component 自己的小秘密。
 
