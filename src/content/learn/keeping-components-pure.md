@@ -164,7 +164,7 @@ React 提供了「Strict Mode」，在開發過程中它會呼叫每個 componen
 
 ### 變異本地化：你的 component 的小秘密 {/*local-mutation-your-components-little-secret*/}
 
-在上面的範例中， 問題是 component 在渲染時改變了 *預先存在的* 變數。這通常會稱之為 **變異 (mutation)** 使其聽起來有點可怕。純函數不會改變函數範圍外的變數、或是調用之前就已建立的物件 — 這使得它們 impure！
+在上面的範例中， 問題是 component 在 render 時改變了*預先存在的*變數。這通常會稱之為 **「mutation」** 使其聽起來有點可怕。純函式不會改變函式範圍外的變數、或是呼叫之前就已建立的 object — 這使得它們 impure！
 
 不過， **在渲染時改變 *剛剛* 才建立的變數或物件是完全沒問題的**。在這個範例中，你建立了 `[]` 陣列，並賦值給 `cups` 變數，接著把一打杯子 `push` 進去：
 
