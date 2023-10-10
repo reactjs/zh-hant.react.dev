@@ -76,7 +76,7 @@ export default function App() {
 
 </Sandpack>
 
-當你把 `drinkers={2}` 傳入 `Recipe` 時， 會永遠回傳包含 `2 cups of water` 的 JSX。
+當你把 `drinkers={2}` 傳入 `Recipe` 時，會永遠回傳包含 `2 cups of water` 的 JSX。
 
 當你傳入 `drinkers={4}`，會永遠回傳包含 `4 cups of water` 的 JSX。
 
