@@ -194,7 +194,7 @@ export default function TeaGathering() {
 
 雖然函數程式設計在很大程度上依賴於存粹性，但在某些時候，_有些東西_ 必須改變。這就是程式設計的意義所在！這些更改例如：顯示畫面、起始一個動畫、更改資料都被稱為 **副作用** 。他們是 _一邊發生_ 的事情，而不是在渲染期間發生的事情。
 
-在 React 中，**副作用通常屬於[事件處理器](/learn/responding-to-events)**。事件處理器是 React 在你執行某些操作（例如：點擊一個按鈕）時運行的函數。儘管事件處理器是在 component *內部* 定義的，但它們 *不會在渲染時間執行*！**所以事件處理器不需是 pure 的。**
+在 React 中，** side effects 通常屬於 [event handler](/learn/responding-to-events)**。Event handler 是 React 在你執行某些操作（例如：點擊一個按鈕）時執行的函式。儘管 event handler 是在 component *內部* 定義的，但它們 *不會在 render 時間執行*！**所以 event handler 不需要是 pure 的。**
 
 如果你已經用盡了所有其他選項，並且無法找到其他適合你的 side effect 的 event handler，你仍然可以選擇 component 中的 [`useEffect`](/reference/react/useEffect) 來將其附加到回傳的 JSX。這告訴 React 在 render 後、允許 side effect 的情況下執行它。**但是，這個方法應該要是你最後的手段。**
 
