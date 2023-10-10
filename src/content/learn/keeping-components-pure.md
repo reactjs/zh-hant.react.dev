@@ -90,7 +90,7 @@ export default function App() {
 
 React 的 rendering 過程必須永遠保持 pure。Components 應該永遠*回傳*它們的 JSX，而不 *更改*任何 rendering 之前就存在的 object 或變數 - 這會使它們變得 impure！
 
-這是一個違反規則的 Component ：
+這是一個違反規則的 component：
 
 <Sandpack>
 
