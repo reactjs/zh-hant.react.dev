@@ -217,7 +217,7 @@ export default function TeaGathering() {
 <Recap>
 
 * 一個 component 是 pure 的，這意味著：
-  * **不多管閒事** 這個函數不會修改任何在它被呼叫之前就已經存在的物件或變數。
+  * **只關心自己的事務。**這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
   * **一樣的輸入，一樣的輸出** 只要我們輸入相同的參數，這個函數總是回傳一個相同的輸出。
 * 渲染可能會在任何時間發生，因此 components 不該依賴於彼此的渲染順序。
 * 你不該改變任何你的 components 用來渲染的輸入。這包含 props，state，以及 context。要更新畫面的話，請 ["set" state](/learn/state-a-components-memory) 而不是直接修改預先存在的物件。
