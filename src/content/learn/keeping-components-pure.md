@@ -82,7 +82,7 @@ export default function App() {
 
 就像是數學公式一樣。
 
-你可以把 Component 想成是食譜一樣： 如果你遵循它們並且在烹飪過程中不加入新食材，那麼你每次都會得到相同的菜餚。這個「菜餚」就是 Component 提供給 React [Render](/learn/render-and-commit) 的 JSX。 
+你可以把 component 想成是食譜一樣： 如果你遵循它們並且在烹飪過程中不加入新食材，那麼你每次都會得到相同的菜餚。這個「菜餚」就是 component 提供給 React [render](/learn/render-and-commit) 的 JSX。 
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
