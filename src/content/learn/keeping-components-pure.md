@@ -207,7 +207,7 @@ export default function TeaGathering() {
 撰寫純函數需要一些習慣與紀律。但純函數也解鎖了一些絕佳的功能：
 
 * 你的 components 可以在不同環境上運行 - 例如，在伺服器上！由於它們對相同輸出會有相同結果，因此一個 component 可以滿足許多用戶請求。
-* 你可以透過 [跳過渲染](/reference/react/memo) 那些 input 沒有更新的 components 來提昇性能。這是安全的，因為純函數永遠都會回傳相同的結果，所以可以安全地快取它們。
+* 你可以透過 [skipping rendering](/reference/react/memo) 那些 input 沒有更新的 components 來提升效能。這是安全的，因為純函式永遠都會回傳相同的結果，所以可以安全地 cache 它們。
 * 如果在渲染深層元件樹 (deep component tree) 的過程中某些資料發生變化，React 可以重新啟動渲染、而不浪費時間完成過時的渲染。純粹性可以讓它更安全地隨時停止計算。
 
 所有我們正在建立的 React 新功能都利用了純粹性的優點。從獲取資料到動畫再到性能，保持 components 的存粹性能夠解鎖 React 典範的力量。
