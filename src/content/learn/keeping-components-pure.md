@@ -86,7 +86,7 @@ export default function App() {
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
-## 副作用：（非）預期的後果 {/*side-effects-unintended-consequences*/}
+## Side Effects：（非）預期的結果 {/*side-effects-unintended-consequences*/}
 
 React 的渲染過程必須永遠保持 pure 。 Components 應該永遠 *回傳* 它們的 JSX，而不該 *更改* 任何渲染之前就存在的物件或變數 - 這會使它們變得 impure ！
 
