@@ -150,7 +150,7 @@ export default function TeaSet() {
 
 #### 使用嚴格模式檢查 impure 的計算 {/*detecting-impure-calculations-with-strict-mode*/}
 
-僅管你可能還沒有全部使用過它們，但在 React 中你可以在渲染時讀取三種輸入：[props](/learn/passing-props-to-a-component)、[state](/learn/state-a-components-memory) 以及 [context](/learn/passing-data-deeply-with-context)。你應該永遠將這些輸入視為 read-only 。
+儘管你可能還沒有全部使用過它們，但在 React 中你可以在 render 時讀取三種輸入：[props](/learn/passing-props-to-a-component)、[state](/learn/state-a-components-memory) 以及 [context](/learn/passing-data-deeply-with-context)。你應該永遠將這些輸入視為 read-only 。
 
 當你想要 *改變* 某些以用戶輸入為響應的內容時，你應該要 [set state](/learn/state-a-components-memory) 而非直接更改變數。你永遠都不該在 component 渲染過程中改變已存在的變數或物件。
 
