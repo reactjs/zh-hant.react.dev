@@ -232,7 +232,7 @@ export default function TeaGathering() {
 
 #### 修正一個換掉的時鐘 {/*fix-a-broken-clock*/}
 
-這個 component 希望在午夜至上午 6 點期間將 `<h1>` 的 CSS class 設置為 `"night"`，並在所有其他時段都設成 `"day"`。但是它沒辦法運作。你能修復這個 component 嗎？
+這個 component 希望在午夜至上午 6 點期間將 `<h1>` 的 CSS class 設定為 `"night"`，並在所有其他時段都設成 `"day"`。但是它沒辦法運作。你能修正這個 component 嗎？
 
 你可以透過暫時修改電腦的時區來驗證你的做法是否有效。當時間在午夜至上午 6 點時，時鐘的顏色應該要是反白的！
 
