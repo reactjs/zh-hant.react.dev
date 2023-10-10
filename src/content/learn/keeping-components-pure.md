@@ -196,7 +196,7 @@ export default function TeaGathering() {
 
 在 React 中，**副作用通常屬於[事件處理器](/learn/responding-to-events)**。事件處理器是 React 在你執行某些操作（例如：點擊一個按鈕）時運行的函數。儘管事件處理器是在 component *內部* 定義的，但它們 *不會在渲染時間執行*！**所以事件處理器不需是 pure 的。**
 
-如果你已經用盡了所有其他選項，並且無法找到其他適合你的副作用的事件處理器，你仍然可以選擇 component 中的 [`useEffect`](/reference/react/useEffect) 來將其附加到返回的 JSX。這告訴 React 在渲染後、允許副作用的情況下執行它。**但是，這個方法應該要是你最後的手段。**
+如果你已經用盡了所有其他選項，並且無法找到其他適合你的 side effect 的 event handler，你仍然可以選擇 component 中的 [`useEffect`](/reference/react/useEffect) 來將其附加到回傳的 JSX。這告訴 React 在 render 後、允許 side effect 的情況下執行它。**但是，這個方法應該要是你最後的手段。**
 
 可以的話，盡量嘗試透過渲染過程來表示你的邏輯。你會驚訝它能帶你走多遠！
 
