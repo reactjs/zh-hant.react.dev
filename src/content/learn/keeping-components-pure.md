@@ -19,7 +19,7 @@ title: 保持 Component 的 Pure
 
 ## Purity：Component 作為公式 {/*purity-components-as-formulas*/}
 
-在計算機科學中（尤其是函數程式設計），「[純函數](https://wikipedia.org/wiki/Pure_function)」具有以下的特徵：
+在計算機科學中（尤其是函數式程式設計的世界），[純函式](https://wikipedia.org/wiki/Pure_function)具有以下的特徵：
 
 * **不多管閒事** 這個函數不會修改任何在他被呼叫之前就已經存在的物件或變數。
 * **一樣的輸入，一樣的輸出** 只要我們輸入相同的參數，這個函數總是回傳一個相同的輸出。
