@@ -190,7 +190,7 @@ export default function TeaGathering() {
 
 不過，由於你是在 `TeaGathering` 內的 *同個 render 過程中* 建立它們的，所以不會有問題。在 `TeaGathering` 範圍外的任何程式碼都不會知道發生了這個情況。這稱為**「local mutation」**- 這就像是 component 自己的小秘密。
 
-## _可能_ 會引起副作用的地方 {/*where-you-_can_-cause-side-effects*/}
+## 你_可能_會引起 side effects 的地方 {/*where-you-_can_-cause-side-effects*/}
 
 雖然函數程式設計在很大程度上依賴於存粹性，但在某些時候，_有些東西_ 必須改變。這就是程式設計的意義所在！這些更改例如：顯示畫面、起始一個動畫、更改資料都被稱為 **副作用** 。他們是 _一邊發生_ 的事情，而不是在渲染期間發生的事情。
 
