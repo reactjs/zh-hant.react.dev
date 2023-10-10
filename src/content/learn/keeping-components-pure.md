@@ -13,7 +13,7 @@ title: 保持 Component 的 Pure
 
 * 什麼是 purity 以及它如何幫助你避免錯誤
 * 如何透過將變更保留在 render 階段外來保持 component 的 pure
-* 如何使用嚴格模式來尋找 Component 中的錯誤
+* 如何使用 Strict Mode 來尋找 component 中的錯誤
 
 </YouWillLearn>
 
