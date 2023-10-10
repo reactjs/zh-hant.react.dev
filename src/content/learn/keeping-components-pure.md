@@ -192,7 +192,7 @@ export default function TeaGathering() {
 
 ## 你_可能_會引起 side effects 的地方 {/*where-you-_can_-cause-side-effects*/}
 
-雖然函數程式設計在很大程度上依賴於存粹性，但在某些時候，_有些東西_ 必須改變。這就是程式設計的意義所在！這些更改例如：顯示畫面、起始一個動畫、更改資料都被稱為 **副作用** 。他們是 _一邊發生_ 的事情，而不是在渲染期間發生的事情。
+雖然函數式程式設計在很大程度上依賴 purity，但在某些時候，_有些東西_ 必須改變。這就是程式設計的意義所在！這些更改例如：顯示畫面、開始一個動畫、更改資料都被稱為 **side effects** 。他們是 _一邊發生_ 的事情，而不是在 render 期間發生的事情。
 
 在 React 中，** side effects 通常屬於 [event handler](/learn/responding-to-events)**。Event handler 是 React 在你執行某些操作（例如：點擊一個按鈕）時執行的函式。儘管 event handler 是在 component *內部* 定義的，但它們 *不會在 render 時間執行*！**所以 event handler 不需要是 pure 的。**
 
