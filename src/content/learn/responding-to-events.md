@@ -65,7 +65,7 @@ button { margin-right: 10px; }
 
 你定義了 `handleClick` 函式，然後將它[當作 prop 傳遞](/learn/passing-props-to-a-component)給 `<button>`。`handleClick` 是一個**event handler**。Event handler 函式：
 
-* 通常定義在你的 component *中*。
+* 通常定義在你的 component *內部*。
 * 名稱以 `handle` 開頭，後面接著事件名稱。
 
 按照慣例，通常會將 event handler 命名為 `handle` 後面接著事件名稱。你會經常看到 `onClick={handleClick}`、`onMouseEnter={handleMouseEnter}` 等等。
@@ -227,11 +227,11 @@ button { margin-right: 10px; }
 
 最後，你的 `Button` component 接受一個名為 `onClick` 的 prop，它將該 prop 透過 `onClick={onClick}` 直接傳遞給瀏覽器內建的 `<button>`。這告訴 React 在點擊時呼叫被傳遞的函式。
 
-如果你使用 [設計系統](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969)，像按鈕這樣的 component 只包含樣式但不指定行為是很常見的。相反地，像 `PlayButton` 和 `UploadButton` 這樣的 component 會向下傳遞 event handler。
+如果你使用[設計系統 (design system)](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969)，像按鈕這樣的 component 只包含樣式但不指定行為是很常見的。相反地，像 `PlayButton` 和 `UploadButton` 這樣的 component 會向下傳遞 event handler。
 
 ### 為 event handler prop 命名 {/*naming-event-handler-props*/}
 
-內建的 component 例如 `<button>` 和 `<div>` 只支援 `onClick` 這樣的 [瀏覽器事件名稱](/reference/react-dom/components/common#common-props)。然而，當你建立自己的 component 時，你可以用任何你喜歡的方式命名它們的 event handler prop。
+內建的 component 例如 `<button>` 和 `<div>` 只支援 `onClick` 這樣的[瀏覽器事件名稱](/reference/react-dom/components/common#common-props)。然而，當你建立自己的 component 時，你可以用任何你喜歡的方式命名它們的 event handler prop。
 
 按照慣例，event handler prop 應該以 `on` 開頭，後面跟著一個大寫字母。
 
@@ -316,13 +316,13 @@ button { margin-right: 10px; }
   
 <Note>
 
-請確保你使用適當的 HTML tag 來處理你的 event handler。例如，要處理點擊時，請使用 [`<button onClick={handleClick}>`](https://developer.mozilla.org/zh-TW/docs/Web/HTML/Element/button) 而不是 `<div onClick={handleClick}>`。使用真正的瀏覽器 `<button>` 會啟用內建的瀏覽器行為，例如鍵盤導覽。如果你不喜歡預設的瀏覽器按鈕樣式，並且想要讓它看起來像連結或其他不同的 UI 元件，你可以透過 CSS 達成。[學習更多關於撰寫無障礙的標記。](https://developer.mozilla.org/zh-TW/docs/Learn/Accessibility/HTML)
+請確保你使用適當的 HTML tag 來處理你的 event handler。例如，要處理點擊時，請使用 [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) 而不是 `<div onClick={handleClick}>`。使用真正的瀏覽器 `<button>` 會啟用內建的瀏覽器行為，例如鍵盤導覽。如果你不喜歡預設的瀏覽器按鈕樣式，並且想要讓它看起來像連結或其他不同的 UI 元件，你可以透過 CSS 達成。[學習更多關於撰寫無障礙的標記。](https://developer.mozilla.org/zh-TW/docs/Learn/Accessibility/HTML)
   
 </Note>
 
 ## 事件傳遞 {/*event-propagation*/}
 
-Event handler 也會捕捉到來自你的 component 所有 child 的事件，我們稱這個事件「冒泡」或「傳遞」到上層：它從事件發生的地方開始，然後往上層傳遞。
+Event handler 也會捕捉到來自你的 component 所有 child 的事件，我們稱這個事件「冒泡」或「傳播」到上層：它從事件發生的地方開始，然後往上層傳播。
 
 這個 `<div>` 包含兩個按鈕。`<div>` *和*每個按鈕都有它們自己的 `onClick` handler。當你點擊按鈕時，你認為哪個 handler 會被觸發？
 
@@ -413,7 +413,7 @@ button { margin: 5px; }
 
 1. React 呼叫傳給 `<button>` 的 `onClick` handler。
 2. 這個在 `Button` 裡面定義的 handler 做了以下事情：
-   * 呼叫 `e.stopPropagation()`，阻止事件繼續傳遞。
+   * 呼叫 `e.stopPropagation()`，阻止事件繼續冒泡。
    * 呼叫 `onClick` 函式，這是從 `Toolbar` component 傳遞過來的 prop。
 3. 這個在 `Toolbar` component 裡面定義的函式會顯示按鈕自己的 alert。
 4. 因為事件被阻止傳遞，parent `<div>` 的 `onClick` handler **不會**執行。
