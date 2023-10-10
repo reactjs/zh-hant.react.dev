@@ -142,7 +142,7 @@ export default function TeaSet() {
 
 </Sandpack>
 
-現在你的 component 是 pure 的，因為它返回的 JSX 僅依賴 `guest` prop。
+現在你的 component 是 pure 的，因為它回傳的 JSX 僅依賴 `guest` prop。
 
 一般來說，你不應該預期 components 以任何特定順序渲染。在 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 之前或之後調用 <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math> 並不重要：兩個公式都將各自獨立地求解。同樣的，每個 component 都應該「只考慮自己」， 而不是在渲染過程中試圖與其他 components 協調或是依賴其他 components 。渲染就像是一個學校考試：每個 components 都應該計算自己的 JSX ！
 
