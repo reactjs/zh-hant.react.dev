@@ -156,7 +156,7 @@ export default function TeaSet() {
 
 React 提供了「Strict Mode」，在開發過程中它會呼叫每個 component 的函式兩次。**透過呼叫兩次 component 的函式，Strict Mode 有助於找到違反這些規則的 component。**
 
-請注意在原本的範例，它顯示了「Guest #2」、 「Guest #4」以及「Guest #6」，而不是「Guest #1」、「Guest #2」及「Guest #3」。原本的函數是 impure 的，所以呼叫兩次後就破壞了它。但在修正後的 pure 版本中，即使每次呼叫了兩次函數還是能夠正常運作。 **純函數只進行運算，因此呼叫兩次後也不會改變任何事** -- 就像是呼叫 `double(2)` 兩次也不會改變它的回傳值，求解 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 兩次不會改變 <MathI>y</MathI> 的值。相同的輸入永遠會有相同的輸出。
+請注意在原本的範例，它顯示了「Guest #2」、「Guest #4」以及「Guest #6」，而不是「Guest #1」、「Guest #2」及「Guest #3」。原本的函式是 impure 的，所以呼叫兩次後就破壞了它。但在修正後的 pure 版本中，即使每次呼叫了兩次函式還是能夠正常運作。 **純函式只進行運算，因此呼叫兩次後也不會改變任何事** -- 就像是呼叫 `double(2)` 兩次也不會改變它的回傳值，求解 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 兩次不會改變 <MathI>y</MathI> 的值。相同的輸入永遠會有相同的輸出。
 
 嚴格模式不會影響正式環境，因此它不會拖慢用戶的應用程式速度。如需選擇嚴格模式，你可以將你的 root component 包裝到 `<React.StrictMode>`。有些框架預設會這麼做。
 
