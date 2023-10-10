@@ -4,7 +4,7 @@ title: 保持 Component 的 Pure
 
 <Intro>
 
-有些 JavaScript 的函式為「純函式」。純函數只會執行計算，不會做別的事情。如果我們嚴格地把 component 都寫成純函數，就可以在隨著 codebase 的增長中避免一系列令人困惑且不可預期的問題出現。但是在獲得這些好處前，你必須先遵守一些規則。
+有些 JavaScript 的函式為「純函式」。純函式只會執行計算，不會做別的事情。如果我們嚴格地把 component 都寫成純函式，就可以在隨著 codebase 的增長中避免一系列令人困惑且不可預期的問題出現。但是在獲得這些好處前，你必須先遵守一些規則。
 
 
 </Intro>
@@ -24,7 +24,7 @@ title: 保持 Component 的 Pure
 * **只關心自己的事務。**這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
 * **一樣的輸入，一樣的輸出。**只要我們輸入相同的參數，這個函式總是回傳相同的輸出。
 
-你可能已經熟悉純函數的其中一個例子：數學中的公式
+你可能已經熟悉純函式的其中一個例子：數學中的公式
 
 來看這個數學公式： <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>
 
@@ -36,7 +36,7 @@ title: 保持 Component 的 Pure
 
 如果 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 且 <Math><MathI>x</MathI> = 3</Math>， <MathI>y</MathI> 永遠都會是 <Math>6</Math>。
 
-如果我們把它放到 JavaScript 函數中，它會長得像這樣：
+如果我們把它放到 JavaScript 函式中，它會長得像這樣：
 
 ```js
 function double(number) {
@@ -88,7 +88,7 @@ export default function App() {
 
 ## Side Effects：（非）預期的結果 {/*side-effects-unintended-consequences*/}
 
-React 的 rendering 過程必須永遠保持 pure。Components 應該永遠*回傳*它們的 JSX，而不 *更改*任何 rendering 之前就存在的 object 或變數 - 這會使它們變得 impure！
+React 的 rendering 過程必須永遠保持 pure。Component 應該永遠*回傳*它們的 JSX，而不*更改*任何 rendering 之前就存在的 object 或變數 - 這會使它們變得 impure！
 
 這是一個違反規則的 component：
 
@@ -144,25 +144,25 @@ export default function TeaSet() {
 
 現在你的 component 是 pure 的，因為它回傳的 JSX 僅依賴 `guest` prop。
 
-一般來說，你不應該預期 component 以任何特定順序渲染。在 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 之前或之後調用 <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math> 並不重要：兩個公式都將各自獨立地求解。同樣的，每個 component 都應該「只考慮自己」，而不是在渲染過程中試圖與其他 component 協調或是依賴其他 component。Rendering 就像是一個學校考試：每個 component 都應該計算自己的 JSX ！
+一般來說，你不應該預期 component 以任何特定順序 render 。在 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 之前或之後調用 <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math> 並不重要：兩個公式都將各自獨立地求解。同樣的，每個 component 都應該「只考慮自己」，而不是在 rendering 過程中試圖與其他 component 協調或是依賴其他 component。Rendering 就像是一個學校考試：每個 component 都應該計算自己的 JSX！
 
 <DeepDive>
 
-#### 使用嚴格模式檢查 impure 的計算 {/*detecting-impure-calculations-with-strict-mode*/}
+#### 使用 Strict Mode 檢查 impure 的計算 {/*detecting-impure-calculations-with-strict-mode*/}
 
 儘管你可能還沒有全部使用過它們，但在 React 中你可以在 render 時讀取三種輸入：[props](/learn/passing-props-to-a-component)、[state](/learn/state-a-components-memory) 以及 [context](/learn/passing-data-deeply-with-context)。你應該永遠將這些輸入視為 read-only 。
 
-當你想要 *改變* 某些以用戶輸入為響應的內容時，你應該要 [set state](/learn/state-a-components-memory) 而非直接更改變數。你永遠都不該在 component 渲染過程中改變已存在的變數或物件。
+當你想要*改變*某些內容來回應使用者輸入時，你應該要 [set state](/learn/state-a-components-memory) 而非直接更改變數。你永遠都不該在 component render 過程中改變已存在的變數或 object。
 
 React 提供了「Strict Mode」，在開發過程中它會呼叫每個 component 的函式兩次。**透過呼叫兩次 component 的函式，Strict Mode 有助於找到違反這些規則的 component。**
 
 請注意在原本的範例，它顯示了「Guest #2」、「Guest #4」以及「Guest #6」，而不是「Guest #1」、「Guest #2」及「Guest #3」。原本的函式是 impure 的，所以呼叫兩次後就破壞了它。但在修正後的 pure 版本中，即使每次呼叫了兩次函式還是能夠正常運作。 **純函式只進行運算，因此呼叫兩次後也不會改變任何事** -- 就像是呼叫 `double(2)` 兩次也不會改變它的回傳值，求解 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 兩次不會改變 <MathI>y</MathI> 的值。相同的輸入永遠會有相同的輸出。
 
-嚴格模式不會影響正式環境，因此它不會拖慢用戶的應用程式速度。如需選擇嚴格模式，你可以將你的 root component 包裝到 `<React.StrictMode>`。有些框架預設會這麼做。
+Strict Mode 不會影響正式環境，因此它不會拖慢用戶的應用程式速度。如需選擇 Strict Mode，你可以將你的 root component 包裝到 `<React.StrictMode>`。有些框架預設會這麼做。
 
 </DeepDive>
 
-### 變異本地化：你的 component 的小秘密 {/*local-mutation-your-components-little-secret*/}
+### Local mutation: 你的 component 的小秘密 {/*local-mutation-your-components-little-secret*/}
 
 在上面的範例中， 問題是 component 在 render 時改變了*預先存在的*變數。這通常會稱之為 **「mutation」** 使其聽起來有點可怕。純函式不會改變函式範圍外的變數、或是呼叫之前就已建立的 object — 這使得它們 impure！
 
@@ -186,7 +186,7 @@ export default function TeaGathering() {
 
 </Sandpack>
 
-如果 `cups` 變數或者是 `[]` array 是在 `TeaGathering` 函式之外建立的，這就會是個大問題！你會在將項目放入陣列時改變一個*預先存在的* object。
+如果 `cups` 變數或者是 `[]` array 是在 `TeaGathering` 函式之外建立的，這就會是個大問題！你會在將項目放入 array 時改變一個*預先存在的* object。
 
 不過，由於你是在 `TeaGathering` 內的 *同個 render 過程中* 建立它們的，所以不會有問題。在 `TeaGathering` 範圍外的任何程式碼都不會知道發生了這個情況。這稱為**「local mutation」**- 這就像是 component 自己的小秘密。
 
@@ -202,15 +202,15 @@ export default function TeaGathering() {
 
 <DeepDive>
 
-#### 為什麼 React 在意存粹性？ {/*why-does-react-care-about-purity*/}
+#### 為什麼 React 在意 purity？ {/*why-does-react-care-about-purity*/}
 
-撰寫純函數需要一些習慣與紀律。但純函數也解鎖了一些絕佳的功能：
+撰寫純函式需要一些習慣與紀律。但純函式也解鎖了一些絕佳的功能：
 
-* 你的 components 可以在不同環境上運行 - 例如，在伺服器上！由於它們對相同輸出會有相同結果，因此一個 component 可以滿足許多用戶請求。
-* 你可以透過 [skipping rendering](/reference/react/memo) 那些 input 沒有更新的 components 來提升效能。這是安全的，因為純函式永遠都會回傳相同的結果，所以可以安全地 cache 它們。
-* 如果在渲染深層元件樹 (deep component tree) 的過程中某些資料發生變化，React 可以重新啟動渲染、而不浪費時間完成過時的渲染。純粹性可以讓它更安全地隨時停止計算。
+* 你的 component 可以在不同環境上運行 - 例如，在伺服器上！由於它們對相同輸出會有相同結果，因此一個 component 可以滿足許多用戶請求。
+* 你可以透過 [skipping rendering](/reference/react/memo) 那些 input 沒有更新的 component 來提升效能。這是安全的，因為純函式永遠都會回傳相同的結果，所以可以安全地 cache 它們。
+* 如果在 rendering 深層元件樹 (deep component tree) 的過程中某些資料發生變化，React 可以重新進行 render、而不浪費時間完成過時的 render。 Purity 可以讓它更安全地隨時停止計算。
 
-所有我們正在建立的 React 新功能都利用了純粹性的優點。從獲取資料到動畫再到性能，保持 components 的存粹性能夠解鎖 React 典範的力量。
+所有我們正在建立的 React 新功能都利用了 purity 的優點。從獲取資料到動畫再到性能，保持 component 的 purity 能夠解鎖 React 典範的力量。
 
 </DeepDive>
 
@@ -218,11 +218,11 @@ export default function TeaGathering() {
 
 * 一個 component 是 pure 的，這意味著：
   * **只關心自己的事務。**這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
-  * **一樣的輸入，一樣的輸出** 只要我們輸入相同的參數，這個函數總是回傳一個相同的輸出。
-* 渲染可能會在任何時間發生，因此 components 不該依賴於彼此的渲染順序。
-* 你不該改變任何你的 components 用來渲染的輸入。這包含 props，state，以及 context。要更新畫面的話，請 ["set" state](/learn/state-a-components-memory) 而不是直接修改預先存在的物件。
-* 盡量在返回的 JSX 中表達你的 component 邏輯。當你需要「更改內容」時，你會希望在事件處理器中處理。或是作為最後的手段，你可以使用 `useEffect`。
-* 撰寫純函數需要一些練習，不過它能解鎖 React 典範的力量。
+  * **一樣的輸入，一樣的輸出** 只要我們輸入相同的參數，這個函式總是回傳一個相同的輸出。
+* Rendering 可能會在任何時間發生，因此 component 不該依賴於彼此的 rendering 順序。
+* 你不該改變任何你的 component 用來 render 的輸入。這包含 props，state，以及 context。要更新畫面的話，請 ["set" state](/learn/state-a-components-memory) 而不是直接修改預先存在的 object。
+* 盡量在返回的 JSX 中表達你的 component 邏輯。當你需要「更改內容」時，你會希望在 event handler 中處理。或是作為最後的手段，你可以使用 `useEffect`。
+* 撰寫純函式需要一些練習，不過它能解鎖 React 典範的力量。
 
 </Recap>
 
@@ -238,7 +238,7 @@ export default function TeaGathering() {
 
 <Hint>
 
-渲染是一種 *計算* ，它不應該嘗試「做」事情。你能用不同方式表達同一種想法嗎？
+Render 是一種 *計算* ，它不應該嘗試「做」事情。你能用不同方式表達同一種想法嗎？
 
 </Hint>
 
@@ -302,7 +302,7 @@ body > * {
 
 <Solution>
 
-你可以透過計算 `className` 並把它放入渲染出來的輸出中來修復這個 component：
+你可以透過計算 `className` 並把它放入 render 出來的輸出中來修復這個 component：
 
 <Sandpack>
 
@@ -363,13 +363,13 @@ body > * {
 
 </Sandpack>
 
-在這個範例中，副作用（修改 DOM ）根本完全沒有必要。你只需要返回 JSX 即可。
+在這個範例中，side effect（修改 DOM ）根本完全沒有必要。你只需要返回 JSX 即可。
 
 </Solution>
 
 #### 修正一個壞掉的 Profile {/*fix-a-broken-profile*/}
 
-有兩個 `Profile` components 使用不同資料並排地呈現。在第一個 Profile 中點選 "Collapse"，接著 "Expand"。你會發現這時兩個 profiles 顯示的是同一個人。這是一個 bug。
+有兩個 `Profile` component 使用不同資料並排地呈現。在第一個 Profile 中點選 "Collapse"，接著 "Expand"。你會發現這時兩個 profiles 顯示的是同一個人。這是一個 bug。
 
 找到問題並且解決它。
 
@@ -476,9 +476,9 @@ h1 { margin: 5px; font-size: 18px; }
 
 <Solution>
 
-問題在於 `Profile` component 修改一個稱為 `currentPerson` 的預先存在的變數，而 `Header` and `Avatar` components 都有讀取這個變數。這導致 *它們三個* 都變得 impure 且難以預測。
+問題在於 `Profile` component 修改一個稱為 `currentPerson` 的預先存在的變數，而 `Header` and `Avatar` component 都有讀取這個變數。這導致 *它們三個* 都變得 impure 且難以預測。
 
-要修正這個錯誤，請先刪除 `currentPerson` 變數。並且改成透過 props 將所有資料從 `Profile` 傳送到 `Header` 與 `Avatar`。你會需要會兩個 components 添加一個 `person` prop 並把它一直向下傳遞。
+要修正這個錯誤，請先刪除 `currentPerson` 變數。並且改成透過 props 將所有資料從 `Profile` 傳送到 `Header` 與 `Avatar`。你會需要會兩個 component 添加一個 `person` prop 並把它一直向下傳遞。
 
 <Sandpack>
 
@@ -572,7 +572,7 @@ h1 { margin: 5px; font-size: 18px; }
 
 </Sandpack>
 
-請記住， React 不保證 component 函數會以任何特定順序執行，所以你無法透過設置變數在它們之間溝通。所有的溝通都必須透過 props 進行。
+請記住， React 不保證 component 函式會以任何特定順序執行，所以你無法透過設置變數在它們之間溝通。所有的溝通都必須透過 props 進行。
 
 </Solution>
 
@@ -580,7 +580,7 @@ h1 { margin: 5px; font-size: 18px; }
 
 你公司的 CEO 要求你將「多個故事」加入線上時鐘應用程式中，而你不能拒絕。你已經編寫了一個 `StoryTray` component，它接受「故事」列表，並會在後面接上一個 "Create Story" 的圖片框。
 
-你透過在作為 props 的 `stories` 陣列後面加上一筆假資料來實作 "Create Story" 的圖片框。但由於某種原因，"Create Story" 出現了不只一次，請解決這個問題。
+你透過在作為 props 的 `stories` array 後面加上一筆假資料來實作 "Create Story" 的圖片框。但由於某種原因，"Create Story" 出現了不只一次，請解決這個問題。
 
 <Sandpack>
 
@@ -676,11 +676,11 @@ li {
 
 <Solution>
 
-請注意，每當時鐘更新時，"Create Story" 就會被增加 *兩次* 。這暗示我們在渲染過程中發生了一個變異 -- 嚴格模式調用了兩次 components 使得這個問題更明顯。
+請注意，每當時鐘更新時，"Create Story" 就會被增加 *兩次* 。這暗示我們在 render 過程中發生了一個變異 -- Strict Mode 調用了兩次 component 使得這個問題更明顯。
 
-`StoryTray` 函數不是純粹的。透過在接收到的 `stories` 陣列（一個 prop ）呼叫 `push` ，它會改變在 `StoryTray` 渲染前就建立的物件。這使得它變得充滿錯誤並且難以預測。
+`StoryTray` 函式不是 pure 的。透過在接收到的 `stories` array（一個 prop ）呼叫 `push` ，它會改變在 `StoryTray` render 前就建立的 object 。這使得它變得充滿錯誤並且難以預測。
 
-最簡單的修正作法是完全不要修改陣列，只單獨渲染 "Create Story"：
+最簡單的修正作法是完全不要修改 array，只單獨渲染 "Create Story"：
 
 <Sandpack>
 
@@ -764,7 +764,7 @@ li {
 
 </Sandpack>
 
-或者，你可以在你推入新的項目前創立一個 _新的_ 陣列（透過複製現有陣列）：
+或者，你可以在你推入新的項目前創立一個 _新的_ array（透過複製現有 array ）：
 
 <Sandpack>
 
@@ -856,9 +856,9 @@ li {
 
 </Sandpack>
 
-這使得變異能夠保持本地化、並且保持渲染函數純粹。但是你仍然需要小心：舉例來說，如果你嘗試改變陣列中的任何現有項目，你也必須先複製這些項目。
+這使得變異能夠保持本地化、並且保持渲染函式純粹。但是你仍然需要小心：舉例來說，如果你嘗試改變 array 中的任何現有項目，你也必須先複製這些項目。
 
-記住陣列中的哪些操作會改變原始陣列、哪些不會是很有用的。例如，`push`、`pop`、`reverse`、以及 `sort` 會改變原始陣列，但是 `slice`、`filter` 以及 `map` 會建立一個新的陣列。
+記住 array 中的哪些操作會改變原始 array、哪些不會是很有用的。例如，`push`、`pop`、`reverse`、以及 `sort` 會改變原始 array，但是 `slice`、`filter` 以及 `map` 會建立一個新的 array。
 
 </Solution>
 
