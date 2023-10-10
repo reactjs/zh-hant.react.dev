@@ -118,7 +118,7 @@ export default function TeaSet() {
 
 這個 component 正在讀取與更改在外部宣告的 `guest` 變數。這意味著**多次呼叫這個 component 會產生不一樣的 JSX！** 更重要的是，如果 _其他_ component 也讀取 `guest`，它們將依照被 render 的時間點而產生不一樣的 JSX ！這是不可預測的。
 
-回到我們的公式 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>，即使現在 <Math><MathI>x</MathI> = 2</Math>， 我們不能保證 <Math><MathI>y</MathI> = 4</Math>。我們的測試可能會失敗、我們的用戶可能會感到困惑、飛機會從天上掉下來 - 你可以看到這將會導致令人困惑的錯誤！
+回到我們的公式 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>，即使現在 <Math><MathI>x</MathI> = 2</Math>，我們不能保證 <Math><MathI>y</MathI> = 4</Math>。我們的測試可能會失敗、我們的使用者可能會感到困惑、飛機會從天上掉下來 - 你可以看到這將會導致令人困惑的錯誤！
 
 你可以透過 [將 `guest` 當成 prop 傳入](/learn/passing-props-to-a-component) 來修正這個 component：
 
