@@ -198,7 +198,7 @@ export default function TeaGathering() {
 
 如果你已經用盡了所有其他選項，並且無法找到其他適合你的 side effect 的 event handler，你仍然可以選擇 component 中的 [`useEffect`](/reference/react/useEffect) 來將其附加到回傳的 JSX。這告訴 React 在 render 後、允許 side effect 的情況下執行它。**但是，這個方法應該要是你最後的手段。**
 
-可以的話，盡量嘗試透過渲染過程來表示你的邏輯。你會驚訝它能帶你走多遠！
+可以的話，盡量嘗試透過 render 過程來表示你的邏輯。你會驚訝它能帶你走多遠！
 
 <DeepDive>
 
