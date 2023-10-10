@@ -21,8 +21,8 @@ title: 保持 Component 的 Pure
 
 在計算機科學中（尤其是函數式程式設計的世界），[純函式](https://wikipedia.org/wiki/Pure_function)具有以下的特徵：
 
-* **只關心自己的事務。**這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
-* **一樣的輸入，一樣的輸出。**只要我們輸入相同的參數，這個函式總是回傳相同的輸出。
+* **只關心自己的事務。** 這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
+* **一樣的輸入，一樣的輸出。** 只要我們輸入相同的參數，這個函式總是回傳相同的輸出。
 
 你可能已經熟悉純函式的其中一個例子：數學中的公式
 
@@ -188,13 +188,13 @@ export default function TeaGathering() {
 
 如果 `cups` 變數或者是 `[]` array 是在 `TeaGathering` 函式之外建立的，這就會是個大問題！你會在將項目放入 array 時改變一個*預先存在的* object。
 
-不過，由於你是在 `TeaGathering` 內的 *同個 render 過程中* 建立它們的，所以不會有問題。在 `TeaGathering` 範圍外的任何程式碼都不會知道發生了這個情況。這稱為**「local mutation」**- 這就像是 component 自己的小秘密。
+不過，由於你是在 `TeaGathering` 內的 *同個 render 過程中* 建立它們的，所以不會有問題。在 `TeaGathering` 範圍外的任何程式碼都不會知道發生了這個情況。這稱為 **「local mutation」**- 這就像是 component 自己的小秘密。
 
 ## 你_可能_會引起 side effects 的地方 {/*where-you-_can_-cause-side-effects*/}
 
 雖然函數式程式設計在很大程度上依賴 purity，但在某些時候，_有些東西_ 必須改變。這就是程式設計的意義所在！這些更改例如：顯示畫面、開始一個動畫、更改資料都被稱為 **side effects** 。他們是 _一邊發生_ 的事情，而不是在 render 期間發生的事情。
 
-在 React 中，** side effects 通常屬於 [event handler](/learn/responding-to-events)**。Event handler 是 React 在你執行某些操作（例如：點擊一個按鈕）時執行的函式。儘管 event handler 是在 component *內部* 定義的，但它們 *不會在 render 時間執行*！**所以 event handler 不需要是 pure 的。**
+在 React 中，**side effects 通常屬於 [event handler](/learn/responding-to-events)**。Event handler 是 React 在你執行某些操作（例如：點擊一個按鈕）時執行的函式。儘管 event handler 是在 component *內部* 定義的，但它們 *不會在 render 時間執行*！**所以 event handler 不需要是 pure 的。**
 
 如果你已經用盡了所有其他選項，並且無法找到其他適合你的 side effect 的 event handler，你仍然可以選擇 component 中的 [`useEffect`](/reference/react/useEffect) 來將其附加到回傳的 JSX。這告訴 React 在 render 後、允許 side effect 的情況下執行它。**但是，這個方法應該要是你最後的手段。**
 
@@ -208,7 +208,7 @@ export default function TeaGathering() {
 
 * 你的 component 可以在不同環境上運行 - 例如，在伺服器上！由於它們對相同輸出會有相同結果，因此一個 component 可以滿足許多用戶請求。
 * 你可以透過 [skipping rendering](/reference/react/memo) 那些 input 沒有更新的 component 來提升效能。這是安全的，因為純函式永遠都會回傳相同的結果，所以可以安全地 cache 它們。
-* 如果在 rendering 深層元件樹 (deep component tree) 的過程中某些資料發生變化，React 可以重新進行 render、而不浪費時間完成過時的 render。 Purity 可以讓它更安全地隨時停止計算。
+* 如果在 render 深層元件樹 (deep component tree) 的過程中某些資料發生變化，React 可以重新進行 render、而不浪費時間完成過時的 render。 Purity 可以讓它更安全地隨時停止計算。
 
 所有我們正在建立的 React 新功能都利用了 purity 的優點。從獲取資料到動畫再到性能，保持 component 的 purity 能夠解鎖 React 典範的力量。
 
@@ -217,7 +217,7 @@ export default function TeaGathering() {
 <Recap>
 
 * 一個 component 是 pure 的，這意味著：
-  * **只關心自己的事務。**這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
+  * **只關心自己的事務。** 這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
   * **一樣的輸入，一樣的輸出** 只要我們輸入相同的參數，這個函式總是回傳一個相同的輸出。
 * Rendering 可能會在任何時間發生，因此 component 不該依賴於彼此的 rendering 順序。
 * 你不該改變任何你的 component 用來 render 的輸入。這包含 props，state，以及 context。要更新畫面的話，請 ["set" state](/learn/state-a-components-memory) 而不是直接修改預先存在的 object。
