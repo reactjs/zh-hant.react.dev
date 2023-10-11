@@ -680,7 +680,7 @@ li {
 
 `StoryTray` 函式不是 pure 的。透過在接收到的 `stories` array（一個 prop ）呼叫 `push` ，它會改變在 `StoryTray` render 前就建立的 object 。這使得它變得充滿錯誤並且難以預測。
 
-最簡單的修正作法是完全不要修改 array，只單獨渲染 "Create Story"：
+最簡單的修正作法是完全不要修改 array，只單獨 render「Create Story」：
 
 <Sandpack>
 
