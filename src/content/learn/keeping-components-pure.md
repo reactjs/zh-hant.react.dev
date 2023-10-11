@@ -572,7 +572,7 @@ h1 { margin: 5px; font-size: 18px; }
 
 </Sandpack>
 
-請記住， React 不保證 component 函式會以任何特定順序執行，所以你無法透過設置變數在它們之間溝通。所有的溝通都必須透過 props 進行。
+請記住， React 不保證 component 函式會以任何特定順序執行，所以你無法透過設定變數在它們之間溝通。所有的溝通都必須透過 props 進行。
 
 </Solution>
 
