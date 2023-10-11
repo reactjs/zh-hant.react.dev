@@ -578,7 +578,7 @@ h1 { margin: 5px; font-size: 18px; }
 
 #### 修正一個壞掉的故事列表 {/*fix-a-broken-story-tray*/}
 
-你公司的 CEO 要求你將「多個故事」加入線上時鐘應用程式中，而你不能拒絕。你已經編寫了一個 `StoryTray` component，它接受「故事」列表，並會在後面接上一個 "Create Story" 的圖片框。
+你公司的 CEO 要求你將「多個故事」加入線上時鐘應用程式中，而你不能拒絕。你已經編寫了一個 `StoryTray` component，它接受「故事」列表，並會在後面接上一個「Create Story」的圖片框。
 
 你透過在作為 props 的 `stories` array 後面加上一筆假資料來實作 "Create Story" 的圖片框。但由於某種原因，"Create Story" 出現了不只一次，請解決這個問題。
 
