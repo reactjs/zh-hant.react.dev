@@ -206,7 +206,7 @@ export default function TeaGathering() {
 
 撰寫純函式需要一些習慣與紀律。但純函式也解鎖了一些絕佳的功能：
 
-* 你的 component 可以在不同環境上運行 - 例如，在伺服器上！由於它們對相同輸出會有相同結果，因此一個 component 可以滿足許多用戶請求。
+* 你的 component 可以在不同環境上運行 - 例如，在伺服器上！由於它們對相同輸出會有相同結果，因此一個 component 可以滿足許多使用者請求。
 * 你可以透過 [skipping rendering](/reference/react/memo) 那些 input 沒有更新的 component 來提升效能。這是安全的，因為純函式永遠都會回傳相同的結果，所以可以安全地 cache 它們。
 * 如果在 render 一個 deep component tree 的過程中某些資料發生變化，React 可以重新進行 render、而不浪費時間完成過時的 render。Purity 可以讓它更安全地隨時停止計算。
 
