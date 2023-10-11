@@ -363,7 +363,7 @@ body > * {
 
 </Sandpack>
 
-在這個範例中，side effect（修改 DOM ）根本完全沒有必要。你只需要返回 JSX 即可。
+在這個範例中，side effect（修改 DOM ）根本完全沒有必要。你只需要回傳 JSX 即可。
 
 </Solution>
 
