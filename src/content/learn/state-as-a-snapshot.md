@@ -78,8 +78,8 @@ label, textarea { margin-bottom: 10px; display: block; }
 當 React 重新 render component 時：
 
 1. React 再次呼叫函式。
-2. 函式回傳一張全新的 JSX 快照。
-3. 接著，React 更新畫面，使畫面與你回傳的快照相符。
+2. 你的函式回傳一個全新的 JSX 快照。
+3. React 接著更新畫面，使畫面與你回傳的快照相符。
 
 <IllustrationBlock sequential>
     <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
