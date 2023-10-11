@@ -210,7 +210,7 @@ export default function TeaGathering() {
 * 你可以透過 [skipping rendering](/reference/react/memo) 那些 input 沒有更新的 component 來提升效能。這是安全的，因為純函式永遠都會回傳相同的結果，所以可以安全地 cache 它們。
 * 如果在 render 一個 deep component tree 的過程中某些資料發生變化，React 可以重新進行 render、而不浪費時間完成過時的 render。Purity 可以讓它更安全地隨時停止計算。
 
-所有我們正在建立的 React 新功能都利用了 purity 的優點。從獲取資料到動畫再到性能，保持 component 的 purity 能夠解鎖 React 典範的力量。
+所有我們正在建立的 React 新功能都利用了 purity 的優點。從獲取資料到動畫再到效能，保持 component 的 purity 能夠解鎖 React 典範的力量。
 
 </DeepDive>
 
