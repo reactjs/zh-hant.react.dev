@@ -369,7 +369,7 @@ body > * {
 
 #### 修正一個壞掉的 Profile {/*fix-a-broken-profile*/}
 
-有兩個 `Profile` component 使用不同資料並排地呈現。在第一個 Profile 中點選 "Collapse"，接著 "Expand"。你會發現這時兩個 profiles 顯示的是同一個人。這是一個 bug。
+有兩個 `Profile` component 使用不同資料並排地呈現。在第一個 Profile 中點選「Collapse」，接著 「Expand」。你會發現這時兩個 profiles 顯示的是同一個人。這是一個 bug。
 
 找到問題並且解決它。
 
