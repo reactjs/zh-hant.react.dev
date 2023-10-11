@@ -221,7 +221,7 @@ export default function TeaGathering() {
   * **一樣的輸入，一樣的輸出** 只要我們輸入相同的參數，這個函式總是回傳一個相同的輸出。
 * Rendering 可能會在任何時間發生，因此 component 不該依賴於彼此的 rendering 順序。
 * 你不該改變任何你的 component 用來 render 的輸入。這包含 props，state，以及 context。要更新畫面的話，請 ["set" state](/learn/state-a-components-memory) 而不是直接修改預先存在的 object。
-* 盡量在返回的 JSX 中表達你的 component 邏輯。當你需要「更改內容」時，你會希望在 event handler 中處理。或是作為最後的手段，你可以使用 `useEffect`。
+* 盡量在回傳的 JSX 中表達你的 component 邏輯。當你需要「更改內容」時，你會希望在 event handler 中處理。或是作為最後的手段，你可以使用 `useEffect`。
 * 撰寫純函式需要一些練習，不過它能解鎖 React 典範的力量。
 
 </Recap>
