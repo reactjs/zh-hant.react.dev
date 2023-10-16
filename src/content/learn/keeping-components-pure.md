@@ -6,7 +6,6 @@ title: 保持 Component 的 Pure
 
 有些 JavaScript 的函式為「純函式」。純函式只會執行計算，不會做別的事情。如果我們嚴格地把 component 都寫成純函式，就可以在隨著 codebase 的增長中避免一系列令人困惑且不可預期的問題出現。但是在獲得這些好處前，你必須先遵守一些規則。
 
-
 </Intro>
 
 <YouWillLearn>
@@ -53,7 +52,7 @@ React 就是圍繞這個概念設計的。**React 假設你編寫的每個函式
 ```js App.js
 function Recipe({ drinkers }) {
   return (
-    <ol>    
+    <ol>
       <li>Boil {drinkers} cups of water.</li>
       <li>Add {drinkers} spoons of tea and {0.5 * drinkers} spoons of spice.</li>
       <li>Add {0.5 * drinkers} cups of milk to boil and sugar to taste.</li>
@@ -82,7 +81,7 @@ export default function App() {
 
 就像是數學公式一樣。
 
-你可以把 component 想成是食譜一樣： 如果你遵循它們並且在烹飪過程中不加入新食材，那麼你每次都會得到相同的菜餚。這個「菜餚」就是 component 提供給 React [render](/learn/render-and-commit) 的 JSX。 
+你可以把 component 想成是食譜一樣： 如果你遵循它們並且在烹飪過程中不加入新食材，那麼你每次都會得到相同的菜餚。這個「菜餚」就是 component 提供給 React [render](/learn/render-and-commit) 的 JSX。
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
@@ -144,7 +143,7 @@ export default function TeaSet() {
 
 現在你的 component 是 pure 的，因為它回傳的 JSX 僅依賴 `guest` prop。
 
-一般來說，你不應該預期 component 以任何特定順序 render 。在 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 之前或之後調用 <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math> 並不重要：兩個公式都將各自獨立地求解。同樣的，每個 component 都應該「只考慮自己」，而不是在 rendering 過程中試圖與其他 component 協調或是依賴其他 component。Rendering 就像是一個學校考試：每個 component 都應該計算自己的 JSX！
+一般來說，你不應該預期 component 以任何特定順序 render。在 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 之前或之後調用 <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math> 並不重要：兩個公式都將各自獨立地求解。同樣的，每個 component 都應該「只考慮自己」，而不是在 rendering 過程中試圖與其他 component 協調或是依賴其他 component。Rendering 就像是一個學校考試：每個 component 都應該計算自己的 JSX！
 
 <DeepDive>
 
@@ -188,13 +187,13 @@ export default function TeaGathering() {
 
 如果 `cups` 變數或者是 `[]` array 是在 `TeaGathering` 函式之外建立的，這就會是個大問題！你會在將項目放入 array 時改變一個*預先存在的* object。
 
-不過，由於你是在 `TeaGathering` 內的 *同個 render 過程中* 建立它們的，所以不會有問題。在 `TeaGathering` 範圍外的任何程式碼都不會知道發生了這個情況。這稱為 **「local mutation」**- 這就像是 component 自己的小秘密。
+不過，由於你是在 `TeaGathering` 內的*同個 render 過程中*建立它們的，所以不會有問題。在 `TeaGathering` 範圍外的任何程式碼都不會知道發生了這個情況。這稱為 **「local mutation」**- 這就像是 component 自己的小秘密。
 
 ## 你_可能_會引起 side effects 的地方 {/*where-you-_can_-cause-side-effects*/}
 
-雖然函數式程式設計在很大程度上依賴 purity，但在某些時候，_有些東西_ 必須改變。這就是程式設計的意義所在！這些更改例如：顯示畫面、開始一個動畫、更改資料都被稱為 **side effects** 。他們是 _一邊發生_ 的事情，而不是在 render 期間發生的事情。
+雖然函數式程式設計在很大程度上依賴 purity，但在某些時候，_有些東西_必須改變。這就是程式設計的意義所在！這些更改例如：顯示畫面、開始一個動畫、更改資料都被稱為 **side effects** 。他們是_一邊發生_的事情，而不是在 render 期間發生的事情。
 
-在 React 中，**side effects 通常屬於 [event handler](/learn/responding-to-events)**。Event handler 是 React 在你執行某些操作（例如：點擊一個按鈕）時執行的函式。儘管 event handler 是在 component *內部* 定義的，但它們 *不會在 render 時間執行*！**所以 event handler 不需要是 pure 的。**
+在 React 中，**side effects 通常屬於 [event handler](/learn/responding-to-events)**。Event handler 是 React 在你執行某些操作（例如：點擊一個按鈕）時執行的函式。儘管 event handler 是在 component *內部*定義的，但它們*不會在 render 時間執行*！**所以 event handler 不需要是 pure 的。**
 
 如果你已經用盡了所有其他選項，並且無法找到其他適合你的 side effect 的 event handler，你仍然可以選擇 component 中的 [`useEffect`](/reference/react/useEffect) 來將其附加到回傳的 JSX。這告訴 React 在 render 後、允許 side effect 的情況下執行它。**但是，這個方法應該要是你最後的手段。**
 
@@ -206,7 +205,7 @@ export default function TeaGathering() {
 
 撰寫純函式需要一些習慣與紀律。但純函式也解鎖了一些絕佳的功能：
 
-* 你的 component 可以在不同環境上運行 - 例如，在伺服器上！由於它們對相同輸出會有相同結果，因此一個 component 可以滿足許多使用者請求。
+* 你的 component 可以在不同環境上執行 - 例如，在伺服器上！由於它們對相同輸出會有相同結果，因此一個 component 可以滿足許多使用者請求。
 * 你可以透過 [skipping rendering](/reference/react/memo) 那些 input 沒有更新的 component 來提升效能。這是安全的，因為純函式永遠都會回傳相同的結果，所以可以安全地 cache 它們。
 * 如果在 render 一個 deep component tree 的過程中某些資料發生變化，React 可以重新進行 render、而不浪費時間完成過時的 render。Purity 可以讓它更安全地隨時停止計算。
 
@@ -220,14 +219,14 @@ export default function TeaGathering() {
   * **只關心自己的事務。** 這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
   * **一樣的輸入，一樣的輸出** 只要我們輸入相同的參數，這個函式總是回傳一個相同的輸出。
 * Rendering 可能會在任何時間發生，因此 component 不該依賴於彼此的 rendering 順序。
-* 你不該改變任何你的 component 用來 render 的輸入。這包含 props，state，以及 context。要更新畫面的話，請 ["set" state](/learn/state-a-components-memory) 而不是直接修改預先存在的 object。
+* 你不該改變任何你的 component 用來 render 的輸入。這包含 props，state，以及 context。要更新畫面的話，請 [「set」 state](/learn/state-a-components-memory) 而不是直接修改預先存在的 object。
 * 盡量在回傳的 JSX 中表達你的 component 邏輯。當你需要「更改內容」時，你會希望在 event handler 中處理。或是作為最後的手段，你可以使用 `useEffect`。
 * 撰寫純函式需要一些練習，不過它能解鎖 React 典範的力量。
 
 </Recap>
 
 
-  
+
 <Challenges>
 
 #### 修正一個換掉的時鐘 {/*fix-a-broken-clock*/}
@@ -238,7 +237,7 @@ export default function TeaGathering() {
 
 <Hint>
 
-Render 是一種 *計算* ，它不應該嘗試「做」事情。你能用不同方式表達同一種想法嗎？
+Render 是一種*計算* ，它不應該嘗試「做」事情。你能用不同方式表達同一種想法嗎？
 
 </Hint>
 
@@ -476,7 +475,7 @@ h1 { margin: 5px; font-size: 18px; }
 
 <Solution>
 
-問題在於 `Profile` component 修改一個稱為 `currentPerson` 的預先存在的變數，而 `Header` and `Avatar` component 都有讀取這個變數。這導致 *它們三個* 都變得 impure 且難以預測。
+問題在於 `Profile` component 修改一個稱為 `currentPerson` 的預先存在的變數，而 `Header` 和 `Avatar` component 都有讀取這個變數。這導致*它們三個*都變得 impure 且難以預測。
 
 要修正這個錯誤，請先刪除 `currentPerson` 變數。並且改成透過 props 將所有資料從 `Profile` 傳送到 `Header` 與 `Avatar`。你會需要會兩個 component 添加一個 `person` prop 並把它一直向下傳遞。
 
@@ -676,7 +675,7 @@ li {
 
 <Solution>
 
-請注意，每當時鐘更新時，"Create Story" 就會被增加 *兩次* 。這暗示我們在 render 過程中發生了一個變異 -- Strict Mode 調用了兩次 component 使得這個問題更明顯。
+請注意，每當時鐘更新時，「Create Story」就會被增加*兩次* 。這暗示我們在 render 過程中發生了一個變異 -- Strict Mode 調用了兩次 component 使得這個問題更明顯。
 
 `StoryTray` 函式不是 pure 的。透過在接收到的 `stories` array（一個 prop ）呼叫 `push` ，它會改變在 `StoryTray` render 前就建立的 object 。這使得它變得充滿錯誤並且難以預測。
 
