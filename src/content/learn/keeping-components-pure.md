@@ -1,41 +1,42 @@
 ---
-title: Keeping Components Pure
+title: 保持 Component 的 Pure
 ---
 
 <Intro>
 
-Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.
+有些 JavaScript 的函式為「純函式」。純函式只會執行計算，不會做別的事情。如果我們嚴格地把 component 都寫成純函式，就可以在隨著 codebase 的增長中避免一系列令人困惑且不可預期的問題出現。但是在獲得這些好處前，你必須先遵守一些規則。
+
 
 </Intro>
 
 <YouWillLearn>
 
-* What purity is and how it helps you avoid bugs
-* How to keep components pure by keeping changes out of the render phase
-* How to use Strict Mode to find mistakes in your components
+* 什麼是 purity 以及它如何幫助你避免錯誤
+* 如何透過將變更保留在 render 階段外來保持 component 的 pure
+* 如何使用 Strict Mode 來尋找 component 中的錯誤
 
 </YouWillLearn>
 
-## Purity: Components as formulas {/*purity-components-as-formulas*/}
+## Purity：Component 作為公式 {/*purity-components-as-formulas*/}
 
-In computer science (and especially the world of functional programming), [a pure function](https://wikipedia.org/wiki/Pure_function) is a function with the following characteristics:
+在計算機科學中（尤其是函數式程式設計的世界），[純函式](https://wikipedia.org/wiki/Pure_function)具有以下的特徵：
 
-* **It minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **只關心自己的事務。** 這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
+* **一樣的輸入，一樣的輸出。** 只要我們輸入相同的參數，這個函式總是回傳相同的輸出。
 
-You might already be familiar with one example of pure functions: formulas in math.
+你可能已經熟悉純函式的其中一個例子：數學中的公式
 
-Consider this math formula: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
+來看這個數學公式： <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>
 
-If <Math><MathI>x</MathI> = 2</Math> then <Math><MathI>y</MathI> = 4</Math>. Always. 
+如果 <Math><MathI>x</MathI> = 2</Math> 那麼 <Math><MathI>y</MathI> = 4</Math> ，永遠如此。
 
-If <Math><MathI>x</MathI> = 3</Math> then <Math><MathI>y</MathI> = 6</Math>. Always. 
+如果 <Math><MathI>x</MathI> = 3</Math> 那麼 <Math><MathI>y</MathI> = 6</Math>，永遠如此。
 
-If <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> won't sometimes be <Math>9</Math> or <Math>–1</Math> or <Math>2.5</Math> depending on the time of day or the state of the stock market. 
+如果 <Math><MathI>x</MathI> = 3</Math> ， <MathI>y</MathI> 不會因為一天中的時間或是股票市場的狀態而有時候是 <Math>9</Math> 或 <Math>–1</Math> 或 <Math>2.5</Math>。
 
-If <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> and <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> will _always_ be <Math>6</Math>. 
+如果 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 且 <Math><MathI>x</MathI> = 3</Math>， <MathI>y</MathI> 永遠都會是 <Math>6</Math>。
 
-If we made this into a JavaScript function, it would look like this:
+如果我們把它放到 JavaScript 函式中，它會長得像這樣：
 
 ```js
 function double(number) {
@@ -43,9 +44,9 @@ function double(number) {
 }
 ```
 
-In the above example, `double` is a **pure function.** If you pass it `3`, it will return `6`. Always.
+在上面的範例中，`double` 是一個**純函式**。如果你傳入 `3`，他永遠都會回傳 `6`。
 
-React is designed around this concept. **React assumes that every component you write is a pure function.** This means that React components you write must always return the same JSX given the same inputs:
+React 就是圍繞這個概念設計的。**React 假設你編寫的每個函式都是純函式。** 這表示你撰寫的所有 React component 都必須永遠在給定相同輸入的情況下，回傳相同的 JSX ：
 
 <Sandpack>
 
@@ -75,21 +76,21 @@ export default function App() {
 
 </Sandpack>
 
-When you pass `drinkers={2}` to `Recipe`, it will return JSX containing `2 cups of water`. Always. 
+當你把 `drinkers={2}` 傳入 `Recipe` 時，會永遠回傳包含 `2 cups of water` 的 JSX。
 
-If you pass `drinkers={4}`, it will return JSX containing `4 cups of water`. Always.
+當你傳入 `drinkers={4}`，會永遠回傳包含 `4 cups of water` 的 JSX。
 
-Just like a math formula. 
+就像是數學公式一樣。
 
-You could think of your components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render.](/learn/render-and-commit)
+你可以把 component 想成是食譜一樣： 如果你遵循它們並且在烹飪過程中不加入新食材，那麼你每次都會得到相同的菜餚。這個「菜餚」就是 component 提供給 React [render](/learn/render-and-commit) 的 JSX。 
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
-## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
+## Side Effects：（非）預期的結果 {/*side-effects-unintended-consequences*/}
 
-React's rendering process must always be pure. Components should only *return* their JSX, and not *change* any objects or variables that existed before rendering—that would make them impure!
+React 的 rendering 過程必須永遠保持 pure。Component 應該永遠*回傳*它們的 JSX，而不*更改*任何 rendering 之前就存在的 object 或變數 - 這會使它們變得 impure！
 
-Here is a component that breaks this rule:
+這是一個違反規則的 component：
 
 <Sandpack>
 
@@ -115,11 +116,11 @@ export default function TeaSet() {
 
 </Sandpack>
 
-This component is reading and writing a `guest` variable declared outside of it. This means that **calling this component multiple times will produce different JSX!** And what's more, if _other_ components read `guest`, they will produce different JSX, too, depending on when they were rendered! That's not predictable.
+這個 component 正在讀取與更改在外部宣告的 `guest` 變數。這意味著**多次呼叫這個 component 會產生不一樣的 JSX！** 更重要的是，如果 _其他_ component 也讀取 `guest`，它們將依照被 render 的時間點而產生不一樣的 JSX ！這是不可預測的。
 
-Going back to our formula <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, now even if <Math><MathI>x</MathI> = 2</Math>, we cannot trust that <Math><MathI>y</MathI> = 4</Math>. Our tests could fail, our users would be baffled, planes would fall out of the sky—you can see how this would lead to confusing bugs!
+回到我們的公式 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>，即使現在 <Math><MathI>x</MathI> = 2</Math>，我們不能保證 <Math><MathI>y</MathI> = 4</Math>。我們的測試可能會失敗、我們的使用者可能會感到困惑、飛機會從天上掉下來 - 你可以看到這將會導致令人困惑的錯誤！
 
-You can fix this component by [passing `guest` as a prop instead](/learn/passing-props-to-a-component):
+你可以透過[將 `guest` 作為一個 prop 傳入](/learn/passing-props-to-a-component) 來修正這個 component：
 
 <Sandpack>
 
@@ -141,31 +142,31 @@ export default function TeaSet() {
 
 </Sandpack>
 
-Now your component is pure, as the JSX it returns only depends on the `guest` prop.
+現在你的 component 是 pure 的，因為它回傳的 JSX 僅依賴 `guest` prop。
 
-In general, you should not expect your components to be rendered in any particular order. It doesn't matter if you call <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> before or after <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: both formulas will resolve independently of each other. In the same way, each component should only "think for itself", and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each component should calculate JSX on their own!
+一般來說，你不應該預期 component 以任何特定順序 render 。在 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 之前或之後調用 <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math> 並不重要：兩個公式都將各自獨立地求解。同樣的，每個 component 都應該「只考慮自己」，而不是在 rendering 過程中試圖與其他 component 協調或是依賴其他 component。Rendering 就像是一個學校考試：每個 component 都應該計算自己的 JSX！
 
 <DeepDive>
 
-#### Detecting impure calculations with StrictMode {/*detecting-impure-calculations-with-strict-mode*/}
+#### 使用 Strict Mode 檢查 impure 的計算 {/*detecting-impure-calculations-with-strict-mode*/}
 
-Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context.](/learn/passing-data-deeply-with-context) You should always treat these inputs as read-only.
+儘管你可能還沒有全部使用過它們，但在 React 中你可以在 render 時讀取三種輸入：[props](/learn/passing-props-to-a-component)、[state](/learn/state-a-components-memory) 以及 [context](/learn/passing-data-deeply-with-context)。你應該永遠將這些輸入視為 read-only 。
 
-When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your component is rendering.
+當你想要*改變*某些內容來回應使用者輸入時，你應該要 [set state](/learn/state-a-components-memory) 而非直接更改變數。你永遠都不該在 component render 過程中改變已存在的變數或 object。
 
-React offers a "Strict Mode" in which it calls each component's function twice during development. **By calling the component functions twice, Strict Mode helps find components that break these rules.**
+React 提供了「Strict Mode」，在開發過程中它會呼叫每個 component 的函式兩次。**透過呼叫兩次 component 的函式，Strict Mode 有助於找到違反這些規則的 component。**
 
-Notice how the original example displayed "Guest #2", "Guest #4", and "Guest #6" instead of "Guest #1", "Guest #2", and "Guest #3". The original function was impure, so calling it twice broke it. But the fixed pure version works even if the function is called twice every time. **Pure functions only calculate, so calling them twice won't change anything**--just like calling `double(2)` twice doesn't change what's returned, and solving <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> twice doesn't change what <MathI>y</MathI> is. Same inputs, same outputs. Always.
+請注意在原本的範例，它顯示了「Guest #2」、「Guest #4」以及「Guest #6」，而不是「Guest #1」、「Guest #2」及「Guest #3」。原本的函式是 impure 的，所以呼叫兩次後就破壞了它。但在修正後的 pure 版本中，即使每次呼叫了兩次函式還是能夠正常運作。 **純函式只進行運算，因此呼叫兩次後也不會改變任何事** -- 就像是呼叫 `double(2)` 兩次也不會改變它的回傳值，求解 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 兩次不會改變 <MathI>y</MathI> 的值。相同的輸入永遠會有相同的輸出。
 
-Strict Mode has no effect in production, so it won't slow down the app for your users. To opt into Strict Mode, you can wrap your root component into `<React.StrictMode>`. Some frameworks do this by default.
+Strict Mode 不會影響正式環境，因此它不會拖慢用戶的應用程式速度。如需選擇 Strict Mode，你可以將你的 root component 包裝到 `<React.StrictMode>`。有些框架預設會這麼做。
 
 </DeepDive>
 
-### Local mutation: Your component's little secret {/*local-mutation-your-components-little-secret*/}
+### Local mutation: 你的 component 的小秘密 {/*local-mutation-your-components-little-secret*/}
 
-In the above example, the problem was that the component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
+在上面的範例中， 問題是 component 在 render 時改變了*預先存在的*變數。這通常會稱之為 **「mutation」** 使其聽起來有點可怕。純函式不會改變函式範圍外的變數、或是呼叫之前就已建立的 object — 這使得它們 impure！
 
-However, **it's completely fine to change variables and objects that you've *just* created while rendering.** In this example, you create an `[]` array, assign it to a `cups` variable, and then `push` a dozen cups into it:
+不過，**在 render 時改變*剛剛*才建立的變數或 object 是完全沒問題的**。在這個範例中，你建立了 `[]` array，並賦值給 `cups` 變數，接著把一打杯子 `push` 進去：
 
 <Sandpack>
 
@@ -185,43 +186,43 @@ export default function TeaGathering() {
 
 </Sandpack>
 
-If the `cups` variable or the `[]` array were created outside the `TeaGathering` function, this would be a huge problem! You would be changing a *preexisting* object by pushing items into that array.
+如果 `cups` 變數或者是 `[]` array 是在 `TeaGathering` 函式之外建立的，這就會是個大問題！你會在將項目放入 array 時改變一個*預先存在的* object。
 
-However, it's fine because you've created them *during the same render*, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **"local mutation"**—it's like your component's little secret.
+不過，由於你是在 `TeaGathering` 內的 *同個 render 過程中* 建立它們的，所以不會有問題。在 `TeaGathering` 範圍外的任何程式碼都不會知道發生了這個情況。這稱為 **「local mutation」**- 這就像是 component 自己的小秘密。
 
-## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
+## 你_可能_會引起 side effects 的地方 {/*where-you-_can_-cause-side-effects*/}
 
-While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects.** They're things that happen _"on the side"_, not during rendering.
+雖然函數式程式設計在很大程度上依賴 purity，但在某些時候，_有些東西_ 必須改變。這就是程式設計的意義所在！這些更改例如：顯示畫面、開始一個動畫、更改資料都被稱為 **side effects** 。他們是 _一邊發生_ 的事情，而不是在 render 期間發生的事情。
 
-In React, **side effects usually belong inside [event handlers.](/learn/responding-to-events)** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
+在 React 中，**side effects 通常屬於 [event handler](/learn/responding-to-events)**。Event handler 是 React 在你執行某些操作（例如：點擊一個按鈕）時執行的函式。儘管 event handler 是在 component *內部* 定義的，但它們 *不會在 render 時間執行*！**所以 event handler 不需要是 pure 的。**
 
-If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/reference/react/useEffect) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
+如果你已經用盡了所有其他選項，並且無法找到其他適合你的 side effect 的 event handler，你仍然可以選擇 component 中的 [`useEffect`](/reference/react/useEffect) 來將其附加到回傳的 JSX。這告訴 React 在 render 後、允許 side effect 的情況下執行它。**但是，這個方法應該要是你最後的手段。**
 
-When possible, try to express your logic with rendering alone. You'll be surprised how far this can take you!
+可以的話，盡量嘗試透過 render 過程來表示你的邏輯。你會驚訝它能帶你走多遠！
 
 <DeepDive>
 
-#### Why does React care about purity? {/*why-does-react-care-about-purity*/}
+#### 為什麼 React 在意 purity？ {/*why-does-react-care-about-purity*/}
 
-Writing pure functions takes some habit and discipline. But it also unlocks marvelous opportunities:
+撰寫純函式需要一些習慣與紀律。但純函式也解鎖了一些絕佳的功能：
 
-* Your components could run in a different environment—for example, on the server! Since they return the same result for the same inputs, one component can serve many user requests.
-* You can improve performance by [skipping rendering](/reference/react/memo) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
-* If some data changes in the middle of rendering a deep component tree, React can restart rendering without wasting time to finish the outdated render. Purity makes it safe to stop calculating at any time.
+* 你的 component 可以在不同環境上運行 - 例如，在伺服器上！由於它們對相同輸出會有相同結果，因此一個 component 可以滿足許多使用者請求。
+* 你可以透過 [skipping rendering](/reference/react/memo) 那些 input 沒有更新的 component 來提升效能。這是安全的，因為純函式永遠都會回傳相同的結果，所以可以安全地 cache 它們。
+* 如果在 render 一個 deep component tree 的過程中某些資料發生變化，React 可以重新進行 render、而不浪費時間完成過時的 render。Purity 可以讓它更安全地隨時停止計算。
 
-Every new React feature we're building takes advantage of purity. From data fetching to animations to performance, keeping components pure unlocks the power of the React paradigm.
+所有我們正在建立的 React 新功能都利用了 purity 的優點。從獲取資料到動畫再到效能，保持 component 的 purity 能夠解鎖 React 典範的力量。
 
 </DeepDive>
 
 <Recap>
 
-* A component must be pure, meaning:
-  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
-  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
-* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
-* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
-* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
+* 一個 component 是 pure 的，這意味著：
+  * **只關心自己的事務。** 這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
+  * **一樣的輸入，一樣的輸出** 只要我們輸入相同的參數，這個函式總是回傳一個相同的輸出。
+* Rendering 可能會在任何時間發生，因此 component 不該依賴於彼此的 rendering 順序。
+* 你不該改變任何你的 component 用來 render 的輸入。這包含 props，state，以及 context。要更新畫面的話，請 ["set" state](/learn/state-a-components-memory) 而不是直接修改預先存在的 object。
+* 盡量在回傳的 JSX 中表達你的 component 邏輯。當你需要「更改內容」時，你會希望在 event handler 中處理。或是作為最後的手段，你可以使用 `useEffect`。
+* 撰寫純函式需要一些練習，不過它能解鎖 React 典範的力量。
 
 </Recap>
 
@@ -229,15 +230,15 @@ Every new React feature we're building takes advantage of purity. From data fetc
   
 <Challenges>
 
-#### Fix a broken clock {/*fix-a-broken-clock*/}
+#### 修正一個換掉的時鐘 {/*fix-a-broken-clock*/}
 
-This component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
+這個 component 希望在午夜至上午 6 點期間將 `<h1>` 的 CSS class 設定為 `"night"`，並在所有其他時段都設成 `"day"`。但是它沒辦法運作。你能修正這個 component 嗎？
 
-You can verify whether your solution works by temporarily changing the computer's timezone. When the current time is between midnight and six in the morning, the clock should have inverted colors!
+你可以透過暫時修改電腦的時區來驗證你的做法是否有效。當時間在午夜至上午 6 點時，時鐘的顏色應該要是反白的！
 
 <Hint>
 
-Rendering is a *calculation*, it shouldn't try to "do" things. Can you express the same idea differently?
+Render 是一種 *計算* ，它不應該嘗試「做」事情。你能用不同方式表達同一種想法嗎？
 
 </Hint>
 
@@ -301,7 +302,7 @@ body > * {
 
 <Solution>
 
-You can fix this component by calculating the `className` and including it in the render output:
+你可以透過計算 `className` 並把它放入 render 出來的輸出中來修復這個 component：
 
 <Sandpack>
 
@@ -362,19 +363,19 @@ body > * {
 
 </Sandpack>
 
-In this example, the side effect (modifying the DOM) was not necessary at all. You only needed to return JSX.
+在這個範例中，side effect（修改 DOM ）根本完全沒有必要。你只需要回傳 JSX 即可。
 
 </Solution>
 
-#### Fix a broken profile {/*fix-a-broken-profile*/}
+#### 修正一個壞掉的 Profile {/*fix-a-broken-profile*/}
 
-Two `Profile` components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
+有兩個 `Profile` component 使用不同資料並排地呈現。在第一個 Profile 中點選「Collapse」，接著 「Expand」。你會發現這時兩個 profiles 顯示的是同一個人。這是一個 bug。
 
-Find the cause of the bug and fix it.
+找到問題並且解決它。
 
 <Hint>
 
-The buggy code is in `Profile.js`. Make sure you read it all from top to bottom!
+有錯誤的程式碼位於 `Profile.js` 中。請務必從頭到尾閱讀全部內容！
 
 </Hint>
 
@@ -475,9 +476,9 @@ h1 { margin: 5px; font-size: 18px; }
 
 <Solution>
 
-The problem is that the `Profile` component writes to a preexisting variable called `currentPerson`, and the `Header` and `Avatar` components read from it. This makes *all three of them* impure and difficult to predict.
+問題在於 `Profile` component 修改一個稱為 `currentPerson` 的預先存在的變數，而 `Header` and `Avatar` component 都有讀取這個變數。這導致 *它們三個* 都變得 impure 且難以預測。
 
-To fix the bug, remove the `currentPerson` variable. Instead, pass all information from `Profile` to `Header` and `Avatar` via props. You'll need to add a `person` prop to both components and pass it all the way down.
+要修正這個錯誤，請先刪除 `currentPerson` 變數。並且改成透過 props 將所有資料從 `Profile` 傳送到 `Header` 與 `Avatar`。你會需要會兩個 component 添加一個 `person` prop 並把它一直向下傳遞。
 
 <Sandpack>
 
@@ -571,15 +572,15 @@ h1 { margin: 5px; font-size: 18px; }
 
 </Sandpack>
 
-Remember that React does not guarantee that component functions will execute in any particular order, so you can't communicate between them by setting variables. All communication must happen through props.
+請記住， React 不保證 component 函式會以任何特定順序執行，所以你無法透過設定變數在它們之間溝通。所有的溝通都必須透過 props 進行。
 
 </Solution>
 
-#### Fix a broken story tray {/*fix-a-broken-story-tray*/}
+#### 修正一個壞掉的故事列表 {/*fix-a-broken-story-tray*/}
 
-The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` component that accepts a list of `stories`, followed by a "Create Story" placeholder.
+你公司的 CEO 要求你將「多個故事」加入線上時鐘應用程式中，而你不能拒絕。你已經編寫了一個 `StoryTray` component，它接受「故事」列表，並會在後面接上一個「Create Story」的圖片框。
 
-You implemented the "Create Story" placeholder by pushing one more fake story at the end of the `stories` array that you receive as a prop. But for some reason, "Create Story" appears more than once. Fix the issue.
+你透過在作為 props 的 `stories` array 後面加上一筆假資料來實作「Create Story」的圖片框。但由於某種原因，「Create Story」出現了不只一次，請解決這個問題。
 
 <Sandpack>
 
@@ -675,11 +676,11 @@ li {
 
 <Solution>
 
-Notice how whenever the clock updates, "Create Story" is added *twice*. This serves as a hint that we have a mutation during rendering--Strict Mode calls components twice to make these issues more noticeable.
+請注意，每當時鐘更新時，"Create Story" 就會被增加 *兩次* 。這暗示我們在 render 過程中發生了一個變異 -- Strict Mode 調用了兩次 component 使得這個問題更明顯。
 
-`StoryTray` function is not pure. By calling `push` on the received `stories` array (a prop!), it is mutating an object that was created *before* `StoryTray` started rendering. This makes it buggy and very difficult to predict.
+`StoryTray` 函式不是 pure 的。透過在接收到的 `stories` array（一個 prop ）呼叫 `push` ，它會改變在 `StoryTray` render 前就建立的 object 。這使得它變得充滿錯誤並且難以預測。
 
-The simplest fix is to not touch the array at all, and render "Create Story" separately:
+最簡單的修正作法是完全不要修改 array，只單獨 render「Create Story」：
 
 <Sandpack>
 
@@ -763,7 +764,7 @@ li {
 
 </Sandpack>
 
-Alternatively, you could create a _new_ array (by copying the existing one) before you push an item into it:
+或者，你可以在你推入新的項目前建立一個_新的_ array（透過複製現有 array ）：
 
 <Sandpack>
 
@@ -855,9 +856,9 @@ li {
 
 </Sandpack>
 
-This keeps your mutation local and your rendering function pure. However, you still need to be careful: for example, if you tried to change any of the array's existing items, you'd have to clone those items too.
+這使得 mutation 能夠保持在 local 並且保持渲染函式純粹。但是你仍然需要小心：例如，如果你嘗試改變 array 中的任何現有項目，你也必須先複製這些項目。
 
-It is useful to remember which operations on arrays mutate them, and which don't. For example, `push`, `pop`, `reverse`, and `sort` will mutate the original array, but `slice`, `filter`, and `map` will create a new one.
+記住 array 中的哪些操作會改變原始 array、哪些不會是很有用的。例如，`push`、`pop`、`reverse`、以及 `sort` 會改變原始 array，但是 `slice`、`filter` 以及 `map` 會建立一個新的 array。
 
 </Solution>
 
