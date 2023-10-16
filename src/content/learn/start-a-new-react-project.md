@@ -26,11 +26,7 @@ npx create-next-app@latest
 
 如果你是第一次使用 Next.js，請參考 [Next.js 教學](https://nextjs.org/learn/foundations/about-nextjs)。
 
-<<<<<<< HEAD
 Next.js 是由 [Vercel](https://vercel.com/) 維護。你可以將 [Next.js 應用程式部署](https://nextjs.org/docs/app/building-your-application/deploying)到任何 Node.js 或 serverless 主機，或是你自己的伺服器上。Next.js 也支援 [static export](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports)，它不需要伺服器。
-=======
-Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports a [static export](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) which doesn't require a server.
->>>>>>> e85b71de88a20cda9588f51f01d4a70e5cbe1cb4
 
 ### Remix {/*remix*/}
 
@@ -93,15 +89,9 @@ Expo 由 [Expo（公司）](https://expo.dev/about)維護。使用 Expo 構建�
 
 ### Next.js (App Router) {/*nextjs-app-router*/}
 
-<<<<<<< HEAD
-**[Next.js 的 App Router](https://nextjs.org/docs) 是 Next.js API 的重新設計，旨在實現 React 團隊的全端架構願景。**它允許你在執行於伺服器上或甚至是構建期間的非同步（asynchronous） component 中取得資料。
+**[Next.js 的 App Router](https://nextjs.org/docs) 是 Next.js API 的重新設計，旨在實現 React 團隊的全端架構願景。**它允許你在執行於伺服器上或甚至是構建期間的 asynchronous component 中取得資料。
 
-Next.js 是由 [Vercel](https://vercel.com/) 維護。你可以將 [Next.js 應用程式部署](https://nextjs.org/docs/app/building-your-application/deploying)到任何 Node.js 或 serverless 主機，或是你自己的伺服器上。Next.js 還支援[靜態匯出](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)，不需要伺服器即可執行。
-=======
-**[Next.js's App Router](https://nextjs.org/docs) is a redesign of the Next.js APIs aiming to fulfill the React team’s full-stack architecture vision.** It lets you fetch data in asynchronous components that run on the server or even during the build.
-
-Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
->>>>>>> e85b71de88a20cda9588f51f01d4a70e5cbe1cb4
+Next.js 是由 [Vercel](https://vercel.com/) 維護。你可以將 [Next.js 應用程式部署](https://nextjs.org/docs/app/building-your-application/deploying)到任何 Node.js 或 serverless 主機，或是你自己的伺服器上。Next.js 還支援 [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)，不需要伺服器即可執行。
 
 <DeepDive>
 
