@@ -1086,7 +1086,11 @@ export const recipes = [{
 
 #### 帶有分隔線的列表 {/*list-with-a-separator*/}
 
+<<<<<<< HEAD
 這個範例展示了葛飾北斎一首著名的俳句，它的每一行都由 `<p>` 標籤包覆。你需要在段落之間插入一個 `<hr />` 分隔線。你的結果大概會像這個樣子：
+=======
+This example renders a famous haiku by Tachibana Hokushi, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
+>>>>>>> e85b71de88a20cda9588f51f01d4a70e5cbe1cb4
 
 ```js
 <article>

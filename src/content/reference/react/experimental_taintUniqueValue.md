@@ -130,7 +130,11 @@ In this example, the constant `password` is tainted. Then `password` is used to 
 
 Other similar ways of deriving new values from tainted values like concatenating it into a larger string, converting it to base64, or returning a substring create untained values.
 
+<<<<<<< HEAD
 Tainting only protects against simple mistakes like explictly passing secret values to the client. Mistakes in calling the `taintUniqueValue` like using a global store outside of React, without the corresponding lifetime object, can cause the tainted value to become untainted. Tainting is a layer of protection, a secure app will have multiple layers of protection, well designed APIs, and isolation patterns.
+=======
+Tainting only protects against simple mistakes like explictly passing secret values to the client. Mistakes in calling the `taintUniqueValue` like using a global store outside of React, without the corresponding lifetime object, can cause the tainted value to become untainted. Tainting is a layer of protection; a secure app will have multiple layers of protection, well designed APIs, and isolation patterns.
+>>>>>>> e85b71de88a20cda9588f51f01d4a70e5cbe1cb4
 
 </Pitfall>
 

@@ -130,11 +130,21 @@
         },
         {
           "title": "experimental_taintObjectReference",
+<<<<<<< HEAD
           "path": "/reference/react/experimental_taintObjectReference"
         },
         {
           "title": "experimental_taintUniqueValue",
           "path": "/reference/react/experimental_taintUniqueValue"
+=======
+          "path": "/reference/react/experimental_taintObjectReference",
+          "canary": true
+        },
+        {
+          "title": "experimental_taintUniqueValue",
+          "path": "/reference/react/experimental_taintUniqueValue",
+          "canary": true
+>>>>>>> e85b71de88a20cda9588f51f01d4a70e5cbe1cb4
         }
       ]
     },
