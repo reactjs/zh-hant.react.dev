@@ -4,7 +4,7 @@ title: 描述使用者介面
 
 <Intro>
 
-React 是一個用來渲染使用者介面 (UI) 的 Javascript 函式庫。一個完整的使用者介面是用各種小元件（例如按鈕、文字或圖片）組合而成。React 讓你將這些小元件組合成可以重複使用、可以巢狀使用的 *component*。 
+React 是一個用來渲染使用者介面 (UI) 的 Javascript 函式庫。一個完整的使用者介面是用各種小元件（例如按鈕、文字或圖片）組合而成。React 讓你將這些小元件組合成可以重複使用、可以巢狀使用的 *component*。
 
 無論是網站還是手機 App，所有畫面上的東西都可以被拆分成一個個 component。在這個章節，你將學會如何建立、客製化以及根據不同的條件來在畫面上渲染 React component。
 
@@ -20,12 +20,13 @@ React 是一個用來渲染使用者介面 (UI) 的 Javascript 函式庫。一�
 * [如何根據特定條件來渲染 Component](/learn/conditional-rendering)
 * [如何一次渲染多個 Component](/learn/rendering-lists)
 * [如何把 Component 寫成「純函數」來避免容易混淆的錯誤](/learn/keeping-components-pure)
+* [為什麼將 UI 理解為 tree 很有幫助](/learn/understanding-your-ui-as-a-tree)
 
 </YouWillLearn>
 
 ## 你的第一個 component {/*your-first-component*/}
 
-一個完整的 React 應用程式是由多個被稱為 *Component* 的使用者介面分塊組合而成。一個 React Component 是一個你可以在裡面使用 Markup 語法的 Javascript 函數。 
+一個完整的 React 應用程式是由多個被稱為 *Component* 的使用者介面分塊組合而成。一個 React Component 是一個你可以在裡面使用 Markup 語法的 Javascript 函數。
 
 Component 可能小至一個按鈕，也可能大至整個頁面。這裡有一個名叫 `Gallery` 的 Component，這個 Component 裡面渲染了三個名叫 `Profile` 的 Component：
 
@@ -371,7 +372,7 @@ export default function PackingList() {
 
 ## 列表渲染 {/*rendering-lists*/}
 
-你經常會需要用多個相似的 Component 來展示一系列的資料。這個時候你可以在 React 中使用 JavaScript 的 `filter()` 和 `map()` 來篩選資料並轉換成包含多個 Component 的陣列。 
+你經常會需要用多個相似的 Component 來展示一系列的資料。這個時候你可以在 React 中使用 JavaScript 的 `filter()` 和 `map()` 來篩選資料並轉換成包含多個 Component 的陣列。
 
 對轉換後的陣列中的每個物件，你必須要幫他們指定一個 `key`。 一般來說，你可以用他們在資料庫中的 ID 來作為 `key`。 Key 可以讓 React 知道列表中每個物件當前的位置，即便你的列表發生了改動也沒關係。
 
@@ -471,7 +472,7 @@ h2 { font-size: 20px; }
 
 ## 把 Component 寫成「純函數」 {/*keeping-components-pure*/}
 
-我們說一個 JavaScript 的函數是一個 *純函數* (Pure Function) ，如果他滿足這些條件： 
+我們說一個 JavaScript 的函數是一個 *純函數* (Pure Function) ，如果他滿足這些條件：
 
 * **不多管閒事** : 這個函數不會修改任何在他被呼叫之前就已經存在的物件或變數。
 * **一樣的輸入，一樣的輸出** : 只要我們輸入相同的參數，這個函數總是回傳一個相同的輸出。
@@ -529,6 +530,29 @@ export default function TeaSet() {
 閱讀 **[把 Component 寫成「純函數」](/learn/keeping-components-pure)** 來學習如何用「純函數」且「行為可預測」的寫法來撰寫 Component。
 
 </LearnMore>
+
+## 你的 UI 作為一棵樹 {/*your-ui-as-a-tree*/}
+
+React 使用 tree 來建模 component 和 module 之間的關係。
+
+React render tree 是 component 之間父子關係的表示。
+
+<Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">一個 React render tree 範例。</Diagram>
+
+靠近 tree 頂部、靠近 root component 的 component 被視為 top-level component。沒有 child component 的 component 是leaf component。這種 component 分類對於理解 data flow 和 rendering 效能很有用。
+
+對 JavaScript module 之間的關係進行建模是了解應用程式的另一種有用方法。 我們稱之為 module dependency tree。
+
+<Diagram name="generic_dependency_tree" height={250} width={500} alt="A tree graph with five nodes. Each node represents a JavaScript module. The top-most node is labelled 'RootModule.js'. It has three arrows extending to the nodes: 'ModuleA.js', 'ModuleB.js', and 'ModuleC.js'. Each arrow is labelled as 'imports'. 'ModuleC.js' node has a single 'imports' arrow that points to a node labelled 'ModuleD.js'.">一個 module dependency tree 範例。</Diagram>
+
+建置工具經常使用 dependency tree 來 bundle 所有相關的 JavaScript 程式碼，以供使用者端下載和 render。較大的套件大小會降低 React 應用程式的使用者體驗。 了解 module dependency tree 有助於 debug 此類問題。
+
+<LearnMore path="/learn/understanding-your-ui-as-a-tree">
+
+閱讀**[你的 UI 作為一棵樹](/learn/understanding-your-ui-as-a-tree)**了解如何為 React 應用程式建立 render 和 module dependency tree 以及它們如何在心智模型上發揮作用用於改善使用者體驗和效能的模型。
+
+</LearnMore>
+
 
 ## 下一步 {/*whats-next*/}
 
