@@ -543,7 +543,7 @@ React render tree 是 component 之間父子關係的表示。
 
 </Diagram>
 
-靠近 tree 頂部、靠近 root component 的 component 被視為 top-level component。沒有 child component 的 component 是leaf component。這種 component 分類對於理解 data flow 和 rendering 效能很有用。
+靠近 tree 頂部、靠近 root component 的 component 被視為 top-level component。沒有 child component 的 component 是 leaf component。這種 component 分類對於理解 data flow 和 rendering 效能很有用。
 
 對 JavaScript module 之間的關係進行建模是了解應用程式的另一種有用方法。 我們稱之為 module dependency tree。
 
