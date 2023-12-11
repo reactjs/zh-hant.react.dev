@@ -626,7 +626,11 @@ export default function PackingList() {
 
 要注意的是你必須寫成 `importance > 0 && ...` 而不是 `importance && ...` ，這樣如果 `importance` 的值為 `0` 時，才不會把 `0` 做為結果 render 出來。
 
+<<<<<<< HEAD
 解答中為了在 name 和 importance 標籤之間插入一個空格，使用了兩段不同的條件。你也可以使用帶有空格前綴的 fragment： `importance > 0 && <> <i>...</i></>`，或是直接在 `<i>` 內部增加一個空格： `importance > 0 && <i> ...</i>`。
+=======
+In this solution, two separate conditions are used to insert a space between the name and the importance label. Alternatively, you could use a Fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
+>>>>>>> af54fc873819892f6050340df236f33a18ba5fb8
 
 </Solution>
 
