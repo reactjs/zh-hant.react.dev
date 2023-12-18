@@ -62,7 +62,11 @@ Pass a function to the `action` prop of form to run the function when the form i
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js App.js
+=======
+```js src/App.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 export default function Search() {
   function search(formData) {
     const query = formData.get("query");
@@ -146,7 +150,11 @@ Here, we use the `pending` property to indicate the form is submitting.
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js App.js
+=======
+```js src/App.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 import { useFormStatus } from "react-dom";
 import { submitForm } from "./actions.js";
 
@@ -172,7 +180,11 @@ export default function App() {
 }
 ```
 
+<<<<<<< HEAD
 ```js actions.js hidden
+=======
+```js src/actions.js hidden
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
@@ -201,7 +213,11 @@ For example, when a user types a message into the form and hits the "Send" butto
 <Sandpack>
 
 
+<<<<<<< HEAD
 ```js App.js
+=======
+```js src/App.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 import { useOptimistic, useState, useRef } from "react";
 import { deliverMessage } from "./actions.js";
 
@@ -251,7 +267,11 @@ export default function App() {
 }
 ```
 
+<<<<<<< HEAD
 ```js actions.js
+=======
+```js src/actions.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 export async function deliverMessage(message) {
   await new Promise((res) => setTimeout(res, 1000));
   return message;
@@ -282,7 +302,11 @@ In some cases the function called by a `<form>`'s `action` prop throw an error. 
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js App.js
+=======
+```js src/App.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 import { ErrorBoundary } from "react-error-boundary";
 
 export default function Search() {
@@ -330,7 +354,11 @@ Displaying a form submission error message before the JavaScript bundle loads fo
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js App.js
+=======
+```js src/App.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 import { useFormState } from "react-dom";
 import { signUpNewUser } from "./api";
 
@@ -361,7 +389,11 @@ export default function Page() {
 }
 ```
 
+<<<<<<< HEAD
 ```js api.js hidden
+=======
+```js src/api.js hidden
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 let emails = [];
 
 export async function signUpNewUser(newEmail) {
@@ -396,7 +428,11 @@ When a user taps a specific button, the form is submitted, and a corresponding a
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js App.js
+=======
+```js src/App.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 export default function Search() {
   function publish(formData) {
     const content = formData.get("content");

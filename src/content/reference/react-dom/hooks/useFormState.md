@@ -5,7 +5,11 @@ canary: true
 
 <Canary>
 
+<<<<<<< HEAD
 The `useFormState` Hook is currently only available in React's canary and experimental channels. Learn more about [release channels here](/community/versioning-policy#all-release-channels). In addition, you need to use a framework that supports [React Server Components](/reference/react/use-client) to get the full benefit of `useFormState`.
+=======
+The `useFormState` Hook is currently only available in React's Canary and experimental channels. Learn more about [release channels here](/community/versioning-policy#all-release-channels). In addition, you need to use a framework that supports [React Server Components](/reference/react/use-client) to get the full benefit of `useFormState`.
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 
 </Canary>
 
@@ -121,7 +125,11 @@ To display messages such as an error message or toast that's returned by a Serve
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js App.js
+=======
+```js src/App.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import { addToCart } from "./actions.js";
@@ -148,7 +156,11 @@ export default function App() {
 }
 ```
 
+<<<<<<< HEAD
 ```js actions.js
+=======
+```js src/actions.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 "use server";
 
 export async function addToCart(prevState, queryData) {
@@ -161,7 +173,11 @@ export async function addToCart(prevState, queryData) {
 }
 ```
 
+<<<<<<< HEAD
 ```css styles.css hidden
+=======
+```css src/styles.css hidden
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 form {
   border: solid 1px black;
   margin-bottom: 24px;
@@ -194,7 +210,11 @@ The return value from a Server Action can be any serializable value. For example
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js App.js
+=======
+```js src/App.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 import { useState } from "react";
 import { useFormState } from "react-dom";
 import { addToCart } from "./actions.js";
@@ -230,7 +250,11 @@ export default function App() {
 }
 ```
 
+<<<<<<< HEAD
 ```js actions.js
+=======
+```js src/actions.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 "use server";
 
 export async function addToCart(prevState, queryData) {
@@ -249,7 +273,11 @@ export async function addToCart(prevState, queryData) {
 }
 ```
 
+<<<<<<< HEAD
 ```css styles.css hidden
+=======
+```css src/styles.css hidden
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 form {
   border: solid 1px black;
   margin-bottom: 24px;

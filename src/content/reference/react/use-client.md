@@ -64,7 +64,11 @@ To better illustrate this, consider the following React Server Components app.
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js App.js
+=======
+```js src/App.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 import FancyText from './FancyText';
 import InspirationGenerator from './InspirationGenerator';
 import Copyright from './Copyright';
@@ -82,7 +86,11 @@ export default function App() {
 
 ```
 
+<<<<<<< HEAD
 ```js FancyText.js
+=======
+```js src/FancyText.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 export default function FancyText({title, text}) {
   return title
     ? <h1 className='fancy title'>{text}</h1>
@@ -90,7 +98,11 @@ export default function FancyText({title, text}) {
 }
 ```
 
+<<<<<<< HEAD
 ```js InspirationGenerator.js
+=======
+```js src/InspirationGenerator.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 'use client';
 
 import { useState } from 'react';
@@ -113,13 +125,21 @@ export default function InspirationGenerator({children}) {
 }
 ```
 
+<<<<<<< HEAD
 ```js Copyright.js
+=======
+```js src/Copyright.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 export default function Copyright({year}) {
   return <p className='small'>©️ {year}</p>;
 }
 ```
 
+<<<<<<< HEAD
 ```js inspirations.js
+=======
+```js src/inspirations.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 export default [
   "Don’t let yesterday take up too much of today.” — Will Rogers",
   "Ambition is putting a ladder against the sky.",
@@ -286,7 +306,11 @@ Notably, these are not supported:
 
 <Sandpack>
 
+<<<<<<< HEAD
 ```js App.js
+=======
+```js src/App.js
+>>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
 'use client';
 
 import { useState } from 'react';
