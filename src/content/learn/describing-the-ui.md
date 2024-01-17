@@ -538,27 +538,12 @@ React 使用 tree 來建模 component 和 module 之間的關係。
 React render tree 是 component 之間父子關係的表示。
 
 <Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
-<<<<<<< HEAD
-=======
-
-An example React render tree.
-
-</Diagram>
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 一個 React render tree 範例。
 
 </Diagram>
 
-<<<<<<< HEAD
 靠近 tree 頂部、靠近 root component 的 component 被視為 top-level component。沒有 child component 的 component 是 leaf component。這種 component 分類對於理解 data flow 和 rendering 效能很有用。
-=======
-<Diagram name="generic_dependency_tree" height={250} width={500} alt="A tree graph with five nodes. Each node represents a JavaScript module. The top-most node is labelled 'RootModule.js'. It has three arrows extending to the nodes: 'ModuleA.js', 'ModuleB.js', and 'ModuleC.js'. Each arrow is labelled as 'imports'. 'ModuleC.js' node has a single 'imports' arrow that points to a node labelled 'ModuleD.js'.">
-
-An example module dependency tree.
-
-</Diagram>
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
 
 對 JavaScript module 之間的關係進行建模是了解應用程式的另一種有用方法。 我們稱之為 module dependency tree。
 
