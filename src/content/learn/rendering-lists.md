@@ -1145,7 +1145,7 @@ hr {
 
 <Hint>
 
-你可以嘗試把原本的 `map` 改成手動循環，或著嘗試使用 fragment 語法。
+你可以嘗試把原本的 `map` 改成手動循環，或著使用一個 Fragment。
 
 </Hint>
 
@@ -1208,7 +1208,7 @@ hr {
 
 原本使用詩句索引值作為 `key` 的方法已經行不通了，因爲現在 array 裡同時包含了分隔線和詩句。但是，你可以用加入後綴的方式給它們賦予獨一無二的 `key` 值，像是 `key={i + '-text'}` 這樣。
 
-或著，你可以生產一個 fragment 包含 `<hr />` 和 `<p>...</p>`，但因為 fragment 簡寫 `<>...</>` 不支援設定 `key`，所以你需要寫成 `<Fragment>` 形式。
+或著，你可以 render 一個包含 `<hr />` 和 `<p>...</p>` 的 Fragment collection，但因為 Fragment 簡寫 `<>...</>` 不支援設定 `key`，所以你需要寫成 `<Fragment>` 形式。
 
 <Sandpack>
 
@@ -1254,7 +1254,7 @@ hr {
 
 </Sandpack>
 
-記住，使用 fragment 語法 (通常寫作 `<> </>`) 來包覆 JSX nodes 可避免引入額外的 `div`！
+記住，使用 Fragment 語法 (通常寫作 `<> </>`) 來包覆 JSX nodes 可避免引入額外的 `div`！
 
 </Solution>
 
