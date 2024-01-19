@@ -64,15 +64,16 @@ img {
 
 <Sandpack>
 
-```js App.js
-import Gallery from './Gallery.js'
+
+```js src/App.js
+import Gallery from './Gallery.js';
 
 export default function App() {
   return <Gallery />
 }
 ```
 
-```js Gallery.js
+```js src/Gallery.js
 function Profile() {
   return <img src='https://i.imgur.com/QIrZWGIs.jpg' alt='Alan L. Hart' />
 }
@@ -172,18 +173,26 @@ export default function App() {
 
 <Sandpack>
 
-```js App.js
-import Gallery from './Gallery.js'
-import { Profile } from './Gallery.js'
+
+```js src/App.js
+import Gallery from './Gallery.js';
+import { Profile } from './Gallery.js';
 
 export default function App() {
-  return <Profile />
+  return (
+    <Profile />
+  );
 }
 ```
 
-```js Gallery.js
+```js src/Gallery.js
 export function Profile() {
-  return <img src='https://i.imgur.com/QIrZWGIs.jpg' alt='Alan L. Hart' />
+  return (
+    <img
+      src="https://i.imgur.com/QIrZWGIs.jpg"
+      alt="Alan L. Hart"
+    />
+  );
 }
 
 export default function Gallery() {
@@ -194,7 +203,7 @@ export default function Gallery() {
       <Profile />
       <Profile />
     </section>
-  )
+  );
 }
 ```
 
@@ -252,25 +261,20 @@ img {
 
 <Sandpack>
 
-```js App.js
-import Gallery from './Gallery.js'
-import { Profile } from './Gallery.js'
+```js src/App.js
+import Gallery from './Gallery.js';
+import { Profile } from './Gallery.js';
 
 export default function App() {
   return (
     <div>
       <Profile />
     </div>
-  )
+  );
 }
 ```
 
-```js Gallery.js active
-// Move me to Profile.js!
-export function Profile() {
-  return <img src='https://i.imgur.com/QIrZWGIs.jpg' alt='Alan L. Hart' />
-}
-
+```js src/Gallery.js active
 export default function Gallery() {
   return (
     <section>
@@ -279,12 +283,19 @@ export default function Gallery() {
       <Profile />
       <Profile />
     </section>
-  )
+  );
 }
 ```
 
-```js Profile.js
-
+```js src/Profile.js
+export function Profile() {
+  return (
+    <img
+      src="https://i.imgur.com/QIrZWGIs.jpg"
+      alt="Alan L. Hart"
+    />
+  );
+}
 ```
 
 ```css
@@ -303,10 +314,10 @@ img {
 Named export 的解決方法：
 
 <Sandpack>
-
-```js App.js
-import Gallery from './Gallery.js'
-import { Profile } from './Profile.js'
+  
+```js src/App.js
+import Gallery from './Gallery.js';
+import { Profile } from './Profile.js';
 
 export default function App() {
   return (
@@ -314,12 +325,12 @@ export default function App() {
       <Profile />
       <Gallery />
     </div>
-  )
+  );
 }
 ```
 
-```js Gallery.js
-import { Profile } from './Profile.js'
+```js src/Gallery.js
+import { Profile } from './Profile.js';
 
 export default function Gallery() {
   return (
@@ -329,21 +340,23 @@ export default function Gallery() {
       <Profile />
       <Profile />
     </section>
-  )
+  );
 }
 ```
 
-```js Profile.js
+```js src/Profile.js
 export function Profile() {
-  return <img src='https://i.imgur.com/QIrZWGIs.jpg' alt='Alan L. Hart' />
+  return (
+    <img
+      src="https://i.imgur.com/QIrZWGIs.jpg"
+      alt="Alan L. Hart"
+    />
+  );
 }
 ```
 
 ```css
-img {
-  margin: 0 10px 10px 0;
-  height: 90px;
-}
+img { margin: 0 10px 10px 0; height: 90px; }
 ```
 
 </Sandpack>
@@ -352,9 +365,9 @@ Default export 的解決方法：
 
 <Sandpack>
 
-```js App.js
-import Gallery from './Gallery.js'
-import Profile from './Profile.js'
+```js src/App.js
+import Gallery from './Gallery.js';
+import Profile from './Profile.js';
 
 export default function App() {
   return (
@@ -362,12 +375,12 @@ export default function App() {
       <Profile />
       <Gallery />
     </div>
-  )
+  );
 }
 ```
 
-```js Gallery.js
-import Profile from './Profile.js'
+```js src/Gallery.js
+import Profile from './Profile.js';
 
 export default function Gallery() {
   return (
@@ -377,21 +390,23 @@ export default function Gallery() {
       <Profile />
       <Profile />
     </section>
-  )
+  );
 }
 ```
 
-```js Profile.js
+```js src/Profile.js
 export default function Profile() {
-  return <img src='https://i.imgur.com/QIrZWGIs.jpg' alt='Alan L. Hart' />
+  return (
+    <img
+      src="https://i.imgur.com/QIrZWGIs.jpg"
+      alt="Alan L. Hart"
+    />
+  );
 }
 ```
-
+  
 ```css
-img {
-  margin: 0 10px 10px 0;
-  height: 90px;
-}
+img { margin: 0 10px 10px 0; height: 90px; }
 ```
 
 </Sandpack>

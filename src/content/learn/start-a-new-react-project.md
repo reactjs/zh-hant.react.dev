@@ -24,7 +24,7 @@ title: 開始一個新的 React 專案
 npx create-next-app@latest
 </TerminalBlock>
 
-如果你是第一次使用 Next.js，請參考 [Next.js 教學](https://nextjs.org/learn/foundations/about-nextjs)。
+如果你是第一次使用 Next.js，請參考[學習 Next.js 課程](https://nextjs.org/learn)。
 
 Next.js 是由 [Vercel](https://vercel.com/) 維護。你可以將 [Next.js 應用程式部署](https://nextjs.org/docs/app/building-your-application/deploying)到任何 Node.js 或 serverless 主機，或是你自己的伺服器上。Next.js 也支援 [static export](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports)，它不需要伺服器。
 
