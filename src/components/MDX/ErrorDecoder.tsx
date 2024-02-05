@@ -18,17 +18,30 @@ function replaceArgs(
 /**
  * Sindre Sorhus <https://sindresorhus.com>
  * Released under MIT license
+<<<<<<< HEAD
  * https://github.com/sindresorhus/linkify-urls/blob/edd75a64a9c36d7025f102f666ddbb6cf0afa7cd/index.js#L4C25-L4C137
  *
  * The regex is used to extract URL from the string for linkify.
  */
 const urlRegex =
   /((?<!\+)https?:\/\/(?:www\.)?(?:[-\w.]+?[.@][a-zA-Z\d]{2,}|localhost)(?:[-\w.:%+~#*$!?&/=@]*?(?:,(?!\s))*?)*)/g;
+=======
+ * https://github.com/sindresorhus/linkify-urls/blob/b2397096df152e2f799011f7a48e5f73b4bf1c7e/index.js#L5C1-L7C1
+ *
+ * The regex is used to extract URL from the string for linkify.
+ */
+const urlRegex = () =>
+  /((?:https?(?::\/\/))(?:www\.)?(?:[a-zA-Z\d-_.]+(?:(?:\.|@)[a-zA-Z\d]{2,})|localhost)(?:(?:[-a-zA-Z\d:%_+.~#!?&//=@]*)(?:[,](?![\s]))*)*)/g;
+>>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
 
 // When the message contains a URL (like https://fb.me/react-refs-must-have-owner),
 // make it a clickable link.
 function urlify(str: string): React.ReactNode[] {
+<<<<<<< HEAD
   const segments = str.split(urlRegex);
+=======
+  const segments = str.split(urlRegex());
+>>>>>>> 2372ecf920ac4cda7c900f9ac7f9c0cd4284f281
 
   return segments.map((message, i) => {
     if (i % 2 === 1) {
