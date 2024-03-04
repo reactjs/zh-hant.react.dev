@@ -1,41 +1,43 @@
 ---
-title: 'You Might Not Need an Effect'
+title: 你可能不需要 Effect。
 ---
 
 <Intro>
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system like a non-React widget, network, or the browser DOM. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+"Effect" 是 React 編程模式的緊急出口。它讓你可以“跳出” React，並將你的組件與像是非 React 小工具、網路，或是瀏覽器 DOM 之類的外部系統同步。如果沒有涉及外部系統（例如，你想在某些 props 或 state 改變時更新一個組件的 state），你可能不需要使用 Effect。移除不必要的 Effect 會讓你的程式碼更容易追蹤、執行更快，並且更不易出錯。
 
 </Intro>
 
 <YouWillLearn>
 
-* Why and how to remove unnecessary Effects from your components
-* How to cache expensive computations without Effects
-* How to reset and adjust component state without Effects
-* How to share logic between event handlers
-* Which logic should be moved to event handlers
-* How to notify parent components about changes
+* 為何以及如何從你的元件中移除不需要的Effect。
+* 如何在不使用Effect的情況下進行昂貴運算的快取。
+* 如何在不使用Effect的情況下重置和調整元件的 state。
+* 如何在事件處理器間分享邏輯。
+* 哪些邏輯應該移至事件處理器。
+* 如何讓父元件得知變動的 state。
 
 </YouWillLearn>
 
-## How to remove unnecessary Effects {/*how-to-remove-unnecessary-effects*/}
+## 如何移除不必要的 Effects {/*how-to-remove-unnecessary-effects*/}
 
-There are two common cases in which you don't need Effects:
+這裡有兩個常見的情境，你其實不需要使用Effects :
 
-* **You don't need Effects to transform data for rendering.** For example, let's say you want to filter a list before displaying it. You might feel tempted to write an Effect that updates a state variable when the list changes. However, this is inefficient. When you update the state, React will first call your component functions to calculate what should be on the screen. Then React will ["commit"](/learn/render-and-commit) these changes to the DOM, updating the screen. Then React will run your Effects. If your Effect *also* immediately updates the state, this restarts the whole process from scratch! To avoid the unnecessary render passes, transform all the data at the top level of your components. That code will automatically re-run whenever your props or state change.
-* **You don't need Effects to handle user events.** For example, let's say you want to send an `/api/buy` POST request and show a notification when the user buys a product. In the Buy button click event handler, you know exactly what happened. By the time an Effect runs, you don't know *what* the user did (for example, which button was clicked). This is why you'll usually handle user events in the corresponding event handlers.
+* **你不需要用Effects來轉換渲染的資料**。舉例來說，如果你想要在顯示一個列表前先進行過濾，你可能會傾向寫一個Effect來在列表變更時更新一個 state 變數。但是，這其實效率並不高。當你更新 state 時，React會先呼叫你的元件函式來計算應該顯示在螢幕上的內容。然後React會將這些變更"提交"到DOM，以更新螢幕。然後React才會執行你的Effects。如果你的Effect也立即更新 state ，這就會重新開始整個過程！為了避免不必要的渲染次數，你應該在元件的頂層就轉換所有資料。這樣的程式碼會在你的props或 state 變更時自動重新運行。
+* **你不需要用 Effects 來處理使用者事件**。例如，如果你想要在使用者購買產品時發送一個 /api/buy 的 POST 請求並顯示通知，在購買按鈕的點擊事件處理器中，你已經清楚知道發生了什麼事。但到 Effect 運行的時候，你已經不知道使用者做了什麼（例如，點擊了哪個按鈕）。這就是為什麼你通常會在相對應的事件處理器中處理使用者事件。
 
-You *do* need Effects to [synchronize](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React state. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
+你*確實* 需要使用 Effects 來與外部系統[同步](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)。例如，你可以寫一個 Effect 來保持一個 jQuery 小工具與 React state 的同步。你也可以用Effects來抓取資料：例如，你可以把搜索結果與當前的搜索查詢同步。但要記得，現代的[框架](/learn/start-a-new-react-project#production-grade-react-frameworks)比起直接在你的元件中寫Effects，提供了更高效的內建數據抓取機制。
 
-To help you gain the right intuition, let's look at some common concrete examples!
+為了幫助你更熟悉這些概念，讓我們看看一些常見的具體例子！
 
-### Updating state based on props or state {/*updating-state-based-on-props-or-state*/}
+### 根據 props 或 state 更新狀態 {/*updating-state-based-on-props-or-state*/}
 
-Suppose you have a component with two state variables: `firstName` and `lastName`. You want to calculate a `fullName` from them by concatenating them. Moreover, you'd like `fullName` to update whenever `firstName` or `lastName` change. Your first instinct might be to add a `fullName` state variable and update it in an Effect:
+假設你有一個組件，其中有兩個狀態變量：`firstName` 和 `lastName`。你想通過連接它們來計算出一個 `fullName`。此外，你希望當 `firstName` 或 `lastName` 更改時，`fullName` 也會更新。你的第一個直覺可能是增加一個 `fullName` 狀態變量，並在一個 Effect 中更新它：
+
+
 
 ```js {5-9}
-function Form() {
+function Form() {＝
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
 
@@ -48,7 +50,7 @@ function Form() {
 }
 ```
 
-This is more complicated than necessary. It is inefficient too: it does an entire render pass with a stale value for `fullName`, then immediately re-renders with the updated value. Remove the state variable and the Effect:
+這比需要的還更複雜。同時也非常的低效：它用 `fullName` 的舊值執行了一個完整的渲染流程，然後立即用更新的值重新渲染。移除狀態變量和 Effect：
 
 ```js {4-5}
 function Form() {
@@ -60,11 +62,11 @@ function Form() {
 }
 ```
 
-**When something can be calculated from the existing props or state, [don't put it in state.](/learn/choosing-the-state-structure#avoid-redundant-state) Instead, calculate it during rendering.** This makes your code faster (you avoid the extra "cascading" updates), simpler (you remove some code), and less error-prone (you avoid bugs caused by different state variables getting out of sync with each other). If this approach feels new to you, [Thinking in React](/learn/thinking-in-react#step-3-find-the-minimal-but-complete-representation-of-ui-state) explains what should go into state.
+**當某些事情可以從現有的 props 或 state 中計算出來時， [不要將其放入狀態中。](/learn/choosing-the-state-structure#avoid-redundant-state) 相反，應在渲染期間計算它即可。。** 會讓你的代碼更快（你避免了額外的 "級聯" 更新），更簡潔（你移除了一些代碼），並且也更不容易出錯（你避免了由於不同的 state 變量之間沒有正確同步而導致的錯誤）。如果這種方法對你來說感覺很新奇， [ 用 React 思考 ](/learn/thinking-in-react#step-3-find-the-minimal-but-complete-representation-of-ui-state)解釋了什麼應該使用 state 保存。
 
-### Caching expensive calculations {/*caching-expensive-calculations*/}
+### 緩存昂貴的計算 {/*caching-expensive-calculations*/}
 
-This component computes `visibleTodos` by taking the `todos` it receives by props and filtering them according to the `filter` prop. You might feel tempted to store the result in state and update it from an Effect:
+此組件通過接收到的 `todos` 參數和根據 `filter` 參數來過濾它們來計算出 `visibleTodos`。而你可能會想要將結果存儲在 state 中並從一個 Effect 中更新它：
 
 ```js {4-8}
 function TodoList({ todos, filter }) {
@@ -80,7 +82,7 @@ function TodoList({ todos, filter }) {
 }
 ```
 
-Like in the earlier example, this is both unnecessary and inefficient. First, remove the state and the Effect:
+就像前面的例子一樣，這既不必要也低效。首先，移除 state 和 Effect：
 
 ```js {3-4}
 function TodoList({ todos, filter }) {
@@ -90,10 +92,9 @@ function TodoList({ todos, filter }) {
   // ...
 }
 ```
+通常，這段代碼沒問題！但也許 `getFilteredTodos()` 很慢，或者你有很多 `todos`。在這種情況下，如果像 `newTodo` 這樣的無關狀22變量發生了變化，你不會想重新計算 `getFilteredTodos()`。
 
-Usually, this code is fine! But maybe `getFilteredTodos()` is slow or you have a lot of `todos`. In that case you don't want to recalculate `getFilteredTodos()` if some unrelated state variable like `newTodo` has changed.
-
-You can cache (or ["memoize"](https://en.wikipedia.org/wiki/Memoization)) an expensive calculation by wrapping it in a [`useMemo`](/reference/react/useMemo) Hook:
+你可以使用 [`useMemo`](/reference/react/useMemo) Hook 緩存（或者說 ["記憶"](https://en.wikipedia.org/wiki/Memoization)））一個昂貴的計算。
 
 ```js {5-8}
 import { useMemo, useState } from 'react';
@@ -108,7 +109,7 @@ function TodoList({ todos, filter }) {
 }
 ```
 
-Or, written as a single line:
+或者，寫成一行：
 
 ```js {5-6}
 import { useMemo, useState } from 'react';
@@ -121,15 +122,16 @@ function TodoList({ todos, filter }) {
 }
 ```
 
-**This tells React that you don't want the inner function to re-run unless either `todos` or `filter` have changed.** React will remember the return value of `getFilteredTodos()` during the initial render. During the next renders, it will check if `todos` or `filter` are different. If they're the same as last time, `useMemo` will return the last result it has stored. But if they are different, React will call the inner function again (and store its result).
 
-The function you wrap in [`useMemo`](/reference/react/useMemo) runs during rendering, so this only works for [pure calculations.](/learn/keeping-components-pure)
+**這告訴 React，除非 `todos` 或 `filter` 有所改變，否則你不希望內部函數重新執行**。 React 會記住在初始渲染時 `getFilteredTodos()` 的返回值。在接下來的渲染過程中，它會檢查 `todos` 或 `filter` 是否有所不同。如果它們與上次相同，`useMemo` 會返回它最後存儲的結果。但如果它們有所不同，React 會再次調用內部函數（並存儲其結果）。
+
+你在 [`useMemo`](/reference/react/useMemo) 中包裹的函數會在渲染過程中運行，所以這只適用於[純函數](/learn/keeping-components-pure)。
 
 <DeepDive>
 
-#### How to tell if a calculation is expensive? {/*how-to-tell-if-a-calculation-is-expensive*/}
+#### 如何判斷計算是昂貴的？ {/*how-to-tell-if-a-calculation-is-expensive*/}
 
-In general, unless you're creating or looping over thousands of objects, it's probably not expensive. If you want to get more confidence, you can add a console log to measure the time spent in a piece of code:
+一般來說，除非你正在創建或者遍歷數千個 object，否則它可能並不昂貴。如果你想要更加地確定，你可以添加一個控制台日誌來測量某一段程式碼的執行時間：
 
 ```js {1,3}
 console.time('filter array');
@@ -137,7 +139,7 @@ const visibleTodos = getFilteredTodos(todos, filter);
 console.timeEnd('filter array');
 ```
 
-Perform the interaction you're measuring (for example, typing into the input). You will then see logs like `filter array: 0.15ms` in your console. If the overall logged time adds up to a significant amount (say, `1ms` or more), it might make sense to memoize that calculation. As an experiment, you can then wrap the calculation in `useMemo` to verify whether the total logged time has decreased for that interaction or not:
+進行你正在測量的互動行為（例如，輸入輸入框）。然後你會在控制台看到像 `filter array: 0.15ms` 這樣的日誌。如果總的日誌時間累加到一個顯著的數量（比如說，1ms 或者更多），那麼對該計算進行記憶化可能是有意義的。作為一個實驗，你可以將計算包裹在 `useMemo` 中，以驗證該交互的總日誌時間是否有所降低：
 
 ```js
 console.time('filter array');
@@ -147,17 +149,20 @@ const visibleTodos = useMemo(() => {
 console.timeEnd('filter array');
 ```
 
-`useMemo` won't make the *first* render faster. It only helps you skip unnecessary work on updates.
+`useMemo` 不會使*第一次*渲染更快。它只能幫助你在更新時跳過不必要的工作。
 
-Keep in mind that your machine is probably faster than your users' so it's a good idea to test the performance with an artificial slowdown. For example, Chrome offers a [CPU Throttling](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) option for this.
 
-Also note that measuring performance in development will not give you the most accurate results. (For example, when [Strict Mode](/reference/react/StrictMode) is on, you will see each component render twice rather than once.) To get the most accurate timings, build your app for production and test it on a device like your users have.
+請記住，你的機器可能比你的用戶快，所以使用人工減速來測試性能是一個好主意。例如，Chrome 提供了一個 [CPU 限速](https://developer.chrome.com/blog/new-in-devtools-61/#throttling)  選項可以做到這一點。
+
+
+也請注意，在開發環境中測量性能可能無法得到最準確的結果。（例如，當[嚴格模式](/reference/react/StrictMode)開啟時，你會看到每個組件渲染兩次而不是一次。）為了獲得最準確的時間，你應該將你的應用程式建置為生產模式，並在與你的用戶相似的裝置上進行測試。
+
 
 </DeepDive>
 
-### Resetting all state when a prop changes {/*resetting-all-state-when-a-prop-changes*/}
+### 當 prop 改變時重設所有 state  {/*resetting-all-state-when-a-prop-changes*/}
 
-This `ProfilePage` component receives a `userId` prop. The page contains a comment input, and you use a `comment` state variable to hold its value. One day, you notice a problem: when you navigate from one profile to another, the `comment` state does not get reset. As a result, it's easy to accidentally post a comment on a wrong user's profile. To fix the issue, you want to clear out the `comment` state variable whenever the `userId` changes:
+這個 `ProfilePage` 組件接收一個 `userId` prop。頁面包含一個評論輸入框，並且你用一個 `comment`  state 變量來儲存它的值。有一天，你發現一個問題：當你從一個個人資訊頁面導航到另一個時，`comment`  state 並未重設。結果，你很容易不小心在錯誤的用戶個人資訊頁面上發布評論。為了解決這個問題，你會想要在 `userId` 改變時清空 `comment`  state 變量：
 
 ```js {4-7}
 export default function ProfilePage({ userId }) {
@@ -171,9 +176,10 @@ export default function ProfilePage({ userId }) {
 }
 ```
 
-This is inefficient because `ProfilePage` and its children will first render with the stale value, and then render again. It is also complicated because you'd need to do this in *every* component that has some state inside `ProfilePage`. For example, if the comment UI is nested, you'd want to clear out nested comment state too.
+這種做法不僅效率低下，因為 `ProfilePage` 和它的子組件會首先使用過時的值進行渲染，然後再重新渲染。而且也相當複雜，因為你需要在 `ProfilePage` 內的*每一個*有 state 的組件中這麼做。例如，如果評論的使用者介面是巢狀的，你也會想清空巢狀的評論 state 。
 
-Instead, you can tell React that each user's profile is conceptually a _different_ profile by giving it an explicit key. Split your component in two and pass a `key` attribute from the outer component to the inner one:
+相反的，你可以想像 React 每個用戶的個人資訊頁面在概念上是一個 _不同_ 的個人資訊頁面，通過給它一個明確的 key 。將你的組件拆分成兩部分，並從外部組件傳遞一個 `key` 屬性到內部組件：
+
 
 ```js {5,11-12}
 export default function ProfilePage({ userId }) {
@@ -191,16 +197,15 @@ function Profile({ userId }) {
   // ...
 }
 ```
+通常，當在同一位置渲染同一個組件時，React 會保留其 state 。**將 `userId` 作為 `Profile` 組件的 `key` 傳遞，你是在請求 React 將具有不同 `userId` 的兩個 `Profile` 組件視為兩個不應共享任何 state 的不同組件**。每當鍵值（你已將其設定為 `userId`）發生變化時，React 將重新創建 DOM 並[重置](/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key) `Profile` 組件及其所有子組件的 state 。現在，當在個人檔案間導航時，`comment` 欄位將自動清空。
 
-Normally, React preserves the state when the same component is rendered in the same spot. **By passing `userId` as a `key` to the `Profile` component, you're asking React to treat two `Profile` components with different `userId` as two different components that should not share any state.** Whenever the key (which you've set to `userId`) changes, React will recreate the DOM and [reset the state](/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key) of the `Profile` component and all of its children. Now the `comment` field will clear out automatically when navigating between profiles.
+注意，在此示例中，只有外部的 `ProfilePage` 組件被導出並對項目中的其他文件可見。渲染 `ProfilePage` 的組件不需要將鍵傳遞給它：它們將 `userId` 作為常規 prop 傳遞。`ProfilePage` 將其作為 `key` 傳遞給內部 `Profile` 組件是一個實現細節。
 
-Note that in this example, only the outer `ProfilePage` component is exported and visible to other files in the project. Components rendering `ProfilePage` don't need to pass the key to it: they pass `userId` as a regular prop. The fact `ProfilePage` passes it as a `key` to the inner `Profile` component is an implementation detail.
+### 當 prop 改變時調整部分 state {/*adjusting-some-state-when-a-prop-changes*/}
 
-### Adjusting some state when a prop changes {/*adjusting-some-state-when-a-prop-changes*/}
+有時候，你可能想要在 prop 改變時重置或調整 state 的一部分，但不是全部。
 
-Sometimes, you might want to reset or adjust a part of the state on a prop change, but not all of it.
-
-This `List` component receives a list of `items` as a prop, and maintains the selected item in the `selection` state variable. You want to reset the `selection` to `null` whenever the `items` prop receives a different array:
+這個 `List` 組件接收一個包含 `items` 的 prop，並在 `selection` state 變量中維護選定的項目。你希望每當 `items` prop 收到一個不同的陣列時，將 `selection` 重置為 `null`：
 
 ```js {5-8}
 function List({ items }) {
@@ -215,10 +220,9 @@ function List({ items }) {
 }
 ```
 
-This, too, is not ideal. Every time the `items` change, the `List` and its child components will render with a stale `selection` value at first. Then React will update the DOM and run the Effects. Finally, the `setSelection(null)` call will cause another re-render of the `List` and its child components, restarting this whole process again.
+這也不是理想的。每次 `items` 變更時，`List` 及其子組件將首先使用過期的 `selection` 值進行渲染。然後 React 會更新 DOM 並執行 Effects。最後，`setSelection(null)` 的呼叫將導致 `List` 及其子組件的再次渲染，重新開始這整個過程。
 
-Start by deleting the Effect. Instead, adjust the state directly during rendering:
-
+首先，刪除 Effect。然後，直接在渲染過程中調整 state：
 ```js {5-11}
 function List({ items }) {
   const [isReverse, setIsReverse] = useState(false);
@@ -233,12 +237,11 @@ function List({ items }) {
   // ...
 }
 ```
+像這樣[儲存來自先前渲染的資訊](/reference/react/useState#storing-information-from-previous-renders)可能難以理解，但它比在 Effect 中更新同一 state 要好。在上述範例中，`setSelection` 是直接在渲染過程中被呼叫。React 會在組件透過 `return` 語句退出後*立即*重新渲染 `List`。React 還沒有渲染 `List` 的子組件或更新 DOM，所以這讓 `List` 的子組件可以跳過渲染過期的 `selection` 值。
 
-[Storing information from previous renders](/reference/react/useState#storing-information-from-previous-renders) like this can be hard to understand, but it’s better than updating the same state in an Effect. In the above example, `setSelection` is called directly during a render. React will re-render the `List` *immediately* after it exits with a `return` statement. React has not rendered the `List` children or updated the DOM yet, so this lets the `List` children skip rendering the stale `selection` value.
+當你在渲染過程中更新組件時，React 會丟棄返回的 JSX 並立即重新嘗試渲染。為了避免非常慢的級聯重試，React 只允許你在渲染過程中更新*同一*組件 state 。如果你在渲染過程中更新另一個組件 state ，你將看到一個錯誤。像 `items !== prevItems` 這樣的條件是必要的，以避免循環。你可以像這樣調 state ，但任何其他的副作用（如更改 DOM 或設定 timeouts）應該保留在事件處理器或 Effects 中，以[保持組件的純淨](/learn/keeping-components-pure)。
 
-When you update a component during rendering, React throws away the returned JSX and immediately retries rendering. To avoid very slow cascading retries, React only lets you update the *same* component's state during a render. If you update another component's state during a render, you'll see an error. A condition like `items !== prevItems` is necessary to avoid loops. You may adjust state like this, but any other side effects (like changing the DOM or setting timeouts) should stay in event handlers or Effects to [keep components pure.](/learn/keeping-components-pure)
-
-**Although this pattern is more efficient than an Effect, most components shouldn't need it either.** No matter how you do it, adjusting state based on props or other state makes your data flow more difficult to understand and debug. Always check whether you can [reset all state with a key](#resetting-all-state-when-a-prop-changes) or [calculate everything during rendering](#updating-state-based-on-props-or-state) instead. For example, instead of storing (and resetting) the selected *item*, you can store the selected *item ID:*
+**雖然這種模式比使用 Effect 更有效率，但大多數的組件也不需要它**。無論你如何實施，基於 props 或其 state 來調整 state 都會使你的數據流更難理解和調試。總是先檢查是否可以[使用key重置所有 state ](#resetting-all-state-when-a-prop-changes)或[在渲染過程中計算所有內容](#updating-state-based-on-props-or-state)。例如，你可以儲存選定的*項目 ID*，而非儲存（和重置）選定的*項目*：
 
 ```js {3-5}
 function List({ items }) {
@@ -249,12 +252,11 @@ function List({ items }) {
   // ...
 }
 ```
+現在，根本無需 "調整" state 。如果選定的 ID 項目在列表中，它將保持被選中。如果不在，因為沒有找到匹配的項目，所以在渲染過程中計算的 `selection` 將為 `null`。這種行為是不同的，但可以說是更好的，因為大多數對 `items` 的更改都會保留選擇。
 
-Now there is no need to "adjust" the state at all. If the item with the selected ID is in the list, it remains selected. If it's not, the `selection` calculated during rendering will be `null` because no matching item was found. This behavior is different, but arguably better because most changes to `items` preserve the selection.
+### 在事件處理器之間共享邏輯 {/*sharing-logic-between-event-handlers*/}
 
-### Sharing logic between event handlers {/*sharing-logic-between-event-handlers*/}
-
-Let's say you have a product page with two buttons (Buy and Checkout) that both let you buy that product. You want to show a notification whenever the user puts the product in the cart. Calling `showNotification()` in both buttons' click handlers feels repetitive so you might be tempted to place this logic in an Effect:
+假設你有一個產品頁面，有兩個按鈕（購買和結帳），兩者都可以讓你購買該產品。你希望每當用戶將產品放入購物車時，都能顯示通知。在兩個按鈕的點擊處理器中都呼叫 `showNotification()` 會感覺重複，所以你可能會想要將此邏輯放在一個 Effect 中：
 
 ```js {2-7}
 function ProductPage({ product, addToCart }) {
@@ -276,10 +278,9 @@ function ProductPage({ product, addToCart }) {
   // ...
 }
 ```
+這個 Effect 是不必要的。它也很可能會導致錯誤。例如，假設你的應用程式在頁面重新載入之間 "記住" 購物車。如果你一次將一個產品加入購物車並刷新頁面，通知將再次出現。每次你刷新該產品的頁面時，它都會繼續出現。這是因為在頁面加載時，`product.isInCart` 已經是 `true`，所以上述的 Effect 將呼叫 `showNotification()`。
 
-This Effect is unnecessary. It will also most likely cause bugs. For example, let's say that your app "remembers" the shopping cart between the page reloads. If you add a product to the cart once and refresh the page, the notification will appear again. It will keep appearing every time you refresh that product's page. This is because `product.isInCart` will already be `true` on the page load, so the Effect above will call `showNotification()`.
-
-**When you're not sure whether some code should be in an Effect or in an event handler, ask yourself *why* this code needs to run. Use Effects only for code that should run *because* the component was displayed to the user.** In this example, the notification should appear because the user *pressed the button*, not because the page was displayed! Delete the Effect and put the shared logic into a function called from both event handlers:
+**當你不確定是否應將某些程式碼放在 Effect 或事件處理器中時，問問自己*為什麼*這段程式碼需要執行。僅對應該*因為*組件被顯示給用戶而運行的程式碼使用 Effects**。在這個例子中，通知應該是因為用戶*按下了按鈕*，而不是因為頁面被顯示出來！刪除 Effect，並將共享的邏輯放入一個由兩個事件處理器呼叫的函數：
 
 ```js {2-6,9,13}
 function ProductPage({ product, addToCart }) {
@@ -300,12 +301,11 @@ function ProductPage({ product, addToCart }) {
   // ...
 }
 ```
+這同時移除了不必要的 Effect，並修復了錯誤。
 
-This both removes the unnecessary Effect and fixes the bug.
+### 發送一個 POST 請求 {/*sending-a-post-request*/}
 
-### Sending a POST request {/*sending-a-post-request*/}
-
-This `Form` component sends two kinds of POST requests. It sends an analytics event when it mounts. When you fill in the form and click the Submit button, it will send a POST request to the `/api/register` endpoint:
+這個 `Form` 組件會發送兩種類型的 POST 請求。它在掛載時會發送一個分析事件。當你填寫表單並點擊提交按鈕時，它將向 `/api/register` 端點發送一個 POST 請求：
 
 ```js {5-8,10-16}
 function Form() {
@@ -332,12 +332,11 @@ function Form() {
   // ...
 }
 ```
+讓我們按照之前的例子應用同樣的標準。
 
-Let's apply the same criteria as in the example before.
+分析 POST 請求應保留在 Effect 中。這是因為發送分析事件的 _原因_ 是表單被顯示出來。（在開發過程中，它會觸發兩次，但[在這裡](/learn/synchronizing-with-effects#sending-analytics)可以找到如何處理這個問題。）
 
-The analytics POST request should remain in an Effect. This is because the _reason_ to send the analytics event is that the form was displayed. (It would fire twice in development, but [see here](/learn/synchronizing-with-effects#sending-analytics) for how to deal with that.)
-
-However, the `/api/register` POST request is not caused by the form being _displayed_. You only want to send the request at one specific moment in time: when the user presses the button. It should only ever happen _on that particular interaction_. Delete the second Effect and move that POST request into the event handler:
+然而，`/api/register` 的 POST 請求並非由表單被_顯示出來_所導致。你只想在一個特定的時刻發送請求：當用戶按下按鈕時。它只應該在_那個特定的互動_中發生。刪除第二個 Effect，並將該 POST 請求移至事件處理器中：
 
 ```js {12-13}
 function Form() {
@@ -358,11 +357,11 @@ function Form() {
 }
 ```
 
-When you choose whether to put some logic into an event handler or an Effect, the main question you need to answer is _what kind of logic_ it is from the user's perspective. If this logic is caused by a particular interaction, keep it in the event handler. If it's caused by the user _seeing_ the component on the screen, keep it in the Effect.
+當你選擇是否將一些邏輯放入事件處理器或 Effect 中時，你需要回答的主要問題是從用戶的視角來看，這是_何種類型的邏輯_。如果這個邏輯是由某種特定的互動引起的，保留在事件處理器中。如果它是由用戶_看到_畫面上的組件引起的，保留在 Effect 中。
 
-### Chains of computations {/*chains-of-computations*/}
+### 運算鏈 {/*chains-of-computations*/}
 
-Sometimes you might feel tempted to chain Effects that each adjust a piece of state based on other state:
+有時你可能會想要鏈接各種 Effect，每一個都基於其他 state 調整一部分 state：
 
 ```js {7-29}
 function Game() {
@@ -406,13 +405,14 @@ function Game() {
   // ...
 ```
 
-There are two problems with this code.
+這段程式碼有兩個問題。
 
-One problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
+一個問題是它非常低效：組件（及其子組件）在鏈中的每個 `set` 調用之間必須重新渲染。在上面的例子中，最糟糕的情況下（`setCard` → 渲染 → `setGoldCardCount` → 渲染 → `setRound` → 渲染 → `setIsGameOver` → 渲染）會有三次不必要的重新渲染樹。
 
-Even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
+即使它不慢，隨著你的程式碼進化，你將遇到 "鏈" 你寫的不符合新的需求的情況。想像你正在添加一種可以查看在遊戲內移動的歷史紀錄的功能。你會通過更新每個 state 變量到過去的值來實現。然而，將 `card`  state 設置為過去的值會再次觸發 Effect 鏈，並更改你正在顯示的數據。這樣的程式碼往往既僵硬又脆弱。
 
-In this case, it's better to calculate what you can during rendering, and adjust the state in the event handler:
+在這種情況下，最好在渲染過程中計算你可以計算的內容，並在事件處理器中調整 state ：
+
 
 ```js {6-7,14-26}
 function Game() {
@@ -446,17 +446,18 @@ function Game() {
   // ...
 ```
 
-This is a lot more efficient. Also, if you implement a way to view game history, now you will be able to set each state variable to a move from the past without triggering the Effect chain that adjusts every other value. If you need to reuse logic between several event handlers, you can [extract a function](#sharing-logic-between-event-handlers) and call it from those handlers.
+這樣做效率更高。此外，如果你實現了一種查看遊戲歷史的方法，現在你將能夠將每個 state 變量設置為過去的動作，而不會觸發調整每個其他值的 Effect 鏈。如果你需要在幾個事件處理器之間重用邏輯，你可以[提取一個函數](#sharing-logic-between-event-handlers)並從那些處理器中調用它。
 
-Remember that inside event handlers, [state behaves like a snapshot.](/learn/state-as-a-snapshot) For example, even after you call `setRound(round + 1)`, the `round` variable will reflect the value at the time the user clicked the button. If you need to use the next value for calculations, define it manually like `const nextRound = round + 1`.
+請記住，在事件處理器內部，[狀態表現得像一個快照。](/learn/state-as-a-snapshot)例如，即使在你調用 `setRound(round + 1)` 之後，`round` 變量將反映用戶點擊按鈕時的值。如果你需要使用下一個值進行計算，像 `const nextRound = round + 1` 這樣手動定義它。
 
-In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of the next dropdown depend on the selected value of the previous dropdown. Then, a chain of Effects is appropriate because you are synchronizing with network.
+在某些情況下，你*不能*在事件處理器中直接計算下一個 state。例如，想像一個帶有多個下拉列表的表單，其中下一個下拉列表的選項取決於前一個下拉列表的選定值。那麼，一個 Effect 鏈是適當的，因為你正在與網絡同步。
 
-### Initializing the application {/*initializing-the-application*/}
 
-Some logic should only run once when the app loads.
+### 初始化應用程式 {/*initializing-the-application*/}
 
-You might be tempted to place it in an Effect in the top-level component:
+有些邏輯只應該在應用程式加載時運行一次。
+
+你可能會想把它放在頂層組件的 Effect 中：
 
 ```js {2-6}
 function App() {
@@ -469,9 +470,10 @@ function App() {
 }
 ```
 
-However, you'll quickly discover that it [runs twice in development.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) This can cause issues--for example, maybe it invalidates the authentication token because the function wasn't designed to be called twice. In general, your components should be resilient to being remounted. This includes your top-level `App` component.
 
-Although it may not ever get remounted in practice in production, following the same constraints in all components makes it easier to move and reuse code. If some logic must run *once per app load* rather than *once per component mount*, add a top-level variable to track whether it has already executed:
+然而，你很快就會發現它在開發中[運行了兩次。](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) 這可能會導致問題 -- 例如，可能因為這個函數不是設計來被調用兩次，所以它可能會使驗證令牌無效。一般來說，你的組件應該能夠抵禦重新掛載。這包括你的頂層 `App` 組件。
+
+雖然在實際的生產中，它可能永遠不會被重新掛載，但在所有組件中遵循相同的限制，可以使代碼的移動和重用更容易。如果有些邏輯必須在*每次應用程式加載時*運行，而不是*每次組件掛載時*，添加一個頂層變量來追蹤它是否已經執行：
 
 ```js {1,5-6,10}
 let didInit = false;
@@ -489,7 +491,7 @@ function App() {
 }
 ```
 
-You can also run it during module initialization and before the app renders:
+你也可以在模組初始化期間，以及在應用程式渲染之前運行它：
 
 ```js {1,5}
 if (typeof window !== 'undefined') { // Check if we're running in the browser.
@@ -503,11 +505,11 @@ function App() {
 }
 ```
 
-Code at the top level runs once when your component is imported--even if it doesn't end up being rendered. To avoid slowdown or surprising behavior when importing arbitrary components, don't overuse this pattern. Keep app-wide initialization logic to root component modules like `App.js` or in your application's entry point.
+在你的組件被導入時，頂層的程式碼會運行一次 -- 即使它最終沒有被渲染。為了避免在導入任意組件時造成性能下降或出現意外的行為，不要過度使用這種模式。將應用程式範疇內的初始化邏輯保留在根組件模組（如 `App.js`）或你的應用程式入口點。
 
-### Notifying parent components about state changes {/*notifying-parent-components-about-state-changes*/}
+### 通知父組件關於 state 的變更 {/*notifying-parent-components-about-state-changes*/}
 
-Let's say you're writing a `Toggle` component with an internal `isOn` state which can be either `true` or `false`. There are a few different ways to toggle it (by clicking or dragging). You want to notify the parent component whenever the `Toggle` internal state changes, so you expose an `onChange` event and call it from an Effect:
+假設你正在撰寫一個 `Toggle` 組件，其內部有一個 `isOn`  state ，該 state 可以是 `true` 或 `false`。有幾種不同的方式可以切換它（如點擊或拖動）。你希望在 `Toggle` 的內部 state 改變時通知父組件，因此你暴露了一個 `onChange` 事件並在 Effect 中呼叫它：
 
 ```js {4-7}
 function Toggle({ onChange }) {
@@ -534,9 +536,9 @@ function Toggle({ onChange }) {
 }
 ```
 
-Like earlier, this is not ideal. The `Toggle` updates its state first, and React updates the screen. Then React runs the Effect, which calls the `onChange` function passed from a parent component. Now the parent component will update its own state, starting another render pass. It would be better to do everything in a single pass.
+像之前一樣，這並不理想。 `Toggle` 首先更新其 state ，然後 React 更新螢幕。然後 React 運行 Effect，該 Effect 調用來自父組件的 `onChange` 函數。現在父組件將更新自己的 state ，開始另一個渲染週期。更好的方式是在單個流程中完成所有操作。
 
-Delete the Effect and instead update the state of *both* components within the same event handler:
+刪除 Effect，並在同一事件處理程序中更新*兩個*組件的 state ：
 
 ```js {5-7,11,16,18}
 function Toggle({ onChange }) {
@@ -564,9 +566,9 @@ function Toggle({ onChange }) {
 }
 ```
 
-With this approach, both the `Toggle` component and its parent component update their state during the event. React [batches updates](/learn/queueing-a-series-of-state-updates) from different components together, so there will only be one render pass.
+採用此方法，`Toggle` 組件及其父組件都會在事件期間更新他們的 state。React [批量更新](/learn/queueing-a-series-of-state-updates) 來自不同組件的更新，因此只會有一個渲染週期。
 
-You might also be able to remove the state altogether, and instead receive `isOn` from the parent component:
+你也可能能夠完全移除 state，而是直接從父組件接收 `isOn`：
 
 ```js {1,2}
 // ✅ Also good: the component is fully controlled by its parent
@@ -587,11 +589,11 @@ function Toggle({ isOn, onChange }) {
 }
 ```
 
-["Lifting state up"](/learn/sharing-state-between-components) lets the parent component fully control the `Toggle` by toggling the parent's own state. This means the parent component will have to contain more logic, but there will be less state overall to worry about. Whenever you try to keep two different state variables synchronized, try lifting state up instead!
+["狀態提升"](/learn/sharing-state-between-components)讓父組件通過切換自身的 state 來完全控制 `Toggle`。這意味著父組件將需要包含更多的邏輯，但總的來說會有更少的 state 需要擔憂。每當你嘗試保持兩個不同 state 變數同步時，請嘗試提升 state ！
 
-### Passing data to the parent {/*passing-data-to-the-parent*/}
+### 傳遞數據給父組件 {/*passing-data-to-the-parent*/}
 
-This `Child` component fetches some data and then passes it to the `Parent` component in an Effect:
+這個 `Child` 組件會獲取一些數據，然後在Effect中將它傳遞給 `Parent` 組件：
 
 ```js {9-14}
 function Parent() {
@@ -612,7 +614,7 @@ function Child({ onFetched }) {
 }
 ```
 
-In React, data flows from the parent components to their children. When you see something wrong on the screen, you can trace where the information comes from by going up the component chain until you find which component passes the wrong prop or has the wrong state. When child components update the state of their parent components in Effects, the data flow becomes very difficult to trace. Since both the child and the parent need the same data, let the parent component fetch that data, and *pass it down* to the child instead:
+在 React 中，數據流動是從父組件到子組件。當你在螢幕上看到錯誤的地方時，你可以跟著組件鏈向上追蹤，直到找到哪個組件傳遞錯誤的 prop 或擁有錯誤的 state 。當子組件在效應中更新父組件的 state 時，數據流動變得非常難以追蹤。既然子組件和父組件都需要相同的數據，讓父組件獲取這些數據，並將其*傳遞下來*給子組件：
 
 ```js {4-5}
 function Parent() {
@@ -627,11 +629,11 @@ function Child({ data }) {
 }
 ```
 
-This is simpler and keeps the data flow predictable: the data flows down from the parent to the child.
+這更簡單，並使數據流動預測：數據由父組件流向子組件。
 
-### Subscribing to an external store {/*subscribing-to-an-external-store*/}
+### 訂閱外部 store {/*subscribing-to-an-external-store*/}
 
-Sometimes, your components may need to subscribe to some data outside of the React state. This data could be from a third-party library or a built-in browser API. Since this data can change without React's knowledge, you need to manually subscribe your components to it. This is often done with an Effect, for example:
+有時，你的組件可能需要訂閱一些來自 React  state 之外的數據。這些數據可能來自第三方庫或內置的瀏覽器 API。由於這些數據可能在 React 不知情的情況下改變，你需要手動讓你的組件訂閱它。這通常使用Effect完成，例如：
 
 ```js {2-17}
 function useOnlineStatus() {
@@ -659,10 +661,9 @@ function ChatIndicator() {
   // ...
 }
 ```
+在這裡，組件訂閱了一個外部數據存儲（在此例中，為瀏覽器的 `navigator.onLine` API）。由於此 API 在服務器上不存在（所以不能用於初始 HTML），因此最初的 state 被設置為 `true`。當該數據存儲在瀏覽器中的值變化時，組件會更新其 state 。
 
-Here, the component subscribes to an external data store (in this case, the browser `navigator.onLine` API). Since this API does not exist on the server (so it can't be used for the initial HTML), initially the state is set to `true`. Whenever the value of that data store changes in the browser, the component updates its state.
-
-Although it's common to use Effects for this, React has a purpose-built Hook for subscribing to an external store that is preferred instead. Delete the Effect and replace it with a call to [`useSyncExternalStore`](/reference/react/useSyncExternalStore):
+雖然通常使用 Effect 進行此操作，但 React 提供了一個專門用於訂閱外部存儲的 Hook，優先使用它。刪除 Effect，並用對 [`useSyncExternalStore`](/reference/react/useSyncExternalStore) 的調用來替換：
 
 ```js {11-16}
 function subscribe(callback) {
@@ -689,11 +690,11 @@ function ChatIndicator() {
 }
 ```
 
-This approach is less error-prone than manually syncing mutable data to React state with an Effect. Typically, you'll write a custom Hook like `useOnlineStatus()` above so that you don't need to repeat this code in the individual components. [Read more about subscribing to external stores from React components.](/reference/react/useSyncExternalStore)
+這種方法比使用 Effect 手動將可變數據同步到 React state 更不易出錯。通常，您將編寫像上面的 `useOnlineStatus()` 這樣的自定義 Hook，這樣您就不需要在個別組件中重複此代碼。[閱讀更多關於從 React 組件訂閱外部存儲的信息。](/reference/react/useSyncExternalStore)
 
-### Fetching data {/*fetching-data*/}
+### 獲取數據 {/*fetching-data*/}
 
-Many apps use Effects to kick off data fetching. It is quite common to write a data fetching Effect like this:
+許多應用程式使用 Effect 來啟動數據獲取。像這樣寫數據獲取 Effect 是很常見的：
 
 ```js {5-10}
 function SearchResults({ query }) {
@@ -714,15 +715,14 @@ function SearchResults({ query }) {
 }
 ```
 
-You *don't* need to move this fetch to an event handler.
+你*不需要*將此獲取數據的動作移至一個事件處理器中。
 
-This might seem like a contradiction with the earlier examples where you needed to put the logic into the event handlers! However, consider that it's not *the typing event* that's the main reason to fetch. Search inputs are often prepopulated from the URL, and the user might navigate Back and Forward without touching the input.
+這可能與先前的例子中你需要將邏輯放入事件處理器中的情況相矛盾！然而，請考慮到並非*鍵入事件*是觸發獲取數據的主要原因。搜尋輸入欄常常會從URL中預先填入，且使用者可能在不觸碰輸入欄的情況下進行「返回」和「前進」的導覽。
 
-It doesn't matter where `page` and `query` come from. While this component is visible, you want to keep `results` [synchronized](/learn/synchronizing-with-effects) with data from the network for the current `page` and `query`. This is why it's an Effect.
+`page` 和 `query` 的來源並不重要。當這個元件可見時，你會希望保持 `results` 與目前 `page` 和 `query` 的網路數據[同步](/learn/synchronizing-with-effects)。這就是為何它是一個 Effect。
 
-However, the code above has a bug. Imagine you type `"hello"` fast. Then the `query` will change from `"h"`, to `"he"`, `"hel"`, `"hell"`, and `"hello"`. This will kick off separate fetches, but there is no guarantee about which order the responses will arrive in. For example, the `"hell"` response may arrive *after* the `"hello"` response. Since it will call `setResults()` last, you will be displaying the wrong search results. This is called a ["race condition"](https://en.wikipedia.org/wiki/Race_condition): two different requests "raced" against each other and came in a different order than you expected.
+然而，上述的程式碼有一個錯誤。想像你快速打入 `"hello"`。那麼 `query` 會從 `"h"` 變成 `"he"`， `"hel"`， `"hell"`，並最終成為 `"hello"`。這將觸發分開的數據獲取，但是沒有保證哪個請求的回應會先到達。例如，`"hell"` 的回應可能在 `"hello"` 的回應*之後*才到達。由於它最後調用 `setResults()`，你會顯示錯誤的搜尋結果。這稱為[「競態條件」](https://zh.wikipedia.org/wiki/競態條件)：兩個不同的請求彼此「競賽」，並以你意料之外的順序到達。
 
-**To fix the race condition, you need to [add a cleanup function](/learn/synchronizing-with-effects#fetching-data) to ignore stale responses:**
 
 ```js {5,7,9,11-13}
 function SearchResults({ query }) {
@@ -747,13 +747,13 @@ function SearchResults({ query }) {
 }
 ```
 
-This ensures that when your Effect fetches data, all responses except the last requested one will be ignored.
+這確保了當你的 Effect 取得資料時，除了最後一個請求的所有回應都將被忽略。
 
-Handling race conditions is not the only difficulty with implementing data fetching. You might also want to think about caching responses (so that the user can click Back and see the previous screen instantly), how to fetch data on the server (so that the initial server-rendered HTML contains the fetched content instead of a spinner), and how to avoid network waterfalls (so that a child can fetch data without waiting for every parent).
+處理競態條件並不是實現資料取得的唯一難題。你可能還想考慮快取回應（這樣用戶可以點擊返回並立即看到前一個畫面），如何在伺服器上取得資料（這樣初始伺服器渲染的 HTML 將包含已取得的內容，而不是轉圈圖標），以及如何避免網絡瀑布（這樣子組件可以在不等待每個父組件的情況下取得資料）。
 
-**These issues apply to any UI library, not just React. Solving them is not trivial, which is why modern [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) provide more efficient built-in data fetching mechanisms than fetching data in Effects.**
+**這些問題適用於任何 UI 函式庫，不僅僅是 React。解決它們並非易事，這就是為什麼現代的 [框架](/learn/start-a-new-react-project#production-grade-react-frameworks) 提供比在 Effects 中取得資料更有效的內建資料取得機制。**
 
-If you don't use a framework (and don't want to build your own) but would like to make data fetching from Effects more ergonomic, consider extracting your fetching logic into a custom Hook like in this example:
+如果你不使用框架（且不想自己建立一個）但希望從 Effects 中更方便地取得資料，可以考慮將你的取得邏輯提取到自定義 Hook 中，如下例：
 
 ```js {4}
 function SearchResults({ query }) {
@@ -785,31 +785,30 @@ function useData(url) {
   return data;
 }
 ```
+你可能也想要加入一些錯誤處理的邏輯，並追蹤內容是否正在載入。你可以自己建立像這樣的 Hook，或者使用 React 生態系統中已經可用的許多解決方案之一。**雖然這本身並不如使用框架的內建資料取得機制那麼有效，但將資料取得邏輯移動到自定義 Hook 中將使得稍後採用有效的資料取得策略變得更容易。**
 
-You'll likely also want to add some logic for error handling and to track whether the content is loading. You can build a Hook like this yourself or use one of the many solutions already available in the React ecosystem. **Although this alone won't be as efficient as using a framework's built-in data fetching mechanism, moving the data fetching logic into a custom Hook will make it easier to adopt an efficient data fetching strategy later.**
-
-In general, whenever you have to resort to writing Effects, keep an eye out for when you can extract a piece of functionality into a custom Hook with a more declarative and purpose-built API like `useData` above. The fewer raw `useEffect` calls you have in your components, the easier you will find to maintain your application.
+一般來說，每當你必須使用 Effects 時，要留意你何時可以將一部分功能提取到自定義 Hook 中，這樣的 Hook 應具有更聲明式且專為特定目的製作的 API，就像上面的 `useData`。你的組件中有越少原生 `useEffect` 的調用，你就越容易維護你的應用程式。
 
 <Recap>
 
-- If you can calculate something during render, you don't need an Effect.
-- To cache expensive calculations, add `useMemo` instead of `useEffect`.
-- To reset the state of an entire component tree, pass a different `key` to it.
-- To reset a particular bit of state in response to a prop change, set it during rendering.
-- Code that runs because a component was *displayed* should be in Effects, the rest should be in events.
-- If you need to update the state of several components, it's better to do it during a single event.
-- Whenever you try to synchronize state variables in different components, consider lifting state up.
-- You can fetch data with Effects, but you need to implement cleanup to avoid race conditions.
+- 如果你可以在渲染期間計算某些東西，則不需要 Effect。
+- 若要快取昂貴的計算，請加入 `useMemo` 而非 `useEffect`。
+- 若要重置整個組件樹的 state，請向其傳遞一個不同的 `key`。
+- 若要響應 prop 變化重置某些特定的 state，則應在渲染期間處理它。
+- 因為組件**顯示**而需要執行的程式碼應在 Effects 中，其餘的應在事件中。
+- 如果你需要更新多個組件的 state，最好在單一事件中進行。
+- 每當你嘗試同步不同組件中的 state 變量時，請考慮 state 提升。
+- 你可以用 Effects 取得資料，但你需要實施清理以避免競態條件。
 
 </Recap>
 
 <Challenges>
 
-#### Transform data without Effects {/*transform-data-without-effects*/}
+#### 不使用 Effects 來轉換資料 {/*transform-data-without-effects*/}
 
-The `TodoList` below displays a list of todos. When the "Show only active todos" checkbox is ticked, completed todos are not displayed in the list. Regardless of which todos are visible, the footer displays the count of todos that are not yet completed.
+下方的 `TodoList` 將展示一個待辦事項的列表。當 "只顯示活躍的待辦事項" 的選框被勾選時，已完成的待辦事項將不會在列表中顯示。不論哪些待辦事項是可見的，頁尾都會顯示尚未完成的待辦事項的數量。
 
-Simplify this component by removing all the unnecessary state and Effects.
+請簡化此元件，移除所有不必要的 state 和 effect。
 
 <Sandpack>
 
@@ -909,15 +908,16 @@ input { margin-top: 10px; }
 
 <Hint>
 
-If you can calculate something during rendering, you don't need state or an Effect that updates it.
+如果你可以在渲染期間直接計算，你可能就不需要 state 或更新它的 Effect。
+
 
 </Hint>
 
 <Solution>
 
-There are only two essential pieces of state in this example: the list of `todos` and the `showActive` state variable which represents whether the checkbox is ticked. All of the other state variables are [redundant](/learn/choosing-the-state-structure#avoid-redundant-state) and can be calculated during rendering instead. This includes the `footer` which you can move directly into the surrounding JSX.
+在此範例中，只有兩個核心的 state ：`todos` 的列表和 `showActive` 的 state 變數，代表著選框是否被勾選。所有其他的 state 變數都是[冗餘](/learn/choosing-the-state-structure#avoid-redundant-state)的，且可以在渲染時直接計算。這包含你可以直接移入周邊 JSX 的 `footer`。
 
-Your result should end up looking like this:
+你的結果應該會如下所示：
 
 <Sandpack>
 
@@ -1002,15 +1002,15 @@ input { margin-top: 10px; }
 
 </Solution>
 
-#### Cache a calculation without Effects {/*cache-a-calculation-without-effects*/}
+#### 不使用 Effect 來快取計算結果 {/*cache-a-calculation-without-effects*/}
 
-In this example, filtering the todos was extracted into a separate function called `getVisibleTodos()`. This function contains a `console.log()` call inside of it which helps you notice when it's being called. Toggle "Show only active todos" and notice that it causes `getVisibleTodos()` to re-run. This is expected because visible todos change when you toggle which ones to display.
+在這個範例中，過濾待辦事項被抽出到一個名為 `getVisibleTodos()` 的獨立函數。這個函數內部包含一個 `console.log()` 的呼叫，用以幫助你注意到它何時被調用。切換 "只顯示活動待辦事項"，注意到這將導致 `getVisibleTodos()` 重新執行。這是預期的行為，因為可見的待辦事項在你切換要顯示的待辦事項時會改變。
 
-Your task is to remove the Effect that recomputes the `visibleTodos` list in the `TodoList` component. However, you need to make sure that `getVisibleTodos()` does *not* re-run (and so does not print any logs) when you type into the input.
+你的任務是移除在 `TodoList` 組件中重新計算 `visibleTodos` 列表的 Effect。然而，你需要確保當你在輸入框內打字時，`getVisibleTodos()` *不會* 重新執行（因此也不會打印任何日誌）。
 
 <Hint>
 
-One solution is to add a `useMemo` call to cache the visible todos. There is also another, less obvious solution.
+一種解決方案是加入一個 `useMemo` 的呼叫來快取可見的待辦事項。還有另一種較不明顯的解決方案。
 
 </Hint>
 
@@ -1096,7 +1096,7 @@ input { margin-top: 10px; }
 
 <Solution>
 
-Remove the state variable and the Effect, and instead add a `useMemo` call to cache the result of calling `getVisibleTodos()`:
+移除狀態變數和 Effect，然後加入一個 `useMemo` 的呼叫來快取調用 `getVisibleTodos()` 的結果：
 
 <Sandpack>
 
@@ -1177,9 +1177,9 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
-With this change, `getVisibleTodos()` will be called only if `todos` or `showActive` change. Typing into the input only changes the `text` state variable, so it does not trigger a call to `getVisibleTodos()`.
+進行這個改變後，只有在 `todos` 或 `showActive` 改變時，才會調用 `getVisibleTodos()`。在輸入框裡打字只改變了 `text` state 變數，所以它不會觸發對 `getVisibleTodos()` 的呼叫。
 
-There is also another solution which does not need `useMemo`. Since the `text` state variable can't possibly affect the list of todos, you can extract the `NewTodo` form into a separate component, and move the `text` state variable inside of it:
+這還有另一個不需要 `useMemo` 的解決方案。由於 `text` state 變數不可能影響待辦事項的列表，你可以將 `NewTodo` 表單提取到一個單獨的組件中，並將 `text` state 變數移至該組件內：
 
 <Sandpack>
 
@@ -1266,15 +1266,15 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
-This approach satisfies the requirements too. When you type into the input, only the `text` state variable updates. Since the `text` state variable is in the child `NewTodo` component, the parent `TodoList` component won't get re-rendered. This is why `getVisibleTodos()` doesn't get called when you type. (It would still be called if the `TodoList` re-renders for another reason.)
+這種方法也符合需求。當你在輸入框中打字時，只有 `text` state 變數會更新。由於 `text` state 變數位於子組件 `NewTodo` 中，所以父組件 `TodoList` 不會重新渲染。這就是為什麼在你打字時，`getVisibleTodos()` 不會被調用。（如果 `TodoList` 因其他原因重新渲染，則仍會調用 `getVisibleTodos()`。）
 
 </Solution>
 
-#### Reset state without Effects {/*reset-state-without-effects*/}
+#### 無需 Effect 來重設 state {/*reset-state-without-effects*/}
 
-This `EditContact` component receives a contact object shaped like `{ id, name, email }` as the `savedContact` prop. Try editing the name and email input fields. When you press Save, the contact's button above the form updates to the edited name. When you press Reset, any pending changes in the form are discarded. Play around with this UI to get a feel for it.
+這個 `EditContact` 組件接收一個像 `{ id, name, email }` 的聯絡人物件作為 `savedContact` prop。試著編輯名字和電郵輸入欄位。當你按下儲存，表單上方的聯絡人按鈕會更新為編輯過的名字。當你按下重設，任何在表單中等待的變更都會被丟棄。試著操作這個 UI，來了解它的功能。
 
-When you select a contact with the buttons at the top, the form resets to reflect that contact's details. This is done with an Effect inside `EditContact.js`. Remove this Effect. Find another way to reset the form when `savedContact.id` changes.
+當你用頂部的按鈕選擇一個聯絡人時，表單會重設為該聯絡人的詳細資訊。這是透過在 `EditContact.js` 內的一個 Effect 來完成的。移除這個 Effect，找到另一種方式在 `savedContact.id` 改變時重設表單。
 
 <Sandpack>
 
@@ -1432,13 +1432,13 @@ button {
 
 <Hint>
 
-It would be nice if there was a way to tell React that when `savedContact.id` is different, the `EditContact` form is conceptually a _different contact's form_ and should not preserve state. Do you recall any such way?
+如果有辦法告訴 React，當 `savedContact.id` 不同時，`EditContact` 表單在概念上是一個_不同聯絡人的表單_，並且應該不保留 state ，那該有多好。你記得有這樣的方式嗎？
 
 </Hint>
 
 <Solution>
 
-Split the `EditContact` component in two. Move all the form state into the inner `EditForm` component. Export the outer `EditContact` component, and make it pass `savedContact.id` as the `key` to the inner `EditForm` component. As a result, the inner `EditForm` component resets all of the form state and recreates the DOM whenever you select a different contact.
+將 `EditContact` 組件拆分成兩個。將所有表單 state 移至內部的 `EditForm` 組件。導出外部的 `EditContact` 組件，並讓它將 `savedContact.id` 作為內部 `EditForm` 組件的 `key` 傳入。結果是，每當你選擇不同的聯絡人時，內部的 `EditForm` 組件會重設所有表單 state 並重建 DOM。
 
 <Sandpack>
 
@@ -1600,17 +1600,17 @@ button {
 
 </Solution>
 
-#### Submit a form without Effects {/*submit-a-form-without-effects*/}
+#### 不用 Effects 提交表單 {/*submit-a-form-without-effects*/}
 
-This `Form` component lets you send a message to a friend. When you submit the form, the `showForm` state variable is set to `false`. This triggers an Effect calling `sendMessage(message)`, which sends the message (you can see it in the console). After the message is sent, you see a "Thank you" dialog with an "Open chat" button that lets you get back to the form.
+這個 `Form` 組件讓你可以發送訊息給朋友。當你提交表單，`showForm` state 變量設定為 `false`。這會觸發一個 Effect，呼叫 `sendMessage(message)`，然後發送訊息（你可以在控制台看到它）。在訊息發送後，你會看到一個 "謝謝你" 的對話框，裡面有一個 "開啟聊天" 的按鈕，讓你可以回到表單。
 
-Your app's users are sending way too many messages. To make chatting a little bit more difficult, you've decided to show the "Thank you" dialog *first* rather than the form. Change the `showForm` state variable to initialize to `false` instead of `true`. As soon as you make that change, the console will show that an empty message was sent. Something in this logic is wrong!
+你的應用程式的使用者發送了太多的訊息。為了讓聊天稍微困難一點，你決定要*先*顯示 "謝謝你" 的對話框，而不是表單。將 `showForm` state 變量改為初始化為 `false`，而不是 `true`。一旦你做出那個改變，控制台將顯示一個空訊息被發送出去。這個邏輯有些地方出錯了！
 
-What's the root cause of this problem? And how can you fix it?
+這個問題的根本原因是什麼？你又該如何修正它？
 
 <Hint>
 
-Should the message be sent _because_ the user saw the "Thank you" dialog? Or is it the other way around?
+訊息應該是_因為_使用者看到了 "謝謝你" 的對話框而被發送嗎？還是正好相反？
 
 </Hint>
 
@@ -1675,7 +1675,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <Solution>
 
-The `showForm` state variable determines whether to show the form or the "Thank you" dialog. However, you aren't sending the message because the "Thank you" dialog was _displayed_. You want to send the message because the user has _submitted the form._ Delete the misleading Effect and move the `sendMessage` call inside the `handleSubmit` event handler:
+`showForm` state 變量決定是否顯示表單或 "謝謝你" 的對話框。然而，你並不是因為 "謝謝你" 的對話框被_顯示_而發送訊息。你想要因為使用者已經_提交了表單_而發送訊息。刪除這個具有誤導性的 Effect，並將 `sendMessage` 的調用移動到 `handleSubmit` 事件處理程序中：
 
 <Sandpack>
 
@@ -1731,8 +1731,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-Notice how in this version, only _submitting the form_ (which is an event) causes the message to be sent. It works equally well regardless of whether `showForm` is initially set to `true` or `false`. (Set it to `false` and notice no extra console messages.)
-
+注意在此版本中，只有_提交表單_（這是一個事件）會導致訊息被發送。無論 `showForm` 初始設定為 `true` 或 `false`，它都能一樣運作良好。（將其設定為 `false` 並注意沒有額外的控制台訊息。）
 </Solution>
 
 </Challenges>
