@@ -40,7 +40,11 @@ Code linter 可以在你撰寫程式碼的時候發現問題，幫助你儘早�
 
 ### 格式化 {/*formatting*/}
 
+<<<<<<< HEAD
 當你與另一個貢獻者分享你的程式時，你最不想做的事情就是陷入關於 [tabs 與 spaces](https://www.google.com/search?q=tabs+vs+spaces) 的討論中！幸運的是，[Prettier](https://prettier.io/) 將通過重新格式化來清理你的程式碼，使其符合預設的、可配置的規則。執行 Prettier，你所有的 tab 將被轉換為 space--你的縮排、引號等也將全部被改變，以符合配置。在理想的設定中，Prettier 將在你儲存文件時執行，迅速為你進行這些編輯。
+=======
+The last thing you want to do when sharing your code with another contributor is get into a discussion about [tabs vs spaces](https://www.google.com/search?q=tabs+vs+spaces)! Fortunately, [Prettier](https://prettier.io/) will clean up your code by reformatting it to conform to preset, configurable rules. Run Prettier, and all your tabs will be converted to spaces—and your indentation, quotes, etc will also all be changed to conform to the configuration. In the ideal setup, Prettier will run when you save your file, quickly making these edits for you.
+>>>>>>> 93177e6ceac8ffb5c2a8f3ed4bd1f80b63097078
 
 你可以透過以下幾個步驟安裝[在 VSCode 內安裝 Prettier 擴充套件](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)：
 
