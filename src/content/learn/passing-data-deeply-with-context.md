@@ -462,7 +462,6 @@ export default function Section({ children }) {
 
 **用一個 context provider 把它们包裹起来** 便可以提供 `LevelContext` 給它們:
 
-
 ```js {1,6,8}
 import { LevelContext } from './LevelContext.js';
 
