@@ -19,6 +19,7 @@ const cachedFn = useCallback(fn, dependencies)
 ## 參考 {/*reference*/}
 
 ### `useCallback(fn, dependencies)` {/*usecallback*/}
+
 在頂層的component使用 `useCallback` 來在每個重新 render 之間緩存函數：
 
 ```js {4,9}
