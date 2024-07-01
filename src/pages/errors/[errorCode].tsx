@@ -36,7 +36,11 @@ export default function ErrorDecoderPage({
         }}
         routeTree={sidebarLearn as RouteItem}
         section="unknown">
+<<<<<<< HEAD
         {parsedContent}
+=======
+        <div className="whitespace-pre-line">{parsedContent}</div>
+>>>>>>> 53fbed3f676013508fb9cce22a3fc8664b1dc5a1
         {/* <MaxWidth>
           <P>
             We highly recommend using the development build locally when debugging
