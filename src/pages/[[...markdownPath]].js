@@ -12,7 +12,13 @@ import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import compileMDX from 'utils/compileMDX';
+<<<<<<< HEAD
 export default function Layout({content, toc, meta}) {
+=======
+import {generateRssFeed} from '../utils/rss';
+
+export default function Layout({content, toc, meta, languages}) {
+>>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]
@@ -39,7 +45,12 @@ export default function Layout({content, toc, meta}) {
       break;
   }
   return (
-    <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
+    <Page
+      toc={parsedToc}
+      routeTree={routeTree}
+      meta={meta}
+      section={section}
+      languages={languages}>
       {parsedContent}
     </Page>
   );
@@ -96,6 +107,7 @@ function reviveNodeOnClient(key, val) {
 
 // Put MDX output into JSON for client.
 export async function getStaticProps(context) {
+  generateRssFeed();
   const fs = require('fs');
   const rootDir = process.cwd() + '/src/content/';
 
@@ -108,12 +120,17 @@ export async function getStaticProps(context) {
     mdx = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
   }
 
+<<<<<<< HEAD
   const {toc, content, meta} = await compileMDX(mdx, path, {});
+=======
+  const {toc, content, meta, languages} = await compileMDX(mdx, path, {});
+>>>>>>> 4c91abc78b20be10e7d40cf57a80a6a6247e6e9a
   return {
     props: {
       toc,
       content,
       meta,
+      languages,
     },
   };
 }
