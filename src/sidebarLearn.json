@@ -43,6 +43,11 @@
         {
           "title": "React 開發者工具",
           "path": "/learn/react-developer-tools"
+        },
+        {
+          "title": "React Compiler",
+          "path": "/learn/react-compiler",
+          "canary": true
         }
       ]
     },
@@ -193,7 +198,11 @@
           "path": "/learn/separating-events-from-effects"
         },
         {
+<<<<<<< HEAD
           "title": "移除 Effect 的依賴",
+=======
+          "title": "Removing Effect Dependencies",
+>>>>>>> c2d61310664cc0d94f89ca21fc1d44e674329799
           "path": "/learn/removing-effect-dependencies"
         },
         {
