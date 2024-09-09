@@ -1,8 +1,16 @@
+<<<<<<< HEAD
+=======
+import {LanguageItem} from 'components/MDX/LanguagesContext';
+>>>>>>> 9aa2e3668da290f92f8997a25f28bd3f58b2a26d
 import {MDXComponents} from 'components/MDX/MDXComponents';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
+<<<<<<< HEAD
 const DISK_CACHE_BREAKER = 8;
+=======
+const DISK_CACHE_BREAKER = 9;
+>>>>>>> 9aa2e3668da290f92f8997a25f28bd3f58b2a26d
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 export default async function compileMDX(
@@ -124,10 +132,27 @@ export default async function compileMDX(
   const fm = require('gray-matter');
   const meta = fm(mdx).data;
 
+<<<<<<< HEAD
+=======
+  // Load the list of translated languages conditionally.
+  let languages: Array<LanguageItem> | null = null;
+  if (typeof path === 'string' && path.endsWith('/translations')) {
+    languages = await (
+      await fetch(
+        'https://raw.githubusercontent.com/reactjs/translations.react.dev/main/langs/langs.json'
+      )
+    ).json(); // { code: string; name: string; enName: string}[]
+  }
+
+>>>>>>> 9aa2e3668da290f92f8997a25f28bd3f58b2a26d
   const output = {
     content: JSON.stringify(children, stringifyNodeOnServer),
     toc: JSON.stringify(toc, stringifyNodeOnServer),
     meta,
+<<<<<<< HEAD
+=======
+    languages,
+>>>>>>> 9aa2e3668da290f92f8997a25f28bd3f58b2a26d
   };
 
   // Serialize a server React tree node to JSON.

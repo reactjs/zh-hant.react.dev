@@ -58,7 +58,11 @@ module.exports = {
       },
       maxWidth: {
         ...defaultTheme.maxWidth,
+<<<<<<< HEAD
         xs: '21rem',
+=======
+        'custom-xs': '21rem',
+>>>>>>> 9aa2e3668da290f92f8997a25f28bd3f58b2a26d
       },
       minWidth:{
         ...defaultTheme.minWidth,

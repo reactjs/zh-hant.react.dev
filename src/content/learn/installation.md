@@ -37,7 +37,11 @@ export default function App() {
 
 你可以直接編輯它，或按右上角的「Fork」按鈕在新的頁面中打開它。
 
+<<<<<<< HEAD
 React 文件中的大多數頁面都包含像這樣的 sandbox 範例。在 React 文件之外，有許多支援 React 的線上 sandbox，例如 [CodeSandbox]((https://codesandbox.io/s/new))、[StackBlitz](https://stackblitz.com/fork/react) 或 [CodePen](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb)。
+=======
+Most pages in the React documentation contain sandboxes like this. Outside of the React documentation, there are many online sandboxes that support React: for example, [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react), or [CodePen.](https://codepen.io/pen?template=QWYVwWN)
+>>>>>>> 9aa2e3668da290f92f8997a25f28bd3f58b2a26d
 
 ### 在本機端嘗試 React {/*try-react-locally*/}
 
