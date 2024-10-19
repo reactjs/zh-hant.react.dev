@@ -16,6 +16,7 @@ We'd like to recognize a few people who have made significant contributions to R
 * [Andreas Svensson](https://github.com/syranide)
 * [Alex Krolick](https://github.com/alexkrolick)
 * [Alexey Pyltsyn](https://github.com/lex111)
+* [Andrey Lunyov](https://github.com/alunyov)
 * [Brandon Dail](https://github.com/aweary)
 * [Brian Vaughn](https://github.com/bvaughn)
 * [Caleb Meredith](https://github.com/calebmer)
@@ -35,6 +36,7 @@ We'd like to recognize a few people who have made significant contributions to R
 * [Joe Critchley](https://github.com/joecritch)
 * [Jeff Morrison](https://github.com/jeffmo)
 * [Luna Ruan](https://github.com/lunaruan)
+* [Kathryn Middleton](https://github.com/kmiddleton14)
 * [Keyan Zhang](https://github.com/keyz)
 * [Marco Salazar](https://github.com/salazarm)
 * [Mengdi Chen](https://github.com/mondaychen)
@@ -46,6 +48,7 @@ We'd like to recognize a few people who have made significant contributions to R
 * [Philipp Spiess](https://github.com/philipp-spiess)
 * [Rachel Nabors](https://github.com/rachelnabors)
 * [Robert Zhang](https://github.com/robertzhidealx)
+* [Samuel Susla](https://github.com/sammy-SC)
 * [Sander Spies](https://github.com/sanderspies)
 * [Sasha Aickin](https://github.com/aickin)
 * [Sean Keegan](https://github.com/seanryankeegan)
@@ -56,7 +59,7 @@ We'd like to recognize a few people who have made significant contributions to R
 
 This list is not exhaustive.
 
-We'd like to give special thanks to [Tom Occhino](https://github.com/tomocchino) and [Adam Wolff](https://github.com/wolffiex) for their guidance and support over the years. We are also thankful to all the volunteers who [translated React into other languages.](https://translations.reactjs.org/)
+We'd like to give special thanks to [Tom Occhino](https://github.com/tomocchino) and [Adam Wolff](https://github.com/wolffiex) for their guidance and support over the years. We are also thankful to all the volunteers who [translated React into other languages.](https://translations.react.dev/)
 
 ## Additional Thanks {/*additional-thanks*/}
 

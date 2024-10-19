@@ -4,27 +4,46 @@ title: 開始一個新的 React 專案
 
 <Intro>
 
-如果你想要完全使用 React 建立新的應用程式或網站，我們建議從社群中流行的 React 框架中選擇一個。框架提供大多數應用程式和網站最終需要的功能，包括路由（routing）、資料擷取（data fetching）和產生 HTML。
+如果你想要完全使用 React 建立一個新的應用程式或網站，我們建議選擇一個在社群中廣受歡迎的 React 驅動框架。
 
 </Intro>
 
-<Note>
 
-**你需要在你的本機開發環境安裝 [Node.js](https://nodejs.org/en/)。** 你*也*可以選擇使用 Node.js 在 production 環境，但你不需要這麼做。許多 React 框架支援匯出靜態的 HTML/CSS/JS 文件。
+你可以在沒有框架的情況下使用 React，然而我們發現大多數應用程式和網站最終都會為一些常見問題構建解決方案，例如 code-splitting、routing、data fetching 以及和產生 HTML。這些問題對所有的 UI library 來說都是常見的，不僅僅是 React。
 
-</Note>
+By starting with a framework, you can get started with React quickly, and avoid essentially building your own framework later.
+
+<DeepDive>
+
+#### Can I use React without a framework? {/*can-i-use-react-without-a-framework*/}
+
+You can definitely use React without a framework--that's how you'd [use React for a part of your page.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) **However, if you're building a new app or a site fully with React, we recommend using a framework.**
+
+Here's why.
+
+Even if you don't need routing or data fetching at first, you'll likely want to add some libraries for them. As your JavaScript bundle grows with every new feature, you might have to figure out how to split code for every route individually. As your data fetching needs get more complex, you are likely to encounter server-client network waterfalls that make your app feel very slow. As your audience includes more users with poor network conditions and low-end devices, you might need to generate HTML from your components to display content early--either on the server, or during the build time. Changing your setup to run some of your code on the server or during the build can be very tricky.
+
+**These problems are not React-specific. This is why Svelte has SvelteKit, Vue has Nuxt, and so on.** To solve these problems on your own, you'll need to integrate your bundler with your router and with your data fetching library. It's not hard to get an initial setup working, but there are a lot of subtleties involved in making an app that loads quickly even as it grows over time. You'll want to send down the minimal amount of app code but do so in a single client–server roundtrip, in parallel with any data required for the page. You'll likely want the page to be interactive before your JavaScript code even runs, to support progressive enhancement. You may want to generate a folder of fully static HTML files for your marketing pages that can be hosted anywhere and still work with JavaScript disabled. Building these capabilities yourself takes real work.
+
+**React frameworks on this page solve problems like these by default, with no extra work from your side.** They let you start very lean and then scale your app with your needs. Each React framework has a community, so finding answers to questions and upgrading tooling is easier. Frameworks also give structure to your code, helping you and others retain context and skills between different projects. Conversely, with a custom setup it's easier to get stuck on unsupported dependency versions, and you'll essentially end up creating your own framework—albeit one with no community or upgrade path (and if it's anything like the ones we've made in the past, more haphazardly designed).
+
+If your app has unusual constraints not served well by these frameworks, or you prefer to solve these problems yourself, you can roll your own custom setup with React. Grab `react` and `react-dom` from npm, set up your custom build process with a bundler like [Vite](https://vitejs.dev/) or [Parcel](https://parceljs.org/), and add other tools as you need them for routing, static generation or server-side rendering, and more.
+
+</DeepDive>
 
 ## 生產級別的 React 框架 {/*production-grade-react-frameworks*/}
 
-### Next.js {/*nextjs*/}
+These frameworks support all the features you need to deploy and scale your app in production and are working towards supporting our [full-stack architecture vision](#which-features-make-up-the-react-teams-full-stack-architecture-vision). All of the frameworks we recommend are open source with active communities for support, and can be deployed to your own server or a hosting provider. If you’re a framework author interested in being included on this list, [please let us know](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+).
 
-**[Next.js](https://nextjs.org/) 是一個全端 React 框架。** 它非常靈活，讓你可以建立任何大小的 React 應用程式 - 從大部分是靜態的部落格到複雜動態的應用程式。要建立新的 Next.js 專案，在你的終端機中執行以下命令：
+### Next.js {/*nextjs-pages-router*/}
+
+**[Next.js' Pages Router](https://nextjs.org/) 是一個 full-stack 的 React 框架。**它非常靈活，允許你建立任何規模的 React 應用程式——從主要是靜態的部落格到複雜的動態應用程式。要建立一個新的 Next.js 專案，可以在終端執行以下指令：
 
 <TerminalBlock>
 npx create-next-app@latest
 </TerminalBlock>
 
-如果你是第一次使用 Next.js，請參考[學習 Next.js 課程](https://nextjs.org/learn)。
+如果你是第一次使用 Next.js，請參考[學習 Next.js 課程。](https://nextjs.org/learn)
 
 Next.js 是由 [Vercel](https://vercel.com/) 維護。你可以將 [Next.js 應用程式部署](https://nextjs.org/docs/app/building-your-application/deploying)到任何 Node.js 或 serverless 主機，或是你自己的伺服器上。Next.js 也支援 [static export](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports)，它不需要伺服器。
 
@@ -63,23 +82,6 @@ npx create-expo-app
 如果你是第一次使用 Expo，請參考 [Expo 教學](https://docs.expo.dev/tutorial/introduction/)。
 
 Expo 由 [Expo（公司）](https://expo.dev/about)維護。使用 Expo 構建應用程式是免費的，你可以無限制地將它們提交到 Google 和 Apple 應用商店。另外，Expo 還提供可選的付費雲服務。
-
-<DeepDive>
-
-#### 我可以只使用 React 而沒有框架嗎？ {/*can-i-use-react-without-a-framework*/}
-
-你絕對可以在沒有框架的情況下使用 React--這是你如何[在頁面的一部分中使用 React。](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) **然而，如果你正在完全使用 React 建立一個新的應用程式或網站，我們建議你使用框架。**
-
-以下是為什麼這麼做的原因。
-
-即使在一開始可能不需要 routing 或是 data fetching，你可能還是想要增加一些相關的函式庫。隨著每個新功能的加入，JavaScript bundle 會越來越大，你可能需要找出如何為每個 routing 單獨拆分程式碼。當 data fetching 需求變得更加複雜時，你可能會遇到 server-client 的 network waterfalls，這會使你的應用程式感覺非常緩慢。當你的使用者中包含了有低速網路和低階設備的受眾時，你可能需要從 component 產成 HTML 以提早顯示內容 - 無論是在伺服器上或在建置期間。更改設定以在伺服器上或在建置期間執行部分程式碼可能非常棘手。
-
-**這些問題並非 React 特有的。這就是為什麼 Svelte 有 SvelteKit，Vue 有 Nuxt 等等。** 要自己解決這些問題，你需要將 bundle 工具與 routing 和 data fetching 函式庫整合在一起。一開始設定不難，但隨著時間的推移，但要製作一個即使隨時間的推移也能快速載入的應用程式，會涉及很多細節。你希望傳送最少量的程式碼，在單個 client-server 往返，且與頁面所需的任何資料並行。你可能希望在 JavaScript 程式碼執行之前就可與頁互動面，以支援漸進式增強（progressive enhancement）功能。你可能還想產生完全靜態的 HTML 文件來顯示行銷網頁，在禁用 JavaScript 時也可以在任何地方托管且正常運作。而自己構建這些功能會很費工。
-
-**這個頁面上的 React 框架可以自動解決這些問題，而不需要你做任何額外的工作。** 它們讓你可以從非常簡單的開始，然後根據你的需求擴展應用程式。每個 React 框架都有一個社群，因此更容易找到答案和升級工具。框架還可以給你的程式碼提供結構，幫助你和其他人在不同項目之間維持一定的脈絡和技能。相反地，使用客製化設定會更容易陷入不支援依賴版本中，最終你將建立自己的框架 - 雖然沒有社區或升級路徑（就像我們過去做過的那些，更加混亂的設計）。
-
-如果你仍然不信服，或者你的應用程式有這些框架無法很好地滿足的非常規限制，並且你想要自己客制設定，我們不能阻止你 - 去做吧！從 npm 中獲取 `react` 和`react-dom`，使用像 [Vite](https://vitejs.dev/) 或 [Parcel](https://parceljs.org/) 這樣的 bundle 工具設定自己的客製構建過程，並根據需求新增 routing、static generation 或 server-side rendering 等等的工具。
-</DeepDive>
 
 ## 前沿的 React 框架 {/*bleeding-edge-react-frameworks*/}
 
