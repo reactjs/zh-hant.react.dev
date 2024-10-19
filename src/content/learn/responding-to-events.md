@@ -312,7 +312,7 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-注意 `App` component 不需要知道 `Toolbar` 將會如何處理 `onPlayMovie` 或 `onUploadImage`，這是 `Toolbar` 的實作細節。在這裡，`Toolbar` 將它們作為 `onClick` handler 傳遞給它的 `Button`，但是它也可以在之後透過鍵盤快捷鍵觸發它們。像 `onPlayMovie` 這樣依據特定應用互動命名的 prop 讓你有彈性在之後改變它們的使用方式。
+注意 `App` component 不需要知道 `Toolbar` 將會如何處理 `onPlayMovie` 或 `onUploadImage`，這是 `Toolbar` 的實作細節。在這裡，`Toolbar` 將它們作為 `onClick` handler 傳遞給它的 `Button`，但是它也可以在之後透過鍵盤快捷鍵觸發它們。像 `onPlayMovie` 這樣依據特定應用互動命名的 prop 讓你在以後更改其使用方式時具有彈性。
   
 <Note>
 
