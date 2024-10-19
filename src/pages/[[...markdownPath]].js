@@ -12,13 +12,9 @@ import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import compileMDX from 'utils/compileMDX';
-<<<<<<< HEAD
-export default function Layout({content, toc, meta}) {
-=======
 import {generateRssFeed} from '../utils/rss';
 
 export default function Layout({content, toc, meta, languages}) {
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]
@@ -120,11 +116,7 @@ export async function getStaticProps(context) {
     mdx = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
   }
 
-<<<<<<< HEAD
-  const {toc, content, meta} = await compileMDX(mdx, path, {});
-=======
   const {toc, content, meta, languages} = await compileMDX(mdx, path, {});
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
   return {
     props: {
       toc,

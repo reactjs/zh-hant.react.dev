@@ -52,11 +52,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-<<<<<<< HEAD
-注意有些 `Item` component 的 `isPacked` prop 的值是 `true` 而非 `false`。而你想要在 `isPacked={true}` 的情況下，為已打包的項目加上一個勾號 (✔)。
-=======
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✅) to packed items if `isPacked={true}`.
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+請注意，有一些 `Item` componet 的 `isPacked` prop 設為 `true` 而不是 `false`。如果 `isPacked={true}`，你想要在已打包的項目上加一個核取記號（✅）。
 
 你可以將此情境用以下 [`if`/`else` 陳述式](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)來表示：
 
@@ -206,11 +202,7 @@ return (
 );
 ```
 
-<<<<<<< HEAD
-你可以把這段程式碼解讀為：「如果 `isPacked` 的值為 `true`，則 (`?`) render `name + ' ✔'`；否則 (`:`)，render `name` 」。
-=======
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✅'`, otherwise (`:`) render `name`"*.
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
+你可以把這段程式碼解讀為：「如果 `isPacked` 的值為 `true`，則 (`?`) render `name + ' ✅'`；否則 (`:`）render `name` 」。
 
 <DeepDive>
 

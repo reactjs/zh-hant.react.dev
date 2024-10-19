@@ -331,11 +331,7 @@ Displaying a form submission error message before the JavaScript bundle loads fo
 <Sandpack>
 
 ```js src/App.js
-<<<<<<< HEAD
-import { useFormState } from "react-dom";
-=======
 import { useActionState } from "react";
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
 import { signUpNewUser } from "./api";
 
 export default function Page() {

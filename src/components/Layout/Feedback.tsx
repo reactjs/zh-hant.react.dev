@@ -63,17 +63,10 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
   return (
     <div
       className={cn(
-<<<<<<< HEAD
-        'max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex',
-        {exit: isSubmitted}
-      )}>
-      <p className="w-full font-bold text-primary dark:text-primary-dark text-lg me-4">
-=======
         'max-w-custom-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex',
         {exit: isSubmitted}
       )}>
       <p className="w-full text-lg font-bold text-primary dark:text-primary-dark me-4">
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
         {isSubmitted ? 'Thank you for your feedback!' : 'Is this page useful?'}
       </p>
       {!isSubmitted && (

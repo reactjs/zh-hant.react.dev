@@ -19,22 +19,8 @@ export interface SeoProps {
   searchOrder?: number;
 }
 
-<<<<<<< HEAD
-const deployedTranslations = [
-  'en',
-  'zh-hans',
-  'es',
-  'fr',
-  'ja',
-  'tr',
-  // We'll add more languages when they have enough content.
-  // Please DO NOT edit this list without a discussion in the reactjs/react.dev repo.
-  // It must be the same between all translations.
-];
-=======
 // If you are a maintainer of a language fork,
 // deployedTranslations has been moved to src/utils/finishedTranslations.ts.
->>>>>>> 2b2d0f2309f49c82cf5bb88ea62fb2e44661c634
 
 function getDomain(languageCode: string): string {
   const subdomain = languageCode === 'en' ? '' : languageCode + '.';
