@@ -37,8 +37,6 @@ import {finishedTranslations} from 'utils/finishedTranslations';
 import ErrorDecoder from './ErrorDecoder';
 import {IconCanary} from '../Icon/IconCanary';
 
-import ErrorDecoder from './ErrorDecoder';
-
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
     <span
