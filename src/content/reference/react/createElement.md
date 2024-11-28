@@ -4,7 +4,7 @@ title: createElement
 
 <Intro>
 
-`createElement` lets you create a React element. It serves as an alternative to writing [JSX.](/learn/writing-markup-with-jsx)
+`createElement` 允许你创建一個 React 元素。它可以作為 [JSX](/learn/writing-markup-with-jsx) 的替代方案。
 
 ```js
 const element = createElement(type, props, ...children)
@@ -16,11 +16,11 @@ const element = createElement(type, props, ...children)
 
 ---
 
-## Reference {/*reference*/}
+## 參考 {/*reference*/}
 
 ### `createElement(type, props, ...children)` {/*createelement*/}
 
-Call `createElement` to create a React element with the given `type`, `props`, and `children`.
+調用 `createElement` 來創建一個 React 元素，它有 `type`, `props`, and `children` 三個參數。
 
 ```js
 import { createElement } from 'react';
@@ -29,93 +29,93 @@ function Greeting({ name }) {
   return createElement(
     'h1',
     { className: 'greeting' },
-    'Hello'
+    '你好'
   );
 }
 ```
 
-[See more examples below.](#usage)
+[查看更多例子](#usage)
 
-#### Parameters {/*parameters*/}
+#### 參數 {/*parameters*/}
 
-* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/reference/react/Fragment)).
+* `type`: `type` 參數必須是一個有效的 React 組件類型，例如一個字串標籤名（如 `'div'` 或 `'span'`），或一個 React 組件（一個函數式組件、一個類式組件，或者是一個特殊的組件如 [`Fragment`](/reference/react/Fragment)）。
 
-* `props`: The `props` argument must either be an object or `null`. If you pass `null`, it will be treated the same as an empty object. React will create an element with props matching the `props` you have passed. Note that `ref` and `key` from your `props` object are special and will *not* be available as `element.props.ref` and `element.props.key` on the returned `element`. They will be available as `element.ref` and `element.key`.
+* `props`: `props` 參數必須是一個物件或 `null`。如果你傳入 `null`，它會被當作一個空物件。創建的 React 元素的 `props` 與這個參數相同。注意，`props` 物件中的 `ref` 和 `key` 比較特殊，它們 **不會** 作為 `element.props.ref` 和 `element.props.key` 出現在創建的元素 `element` 上，而是作為 `element.ref` 和 `element.key` 出現。
 
-* **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
+* **可選** `...children`：零個或多個子節點。它們可以是任何 React 節點，包括 React 元素、字串、數字、[portal](/reference/react-dom/createPortal)、空節點（`null`、`undefined`、`true` 和 `false`），以及 React 節點陣列。
 
-#### Returns {/*returns*/}
+#### 返回值 {/*returns*/}
 
-`createElement` returns a React element object with a few properties:
+`createElement` 返回一個 React 元素，它有這些屬性：
 
-* `type`: The `type` you have passed.
-* `props`: The `props` you have passed except for `ref` and `key`. If the `type` is a component with legacy `type.defaultProps`, then any missing or undefined `props` will get the values from `type.defaultProps`.
-* `ref`: The `ref` you have passed. If missing, `null`.
-* `key`: The `key` you have passed, coerced to a string. If missing, `null`.
+* `type`: 你傳入的 `type`。
+* `props`: 你傳入的 `props`，不包括 `ref` 和 `key`。如果 `type` 是一個組件，且帶有過時的 `type.defaultProps` 屬性，那麼 `props` 中任何缺失或未定義的欄位都會採用 `type.defaultProps` 中的值。
+* `ref`: 你傳入的 `ref`。如果缺失則為 `null`。
+* `key`: 你傳入的 `key`，會被強制轉換為字串。如果缺失則為 `null`。
 
-Usually, you'll return the element from your component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
+通常你會在你組件的最後返回這個元素，或者把它作為另一個元素的子元素。雖然你可以讀取元素的屬性，但你最好把創建的元素作為黑盒，只用於渲染。
 
-#### Caveats {/*caveats*/}
+#### 注意事項 {/*caveats*/}
 
-* You must **treat React elements and their props as [immutable](https://en.wikipedia.org/wiki/Immutable_object)** and never change their contents after creation. In development, React will [freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) the returned element and its `props` property shallowly to enforce this.
+* 你必須**將 React 元素和它們的 props 視為[不可變的](https://en.wikipedia.org/wiki/Immutable_object)**，在創建後永遠不要改變它們的內容。在開發環境中，React 會淺層[凍結](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)返回的元素及其 `props` 屬性，以確保如此。
 
-* When you use JSX, **you must start a tag with a capital letter to render your own custom component.** In other words, `<Something />` is equivalent to `createElement(Something)`, but `<something />` (lowercase) is equivalent to `createElement('something')` (note it's a string, so it will be treated as a built-in HTML tag).
+* 當你使用 JSX 時，**你必須以大寫字母開頭來渲染你的自定義組件**。換句話說，`<Something />` 等價於 `createElement(Something)`，但 `<something />`（小寫）等價於 `createElement('something')`（注意它是一個字串，它會被當作內建的 HTML 標籤）。
 
-* You should only **pass children as multiple arguments to `createElement` if they are all statically known,** like `createElement('h1', {}, child1, child2, child3)`. If your children are dynamic, pass the entire array as the third argument: `createElement('ul', {}, listItems)`. This ensures that React will [warn you about missing `key`s](/learn/rendering-lists#keeping-list-items-in-order-with-key) for any dynamic lists. For static lists this is not necessary because they never reorder.
+* 你應該僅**在所有子元素都是靜態可知的情況下，才將它們依次傳遞給 `createElement` 的可選參數**，比如 `createElement('h1', {}, child1, child2, child3)`。如果你的子元素不固定，則把它們放到數組中作為第三個參數傳遞，例如 `createElement('ul', {}, listItems)`，以此確保 React 可以在動態列表的場景下[警告你缺少 `key`](/learn/rendering-lists#keeping-list-items-in-order-with-key)。靜態列表的場景不需要這麼做，因為它們不會重新排序。
 
 ---
 
-## Usage {/*usage*/}
+## 用法 {/*usage*/}
 
-### Creating an element without JSX {/*creating-an-element-without-jsx*/}
+## 不使用 JSX 創建元素 {/*creating-an-element-without-jsx*/}
 
-If you don't like [JSX](/learn/writing-markup-with-jsx) or can't use it in your project, you can use `createElement` as an alternative.
+如果你不喜歡 [JSX](/learn/writing-markup-with-jsx) 或者無法在你的專案中使用它，你可以使用 `createElement` 作為替代方案。
 
-To create an element without JSX, call `createElement` with some <CodeStep step={1}>type</CodeStep>, <CodeStep step={2}>props</CodeStep>, and <CodeStep step={3}>children</CodeStep>:
+要想不使用 JSX 創建一個元素，你可以調用 `createElement` 並傳入 <CodeStep step={1}>type</CodeStep>、<CodeStep step={2}>props</CodeStep> 和 <CodeStep step={3}>children</CodeStep>：
 
-```js [[1, 5, "'h1'"], [2, 6, "{ className: 'greeting' }"], [3, 7, "'Hello ',"], [3, 8, "createElement('i', null, name),"], [3, 9, "'. Welcome!'"]]
+```js [[1, 5, "'h1'"], [2, 6, "{ className: 'greeting' }"], [3, 7, "'你好',"], [3, 8, "createElement('i', null, name),"], [3, 9, "'。歡迎！'"]]
 import { createElement } from 'react';
 
 function Greeting({ name }) {
   return createElement(
     'h1',
     { className: 'greeting' },
-    'Hello ',
+    '你好',
     createElement('i', null, name),
-    '. Welcome!'
+    '。歡迎！'
   );
 }
 ```
 
-The <CodeStep step={3}>children</CodeStep> are optional, and you can pass as many as you need (the example above has three children). This code will display a `<h1>` header with a greeting. For comparison, here is the same example rewritten with JSX:
+<CodeStep step={3}>children</CodeStep> 是可選的，你可以傳入任意數量的子元素（上面的例子中有三個）。這段程式碼會顯示一個帶有問候語的 `<h1>` 標題。為了對比，這是使用 JSX 的版本：
 
-```js [[1, 3, "h1"], [2, 3, "className=\\"greeting\\""], [3, 4, "Hello <i>{name}</i>. Welcome!"], [1, 5, "h1"]]
+```js [[1, 3, "h1"], [2, 3, "className=\\"greeting\\""], [3, 4, "你好<i>{name}</i>，歡迎！"], [1, 5, "h1"]]
 function Greeting({ name }) {
   return (
     <h1 className="greeting">
-      Hello <i>{name}</i>. Welcome!
+      你好<i>{name}</i>，歡迎！
     </h1>
   );
 }
 ```
 
-To render your own React component, pass a function like `Greeting` as the <CodeStep step={1}>type</CodeStep> instead of a string like `'h1'`:
+要想渲染你自己的 React 組件，則傳入一個函數（比如 `Greeting`）作為 <CodeStep step={1}>type</CodeStep> ，而不是一個字串（比如 `'h1'`）：
 
-```js [[1, 2, "Greeting"], [2, 2, "{ name: 'Taylor' }"]]
+```js [[1, 2, "Greeting"], [2, 2, "{ name: '泰勒' }"]]
 export default function App() {
-  return createElement(Greeting, { name: 'Taylor' });
+  return createElement(Greeting, { name: '泰勒' });
 }
 ```
 
-With JSX, it would look like this:
+如果使用 JSX，它看起來像這樣：
 
-```js [[1, 2, "Greeting"], [2, 2, "name=\\"Taylor\\""]]
+```js [[1, 2, "Greeting"], [2, 2, "name=\\"泰勒\\""]]
 export default function App() {
-  return <Greeting name="Taylor" />;
+  return <Greeting name="泰勒" />;
 }
 ```
 
-Here is a complete example written with `createElement`:
+這裡是一個完整的使用 `createElement` 的示例：
 
 <Sandpack>
 
@@ -126,16 +126,16 @@ function Greeting({ name }) {
   return createElement(
     'h1',
     { className: 'greeting' },
-    'Hello ',
+    '你好',
     createElement('i', null, name),
-    '. Welcome!'
+    '，歡迎！'
   );
 }
 
 export default function App() {
   return createElement(
     Greeting,
-    { name: 'Taylor' }
+    { name: '泰勒' }
   );
 }
 ```
@@ -149,7 +149,7 @@ export default function App() {
 
 </Sandpack>
 
-And here is the same example written using JSX:
+這裡是相同的示例，但使用的是 JSX：
 
 <Sandpack>
 
@@ -157,13 +157,13 @@ And here is the same example written using JSX:
 function Greeting({ name }) {
   return (
     <h1 className="greeting">
-      Hello <i>{name}</i>. Welcome!
+      你好<i>{name}</i>，歡迎！
     </h1>
   );
 }
 
 export default function App() {
-  return <Greeting name="Taylor" />;
+  return <Greeting name="泰勒" />;
 }
 ```
 
@@ -176,30 +176,30 @@ export default function App() {
 
 </Sandpack>
 
-Both coding styles are fine, so you can use whichever one you prefer for your project. The main benefit of using JSX compared to `createElement` is that it's easy to see which closing tag corresponds to which opening tag.
+兩種編碼風格都沒問題，你可以在專案中使用任何一個你喜歡的風格。相比於 `createElement`，使用 JSX 的主要好處是很容易看出哪個閉合標籤對應哪個開放標籤。
 
 <DeepDive>
 
-#### What is a React element, exactly? {/*what-is-a-react-element-exactly*/}
+#### React 元素究竟是什麼？ {/*what-is-a-react-element-exactly*/}
 
-An element is a lightweight description of a piece of the user interface. For example, both `<Greeting name="Taylor" />` and `createElement(Greeting, { name: 'Taylor' })` produce an object like this:
+元素是用來描述一部分使用者介面的輕量級結構。例如，`<Greeting name="泰勒" />` 和 `createElement(Greeting, { name: '泰勒' })` 都會生成一個這樣的物件：
 
 ```js
-// Slightly simplified
+// 極度簡化的樣子
 {
   type: Greeting,
   props: {
-    name: 'Taylor'
+    name: '泰勒'
   },
   key: null,
   ref: null,
 }
 ```
 
-**Note that creating this object does not render the `Greeting` component or create any DOM elements.**
+**請注意，創建這個物件並不會渲染 `Greeting` 組件或者創建任何 DOM 元素**。
 
-A React element is more like a description--an instruction for React to later render the `Greeting` component. By returning this object from your `App` component, you tell React what to do next.
+React 元素更像是一個描述或指令，它告訴 React 之後該如何渲染 `Greeting` 組件。你從 `App` 組件中返回了這個物件，就是告訴了 React 接下來該做什麼。
 
-Creating elements is extremely cheap so you don't need to try to optimize or avoid it.
+創建元素非常高效，因此你不需要試圖優化或避免它。
 
 </DeepDive>
