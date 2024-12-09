@@ -18,7 +18,7 @@ Component 的神奇之處在於它的可複用性：你可以建立 component �
 
 </YouWillLearn>
 
-## root component 檔案 {/*the-root-component-file*/}
+## Root component 檔案 {/*the-root-component-file*/}
 
 在[你的第一個 Component](/learn/your-first-component) 中，你建立了一個 `Profile` component，並且 render 在 `Gallery` component 裡：
 
@@ -58,7 +58,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 如果將來你想要改變首頁，在此頁面放入科學書籍列表，或者需要將所有的資料移至其他檔案中。將 `Gallery` 以及 `Profile` 移出 root component 檔案會更加合理。這將會使它們更加模組化，並且可以在其他檔案中複用。你可以透過以下三個步驟拆分 component：
 
-1. **創建** 一個新的 JS 檔案來存放該 component。
+1. **建立** 一個新的 JS 檔案來存放該 component。
 2. **Export** 該檔案中的 component 函式（可以使用 [default](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) 或 [named](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) export）。
 3. 在需要使用該 component 的檔案中 **import**（可以根據相應的 import 方式使用 [default](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/import#importing_defaults) 或 [named](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) export）。
 
@@ -108,7 +108,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 1. `Gallery.js`:
      - 定義了 `Profile` component，該 component 僅在同個檔案中使用，並沒有被 export。
-     - 使用 **default export** 的方式， export `Gallery` component。
+     - 使用 **default export** 的方式，export `Gallery` component。
 2. `App.js`:
      - 使用 **default import** 的方式，從 `Gallery.js` import `Gallery`。
      - 使用 **default export** 的方式，export root component `App`。
@@ -149,7 +149,7 @@ Component 的 export 方式決定了其 import 方式。當你試著用 default 
 
 ## 從同一檔案 export 及 import 多個 component {/*exporting-and-importing-multiple-components-from-the-same-file*/}
 
-如果你只想要展示一個 `Profile`，而非整個圖集。你也可以 export `Profile` component。但是 `Gallery.js` 已經包含 _default_ export，你不能有*兩個* default export。你可以建立一個新檔案以進行 default export，或是你可以將 `Profile` 進行 _named_ export。**同一檔案只能有一個 default export，但可以有多個 named export！**
+如果你只想要顯示一個 `Profile`，而非整個圖集。你也可以 export `Profile` component。但是 `Gallery.js` 已經包含 _default_ export，你不能有*兩個* default export。你可以建立一個新檔案以進行 default export，或是你可以將 `Profile` 進行 _named_ export。**同一檔案只能有一個 default export，但可以有多個 named export！**
 
 <Note>
 
