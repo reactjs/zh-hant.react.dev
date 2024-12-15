@@ -18,7 +18,7 @@ title: 你的第一個 Component
 
 ## Components: UI 的建構塊 {/*components-ui-building-blocks*/}
 
-在網頁中，HTML 允許我們透過使用內建標籤來創建富有結構的文件，像是 `<h1>` 與 `<li>`：
+在網頁中，HTML 允許我們透過使用內建標籤來建立富有結構的文件，像是 `<h1>` 與 `<li>`：
 
 ```html
 <article>
@@ -31,7 +31,7 @@ title: 你的第一個 Component
 </article>
 ```
 
-此 markup 以 `<article>` 來表示文章，以 `<h1>` 來表示它的標題， 並且使用 `<ol>` 來表示有序的（縮寫）列表內容，這些 markup 結合了 CSS 樣式，以及使用 JavaScript 展現互動性，每一個側邊欄、頭像、互動視窗的背後都是這麼運作的－你在網頁上所看到的每一個 UI 模組。
+此 markup 以 `<article>` 來表示文章，以 `<h1>` 來表示它的標題， 並且使用 `<ol>` 來表示有序的（縮寫）列表內容，這些 markup 結合了 CSS 樣式，以及使用 JavaScript 展現互動性，你在網頁上所看到的 － 每一個側邊欄、大頭貼、互動視窗的 UI 模組背後都是這麼運作的。
 
 React 允許你將 markup、CSS 以及 JavaScript 結合為自定義「component」, **即應用程式中可複用的 UI 元素**。上文中的程式碼可以改寫為一個能夠 render 在各個頁面上的 `<TableOfContents />` component，實際上，使用的依舊是 `<article>`、`<h1>` 等相同的標籤。
 
@@ -51,11 +51,11 @@ React 允許你將 markup、CSS 以及 JavaScript 結合為自定義「component
 </PageLayout>
 ```
 
-隨著專案的成長，你會發現有許多設計可以透過複用已經完成的 component 來實現，進而加速你的開發時程。上文所提到的列表內容，可以透過 `<TableOfContents />` component 添加到任意頁面中！你甚至可以使用 React 開源社群（例如 [Chakra UI](https://chakra-ui.com/) 與 [Material UI](https://material-ui.com/)）所分享的大量 component 來快速啟動開發。
+隨著專案的成長，你會發現有許多設計可以透過複用已經完成的 component 來實現，進而加速你的開發時程。上文所提到的列表內容，可以透過 `<TableOfContents />` component 加入到任意頁面中！你甚至可以使用 React 開源社群（例如 [Chakra UI](https://chakra-ui.com/) 與 [Material UI](https://material-ui.com/)）所分享的大量 component 來快速啟動開發。
 
 ## 定義 component {/*defining-a-component*/}
 
-傳統網頁開發時，網頁開發者會使用標記式語言來描述內容，然後透過 JavaScript 來實現互動，這種方式展現了良好的網頁互動。現今許多的網頁與應用程式都需具有互動性。React 將互動性視為重要指標，並且使用了相同的技術：**React component 是一個可以使用 markup 進行擴展的 JavaScript 函式**，如下所示（你可以編輯下方的範例）：
+傳統網頁開發時，網頁開發者會使用標記式語言來描述內容，然後透過 JavaScript 來實現互動，這種方式展現了良好的網頁互動。現今許多的網頁與應用程式都需具有互動性。React 將互動性視為重要指標，並且使用了相同的技術：**React component 是一個可以使用 markup 進行擴充的 JavaScript 函式**，如下所示（你可以編輯下方的範例）：
 
 <Sandpack>
 
@@ -92,7 +92,7 @@ React component 為常規的 JavaScript 函式，但**它們的名稱必須以�
 
 </Pitfall>
 
-### 第三步：添加 markup {/*step-3-add-markup*/}
+### 第三步：新增 markup {/*step-3-add-markup*/}
 
 component 會回傳一個帶有 `src` 與 `alt` 屬性的 `<img />` 標籤。`<img />` 寫法像 HTML，但它實際上是 JavaScript！這種語法被稱為 [JSX](/learn/writing-markup-with-jsx)，它允許你在 JavaScript 中嵌入 markup。
 
@@ -114,7 +114,8 @@ return (
 
 <Pitfall>
 
-沒有使用括號包裹的話，任何在 `return` 下一行的程式碼都 [將被忽略](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)！
+沒有使用括號包裹的話，任何在 `return` 下一行的程式碼都
+ [將被忽略](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)！
 
 </Pitfall>
 
@@ -203,22 +204,22 @@ function Profile() {
 }
 ```
 
-當 child component 需要獲取 parent 的數據，你需要 [透過 props 傳遞](/learn/passing-props-to-a-component)，而不是嵌套定義。
+當 child component 需要獲取 parent 的數據，你需要[透過 props 傳遞](/learn/passing-props-to-a-component)，而不是嵌套定義。
 
 </Pitfall>
 
 <DeepDive>
 
-#### 萬物皆是 component {/*components-all-the-way-down*/}
+#### 萬物皆是 Component {/*components-all-the-way-down*/}
 
 
-你的 React 應用程式從「root」component 開始。通常，在你啟動一個新專案時，它會自動被創建。例如，如果你使用 [CodeSandbox](https://codesandbox.io/) 或 [Next.js](https://nextjs.org/) 框架，root component 會定義在 pages/index.js 中。在這些例子中，你一直在 export root component。
+你的 React 應用程式從「root」component 開始。通常，在你啟動一個新專案時，它會自動被建立。例如，如果你使用 [CodeSandbox](https://codesandbox.io/) 或 [Next.js](https://nextjs.org/) 框架，root component 會定義在 pages/index.js 中。在這些例子中，你一直在 export root component。
 
 大多數 React 應用程式只有 component。這意味著你不僅可以將 component 用於具有複用性的部分，例如按鈕，還可以用於更大規模的地方，像是側邊欄、列表以及完成最終的完整頁面！Component 是組織 UI 程式碼與 markup 的一種便捷方式，即便部分的 component 只使用了一次。
 
 [基於 React 的框架]((/learn/start-a-new-react-project)) 更進一步。它們不只是使用空的 HTML 檔案並讓 React 通過 JavaScript 管理頁面，它們*還會*自動從你的 React component 中生成 HTML。這使得你的應用程式在 JavaScript 程式碼載入之前就能顯示一些內容。
 
-儘管如此，許多網站僅使用 React 來[增添「互動性」](/learn/add-react-to-a-website)，它們有許多 root component，而不是整個頁面中的單個 component。你可以根據需求盡可能多或盡可能少地使用 React。
+儘管如此，許多網站僅使用 React 來[增加「互動性」](/learn/add-react-to-a-website)，它們有許多 root component，而不是整個頁面中的單個 component。你可以根據需求盡可能多或盡可能少地使用 React。
 
 </DeepDive>
 
@@ -226,7 +227,7 @@ function Profile() {
 
 你剛剛第一次體驗了 React！讓我們來回顧一些重點。
 
-* React 允許你創建 component，**應用程式中可複用的 UI 元素**。
+* React 允許你建立 component，**應用程式中可複用的 UI 元素**。
 * 在 React 應用程式中，所有的 UI 模塊都是一個 component。
 * React component 是常規的 JavaScript 函式，除了：
 
@@ -241,7 +242,7 @@ function Profile() {
 
 #### Export the component {/*export-the-component*/}
 
-由於 root component 沒有被 export，導致這個沙箱無法運作：
+由於 root component 沒有被 export，導致這個 sandbox 無法運作：
 
 <Sandpack>
 
