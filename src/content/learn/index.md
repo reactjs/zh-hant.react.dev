@@ -4,7 +4,7 @@ title: 快速開始
 
 <Intro>
 
-歡迎來到 React 文件！本頁將為你介紹日常使用的 80% React 概念。
+歡迎來到 React 文件！本頁將向介紹 80% 日常使用的 React 概念。
 
 </Intro>
 
