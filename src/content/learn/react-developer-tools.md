@@ -52,6 +52,7 @@ react-devtools
 
 ![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
 
+<<<<<<< HEAD
 ## 行動裝置（React Native） {/*mobile-react-native*/}
 React 開發者工具也可以用來檢測由 [React Native](https://reactnative.dev/) 建構的應用程式。
 
@@ -59,11 +60,15 @@ React 開發者工具也可以用來檢測由 [React Native](https://reactnative
 ```bash
 # Yarn
 yarn global add react-devtools
+=======
+## Mobile (React Native) {/*mobile-react-native*/}
 
-# Npm
-npm install -g react-devtools
-```
+To inspect apps built with [React Native](https://reactnative.dev/), you can use [React Native DevTools](https://reactnative.dev/docs/debugging/react-native-devtools), the built-in debugger that deeply integrates React Developer Tools. All features work identically to the browser extension, including native element highlighting and selection.
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
 
+[Learn more about debugging in React Native.](https://reactnative.dev/docs/debugging)
+
+<<<<<<< HEAD
 接著從 terminal 打開開發者工具：
 ```bash
 react-devtools
@@ -74,3 +79,6 @@ react-devtools
 > 如果在幾秒鐘內沒有連接上開發者工具，請嘗試重新載入應用程式。
 
 [學習更多關於除錯 React Native 的方式。](https://reactnative.dev/docs/debugging)
+=======
+> For versions of React Native earlier than 0.76, please use the standalone build of React DevTools by following the [Safari and other browsers](#safari-and-other-browsers) guide above.
+>>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
