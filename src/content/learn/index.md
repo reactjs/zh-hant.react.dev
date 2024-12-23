@@ -4,11 +4,7 @@ title: 快速開始
 
 <Intro>
 
-<<<<<<< HEAD
-歡迎來到 React 文件！本頁將為你介紹日常使用的 80% React 概念。
-=======
-Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.
->>>>>>> 6ae99dddc3b503233291da96e8fd4b118ed6d682
+歡迎來到 React 文件！本頁將向介紹 80% 日常使用的 React 概念。
 
 </Intro>
 
