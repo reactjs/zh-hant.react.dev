@@ -54,7 +54,7 @@ react-devtools
 
 ## 行動裝置（React Native） {/*mobile-react-native*/}
 
-若要檢查使用 [React Native](https://reactnative.dev/) 建立的應用程式，你可以使用 [React Native DevTools](https://reactnative.dev/docs/debugging/react-native-devtools)，這是一個深度整合 React Developer Tools 的內建偵錯工具。所有功能都與瀏覽器擴充功能完全相同，包含原生元素的高亮顯示和選取功能。
+若要檢查使用 [React Native](https://reactnative.dev/) 建立的應用程式，你可以使用 [React Native DevTools](https://reactnative.dev/docs/react-native-devtools)，這是一個深度整合 React Developer Tools 的內建偵錯工具。所有功能都與瀏覽器擴充功能完全相同，包含原生元素的高亮顯示和選取功能。
 
 [深入了解 React Native 的偵錯功能。](https://reactnative.dev/docs/debugging)
 
