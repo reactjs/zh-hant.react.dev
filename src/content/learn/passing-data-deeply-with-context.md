@@ -1,48 +1,48 @@
 ---
-title: Passing Data Deeply with Context
+title: 使用 Context 深層傳遞參數
 ---
 
 <Intro>
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become verbose and inconvenient if you have to pass them through many components in the middle, or if many components in your app need the same information. *Context* lets the parent component make some information available to any component in the tree below it—no matter how deep—without passing it explicitly through props.
+大多數情況下，你會通過 props 將信息從 parent component 傳遞給 child component。但是，如果你必須通過許多中間 component 向下傳遞 props，或者是在你應用的許多 component  中需要傳遞相同的信息，傳遞props會變得冗長和不便。 *Context* 不需要通過 props 顯示傳遞，它允許 parent component 向其下層的無論多深的任意 component 傳遞信息，
 
 </Intro>
 
 <YouWillLearn>
 
-- What "prop drilling" is
-- How to replace repetitive prop passing with context
-- Common use cases for context
-- Common alternatives to context
+- 什麼是「prop 逐級傳遞」
+- 如何使用 context 替代重複的參數傳遞
+- Context 的常見用法
+- Context 的常用代替方案
 
 </YouWillLearn>
 
-## The problem with passing props {/*the-problem-with-passing-props*/}
+## 傳遞 props 帶來的問題 {/*the-problem-with-passing-props*/}
 
-[Passing props](/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it.
+[傳遞 props](/learn/passing-props-to-a-component) 是一種將數據通過 UI 樹顯式傳遞到使用它的 component  的好方法。
 
-But passing props can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](/learn/sharing-state-between-components) that high can lead to a situation called "prop drilling".
+但是當你需要在 tree 中深層傳遞參數以及需要在 component 間複用相同的參數時，傳遞 props 就會變得冗長且不便。最近的共同祖先可能離需要數據的 component 很遠，[state 提升](/learn/sharing-state-between-components)至過高的層級會導致「prop 逐級傳遞」的情況。
 
 <DiagramGroup>
 
 <Diagram name="passing_data_lifting_state" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in purple. The value flows down to each of the two children, both highlighted in purple." >
 
-Lifting state up
+state 提升
 
 </Diagram>
 <Diagram name="passing_data_prop_drilling" height={430} width={608} captionPosition="top" alt="Diagram with a tree of ten nodes, each node with two children or less. The root node contains a bubble representing a value highlighted in purple. The value flows down through the two children, each of which pass the value but do not contain it. The left child passes the value down to two children which are both highlighted purple. The right child of the root passes the value through to one of its two children - the right one, which is highlighted purple. That child passed the value through its single child, which passes it down to both of its two children, which are highlighted purple.">
 
-Prop drilling
+Prop 逐級傳遞
 
 </Diagram>
 
 </DiagramGroup>
 
-Wouldn't it be great if there were a way to "teleport" data to the components in the tree that need it without passing props? With React's context feature, there is!
+要是有一種方法能夠在 tree 中「直傳」數據到所需的 component  還不用通過 props，可就太好了。React 的 context 功能可以做到。  
 
-## Context: an alternative to passing props {/*context-an-alternative-to-passing-props*/}
+## Context: 傳遞 props 的另一種方法 {/*context-an-alternative-to-passing-props*/}
 
-Context lets a parent component provide data to the entire tree below it. There are many uses for context. Here is one example. Consider this `Heading` component that accepts a `level` for its size:
+Context 讓 parent component 可以為它下面的整個 tree 提供數據。Context 有很多種用途。這有一個示例。思考一下這個 `Heading`  component  接收一個 `level` 參數決定它標題尺寸的場景:
 
 <Sandpack>
 
@@ -106,7 +106,7 @@ export default function Heading({ level, children }) {
 
 </Sandpack>
 
-Let's say you want multiple headings within the same `Section` to always have the same size:
+假如你想讓相同 `Section` 中的多個 Heading 總是有相同的尺寸:
 
 <Sandpack>
 
@@ -180,7 +180,7 @@ export default function Heading({ level, children }) {
 
 </Sandpack>
 
-Currently, you pass the `level` prop to each `<Heading>` separately:
+現在，你將 `level` 參數分別傳遞給每個 `<Heading>`:
 
 ```js
 <Section>
@@ -190,7 +190,7 @@ Currently, you pass the `level` prop to each `<Heading>` separately:
 </Section>
 ```
 
-It would be nice if you could pass the `level` prop to the `<Section>` component instead and remove it from the `<Heading>`. This way you could enforce that all headings in the same section have the same size:
+將 `level` 參數傳遞給 `<Section>` component  而不是傳給 `<Heading>` component  ，會看起來更好一些。這樣的話你可以強制使同一個 section 中的所有標題都有相同的尺寸:
 
 ```js
 <Section level={3}>
@@ -200,35 +200,35 @@ It would be nice if you could pass the `level` prop to the `<Section>` component
 </Section>
 ```
 
-But how can the `<Heading>` component know the level of its closest `<Section>`? **That would require some way for a child to "ask" for data from somewhere above in the tree.**
+但是 `<Heading>` component 是如何知道離它最近的 `<Section>` 的 level 的呢？**這需要 child 可以通過某種方式「訪問」到 tree 中某處在其上層的數據。**
 
-You can't do it with props alone. This is where context comes into play. You will do it in three steps:
+你不能只通過 props 來實現它。這就是 context 大展身手的地方。你可以通過以下三個步驟實現它:
 
-1. **Create** a context. (You can call it `LevelContext`, since it's for the heading level.)
-2. **Use** that context from the component that needs the data. (`Heading` will use `LevelContext`.)
-3. **Provide** that context from the component that specifies the data. (`Section` will provide `LevelContext`.)
+1. **創建** 一個 context。 (你可以呼叫它為 `LevelContext`, 因為它表示的是標題級別。)
+2. 在需要數據的 component  內 **使用** 剛剛創建的 context。(`Heading` 將會使用 `LevelContext`。)
+3. 在指定數據的 component  中 **提供** 這個 context(`Section` 將會提供 `LevelContext`。)
 
-Context lets a parent--even a distant one!--provide some data to the entire tree inside of it.
+Context 可以讓 parent，甚至是很遠的一個都可以為其內部的整個 tree 提供數據。
 
 <DiagramGroup>
 
 <Diagram name="passing_data_context_close" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in orange which projects down to the two children, each highlighted in orange." >
 
-Using context in close children
+同級 child component  使用 context
 
 </Diagram>
 
 <Diagram name="passing_data_context_far" height={430} width={608} captionPosition="top" alt="Diagram with a tree of ten nodes, each node with two children or less. The root parent node contains a bubble representing a value highlighted in orange. The value projects down directly to four leaves and one intermediate component in the tree, which are all highlighted in orange. None of the other intermediate components are highlighted.">
 
-Using context in distant children
+遠親 component  使用 context
 
 </Diagram>
 
 </DiagramGroup>
 
-### Step 1: Create the context {/*step-1-create-the-context*/}
+### Step 1: 創建 context {/*step-1-create-the-context*/}
 
-First, you need to create the context. You'll need to **export it from a file** so that your components can use it:
+首先, 你需要創建這個 context. 你需要將其 **從一個文件中 export** 來讓你的 component  可以使用它:
 
 <Sandpack>
 
@@ -308,18 +308,18 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-The only argument to `createContext` is the _default_ value. Here, `1` refers to the biggest heading level, but you could pass any kind of value (even an object). You will see the significance of the default value in the next step.
+`createContext` 只需要 _default_ value。 這裡，`1` 代表最大的標題級別，但是你可以傳遞任何類型的 value（甚至是一個對象）。你將在下一個步驟中見識到 default value 的意義。
 
 ### Step 2: Use the context {/*step-2-use-the-context*/}
 
-Import the `useContext` Hook from React and your context:
+從 React 中引入 `useContext` Hook 以及你剛剛創建的 context:
 
 ```js
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 ```
 
-Currently, the `Heading` component reads `level` from props:
+現在，`Heading` component 從 props 中讀取 `level`:
 
 ```js
 export default function Heading({ level, children }) {
@@ -327,7 +327,7 @@ export default function Heading({ level, children }) {
 }
 ```
 
-Instead, remove the `level` prop and read the value from the context you just imported, `LevelContext`:
+然後，刪除 `level` 參數並從你剛剛引入的 `LevelContext` 中讀取值:
 
 ```js {2}
 export default function Heading({ children }) {
@@ -336,9 +336,9 @@ export default function Heading({ children }) {
 }
 ```
 
-`useContext` is a Hook. Just like `useState` and `useReducer`, you can only call a Hook immediately inside a React component (not inside loops or conditions). **`useContext` tells React that the `Heading` component wants to read the `LevelContext`.**
+`useContext` 是一個 Hook。 就像 `useState` 和 `useReducer` 一樣， 你只能在 React component  中（不是循環或者條件裡）立即調用 Hook。 **`useContext` 告訴 React `Heading` component  想要讀取 `LevelContext`。**
 
-Now that the `Heading` component doesn't have a `level` prop, you don't need to pass the level prop to `Heading` in your JSX like this anymore:
+現在 `Heading` component  中沒有 `level` 參數， 你不再需要像這樣在你的 JSX 中將 level 參數傳遞給 `Heading`:
 
 ```js
 <Section>
@@ -348,7 +348,7 @@ Now that the `Heading` component doesn't have a `level` prop, you don't need to 
 </Section>
 ```
 
-Update the JSX so that it's the `Section` that receives it instead:
+更新一下 JSX 來讓 `Section` component  可以接收 level 參數:
 
 ```jsx
 <Section level={4}>
@@ -358,7 +358,7 @@ Update the JSX so that it's the `Section` that receives it instead:
 </Section>
 ```
 
-As a reminder, this is the markup that you were trying to get working:
+提醒一下，這是你使得代碼能正常運行的必備步驟:
 
 <Sandpack>
 
@@ -442,13 +442,13 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-Notice this example doesn't quite work, yet! All the headings have the same size because **even though you're *using* the context, you have not *provided* it yet.** React doesn't know where to get it!
+注意，這個示例還不能運行！所有的 headings 的尺寸都一樣，因為 **哪怕你正在 *使用* context， 你也還沒 *提供* 它。** React 不知道從哪獲取這個 context!
 
-If you don't provide the context, React will use the default value you've specified in the previous step. In this example, you specified `1` as the argument to `createContext`, so `useContext(LevelContext)` returns `1`, setting all those headings to `<h1>`. Let's fix this problem by having each `Section` provide its own context.
+如果你不提供 context， React 將會使用你在上一步指定的默認值。在這個例子中，你將參數 `1` 傳遞給了 `createContext`，因此 `useContext(LevelContext)` 會 return `1`，同時把所有的標題都設置為 `<h1>`。我们可以通过让每个 `Section` 提供它自己的 context 来修复这个问题。
 
-### Step 3: Provide the context {/*step-3-provide-the-context*/}
+### Step 3: 提供 context {/*step-3-provide-the-context*/}
 
-The `Section` component currently renders its children:
+`Section`component 目前渲染傳入它的 child component:
 
 ```js
 export default function Section({ children }) {
@@ -460,7 +460,7 @@ export default function Section({ children }) {
 }
 ```
 
-**Wrap them with a context provider** to provide the `LevelContext` to them:
+**用一個 context provider 把它们包裹起来** 便可以提供 `LevelContext` 給它們:
 
 ```js {1,6,8}
 import { LevelContext } from './LevelContext.js';
@@ -476,7 +476,7 @@ export default function Section({ level, children }) {
 }
 ```
 
-This tells React: "if any component inside this `<Section>` asks for `LevelContext`, give them this `level`." The component will use the value of the nearest `<LevelContext.Provider>` in the UI tree above it.
+這會告訴 React:「如果在 `<Section>` component  中的任何 child component  請求 `LevelContext`，給它們這個 `level`。」 component  會使用 UI 樹中在它上層最近的那個 `<LevelContext.Provider>` 傳遞過來的值。
 
 <Sandpack>
 
@@ -564,15 +564,15 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-It's the same result as the original code, but you did not need to pass the `level` prop to each `Heading` component! Instead, it "figures out" its heading level by asking the closest `Section` above:
+這與原始代碼的運行結果是相同的，但是你不需要傳遞 `level` 參數給每一個 `Heading` component  了！取而代之, 它通過訪問上層最近的 `Section` 來「斷定」它的標題級別:
 
-1. You pass a `level` prop to the `<Section>`.
-2. `Section` wraps its children into `<LevelContext.Provider value={level}>`.
-3. `Heading` asks the closest value of `LevelContext` above with `useContext(LevelContext)`.
+1. 你將一個 `level` 參數傳給 `<Section>`。
+2. `Section` 把它的 children 包裹在 `<LevelContext.Provider value={level}>` 中。
+3. `Heading` 使用 `useContext(LevelContext)` 訪問上層最近的 `LevelContext` 提供的值。
 
-## Using and providing context from the same component {/*using-and-providing-context-from-the-same-component*/}
+## 在相同的组件中使用并提供 context {/*using-and-providing-context-from-the-same-component*/}
 
-Currently, you still have to specify each section's `level` manually:
+現在，你仍需要手動指定每個 section 的 `level`:
 
 ```js
 export default function Page() {
@@ -585,7 +585,7 @@ export default function Page() {
           ...
 ```
 
-Since context lets you read information from a component above, each `Section` could read the `level` from the `Section` above, and pass `level + 1` down automatically. Here is how you could do it:
+由於 context 讓你可以從上層的 component  中讀取信息，每個 `Section` 都會從上層的 `Section` 讀取 `level`，並自動向下層傳遞 `level + 1`。你可以像下面這樣做。
 
 ```js src/Section.js {5,8}
 import { useContext } from 'react';
@@ -603,7 +603,7 @@ export default function Section({ children }) {
 }
 ```
 
-With this change, you don't need to pass the `level` prop *either* to the `<Section>` or to the `<Heading>`:
+這樣修改後，你不需要將 `level` 參數傳給 `<Section>` *或者是* `<Heading>` 了:
 
 <Sandpack>
 
@@ -695,19 +695,19 @@ export const LevelContext = createContext(0);
 
 </Sandpack>
 
-Now both `Heading` and `Section` read the `LevelContext` to figure out how "deep" they are. And the `Section` wraps its children into the `LevelContext` to specify that anything inside of it is at a "deeper" level.
+現在，`Heading` 和 `Section` 都通過讀取 `LevelContext` 來判斷它們「深度」。並且 `Section` 把它的 child component  都包裹在 `LevelContext` 中來指定其中的任何內容都處於一個「更深」的級別。
 
 <Note>
 
-This example uses heading levels because they show visually how nested components can override context. But context is useful for many other use cases too. You can pass down any information needed by the entire subtree: the current color theme, the currently logged in user, and so on.
+該示例使用標題級別來說明，是因為它們直觀地顯示了嵌套 component  是如何覆蓋 context。但是 context 對於許多其他場景也很有用。你可以用它來傳遞整個字數需要的任何信息: 當前的顏色主題、當前的登錄用戶等。
 
 </Note>
 
-## Context passes through intermediate components {/*context-passes-through-intermediate-components*/}
+## Context 能穿過中間層級的 component {/*context-passes-through-intermediate-components*/}
 
-You can insert as many components as you like between the component that provides context and the one that uses it. This includes both built-in components like `<div>` and components you might build yourself.
+你可以在提供 context 的 component 和使用它的 component 之間的層級插入任意數量的 component 。這包括像 `<div>` 這樣的內置 component 和你自己創建的 component 。
 
-In this example, the same `Post` component (with a dashed border) is rendered at two different nesting levels. Notice that the `<Heading>` inside of it gets its level automatically from the closest `<Section>`:
+該實例中，相同的 `Post`  component （帶有虛線邊框）在兩個不同的嵌套層級上渲染。注意，它內部的 `<Heading>` 會自動從最近的 `<Section>` 獲取它的級別:
 
 <Sandpack>
 
@@ -832,58 +832,58 @@ export const LevelContext = createContext(0);
 
 </Sandpack>
 
-You didn't do anything special for this to work. A `Section` specifies the context for the tree inside it, so you can insert a `<Heading>` anywhere, and it will have the correct size. Try it in the sandbox above!
+你不需要做任何特殊的操作。`Section` 為它內部的樹指定了一個 context，所以你可以在任何地方插入一個 `<Heading>`，並且它會有正確的尺寸。在上邊的 sandbox 嘗試下！
 
-**Context lets you write components that "adapt to their surroundings" and display themselves differently depending on _where_ (or, in other words, _in which context_) they are being rendered.**
+**Context 讓你可以編寫「適應周圍的環境」的 component，並且根據 _在哪_ （或者說，_在哪個 context 中_）來渲染它們不同的樣子。**
 
-How context works might remind you of [CSS property inheritance.](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) In CSS, you can specify `color: blue` for a `<div>`, and any DOM node inside of it, no matter how deep, will inherit that color unless some other DOM node in the middle overrides it with `color: green`. Similarly, in React, the only way to override some context coming from above is to wrap children into a context provider with a different value.
+Context 的工作方式可能會讓你想起[CSS 屬性繼承](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) 在 CSS， 你可以指定 `color: blue` 給一個 `<div>`， 並且在其中的任意 DOM node，無論多深，都會繼承那個顏色，除非中間的其他 DOM node用 `color: green` 覆蓋它。類似地，在 React 中，覆蓋來自上層的某些 Context 的唯一方法時間 child component  包裹到一個提供不同值的 context provider 中。
 
-In CSS, different properties like `color` and `background-color` don't override each other. You can set all  `<div>`'s `color` to red without impacting `background-color`. Similarly, **different React contexts don't override each other.** Each context that you make with `createContext()` is completely separate from other ones, and ties together components using and providing *that particular* context. One component may use or provide many different contexts without a problem.
+在 CSS 中，不同屬性的 `color` 和 `background-color` 不會彼此覆蓋。你可以設置所有的 `<div>` 都為 `color` 紅色，還不會影響 `background-color`。類似地， **不同的 React context 不會彼此覆蓋。** 你用 `createContext()` 創建的每個 context 都和其他 context 完全分離，只有使用和提供 *那個特定的* context 才會聯繫到一起。一個 component 可以毫無問題地使用或者是提供不同的 context。
 
-## Before you use context {/*before-you-use-context*/}
+## 在你使用 context 之前 {/*before-you-use-context*/}
 
-Context is very tempting to use! However, this also means it's too easy to overuse it. **Just because you need to pass some props several levels deep doesn't mean you should put that information into context.**
+使用 Context 看起來非常誘人！然而，這也意味著它很容易被過度使用。 **若你只是想將一些 props 逐層傳遞多個層級，這並不意味著你需要把這些信息放到 context 中。**
 
-Here's a few alternatives you should consider before using context:
+在你使用 context 之前，這裡有一些可供你選擇的代替方案:
 
-1. **Start by [passing props.](/learn/passing-props-to-a-component)** If your components are not trivial, it's not unusual to pass a dozen props down through a dozen components. It may feel like a slog, but it makes it very clear which components use which data! The person maintaining your code will be glad you've made the data flow explicit with props.
-2. **Extract components and [pass JSX as `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) to them.** If you pass some data through many layers of intermediate components that don't use that data (and only pass it further down), this often means that you forgot to extract some components along the way. For example, maybe you pass data props like `posts` to visual components that don't use them directly, like `<Layout posts={posts} />`. Instead, make `Layout` take `children` as a prop, and render `<Layout><Posts posts={posts} /></Layout>`. This reduces the number of layers between the component specifying the data and the one that needs it.
+1. **從 [傳遞 props 開始。](/learn/passing-props-to-a-component)** 如果你的 component 看起來不起眼，那麼通過十幾個 component 向下傳遞一堆 props 並不少見。這有點像是在埋頭苦幹，但是這樣做可以讓哪些 component 用了哪些數據變得十分清晰！維護你代碼的人會很高興你用 props 傳遞數據，這會讓數據流變得更加清晰。
+2. **抽象 component 並 [把 JSX 作為 `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) 傳給它們。** 如果你通過很多層不使用該數據的中間 component （並且只會向下傳遞）來傳遞數據。舉個例子，你可能想把一些像 `posts` 的 props 數據傳遞到不會直接使用這個參數的 component，比如說 `<Layout posts={posts} />`。更好的方式是，讓 `Layout` 把 `children` 當做一個參數，然後渲染 `<Layout><Posts posts={posts} /></Layout>`。這樣就減少了定義數據的 component 和使用數據的 component 之間的層級。
 
-If neither of these approaches works well for you, consider context.
+如果這兩種替代方案都不適合你，再考慮使用 context。
 
-## Use cases for context {/*use-cases-for-context*/}
+## Context 的使用場景 {/*use-cases-for-context*/}
 
-* **Theming:** If your app lets the user change its appearance (e.g. dark mode), you can put a context provider at the top of your app, and use that context in components that need to adjust their visual look.
-* **Current account:** Many components might need to know the currently logged in user. Putting it in context makes it convenient to read it anywhere in the tree. Some apps also let you operate multiple accounts at the same time (e.g. to leave a comment as a different user). In those cases, it can be convenient to wrap a part of the UI into a nested provider with a different current account value.
-* **Routing:** Most routing solutions use context internally to hold the current route. This is how every link "knows" whether it's active or not. If you build your own router, you might want to do it too.
-* **Managing state:** As your app grows, you might end up with a lot of state closer to the top of your app. Many distant components below may want to change it. It is common to [use a reducer together with context](/learn/scaling-up-with-reducer-and-context) to manage complex state and pass it down to distant components without too much hassle.
+* **主題:** 如果你的應用允許用戶更改其外觀（例如 dark mode），你可以在應用頂層定義一個 context provider，並在需要調整其外觀的 component 中使用該 context。
+* **當前賬戶:** 許多 component 可能需要知道當前登錄的用戶信息。把它放到 context 中可以方便在樹中任何為止讀取它。某些應用還允許你同時操作多個賬戶（例如，以不同用戶的身份發表評論）。在這些情況下，將 UI 的一部分包裹到具有不同賬戶數據的 provider 中會很方便。
+* **路由:** 大多數路由解決方案在其內部使用 context 來保存當前路由。這就是每個鏈接「知道」它是否處於活動狀態的方式。如果你創建自己的路由，你可能也會這麼做。
+* **state 管理:** 隨著你的應用的開發，最終在靠近應用頂部的為止可能會有很多 state。許多遙遠的下層 component 可能想要修改它們。通常 [將 reducer 與 context 搭配使用](/learn/scaling-up-with-reducer-and-context) 來管理複雜的 state 並將其傳遞給深層的 component 來避免過多的麻煩。
   
-Context is not limited to static values. If you pass a different value on the next render, React will update all the components reading it below! This is why context is often used in combination with state.
+Context 不局限於靜態值。如果你在下一次渲染時傳遞不同的值，React 將會更新所有讀取它的下層 component ！這就是 context 經常和 state 結合使用的原因。
 
-In general, if some information is needed by distant components in different parts of the tree, it's a good indication that context will help you.
+通常來說，如果樹中不同部分的遠距離 component 需要傳遞某些信息，使用 context 是一個很好的選擇。
 
 <Recap>
 
-* Context lets a component provide some information to the entire tree below it.
-* To pass context:
-  1. Create and export it with `export const MyContext = createContext(defaultValue)`.
-  2. Pass it to the `useContext(MyContext)` Hook to read it in any child component, no matter how deep.
-  3. Wrap children into `<MyContext.Provider value={...}>` to provide it from a parent.
-* Context passes through any components in the middle.
-* Context lets you write components that "adapt to their surroundings".
-* Before you use context, try passing props or passing JSX as `children`.
+* Context 讓一個 component 向其下整個樹的 component 提供信息。
+* 傳遞 context 的步驟:
+  1. 通過 `export const MyContext = createContext(defaultValue)` 創建並 export  context。
+  2. 在無論層級多深的任何 child component  中，把 context 傳遞給 `useContext(MyContext)` Hook 來讀取它。
+  3. 在 parent 中把 children 包裹在 `<MyContext.Provider value={...}>` 中來提供 context。
+* Context 會穿過在中間的所有 component。
+* Context 讓你寫出「適應周圍環境的」 component。
+* 在你使用 context 之前，先嘗試下傳遞 props 或者將 JSX 作為 `children` 傳遞。
 
 </Recap>
 
 <Challenges>
 
-#### Replace prop drilling with context {/*replace-prop-drilling-with-context*/}
+#### 用 context 代替 prop 逐級傳遞 {/*replace-prop-drilling-with-context*/}
 
-In this example, toggling the checkbox changes the `imageSize` prop passed to each `<PlaceImage>`. The checkbox state is held in the top-level `App` component, but each `<PlaceImage>` needs to be aware of it.
+該示例中，切換復選框狀態會修改傳入的每個 `<PlaceImage>` 的 `imageSize` 參數。復選框的 state 保存在頂層的 `App` component 中，但每個 `<PlaceImage>` 都需要注意它。
 
-Currently, `App` passes `imageSize` to `List`, which passes it to each `Place`, which passes it to the `PlaceImage`. Remove the `imageSize` prop, and instead pass it from the `App` component directly to `PlaceImage`.
+现在， `App` 将 `imageSize` 傳遞給 `List`，再將其傳遞給每個 `Place`，`Place` 又將其傳遞給 `PlaceImage`。刪除 `imageSize` 參數，然後在 `App` component 中直接將其傳遞給 `PlaceImage`。
 
-You can declare context in `Context.js`.
+你可以在 `Context.js` 中聲明 context。
 
 <Sandpack>
 
@@ -1157,7 +1157,7 @@ li {
 
 </Sandpack>
 
-Note how components in the middle don't need to pass `imageSize` anymore.
+注意，中間的 component 不再需要傳遞 `imageSize`。
 
 </Solution>
 
