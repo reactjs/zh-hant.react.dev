@@ -20,9 +20,15 @@ title: 將 React 加入到一個現有的專案
 
 以下是我們推薦的設定方式：
 
+<<<<<<< HEAD
 1. 使用其中一個[基於 React 的框架]((/learn/start-a-new-react-project))來**建構你的應用程式中的 React 部分**。
 2. 在你的框架設定中將 **`/some-app` 指定為 *基本路徑***（這裡是如何設定：[Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/))。
 3. **設定你的伺服器或代理**，讓所有在 `/some-app/` 下的請求都由 React 應用程式處理。
+=======
+1. **Build the React part of your app** using one of the [React-based frameworks](/learn/start-a-new-react-project).
+2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
+>>>>>>> a5aad0d5e92872ef715b462b1dd6dcbeb45cf781
 
 這可以確保你的應用程式中 React 部分能夠[受益於這些框架所內建的最佳實踐](/learn/start-a-new-react-project#can-i-use-react-without-a-framework)。
 
