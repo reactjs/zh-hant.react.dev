@@ -27,7 +27,11 @@ title: 開始一個新的 React 專案
 
 **此頁面的 React 框架預設解決了這些問題，無需你額外處理。** 它們允許你從一個非常精簡的應用程式開始，然後根據需求進行擴充。每個 React 框架都有其社群，因此尋找問題的答案和升級工具會更容易。框架也為你的程式碼提供了結構，幫助你和其他人在不同項目之間保持 context 和技能。相反地，使用自定義設定時，你更容易陷入不受支援的依賴版本中，最終會構建出你自己的框架——儘管它沒有社群或升級路徑（而且如果像我們過去所做的一樣，設計可能更隨意）。
 
+<<<<<<< HEAD
 如果你的應用程式有這些框架無法很好滿足的特殊限制，或者你更喜歡自己解決這些問題，你可以使用 React 建立自己的自定義設定。從 npm 下載 `react` 和 `react-dom`，使用像 [Vite](https://vitejs.dev/) 或 [Parcel](https://parceljs.org/) 這樣的 bundler 設定自定義建構過程，然後根據需求增加其他工具，用於 routing、靜態生成或伺服器端渲染等功能。
+=======
+If your app has unusual constraints not served well by these frameworks, or you prefer to solve these problems yourself, you can roll your own custom setup with React. Grab `react` and `react-dom` from npm, set up your custom build process with a bundler like [Vite](https://vite.dev/) or [Parcel](https://parceljs.org/), and add other tools as you need them for routing, static generation or server-side rendering, and more.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 </DeepDive>
 
