@@ -70,7 +70,7 @@ export default function Image() {
 一但 component 被初始 render，你可以透過使用 [`set` 函式](/reference/react/useState#setstate) 更新其狀態來觸發之後的 render。更新 component 的狀態會自動加入重新 render 的 queue。(你可以將這個過程想像成一位餐廳顧客點完第一道菜後，根據他的口渴或飢餓程度，又繼續點了茶、點心或其他各種菜色的流程。)
 
 <IllustrationBlock sequential>
-  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. The patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
   <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
   <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
@@ -84,7 +84,11 @@ export default function Image() {
 
 這段過程是遞迴的：如果更新的 component 回傳其他的 component，React 將會 render _那個_ component，如果 component 又回傳其他的 component，React 會接著 render _下一個_ component，以此類推。這個過程將一直持續到沒有回傳更多的 component，React 才知道應該在螢幕上顯示什麼。
 
+<<<<<<< HEAD
 在接下來的範例，React 將會呼叫 `Gallery()` 和 `Image()` 幾次
+=======
+In the following example, React will call `Gallery()` and `Image()` several times:
+>>>>>>> 2859efa07357dfc2927517ce9765515acf903c7c
 
 <Sandpack>
 
@@ -148,10 +152,17 @@ Rendering 必須永遠是一個[純運算](/learn/keeping-components-pure)
 
 ## 步驟 3：React 把更改 commit 到 DOM {/*step-3-react-commits-changes-to-the-dom*/}
 
+<<<<<<< HEAD
 在 rendering（呼叫）你的 component 後，React 將會更改你的 DOM。
 
 * **對於初始 render，** React 會使用 [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API 在螢幕上顯示所有你建立的 DOM 節點。
 * **對於重新 render，** React 會採取最小必要的操作 (在 rendering 時計算！)，以使得 DOM 與 rendering 後的的輸出相符。
+=======
+After rendering (calling) your components, React will modify the DOM.
+
+* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen.
+* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+>>>>>>> 2859efa07357dfc2927517ce9765515acf903c7c
 
 **React 只有在 render 時有差異才會更改 DOM 節點。** 例如，這裡有一個 component，每秒從其 parent 傳遞不同的 props 重新 render。請注意，你可以在 `<input>` 中輸入一些文字，更新它的 `value`，但是這些文字不會在 conponent 重新 render 時消失。
 
