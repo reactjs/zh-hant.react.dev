@@ -20,9 +20,15 @@ title: 將 React 加入到一個現有的專案
 
 以下是我們推薦的設定方式：
 
+<<<<<<< HEAD
 1. 使用其中一個[基於 React 的框架]((/learn/start-a-new-react-project))來**建構你的應用程式中的 React 部分**。
 2. 在你的框架設定中將 **`/some-app` 指定為 *基本路徑***（這裡是如何設定：[Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/))。
 3. **設定你的伺服器或代理**，讓所有在 `/some-app/` 下的請求都由 React 應用程式處理。
+=======
+1. **Build the React part of your app** using one of the [React-based frameworks](/learn/start-a-new-react-project).
+2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 這可以確保你的應用程式中 React 部分能夠[受益於這些框架所內建的最佳實踐](/learn/start-a-new-react-project#can-i-use-react-without-a-framework)。
 
@@ -45,7 +51,11 @@ title: 將 React 加入到一個現有的專案
 
 * **如果你的應用程式已經拆分成使用 `import` 語句的檔案**，請嘗試使用你已經設定好的設定。檢查在你的 JS 程式碼中寫入 `<div />` 是否會導致語法錯誤。如果它導致了語法錯誤，則可能需要[使用 Babel 轉換你的 JavaScript 程式碼](https://babeljs.io/setup)，並啟用 [Babel React preset](https://babeljs.io/docs/babel-preset-react) 來使用 JSX。
 
+<<<<<<< HEAD
 * **如果你的應用程式沒有現有的 JavaScript module 的編譯設定**，請使用 [Vite](https://vitejs.dev/) 進行設定。Vite 社群維護[與後端框架的多個整合](https://github.com/vitejs/awesome-vite#integrations-with-backends)，包括 Rails、Django 和 Laravel。如果你的後端框架未被列出，請按照此指南[手動將 Vite 建構與你的後端整合](https://vitejs.dev/guide/backend-integration.html)。
+=======
+* **If your app doesn't have an existing setup for compiling JavaScript modules,** set it up with [Vite](https://vite.dev/). The Vite community maintains [many integrations with backend frameworks](https://github.com/vitejs/awesome-vite#integrations-with-backends), including Rails, Django, and Laravel. If your backend framework is not listed, [follow this guide](https://vite.dev/guide/backend-integration.html) to manually integrate Vite builds with your backend.
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 為了檢查你的設定是否正常運作，請在你的專案資料夾中執行此命令：
 
@@ -85,7 +95,11 @@ root.render(<h1>Hello, world</h1>);
 
 <Note>
 
+<<<<<<< HEAD
 將一個模組化的 JavaScript 環境整合到現有專案中，對於第一次嘗試的人來說可能會感到令人生畏，但它是值得的！如果你卡住了，請嘗試使用我們的[社群資源](/community)或 [Vite Chat](https://chat.vitejs.dev/)。
+=======
+Integrating a modular JavaScript environment into an existing project for the first time can feel intimidating, but it's worth it! If you get stuck, try our [community resources](/community) or the [Vite Chat](https://chat.vite.dev/).
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 </Note>
 
