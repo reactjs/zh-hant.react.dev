@@ -24,7 +24,7 @@ To help make the upgrade to React 19 easier, we've published a `react@18.3` rele
 
 We recommend upgrading to React 18.3 first to help identify any issues before upgrading to React 19.
 
-For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024).
 
 </Note>
 
@@ -113,7 +113,7 @@ This will run the following codemods from `react-codemod`:
 - [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
 - [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
 - [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
-- [`prop-types-typescript`](https://codemod.com/registry/react-prop-types-typescript)
+- [`prop-types-typescript`](https://github.com/reactjs/react-codemod#react-proptypes-to-prop-types)
 
 This does not include the TypeScript changes. See [TypeScript changes](#typescript-changes) below.
 
@@ -129,7 +129,7 @@ For a list of all available codemods, see the [`react-codemod` repo](https://git
 
 In previous versions of React, errors thrown during render were caught and rethrown. In DEV, we would also log to `console.error`, resulting in duplicate error logs. 
 
-In React 19, we've [improved how errors are handled](/blog/2024/04/25/react-19#error-handling) to reduce duplication by not re-throwing:
+In React 19, we've [improved how errors are handled](/blog/2024/12/05/react-19#error-handling) to reduce duplication by not re-throwing:
 
 - **Uncaught Errors**: Errors that are not caught by an Error Boundary are reported to `window.reportError`.
 - **Caught Errors**: Errors that are caught by an Error Boundary are reported to `console.error`.
@@ -499,7 +499,7 @@ function AutoselectingInput() {
 
 ### Deprecated: `element.ref` {/*deprecated-element-ref*/}
 
-React 19 supports [`ref` as a prop](/blog/2024/04/25/react-19#ref-as-a-prop), so we're deprecating the `element.ref` in place of `element.props.ref`.
+React 19 supports [`ref` as a prop](/blog/2024/12/05/react-19#ref-as-a-prop), so we're deprecating the `element.ref` in place of `element.props.ref`.
 
 Accessing `element.ref` will warn:
 
