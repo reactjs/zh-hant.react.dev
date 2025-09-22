@@ -201,7 +201,7 @@ Effect 是 React 逃脫出口的範例。他讓你「走出」React 並且讓 co
 
 例如，你不需要使用 Effect 來根據其他的 state 去改變某些 state：
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
