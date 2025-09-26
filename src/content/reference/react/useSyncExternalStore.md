@@ -407,16 +407,11 @@ This `subscribe` function is defined *inside* a component so it is different on 
 
 ```js {2-5}
 function ChatIndicator() {
-<<<<<<< HEAD
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-
-=======
->>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
   // 🚩 Always a different function, so React will resubscribe on every re-render
   function subscribe() {
     // ...
   }
-  
+
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
@@ -441,16 +436,11 @@ Alternatively, wrap `subscribe` into [`useCallback`](/reference/react/useCallbac
 
 ```js {2-5}
 function ChatIndicator({ userId }) {
-<<<<<<< HEAD
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-
-=======
->>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
   // ✅ Same function as long as userId doesn't change
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);
-  
+
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...

@@ -25,17 +25,12 @@
       "path": "/learn/installation",
       "routes": [
         {
-<<<<<<< HEAD
           "title": "開始一個新的 React 專案",
-          "path": "/learn/start-a-new-react-project"
-=======
-          "title": "Creating a React App",
           "path": "/learn/creating-a-react-app"
         },
         {
-          "title": "Build a React App from Scratch",
+          "title": "從頭開始建立 React 應用程式",
           "path": "/learn/build-a-react-app-from-scratch"
->>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
         },
         {
           "title": "將 React 加入到一個現有的專案",

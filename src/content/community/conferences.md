@@ -10,17 +10,10 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-<<<<<<< HEAD
-### React Paris 2025 {/*react-paris-2025*/}
-March 20 - 21, 2024. In-person in Paris, France (hybrid event)
-
-[Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
-=======
 ### React Universe Conf 2025 {/*react-universe-conf-2025*/}
 September 2-4, 2025. Wrocław, Poland.
 
 [Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
->>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 ### React Alicante 2025 {/*react-alicante-2025*/}
 October 2-4, 2025. Alicante, Spain.
@@ -77,20 +70,6 @@ June 13 - 17, 2025. In-person in Amsterdam, Netherlands + remote (hybrid event)
 
 [Website](https://reactsummit.com/) - [Twitter](https://x.com/reactsummit)
 
-<<<<<<< HEAD
-### React Universe Conf 2025 {/*react-universe-conf-2025*/}
-September 2-4, 2025. Wrocław, Poland.
-
-[Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
-
-### React India 2025 {/*react-india-2025*/}
-October 31 - November 01, 2025. In-person in Goa, India (hybrid event) + Oct 15 2025 - remote day
-
-[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
-
-
-## Past Conferences {/*past-conferences*/}
-=======
 ### React Norway 2025 {/*react-norway-2025*/}
 June 13, 2025. In-person in Oslo, Norway + remote (virtual event)
 
@@ -125,7 +104,6 @@ April 3 (Reanimated Training) + April 4 (Conference), 2025. Paris, France.
 December 13 & 16, 2024. In-person in Berlin, Germany + remote (hybrid event)
 
 [Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin)
->>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 ### React Day Berlin 2024 {/*react-day-berlin-2024*/}
 December 13 & 16, 2024. In-person in Berlin, Germany + remote (hybrid event)

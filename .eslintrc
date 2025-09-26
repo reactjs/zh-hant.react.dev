@@ -2,22 +2,14 @@
   "root": true,
   "extends": "next/core-web-vitals",
   "parser": "@typescript-eslint/parser",
-<<<<<<< HEAD
-  "plugins": ["@typescript-eslint", "eslint-plugin-react-compiler"],
-=======
   "plugins": ["@typescript-eslint", "eslint-plugin-react-compiler", "local-rules"],
->>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
   "rules": {
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error", {"varsIgnorePattern": "^_"}],
     "react-hooks/exhaustive-deps": "error",
     "react/no-unknown-property": ["error", {"ignore": ["meta"]}],
-<<<<<<< HEAD
-    "react-compiler/react-compiler": "error"
-=======
     "react-compiler/react-compiler": "error",
     "local-rules/lint-markdown-code-blocks": "error"
->>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
   },
   "env": {
     "node": true,
