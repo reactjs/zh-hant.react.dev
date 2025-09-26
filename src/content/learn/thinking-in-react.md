@@ -61,7 +61,7 @@ Mockup 看起來像這樣：
 
 </FullWidth>
 
-若你查看 `ProductTable`（淡紫色）時，會發現表格的表頭（包含 "Name" 和 "Price" 標籤）並不是獨立的 component。這純粹是偏好的問題，你可以選擇任何一種作法。以這裡為例，表頭被視為 `ProductTable` 的一部分，因為它出現在 `ProductTable` 的清單中。不過，當這個表頭變得更加複雜（例如加入了排序功能），你就可以把它抽出成獨立的 `ProductTableHeader` component。
+若你查看 `ProductTable`（淡紫色）時，會發現表格的表頭（包含「Name」和「Price」標籤）並不是獨立的 component。這純粹是偏好的問題，你可以選擇任何一種作法。以這裡為例，表頭被視為 `ProductTable` 的一部分，因為它出現在 `ProductTable` 的清單中。不過，當這個表頭變得更加複雜（例如加入了排序功能），你就可以把它抽出成獨立的 `ProductTableHeader` component。
 
 現在你已經辨識出所有 mockup 裡的 component 了，接下來要將它們整理成層級結構。只要在 mockup 中出現在其他 component 裡的 component，都應該以 child component 的層級呈現：
 
