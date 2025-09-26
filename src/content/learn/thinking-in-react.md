@@ -220,9 +220,9 @@ td {
 
 其中哪些資料應該放進 state 呢？試著辨識出其中不是 state 的項目：
 
-* 它會隨時間變化**保持不變**嗎？ 會的話，那它就不是 state。
-* 它是透過 props **從 parent 傳進來的**嗎？ 是的話，那它就不是 state。
-* 你能根據 component 中現有的 state 或 props 計算出它嗎？ 可以的話，那它*絕對*不是 state！
+* 它會隨時間變化**保持不變**嗎？會的話，那它就不是 state。
+* 它是透過 props **從 parent 傳進來的**嗎？是的話，那它就不是 state。
+* 你能根據 component 中現有的 state 或 props 計算出它嗎？可以的話，那它*絕對*不是 state！
 
 剩下的那些資料，很可能就是要放進 state 的了。
 
