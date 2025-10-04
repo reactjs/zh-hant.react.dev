@@ -219,7 +219,7 @@ function Profile() {
 
 [基於 React 的框架]((/learn/start-a-new-react-project)) 更進一步。它們不只是使用空的 HTML 檔案並讓 React 通過 JavaScript 管理頁面，它們*還會*自動從你的 React component 中生成 HTML。這使得你的應用程式在 JavaScript 程式碼載入之前就能顯示一些內容。
 
-儘管如此，許多網站僅使用 React 來[增加「互動性」](/learn/add-react-to-a-website)，它們有許多 root component，而不是整個頁面中的單個 component。你可以根據需求盡可能多或盡可能少地使用 React。
+儘管如此，許多網站僅使用 React 來[增加「互動性」](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page)，它們有許多 root component，而不是整個頁面中的單個 component。你可以根據需求盡可能多或盡可能少地使用 React。
 
 </DeepDive>
 
@@ -343,9 +343,9 @@ img { height: 180px; }
 ```js
 export default function Profile() {
   return (
-    <img 
-      src="https://i.imgur.com/jA8hHMpm.jpg" 
-      alt="Katsuko Saruhashi" 
+    <img
+      src="https://i.imgur.com/jA8hHMpm.jpg"
+      alt="Katsuko Saruhashi"
     />
   );
 }
