@@ -105,11 +105,6 @@ December 13 & 16, 2024. In-person in Berlin, Germany + remote (hybrid event)
 
 [Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin)
 
-### React Day Berlin 2024 {/*react-day-berlin-2024*/}
-December 13 & 16, 2024. In-person in Berlin, Germany + remote (hybrid event)
-
-[Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin)
-
 ### React Africa 2024 {/*react-africa-2024*/}
 November 29, 2024. In-person in Casablanca, Morocco (hybrid event)
 
