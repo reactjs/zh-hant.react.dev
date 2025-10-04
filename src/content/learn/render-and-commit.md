@@ -70,7 +70,7 @@ export default function Image() {
 一但 component 被初始 render，你可以透過使用 [`set` 函式](/reference/react/useState#setstate) 更新其狀態來觸發之後的 render。更新 component 的狀態會自動加入重新 render 的 queue。(你可以將這個過程想像成一位餐廳顧客點完第一道菜後，根據他的口渴或飢餓程度，又繼續點了茶、點心或其他各種菜色的流程。)
 
 <IllustrationBlock sequential>
-  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. The patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
   <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
   <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
