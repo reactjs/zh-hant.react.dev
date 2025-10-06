@@ -1,5 +1,6 @@
 ---
 title: useEffectEvent
+<<<<<<< HEAD
 version: canary
 ---
 
@@ -12,6 +13,10 @@ version: canary
 
 </Canary>
 
+=======
+---
+
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 <Intro>
 
 `useEffectEvent` is a React Hook that lets you extract non-reactive logic from your Effects into a reusable function called an [Effect Event](/learn/separating-events-from-effects#declaring-an-effect-event).
@@ -63,7 +68,11 @@ Returns an Effect Event function. You can call this function inside `useEffect`,
 
 #### Caveats {/*caveats*/}
 
+<<<<<<< HEAD
 - **Only call inside Effects:** Effect Events should only be called within Effects. Define them just before the Effect that uses them. Do not pass them to other components or hooks.
+=======
+- **Only call inside Effects:** Effect Events should only be called within Effects. Define them just before the Effect that uses them. Do not pass them to other components or hooks. The [`eslint-plugin-react-hooks`](/reference/eslint-plugin-react-hooks) linter (version 6.1.1 or higher) will enforce this restriction to prevent calling Effect Events in the wrong context.
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 - **Not a dependency shortcut:** Do not use `useEffectEvent` to avoid specifying dependencies in your Effect's dependency array. This can hide bugs and make your code harder to understand. Prefer explicit dependencies or use refs to compare previous values if needed.
 - **Use for non-reactive logic:** Only use `useEffectEvent` to extract logic that does not depend on changing values.
 
@@ -98,5 +107,11 @@ function Page({ url }) {
 }
 ```
 
+<<<<<<< HEAD
 You can pass reactive values like `url` as arguments to the Effect Event. This lets you access the latest values without making your Effect re-run for every change.
+=======
+In this example, the Effect should re-run after a render when `url` changes (to log the new page visit), but it should **not** re-run when `numberOfItems` changes. By wrapping the logging logic in an Effect Event, `numberOfItems` becomes non-reactive. It's always read from the latest value without triggering the Effect.
+
+You can pass reactive values like `url` as arguments to the Effect Event to keep them reactive while accessing the latest non-reactive values inside the event.
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 

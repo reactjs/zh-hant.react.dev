@@ -40,8 +40,12 @@
         },
         {
           "title": "useEffectEvent",
+<<<<<<< HEAD
           "path": "/reference/react/useEffectEvent",
           "version": "canary"
+=======
+          "path": "/reference/react/useEffectEvent"
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
         },
         {
           "title": "useId",
@@ -111,8 +115,7 @@
         },
         {
           "title": "<Activity>",
-          "path": "/reference/react/Activity",
-          "version": "canary"
+          "path": "/reference/react/Activity"
         },
         {
           "title": "<ViewTransition>",
@@ -132,6 +135,10 @@
         {
           "title": "cache",
           "path": "/reference/react/cache"
+        },
+        {
+          "title": "cacheSignal",
+          "path": "/reference/react/cacheSignal"
         },
         {
           "title": "captureOwnerStack",
@@ -313,6 +320,14 @@
         {
           "title": "renderToString",
           "path": "/reference/react-dom/server/renderToString"
+        },
+        {
+          "title": "resume",
+          "path": "/reference/react-dom/server/resume"
+        },
+        {
+          "title": "resumeToPipeableStream",
+          "path": "/reference/react-dom/server/resumeToPipeableStream"
         }
       ]
     },
@@ -327,6 +342,14 @@
         {
           "title": "prerenderToNodeStream",
           "path": "/reference/react-dom/static/prerenderToNodeStream"
+        },
+        {
+          "title": "resumeAndPrerender",
+          "path": "/reference/react-dom/static/resumeAndPrerender"
+        },
+        {
+          "title": "resumeAndPrerenderToNodeStream",
+          "path": "/reference/react-dom/static/resumeAndPrerenderToNodeStream"
         }
       ]
     },
@@ -380,6 +403,14 @@
     },
     {
       "hasSectionHeader": true,
+      "sectionHeader": "React DevTools"
+    },
+    {
+      "title": "React Performance tracks",
+      "path": "/reference/dev-tools/react-performance-tracks"
+    },
+    {
+      "hasSectionHeader": true,
       "sectionHeader": "eslint-plugin-react-hooks"
     },
     {
@@ -429,7 +460,11 @@
           "path": "/reference/eslint-plugin-react-hooks/lints/incompatible-library",
           "version": "rc"
         },
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
         {
           "title": "preserve-manual-memoization",
           "path": "/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization",
@@ -445,7 +480,11 @@
           "path": "/reference/eslint-plugin-react-hooks/lints/refs",
           "version": "rc"
         },
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
         {
           "title": "set-state-in-effect",
           "path": "/reference/eslint-plugin-react-hooks/lints/set-state-in-effect",

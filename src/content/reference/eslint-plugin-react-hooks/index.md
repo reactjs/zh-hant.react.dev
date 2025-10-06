@@ -25,14 +25,24 @@ When the compiler reports a diagnostic, it means that the compiler was able to s
 What this means for linting, is that you don’t need to fix all violations immediately. Address them at your own pace to gradually increase the number of optimized components.
 </Note>
 
-## Available Lints {/*available-lints*/}
+## Recommended Rules {/*recommended*/}
 
+<<<<<<< HEAD
 These rules are available in the stable version of `eslint-plugin-react-hooks`:
+=======
+These rules are included in the `recommended` preset `eslint-plugin-react-hooks`:
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 * [`exhaustive-deps`](/reference/eslint-plugin-react-hooks/lints/exhaustive-deps) - Validates that dependency arrays for React hooks contain all necessary dependencies
 * [`rules-of-hooks`](/reference/eslint-plugin-react-hooks/lints/rules-of-hooks) - Validates that components and hooks follow the Rules of Hooks
 
+<<<<<<< HEAD
 These rules are available in the RC version of `eslint-plugin-react-hooks`:
+=======
+## Additional Rules {/*additional-rules*/}
+
+Starting in version 6.0, these rules are available to opt-in:
+>>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 * [`component-hook-factories`](/reference/eslint-plugin-react-hooks/lints/component-hook-factories) - Validates higher order functions defining nested components or hooks
 * [`config`](/reference/eslint-plugin-react-hooks/lints/config) - Validates the compiler configuration options
