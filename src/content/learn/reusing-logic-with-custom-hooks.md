@@ -837,17 +837,6 @@ Every time your `ChatRoom` component re-renders, it passes the latest `roomId` a
 
 ### Passing event handlers to custom Hooks {/*passing-event-handlers-to-custom-hooks*/}
 
-<<<<<<< HEAD
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.**
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 As you start using `useChatRoom` in more components, you might want to let components customize its behavior. For example, currently, the logic for what to do when a message arrives is hardcoded inside the Hook:
 
 ```js {9-11}
@@ -1721,25 +1710,6 @@ html, body { min-height: 300px; }
 }
 ```
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 </Sandpack>
 
 However, you didn't *have to* do that. As with regular functions, ultimately you decide where to draw the boundaries between different parts of your code. You could also take a very different approach. Instead of keeping the logic in the Effect, you could move most of the imperative logic inside a JavaScript [class:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
@@ -2213,25 +2183,6 @@ It looks like your `useInterval` Hook accepts an event listener as an argument. 
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 ```js
 import { useCounter } from './useCounter.js';
 import { useInterval } from './useInterval.js';
@@ -2287,25 +2238,6 @@ With this change, both intervals work as expected and don't interfere with each 
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 ```js
 import { useCounter } from './useCounter.js';
