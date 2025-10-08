@@ -411,7 +411,7 @@ function Form() {
 
   function handleSubmit() {
     setSubmitted(true);
-  }  
+  }
 
   // ...
 }
@@ -429,7 +429,7 @@ function Form() {
     // ✅ Good: Event-specific logic is called from event handlers
     post('/api/register');
     showNotification('Successfully registered!', theme);
-  }  
+  }
 
   // ...
 }
@@ -612,7 +612,7 @@ function ChatRoom({ roomId }) {
 <<<<<<< HEAD
 <Canary>
 
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.**
 
 [Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
 
@@ -889,7 +889,7 @@ const options2 = { serverUrl: 'https://localhost:1234', roomId: 'music' };
 console.log(Object.is(options1, options2)); // false
 ```
 
-**Object and function dependencies can make your Effect re-synchronize more often than you need.** 
+**Object and function dependencies can make your Effect re-synchronize more often than you need.**
 
 This is why, whenever possible, you should try to avoid objects and functions as your Effect's dependencies. Instead, try moving them outside the component, inside the Effect, or extracting primitive values out of them.
 
@@ -1836,13 +1836,8 @@ Another of these functions only exists to pass some state to an imported API met
 ```json package.json hidden
 {
   "dependencies": {
-<<<<<<< HEAD
-    "react": "canary",
-    "react-dom": "canary",
-=======
     "react": "latest",
     "react-dom": "latest",
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -2136,13 +2131,8 @@ As a result, the chat re-connects only when something meaningful (`roomId` or `i
 ```json package.json hidden
 {
   "dependencies": {
-<<<<<<< HEAD
-    "react": "canary",
-    "react-dom": "canary",
-=======
     "react": "latest",
     "react-dom": "latest",
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },

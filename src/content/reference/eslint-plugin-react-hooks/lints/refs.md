@@ -9,21 +9,11 @@ Validates correct usage of refs, not reading/writing during render. See the "pit
 
 </Intro>
 
-<<<<<<< HEAD
-<RC>
-
-This rule is available in the RC version of `eslint-plugin-react-hooks`.
-
-You can try it by upgrading the lint plugin [to the most recent RC version](/learn/react-compiler/installation#eslint-integration).
-
-</RC>
-=======
 <Note>
 
 This rule is available in `eslint-plugin-react-hooks` v6.
 
 </Note>
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 ## Rule Details {/*rule-details*/}
 

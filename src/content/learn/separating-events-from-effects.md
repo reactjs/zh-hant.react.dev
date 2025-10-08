@@ -400,17 +400,6 @@ You need a way to separate this non-reactive logic from the reactive Effect arou
 
 ### Declaring an Effect Event {/*declaring-an-effect-event*/}
 
-<<<<<<< HEAD
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 Use a special Hook called [`useEffectEvent`](/reference/react/useEffectEvent) to extract this non-reactive logic out of your Effect:
 
 ```js {1,4-6}
@@ -453,13 +442,8 @@ Verify that the new behavior works as you would expect:
 ```json package.json hidden
 {
   "dependencies": {
-<<<<<<< HEAD
-    "react": "canary",
-    "react-dom": "canary",
-=======
     "react": "latest",
     "react-dom": "latest",
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -588,17 +572,6 @@ You can think of Effect Events as being very similar to event handlers. The main
 
 ### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
 
-<<<<<<< HEAD
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 Effect Events let you fix many patterns where you might be tempted to suppress the dependency linter.
 
 For example, say you have an Effect to log the page visits:
@@ -815,25 +788,6 @@ With `useEffectEvent`, there is no need to "lie" to the linter, and the code wor
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 ```js
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';
@@ -896,17 +850,6 @@ Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for oth
 
 ### Limitations of Effect Events {/*limitations-of-effect-events*/}
 
-<<<<<<< HEAD
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 Effect Events are very limited in how you can use them:
 
 * **Only call them from inside Effects.**
@@ -996,26 +939,6 @@ To fix this code, it's enough to follow the rules.
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 ```js {expectedErrors: {'react-compiler': [14]}}
 import { useState, useEffect } from 'react';
 
@@ -1069,25 +992,6 @@ If you remove the suppression comment, React will tell you that this Effect's co
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 ```js
 import { useState, useEffect } from 'react';
 
@@ -1150,25 +1054,6 @@ It seems like the Effect which sets up the timer "reacts" to the `increment` val
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 ```js
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';
@@ -1222,25 +1107,6 @@ To solve the issue, extract an `onTick` Effect Event from the Effect:
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 ```js
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';
@@ -1307,25 +1173,6 @@ Code inside Effect Events is not reactive. Are there cases in which you would _w
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 ```js
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';
@@ -1397,25 +1244,6 @@ The problem with the above example is that it extracted an Effect Event called `
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 ```js
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';
@@ -1499,13 +1327,8 @@ Your Effect knows which room it connected to. Is there any information that you 
 ```json package.json hidden
 {
   "dependencies": {
-<<<<<<< HEAD
-    "react": "canary",
-    "react-dom": "canary",
-=======
     "react": "latest",
     "react-dom": "latest",
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1645,13 +1468,8 @@ To fix the issue, instead of reading the *latest* `roomId` inside the Effect Eve
 ```json package.json hidden
 {
   "dependencies": {
-<<<<<<< HEAD
-    "react": "canary",
-    "react-dom": "canary",
-=======
     "react": "latest",
     "react-dom": "latest",
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1787,13 +1605,8 @@ To solve the additional challenge, save the notification timeout ID and clear it
 ```json package.json hidden
 {
   "dependencies": {
-<<<<<<< HEAD
-    "react": "canary",
-    "react-dom": "canary",
-=======
     "react": "latest",
     "react-dom": "latest",
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },

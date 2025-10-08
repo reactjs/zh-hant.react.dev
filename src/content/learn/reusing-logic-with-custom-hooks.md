@@ -840,7 +840,7 @@ Every time your `ChatRoom` component re-renders, it passes the latest `roomId` a
 <<<<<<< HEAD
 <Canary>
 
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.**
 
 [Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
 
@@ -1075,13 +1075,8 @@ export function showNotification(message, theme = 'dark') {
 ```json package.json hidden
 {
   "dependencies": {
-<<<<<<< HEAD
-    "react": "canary",
-    "react-dom": "canary",
-=======
     "react": "latest",
     "react-dom": "latest",
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },

@@ -40,12 +40,7 @@
         },
         {
           "title": "useEffectEvent",
-<<<<<<< HEAD
-          "path": "/reference/react/useEffectEvent",
-          "version": "canary"
-=======
           "path": "/reference/react/useEffectEvent"
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
         },
         {
           "title": "useId",
@@ -460,11 +455,6 @@
           "path": "/reference/eslint-plugin-react-hooks/lints/incompatible-library",
           "version": "rc"
         },
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
         {
           "title": "preserve-manual-memoization",
           "path": "/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization",
@@ -480,11 +470,6 @@
           "path": "/reference/eslint-plugin-react-hooks/lints/refs",
           "version": "rc"
         },
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
         {
           "title": "set-state-in-effect",
           "path": "/reference/eslint-plugin-react-hooks/lints/set-state-in-effect",
