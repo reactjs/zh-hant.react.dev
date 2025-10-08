@@ -609,17 +609,6 @@ function ChatRoom({ roomId }) {
 
 ### Do you want to read a value without "reacting" to its changes? {/*do-you-want-to-read-a-value-without-reacting-to-its-changes*/}
 
-<<<<<<< HEAD
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.**
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 Suppose that you want to play a sound when the user receives a new message unless `isMuted` is `true`:
 
 ```js {3,10-12}
@@ -1264,25 +1253,6 @@ Is there a line of code inside the Effect that should not be reactive? How can y
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 ```js
 import { useState, useEffect, useRef } from 'react';
 import { useEffectEvent } from 'react';
@@ -1394,25 +1364,6 @@ Your Effect needs to read the latest value of `duration`, but you don't want it 
 
 <Sandpack>
 
-<<<<<<< HEAD
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-=======
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 ```js
 import { useState, useEffect, useRef } from 'react';
 import { FadeInAnimation } from './animation.js';
