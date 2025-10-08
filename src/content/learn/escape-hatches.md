@@ -312,13 +312,7 @@ React 提供一個 linter 規則，可以驗證你是否已經正確地指定 Ef
 
 ## 從 Effect 分離事件 {/*separating-events-from-effects*/}
 
-<Wip>
-
-這個章節會介紹一個 **實驗性 API，它還沒有被發布** 在 React 的正式版本。
-
-</Wip>
-
-Event handler 只在你做了相同的互動時才重新執行。與 event handler 不同，假設 Effect 讀取的任何值，像是 prop 或 state，與上一次 render 的不一樣， Effect 就會重新執行同步。有些時候，你想要混合兩種行為：Effect 的重新執行只對某些值反應，而其他的值不會。
+Event handler 只在你再次執行相同的互動時重新執行。與 event handler 不同，如果 Effect 讀取的任何值（例如 props 或 state）與上次渲染時的值不同，則 Effect 會重新同步。有時候，你需要混合使用這兩種行為：即 Effect 會回應某些值而重新執行，而其他值則不會重新執行。
 
 所有在 Effect 中的程式碼都是 *反應性* 的。假如某些它讀取的反應性的值，在 re-render 時發生變化，它就會再執行一次。例如：假如 `roomId` 或 `theme` 之一已經改變，那麼這個 Effect 將會重新連接到聊天室。
 
@@ -388,7 +382,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -455,8 +449,8 @@ label { display: block; margin-top: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -521,7 +515,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
