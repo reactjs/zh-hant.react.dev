@@ -1,6 +1,5 @@
 ---
 title: static-components
-version: rc
 ---
 
 <Intro>
@@ -8,12 +7,6 @@ version: rc
 Validates that components are static, not recreated every render. Components that are recreated dynamically can reset state and trigger excessive re-rendering.
 
 </Intro>
-
-<Note>
-
-This rule is available in `eslint-plugin-react-hooks` v6.
-
-</Note>
 
 ## Rule Details {/*rule-details*/}
 
