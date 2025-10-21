@@ -37,15 +37,9 @@ Mockup 看起來像這樣：
 
 依據你的專業背景，你可以用不同的方式來思考如何將設計拆解成 component：
 
-<<<<<<< HEAD
-* **程式設計**--就像你寫程式時會判斷是否該建立新的函式或物件一樣，也可以用相同的技巧來拆 component。其中一個常見的技巧叫做[單一職責原則](https://en.wikipedia.org/wiki/Single_responsibility_principle)，也就是說，理想的情況下，每個 component 應該只做一件事情。如果某個 component 隨著開發越來越複雜，它就應該被分解成更小的 child component。
+* **程式設計**--就像你寫程式時會判斷是否該建立新的函式或物件一樣，也可以用相同的技巧來拆 component。其中一個常見的技巧叫做[單一職責原則](https://en.wikipedia.org/wiki/Separation_of_concerns)，也就是說，理想的情況下，每個 component 應該只做一件事情。如果某個 component 隨著開發越來越複雜，它就應該被分解成更小的 child component。
 * **CSS**--思考會在那些地方使用類別選擇器 (不過 component 通常並不會拆解得像 CSS 那麼細)
 * **Design**--思考你會如何安排設計稿的圖層結構
-=======
-* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), that is, a component should ideally only be concerned with one thing. If it ends up growing, it should be decomposed into smaller subcomponents. 
-* **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
-* **Design**--consider how you would organize the design's layers.
->>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 假如你的 JSON 架構設計非常棒，通常會發現它可以很自然地對應到 UI 的 component 架構。那是因為 UI 與資料模型通常會擁有相同的資訊架構 -- 也就是相同的結構。將 UI 拆成一個個 component，讓每一個 component 都能對應到資料模型中的一部分。
 
@@ -282,17 +276,17 @@ Props 和 state 雖然不同，但它們會一起運作。parent component 通�
 ```js
 function FilterableProductTable({ products }) {
   const [filterText, setFilterText] = useState('');
-  const [inStockOnly, setInStockOnly] = useState(false);  
+  const [inStockOnly, setInStockOnly] = useState(false);
 ```
 
 接著，將 `filterText` 和 `inStockOnly` 這兩個值作為 props，傳遞給 `ProductTable` 和 `SearchBar`：
 
 ```js
 <div>
-  <SearchBar 
-    filterText={filterText} 
+  <SearchBar
+    filterText={filterText}
     inStockOnly={inStockOnly} />
-  <ProductTable 
+  <ProductTable
     products={products}
     filterText={filterText}
     inStockOnly={inStockOnly} />
@@ -312,10 +306,10 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
+      <SearchBar
+        filterText={filterText}
         inStockOnly={inStockOnly} />
-      <ProductTable 
+      <ProductTable
         products={products}
         filterText={filterText}
         inStockOnly={inStockOnly} />
@@ -393,13 +387,13 @@ function ProductTable({ products, filterText, inStockOnly }) {
 function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} 
+      <input
+        type="text"
+        value={filterText}
         placeholder="Search..."/>
       <label>
-        <input 
-          type="checkbox" 
+        <input
+          type="checkbox"
           checked={inStockOnly} />
         {' '}
         Only show products in stock
@@ -455,9 +449,9 @@ You provided a \`value\` prop to a form field without an \`onChange\` handler. T
 function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} 
+      <input
+        type="text"
+        value={filterText}
         placeholder="Search..."/>
 ```
 
@@ -479,8 +473,8 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
+      <SearchBar
+        filterText={filterText}
         inStockOnly={inStockOnly}
         onFilterTextChange={setFilterText}
         onInStockOnlyChange={setInStockOnly} />
@@ -523,13 +517,13 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar 
-        filterText={filterText} 
-        inStockOnly={inStockOnly} 
-        onFilterTextChange={setFilterText} 
+      <SearchBar
+        filterText={filterText}
+        inStockOnly={inStockOnly}
+        onFilterTextChange={setFilterText}
         onInStockOnlyChange={setInStockOnly} />
-      <ProductTable 
-        products={products} 
+      <ProductTable
+        products={products}
         filterText={filterText}
         inStockOnly={inStockOnly} />
     </div>
@@ -611,14 +605,14 @@ function SearchBar({
 }) {
   return (
     <form>
-      <input 
-        type="text" 
-        value={filterText} placeholder="Search..." 
+      <input
+        type="text"
+        value={filterText} placeholder="Search..."
         onChange={(e) => onFilterTextChange(e.target.value)} />
       <label>
-        <input 
-          type="checkbox" 
-          checked={inStockOnly} 
+        <input
+          type="checkbox"
+          checked={inStockOnly}
           onChange={(e) => onInStockOnlyChange(e.target.checked)} />
         {' '}
         Only show products in stock
