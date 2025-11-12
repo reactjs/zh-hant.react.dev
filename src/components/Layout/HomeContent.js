@@ -421,14 +421,15 @@ export function HomeContent() {
             </div>
             <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
               <Para>
-                With React, you can be a web <i>and</i> a native developer. Your
-                team can ship to many platforms without sacrificing the user
-                experience. Your organization can bridge the platform silos, and
-                form teams that own entire features end-to-end.
+                使用 React，你可以同時開發網頁與原生應用。
+                <br />
+                團隊能在維持最佳使用者體驗的前提下，輕鬆跨平台發佈；
+                <br />
+                組織也能整合平台間的隔閡，打造能完整負責功能開發的團隊。
               </Para>
               <div className="flex justify-start w-full lg:justify-center">
                 <CTA color="gray" icon="native" href="https://reactnative.dev/">
-                  Build for native platforms
+                  為原生平台開發應用程式
                 </CTA>
               </div>
             </div>
@@ -439,23 +440,28 @@ export function HomeContent() {
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:ps-5 lg:pe-10">
-                <Header>Upgrade when the future is ready</Header>
+                <Header>穩定可靠的升級流程</Header>
                 <Para>
-                  React approaches changes with care. Every React commit is
-                  tested on business-critical surfaces with over a billion
-                  users. Over 100,000 React components at Meta help validate
-                  every migration strategy.
+                  React 對待變更一向謹慎。
+                  <br />
+                  每一次 React
+                  的提交（commit）都會在超過十億使用者的商業關鍵場景中進行測試。
+                  <br />在 Meta 內部超過十萬個 React
+                  元件共同驗證每一次升級策略的可行性。
                 </Para>
                 <div className="order-last pt-5">
                   <Para>
-                    The React team is always researching how to improve React.
-                    Some research takes years to pay off. React has a high bar
-                    for taking a research idea into production. Only proven
-                    approaches become a part of React.
+                    React 團隊總是不斷搜尋如何改進 React.
+                    <br />
+                    有些研究甚至花費數年才能得到成效，
+                    <br />
+                    React 對將研究成果轉化為生產環境有著很高的標準。
+                    <br />
+                    只有經過驗證的方法才能成為 React 的一部分。
                   </Para>
                   <div className="hidden lg:flex justify-start w-full">
                     <CTA color="gray" icon="news" href="/blog">
-                      Read more React news
+                      閱讀更多 React 消息
                     </CTA>
                   </div>
                 </div>
@@ -463,7 +469,7 @@ export function HomeContent() {
               <div className="w-full lg:w-6/12">
                 <p className="uppercase tracking-wide font-bold text-sm text-tertiary dark:text-tertiary-dark flex flex-row gap-2 items-center mt-5 lg:-mt-2 w-full">
                   <IconChevron />
-                  Latest React News
+                  最新的 React 消息
                 </p>
                 <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-start my-5">
                   <div className="flex-1 min-w-[40%] text-start">
@@ -481,7 +487,7 @@ export function HomeContent() {
                 </div>
                 <div className="flex lg:hidden justify-start w-full">
                   <CTA color="gray" icon="news" href="/blog">
-                    Read more React news
+                    閱讀更多 React 消息
                   </CTA>
                 </div>
               </div>
@@ -494,13 +500,12 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Header>
-                  Join a community <br className="hidden lg:inline" />
-                  of millions
+                  加入數百萬人的社群 <br className="hidden lg:inline" />
                 </Header>
                 <Para>
-                  You’re not alone. Two million developers from all over the
-                  world visit the React docs every month. React is something
-                  that people and teams can agree on.
+                  你並不孤單。每個月都有200萬開發者從世界各地造訪React的文件，
+                  <br />
+                  React 是能讓人與團隊共同認可的選擇。
                 </Para>
               </Center>
             </div>
@@ -508,13 +513,17 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Para>
-                  This is why React is more than a library, an architecture, or
-                  even an ecosystem. React is a community. It’s a place where
-                  you can ask for help, find opportunities, and meet new
-                  friends. You will meet both developers and designers,
-                  beginners and experts, researchers and artists, teachers and
-                  students. Our backgrounds may be very different, but React
-                  lets us all create user interfaces together.
+                  這正是為什麼 React
+                  不僅僅是一個函式庫、一個框架，甚至不只是個生態系。
+                  <br />
+                  React
+                  是一個社群——在這裡，你可以尋求協助、發現機會，甚至結識新朋友。
+                  <br />
+                  你會在這裡遇見開發者與設計師、初學者與專家、研究人員與藝術家、老師與學生。
+                  <br />
+                  儘管我們的背景各不相同，React
+                  讓我們能夠齊聚一堂，創造出優秀的使用者介面。
+                  <br />
                 </Para>
               </Center>
             </div>
@@ -531,15 +540,15 @@ export function HomeContent() {
             </div>
             <Logo className="uwu-hidden text-brand dark:text-brand-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
-              Welcome to the <br className="hidden lg:inline" />
-              React community
+              歡迎來到 <br className="hidden lg:inline" />
+              React 社群
             </Header>
             <ButtonLink
               href={'/learn'}
               type="primary"
               size="lg"
               label="Take the Tutorial">
-              Get Started
+              立即開始
             </ButtonLink>
           </div>
         </Section>
