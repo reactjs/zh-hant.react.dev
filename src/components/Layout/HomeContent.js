@@ -170,7 +170,6 @@ export function HomeContent() {
             <Header>從元件建立使用者介面</Header>
             <Para>
               React 讓你以稱為「元件」的獨立部分來建立使用者介面。
-              <br />
               你也可以建立自己的 React 元件，例如： <Code>Thumbnail</Code>、
               <Code>LikeButton</Code>和 <Code>Video</Code>。
               接著將它們組合成完整的畫面、頁面與應用程式。
@@ -192,12 +191,9 @@ export function HomeContent() {
           <Center>
             <Header>使用程式碼與標記語法撰寫你的元件</Header>
             <Para>
-              React 元件是使用 JavaScript 函式。
-              <br />
-              想要依條件顯示內容嗎？使用 <Code>if</Code> 陳述式；
-              <br />
-              想要顯示一個列表嗎？試試陣列的 <Code>map()</Code>。<br />
-              學習 React，就是在學習程式設計。
+              React 元件是使用 JavaScript 函式。 想要依條件顯示內容嗎？使用{' '}
+              <Code>if</Code> 陳述式； 想要顯示一個列表嗎？試試陣列的{' '}
+              <Code>map()</Code>。 學習 React，就是在學習程式設計。
             </Para>
           </Center>
           <FullBleed>
@@ -206,8 +202,7 @@ export function HomeContent() {
           <Center>
             <Para>
               這種標記語法稱為 JSX。 它是一種由 React 推廣的 JavaScript
-              語法擴充。
-              <br />將 JSX 標記與相關的渲染邏輯放在一起，讓 React
+              語法擴充。 將 JSX 標記與相關的渲染邏輯放在一起，讓 React
               元件更容易建立、維護與刪除。
             </Para>
           </Center>
@@ -218,9 +213,7 @@ export function HomeContent() {
             <Header>依據需求增加互動功能</Header>
             <Para>
               React 元件會接收資料，並回傳要顯示在畫面上的內容。
-              <br />
               當使用者與介面互動時，例如在輸入框輸入文字，你可以傳入新的資料。
-              <br />
               React 會自動更新畫面，讓內容與最新資料一致。
             </Para>
           </Center>
@@ -229,11 +222,8 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              你不需要用 React 建立整個頁面。
-              <br />
-              只要將 React 加入現有的 HTML 頁面，
-              <br />
-              就能在頁面的任何地方渲染互動式的 React 元件。
+              你不需要用 React 建立整個頁面。 只要將 React 加入現有的 HTML
+              頁面， 就能在頁面的任何地方渲染互動式的 React 元件。
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
@@ -255,11 +245,8 @@ export function HomeContent() {
             </Header>
             <Para>
               React 是一個函式庫。
-              <br />
               它讓你能將元件組合在一起，但不會規範路由或資料擷取的方式。
-              <br />
               若要使用 React 建立完整的應用程式，我們建議使用全端 React 框架，
-              <br />
               例如 <Link href="https://nextjs.org">Next.js</Link> 或{' '}
               <Link href="https://reactrouter.com">React Router</Link>.
             </Para>
@@ -270,9 +257,7 @@ export function HomeContent() {
           <Center>
             <Para>
               React 同時也是一種架構。
-              <br />
               實作該架構的框架允許你在伺服器端，甚至在建置階段，於非同步元件中擷取資料。
-              <br />
               你可以從檔案或資料庫讀取資料，並將它傳遞到互動式元件中。
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
@@ -290,10 +275,8 @@ export function HomeContent() {
             <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
               <Header>善用各平台的優勢</Header>
               <Para>
-                人們喜歡網頁和原生應用程式的原因不同。
-                <br />
-                React 讓你能運用相同的技能來開發兩者。
-                <br />
+                人們喜歡網頁和原生應用程式的原因不同。 React
+                讓你能運用相同的技能來開發兩者。
                 它善用各平台的獨特優勢，讓介面在每個平台上都感覺恰到好處。
               </Para>
             </div>
@@ -311,14 +294,10 @@ export function HomeContent() {
                         忠於網頁
                       </h4>
                       <p className="lg:text-xl leading-normal text-secondary">
-                        使用者期望網頁應用程式能快速載入。
-                        <br />
-                        在伺服器端，React 允許你在仍在擷取資料時就開始串流傳送
-                        HTML，
-                        <br />
-                        並在 JavaScript 程式碼載入前逐步填入剩餘內容。
+                        使用者期望網頁應用程式能快速載入。 在伺服器端，React
+                        允許你在仍在擷取資料時就開始串流傳送 HTML， 並在
+                        JavaScript 程式碼載入前逐步填入剩餘內容。
                         在用戶端，React 可以利用標準的 Web API，
-                        <br />
                         讓你的介面即使在渲染過程中也能保持即時回應。
                       </p>
                     </div>
@@ -408,7 +387,6 @@ export function HomeContent() {
                           <Link href="https://github.com/expo/expo">Expo</Link>{' '}
                           讓你能使用 React 來開發 Android、iOS
                           以及更多平台的應用程式。
-                          <br />
                           它們在外觀和操作如同原生應用程式，因為它們的使用者介面是真正的原生
                           UI。 這並非透過網頁開啟，而是React
                           元件直接渲染出平台所提供的原生 Android 與 iOS 畫面。
@@ -422,9 +400,7 @@ export function HomeContent() {
             <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
               <Para>
                 使用 React，你可以同時開發網頁與原生應用。
-                <br />
                 團隊能在維持最佳使用者體驗的前提下，輕鬆跨平台發佈；
-                <br />
                 組織也能整合平台間的隔閡，打造能完整負責功能開發的團隊。
               </Para>
               <div className="flex justify-start w-full lg:justify-center">
@@ -442,21 +418,16 @@ export function HomeContent() {
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:ps-5 lg:pe-10">
                 <Header>穩定可靠的升級流程</Header>
                 <Para>
-                  React 對待變更一向謹慎。
-                  <br />
-                  每一次 React
+                  React 對待變更一向謹慎。 每一次 React
                   的提交（commit）都會在超過十億使用者的商業關鍵場景中進行測試。
-                  <br />在 Meta 內部超過十萬個 React
+                  在 Meta 內部超過十萬個 React
                   元件共同驗證每一次升級策略的可行性。
                 </Para>
                 <div className="order-last pt-5">
                   <Para>
                     React 團隊總是不斷搜尋如何改進 React.
-                    <br />
-                    有些研究甚至花費數年才能得到成效，
-                    <br />
-                    React 對將研究成果轉化為生產環境有著很高的標準。
-                    <br />
+                    有些研究甚至花費數年才能得到成效， React
+                    對將研究成果轉化為生產環境有著很高的標準。
                     只有經過驗證的方法才能成為 React 的一部分。
                   </Para>
                   <div className="hidden lg:flex justify-start w-full">
@@ -504,7 +475,6 @@ export function HomeContent() {
                 </Header>
                 <Para>
                   你並不孤單。每個月都有200萬開發者從世界各地造訪React的文件，
-                  <br />
                   React 是能讓人與團隊共同認可的選擇。
                 </Para>
               </Center>
@@ -514,16 +484,11 @@ export function HomeContent() {
               <Center>
                 <Para>
                   這正是為什麼 React
-                  不僅僅是一個函式庫、一個框架，甚至不只是個生態系。
-                  <br />
-                  React
+                  不僅僅是一個函式庫、一個框架，甚至不只是個生態系。 React
                   是一個社群——在這裡，你可以尋求協助、發現機會，甚至結識新朋友。
-                  <br />
                   你會在這裡遇見開發者與設計師、初學者與專家、研究人員與藝術家、老師與學生。
-                  <br />
                   儘管我們的背景各不相同，React
                   讓我們能夠齊聚一堂，創造出優秀的使用者介面。
-                  <br />
                 </Para>
               </Center>
             </div>
