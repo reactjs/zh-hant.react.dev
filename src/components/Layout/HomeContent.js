@@ -215,7 +215,7 @@ export function HomeContent() {
 
         <Section background="left-card">
           <Center>
-            <Header>依據需求添加互動功能</Header>
+            <Header>依據需求增加互動功能</Header>
             <Para>
               React 元件會接收資料，並回傳要顯示在畫面上的內容。
               <br />
