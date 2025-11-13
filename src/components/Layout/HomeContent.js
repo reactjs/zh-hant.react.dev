@@ -240,7 +240,7 @@ export function HomeContent() {
                 color="gray"
                 icon="code"
                 href="/learn/add-react-to-an-existing-project">
-                在你的頁面上添加React
+                將 React 加入到你的頁面
               </CTA>
             </div>
           </Center>
