@@ -192,7 +192,7 @@ export function HomeContent() {
           <Center>
             <Header>使用程式碼與標記語法撰寫你的元件</Header>
             <Para>
-              React 元件是使用JavaScript 函式。
+              React 元件是使用 JavaScript 函式。
               <br />
               想要依條件顯示內容嗎？使用 <Code>if</Code> 陳述式；
               <br />
