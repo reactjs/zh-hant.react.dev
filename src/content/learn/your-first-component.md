@@ -215,7 +215,11 @@ function Profile() {
 
 你的 React 應用程式從「root」component 開始。通常，在你啟動一個新專案時，它會自動被建立。例如，如果你使用 [CodeSandbox](https://codesandbox.io/) 或 [Next.js](https://nextjs.org/) 框架，root component 會定義在 pages/index.js 中。在這些例子中，你一直在 export root component。
 
+<<<<<<< HEAD
 [基於 React 的框架](/learn/creating-a-react-app)更進一步。它們不使用空的 HTML 檔案，然後讓 React 用 JavaScript「接管」頁面管理，而是*也*會從你的 React 元件自動生成 HTML。這讓你的應用程式能夠在 JavaScript 程式碼載入之前就顯示一些內容。
+=======
+[React-based frameworks](/learn/creating-a-react-app) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+>>>>>>> e22544e68d6fffda33332771efe27034739f35a4
 
 [基於 React 的框架]((/learn/start-a-new-react-project)) 更進一步。它們不只是使用空的 HTML 檔案並讓 React 通過 JavaScript 管理頁面，它們*還會*自動從你的 React component 中生成 HTML。這使得你的應用程式在 JavaScript 程式碼載入之前就能顯示一些內容。
 
