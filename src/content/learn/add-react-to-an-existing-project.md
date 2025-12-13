@@ -20,9 +20,15 @@ title: 將 React 加入到一個現有的專案
 
 以下是我們推薦的設定方式：
 
+<<<<<<< HEAD
 1. 使用其中一個[基於 React 的框架](/learn/creating-a-react-app)來**建構你的應用程式中的 React 部分**。
 2. **在你的框架設定中指定 `/some-app` 作為*基本路徑***。（這裡是如何設定：[Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath)、[Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/))。
 3. **設定你的伺服器或代理**，讓所有在 `/some-app/` 下的請求都由 React 應用程式處理。
+=======
+1. **Build the React part of your app** using one of the [React-based frameworks](/learn/creating-a-react-app).
+2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
+>>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
 
 這可確保你的應用程式的 React 部分可以[受益於融入這些框架的最佳實踐](/learn/build-a-react-app-from-scratch#consider-using-a-framework)。
 
@@ -149,7 +155,11 @@ root.render(<NavigationBar />);
 
 注意原始的 HTML 內容從 `index.html` 被保留下來，但是你自己的 `NavigationBar` React component 現在出現在你 HTML 中的 `<nav id="navigation">` 內。閱讀 [`createRoot` 使用文件](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react)以了解更多關於在現有 HTML 頁面中 render React component 的資訊。
 
+<<<<<<< HEAD
 當你在現有的專案中採用 React 時，通常會從小的互動式 component（如按鈕）開始，然後逐漸「向上移動」，直到最終整個頁面都是使用 React 建構的。如果你達到了那裡，我們建議立即遷移到[一個 React 框架](/learn/creating-a-react-app) ，以充分利用 React 的優勢。
+=======
+When you adopt React in an existing project, it's common to start with small interactive components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/creating-a-react-app) right after to get the most out of React.
+>>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
 
 ## 在現有的原生手機應用程式中使用 React Native {/*using-react-native-in-an-existing-native-mobile-app*/}
 
