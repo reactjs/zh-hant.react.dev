@@ -1,37 +1,37 @@
 ---
-title: 'Lifecycle of Reactive Effects'
+title: '響應式 Effect 的生命週期'
 ---
 
 <Intro>
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and state.
+Effect 和元件的生命週期並不相同。元件會掛載（mount）、更新或卸載(unmount)。Effect 只能做兩件事：開始同步某件事，並在稍後結束同步。如果你的 Effect 依賴隨著時間改變屬性（props）及狀態，這個循環可以發生很多次。React 有提供一個 linter 規範來檢查是否已經正確指定 Effect 的依賴項目。這能讓你的 Effect 與最新的屬性和狀態保持同步。
 
 </Intro>
 
 <YouWillLearn>
 
-- How an Effect's lifecycle is different from a component's lifecycle
-- How to think about each individual Effect in isolation
-- When your Effect needs to re-synchronize, and why
-- How your Effect's dependencies are determined
-- What it means for a value to be reactive
-- What an empty dependency array means
-- How React verifies your dependencies are correct with a linter
-- What to do when you disagree with the linter
+- 如何區分 Effect 的生命週期和元件的生命週期
+- 如何思考每個獨立的 Effect
+- 什麼時候、為什麼你的 Effect 會需要重新同步（re-synchronize）
+- 如何決定 Effect 的依賴
+- 響應式（reactive）的值所代表的意義
+- 依賴是空陣列時所代表的意義
+- React 如何以 linter 驗證依賴是否正確
+- 當不同意 linter 時該怎麼做
 
 </YouWillLearn>
 
-## The lifecycle of an Effect {/*the-lifecycle-of-an-effect*/}
+## Effect 的生命週期 {/*the-lifecycle-of-an-effect*/}
 
-Every React component goes through the same lifecycle:
+每個 React 的元件都會經歷同樣的生命週期：
 
-- A component _mounts_ when it's added to the screen.
-- A component _updates_ when it receives new props or state, usually in response to an interaction.
-- A component _unmounts_ when it's removed from the screen.
+- _掛載_：元件被新增到畫面中。
+- _更新_：元件接收新的屬性或狀態，通常是在回應一個互動。
+- _卸載_：元件從畫面中被移除。
 
-**It's a good way to think about components, but _not_ about Effects.** Instead, try to think about each Effect independently from your component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and state. As your code changes, synchronization will need to happen more or less often.
+**這是一個思考元件的好方法，但不適用於 Effect。** 應該試著將每個 Effect 獨立於元件來思考。Effect 是用來描述如何以當前的屬性及狀態[同步一個外部系統](/learn/synchronizing-with-effects)。隨著程式碼改變，同步的頻率會增加或減少。
 
-To illustrate this point, consider this Effect connecting your component to a chat server:
+為了說明這一點，來看看一個將元件連線到聊天伺服器的 Effect：
 
 ```js
 const serverUrl = 'https://localhost:1234';
@@ -48,7 +48,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Your Effect's body specifies how to **start synchronizing:**
+Effect 的主體（body）指定如何 **開始同步**：
 
 ```js {2-3}
     // ...
@@ -60,7 +60,7 @@ Your Effect's body specifies how to **start synchronizing:**
     // ...
 ```
 
-The cleanup function returned by your Effect specifies how to **stop synchronizing:**
+以 Effect 回傳的清除函式（cleanup function）指定如何 **停止同步**：
 
 ```js {5}
     // ...
@@ -72,141 +72,141 @@ The cleanup function returned by your Effect specifies how to **stop synchronizi
     // ...
 ```
 
-Intuitively, you might think that React would **start synchronizing** when your component mounts and **stop synchronizing** when your component unmounts. However, this is not the end of the story! Sometimes, it may also be necessary to **start and stop synchronizing multiple times** while the component remains mounted.
+直覺上，你可能覺得 React 會在元件掛載時 **開始同步**，並在元件卸載時 **結束同步**。然而這並不是故事的結局！有時候，當元件維持在掛載的狀態時，也可能需要 **開始和結束同步很多次**。
 
-Let's look at _why_ this is necessary, _when_ it happens, and _how_ you can control this behavior.
+讓我們來看看 _為什麼_ 這是必要的，以及 _什麼時候_ 會發生這個情形，還有 _如何_ 控制這個行為。
 
 <Note>
 
-Some Effects don't return a cleanup function at all. [More often than not,](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) you'll want to return one--but if you don't, React will behave as if you returned an empty cleanup function.
+有些 Effect 並不會回傳清除函式。[更多時候](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)，你會想回傳一個清除函式——但如果你沒有回傳，React 會表現得像是你回傳了一個空的清除函式。
 
 </Note>
 
-### Why synchronization may need to happen more than once {/*why-synchronization-may-need-to-happen-more-than-once*/}
+### 為什麼可能需要同步不止一次 {/*why-synchronization-may-need-to-happen-more-than-once*/}
 
-Imagine this `ChatRoom` component receives a `roomId` prop that the user picks in a dropdown. Let's say that initially the user picks the `"general"` room as the `roomId`. Your app displays the `"general"` chat room:
+想像一下 `ChatRoom` 元件接收一個 `roomId` 屬性，是使用者在下拉式選單選取的值。一開始使用者選了 `"general"` 作為 `roomId`。你的應用程式會顯示 `"general"` 這個聊天室：
 
 ```js {3}
 const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId /* "general" */ }) {
   // ...
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>歡迎來到 {roomId} 聊天室！</h1>;
 }
 ```
 
-After the UI is displayed, React will run your Effect to **start synchronizing.** It connects to the `"general"` room:
+當 UI 顯示後，React 會執行你的 Effect 來 **開始同步**，它會連上 `"general"` 聊天室：
 
 ```js {3,4}
 function ChatRoom({ roomId /* "general" */ }) {
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Connects to the "general" room
+    const connection = createConnection(serverUrl, roomId); // 連線到 "general" 聊天室
     connection.connect();
     return () => {
-      connection.disconnect(); // Disconnects from the "general" room
+      connection.disconnect(); // 從 "general" 聊天室中斷連線
     };
   }, [roomId]);
   // ...
 ```
 
-So far, so good.
+到目前為止，一切都很好。
 
-Later, the user picks a different room in the dropdown (for example, `"travel"`). First, React will update the UI:
+接著，使用者從下拉式選單選擇一個不同的房間（例如 `"travel"`）。一開始 React 會更新 UI：
 
 ```js {1}
 function ChatRoom({ roomId /* "travel" */ }) {
   // ...
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>歡迎來到 {roomId} 聊天室！</h1>;
 }
 ```
 
-Think about what should happen next. The user sees that `"travel"` is the selected chat room in the UI. However, the Effect that ran the last time is still connected to the `"general"` room. **The `roomId` prop has changed, so what your Effect did back then (connecting to the `"general"` room) no longer matches the UI.**
+想想看接下來應該會發生什麼事。使用者在 UI 中看到 `"travel"` 聊天室被選取，但上一次執行的 Effect 還是連線到 `"general"` 房間。**因為 `roomId` 屬性已經改變了，所以後續你的 Effect （與 `"general"` 聊天室連線）與 UI 並不相符**。
 
-At this point, you want React to do two things:
+基於這點，你會希望 React 能做兩件事：
 
-1. Stop synchronizing with the old `roomId` (disconnect from the `"general"` room)
-2. Start synchronizing with the new `roomId` (connect to the `"travel"` room)
+1. 停止以舊的 `roomId` 同步（從 `"general"` 聊天室中斷連線）
+2. 開始以新的 `roomId` 同步（連線到 `"travel"` 聊天室）
 
-**Luckily, you've already taught React how to do both of these things!** Your Effect's body specifies how to start synchronizing, and your cleanup function specifies how to stop synchronizing. All that React needs to do now is to call them in the correct order and with the correct props and state. Let's see how exactly that happens.
+**幸運的是，你已經告訴 React 要怎麼做這兩件事！**Effect 的主體指定如何開始同步，而清除函式則是指定如何停止同步。React 必須做的就只是以正確的順序，並使用正確的屬性和狀態來呼叫它們。讓我們來看看到底是怎麼發生的。
 
-### How React re-synchronizes your Effect {/*how-react-re-synchronizes-your-effect*/}
+### React 如何重新同步你的 Effect {/*how-react-re-synchronizes-your-effect*/}
 
-Recall that your `ChatRoom` component has received a new value for its `roomId` prop. It used to be `"general"`, and now it is `"travel"`. React needs to re-synchronize your Effect to re-connect you to a different room.
+回想一下 `ChatRoom` 元件已經從 `roomId` 屬性接收了新的值。這個值原本是 `"general"`，現在則是 `"travel"`。React 需要重新同步 Effect，以重新連線到不同的房間。
 
-To **stop synchronizing,** React will call the cleanup function that your Effect returned after connecting to the `"general"` room. Since `roomId` was `"general"`, the cleanup function disconnects from the `"general"` room:
+為了 **停止同步**，React 會在連線到 `"general"` 聊天室後，呼叫 Effect 回傳的清除函式。因為 `roomId` 是 `"general"`，清除函式會從 `"general"` 聊天室中斷連線：
 
 ```js {6}
 function ChatRoom({ roomId /* "general" */ }) {
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Connects to the "general" room
+    const connection = createConnection(serverUrl, roomId); // 連線到 "general" 聊天室
     connection.connect();
     return () => {
-      connection.disconnect(); // Disconnects from the "general" room
+      connection.disconnect(); // 從 "general" 聊天室中斷連線
     };
     // ...
 ```
 
-Then React will run the Effect that you've provided during this render. This time, `roomId` is `"travel"` so it will **start synchronizing** to the `"travel"` chat room (until its cleanup function is eventually called too):
+接著 React 會執行你在渲染期間就已經提供的 Effect。這次，`roomId` 是 `"travel"`，所以會 **開始同步** 到 `"travel"` 聊天室（也是直到 Effect 的清除函式最後被呼叫）：
 
 ```js {3,4}
 function ChatRoom({ roomId /* "travel" */ }) {
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Connects to the "travel" room
+    const connection = createConnection(serverUrl, roomId); // 連線到 "travel" 聊天室
     connection.connect();
     // ...
 ```
 
-Thanks to this, you're now connected to the same room that the user chose in the UI. Disaster averted!
+多虧這樣，你現在連到和使用者在 UI 中所選相同的房間。災難解除！
 
-Every time after your component re-renders with a different `roomId`, your Effect will re-synchronize. For example, let's say the user changes `roomId` from `"travel"` to `"music"`. React will again **stop synchronizing** your Effect by calling its cleanup function (disconnecting you from the `"travel"` room). Then it will **start synchronizing** again by running its body with the new `roomId` prop (connecting you to the `"music"` room).
+每次元件以不同的 `roomId` 重渲染（re-render）之後，Effect 就會重新同步。舉例來說，使用者把 `roomId` 從 `"travel"` 改成 `"music"`。React 會再次以清除函式 **停止同步** Effect（從 `"travel"` 聊天室中斷連線）。接著 React 會執行 Effect 的主體，以新的 `roomId` 屬性再次 **開始同步**（讓你連線到 `"music"` 聊天室）。
 
-Finally, when the user goes to a different screen, `ChatRoom` unmounts. Now there is no need to stay connected at all. React will **stop synchronizing** your Effect one last time and disconnect you from the `"music"` chat room.
+最後，當使用者去到不同的畫面，`ChatRoom` 卸載。現在完全沒必要保持連線了。React 會最後一次 **停止同步** 你的 Effect，並中斷你和 `"music"` 聊天室的連線。
 
-### Thinking from the Effect's perspective {/*thinking-from-the-effects-perspective*/}
+### 從 Effect 的觀點來思考 {/*thinking-from-the-effects-perspective*/}
 
-Let's recap everything that's happened from the `ChatRoom` component's perspective:
+讓我們從 `ChatRoom` 元件的視角回顧所有發生的事：
 
-1. `ChatRoom` mounted with `roomId` set to `"general"`
-1. `ChatRoom` updated with `roomId` set to `"travel"`
-1. `ChatRoom` updated with `roomId` set to `"music"`
-1. `ChatRoom` unmounted
+1. `roomId` 被設定為 `"general"`，`ChatRoom` 掛載
+1. `roomId` 被設定為 `"travel"`，`ChatRoom` 更新
+1. `roomId` 被設定為 `"music"`，`ChatRoom` 更新
+1. `ChatRoom` 卸載
 
-During each of these points in the component's lifecycle, your Effect did different things:
+在元件的每個生命週期的點上，你的 Effect 做了不同的事情：
 
-1. Your Effect connected to the `"general"` room
-1. Your Effect disconnected from the `"general"` room and connected to the `"travel"` room
-1. Your Effect disconnected from the `"travel"` room and connected to the `"music"` room
-1. Your Effect disconnected from the `"music"` room
+1. 你的 Effect 連線到 `"general"` 聊天室
+1. 你的 Effect 從 `"general"` 聊天室中斷連線，並連線到 `"travel"` 聊天室
+1. 你的 Effect 從 `"travel"` 聊天室中斷連線，並連線到 `"music"` 聊天室
+1. 你的 Effect 從 `"music"` 聊天室中斷連線
 
-Now let's think about what happened from the perspective of the Effect itself:
+現在讓我們從 Effect 本身的視角來思考發生什麼事：
 
 ```js
   useEffect(() => {
-    // Your Effect connected to the room specified with roomId...
+    // 你的 Effect 連線到以 roomId 指定的聊天室⋯⋯
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => {
-      // ...until it disconnected
+      // ⋯⋯直到它中斷連線
       connection.disconnect();
     };
   }, [roomId]);
 ```
 
-This code's structure might inspire you to see what happened as a sequence of non-overlapping time periods:
+這段程式碼的結構可能會啟發你將發生的事情視為一系列互不重疊的時間段：
 
-1. Your Effect connected to the `"general"` room (until it disconnected)
-1. Your Effect connected to the `"travel"` room (until it disconnected)
-1. Your Effect connected to the `"music"` room (until it disconnected)
+1. 你的 Effect 連線到 `"general"` 房間（直到它中斷連線）
+2. 你的 Effect 連線到 `"travel"` 房間（直到它中斷連線）
+3. 你的 Effect 連線到 `"music"` 房間（直到它中斷連線）
 
-Previously, you were thinking from the component's perspective. When you looked from the component's perspective, it was tempting to think of Effects as "callbacks" or "lifecycle events" that fire at a specific time like "after a render" or "before unmount". This way of thinking gets complicated very fast, so it's best to avoid.
+之前，你是以元件的視角來思考。當你以元件的角度來看，會傾向將 Effect 視為「callback」或「生命週期事件（lifecycle event）」，在特定的時間觸發，像是「渲染之後」或「卸載之前」。這種思考方式會快速地變複雜，所以最好避免。
 
-**Instead, always focus on a single start/stop cycle at a time. It shouldn't matter whether a component is mounting, updating, or unmounting. All you need to do is to describe how to start synchronization and how to stop it. If you do it well, your Effect will be resilient to being started and stopped as many times as it's needed.**
+**取而代之的是，每次只關注一個單一的開始/結束循環。元件是否掛載、更新或卸載並不重要。你只需要去描述如何開始同步及如何結束它。如果處理得好，你的 Effect 就會經得起多次所需的開始和結束。**
 
-This might remind you how you don't think whether a component is mounting or updating when you write the rendering logic that creates JSX. You describe what should be on the screen, and React [figures out the rest.](/learn/reacting-to-input-with-state)
+這可能會讓你想到，當你在撰寫創建 JSX 的渲染邏輯時，如何不去考慮元件是否掛載或更新。只要描述畫面上應該有什麼，React [會解決其餘的部分](/learn/reacting-to-input-with-state)。
 
-### How React verifies that your Effect can re-synchronize {/*how-react-verifies-that-your-effect-can-re-synchronize*/}
+### React 如何驗證你的 Effect 能否重新同步 {/*how-react-verifies-that-your-effect-can-re-synchronize*/}
 
-Here is a live example that you can play with. Press "Open chat" to mount the `ChatRoom` component:
+這邊有一個範例，你可以玩玩看。按下「開啟對話」來掛載 `ChatRoom` 元件：
 
 <Sandpack>
 
@@ -222,7 +222,7 @@ function ChatRoom({ roomId }) {
     connection.connect();
     return () => connection.disconnect();
   }, [roomId]);
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>歡迎來到 {roomId} 聊天室！</h1>;
 }
 
 export default function App() {
@@ -231,18 +231,18 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        選擇聊天室：{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">一般</option>
+          <option value="travel">旅行</option>
+          <option value="music">音樂</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? '關閉對話' : '開啟對話'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -253,13 +253,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ 連線到 "' + roomId + '" 聊天室，位於 ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ 從 "' + roomId + '" 聊天室中斷連線，位於 ' + serverUrl);
     }
   };
 }
@@ -272,49 +272,49 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that when the component mounts for the first time, you see three logs:
+注意元件第一次掛載時，你會看到三筆紀錄：
 
-1. `✅ Connecting to "general" room at https://localhost:1234...` *(development-only)*
-1. `❌ Disconnected from "general" room at https://localhost:1234.` *(development-only)*
-1. `✅ Connecting to "general" room at https://localhost:1234...`
+1. `✅ 連線到 "general" 聊天室，位於 https://localhost:1234...` *(development-only)*
+2. `❌ 從 "general" 聊天室中斷連線，位於 https://localhost:1234.` *(development-only)*
+3. `✅ 連線到 "general" 聊天室，位於 https://localhost:1234...`
 
-The first two logs are development-only. In development, React always remounts each component once.
+前兩筆紀錄僅限開發模式。在開發模式中，React 會重複掛載每個元件一次。
 
-**React verifies that your Effect can re-synchronize by forcing it to do that immediately in development.** This might remind you of opening a door and closing it an extra time to check if the door lock works. React starts and stops your Effect one extra time in development to check [you've implemented its cleanup well.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+**React 強迫 Effect 在開發模式立刻這麼做，來驗證你的 Effect 能否重新同步。** 這可能會讓你聯想到開門後，將門關上第二次，來確認門鎖是否管用。React 在開發模式額外開始並結束你的 Effect 一次，以檢查[你已經確實實作清除函式](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)了。
 
-The main reason your Effect will re-synchronize in practice is if some data it uses has changed. In the sandbox above, change the selected chat room. Notice how, when the `roomId` changes, your Effect re-synchronizes.
+實務上，Effect 會重新同步的主要原因，是它使用到的某些資料改變了。在上面的沙盒中，是改變所選的聊天室。注意當 `roomId` 改變時，Effect 如何重新同步。
 
-However, there are also more unusual cases in which re-synchronization is necessary. For example, try editing the `serverUrl` in the sandbox above while the chat is open. Notice how the Effect re-synchronizes in response to your edits to the code. In the future, React may add more features that rely on re-synchronization.
+不過，也有一些少見的狀況，是必須要重新同步的。例如，當聊天開啟時，試著編輯上面沙盒中的 `serverUrl`。注意 Effect 如何隨著你編輯程式碼，來重新同步。未來 React 可能會增加一些依賴重新同步的功能。
 
-### How React knows that it needs to re-synchronize the Effect {/*how-react-knows-that-it-needs-to-re-synchronize-the-effect*/}
+### React 如何得知需要重新同步 Effect {/*how-react-knows-that-it-needs-to-re-synchronize-the-effect*/}
 
-You might be wondering how React knew that your Effect needed to re-synchronize after `roomId` changes. It's because *you told React* that its code depends on `roomId` by including it in the [list of dependencies:](/learn/synchronizing-with-effects#step-2-specify-the-effect-dependencies)
+你可能在想 React 是怎麼知道 Effect 在 `roomId` 改變後，需要重新同步。這是因為 *你告訴 React* 它的程式碼依賴 `roomId`，藉由[依賴的清單](/learn/synchronizing-with-effects#step-2-specify-the-effect-dependencies)：
 
 ```js {1,3,8}
-function ChatRoom({ roomId }) { // The roomId prop may change over time
+function ChatRoom({ roomId }) { // roomId 屬性可能隨著時間改變
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // This Effect reads roomId 
+    const connection = createConnection(serverUrl, roomId); // Effect 讀取 roomId
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId]); // So you tell React that this Effect "depends on" roomId
+  }, [roomId]); // 所以你告訴 React 這個 Effect「依賴」roomId
   // ...
 ```
 
-Here's how this works:
+運作方式如下：
 
-1. You knew `roomId` is a prop, which means it can change over time.
-2. You knew that your Effect reads `roomId` (so its logic depends on a value that may change later).
-3. This is why you specified it as your Effect's dependency (so that it re-synchronizes when `roomId` changes).
+1. 你知道 `roomId` 是一個屬性，這意味著它會隨著時間改變
+2. 你知道你的 Effect 讀取 `roomId`（所以它的邏輯依賴稍後可能會改變的值）。
+3. 這就是為什麼你指定 `roomId` 作為你的 Effect 的依賴（以至於 Effect 會在 `roomId` 改變時重新同步）。
 
-Every time after your component re-renders, React will look at the array of dependencies that you have passed. If any of the values in the array is different from the value at the same spot that you passed during the previous render, React will re-synchronize your Effect.
+每次元件重渲染之後，React 會查看你傳入的依賴陣列。如果有任一個陣列中的值和你在上一次渲染中傳入的值不同，React 就會重新同步你的 Effect。
 
-For example, if you passed `["general"]` during the initial render, and later you passed `["travel"]` during the next render, React will compare `"general"` and `"travel"`. These are different values (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), so React will re-synchronize your Effect. On the other hand, if your component re-renders but `roomId` has not changed, your Effect will remain connected to the same room.
+舉例來說，如果你在初次渲染時傳入 `["general"]`，接著在下一次渲染傳入 `["travel"]`，React 會比較 `"general"` 和 `"travel"`。這兩個值不同（用 [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 來作比較），所以 React 會重新同步你的 Effect。另一方面，如果元件重新渲染，但 `roomId` 沒有改變，你的 Effect 就會維持同一個聊天室的連線。
 
-### Each Effect represents a separate synchronization process {/*each-effect-represents-a-separate-synchronization-process*/}
+### 每個 Effect 都代表一個獨立的同步程序 {/*each-effect-represents-a-separate-synchronization-process*/}
 
-Resist adding unrelated logic to your Effect only because this logic needs to run at the same time as an Effect you already wrote. For example, let's say you want to send an analytics event when the user visits the room. You already have an Effect that depends on `roomId`, so you might feel tempted to add the analytics call there:
+避免只因為一些邏輯需要和你已經寫好的 Effect 同時執行，就在 Effect 中加入無關的邏輯。例如，假設你想要在使用者訪問聊天室時，傳送一個分析事件（analytics event）。你已經有一個依賴 `roomId` 的 Effect，所以你可能會感覺可以把分析的呼叫加進去：
 
 ```js {3}
 function ChatRoom({ roomId }) {
@@ -330,7 +330,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-But imagine you later add another dependency to this Effect that needs to re-establish the connection. If this Effect re-synchronizes, it will also call `logVisit(roomId)` for the same room, which you did not intend. Logging the visit **is a separate process** from connecting. Write them as two separate Effects:
+但想像一下你接著會將另一個依賴加到這個 Effect，而這個 Effect 需要重新建立連線。如果這個 Effect 重新同步，它就會在同一個聊天室呼叫 `logVisit(roomId)`，而這不是你想要的。紀錄訪問和連線 **是不同的程序**。應該將它們寫成分別的兩個 Effect：
 
 ```js {2-4}
 function ChatRoom({ roomId }) {
@@ -346,13 +346,13 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-**Each Effect in your code should represent a separate and independent synchronization process.**
+**在你的程式碼中，每個 Effect 應該代表分別且獨立的同步程序。**
 
-In the above example, deleting one Effect wouldn’t break the other Effect's logic. This is a good indication that they synchronize different things, and so it made sense to split them up. On the other hand, if you split up a cohesive piece of logic into separate Effects, the code may look "cleaner" but will be [more difficult to maintain.](/learn/you-might-not-need-an-effect#chains-of-computations) This is why you should think whether the processes are same or separate, not whether the code looks cleaner.
+在上面的範例中，刪除其中一個 Effect 並不會毀壞另一個 Effect 的邏輯。這很好地顯示了它們是同步不同的東西，所以將它們分開是合理的。另一方面，如果你將一段內聚（cohesive）的邏輯拆分成分別的 Effect，程式碼可能看起來「比較簡潔」，但可能會[更難維護](/learn/you-might-not-need-an-effect#chains-of-computations)。這也是為什麼你應該思考這些程序是相同還是分開的，而不是程式碼看起來是否簡潔。
 
-## Effects "react" to reactive values {/*effects-react-to-reactive-values*/}
+## Effect 對響應式數值的「反應（react）」 {/*effects-react-to-reactive-values*/}
 
-Your Effect reads two variables (`serverUrl` and `roomId`), but you only specified `roomId` as a dependency:
+你的 Effect 讀取兩個變數（`serverUrl` 和 `roomId`），但你只指定 `roomId` 作為依賴：
 
 ```js {5,10}
 const serverUrl = 'https://localhost:1234';
@@ -369,32 +369,32 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Why doesn't `serverUrl` need to be a dependency?
+為什麼 `serverUrl` 不需要被指定為依賴？
 
-This is because the `serverUrl` never changes due to a re-render. It's always the same no matter how many times the component re-renders and why. Since `serverUrl` never changes, it wouldn't make sense to specify it as a dependency. After all, dependencies only do something when they change over time!
+這是因為 `serverUrl` 完全不會因為重渲染而改變。不管元件重渲染多少次，`serverUrl` 都是一樣的。因為 `serverUrl` 不會改變，沒道理將它指定為依賴。畢竟，依賴只會在隨著時間改變時做一些事！
 
-On the other hand, `roomId` may be different on a re-render. **Props, state, and other values declared inside the component are _reactive_ because they're calculated during rendering and participate in the React data flow.**
+另一方面，`roomId` 在重渲染時可能不同。**屬性、狀態和元件中其它被宣告的值是 _響應式的_，因為它們是在渲染時被計算，而且參與了 React 的資料流。**
 
-If `serverUrl` was a state variable, it would be reactive. Reactive values must be included in dependencies:
+如果 `serverUrl` 是一個狀態變數（state variable），它就會是響應式的。響應式的值必須包含在依賴中：
 
 ```js {2,5,10}
-function ChatRoom({ roomId }) { // Props change over time
-  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // State may change over time
+function ChatRoom({ roomId }) { // 屬性隨著時間改變
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // 狀態可能隨著時間改變
 
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Your Effect reads props and state
+    const connection = createConnection(serverUrl, roomId); // Effect 讀取屬性和狀態
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId, serverUrl]); // So you tell React that this Effect "depends on" on props and state
+  }, [roomId, serverUrl]); // 所以你告訴 React，Effect「依賴」屬性和狀態
   // ...
 }
 ```
 
-By including `serverUrl` as a dependency, you ensure that the Effect re-synchronizes after it changes.
+藉由將 `serverUrl` 納入依賴，可以確保當它改變時，Effect 會重新同步。
 
-Try changing the selected chat room or edit the server URL in this sandbox:
+試著在沙盒中，改變所選的聊天室，或編輯伺服器位址：
 
 <Sandpack>
 
@@ -414,13 +414,13 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        伺服器位址：{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>歡迎來到 {roomId} 聊天室！</h1>
     </>
   );
 }
@@ -430,14 +430,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        選擇聊天室：{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">一般</option>
+          <option value="travel">旅行</option>
+          <option value="music">音樂</option>
         </select>
       </label>
       <hr />
@@ -449,13 +449,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ 連線到 "' + roomId + '" 聊天室，位於 ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ 從 "' + roomId + '" 聊天室中斷連線，位於 ' + serverUrl);
     }
   };
 }
@@ -468,11 +468,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Whenever you change a reactive value like `roomId` or `serverUrl`, the Effect re-connects to the chat server.
+無論什麼時候改變像 `roomId` 或 `serverUrl` 這樣的響應式數值，Effect 都會重新連線到聊天伺服器。
 
-### What an Effect with empty dependencies means {/*what-an-effect-with-empty-dependencies-means*/}
+### Effect 的依賴為空陣列時所代表的意義 {/*what-an-effect-with-empty-dependencies-means*/}
 
-What happens if you move both `serverUrl` and `roomId` outside the component?
+如果把 `serverUrl` 和 `roomId` 都移出元件，會發生什麼事？
 
 ```js {1,2}
 const serverUrl = 'https://localhost:1234';
@@ -485,15 +485,14 @@ function ChatRoom() {
     return () => {
       connection.disconnect();
     };
-  }, []); // ✅ All dependencies declared
+  }, []); // ✅ 所有宣告的依賴
   // ...
 }
 ```
 
-Now your Effect's code does not use *any* reactive values, so its dependencies can be empty (`[]`).
+現在 Effect 的程式碼沒有用到 *任何* 響應式的值，所以依賴可以是空的（`[]`）。
 
-Thinking from the component's perspective, the empty `[]` dependency array means this Effect connects to the chat room only when the component mounts, and disconnects only when the component unmounts. (Keep in mind that React would still [re-synchronize it an extra time](#how-react-verifies-that-your-effect-can-re-synchronize) in development to stress-test your logic.)
-
+從元件的角度來想，空的依賴陣列 `[]` 表示 Effect 只有在元件掛載時會連線到聊天室，並且只有在元件卸載時中斷連線。（記住 React 在開發模式仍然會[額外重新同步一次](#how-react-verifies-that-your-effect-can-re-synchronize)，對你的邏輯進行壓力測試。）
 
 <Sandpack>
 
@@ -510,7 +509,7 @@ function ChatRoom() {
     connection.connect();
     return () => connection.disconnect();
   }, []);
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>歡迎來到 {roomId} 聊天室！</h1>;
 }
 
 export default function App() {
@@ -518,7 +517,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? '關閉對話' : '開啟對話'}
       </button>
       {show && <hr />}
       {show && <ChatRoom />}
@@ -529,13 +528,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ 連線到 "' + roomId + '" 聊天室，位於 ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ 從 "' + roomId + '" 聊天室中斷連線，位於 ' + serverUrl);
     }
   };
 }
@@ -548,52 +547,52 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-However, if you [think from the Effect's perspective,](#thinking-from-the-effects-perspective) you don't need to think about mounting and unmounting at all. What's important is you've specified what your Effect does to start and stop synchronizing. Today, it has no reactive dependencies. But if you ever want the user to change `roomId` or `serverUrl` over time (and they would become reactive), your Effect's code won't change. You will only need to add them to the dependencies.
+不過，如果[從 Effect 的角度來看](#thinking-from-the-effects-perspective)，你完全不需要考慮掛載和卸載。重要的是，你已經清楚定義 Effect 要如何開始和結束同步。現在，Effect 沒有響應式的依賴。但如果你之後想讓使用者改變 `roomId` 或 `serverUrl`（它們會變成響應式），Effect 的程式碼不會改變。你只需要把 `roomId` 或 `serverUrl` 加進依賴。
 
-### All variables declared in the component body are reactive {/*all-variables-declared-in-the-component-body-are-reactive*/}
+### 元件主體中所有宣告的變數都是響應式的 {/*all-variables-declared-in-the-component-body-are-reactive*/}
 
-Props and state aren't the only reactive values. Values that you calculate from them are also reactive. If the props or state change, your component will re-render, and the values calculated from them will also change. This is why all variables from the component body used by the Effect should be in the Effect dependency list.
+屬性和狀態不是唯一的響應式數值，以這兩者計算而來的值也是響應式的。當屬性和狀態改變，元件會重渲染，計算而來的值也會跟著改變。這也是為什麼元件主體中，被 Effect 用到的所有數值都應該包含在依賴的清單中。
 
-Let's say that the user can pick a chat server in the dropdown, but they can also configure a default server in settings. Suppose you've already put the settings state in a [context](/learn/scaling-up-with-reducer-and-context) so you read the `settings` from that context. Now you calculate the `serverUrl` based on the selected server from props and the default server:
+使用者能從下拉式選單選擇一個聊天伺服器，但他們也可以在設置中設定一個預設伺服器。假設你已經將這些設定的狀態放進一個 [Context](/learn/scaling-up-with-reducer-and-context)，所以你能從 Context 讀取 `settings`。現在你需要根據屬性中所選的伺服器和預設伺服器，來計算 `serverUrl`：
 
 ```js {3,5,10}
-function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive
-  const settings = useContext(SettingsContext); // settings is reactive
-  const serverUrl = selectedServerUrl ?? settings.defaultServerUrl; // serverUrl is reactive
+function ChatRoom({ roomId, selectedServerUrl }) { // roomId 是響應式的
+  const settings = useContext(SettingsContext); // settings 是響應式的
+  const serverUrl = selectedServerUrl ?? settings.defaultServerUrl; // serverUrl 是響應式的
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Your Effect reads roomId and serverUrl
+    const connection = createConnection(serverUrl, roomId); // Effect 讀取 roomId 和 serverUrl
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId, serverUrl]); // So it needs to re-synchronize when either of them changes!
+  }, [roomId, serverUrl]); // 所以無論哪個值改變，Effect 都需要重新同步！
   // ...
 }
 ```
 
-In this example, `serverUrl` is not a prop or a state variable. It's a regular variable that you calculate during rendering. But it's calculated during rendering, so it can change due to a re-render. This is why it's reactive.
+在這個範例中，`serverUrl` 不是屬性，也不是狀態變數。它只是渲染期間計算而來的普通的值。但因為它是渲染期間所計算，所以可能因為重渲染而改變。這也就是為什麼它是響應式的。
 
-**All values inside the component (including props, state, and variables in your component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
+**元件中的所有值（包含屬性、狀態和元件主體中的變數）都是響應式的。任何響應式的值在重渲染中都可以改變，所以必須將響應式的值包含在 Effect 的依賴中。**
 
-In other words, Effects "react" to all values from the component body.
+換句話說，Effect 會對元件主體中所有的值做出「反應（react）」。
 
 <DeepDive>
 
-#### Can global or mutable values be dependencies? {/*can-global-or-mutable-values-be-dependencies*/}
+#### 依賴可以是全域或可變動的值嗎？ {/*can-global-or-mutable-values-be-dependencies*/}
 
-Mutable values (including global variables) aren't reactive.
+可變動（mutable）的值（包含全域變數）不是響應式的。
 
-**A mutable value like [`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) can't be a dependency.** It's mutable, so it can change at any time completely outside of the React rendering data flow. Changing it wouldn't trigger a re-render of your component. Therefore, even if you specified it in the dependencies, React *wouldn't know* to re-synchronize the Effect when it changes. This also breaks the rules of React because reading mutable data during rendering (which is when you calculate the dependencies) breaks [purity of rendering.](/learn/keeping-components-pure) Instead, you should read and subscribe to an external mutable value with [`useSyncExternalStore`.](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store)
+**可變動的值，像是 [`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) 不能作為依賴。** 它是可變動的，所以它完全可能在 React 渲染資料流以外的任何時間改變。改變這些值不會觸發元件的重渲染。因此，即使你指定這些值作為依賴，當這些值改變時，React *並不知道* 要重新同步 Effect。這也會破壞 React 的規則，因為在渲染期間（也就是計算這些依賴的時候）讀取可變動的資料會破壞[渲染的純度（purity）](/learn/keeping-components-pure)。你應該用 [`useSyncExternalStore`](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store) 讀取和訂閱外部的可變動數值。
 
-**A mutable value like [`ref.current`](/reference/react/useRef#reference) or things you read from it also can't be a dependency.** The ref object returned by `useRef` itself can be a dependency, but its `current` property is intentionally mutable. It lets you [keep track of something without triggering a re-render.](/learn/referencing-values-with-refs) But since changing it doesn't trigger a re-render, it's not a reactive value, and React won't know to re-run your Effect when it changes.
+**一個可變動的值，像是 [`ref.current`](/reference/react/useRef#reference)，或你從其中讀取的東西也不能作為依賴。** `useRef` 所回傳的 ref 物件可以作為依賴，但它的 `current` 屬性（property）是可變動的。它讓你[追蹤一些東西而不觸發重渲染](/learn/referencing-values-with-refs)。但因為改變它不會觸發重渲染，所以它不是響應式的值，當它改變時，React 也不會知道要重新執行 Effect。
 
-As you'll learn below on this page, a linter will check for these issues automatically.
+當你學習這一頁下方的內容，會有一個 linter 自動檢查上述的議題。
 
 </DeepDive>
 
-### React verifies that you specified every reactive value as a dependency {/*react-verifies-that-you-specified-every-reactive-value-as-a-dependency*/}
+### React 會驗證所有你指定為依賴的響應式數值 {/*react-verifies-that-you-specified-every-reactive-value-as-a-dependency*/}
 
-If your linter is [configured for React,](/learn/editor-setup#linting) it will check that every reactive value used by your Effect's code is declared as its dependency. For example, this is a lint error because both `roomId` and `serverUrl` are reactive:
+如果你的 linter 是[為 React 所設置](/learn/editor-setup#linting)，它會檢查 Effect 程式碼中作為依賴所用到的所有響應式數值。舉例來說，這是一個因為 `roomId` 和 `serverUrl` 都是響應式，所引發的 lint 錯誤：
 
 <Sandpack>
 
@@ -601,25 +600,25 @@ If your linter is [configured for React,](/learn/editor-setup#linting) it will c
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
-function ChatRoom({ roomId }) { // roomId is reactive
-  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // serverUrl is reactive
+function ChatRoom({ roomId }) { // roomId 是響應式的
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // serverUrl 是響應式的
 
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
-  }, []); // <-- Something's wrong here!
+  }, []); // <-- 這裡有一些問題！
 
   return (
     <>
       <label>
-        Server URL:{' '}
+        伺服器位址：{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>歡迎來到 {roomId} 聊天室！</h1>
     </>
   );
 }
@@ -629,14 +628,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        選擇聊天室：{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">一般</option>
+          <option value="travel">旅行</option>
+          <option value="music">音樂</option>
         </select>
       </label>
       <hr />
@@ -648,13 +647,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ 連線到 "' + roomId + '" 聊天室，位於 ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ 從 "' + roomId + '" 聊天室中斷連線，位於 ' + serverUrl);
     }
   };
 }
@@ -667,41 +666,41 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-This may look like a React error, but really React is pointing out a bug in your code. Both `roomId` and `serverUrl` may change over time, but you're forgetting to re-synchronize your Effect when they change. You will remain connected to the initial `roomId` and `serverUrl` even after the user picks different values in the UI.
+這可能看起來像是一個 React 錯誤，但實際上是 React 指出了程式碼中的一個 bug。`roomId` 和 `serverUrl` 都可能隨著時間改變，但你忘了要在它們改變時，重新同步你的 Effect。這樣即使稍後使用者選擇 UI 中不同的值，還是會連線到一開始的 `roomId` 和 `serverUrl`。
 
-To fix the bug, follow the linter's suggestion to specify `roomId` and `serverUrl` as dependencies of your Effect:
+為了修正這個 bug，跟從 linter 的建議，將 `roomId` 和 `serverUrl` 指定為 Effect 的依賴：
 
 ```js {9}
-function ChatRoom({ roomId }) { // roomId is reactive
-  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // serverUrl is reactive
+function ChatRoom({ roomId }) { // roomId 是響應式的
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // serverUrl 是響應式的
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [serverUrl, roomId]); // ✅ All dependencies declared
+  }, [serverUrl, roomId]); // ✅ 所有宣告的依賴
   // ...
 }
 ```
 
-Try this fix in the sandbox above. Verify that the linter error is gone, and the chat re-connects when needed.
+試試看在上面的沙盒中修正這個 bug。驗證 linter 還有沒有錯誤，以及聊天室是否如所需地重新連線。
 
 <Note>
 
-In some cases, React *knows* that a value never changes even though it's declared inside the component. For example, the [`set` function](/reference/react/useState#setstate) returned from `useState` and the ref object returned by [`useRef`](/reference/react/useRef) are *stable*--they are guaranteed to not change on a re-render. Stable values aren't reactive, so you may omit them from the list. Including them is allowed: they won't change, so it doesn't matter.
+在某些狀況下，React *知道* 某些值即使宣告在元件內，也從來不會改變。例如，`useState` 所回傳的 [`set` 函式](/reference/react/useState#setstate)，以及 [`useRef`](/reference/react/useRef) 所回傳的 ref 物件是 *穩定的（stable）*——它們保證不會在重渲染中改變。穩定的值不是響應式的，所以可以從依賴清單中省略。這些值被允許包含在依賴中：因為它們不會改變，所以沒有差別。
 
 </Note>
 
-### What to do when you don't want to re-synchronize {/*what-to-do-when-you-dont-want-to-re-synchronize*/}
+### 不想重新同步時該怎麼做 {/*what-to-do-when-you-dont-want-to-re-synchronize*/}
 
-In the previous example, you've fixed the lint error by listing `roomId` and `serverUrl` as dependencies.
+在前面的範例中，你把 `roomId` 和 `serverUrl` 列為依賴，修正了 lint 錯誤。
 
-**However, you could instead "prove" to the linter that these values aren't reactive values,** i.e. that they *can't* change as a result of a re-render. For example, if `serverUrl` and `roomId` don't depend on rendering and always have the same values, you can move them outside the component. Now they don't need to be dependencies:
+**但是，你也可以向 linter「證明」這些值不是響應式數值** ，也就是說，它們 *無法* 改變重渲染的結果。舉例來說，如果 `roomId` 和 `serverUrl` 不依賴渲染，而且值不會改變，你可以把它們搬到元件外面。這樣它們就不需要是依賴了：
 
 ```js {1,2,11}
-const serverUrl = 'https://localhost:1234'; // serverUrl is not reactive
-const roomId = 'general'; // roomId is not reactive
+const serverUrl = 'https://localhost:1234'; // serverUrl 不是響應式的
+const roomId = 'general'; // roomId 不是響應式的
 
 function ChatRoom() {
   useEffect(() => {
@@ -710,80 +709,80 @@ function ChatRoom() {
     return () => {
       connection.disconnect();
     };
-  }, []); // ✅ All dependencies declared
+  }, []); // ✅ 所有宣告的依賴
   // ...
 }
 ```
 
-You can also move them *inside the Effect.* They aren't calculated during rendering, so they're not reactive:
+你也可以把它們 *搬進 Effect*。它們不會在渲染期間計算，所以不是響應式的：
 
 ```js {3,4,10}
 function ChatRoom() {
   useEffect(() => {
-    const serverUrl = 'https://localhost:1234'; // serverUrl is not reactive
-    const roomId = 'general'; // roomId is not reactive
+    const serverUrl = 'https://localhost:1234'; // serverUrl 不是響應式的
+    const roomId = 'general'; // roomId 不是響應式的
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, []); // ✅ All dependencies declared
+  }, []); // ✅ 所有宣告的依賴
   // ...
 }
 ```
 
-**Effects are reactive blocks of code.** They re-synchronize when the values you read inside of them change. Unlike event handlers, which only run once per interaction, Effects run whenever synchronization is necessary.
+**Effect 是一段響應式的程式碼。** 當你從中讀取的值改變時，Effect 就會重新同步。不像事件處理函式（event handler）只會在每次互動時執行一次，Effect 在每次需要同步時都會執行。
 
-**You can't "choose" your dependencies.** Your dependencies must include every [reactive value](#all-variables-declared-in-the-component-body-are-reactive) you read in the Effect. The linter enforces this. Sometimes this may lead to problems like infinite loops and to your Effect re-synchronizing too often. Don't fix these problems by suppressing the linter! Here's what to try instead:
+**你不能「隨意選擇」依賴。** 依賴必須包含 Effect 中所讀取的所有[響應式數值](#all-variables-declared-in-the-component-body-are-reactive)。Linter 強迫必須這麼做。有時候這可能會導致一些問題，像是無窮迴圈，以及 Effect 太常重新同步。別用忽略（suppress）linter 的方式解決這些問題！你可以這麽做：
 
-* **Check that your Effect represents an independent synchronization process.** If your Effect doesn't synchronize anything, [it might be unnecessary.](/learn/you-might-not-need-an-effect) If it synchronizes several independent things, [split it up.](#each-effect-represents-a-separate-synchronization-process)
+* **確認你的 Effect 在獨立的同步程序中所代表的意義。** 如果你的 Effect 沒有同步任何東西，[它可能就是不必要的](/learn/you-might-not-need-an-effect)。如果你的 Effect 同步許多獨立的東西，[應該把它們拆分](#each-effect-represents-a-separate-synchronization-process)。
 
-* **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Effect Event_). [Read about separating Events from Effects.](/learn/separating-events-from-effects)
+* **如果你想要讀取屬性或狀態最新的值，但不「響應」這些值，也不重新同步 Effect，** 你可以將 Effect 拆分成響應式的部分（你保留在 Effect 中的部分）和非響應式的部分（你會抽出的部分，被稱為 _Effect 事件_）。[閱讀更多關於把事件從 Effect 中分離](/learn/separating-events-from-effects)。
 
-* **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from Effects.](/learn/removing-effect-dependencies)
+* **避免將物件和函式作為依賴。** 如果你在渲染期間創建物件和函式，接著在 Effect 中讀取它們，它們在每次渲染時都會不同。這會導致 Effect 每次都會重新同步。[閱讀更多關於把不必要的依賴從 Effect 中移除](/learn/removing-effect-dependencies)。
 
 <Pitfall>
 
-The linter is your friend, but its powers are limited. The linter only knows when the dependencies are *wrong*. It doesn't know *the best* way to solve each case. If the linter suggests a dependency, but adding it causes a loop, it doesn't mean the linter should be ignored. You need to change the code inside (or outside) the Effect so that that value isn't reactive and doesn't *need* to be a dependency.
+Linter 是你的朋友，但它的能力有限。Linter 只知道依賴什麼時候是 *錯的*，它不知道解決每個狀況的 *最佳* 解法。如果 Linter 建議增加一個值作為依賴，卻造成迴圈，這並不表示 linter 應該被忽略。你應該改變 Effect 內部（或外部）的程式碼，讓這個值不為響應式，也 *不需要* 是依賴。
 
-If you have an existing codebase, you might have some Effects that suppress the linter like this:
+如果你有一些現成的程式碼，你可能會有一些 Effect 在忽略 linter 的規則，像這樣：
 
 ```js {3-4}
 useEffect(() => {
   // ...
-  // 🔴 Avoid suppressing the linter like this:
+  // 🔴 避免像這樣忽略 linter 的規則：
   // eslint-ignore-next-line react-hooks/exhaustive-deps
 }, []);
 ```
 
-On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-effect-dependencies), you'll learn how to fix this code without breaking the rules. It's always worth fixing!
+在[後續的](/learn/separating-events-from-effects)[頁面](/learn/removing-effect-dependencies)中，你將學習如何在不破壞規則的情況下修正這些程式碼。這總是值得修正！
 
 </Pitfall>
 
 <Recap>
 
-- Components can mount, update, and unmount.
-- Each Effect has a separate lifecycle from the surrounding component.
-- Each Effect describes a separate synchronization process that can *start* and *stop*.
-- When you write and read Effects, think from each individual Effect's perspective (how to start and stop synchronization) rather than from the component's perspective (how it mounts, updates, or unmounts).
-- Values declared inside the component body are "reactive".
-- Reactive values should re-synchronize the Effect because they can change over time.
-- The linter verifies that all reactive values used inside the Effect are specified as dependencies.
-- All errors flagged by the linter are legitimate. There's always a way to fix the code to not break the rules.
+- 元件可以掛載、更新和卸載。
+- 每個 Effect 都有獨立於元件的生命週期。
+- 每個 Effect 描述獨立的同步程序，這些程序可以 *開始* 和 *結束*。
+- 撰寫和閱讀 Effect 的程式碼時，要從每個獨立的 Effect 的角度來思考（如何開始和結束同步），而不是從元件的角度（元件如何掛載、更新或卸載）。
+- 元件主體中宣告的值是「響應式」的。
+- 響應式的值應該重新同步 Effect，因為這些值會隨著時間改變。
+- Linter 會驗證 Effect 中所有使用到的響應式數值是否被指定為依賴。
+- Linter 標記的所有錯誤都是合法的。一定能找到方法去修正程式碼，而且不會破壞規則。
 
 </Recap>
 
 <Challenges>
 
-#### Fix reconnecting on every keystroke {/*fix-reconnecting-on-every-keystroke*/}
+#### 修正每次按鍵時的重新連線 {/*fix-reconnecting-on-every-keystroke*/}
 
-In this example, the `ChatRoom` component connects to the chat room when the component mounts, disconnects when it unmounts, and reconnects when you select a different chat room. This behavior is correct, so you need to keep it working.
+在這個範例中，`ChatRoom` 元件在掛載時連線到聊天室、卸載時中斷連線，並在選擇不同聊天室時重新連線。這樣的行為是正確的，因此你必須維持這個運作。
 
-However, there is a problem. Whenever you type into the message box input at the bottom, `ChatRoom` *also* reconnects to the chat. (You can notice this by clearing the console and typing into the input.) Fix the issue so that this doesn't happen.
+不過，這邊有一個問題。每次你在下方的訊息輸入框打字，`ChatRoom` *也* 都會重新連線到聊天室（清空 console 然後在輸入框打字，就可以看到這個情形）。現在你來修正這個問題，讓它不再發生。
 
 <Hint>
 
-You might need to add a dependency array for this Effect. What dependencies should be there?
+你可能會需要為 Effect 新增一個依賴陣列。裡面應該有哪些依賴呢？
 
 </Hint>
 
@@ -806,7 +805,7 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>歡迎來到 {roomId} 聊天室！</h1>
       <input
         value={message}
         onChange={e => setMessage(e.target.value)}
@@ -820,14 +819,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        選擇聊天室：{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">一般</option>
+          <option value="travel">旅行</option>
+          <option value="music">音樂</option>
         </select>
       </label>
       <hr />
@@ -839,13 +838,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ 連線到 "' + roomId + '" 聊天室，位於 ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ 從 "' + roomId + '" 聊天室中斷連線，位於 ' + serverUrl);
     }
   };
 }
@@ -860,7 +859,7 @@ button { margin-left: 10px; }
 
 <Solution>
 
-This Effect didn't have a dependency array at all, so it re-synchronized after every re-render. First, add a dependency array. Then, make sure that every reactive value used by the Effect is specified in the array. For example, `roomId` is reactive (because it's a prop), so it should be included in the array. This ensures that when the user selects a different room, the chat reconnects. On the other hand, `serverUrl` is defined outside the component. This is why it doesn't need to be in the array.
+這個 Effect 根本沒有依賴陣列，所以會在每次重渲染時重新同步。首先，新增一個依賴陣列。接下來，確保 Effect 所用到的每個響應式數值都被指定在陣列中。舉例來說，`roomId` 是響應式的（因為它是一個屬性），所以應該包含在陣列中。這確保使用者選取不同的房間時，都會重新連線到聊天室。另一方面，`serverUrl` 是在元件外定義的，這就是為什麼它不需要在陣列裡。
 
 <Sandpack>
 
@@ -881,7 +880,7 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>歡迎來到 {roomId} 聊天室！</h1>
       <input
         value={message}
         onChange={e => setMessage(e.target.value)}
@@ -895,14 +894,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        選擇聊天室：{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">一般</option>
+          <option value="travel">旅行</option>
+          <option value="music">音樂</option>
         </select>
       </label>
       <hr />
@@ -914,13 +913,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ 連線到 "' + roomId + '" 聊天室，位於 ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ 從 "' + roomId + '" 聊天室中斷連線，位於 ' + serverUrl);
     }
   };
 }
@@ -935,15 +934,15 @@ button { margin-left: 10px; }
 
 </Solution>
 
-#### Switch synchronization on and off {/*switch-synchronization-on-and-off*/}
+#### 開啟或關閉同步 {/*switch-synchronization-on-and-off*/}
 
-In this example, an Effect subscribes to the window [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) event to move a pink dot on the screen. Try hovering over the preview area (or touching the screen if you're on a mobile device), and see how the pink dot follows your movement.
+在這個範例中，Effect 訂閱視窗的 [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) 事件，移動畫面中的粉紅色點點。試著在預覽區域上揮一揮（如果你是用手機裝置就觸碰畫面），然後看看粉紅色點點是怎麼跟著你的動作。
 
-There is also a checkbox. Ticking the checkbox toggles the `canMove` state variable, but this state variable is not used anywhere in the code. Your task is to change the code so that when `canMove` is `false` (the checkbox is ticked off), the dot should stop moving. After you toggle the checkbox back on (and set `canMove` to `true`), the box should follow the movement again. In other words, whether the dot can move or not should stay synchronized to whether the checkbox is checked.
+這裡還有一個核取方塊（checkbox）。點擊核取方塊可以切換 `canMove` 狀態變數，但這個狀態變數沒有在程式碼的任何地方被用到。你的任務是去改寫這段程式碼，當 `canMove` 是 `false` 時（核取方塊未勾選），點點應該停止移動。當你勾選核取方塊（並將 `canMove` 設為 `true`），點點應該再次跟著移動。換句話說，不管點點能不能移動，都應該跟核取方塊是否勾選保持同步。
 
 <Hint>
 
-You can't declare an Effect conditionally. However, the code inside the Effect can use conditions!
+不能在條件下（conditionally）宣告 Effect。不過 Effect 中的程式碼可以使用條件。
 
 </Hint>
 
@@ -971,7 +970,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        點點可以移動
       </label>
       <hr />
       <div style={{
@@ -1001,7 +1000,7 @@ body {
 
 <Solution>
 
-One solution is to wrap the `setPosition` call into an `if (canMove) { ... }` condition:
+其中一個解法是將 `setPosition` 呼叫包在一個 `if (canMove) { ... }` 條件式中：
 
 <Sandpack>
 
@@ -1029,7 +1028,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        點點可以移動
       </label>
       <hr />
       <div style={{
@@ -1057,7 +1056,7 @@ body {
 
 </Sandpack>
 
-Alternatively, you could wrap the *event subscription* logic into an `if (canMove) { ... }` condition:
+另一個方法是，將 *事件訂閱* 邏輯包在 `if (canMove) { ... }` 條件式中：
 
 <Sandpack>
 
@@ -1085,7 +1084,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        點點可以移動
       </label>
       <hr />
       <div style={{
@@ -1113,19 +1112,19 @@ body {
 
 </Sandpack>
 
-In both of these cases, `canMove` is a reactive variable that you read inside the Effect. This is why it must be specified in the list of Effect dependencies. This ensures that the Effect re-synchronizes after every change to its value.
+在這兩個案例中，`canMove` 都是可以在 Effect 中讀取的響應式數值。這就是為什麼它必須在 Effect 的依賴清單中被指定。這確保 Effect 會在每次這個值改變時重新同步。
 
 </Solution>
 
-#### Investigate a stale value bug {/*investigate-a-stale-value-bug*/}
+#### 檢查舊值的 bug {/*investigate-a-stale-value-bug*/}
 
-In this example, the pink dot should move when the checkbox is on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` state variable.
+在這個範例中，粉紅色點點應該在核取方塊勾選時移動，在核取方塊未勾選時停止。這個邏輯已經實作好了：`handleMove` 事件處理函式會檢查 `canMove` 狀態變數。
 
-However, for some reason, the `canMove` state variable inside `handleMove` appears to be "stale": it's always `true`, even after you tick off the checkbox. How is this possible? Find the mistake in the code and fix it.
+但是，因為一些緣故，`handleMove` 中的 `canMove` 狀態變數看起來是「陳舊的（stale）」：即使你點掉核取方塊，它的值都還是 `true`。這怎麼可能呢？找找看程式碼中的錯誤並修正它。
 
 <Hint>
 
-If you see a linter rule being suppressed, remove the suppression! That's where the mistakes usually are.
+如果你看到一個 linter 規則被忽略，移除它！那通常就是發生錯誤的地方。
 
 </Hint>
 
@@ -1157,7 +1156,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        點點可以移動
       </label>
       <hr />
       <div style={{
@@ -1187,13 +1186,13 @@ body {
 
 <Solution>
 
-The problem with the original code was suppressing the dependency linter. If you remove the suppression, you'll see that this Effect depends on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
+原本程式碼的問題是忽略了 linter 的檢查。移除忽略之後，就會看到 Effect 依賴 `handleMove` 函式。這是合理的：`handleMove` 是在元件主體中宣告，所以它是響應式數值。所有的響應式數值都應該被指定為依賴，否則就有可能一直保持舊的值。
 
-The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
+這段程式碼的作者「欺騙」React 說這個 Effect 沒有依賴（`[]`）任何響應式數值。這也就是為什麼 React 沒有在 `canMove` （還有跟它一起的 `handleMove`）改變時重新同步 Effect。因為 React 沒有重新同步 Effect，作為監聽函式（listener）的 `handleMove` 是初次渲染時創建的 `handleMove`。在初次渲染期間，`canMove` 是 `true`，所以初次渲染時的 `handleMove` 也只會看到 `true`。
 
-**If you never suppress the linter, you will never see problems with stale values.** There are a few different ways to solve this bug, but you should always start by removing the linter suppression. Then change the code to fix the lint error.
+**如果你從未忽略 linter，就不會遇到舊值的問題。** 有一些不同的方式可以解決這個 bug，但你應該總是先移除 linter 的忽略。接著修改程式碼來解決 linter 的錯誤。
 
-You can change the Effect dependencies to `[handleMove]`, but since it's going to be a newly defined function for every render, you might as well remove dependencies array altogether. Then the Effect *will* re-synchronize after every re-render:
+你可以將 Effect 的依賴改成 `[handleMove]`，但因為它會在每次渲染時變成新定義的函式，可能還是把依賴陣列整個刪掉比較好。那 Effect *就會* 在每次重渲染時重新同步：
 
 <Sandpack>
 
@@ -1222,7 +1221,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        點點可以移動
       </label>
       <hr />
       <div style={{
@@ -1250,9 +1249,9 @@ body {
 
 </Sandpack>
 
-This solution works, but it's not ideal. If you put `console.log('Resubscribing')` inside the Effect, you'll notice that it resubscribes after every re-render. Resubscribing is fast, but it would still be nice to avoid doing it so often.
+這個解決方法可行，但並不理想。如果你將 `console.log('Resubscribing')` 放進 Effect，就會注意到它在每次重渲染後，都會重新訂閱。重新訂閱的速度很快，但避免常常這麼做，還是會比較好。
 
-A better fix would be to move the `handleMove` function *inside* the Effect. Then `handleMove` won't be a reactive value, and so your Effect won't depend on a function. Instead, it will need to depend on `canMove` which your code now reads from inside the Effect. This matches the behavior you wanted, since your Effect will now stay synchronized with the value of `canMove`:
+一個比較好的修正方式是將 `handleMove` 函式移到 Effect *裡面*。這樣 `handleMove` 就不是響應式數值，Effect 也不會依賴一個函式。作爲代替，Effect 需要依賴 `canMove`，是你的程式碼現在在 Effect 中讀取的值。這跟你想要的行為一致，因為你的 Effect 現在會和 `canMove` 的值保持同步：
 
 <Sandpack>
 
@@ -1281,7 +1280,7 @@ export default function App() {
           checked={canMove}
           onChange={e => setCanMove(e.target.checked)} 
         />
-        The dot is allowed to move
+        點點可以移動
       </label>
       <hr />
       <div style={{
@@ -1309,21 +1308,21 @@ body {
 
 </Sandpack>
 
-Try adding `console.log('Resubscribing')` inside the Effect body and notice that now it only resubscribes when you toggle the checkbox (`canMove` changes) or edit the code. This makes it better than the previous approach that always resubscribed.
+試著將 `console.log('Resubscribing')` 加入 Effect 主體，然後注意它現在只會在你切換核取方塊（`canMove` 改變）或編輯程式碼時重新訂閱。這樣比之前總是重新訂閱的方法好多了。
 
-You'll learn a more general approach to this type of problem in [Separating Events from Effects.](/learn/separating-events-from-effects)
+你將會在[把事件從 Effect 中分離](/learn/separating-events-from-effects)的章節，學到更普遍處理這種問題的方法。
 
 </Solution>
 
-#### Fix a connection switch {/*fix-a-connection-switch*/}
+#### 修正連線開關 {/*fix-a-connection-switch*/}
 
-In this example, the chat service in `chat.js` exposes two different APIs: `createEncryptedConnection` and `createUnencryptedConnection`. The root `App` component lets the user choose whether to use encryption or not, and then passes down the corresponding API method to the child `ChatRoom` component as the `createConnection` prop.
+在這個範例中，`chat.js` 中的聊天服務提供兩個不同的 API：`createEncryptedConnection` 和 `createUnencryptedConnection`。`App` 根元件讓使用者選擇是否使用加密機制，接著向下傳遞（pass down）對應的 API 方法給 `ChatRoom` 子元件作為 `createConnection` 屬性。
 
-Notice that initially, the console logs say the connection is not encrypted. Try toggling the checkbox on: nothing will happen. However, if you change the selected room after that, then the chat will reconnect *and* enable encryption (as you'll see from the console messages). This is a bug. Fix the bug so that toggling the checkbox *also* causes the chat to reconnect.
+注意一開始 console log 說連線沒有加密。試著勾選核取方塊：沒有任何事情發生。但是，如果你在那之後更改所選的房間，那聊天室會重新連線 *並且* 開啟加密機制（就跟你在 console 訊息裡看到的一樣）。這是一個 bug。修正這個 bug，讓切換核取方塊 *也* 能使聊天室重新連線。
 
 <Hint>
 
-Suppressing the linter is always suspicious. Could this be a bug?
+忽略 linter 的做法始終很可疑。這會不會是 bug 呢？
 
 </Hint>
 
@@ -1343,14 +1342,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        選擇聊天室：{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">一般</option>
+          <option value="travel">旅行</option>
+          <option value="music">音樂</option>
         </select>
       </label>
       <label>
@@ -1359,7 +1358,7 @@ export default function App() {
           checked={isEncrypted}
           onChange={e => setIsEncrypted(e.target.checked)}
         />
-        Enable encryption
+        開啟加密機制
       </label>
       <hr />
       <ChatRoom
@@ -1385,31 +1384,31 @@ export default function ChatRoom({ roomId, createConnection }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>歡迎來到 {roomId} 聊天室！</h1>;
 }
 ```
 
 ```js src/chat.js
 export function createEncryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ 🔐 Connecting to "' + roomId + '... (encrypted)');
+      console.log('✅ 🔐 連線到 "' + roomId + ' ⋯⋯（已加密）');
     },
     disconnect() {
-      console.log('❌ 🔐 Disconnected from "' + roomId + '" room (encrypted)');
+      console.log('❌ 🔐 從"' + roomId + '" 聊天室中斷連線（已加密）');
     }
   };
 }
 
 export function createUnencryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '... (unencrypted)');
+      console.log('✅ 連線到 "' + roomId + ' ⋯⋯（未加密）');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room (unencrypted)');
+      console.log('❌ 從 "' + roomId + '" 聊天室中斷連線（未加密）');
     }
   };
 }
@@ -1423,7 +1422,7 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-If you remove the linter suppression, you will see a lint error. The problem is that `createConnection` is a prop, so it's a reactive value. It can change over time! (And indeed, it should--when the user ticks the checkbox, the parent component passes a different value of the `createConnection` prop.) This is why it should be a dependency. Include it in the list to fix the bug:
+如果移除掉 linter 的忽略，就會看到一個 lint 錯誤。問題出在 `createConnection` 是屬性，因此它是響應式數值。它會隨著時間改變！（確實，它應該改變——像是使用者點選核取方塊時，父元件傳入不同的值給 `createConnection` 屬性。）這就是為什麼它應該是依賴。將它納入依賴清單來修正這個 bug：
 
 <Sandpack>
 
@@ -1441,14 +1440,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        選擇聊天室：{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">一般</option>
+          <option value="travel">旅行</option>
+          <option value="music">音樂</option>
         </select>
       </label>
       <label>
@@ -1457,7 +1456,7 @@ export default function App() {
           checked={isEncrypted}
           onChange={e => setIsEncrypted(e.target.checked)}
         />
-        Enable encryption
+        開啟加密機制
       </label>
       <hr />
       <ChatRoom
@@ -1482,31 +1481,31 @@ export default function ChatRoom({ roomId, createConnection }) {
     return () => connection.disconnect();
   }, [roomId, createConnection]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>歡迎來到 {roomId} 聊天室！</h1>;
 }
 ```
 
 ```js src/chat.js
 export function createEncryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ 🔐 Connecting to "' + roomId + '... (encrypted)');
+      console.log('✅ 🔐 連線到 "' + roomId + '⋯⋯（已加密）');
     },
     disconnect() {
-      console.log('❌ 🔐 Disconnected from "' + roomId + '" room (encrypted)');
+      console.log('❌ 🔐 從"' + roomId + '" 聊天室中斷連線（已加密）');
     }
   };
 }
 
 export function createUnencryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '... (unencrypted)');
+      console.log('✅ 連線到 "' + roomId + ' ⋯⋯（未加密）');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room (unencrypted)');
+      console.log('❌ 從 "' + roomId + '" 聊天室中斷連線（未加密）');
     }
   };
 }
@@ -1518,7 +1517,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-It is correct that `createConnection` is a dependency. However, this code is a bit fragile because someone could edit the `App` component to pass an inline function as the value of this prop. In that case, its value would be different every time the `App` component re-renders, so the Effect might re-synchronize too often. To avoid this, you can pass `isEncrypted` down instead:
+`createConnection` 是依賴，這是正確的。不過這段程式碼有點脆弱，因為有些人可能會將行內函式（inline function）作為屬性的值傳給 `App` 元件。在此情況下，每次 `App` 元件重渲染時，這個值就會不同，Effect 可能會因此太常重新同步。為了避免這個情況，你可以向下傳遞 `isEncrypted` 作為代替：
 
 <Sandpack>
 
@@ -1532,14 +1531,14 @@ export default function App() {
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        選擇聊天室：{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="general">一般</option>
+          <option value="travel">旅行</option>
+          <option value="music">音樂</option>
         </select>
       </label>
       <label>
@@ -1548,7 +1547,7 @@ export default function App() {
           checked={isEncrypted}
           onChange={e => setIsEncrypted(e.target.checked)}
         />
-        Enable encryption
+        開啟加密機制
       </label>
       <hr />
       <ChatRoom
@@ -1577,31 +1576,31 @@ export default function ChatRoom({ roomId, isEncrypted }) {
     return () => connection.disconnect();
   }, [roomId, isEncrypted]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>歡迎來到 {roomId} 聊天室！</h1>;
 }
 ```
 
 ```js src/chat.js
 export function createEncryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ 🔐 Connecting to "' + roomId + '... (encrypted)');
+      console.log('✅ 🔐 連線到 "' + roomId + '⋯⋯（已加密）');
     },
     disconnect() {
-      console.log('❌ 🔐 Disconnected from "' + roomId + '" room (encrypted)');
+      console.log('❌ 🔐 從"' + roomId + '" 聊天室中斷連線（已加密）');
     }
   };
 }
 
 export function createUnencryptedConnection(roomId) {
-  // A real implementation would actually connect to the server
+  // 一個確實能連線到伺服器的真實實作
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '... (unencrypted)');
+      console.log('✅ 連線到 "' + roomId + ' ⋯⋯（未加密）');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room (unencrypted)');
+      console.log('❌ 從 "' + roomId + '" 聊天室中斷連線（未加密）');
     }
   };
 }
@@ -1613,21 +1612,21 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-In this version, the `App` component passes a boolean prop instead of a function. Inside the Effect, you decide which function to use. Since both `createEncryptedConnection` and `createUnencryptedConnection` are declared outside the component, they aren't reactive, and don't need to be dependencies. You'll learn more about this in [Removing Effect Dependencies.](/learn/removing-effect-dependencies)
+在這個版本中，`App` 元件傳入布林屬性，而不是函式。在 Effect 中，你來決定用哪個函式。`createEncryptedConnection` 和 `createUnencryptedConnection` 都是在元件外宣告，因此不是響應式，也不需要是依賴。你將會在[移除 Effect 的依賴](/learn/removing-effect-dependencies)的章節學到更多相關資訊。
 
 </Solution>
 
-#### Populate a chain of select boxes {/*populate-a-chain-of-select-boxes*/}
+#### 填充一系列的選單 {/*populate-a-chain-of-select-boxes*/}
 
-In this example, there are two select boxes. One select box lets the user pick a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
+在這個範例中，有兩個選單（select box）：一個讓使用者選擇行星；另一個讓使用者選擇 *行星上的* 地點。第二個選單還無法作用。你的任務是讓它顯示所選行星的地點。
 
-Look at how the first select box works. It populates the `planetList` state with the result from the `"/planets"` API call. The currently selected planet's ID is kept in the `planetId` state variable. You need to find where to add some additional code so that the `placeList` state variable is populated with the result of the `"/planets/" + planetId + "/places"` API call.
+來看看第一個選單是怎麼運作的。它將 `"/planets"` API 呼叫結果填到 `planetList` 狀態中。現在所選的行星 ID 被保存在 `planetId` 狀態變數裡。你需要找到某個地方來新增額外的程式碼，將 `"/planets/" + planetId + "/places"` API 呼叫的結果填到 `placeList` 狀態變數中。
 
-If you implement this right, selecting a planet should populate the place list. Changing a planet should change the place list.
+如果你的實作正確，選擇行星時應該會填滿地點清單。改變行星時，也應該會改變地點清單。
 
 <Hint>
 
-If you have two independent synchronization processes, you need to write two separate Effects.
+如果你有兩個獨立的同步程序，應該要寫成兩個分別的 Effect。
 
 </Hint>
 
@@ -1648,9 +1647,9 @@ export default function Page() {
     let ignore = false;
     fetchData('/planets').then(result => {
       if (!ignore) {
-        console.log('Fetched a list of planets.');
+        console.log('取得行星清單。');
         setPlanetList(result);
-        setPlanetId(result[0].id); // Select the first planet
+        setPlanetId(result[0].id); // 選擇第一個行星
       }
     });
     return () => {
@@ -1661,7 +1660,7 @@ export default function Page() {
   return (
     <>
       <label>
-        Pick a planet:{' '}
+        選擇行星：{' '}
         <select value={planetId} onChange={e => {
           setPlanetId(e.target.value);
         }}>
@@ -1671,7 +1670,7 @@ export default function Page() {
         </select>
       </label>
       <label>
-        Pick a place:{' '}
+        選擇地點：{' '}
         <select value={placeId} onChange={e => {
           setPlaceId(e.target.value);
         }}>
@@ -1681,7 +1680,7 @@ export default function Page() {
         </select>
       </label>
       <hr />
-      <p>You are going to: {placeId || '???'} on {planetId || '???'} </p>
+      <p>你正在前往 {placeId || '？？？'} ，位於 {planetId || '？？？'} </p>
     </>
   );
 }
@@ -1694,10 +1693,10 @@ export function fetchData(url) {
   } else if (url.startsWith('/planets/')) {
     const match = url.match(/^\/planets\/([\w-]+)\/places(\/)?$/);
     if (!match || !match[1] || !match[1].length) {
-      throw Error('Expected URL like "/planets/earth/places". Received: "' + url + '".');
+      throw Error('預期接收像是 "/planets/earth/places" 這樣的位址。 實際收到： "' + url + '" 。');
     }
     return fetchPlaces(match[1]);
-  } else throw Error('Expected URL like "/planets" or "/planets/earth/places". Received: "' + url + '".');
+  } else throw Error('預期接收像是 "/planets" 或 "/planets/earth/places" 這樣的位址。 實際收到： "' + url + '" 。');
 }
 
 async function fetchPlanets() {
@@ -1705,13 +1704,13 @@ async function fetchPlanets() {
     setTimeout(() => {
       resolve([{
         id: 'earth',
-        name: 'Earth'
+        name: '地球'
       }, {
         id: 'venus',
-        name: 'Venus'
+        name: '金星'
       }, {
         id: 'mars',
-        name: 'Mars'        
+        name: '火星'        
       }]);
     }, 1000);
   });
@@ -1720,8 +1719,8 @@ async function fetchPlanets() {
 async function fetchPlaces(planetId) {
   if (typeof planetId !== 'string') {
     throw Error(
-      'fetchPlaces(planetId) expects a string argument. ' +
-      'Instead received: ' + planetId + '.'
+      'fetchPlaces(planetId) 期望接收一個字串作為引數。 ' +
+      '但實際收到： ' + planetId + ' 。'
     );
   }
   return new Promise(resolve => {
@@ -1729,37 +1728,37 @@ async function fetchPlaces(planetId) {
       if (planetId === 'earth') {
         resolve([{
           id: 'laos',
-          name: 'Laos'
+          name: '寮國'
         }, {
           id: 'spain',
-          name: 'Spain'
+          name: '西班牙'
         }, {
           id: 'vietnam',
-          name: 'Vietnam'        
+          name: '越南'        
         }]);
       } else if (planetId === 'venus') {
         resolve([{
           id: 'aurelia',
-          name: 'Aurelia'
+          name: '奧萊莉婭'
         }, {
           id: 'diana-chasma',
-          name: 'Diana Chasma'
+          name: '黛安娜峽谷'
         }, {
           id: 'kumsong-vallis',
-          name: 'Kŭmsŏng Vallis'        
+          name: '金城谷'        
         }]);
       } else if (planetId === 'mars') {
         resolve([{
           id: 'aluminum-city',
-          name: 'Aluminum City'
+          name: '鋁城'
         }, {
           id: 'new-new-york',
-          name: 'New New York'
+          name: '新紐約'
         }, {
           id: 'vishniac',
-          name: 'Vishniac'
+          name: '維什尼亞茨'
         }]);
-      } else throw Error('Unknown planet ID: ' + planetId);
+      } else throw Error('未知的行星 ID：' + planetId);
     }, 1000);
   });
 }
@@ -1773,12 +1772,12 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-There are two independent synchronization processes:
+這裡有兩個獨立的同步程序：
 
-- The first select box is synchronized to the remote list of planets.
-- The second select box is synchronized to the remote list of places for the current `planetId`.
+- 第一個選單跟遠端的行星清單同步。
+- 第二個選單跟遠端的地點清單同步，而地點清單是根據當前的 `planetId`。
 
-This is why it makes sense to describe them as two separate Effects. Here's an example of how you could do this:
+這也是為什麼將它們描述成兩個分別的 Effect 是合理的。你可以照下方的範例來做做看：
 
 <Sandpack>
 
@@ -1797,9 +1796,9 @@ export default function Page() {
     let ignore = false;
     fetchData('/planets').then(result => {
       if (!ignore) {
-        console.log('Fetched a list of planets.');
+        console.log('取得行星清單。');
         setPlanetList(result);
-        setPlanetId(result[0].id); // Select the first planet
+        setPlanetId(result[0].id); // 選擇第一個行星
       }
     });
     return () => {
@@ -1809,16 +1808,16 @@ export default function Page() {
 
   useEffect(() => {
     if (planetId === '') {
-      // Nothing is selected in the first box yet
+      // 第一個清單尚未選取任何東西
       return;
     }
 
     let ignore = false;
     fetchData('/planets/' + planetId + '/places').then(result => {
       if (!ignore) {
-        console.log('Fetched a list of places on "' + planetId + '".');
+        console.log('取得 "' + planetId + '" 的地點清單。');
         setPlaceList(result);
-        setPlaceId(result[0].id); // Select the first place
+        setPlaceId(result[0].id); // 選擇第一個地點
       }
     });
     return () => {
@@ -1829,7 +1828,7 @@ export default function Page() {
   return (
     <>
       <label>
-        Pick a planet:{' '}
+        選擇行星：{' '}
         <select value={planetId} onChange={e => {
           setPlanetId(e.target.value);
         }}>
@@ -1839,7 +1838,7 @@ export default function Page() {
         </select>
       </label>
       <label>
-        Pick a place:{' '}
+        選擇地點：{' '}
         <select value={placeId} onChange={e => {
           setPlaceId(e.target.value);
         }}>
@@ -1849,7 +1848,7 @@ export default function Page() {
         </select>
       </label>
       <hr />
-      <p>You are going to: {placeId || '???'} on {planetId || '???'} </p>
+      <p>你正在前往 {placeId || '？？？'} ，位於 {planetId || '？？？'} </p>
     </>
   );
 }
@@ -1862,10 +1861,10 @@ export function fetchData(url) {
   } else if (url.startsWith('/planets/')) {
     const match = url.match(/^\/planets\/([\w-]+)\/places(\/)?$/);
     if (!match || !match[1] || !match[1].length) {
-      throw Error('Expected URL like "/planets/earth/places". Received: "' + url + '".');
+      throw Error('預期接收像是 "/planets/earth/places" 這樣的位址。 實際收到： "' + url + '" 。');
     }
     return fetchPlaces(match[1]);
-  } else throw Error('Expected URL like "/planets" or "/planets/earth/places". Received: "' + url + '".');
+  } else throw Error('預期接收像是 "/planets" 或 "/planets/earth/places" 這樣的位址。 實際收到： "' + url + '" 。');
 }
 
 async function fetchPlanets() {
@@ -1873,13 +1872,13 @@ async function fetchPlanets() {
     setTimeout(() => {
       resolve([{
         id: 'earth',
-        name: 'Earth'
+        name: '地球'
       }, {
         id: 'venus',
-        name: 'Venus'
+        name: '金星'
       }, {
         id: 'mars',
-        name: 'Mars'        
+        name: '火星'        
       }]);
     }, 1000);
   });
@@ -1888,8 +1887,8 @@ async function fetchPlanets() {
 async function fetchPlaces(planetId) {
   if (typeof planetId !== 'string') {
     throw Error(
-      'fetchPlaces(planetId) expects a string argument. ' +
-      'Instead received: ' + planetId + '.'
+      'fetchPlaces(planetId) 期望接收一個字串作為引數。 ' +
+      '但實際收到： ' + planetId + ' 。'
     );
   }
   return new Promise(resolve => {
@@ -1897,37 +1896,37 @@ async function fetchPlaces(planetId) {
       if (planetId === 'earth') {
         resolve([{
           id: 'laos',
-          name: 'Laos'
+          name: '寮國'
         }, {
           id: 'spain',
-          name: 'Spain'
+          name: '西班牙'
         }, {
           id: 'vietnam',
-          name: 'Vietnam'        
+          name: '越南'        
         }]);
       } else if (planetId === 'venus') {
         resolve([{
           id: 'aurelia',
-          name: 'Aurelia'
+          name: '奧萊莉婭'
         }, {
           id: 'diana-chasma',
-          name: 'Diana Chasma'
+          name: '黛安娜峽谷'
         }, {
           id: 'kumsong-vallis',
-          name: 'Kŭmsŏng Vallis'        
+          name: '金城谷'        
         }]);
       } else if (planetId === 'mars') {
         resolve([{
           id: 'aluminum-city',
-          name: 'Aluminum City'
+          name: '鋁城'
         }, {
           id: 'new-new-york',
-          name: 'New New York'
+          name: '新紐約'
         }, {
           id: 'vishniac',
-          name: 'Vishniac'
+          name: '維什尼亞茨'
         }]);
-      } else throw Error('Unknown planet ID: ' + planetId);
+      } else throw Error('未知的行星 ID：' + planetId);
     }, 1000);
   });
 }
@@ -1939,9 +1938,9 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-This code is a bit repetitive. However, that's not a good reason to combine it into a single Effect! If you did this, you'd have to combine both Effect's dependencies into one list, and then changing the planet would refetch the list of all planets. Effects are not a tool for code reuse.
+這些程式碼有一點重複。不過，這不是將它們合併成單一個 Effect 的好理由！如果你這麼做，你就必須合併兩個 Effect 的依賴，然後只要改變行星就會重新取得所有行星的清單。Effect 不是用來覆用程式碼的工具。
 
-Instead, to reduce repetition, you can extract some logic into a custom Hook like `useSelectOptions` below:
+作為代替，要減少重複，你可以抽出一些邏輯到客製化的 Hook，像是下面的 `useSelectOptions`：
 
 <Sandpack>
 
@@ -1965,7 +1964,7 @@ export default function Page() {
   return (
     <>
       <label>
-        Pick a planet:{' '}
+        選擇行星：{' '}
         <select value={planetId} onChange={e => {
           setPlanetId(e.target.value);
         }}>
@@ -1975,7 +1974,7 @@ export default function Page() {
         </select>
       </label>
       <label>
-        Pick a place:{' '}
+        選擇地點：{' '}
         <select value={placeId} onChange={e => {
           setPlaceId(e.target.value);
         }}>
@@ -1985,7 +1984,7 @@ export default function Page() {
         </select>
       </label>
       <hr />
-      <p>You are going to: {placeId || '...'} on {planetId || '...'} </p>
+      <p>你正在前往 {placeId || '？？？'} ，位於 {planetId || '？？？'} </p>
     </>
   );
 }
@@ -2025,10 +2024,10 @@ export function fetchData(url) {
   } else if (url.startsWith('/planets/')) {
     const match = url.match(/^\/planets\/([\w-]+)\/places(\/)?$/);
     if (!match || !match[1] || !match[1].length) {
-      throw Error('Expected URL like "/planets/earth/places". Received: "' + url + '".');
+      throw Error('預期接收像是 "/planets/earth/places" 這樣的位址。 實際收到： "' + url + '" 。');
     }
     return fetchPlaces(match[1]);
-  } else throw Error('Expected URL like "/planets" or "/planets/earth/places". Received: "' + url + '".');
+  } else throw Error('預期接收像是 "/planets" 或 "/planets/earth/places" 這樣的位址。 實際收到： "' + url + '" 。');
 }
 
 async function fetchPlanets() {
@@ -2036,13 +2035,13 @@ async function fetchPlanets() {
     setTimeout(() => {
       resolve([{
         id: 'earth',
-        name: 'Earth'
+        name: '地球'
       }, {
         id: 'venus',
-        name: 'Venus'
+        name: '金星'
       }, {
         id: 'mars',
-        name: 'Mars'        
+        name: '火星'        
       }]);
     }, 1000);
   });
@@ -2051,8 +2050,8 @@ async function fetchPlanets() {
 async function fetchPlaces(planetId) {
   if (typeof planetId !== 'string') {
     throw Error(
-      'fetchPlaces(planetId) expects a string argument. ' +
-      'Instead received: ' + planetId + '.'
+      'fetchPlaces(planetId) 期望接收一個字串作為引數。 ' +
+      '但實際收到： ' + planetId + ' 。'
     );
   }
   return new Promise(resolve => {
@@ -2060,37 +2059,37 @@ async function fetchPlaces(planetId) {
       if (planetId === 'earth') {
         resolve([{
           id: 'laos',
-          name: 'Laos'
+          name: '寮國'
         }, {
           id: 'spain',
-          name: 'Spain'
+          name: '西班牙'
         }, {
           id: 'vietnam',
-          name: 'Vietnam'        
+          name: '越南'        
         }]);
       } else if (planetId === 'venus') {
         resolve([{
           id: 'aurelia',
-          name: 'Aurelia'
+          name: '奧萊莉婭'
         }, {
           id: 'diana-chasma',
-          name: 'Diana Chasma'
+          name: '黛安娜峽谷'
         }, {
           id: 'kumsong-vallis',
-          name: 'Kŭmsŏng Vallis'        
+          name: '金城谷'        
         }]);
       } else if (planetId === 'mars') {
         resolve([{
           id: 'aluminum-city',
-          name: 'Aluminum City'
+          name: '鋁城'
         }, {
           id: 'new-new-york',
-          name: 'New New York'
+          name: '新紐約'
         }, {
           id: 'vishniac',
-          name: 'Vishniac'
+          name: '維什尼亞茨'
         }]);
-      } else throw Error('Unknown planet ID: ' + planetId);
+      } else throw Error('未知的行星 ID：' + planetId);
     }, 1000);
   });
 }
@@ -2102,7 +2101,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-Check the `useSelectOptions.js` tab in the sandbox to see how it works. Ideally, most Effects in your application should eventually be replaced by custom Hooks, whether written by you or by the community. Custom Hooks hide the synchronization logic, so the calling component doesn't know about the Effect. As you keep working on your app, you'll develop a palette of Hooks to choose from, and eventually you won't need to write Effects in your components very often.
+查看沙盒的 `useSelectOptions.js` 分頁，看看這是如何運作的。理想中，你的應用程式裡大部分的 Effect 最後都應該被客製化的 Hook 替代，無論這個 Hook 是由你還是別人所撰寫。客製化的 Hook 藏著同步的邏輯，因此呼叫它的元件不會知道關於 Effect 的事。當你持續投入你的應用程式，你會發展出自己的一套 Hook 來選擇，最後你就不需要那麼常在元件中撰寫 Effect。
 
 </Solution>
 
