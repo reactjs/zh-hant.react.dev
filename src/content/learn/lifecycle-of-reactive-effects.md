@@ -737,7 +737,7 @@ function ChatRoom() {
 
 * **確認你的 Effect 在獨立的同步程序中所代表的意義。** 如果你的 Effect 沒有同步任何東西，[它可能就是不必要的](/learn/you-might-not-need-an-effect)。如果你的 Effect 同步許多獨立的東西，[應該把它們拆分](#each-effect-represents-a-separate-synchronization-process)。
 
-* **如果你想要讀取 props 或狀態最新的值，但不「響應」這些值，也不重新同步 Effect，** 你可以將 Effect 拆分成響應式的部分（你保留在 Effect 中的部分）和非響應式的部分（你會抽出的部分，被稱為 _Effect 事件_）。[閱讀更多關於把事件從 Effect 中分離](/learn/separating-events-from-effects)。
+* **如果你想要讀取 props 或狀態最新的值，但不「響應」這些值，也不重新同步 Effect，** 你可以將 Effect 拆分成響應式的部分（你保留在 Effect 中的部分）和非響應式的部分（你會抽出的部分，被稱為 _Effect Event_）。[閱讀更多關於把事件從 Effect 中分離](/learn/separating-events-from-effects)。
 
 * **避免將物件和函式作為依賴。** 如果你在渲染期間創建物件和函式，接著在 Effect 中讀取它們，它們在每次渲染時都會不同。這會導致 Effect 每次都會重新同步。[閱讀更多關於把不必要的依賴從 Effect 中移除](/learn/removing-effect-dependencies)。
 
