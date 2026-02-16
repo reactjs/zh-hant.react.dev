@@ -4,7 +4,7 @@ title: '響應式 Effect 的生命週期'
 
 <Intro>
 
-Effect 和元件的生命週期並不相同。元件會掛載（mount）、更新或卸載(unmount)。Effect 只能做兩件事：開始同步某件事，並在稍後結束同步。如果你的 Effect 依賴隨著時間改變屬性（props）及狀態，這個循環可以發生很多次。React 有提供一個 linter 規範來檢查是否已經正確指定 Effect 的依賴項目。這能讓你的 Effect 與最新的屬性和狀態保持同步。
+Effect 和元件的生命週期並不相同。元件會掛載（mount）、更新或卸載(unmount)。Effect 只能做兩件事：開始同步某件事，並在稍後結束同步。如果你的 Effect 依賴隨著時間改變 props 及狀態，這個循環可以發生很多次。React 有提供一個 linter 規範來檢查是否已經正確指定 Effect 的依賴項目。這能讓你的 Effect 與最新的 props 和狀態保持同步。
 
 </Intro>
 
@@ -26,10 +26,10 @@ Effect 和元件的生命週期並不相同。元件會掛載（mount）、更�
 每個 React 的元件都會經歷同樣的生命週期：
 
 - _掛載_：元件被新增到畫面中。
-- _更新_：元件接收新的屬性或狀態，通常是在回應一個互動。
+- _更新_：元件接收新的 props 或狀態，通常是在回應一個互動。
 - _卸載_：元件從畫面中被移除。
 
-**這是一個思考元件的好方法，但不適用於 Effect。** 應該試著將每個 Effect 獨立於元件來思考。Effect 是用來描述如何以當前的屬性及狀態[同步一個外部系統](/learn/synchronizing-with-effects)。隨著程式碼改變，同步的頻率會增加或減少。
+**這是一個思考元件的好方法，但不適用於 Effect。** 應該試著將每個 Effect 獨立於元件來思考。Effect 是用來描述如何以當前的 props 及狀態[同步一個外部系統](/learn/synchronizing-with-effects)。隨著程式碼改變，同步的頻率會增加或減少。
 
 為了說明這一點，來看看一個將元件連線到聊天伺服器的 Effect：
 
@@ -84,7 +84,7 @@ Effect 的主體（body）指定如何 **開始同步**：
 
 ### 為什麼可能需要同步不止一次 {/*why-synchronization-may-need-to-happen-more-than-once*/}
 
-想像一下 `ChatRoom` 元件接收一個 `roomId` 屬性，是使用者在下拉式選單選取的值。一開始使用者選了 `"general"` 作為 `roomId`。你的應用程式會顯示 `"general"` 這個聊天室：
+想像一下 `ChatRoom` 元件接收一個 `roomId` prop，是使用者在下拉式選單選取的值。一開始使用者選了 `"general"` 作為 `roomId`。你的應用程式會顯示 `"general"` 這個聊天室：
 
 ```js {3}
 const serverUrl = 'https://localhost:1234';
@@ -120,18 +120,18 @@ function ChatRoom({ roomId /* "travel" */ }) {
 }
 ```
 
-想想看接下來應該會發生什麼事。使用者在 UI 中看到 `"travel"` 聊天室被選取，但上一次執行的 Effect 還是連線到 `"general"` 房間。**因為 `roomId` 屬性已經改變了，所以後續你的 Effect （與 `"general"` 聊天室連線）與 UI 並不相符**。
+想想看接下來應該會發生什麼事。使用者在 UI 中看到 `"travel"` 聊天室被選取，但上一次執行的 Effect 還是連線到 `"general"` 房間。**因為 `roomId` prop 已經改變了，所以後續你的 Effect （與 `"general"` 聊天室連線）與 UI 並不相符**。
 
 基於這點，你會希望 React 能做兩件事：
 
 1. 停止以舊的 `roomId` 同步（從 `"general"` 聊天室中斷連線）
 2. 開始以新的 `roomId` 同步（連線到 `"travel"` 聊天室）
 
-**幸運的是，你已經告訴 React 要怎麼做這兩件事！**Effect 的主體指定如何開始同步，而清除函式則是指定如何停止同步。React 必須做的就只是以正確的順序，並使用正確的屬性和狀態來呼叫它們。讓我們來看看到底是怎麼發生的。
+**幸運的是，你已經告訴 React 要怎麼做這兩件事！**Effect 的主體指定如何開始同步，而清除函式則是指定如何停止同步。React 必須做的就只是以正確的順序，並使用正確的 props 和狀態來呼叫它們。讓我們來看看到底是怎麼發生的。
 
 ### React 如何重新同步你的 Effect {/*how-react-re-synchronizes-your-effect*/}
 
-回想一下 `ChatRoom` 元件已經從 `roomId` 屬性接收了新的值。這個值原本是 `"general"`，現在則是 `"travel"`。React 需要重新同步 Effect，以重新連線到不同的房間。
+回想一下 `ChatRoom` 元件已經從 `roomId` prop 接收了新的值。這個值原本是 `"general"`，現在則是 `"travel"`。React 需要重新同步 Effect，以重新連線到不同的房間。
 
 為了 **停止同步**，React 會在連線到 `"general"` 聊天室後，呼叫 Effect 回傳的清除函式。因為 `roomId` 是 `"general"`，清除函式會從 `"general"` 聊天室中斷連線：
 
@@ -158,7 +158,7 @@ function ChatRoom({ roomId /* "travel" */ }) {
 
 多虧這樣，你現在連到和使用者在 UI 中所選相同的房間。災難解除！
 
-每次元件以不同的 `roomId` 重渲染（re-render）之後，Effect 就會重新同步。舉例來說，使用者把 `roomId` 從 `"travel"` 改成 `"music"`。React 會再次以清除函式 **停止同步** Effect（從 `"travel"` 聊天室中斷連線）。接著 React 會執行 Effect 的主體，以新的 `roomId` 屬性再次 **開始同步**（讓你連線到 `"music"` 聊天室）。
+每次元件以不同的 `roomId` 重渲染（re-render）之後，Effect 就會重新同步。舉例來說，使用者把 `roomId` 從 `"travel"` 改成 `"music"`。React 會再次以清除函式 **停止同步** Effect（從 `"travel"` 聊天室中斷連線）。接著 React 會執行 Effect 的主體，以新的 `roomId` prop 再次 **開始同步**（讓你連線到 `"music"` 聊天室）。
 
 最後，當使用者去到不同的畫面，`ChatRoom` 卸載。現在完全沒必要保持連線了。React 會最後一次 **停止同步** 你的 Effect，並中斷你和 `"music"` 聊天室的連線。
 
@@ -291,7 +291,7 @@ button { margin-left: 10px; }
 你可能在想 React 是怎麼知道 Effect 在 `roomId` 改變後，需要重新同步。這是因為 *你告訴 React* 它的程式碼依賴 `roomId`，藉由[依賴的清單](/learn/synchronizing-with-effects#step-2-specify-the-effect-dependencies)：
 
 ```js {1,3,8}
-function ChatRoom({ roomId }) { // roomId 屬性可能隨著時間改變
+function ChatRoom({ roomId }) { // roomId prop 可能隨著時間改變
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId); // Effect 讀取 roomId
     connection.connect();
@@ -304,7 +304,7 @@ function ChatRoom({ roomId }) { // roomId 屬性可能隨著時間改變
 
 運作方式如下：
 
-1. 你知道 `roomId` 是一個屬性，這意味著它會隨著時間改變
+1. 你知道 `roomId` 是一個 prop，這意味著它會隨著時間改變
 2. 你知道你的 Effect 讀取 `roomId`（所以它的邏輯依賴稍後可能會改變的值）。
 3. 這就是為什麼你指定 `roomId` 作為你的 Effect 的依賴（以至於 Effect 會在 `roomId` 改變時重新同步）。
 
@@ -373,21 +373,21 @@ function ChatRoom({ roomId }) {
 
 這是因為 `serverUrl` 完全不會因為重渲染而改變。不管元件重渲染多少次，`serverUrl` 都是一樣的。因為 `serverUrl` 不會改變，沒道理將它指定為依賴。畢竟，依賴只會在隨著時間改變時做一些事！
 
-另一方面，`roomId` 在重渲染時可能不同。**屬性、狀態和元件中其它被宣告的值是 _響應式的_，因為它們是在渲染時被計算，而且參與了 React 的資料流。**
+另一方面，`roomId` 在重渲染時可能不同。**props、狀態和元件中其它被宣告的值是 _響應式的_，因為它們是在渲染時被計算，而且參與了 React 的資料流。**
 
 如果 `serverUrl` 是一個狀態變數（state variable），它就會是響應式的。響應式的值必須包含在依賴中：
 
 ```js {2,5,10}
-function ChatRoom({ roomId }) { // 屬性隨著時間改變
+function ChatRoom({ roomId }) { // props 隨著時間改變
   const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // 狀態可能隨著時間改變
 
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Effect 讀取屬性和狀態
+    const connection = createConnection(serverUrl, roomId); // Effect 讀取 props 和狀態
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId, serverUrl]); // 所以你告訴 React，Effect「依賴」屬性和狀態
+  }, [roomId, serverUrl]); // 所以你告訴 React，Effect「依賴」props 和狀態
   // ...
 }
 ```
@@ -551,9 +551,9 @@ button { margin-left: 10px; }
 
 ### 元件主體中所有宣告的變數都是響應式的 {/*all-variables-declared-in-the-component-body-are-reactive*/}
 
-屬性和狀態不是唯一的響應式數值，以這兩者計算而來的值也是響應式的。當屬性和狀態改變，元件會重渲染，計算而來的值也會跟著改變。這也是為什麼元件主體中，被 Effect 用到的所有數值都應該包含在依賴的清單中。
+Props 和狀態不是唯一的響應式數值，以這兩者計算而來的值也是響應式的。當 props 和狀態改變，元件會重渲染，計算而來的值也會跟著改變。這也是為什麼元件主體中，被 Effect 用到的所有數值都應該包含在依賴的清單中。
 
-使用者能從下拉式選單選擇一個聊天伺服器，但他們也可以在設置中設定一個預設伺服器。假設你已經將這些設定的狀態放進一個 [Context](/learn/scaling-up-with-reducer-and-context)，所以你能從 Context 讀取 `settings`。現在你需要根據屬性中所選的伺服器和預設伺服器，來計算 `serverUrl`：
+使用者能從下拉式選單選擇一個聊天伺服器，但他們也可以在設置中設定一個預設伺服器。假設你已經將這些設定的狀態放進一個 [Context](/learn/scaling-up-with-reducer-and-context)，所以你能從 Context 讀取 `settings`。現在你需要根據 props 中所選的伺服器和預設伺服器，來計算 `serverUrl`：
 
 ```js {3,5,10}
 function ChatRoom({ roomId, selectedServerUrl }) { // roomId 是響應式的
@@ -570,9 +570,9 @@ function ChatRoom({ roomId, selectedServerUrl }) { // roomId 是響應式的
 }
 ```
 
-在這個範例中，`serverUrl` 不是屬性，也不是狀態變數。它只是渲染期間計算而來的普通的值。但因為它是渲染期間所計算，所以可能因為重渲染而改變。這也就是為什麼它是響應式的。
+在這個範例中，`serverUrl` 不是 prop，也不是狀態變數。它只是渲染期間計算而來的普通的值。但因為它是渲染期間所計算，所以可能因為重渲染而改變。這也就是為什麼它是響應式的。
 
-**元件中的所有值（包含屬性、狀態和元件主體中的變數）都是響應式的。任何響應式的值在重渲染中都可以改變，所以必須將響應式的值包含在 Effect 的依賴中。**
+**元件中的所有值（包含 props、狀態和元件主體中的變數）都是響應式的。任何響應式的值在重渲染中都可以改變，所以必須將響應式的值包含在 Effect 的依賴中。**
 
 換句話說，Effect 會對元件主體中所有的值做出「反應（react）」。
 
@@ -737,7 +737,7 @@ function ChatRoom() {
 
 * **確認你的 Effect 在獨立的同步程序中所代表的意義。** 如果你的 Effect 沒有同步任何東西，[它可能就是不必要的](/learn/you-might-not-need-an-effect)。如果你的 Effect 同步許多獨立的東西，[應該把它們拆分](#each-effect-represents-a-separate-synchronization-process)。
 
-* **如果你想要讀取屬性或狀態最新的值，但不「響應」這些值，也不重新同步 Effect，** 你可以將 Effect 拆分成響應式的部分（你保留在 Effect 中的部分）和非響應式的部分（你會抽出的部分，被稱為 _Effect 事件_）。[閱讀更多關於把事件從 Effect 中分離](/learn/separating-events-from-effects)。
+* **如果你想要讀取 props 或狀態最新的值，但不「響應」這些值，也不重新同步 Effect，** 你可以將 Effect 拆分成響應式的部分（你保留在 Effect 中的部分）和非響應式的部分（你會抽出的部分，被稱為 _Effect 事件_）。[閱讀更多關於把事件從 Effect 中分離](/learn/separating-events-from-effects)。
 
 * **避免將物件和函式作為依賴。** 如果你在渲染期間創建物件和函式，接著在 Effect 中讀取它們，它們在每次渲染時都會不同。這會導致 Effect 每次都會重新同步。[閱讀更多關於把不必要的依賴從 Effect 中移除](/learn/removing-effect-dependencies)。
 
@@ -859,7 +859,7 @@ button { margin-left: 10px; }
 
 <Solution>
 
-這個 Effect 根本沒有依賴陣列，所以會在每次重渲染時重新同步。首先，新增一個依賴陣列。接下來，確保 Effect 所用到的每個響應式數值都被指定在陣列中。舉例來說，`roomId` 是響應式的（因為它是一個屬性），所以應該包含在陣列中。這確保使用者選取不同的房間時，都會重新連線到聊天室。另一方面，`serverUrl` 是在元件外定義的，這就是為什麼它不需要在陣列裡。
+這個 Effect 根本沒有依賴陣列，所以會在每次重渲染時重新同步。首先，新增一個依賴陣列。接下來，確保 Effect 所用到的每個響應式數值都被指定在陣列中。舉例來說，`roomId` 是響應式的（因為它是一個 prop），所以應該包含在陣列中。這確保使用者選取不同的房間時，都會重新連線到聊天室。另一方面，`serverUrl` 是在元件外定義的，這就是為什麼它不需要在陣列裡。
 
 <Sandpack>
 
@@ -1316,7 +1316,7 @@ body {
 
 #### 修正連線開關 {/*fix-a-connection-switch*/}
 
-在這個範例中，`chat.js` 中的聊天服務提供兩個不同的 API：`createEncryptedConnection` 和 `createUnencryptedConnection`。`App` 根元件讓使用者選擇是否使用加密機制，接著向下傳遞（pass down）對應的 API 方法給 `ChatRoom` 子元件作為 `createConnection` 屬性。
+在這個範例中，`chat.js` 中的聊天服務提供兩個不同的 API：`createEncryptedConnection` 和 `createUnencryptedConnection`。`App` 根元件讓使用者選擇是否使用加密機制，接著向下傳遞（pass down）對應的 API 方法給 `ChatRoom` 子元件作為 `createConnection` prop。
 
 注意一開始 console log 說連線沒有加密。試著勾選核取方塊：沒有任何事情發生。但是，如果你在那之後更改所選的房間，那聊天室會重新連線 *並且* 開啟加密機制（就跟你在 console 訊息裡看到的一樣）。這是一個 bug。修正這個 bug，讓切換核取方塊 *也* 能使聊天室重新連線。
 
@@ -1422,7 +1422,7 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-如果移除掉 linter 的抑制，就會看到一個 lint 錯誤。問題出在 `createConnection` 是屬性，因此它是響應式數值。它會隨著時間改變！（確實，它應該改變——像是使用者點選核取方塊時，父元件傳入不同的值給 `createConnection` 屬性。）這就是為什麼它應該是依賴。將它納入依賴清單來修正這個 bug：
+如果移除掉 linter 的抑制，就會看到一個 lint 錯誤。問題出在 `createConnection` 是 prop，因此它是響應式數值。它會隨著時間改變！（確實，它應該改變——像是使用者點選核取方塊時，父元件傳入不同的值給 `createConnection` prop。）這就是為什麼它應該是依賴。將它納入依賴清單來修正這個 bug：
 
 <Sandpack>
 
@@ -1517,7 +1517,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-`createConnection` 是依賴，這是正確的。不過這段程式碼有點脆弱，因為有些人可能會將行內函式（inline function）作為屬性的值傳給 `App` 元件。在此情況下，每次 `App` 元件重渲染時，這個值就會不同，Effect 可能會因此太常重新同步。為了避免這個情況，你可以向下傳遞 `isEncrypted` 作為代替：
+`createConnection` 是依賴，這是正確的。不過這段程式碼有點脆弱，因為有些人可能會將行內函式（inline function）作為 prop 的值傳給 `App` 元件。在此情況下，每次 `App` 元件重渲染時，這個值就會不同，Effect 可能會因此太常重新同步。為了避免這個情況，你可以向下傳遞 `isEncrypted` 作為代替：
 
 <Sandpack>
 
@@ -1612,7 +1612,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-在這個版本中，`App` 元件傳入布林屬性，而不是函式。在 Effect 中，你來決定用哪個函式。`createEncryptedConnection` 和 `createUnencryptedConnection` 都是在元件外宣告，因此不是響應式，也不需要是依賴。你將會在[移除 Effect 的依賴](/learn/removing-effect-dependencies)的章節學到更多相關資訊。
+在這個版本中，`App` 元件傳入布林 prop，而不是函式。在 Effect 中，你來決定用哪個函式。`createEncryptedConnection` 和 `createUnencryptedConnection` 都是在元件外宣告，因此不是響應式，也不需要是依賴。你將會在[移除 Effect 的依賴](/learn/removing-effect-dependencies)的章節學到更多相關資訊。
 
 </Solution>
 
