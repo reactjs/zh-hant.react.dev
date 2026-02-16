@@ -288,7 +288,7 @@ button { margin-left: 10px; }
 
 ### React 如何得知需要重新同步 Effect {/*how-react-knows-that-it-needs-to-re-synchronize-the-effect*/}
 
-你可能在想 React 是怎麼知道 Effect 在 `roomId` 改變後，需要重新同步。這是因為 *你告訴 React* 它的程式碼依賴 `roomId`，藉由[依賴的清單](/learn/synchronizing-with-effects#step-2-specify-the-effect-dependencies)：
+你可能在想 React 是怎麼知道 Effect 在 `roomId` 改變後，需要重新同步。這是因為 *你告訴 React* 它的程式碼依賴 `roomId`，藉由[依賴的列表](/learn/synchronizing-with-effects#step-2-specify-the-effect-dependencies)：
 
 ```js {1,3,8}
 function ChatRoom({ roomId }) { // roomId prop 可能隨著時間改變
@@ -551,7 +551,7 @@ button { margin-left: 10px; }
 
 ### 元件主體中所有宣告的變數都是響應式的 {/*all-variables-declared-in-the-component-body-are-reactive*/}
 
-Props 和狀態不是唯一的響應式數值，以這兩者計算而來的值也是響應式的。當 props 和狀態改變，元件會重渲染，計算而來的值也會跟著改變。這也是為什麼元件主體中，被 Effect 用到的所有數值都應該包含在依賴的清單中。
+Props 和狀態不是唯一的響應式數值，以這兩者計算而來的值也是響應式的。當 props 和狀態改變，元件會重渲染，計算而來的值也會跟著改變。這也是為什麼元件主體中，被 Effect 用到的所有數值都應該包含在依賴的列表中。
 
 使用者能從下拉式選單選擇一個聊天伺服器，但他們也可以在設置中設定一個預設伺服器。假設你已經將這些設定的狀態放進一個 [Context](/learn/scaling-up-with-reducer-and-context)，所以你能從 Context 讀取 `settings`。現在你需要根據 props 中所選的伺服器和預設伺服器，來計算 `serverUrl`：
 
@@ -688,7 +688,7 @@ function ChatRoom({ roomId }) { // roomId 是響應式的
 
 <Note>
 
-在某些狀況下，React *知道* 某些值即使宣告在元件內，也從來不會改變。例如，`useState` 所回傳的 [`set` 函式](/reference/react/useState#setstate)，以及 [`useRef`](/reference/react/useRef) 所回傳的 ref 物件是 *穩定的（stable）*——它們保證不會在重渲染中改變。穩定的值不是響應式的，所以可以從依賴清單中省略。這些值被允許包含在依賴中：因為它們不會改變，所以沒有差別。
+在某些狀況下，React *知道* 某些值即使宣告在元件內，也從來不會改變。例如，`useState` 所回傳的 [`set` 函式](/reference/react/useState#setstate)，以及 [`useRef`](/reference/react/useRef) 所回傳的 ref 物件是 *穩定的（stable）*——它們保證不會在重渲染中改變。穩定的值不是響應式的，所以可以從依賴列表中省略。這些值被允許包含在依賴中：因為它們不會改變，所以沒有差別。
 
 </Note>
 
@@ -1112,7 +1112,7 @@ body {
 
 </Sandpack>
 
-在這兩個案例中，`canMove` 都是可以在 Effect 中讀取的響應式數值。這就是為什麼它必須在 Effect 的依賴清單中被指定。這確保 Effect 會在每次這個值改變時重新同步。
+在這兩個案例中，`canMove` 都是可以在 Effect 中讀取的響應式數值。這就是為什麼它必須在 Effect 的依賴列表中被指定。這確保 Effect 會在每次這個值改變時重新同步。
 
 </Solution>
 
@@ -1422,7 +1422,7 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-如果移除掉 linter 的抑制，就會看到一個 lint 錯誤。問題出在 `createConnection` 是 prop，因此它是響應式數值。它會隨著時間改變！（確實，它應該改變——像是使用者點選核取方塊時，父元件傳入不同的值給 `createConnection` prop。）這就是為什麼它應該是依賴。將它納入依賴清單來修正這個 bug：
+如果移除掉 linter 的抑制，就會看到一個 lint 錯誤。問題出在 `createConnection` 是 prop，因此它是響應式數值。它會隨著時間改變！（確實，它應該改變——像是使用者點選核取方塊時，父元件傳入不同的值給 `createConnection` prop。）這就是為什麼它應該是依賴。將它納入依賴列表來修正這個 bug：
 
 <Sandpack>
 
@@ -1622,7 +1622,7 @@ label { display: block; margin-bottom: 10px; }
 
 來看看第一個選單是怎麼運作的。它將 `"/planets"` API 呼叫結果填到 `planetList` 狀態中。現在所選的行星 ID 被保存在 `planetId` 狀態變數裡。你需要找到某個地方來新增額外的程式碼，將 `"/planets/" + planetId + "/places"` API 呼叫的結果填到 `placeList` 狀態變數中。
 
-如果你的實作正確，選擇行星時應該會填滿地點清單。改變行星時，也應該會改變地點清單。
+如果你的實作正確，選擇行星時應該會填滿地點列表。改變行星時，也應該會改變地點列表。
 
 <Hint>
 
@@ -1647,7 +1647,7 @@ export default function Page() {
     let ignore = false;
     fetchData('/planets').then(result => {
       if (!ignore) {
-        console.log('取得行星清單。');
+        console.log('取得行星列表。');
         setPlanetList(result);
         setPlanetId(result[0].id); // 選擇第一個行星
       }
@@ -1774,8 +1774,8 @@ label { display: block; margin-bottom: 10px; }
 
 這裡有兩個獨立的同步程序：
 
-- 第一個選單跟遠端的行星清單同步。
-- 第二個選單跟遠端的地點清單同步，而地點清單是根據當前的 `planetId`。
+- 第一個選單跟遠端的行星列表同步。
+- 第二個選單跟遠端的地點列表同步，而地點列表是根據當前的 `planetId`。
 
 這也是為什麼將它們描述成兩個分別的 Effect 是合理的。你可以照下方的範例來做做看：
 
@@ -1796,7 +1796,7 @@ export default function Page() {
     let ignore = false;
     fetchData('/planets').then(result => {
       if (!ignore) {
-        console.log('取得行星清單。');
+        console.log('取得行星列表。');
         setPlanetList(result);
         setPlanetId(result[0].id); // 選擇第一個行星
       }
@@ -1808,14 +1808,14 @@ export default function Page() {
 
   useEffect(() => {
     if (planetId === '') {
-      // 第一個清單尚未選取任何東西
+      // 第一個列表尚未選取任何東西
       return;
     }
 
     let ignore = false;
     fetchData('/planets/' + planetId + '/places').then(result => {
       if (!ignore) {
-        console.log('取得 "' + planetId + '" 的地點清單。');
+        console.log('取得 "' + planetId + '" 的地點列表。');
         setPlaceList(result);
         setPlaceId(result[0].id); // 選擇第一個地點
       }
@@ -1938,7 +1938,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-這些程式碼有一點重複。不過，這不是將它們合併成單一個 Effect 的好理由！如果你這麼做，你就必須合併兩個 Effect 的依賴，然後只要改變行星就會重新取得所有行星的清單。Effect 不是用來覆用程式碼的工具。
+這些程式碼有一點重複。不過，這不是將它們合併成單一個 Effect 的好理由！如果你這麼做，你就必須合併兩個 Effect 的依賴，然後只要改變行星就會重新取得所有行星的列表。Effect 不是用來覆用程式碼的工具。
 
 作為代替，要減少重複，你可以抽出一些邏輯到客製化的 Hook，像是下面的 `useSelectOptions`：
 
