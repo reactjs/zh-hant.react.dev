@@ -733,7 +733,7 @@ function ChatRoom() {
 
 **Effect 是一段響應式的程式碼。** 當你從中讀取的值改變時，Effect 就會重新同步。不像事件處理函式（event handler）只會在每次互動時執行一次，Effect 在每次需要同步時都會執行。
 
-**你不能「隨意選擇」依賴。** 依賴必須包含 Effect 中所讀取的所有[響應式數值](#all-variables-declared-in-the-component-body-are-reactive)。Linter 強迫必須這麼做。有時候這可能會導致一些問題，像是無窮迴圈，以及 Effect 太常重新同步。別用忽略（suppress）linter 的方式解決這些問題！你可以這麽做：
+**你不能「隨意選擇」依賴。** 依賴必須包含 Effect 中所讀取的所有[響應式數值](#all-variables-declared-in-the-component-body-are-reactive)。Linter 強迫必須這麼做。有時候這可能會導致一些問題，像是無窮迴圈，以及 Effect 太常重新同步。別用抑制（suppress）linter 的方式解決這些問題！你可以這麽做：
 
 * **確認你的 Effect 在獨立的同步程序中所代表的意義。** 如果你的 Effect 沒有同步任何東西，[它可能就是不必要的](/learn/you-might-not-need-an-effect)。如果你的 Effect 同步許多獨立的東西，[應該把它們拆分](#each-effect-represents-a-separate-synchronization-process)。
 
@@ -743,14 +743,14 @@ function ChatRoom() {
 
 <Pitfall>
 
-Linter 是你的朋友，但它的能力有限。Linter 只知道依賴什麼時候是 *錯的*，它不知道解決每個狀況的 *最佳* 解法。如果 Linter 建議增加一個值作為依賴，卻造成迴圈，這並不表示 linter 應該被忽略。你應該改變 Effect 內部（或外部）的程式碼，讓這個值不為響應式，也 *不需要* 是依賴。
+Linter 是你的朋友，但它的能力有限。Linter 只知道依賴什麼時候是 *錯的*，它不知道解決每個狀況的 *最佳* 解法。如果 Linter 建議增加一個值作為依賴，卻造成迴圈，這並不表示 linter 應該被抑制。你應該改變 Effect 內部（或外部）的程式碼，讓這個值不為響應式，也 *不需要* 是依賴。
 
-如果你有一些現成的程式碼，你可能會有一些 Effect 在忽略 linter 的規則，像這樣：
+如果你有一些現成的程式碼，你可能會有一些 Effect 在抑制 linter 的警告，像這樣：
 
 ```js {3-4}
 useEffect(() => {
   // ...
-  // 🔴 避免像這樣忽略 linter 的規則：
+  // 🔴 避免像這樣抑制 linter 的警告：
   // eslint-ignore-next-line react-hooks/exhaustive-deps
 }, []);
 ```
@@ -1124,7 +1124,7 @@ body {
 
 <Hint>
 
-如果你看到一個 linter 規則被忽略，移除它！那通常就是發生錯誤的地方。
+如果你看到一個 linter 規則被抑制，移除它！那通常就是發生錯誤的地方。
 
 </Hint>
 
@@ -1186,11 +1186,11 @@ body {
 
 <Solution>
 
-原本程式碼的問題是忽略了 linter 的檢查。移除忽略之後，就會看到 Effect 依賴 `handleMove` 函式。這是合理的：`handleMove` 是在元件主體中宣告，所以它是響應式數值。所有的響應式數值都應該被指定為依賴，否則就有可能一直保持舊的值。
+原本程式碼的問題是抑制了 linter 的警告。移除抑制之後，就會看到 Effect 依賴 `handleMove` 函式。這是合理的：`handleMove` 是在元件主體中宣告，所以它是響應式數值。所有的響應式數值都應該被指定為依賴，否則就有可能一直保持舊的值。
 
 這段程式碼的作者「欺騙」React 說這個 Effect 沒有依賴（`[]`）任何響應式數值。這也就是為什麼 React 沒有在 `canMove` （還有跟它一起的 `handleMove`）改變時重新同步 Effect。因為 React 沒有重新同步 Effect，作為監聽函式（listener）的 `handleMove` 是初次渲染時創建的 `handleMove`。在初次渲染期間，`canMove` 是 `true`，所以初次渲染時的 `handleMove` 也只會看到 `true`。
 
-**如果你從未忽略 linter，就不會遇到舊值的問題。** 有一些不同的方式可以解決這個 bug，但你應該總是先移除 linter 的忽略。接著修改程式碼來解決 linter 的錯誤。
+**如果你從未抑制 linter，就不會遇到舊值的問題。** 有一些不同的方式可以解決這個 bug，但你應該總是先移除 linter 的抑制。接著修改程式碼來解決 linter 的錯誤。
 
 你可以將 Effect 的依賴改成 `[handleMove]`，但因為它會在每次渲染時變成新定義的函式，可能還是把依賴陣列整個刪掉比較好。那 Effect *就會* 在每次重渲染時重新同步：
 
@@ -1322,7 +1322,7 @@ body {
 
 <Hint>
 
-忽略 linter 的做法始終很可疑。這會不會是 bug 呢？
+抑制 linter 的做法始終很可疑。這會不會是 bug 呢？
 
 </Hint>
 
@@ -1422,7 +1422,7 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-如果移除掉 linter 的忽略，就會看到一個 lint 錯誤。問題出在 `createConnection` 是屬性，因此它是響應式數值。它會隨著時間改變！（確實，它應該改變——像是使用者點選核取方塊時，父元件傳入不同的值給 `createConnection` 屬性。）這就是為什麼它應該是依賴。將它納入依賴清單來修正這個 bug：
+如果移除掉 linter 的抑制，就會看到一個 lint 錯誤。問題出在 `createConnection` 是屬性，因此它是響應式數值。它會隨著時間改變！（確實，它應該改變——像是使用者點選核取方塊時，父元件傳入不同的值給 `createConnection` 屬性。）這就是為什麼它應該是依賴。將它納入依賴清單來修正這個 bug：
 
 <Sandpack>
 
