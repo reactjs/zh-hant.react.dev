@@ -1719,7 +1719,7 @@ async function fetchPlanets() {
 async function fetchPlaces(planetId) {
   if (typeof planetId !== 'string') {
     throw Error(
-      'fetchPlaces(planetId) 期望接收一個字串作為引數。 ' +
+      'fetchPlaces(planetId) 預期接收一個字串作為引數。 ' +
       '但實際收到： ' + planetId + ' 。'
     );
   }
@@ -1887,7 +1887,7 @@ async function fetchPlanets() {
 async function fetchPlaces(planetId) {
   if (typeof planetId !== 'string') {
     throw Error(
-      'fetchPlaces(planetId) 期望接收一個字串作為引數。 ' +
+      'fetchPlaces(planetId) 預期接收一個字串作為引數。 ' +
       '但實際收到： ' + planetId + ' 。'
     );
   }
@@ -2050,7 +2050,7 @@ async function fetchPlanets() {
 async function fetchPlaces(planetId) {
   if (typeof planetId !== 'string') {
     throw Error(
-      'fetchPlaces(planetId) 期望接收一個字串作為引數。 ' +
+      'fetchPlaces(planetId) 預期接收一個字串作為引數。 ' +
       '但實際收到： ' + planetId + ' 。'
     );
   }
