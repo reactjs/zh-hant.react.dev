@@ -109,7 +109,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-[Effect 對響應式數值「做出反應（react）」](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)。因為 `roomId` 是響應式數值（可以隨著重渲染（re-render）而改變），linter 會驗證你是否有指定為依賴。如果 `roomId` 接收到不同的值，React 就會重新同步 Effect。這確保聊天室會與目前選取的房間保持連線，並針對下拉式選單的變化「做出反應」：
+[Effect 對響應式數值「做出反應（react）」](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)。因為 `roomId` 是響應式數值（可以隨著重新渲染（re-render）而改變），linter 會驗證你是否有指定為依賴。如果 `roomId` 接收到不同的值，React 就會重新同步 Effect。這確保聊天室會與目前選取的房間保持連線，並針對下拉式選單的變化「做出反應」：
 
 <Sandpack>
 
@@ -205,7 +205,7 @@ function ChatRoom({ roomId }) {
 
 Linter 是正確的！因為 `roomId` 可能隨著時間改變，它會引發 bug。
 
-**想要移除依賴，就向 linter「證明」它 *不必* 是依賴。** 舉例來說，可以將 `roomId` 搬到元件外面，來證明它不是響應式，且不會隨著重渲染而改變：
+**想要移除依賴，就向 linter「證明」它 *不必* 是依賴。** 舉例來說，可以將 `roomId` 搬到元件外面，來證明它不是響應式，且不會隨著重新渲染而改變：
 
 ```js {2,9}
 const serverUrl = 'https://localhost:1234';
@@ -221,7 +221,7 @@ function ChatRoom() {
 }
 ```
 
-現在 `roomId` 不是響應式數值（而且不會隨著重渲染而改變），也就不必是依賴：
+現在 `roomId` 不是響應式數值（而且不會隨著重新渲染而改變），也就不必是依賴：
 
 <Sandpack>
 
@@ -587,7 +587,7 @@ function ChatRoom({ roomId }) {
 
 把 `messages` 設為依賴會引發問題。
 
-每次收到訊息時，`setMessages()` 以包含所收訊息的 `messages` 陣列使元件重渲染。然而，因為 Effect 依賴 `messages`，這 *也會* 重新同步 Effect。所以每次新訊息都會讓聊天室重新連線。使用者不會喜歡這樣！
+每次收到訊息時，`setMessages()` 以包含所收訊息的 `messages` 陣列使元件重新渲染。然而，因為 Effect 依賴 `messages`，這 *也會* 重新同步 Effect。所以每次新訊息都會讓聊天室重新連線。使用者不會喜歡這樣！
 
 為了修正這個議題，不要在 Effect 裡讀取 `messages`。作為代替，傳入一個[更新函式（updater function）](/reference/react/useState#updating-state-based-on-the-previous-state) 給 `setMessages`：
 
@@ -710,7 +710,7 @@ function ChatRoom({ roomId, onReceiveMessage }) {
 />
 ```
 
-因為 `onReceiveMessage` 是依賴，它會在每次父元件重渲染後，使 Effect 重新同步。這會導致它重新連線到聊天室。為了解決這個問題，將呼叫包進 Effect Event 中：
+因為 `onReceiveMessage` 是依賴，它會在每次父元件重新渲染後，使 Effect 重新同步。這會導致它重新連線到聊天室。為了解決這個問題，將呼叫包進 Effect Event 中：
 
 ```js {4-6,12,15}
 function ChatRoom({ roomId, onReceiveMessage }) {
@@ -731,7 +731,7 @@ function ChatRoom({ roomId, onReceiveMessage }) {
   // ...
 ```
 
-Effect Event 並非響應式，所以不需要指定為依賴。因此，即使父元件在每次重渲染時傳入不同的函式，聊天室也不再會重新連線。
+Effect Event 並非響應式，所以不需要指定為依賴。因此，即使父元件在每次重新渲染時傳入不同的函式，聊天室也不再會重新連線。
 
 #### 將響應式與非響應式的程式碼分開 {/*separating-reactive-and-non-reactive-code*/}
 
@@ -861,9 +861,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-在上面的沙盒中，輸入框只更新 `message` 狀態變數。從使用者的角度，這不應該影響到聊天室的連線。但是，每次更新 `message`，元件會重渲染。當元件重渲染時，程式碼會再次從頭執行。
+在上面的沙盒中，輸入框只更新 `message` 狀態變數。從使用者的角度，這不應該影響到聊天室的連線。但是，每次更新 `message`，元件會重新渲染。當元件重新渲染時，程式碼會再次從頭執行。
 
-每次 `ChatRoom` 元件重渲染時，會從頭創建一個新的 `options` 物件。React 將 `options` 物件和上一次渲染期間的 `options` 物件視為 *不同的物件*。這就是為什麼 React 會重新同步 Effect（依賴 `options`），並且在打字時重新連線到聊天室。
+每次 `ChatRoom` 元件重新渲染時，會從頭創建一個新的 `options` 物件。React 將 `options` 物件和上一次渲染期間的 `options` 物件視為 *不同的物件*。這就是為什麼 React 會重新同步 Effect（依賴 `options`），並且在打字時重新連線到聊天室。
 
 **這個問題只影響物件和函式。在 JavaScript 中，每個新建的物件和函式都被視為相互獨立的。裡面的內容是否相同並不重要！**
 
@@ -903,7 +903,7 @@ function ChatRoom() {
   // ...
 ```
 
-用這個方式，你向 linter「證明」了物件不是響應式。它不會因重渲染而改變，所以不需要是依賴。現在 `ChatRoom` 重渲染不會使 Effect 重新同步了。
+用這個方式，你向 linter「證明」了物件不是響應式。它不會因重新渲染而改變，所以不需要是依賴。現在 `ChatRoom` 重新渲染不會使 Effect 重新同步了。
 
 這個方式對函式也有用：
 
@@ -931,7 +931,7 @@ function ChatRoom() {
 
 #### 將動態物件和函式移入 Effect {/*move-dynamic-objects-and-functions-inside-your-effect*/}
 
-如果物件依賴一些可能隨著重渲染而變化的響應式數值，像是 `roomId` prop，你不能把它放在元件 *外面*。但你可以把它移入 Effect 的程式碼：
+如果物件依賴一些可能隨著重新渲染而變化的響應式數值，像是 `roomId` prop，你不能把它放在元件 *外面*。但你可以把它移入 Effect 的程式碼：
 
 ```js {7-10,11,14}
 const serverUrl = 'https://localhost:1234';
@@ -1093,7 +1093,7 @@ function ChatRoom({ options }) {
   }}
 />
 ```
-這會導致 Effect 在每次父元件重渲染時重新連線。為了修正這個問題，在 Effect *外面* 讀取物件的資訊，並避免使用物件和函式作為依賴：
+這會導致 Effect 在每次父元件重新渲染時重新連線。為了修正這個問題，在 Effect *外面* 讀取物件的資訊，並避免使用物件和函式作為依賴：
 
 ```js {4,7-8,12}
 function ChatRoom({ options }) {
@@ -1129,7 +1129,7 @@ function ChatRoom({ options }) {
 />
 ```
 
-為了避免將它作為依賴（然後導致重渲染時重新連線），在 Effect 外呼叫它。你會得到不是物件的 `roomId` 和 `serverUrl`，然後就可以在 Effect 裡讀取它們：
+為了避免將它作為依賴（然後導致重新渲染時重新連線），在 Effect 外呼叫它。你會得到不是物件的 `roomId` 和 `serverUrl`，然後就可以在 Effect 裡讀取它們：
 
 ```js {1,4}
 function ChatRoom({ getOptions }) {
@@ -1773,7 +1773,7 @@ label, button { display: block; margin-bottom: 5px; }
 
 <Hint>
 
-你正在往下傳遞兩個函式：`onMessage` 和 `createConnection`。在每次 `App` 重渲染時，這兩個函式都會從頭被創建。它們每次都會被視為新的值，也是為什麼它們會重新觸發 Effect。
+你正在往下傳遞兩個函式：`onMessage` 和 `createConnection`。在每次 `App` 重新渲染時，這兩個函式都會從頭被創建。它們每次都會被視為新的值，也是為什麼它們會重新觸發 Effect。
 
 其中一個函式是事件處理函式。你知道有什麼方法，可以在不「響應」事件處理函式的新值的情況下，將事件處理函式作為 Effect 來呼叫嗎？這會派上用場！
 
