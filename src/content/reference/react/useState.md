@@ -46,7 +46,7 @@ function MyComponent() {
 `useState` 會回傳一個剛好兩個值的陣列：
 
 1. 當前狀態。在第一次渲染的期間，會匹配你傳入的 `initialState`。
-2. [`set` 函式](#setstate) 會更新狀態並觸發重渲染。
+2. [`set` 函式](#setstate) 會更新狀態並觸發重新渲染。
 
 #### 注意事項 {/*caveats*/}
 
@@ -57,7 +57,7 @@ function MyComponent() {
 
 ### `set` 函式，像是 `setSomething(nextState)` {/*setstate*/}
 
-`useState` 回傳的 `set` 函式可以將狀態更新成不同的值並觸發重渲染。可以直接傳入新的狀態，或由之前的狀態計算的函式：
+`useState` 回傳的 `set` 函式可以將狀態更新成不同的值並觸發重新渲染。可以直接傳入新的狀態，或由之前的狀態計算的函式：
 
 ```js
 const [name, setName] = useState('Edward');
@@ -71,7 +71,7 @@ function handleClick() {
 #### 參數 {/*setstate-parameters*/}
 
 * `nextState` ：期望狀態變成的值。可以為任一型別，但為函式時會有特殊的行為。
-  * 若傳入函式到 `nextState`，將會被視為 _更新函式（updater function）_ 。其必須為純函式，必須有待處理狀態（pending state）作為唯一的引數，且回傳下一個狀態。React 會將更新函式放進佇列，並重渲染元件。在下一次的渲染時，React 會根據佇列中所有的更新函式，以之前的狀態計算出新的狀態。 [往下看更多範例。](#updating-state-based-on-the-previous-state)
+  * 若傳入函式到 `nextState`，將會被視為 _更新函式（updater function）_ 。其必須為純函式，必須有待處理狀態（pending state）作為唯一的引數，且回傳下一個狀態。React 會將更新函式放進佇列，並重新渲染元件。在下一次的渲染時，React 會根據佇列中所有的更新函式，以之前的狀態計算出新的狀態。 [往下看更多範例。](#updating-state-based-on-the-previous-state)
 
 #### 回傳值 {/*setstate-returns*/}
 
@@ -81,9 +81,9 @@ function handleClick() {
 
 * `set` 函式 **只會在 *下一次* 渲染時更新狀態變數** 。如果你在呼叫 `set` 函式後馬上讀取狀態變數，[還是會拿到舊的值](#ive-updated-the-state-but-logging-gives-me-the-old-value) ，也就是在呼叫前畫面上的值。
 
-* 如果你提供的值跟現在的 `state` 相同（由 [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 的比較來判定），React 會 **跳過元件和子元件的重渲染** 作為最佳化。雖然在某些情況中 React 仍然需要在跳過子元件前呼叫元件，但這不應該影響你的程式碼。
+* 如果你提供的值跟現在的 `state` 相同（由 [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 的比較來判定），React 會 **跳過元件和子元件的重新渲染** 作為最佳化。雖然在某些情況中 React 仍然需要在跳過子元件前呼叫元件，但這不應該影響你的程式碼。
 
-* React 會 [批次處理狀態更新](/learn/queueing-a-series-of-state-updates) 。也就是在所有的事件處理函式（event handler）執行完畢後更新畫面，並呼叫所有 set 函式。這樣能避免單一事件期間多次重渲染。在少數的情況中，必須更早強迫 React 立即更新畫面，例如可以用 [`flushSync`](/reference/react-dom/flushSync) 來存取 DOM。
+* React 會 [批次處理狀態更新](/learn/queueing-a-series-of-state-updates) 。也就是在所有的事件處理函式（event handler）執行完畢後更新畫面，並呼叫所有 set 函式。這樣能避免單一事件期間多次重新渲染。在少數的情況中，必須更早強迫 React 立即更新畫面，例如可以用 [`flushSync`](/reference/react-dom/flushSync) 來存取 DOM。
 
 * `set` 函式有穩定的識別性，所以常在 Effect 的依賴中被省略，就算在依賴中也不會觸發 Effect。如果 linter 在依賴省略 `set` 函式時沒有報錯，也是安全可行的。 [瞭解更多關於移除 Effect 的依賴。](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
@@ -326,9 +326,9 @@ React 在開發環境時，可能會 [呼叫更新函式兩次](#my-initializer-
 
 在大部分的情況裡，這兩種方式並無差別。React 會確保像點擊這類使用者有意的行為， `age` 狀態變數在下次點擊前就會被更新。這表示在事件處理函式一開始，不會有看到「過時的」 `age` 的風險。
 
-不過，如果想在同一個事件中多次更新，更新函式會很有用。當狀態變數不易取得時，更新函式也很有幫助。（像是在最佳化重渲染時。）
+不過，如果想在同一個事件中多次更新，更新函式會很有用。當狀態變數不易取得時，更新函式也很有幫助。（像是在最佳化重新渲染時。）
 
-如果你偏好統一寫法，即使語法稍微冗長，只要狀態是根據之前的狀態計算而來，都用更新函式也是合理的。如果狀態是根據 *其它* 狀態變數計算而來，或許可以把它們合併成一個物件，然後 [用化簡器（reducer）處理](/learn/extracting-state-logic-into-a-reducer) 。
+如果你偏好統一寫法，即使語法稍微冗長，只要狀態是根據之前的狀態計算而來，都用更新函式也是合理的。如果狀態是根據 *其它* 狀態變數計算而來，或許可以把它們合併成一個物件，然後 [用 reducer 處理](/learn/extracting-state-logic-into-a-reducer) 。
 
 </DeepDive>
 
@@ -914,7 +914,7 @@ React 在開發環境會 [呼叫你的初始化函式兩次](#my-initializer-or-
 
 #### 傳入初始化函式 {/*passing-the-initializer-function*/}
 
-這個範例傳入初始化函式，所以 `createInitialTodos` 函式只會在初始化時執行。當元件重渲染，例如輸入時，這個函式並不會執行。
+這個範例傳入初始化函式，所以 `createInitialTodos` 函式只會在初始化時執行。當元件重新渲染，例如輸入時，這個函式並不會執行。
 
 <Sandpack>
 
@@ -1142,9 +1142,9 @@ button { margin-bottom: 10px; }
 
 </Sandpack>
 
-要注意的是，如果在渲染時呼叫 `set` 函式，一定有像是 `prevCount !== count` 這樣的判斷，然後在判斷裡面呼叫像是 `setPrevCount(count)` 這樣的函式。否則元件會在迴圈內不斷重渲染直到當掉。另外，也可以像前面這邊說的，只更新 *現在正在渲染的元件* 。在渲染期間呼叫*另一個*元件的 `set` 函式是錯誤的。最後一點，`set` 呼叫應該要 [更新狀態但不變動（mutation）](#updating-objects-and-arrays-in-state) ，但這並不表示可以違反 [純函式](/learn/keeping-components-pure) 的規範。
+要注意的是，如果在渲染時呼叫 `set` 函式，一定有像是 `prevCount !== count` 這樣的判斷，然後在判斷裡面呼叫像是 `setPrevCount(count)` 這樣的函式。否則元件會在迴圈內不斷重新渲染直到當掉。另外，也可以像前面這邊說的，只更新 *現在正在渲染的元件* 。在渲染期間呼叫*另一個*元件的 `set` 函式是錯誤的。最後一點，`set` 呼叫應該要 [更新狀態但不變動（mutation）](#updating-objects-and-arrays-in-state) ，但這並不表示可以違反 [純函式](/learn/keeping-components-pure) 的規範。
 
-這個方式可能不太好懂，而且最常被避免使用，但還是比在 effect 中更新狀態好。當在渲染時呼叫 `set` 函式，React 會立刻重渲染元件，時間點是在 `return` 以後元件已存在，但子元件還沒渲染之前。這樣一來子元件就不會渲染兩次。而元件中其它的函式還是會執行（執行結果會被捨棄）。如果你的條件式是在所有的 Hook 之前，應該要在更早之前加上 `return;`，才能更早重新渲染。
+這個方式可能不太好懂，而且最常被避免使用，但還是比在 effect 中更新狀態好。當在渲染時呼叫 `set` 函式，React 會立刻重新渲染元件，時間點是在 `return` 以後元件已存在，但子元件還沒渲染之前。這樣一來子元件就不會渲染兩次。而元件中其它的函式還是會執行（執行結果會被捨棄）。如果你的條件式是在所有的 Hook 之前，應該要在更早之前加上 `return;`，才能更早重新渲染。
 
 ---
 
@@ -1158,7 +1158,7 @@ button { margin-bottom: 10px; }
 function handleClick() {
   console.log(count);  // 0
 
-  setCount(count + 1); // 以 1 要求重渲染
+  setCount(count + 1); // 以 1 要求重新渲染
   console.log(count);  // 還是 0 ！
 
   setTimeout(() => {
@@ -1202,7 +1202,7 @@ setObj({
 
 ---
 
-### 我得到錯誤訊息：「過多重渲染」 {/*im-getting-an-error-too-many-re-renders*/}
+### 我得到錯誤訊息：「過多重新渲染」 {/*im-getting-an-error-too-many-re-renders*/}
 
 有時候可能會得到這個錯誤訊息： `Too many re-renders. React limits the number of renders to prevent an infinite loop` 。一般來說，這表示你 *渲染期間* 在沒有條件判斷的狀況下設置狀態，所以元件進入了這個迴圈：渲染 -> 設置狀態（導致一次渲染） -> 渲染 -> 設置狀態（導致一次渲染），以此類推。這經常會導致事件處理函式中的錯誤：
 
