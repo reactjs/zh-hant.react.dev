@@ -11,7 +11,7 @@ Reducers 可以整合元件的狀態更新邏輯。Context 能將資訊深入向
 <YouWillLearn>
 
 * 如何混用 reducer 和 context
-* 如何避免藉由屬性（props）傳送狀態和派發 action
+* 如何避免藉由 props 傳送狀態和派發 action
 * 如何維持不同檔案中的 context 和狀態邏輯
 
 </YouWillLearn>
@@ -207,7 +207,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Reducer 可以讓事件處理函式保持簡潔。不過隨著應用程式成長，可能會遭遇另一種困境。**現在 `task` 狀態和 `dispatch` 函式只在 `TaskApp` 元件的頂層才能使用。** 要讓其他元件讀取任務清單或改變任務，需要另外[向下傳遞](/learn/passing-props-to-a-component)當前狀態並讓事件處理函式作為屬性來改變任務。
+Reducer 可以讓事件處理函式保持簡潔。不過隨著應用程式成長，可能會遭遇另一種困境。**現在 `task` 狀態和 `dispatch` 函式只在 `TaskApp` 元件的頂層才能使用。** 要讓其他元件讀取任務清單或改變任務，需要另外[向下傳遞](/learn/passing-props-to-a-component)當前狀態並讓事件處理函式作為 props 來改變任務。
 
 舉例來說，`TaskApp` 將一個任務清單和一些事件處理函式傳入 `TaskList`：
 
@@ -231,8 +231,8 @@ Reducer 可以讓事件處理函式保持簡潔。不過隨著應用程式成長
 
 在這樣的小範例中，它可以作用得很好，但如果你有數以百計的元件在中間，要把所有的狀態和函式都向下傳遞，會很令人挫折！
 
-這就是為什麼，作為傳遞屬性的替代方案，你可能會想把 `tasks` 狀態和 `dispatch` 函式都[放進 context](/learn/passing-data-deeply-with-context)。
-**這樣一來，`TaskApp` 樹底下的任何元件都能讀取到任務及派發 action，而不用重複「層層傳遞屬性（prop drilling）」。**
+這就是為什麼，作為傳遞 props 的替代方案，你可能會想把 `tasks` 狀態和 `dispatch` 函式都[放進 context](/learn/passing-data-deeply-with-context)。
+**這樣一來，`TaskApp` 樹底下的任何元件都能讀取到任務及派發 action，而不用重複「層層傳遞 props」。**
 
 以下是混用 reducer 和 context 的方法：
 
@@ -471,7 +471,7 @@ export default function TaskApp() {
 }
 ```
 
-目前為止，你同時藉由屬性和 context 傳遞這些資訊：
+目前為止，你同時藉由 props 和 context 傳遞這些資訊：
 
 <Sandpack>
 
@@ -670,7 +670,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-在下個步驟中，將會移除屬性傳遞：
+在下個步驟中，將會移除 props 傳遞：
 
 ### 步驟三：在樹的任何地方使用 context {/*step-3-use-context-anywhere-in-the-tree*/}
 
@@ -915,7 +915,7 @@ export const TasksDispatchContext = createContext(null);
 
 1. 元件會用 reducer 管理狀態。
 2. 元件會提供兩個 context 給下面的這些元件。
-3. 元件會[以 `children` 作為屬性](/learn/passing-props-to-a-component#passing-jsx-as-children)，因此你能傳入 JSX 給它。
+3. 元件會[以 `children` 作為 props](/learn/passing-props-to-a-component#passing-jsx-as-children)，因此你能傳入 JSX 給它。
 
 ```js
 export function TasksProvider({ children }) {
