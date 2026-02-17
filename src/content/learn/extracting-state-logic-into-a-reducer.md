@@ -1,23 +1,23 @@
 ---
-title: 抽出狀態邏輯到化簡器
+title: 抽出狀態邏輯到 Reducer
 ---
 
 <Intro>
 
-如果元件的狀態更新很多次，且分散在多個事件處理函式（event handler）中，可能會變得難以管理。在這種情況下，可以將所有更新狀態的邏輯整合到元件外的一個函式，稱為 _化簡器（reducer）_。
+如果元件的狀態更新很多次，且分散在多個事件處理函式（event handler）中，可能會變得難以管理。在這種情況下，可以將所有更新狀態的邏輯整合到元件外的一個函式，稱為 _reducer_。
 
 </Intro>
 
 <YouWillLearn>
 
-- 化簡器函式是什麼
+- Reducer 函式是什麼
 - 如何將 `useState` 重構為 `useReducer`
-- 使用化簡器的時機
-- 如何寫好化簡器
+- 使用 reducer 的時機
+- 如何寫好 reducer
 
 </YouWillLearn>
 
-## 以化簡器整合狀態邏輯 {/*consolidate-state-logic-with-a-reducer*/}
+## 以 Reducer 整合狀態邏輯 {/*consolidate-state-logic-with-a-reducer*/}
 
 當元件愈來愈複雜時，就會很難一眼看出元件的狀態是如何被更新的。舉例來說， `TaskApp` 元件在狀態中保存了一個 `tasks` 陣列，並用三個不同的事件處理函式來新增、刪除和編輯任務：
 
@@ -179,13 +179,13 @@ li {
 
 </Sandpack>
 
-元件的每個事件處理函式呼叫 `setTasks` 來更新狀態。隨著元件成長，分散在其中的狀態邏輯也隨之增加。為了減少元件的複雜度，並將邏輯保存在一個易於存取的地方，可以將狀態邏輯移到元件外的一個函式， **稱為化簡器。**
+元件的每個事件處理函式呼叫 `setTasks` 來更新狀態。隨著元件成長，分散在其中的狀態邏輯也隨之增加。為了減少元件的複雜度，並將邏輯保存在一個易於存取的地方，可以將狀態邏輯移到元件外的一個函式， **稱為 reducer。**
 
-化簡器是另一種處理狀態的方式。可以透過三個步驟將 `useState` 遷移到 `useReducer` ：
+Reducer 是另一種處理狀態的方式。可以透過三個步驟將 `useState` 遷移到 `useReducer` ：
 
 1. 將直接設定狀態 **改為** 派發（dispatch） action。
-2. **撰寫** 化簡器函式。
-3. 在元件中 **使用** 化簡器。
+2. **撰寫** reducer 函式。
+3. 在元件中 **使用** reducer。
 
 ### 步驟一：將直接設定狀態改為派發 action {/*step-1-move-from-setting-state-to-dispatching-actions*/}
 
@@ -226,7 +226,7 @@ function handleDeleteTask(taskId) {
 - `handleChangeTask(task)` 在使用者切換任務或點擊「儲存」時呼叫。
 - `handleDeleteTask(taskId)` 在使用者點擊「刪除」時呼叫。
 
-用化簡器管理狀態和直接設定狀態有些微的不同。並不是用設定狀態的方式告訴 React 「要做什麼」，而是在事件處理函式中用派發「action」的方式指定「使用者剛剛做了什麼」。（狀態更新邏輯會放在別的地方！）所以並不是藉由事件處理函式「設定 `tasks`」，而是派發「新增/修改/刪除任務」的 action 。這樣比較能表達使用者的意圖。
+用 reducer 管理狀態和直接設定狀態有些微的不同。並不是用設定狀態的方式告訴 React 「要做什麼」，而是在事件處理函式中用派發「action」的方式指定「使用者剛剛做了什麼」。（狀態更新邏輯會放在別的地方！）所以並不是藉由事件處理函式「設定 `tasks`」，而是派發「新增/修改/刪除任務」的 action 。這樣比較能表達使用者的意圖。
 
 ```js
 function handleAddTask(text) {
@@ -284,9 +284,9 @@ dispatch({
 
 </Note>
 
-### 步驟二：撰寫化簡器函式 {/*step-2-write-a-reducer-function*/}
+### 步驟二：撰寫 reducer 函式 {/*step-2-write-a-reducer-function*/}
 
-化簡器函式是放置狀態邏輯的地方。它接收兩個引數——當前狀態和 action 物件，並回傳新的狀態：
+reducer 函式是放置狀態邏輯的地方。它接收兩個引數——當前狀態和 action 物件，並回傳新的狀態：
 
 ```js
 function yourReducer(state, action) {
@@ -294,15 +294,15 @@ function yourReducer(state, action) {
 }
 ```
 
-React 會將狀態設定為化簡器回傳的值。
+React 會將狀態設定為 reducer 回傳的值。
 
-在這個範例中，為了將狀態設定邏輯從事件處理函式移至化簡器函式，你會：
+在這個範例中，為了將狀態設定邏輯從事件處理函式移至 reducer 函式，你會：
 
 1. 宣告當前狀態（`tasks`）作為第一個引數。
 2. 宣告 `action` 物件作為第二個引數。
-3. 在化簡器回傳 _新的_ 狀態（React 會以此設定新的狀態）。
+3. 在 reducer 回傳 _新的_ 狀態（React 會以此設定新的狀態）。
 
-以下是所有遷移至化簡器函式的狀態設定邏輯：
+以下是所有遷移至 reducer 函式的狀態設定邏輯：
 
 ```js
 function tasksReducer(tasks, action) {
@@ -331,11 +331,11 @@ function tasksReducer(tasks, action) {
 }
 ```
 
-化簡器函式接收狀態（`tasks`）作為引數，所以可以 **在元件外宣告它**。這樣可以減少縮排的層級，讓程式碼更易讀。
+Reducer 函式接收狀態（`tasks`）作為引數，所以可以 **在元件外宣告它**。這樣可以減少縮排的層級，讓程式碼更易讀。
 
 <Note>
 
-上面的程式碼使用 if/else 語句，但習慣上在化簡器中會使用 [switch 語句](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch)。雖然結果相同，但 switch 語句比較一目了然。
+上面的程式碼使用 if/else 語句，但習慣上在 reducer 中會使用 [switch 語句](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch)。雖然結果相同，但 switch 語句比較一目了然。
 
 我們會在後續的文件中像這樣使用 switch 語句：
 
@@ -379,9 +379,9 @@ function tasksReducer(tasks, action) {
 
 <DeepDive>
 
-#### 為什麼用這種方式呼叫化簡器？ {/*why-are-reducers-called-this-way*/}
+#### 為什麼用這種方式呼叫 Reducer？ {/*why-are-reducers-called-this-way*/}
 
-雖然化簡器可以「減少（reduce）」元件中程式碼的數量，但它的命名是來自針對陣列執行的 [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) 操作。
+雖然 reducer 可以「減少（reduce）」元件中程式碼的數量，但它的命名是來自針對陣列執行的 [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) 操作。
 
 針對陣列的 `reduce()` 操作能將多個數值「累加（accumulate）」成一個數值：
 
@@ -392,9 +392,9 @@ const sum = arr.reduce(
 ); // 1 + 2 + 3 + 4 + 5
 ```
 
-傳入 `reduce` 的函式也稱為「化簡器」。它接收 _目前為止的結果_ 和 _當前項目_，並回傳 _新的結果_。React 化簡器以相同的概念為例：接收 _目前為止的狀態_ 和 _action_，並回傳 _新的狀態_。用這樣的方式可以累加 actions 到狀態中。
+傳入 `reduce` 的函式也稱為「reducer」。它接收 _目前為止的結果_ 和 _當前項目_，並回傳 _新的結果_。React Reducer 以相同的概念為例：接收 _目前為止的狀態_ 和 _action_，並回傳 _新的狀態_。用這樣的方式可以累加 actions 到狀態中。
 
-甚至可以傳入化簡器函式給 `reduce()` 方法，搭配 `initialState` 和 `actions` 陣列來計算最終狀態：
+甚至可以傳入 reducer 函式給 `reduce()` 方法，搭配 `initialState` 和 `actions` 陣列來計算最終狀態：
 
 <Sandpack>
 
@@ -457,7 +457,7 @@ export default function tasksReducer(tasks, action) {
 
 </DeepDive>
 
-### 步驟三：在元件中使用化簡器 {/*step-3-use-the-reducer-from-your-component*/}
+### 步驟三：在元件中使用 Reducer {/*step-3-use-the-reducer-from-your-component*/}
 
 最後一步，把 `tasksReducer` 接到你的元件上。從 React 引入 `useReducer` Hook：
 
@@ -481,15 +481,15 @@ const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 
 `useReducer` Hook 接收兩個引數：
 
-1. 化簡器函式
+1. Reducer 函式
 2. 初始狀態
 
 並回傳：
 
 1. 狀態值
-2. 派發函式（把使用者的 actions「派發」給化簡器）
+2. 派發函式（把使用者的 actions「派發」給 reducer）
 
-現在一切就緒了！化簡器被宣告在元件檔案的下方：
+現在一切就緒了！Reducer 被宣告在元件檔案的下方：
 
 <Sandpack>
 
@@ -674,7 +674,7 @@ li {
 
 </Sandpack>
 
-如果你想，甚至可以將化簡器搬到另一個檔案：
+如果你想，甚至可以將 reducer 搬到另一個檔案：
 
 <Sandpack>
 
@@ -862,30 +862,30 @@ li {
 
 </Sandpack>
 
-像上面這樣分開考慮，元件的邏輯就會更好讀。現在事件處理函式就只以派發 actions 來指定 _發生了什麼事_，化簡器函式則根據 actions 來決定 _狀態如何被更新_。
+像上面這樣分開考慮，元件的邏輯就會更好讀。現在事件處理函式就只以派發 actions 來指定 _發生了什麼事_，reducer 函式則根據 actions 來決定 _狀態如何被更新_。
 
 ## 比較 `useState` 和 `useReducer` {/*comparing-usestate-and-usereducer*/}
 
-化簡器並非完美無缺！以下是一些可以比較的地方：
+Reducer 並非完美無缺！以下是一些可以比較的地方：
 
-- **程式碼大小**：一般來說，先用 `useState` 可以寫比較少的程式碼。用 `useReducer` 的話，必須同時撰寫化簡器函式 _和_ 派發 actions。不過如果有很多用類似方法修改狀態的事件處理函式，`useReducer` 能幫忙減少程式碼的數量。
+- **程式碼大小**：一般來說，先用 `useState` 可以寫比較少的程式碼。用 `useReducer` 的話，必須同時撰寫 reducer 函式 _和_ 派發 actions。不過如果有很多用類似方法修改狀態的事件處理函式，`useReducer` 能幫忙減少程式碼的數量。
 - **可讀性**：當狀態更新很簡單時，`useState` 的寫法很好讀。但變複雜時，元件的程式碼會暴增，也變得難以瀏覽。這種情況下，`useReducer` 能夠清楚地區分狀態 _如何_ 更新及事件處理函式中 _發生了什麼事_。
-- **除錯**：當 `useState` 有 bug 時，很難去說狀態在 _哪裡_ 和 _為什麼_ 被錯誤設定。用 `useReducer` 的話，可以在化簡器加入 console log 來檢視每個狀態更新及 _為什麼_ 會發生（根據每個 `action`）。如果每個 `action` 都是正確的，你就能知道錯誤是在化簡器的邏輯本身。不過相較於 `useState`，就必須追蹤更多的程式碼。
-- **測試**：化簡器是純函式，不依賴元件。也就是說，你可以單獨測試它。雖然一般而言最好是在更真實的環境測試元件，在狀態更新邏輯較複雜時，針對特定的初始狀態和 action，斷言（assert）化簡器回傳的狀態會特別有幫助。
-- **個人偏好**：有些人喜歡化簡器，有些人不喜歡。這沒關係。只是個人偏好。可以隨時在 `useState` 和 `useReducer` 中間擺盪：它們在功能上是等價的！
+- **除錯**：當 `useState` 有 bug 時，很難去說狀態在 _哪裡_ 和 _為什麼_ 被錯誤設定。用 `useReducer` 的話，可以在 reducer 加入 console log 來檢視每個狀態更新及 _為什麼_ 會發生（根據每個 `action`）。如果每個 `action` 都是正確的，你就能知道錯誤是在 reducer 的邏輯本身。不過相較於 `useState`，就必須追蹤更多的程式碼。
+- **測試**：reducer 是純函式，不依賴元件。也就是說，你可以單獨測試它。雖然一般而言最好是在更真實的環境測試元件，在狀態更新邏輯較複雜時，針對特定的初始狀態和 action，斷言（assert）reducer 回傳的狀態會特別有幫助。
+- **個人偏好**：有些人喜歡 reducer，有些人不喜歡。這沒關係。只是個人偏好。可以隨時在 `useState` 和 `useReducer` 中間擺盪：它們在功能上是等價的！
 
-如果你常常因為某些元件錯誤的狀態更新而遇到 bug，而且想要採用更有結構的程式碼，我們建議你使用化簡器。不需要在所有的地方使用化簡器：盡情混用與搭配！甚至可以在元件裡同時使用 `useState` 和 `useReducer`。
+如果你常常因為某些元件錯誤的狀態更新而遇到 bug，而且想要採用更有結構的程式碼，我們建議你使用 reducer。不需要在所有的地方使用 reducer：盡情混用與搭配！甚至可以在元件裡同時使用 `useState` 和 `useReducer`。
 
-## 撰寫良好的化簡器 {/*writing-reducers-well*/}
+## 撰寫良好的 Reducer {/*writing-reducers-well*/}
 
-撰寫化簡器時，記得這兩個重點：
+撰寫 reducer 時，記得這兩個重點：
 
-- **化簡器必須是純函式。** 類似於[狀態更新函式（state updater functions）](/learn/queueing-a-series-of-state-updates)，化簡器會在渲染中執行！（Actions 會被放在佇列中直到下次渲染。）這意味著化簡器[必須是純函式](/learn/keeping-components-pure)——同樣的輸入永遠會是同樣的輸出。化簡器不應該用來傳送請求、排程逾時任務（timeouts）或執行任何副作用（影響元件以外事物的操作）。化簡器應該避免用改動（mutation）的方式更新[物件](/learn/updating-objects-in-state)和[陣列](/learn/updating-arrays-in-state)。
-- **即使一個 action 會導致多個資料改變，每個 action 都應該只描述一個使用者的互動。** 舉例來說，如果使用者按下由化簡器管理、有五個欄位的表單的「重設」按鈕，比起五個分別的 `set_field` actions，派發一個 `reset_form` action 更為合理。如果你記錄化簡器中所有的 action，這些紀錄應該能很清楚重建這些互動或回應發生的順序。這對除錯很有幫助！
+- **Reducer 必須是純函式。** 類似於[狀態更新函式（state updater functions）](/learn/queueing-a-series-of-state-updates)，reducer 會在渲染中執行！（Actions 會被放在佇列中直到下次渲染。）這意味著 reducer [必須是純函式](/learn/keeping-components-pure)——同樣的輸入永遠會是同樣的輸出。reducer 不應該用來傳送請求、排程逾時任務（timeouts）或執行任何副作用（影響元件以外事物的操作）。Reducer 應該避免用改動（mutation）的方式更新[物件](/learn/updating-objects-in-state)和[陣列](/learn/updating-arrays-in-state)。
+- **即使一個 action 會導致多個資料改變，每個 action 都應該只描述一個使用者的互動。** 舉例來說，如果使用者按下由 reducer 管理、有五個欄位的表單的「重設」按鈕，比起五個分別的 `set_field` actions，派發一個 `reset_form` action 更為合理。如果你記錄 reducer 中所有的 action，這些紀錄應該能很清楚重建這些互動或回應發生的順序。這對除錯很有幫助！
 
-## 用 Immer 撰寫簡潔的化簡器 {/*writing-concise-reducers-with-immer*/}
+## 用 Immer 撰寫簡潔的 Reducer {/*writing-concise-reducers-with-immer*/}
 
-就像在一般的狀態中[更新物件](/learn/updating-objects-in-state#write-concise-update-logic-with-immer)和[陣列](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer)一樣，可以用 Immer 函式庫讓化簡器更為簡潔。[`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) 能讓你用 `push` 或 `arr[i] =` 賦值來改動狀態：
+就像在一般的狀態中[更新物件](/learn/updating-objects-in-state#write-concise-update-logic-with-immer)和[陣列](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer)一樣，可以用 Immer 函式庫讓 reducer 更為簡潔。[`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) 能讓你用 `push` 或 `arr[i] =` 賦值來改動狀態：
 
 <Sandpack>
 
@@ -1082,18 +1082,18 @@ li {
 
 </Sandpack>
 
-化簡器必須是純函式，因此不應該改動（mutate）狀態。但 Immer 提供一個特別的 `draft` 物件可以安全地改動。在底層，Immer 會根據你對 `draft` 的改變，建立一份狀態的副本。這就是為什麼 `useImmerReducer` 所管理的化簡器可以改動第一個引數，而不需要回傳狀態。
+Reducer 必須是純函式，因此不應該改動（mutate）狀態。但 Immer 提供一個特別的 `draft` 物件可以安全地改動。在底層，Immer 會根據你對 `draft` 的改變，建立一份狀態的副本。這就是為什麼 `useImmerReducer` 所管理的 reducer 可以改動第一個引數，而不需要回傳狀態。
 
 <Recap>
 
 - 要將 `useState` 轉換成 `useReducer` 的話：
   1. 在事件處理函式中派發 actions。
-  2. 撰寫化簡器函式，根據給予的狀態和 action 回傳新的狀態。
+  2. 撰寫 reducer 函式，根據給予的狀態和 action 回傳新的狀態。
   3. 以 `useReducer` 替代 `useState`。
-- 化簡器需要多寫一些程式碼，但對除錯和測試有幫助。
-- 化簡器必須是純函式。
+- Reducer 需要多寫一些程式碼，但對除錯和測試有幫助。
+- Reducer 必須是純函式。
 - 每個 action 描述一個使用者的互動。
-- 如果想要用改動的方式撰寫化簡器，可以使用 Immer。
+- 如果想要用改動的方式撰寫 reducer，可以使用 Immer。
 
 </Recap>
 
@@ -1103,13 +1103,13 @@ li {
 
 現在 `ContactList.js` 和 `Chat.js` 中的事件處理函式有 `// TODO` 註解。這是在輸入框中打字會無效的原因，也是為什麼點擊按鈕不會改變所選的聯絡人。
 
-用對應 actions 的 `dispatch` 程式碼來替換這兩個 `// TODO`。查看 `messengerReducer.js` 中的化簡器來確認所需的結構和 actions 的類型。化簡器已經寫好了，你不需要改寫它。只需要派發 `ContactList.js` 和 `Chat.js` 中的 actions。
+用對應 actions 的 `dispatch` 程式碼來替換這兩個 `// TODO`。查看 `messengerReducer.js` 中的 reducer 來確認所需的結構和 actions 的類型。Reducer 已經寫好了，你不需要改寫它。只需要派發 `ContactList.js` 和 `Chat.js` 中的 actions。
 
 <Hint>
 
 在這兩個元件中，`dispatch` 函式已經作為參數傳入，所以可以直接使用。你應該以對應的 action 物件來呼叫 `dispatch`。
 
-要確認 action 物件的結構，可以查看化簡器並確認需要哪些 `action` 的欄位。舉例來說，化簡器中的 `changed_selection` case 看起來像這樣：
+要確認 action 物件的結構，可以查看 reducer 並確認需要哪些 `action` 的欄位。舉例來說，reducer 中的 `changed_selection` case 看起來像這樣：
 
 ```js
 case 'changed_selection': {
@@ -1256,7 +1256,7 @@ textarea {
 
 <Solution>
 
-從化簡器的程式碼可以推測 actions 應該要看起來像這樣：
+從 reducer 的程式碼可以推測 actions 應該要看起來像這樣：
 
 ```js
 // 當使用者按下「Alice」
@@ -1703,7 +1703,7 @@ textarea {
 
 這麼做是可行的，也會在你點擊「送出」時清空輸入框。
 
-不過，_以使用者的觀點來說_，送出訊息和編輯欄位是不同的 action。作為應對，應該建立一個 _新的_ action ，也就是 `sent_message` 來代替，並在化簡器中分別處理：
+不過，_以使用者的觀點來說_，送出訊息和編輯欄位是不同的 action。作為應對，應該建立一個 _新的_ action ，也就是 `sent_message` 來代替，並在 reducer 中分別處理：
 
 <Sandpack>
 
@@ -1856,7 +1856,7 @@ textarea {
 
 結果上行為是相同的。但要記得 action 的類型理想中應該要描述「使用者做了什麼」，而不是「你希望狀態如何改變」。這樣之後會比較容易新增更多功能。
 
-不管是哪個解法，很重要的一點是 **不要** 把 `alert` 放在化簡器中。化簡器應該要是純函式——只負責計算新的狀態。它不該「做」任何事，包含不該顯示訊息給使用者。顯示訊息的這件事應該在發生在事件處理函式中。（為了抓到這類型的錯誤，React 在嚴格模式中會多次呼叫你的化簡器。這也是為什麼如果你將警告放在化簡器中，它會觸發兩次。）
+不管是哪個解法，很重要的一點是 **不要** 把 `alert` 放在 reducer 中。Reducer 應該要是純函式——只負責計算新的狀態。它不該「做」任何事，包含不該顯示訊息給使用者。顯示訊息的這件事應該在發生在事件處理函式中。（為了抓到這類型的錯誤，React 在嚴格模式中會多次呼叫你的 reducer。這也是為什麼如果你將警告放在 reducer 中，它會觸發兩次。）
 
 </Solution>
 
@@ -1875,7 +1875,7 @@ case 'changed_selection': {
 
 這是因為你不會想在多個聯絡人之間共用一個訊息草稿（draft）。但如果你的應用能「記得」每個聯絡人的草稿，並在切換聯絡人的時候把它還原回來會更好。
 
-你的任務是去改變狀態的結構，讓你能為 _每個聯絡人_ 分別記住一份訊息草稿。你需要對化簡器、初始狀態和元件做一些改變。
+你的任務是去改變狀態的結構，讓你能為 _每個聯絡人_ 分別記住一份訊息草稿。你需要對 reducer、初始狀態和元件做一些改變。
 
 <Hint>
 
@@ -2053,7 +2053,7 @@ textarea {
 
 <Solution>
 
-你應該更新化簡器來儲存和更新每個聯絡人分別的訊息草稿：
+你應該更新 reducer 來儲存和更新每個聯絡人分別的訊息草稿：
 
 ```js
 // 當輸入框被編輯：
@@ -2237,7 +2237,7 @@ textarea {
 
 </Sandpack>
 
-值得注意的是，不需要改寫任何一個事件處理函式來實現上述的行為。但如果沒有化簡器，就必須改寫每一個更新狀態的事件處理函式。
+值得注意的是，不需要改寫任何一個事件處理函式來實現上述的行為。但如果沒有 reducer，就必須改寫每一個更新狀態的事件處理函式。
 
 </Solution>
 
@@ -2263,7 +2263,7 @@ export function useReducer(reducer, initialState) {
 }
 ```
 
-記得化簡器函式接收兩個引數——當前狀態和 action 物件，並回傳新的狀態。你的 `dispatch` 實作應該怎麼使用它呢？
+記得 reducer 函式接收兩個引數——當前狀態和 action 物件，並回傳新的狀態。你的 `dispatch` 實作應該怎麼使用它呢？
 
 </Hint>
 
