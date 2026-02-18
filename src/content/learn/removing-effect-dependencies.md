@@ -109,7 +109,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-[Effect 對響應式數值「做出反應（react）」](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)。因為 `roomId` 是響應式數值（可以隨著重新渲染（re-render）而改變），linter 會驗證你是否有指定為依賴。如果 `roomId` 接收到不同的值，React 就會重新同步 Effect。這確保聊天室會與目前選取的房間保持連線，並針對下拉式選單的變化「做出反應」：
+[Effect 會對響應式數值「做出反應（react）」](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)。因為 `roomId` 是響應式數值（可以隨著重新渲染（re-render）而改變），linter 會驗證你是否有指定為依賴。如果 `roomId` 接收到不同的值，React 就會重新同步 Effect。這確保聊天室會與目前選取的房間保持連線，並針對下拉式選單的變化「做出反應」：
 
 <Sandpack>
 
@@ -352,7 +352,7 @@ button { margin: 10px; }
 
 計數器應該要每秒增加兩個按鈕所設定的數量。但是，因為你「欺騙」React：Effect 不需要依賴任何東西，所以 React 永遠繼續用初次渲染時的 `onTick` 函式。[在渲染期間](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time)，`count` 為 `0` 而 `increment` 為 `1`。這就是為什麼渲染時的 `onTick` 在每一秒總是呼叫 `setCount(0 + 1)`，而你總是看到 `1`。當這類的 bug 散落在多個元件時，就更難修復了。
 
-比起忽略 linter，絕對有更好的解法！要修復程式碼，必須在依賴列表中加入 `onTick`。（為了確保週期定時器（interval）只設定一次，[將 `onTick` 寫成一個 Effect Event](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)。）
+比起忽略 linter，絕對有更好的解法！要修復程式碼，必須在依賴列表中加入 `onTick`。（為了確保 interval 只設定一次，[將 `onTick` 寫成一個 Effect Event](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)。）
 
 **我們建議把依賴的 lint 錯誤視爲編譯錯誤。如果你不抑制它，你就永遠不會遇到這類 bug。** 本頁其餘部分介紹針對這種情況和其他情形的替代方案。
 
