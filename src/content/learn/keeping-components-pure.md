@@ -27,6 +27,7 @@ title: 保持 Component 的 Pure
 
 來看這個數學公式： <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>
 
+<<<<<<< HEAD
 如果 <Math><MathI>x</MathI> = 2</Math> 那麼 <Math><MathI>y</MathI> = 4</Math> ，永遠如此。
 
 如果 <Math><MathI>x</MathI> = 3</Math> 那麼 <Math><MathI>y</MathI> = 6</Math>，永遠如此。
@@ -34,6 +35,15 @@ title: 保持 Component 的 Pure
 如果 <Math><MathI>x</MathI> = 3</Math> ， <MathI>y</MathI> 不會因為一天中的時間或是股票市場的狀態而有時候是 <Math>9</Math> 或 <Math>–1</Math> 或 <Math>2.5</Math>。
 
 如果 <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> 且 <Math><MathI>x</MathI> = 3</Math>， <MathI>y</MathI> 永遠都會是 <Math>6</Math>。
+=======
+If <Math><MathI>x</MathI> = 2</Math> then <Math><MathI>y</MathI> = 4</Math>. Always.
+
+If <Math><MathI>x</MathI> = 3</Math> then <Math><MathI>y</MathI> = 6</Math>. Always.
+
+If <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> won't sometimes be <Math>9</Math> or <Math>–1</Math> or <Math>2.5</Math> depending on the time of day or the state of the stock market.
+
+If <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> and <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> will _always_ be <Math>6</Math>.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 如果我們把它放到 JavaScript 函式中，它會長得像這樣：
 
@@ -75,11 +85,19 @@ export default function App() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 當你把 `drinkers={2}` 傳入 `Recipe` 時，會永遠回傳包含 `2 cups of water` 的 JSX。
+=======
+When you pass `drinkers={2}` to `Recipe`, it will return JSX containing `2 cups of water`. Always.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 當你傳入 `drinkers={4}`，會永遠回傳包含 `4 cups of water` 的 JSX。
 
+<<<<<<< HEAD
 就像是數學公式一樣。
+=======
+Just like a math formula.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 你可以把 component 想成是食譜一樣： 如果你遵循它們並且在烹飪過程中不加入新食材，那麼你每次都會得到相同的菜餚。這個「菜餚」就是 component 提供給 React [render](/learn/render-and-commit) 的 JSX。
 
@@ -215,6 +233,7 @@ export default function TeaGathering() {
 
 <Recap>
 
+<<<<<<< HEAD
 * 一個 component 是 pure 的，這意味著：
   * **只關心自己的事務。** 這個函式不會修改任何在他被呼叫之前就已經存在的 object 或變數。
   * **一樣的輸入，一樣的輸出** 只要我們輸入相同的參數，這個函式總是回傳一個相同的輸出。
@@ -222,6 +241,15 @@ export default function TeaGathering() {
 * 你不該改變任何你的 component 用來 render 的輸入。這包含 props，state，以及 context。要更新畫面的話，請 [「set」 state](/learn/state-a-components-memory) 而不是直接修改預先存在的 object。
 * 盡量在回傳的 JSX 中表達你的 component 邏輯。當你需要「更改內容」時，你會希望在 event handler 中處理。或是作為最後的手段，你可以使用 `useEffect`。
 * 撰寫純函式需要一些練習，不過它能解鎖 React 典範的力量。
+=======
+* A component must be pure, meaning:
+  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
+  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX.
+* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
+* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
+* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
+* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 </Recap>
 
@@ -451,7 +479,7 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -549,7 +577,7 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
