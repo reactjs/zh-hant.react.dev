@@ -36,7 +36,7 @@ Component 可能小至一個按鈕，也可能大至整個頁面。這裡有一�
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3As.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -101,7 +101,7 @@ export default function Gallery() {
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -134,7 +134,7 @@ export default function TodoList() {
     // 這個寫法沒辦法正常運作！
     <h1>Hedy Lamarr 的待辦事項</h1>
     <img
-      src="https://i.imgur.com/yXOvdOSs.jpg"
+      src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
       class="photo"
     >
@@ -163,7 +163,7 @@ export default function TodoList() {
     <>
       <h1>Hedy Lamarr 的待辦事項</h1>
       <img
-        src="https://i.imgur.com/yXOvdOSs.jpg"
+        src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
         alt="Hedy Lamarr"
         className="photo"
       />
@@ -212,7 +212,7 @@ export default function TodoList() {
       <h1>{person.name} 的待辦事項</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -289,7 +289,7 @@ function Card({ children }) {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -442,7 +442,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     's.jpg'
   );
@@ -533,9 +533,15 @@ export default function TeaSet() {
 
 ## 你的 UI 作為一棵樹 {/*your-ui-as-a-tree*/}
 
+<<<<<<< HEAD
 React 使用 tree 來建模 component 和 module 之間的關係。
 
 React render tree 是 component 之間父子關係的表示。
+=======
+React uses trees to model the relationships between components and modules.
+
+A React render tree is a representation of the parent and child relationship between components.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 <Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
 
@@ -545,7 +551,11 @@ React render tree 是 component 之間父子關係的表示。
 
 靠近 tree 頂部、靠近 root component 的 component 被視為 top-level component。沒有 child component 的 component 是 leaf component。這種 component 分類對於理解 data flow 和 rendering 效能很有用。
 
+<<<<<<< HEAD
 對 JavaScript module 之間的關係進行建模是了解應用程式的另一種有用方法。 我們稱之為 module dependency tree。
+=======
+Modelling the relationship between JavaScript modules is another useful way to understand your app. We refer to it as a module dependency tree.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 <Diagram name="generic_dependency_tree" height={250} width={500} alt="A tree graph with five nodes. Each node represents a JavaScript module. The top-most node is labelled 'RootModule.js'. It has three arrows extending to the nodes: 'ModuleA.js', 'ModuleB.js', and 'ModuleC.js'. Each arrow is labelled as 'imports'. 'ModuleC.js' node has a single 'imports' arrow that points to a node labelled 'ModuleD.js'.">
 
@@ -553,7 +563,11 @@ React render tree 是 component 之間父子關係的表示。
 
 </Diagram>
 
+<<<<<<< HEAD
 建置工具經常使用 dependency tree 來 bundle 所有相關的 JavaScript 程式碼，以供使用者端下載和 render。較大的套件大小會降低 React 應用程式的使用者體驗。 了解 module dependency tree 有助於 debug 此類問題。
+=======
+A dependency tree is often used by build tools to bundle all the relevant JavaScript code for the client to download and render. A large bundle size regresses user experience for React apps. Understanding the module dependency tree is helpful to debug such issues.
+>>>>>>> 47e64bf7ad81aab8bacfa791a37816ee869135eb
 
 <LearnMore path="/learn/understanding-your-ui-as-a-tree">
 
