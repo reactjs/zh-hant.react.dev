@@ -4,7 +4,7 @@ title: useId
 
 <Intro>
 
-`useId` is a React Hook for generating unique IDs that can be passed to accessibility attributes.
+`useId` 是一個 React Hook，用於產生可傳遞給無障礙屬性（accessibility attributes）的唯一 ID。
 
 ```js
 const id = useId()
@@ -16,11 +16,11 @@ const id = useId()
 
 ---
 
-## Reference {/*reference*/}
+## 參考 {/*reference*/}
 
 ### `useId()` {/*useid*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+在元件的最上層呼叫 `useId`，以產生唯一 ID：
 
 ```js
 import { useId } from 'react';
@@ -30,37 +30,37 @@ function PasswordField() {
   // ...
 ```
 
-[See more examples below.](#usage)
+[參考下方更多範例。](#usage)
 
-#### Parameters {/*parameters*/}
+#### 參數 {/*parameters*/}
 
-`useId` does not take any parameters.
+`useId` 不接受任何參數。
 
-#### Returns {/*returns*/}
+#### 回傳值 {/*returns*/}
 
-`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
+`useId` 回傳一個唯一的 ID 字串，與這個元件中此特定的 `useId` 呼叫相關聯。
 
-#### Caveats {/*caveats*/}
+#### 注意事項 {/*caveats*/}
 
-* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useId` 是一個 Hook，所以你只能在**元件的最上層**或你自己的 Hook 中呼叫它。你不能在迴圈或條件式中呼叫它。如果有這個需求，請抽離出一個新的元件，並將 state 移到其中。
 
-* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+* `useId` **不應該被用來產生列表中的 key**。[key 應該根據你的資料來產生。](/learn/rendering-lists#where-to-get-your-key)
 
-* `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
+* `useId` 目前無法在 [async 的 Server Component](/reference/rsc/server-components#async-components-with-server-components) 中使用。
 
 ---
 
-## Usage {/*usage*/}
+## 用法 {/*usage*/}
 
 <Pitfall>
 
-**Do not call `useId` to generate keys in a list.** [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+**不要呼叫 `useId` 來產生列表中的 key。** [key 應該根據你的資料來產生。](/learn/rendering-lists#where-to-get-your-key)
 
 </Pitfall>
 
-### Generating unique IDs for accessibility attributes {/*generating-unique-ids-for-accessibility-attributes*/}
+### 為無障礙屬性產生唯一 ID {/*generating-unique-ids-for-accessibility-attributes*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+在元件的最上層呼叫 `useId`，以產生唯一 ID：
 
 ```js [[1, 4, "passwordHintId"]]
 import { useId } from 'react';
@@ -70,7 +70,7 @@ function PasswordField() {
   // ...
 ```
 
-You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different attributes:
+接著你可以將<CodeStep step={1}>產生的 ID</CodeStep>傳遞給不同的屬性：
 
 ```js [[1, 2, "passwordHintId"], [1, 3, "passwordHintId"]]
 <>
@@ -79,11 +79,11 @@ You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different at
 </>
 ```
 
-**Let's walk through an example to see when this is useful.**
+**讓我們透過一個範例來了解這在什麼時候有用。**
 
-[HTML accessibility attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) like [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) let you specify that two tags are related to each other. For example, you can specify that an element (like an input) is described by another element (like a paragraph).
+[HTML 無障礙屬性](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)，例如 [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby)，讓你能指定兩個標籤彼此相關。舉例來說，你可以指定某個元素（像是 input）由另一個元素（像是段落）來描述。
 
-In regular HTML, you would write it like this:
+在一般的 HTML 中，你會這樣寫：
 
 ```html {5,8}
 <label>
@@ -98,7 +98,7 @@ In regular HTML, you would write it like this:
 </p>
 ```
 
-However, hardcoding IDs like this is not a good practice in React. A component may be rendered more than once on the page--but IDs have to be unique! Instead of hardcoding an ID, generate a unique ID with `useId`:
+然而，像這樣把 ID 寫死在 React 中並不是好的做法。一個元件在頁面上可能會被渲染不只一次——但 ID 必須是唯一的！與其把 ID 寫死，不如使用 `useId` 來產生唯一 ID：
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -122,7 +122,7 @@ function PasswordField() {
 }
 ```
 
-Now, even if `PasswordField` appears multiple times on the screen, the generated IDs won't clash.
+如此一來，即使 `PasswordField` 在畫面上出現多次，產生的 ID 也不會互相衝突。
 
 <Sandpack>
 
@@ -165,33 +165,33 @@ input { margin: 5px; }
 
 </Sandpack>
 
-[Watch this video](https://www.youtube.com/watch?v=0dNzNcuEuOo) to see the difference in the user experience with assistive technologies.
+[觀看這部影片](https://www.youtube.com/watch?v=0dNzNcuEuOo)，了解使用輔助技術時使用者體驗的差異。
 
 <Pitfall>
 
-With [server rendering](/reference/react-dom/server), **`useId` requires an identical component tree on the server and the client**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
+使用 [server 渲染](/reference/react-dom/server)時，**`useId` 要求 server 與 client 上的元件樹完全相同**。如果你在 server 與 client 上渲染的樹不完全相符，產生的 ID 也不會相符。
 
 </Pitfall>
 
 <DeepDive>
 
-#### Why is useId better than an incrementing counter? {/*why-is-useid-better-than-an-incrementing-counter*/}
+#### 為什麼 useId 比遞增的計數器更好？ {/*why-is-useid-better-than-an-incrementing-counter*/}
 
-You might be wondering why `useId` is better than incrementing a global variable like `nextId++`.
+你可能會好奇，為什麼 `useId` 比遞增一個全域變數（像是 `nextId++`）更好。
 
-The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
+`useId` 主要的好處在於 React 確保它能與 [server 渲染](/reference/react-dom/server)一起運作。在 server 渲染期間，你的元件會產生 HTML 輸出。之後在 client 端，[hydration](/reference/react-dom/client/hydrateRoot) 會將你的事件處理函式附加到產生的 HTML 上。為了讓 hydration 正常運作，client 的輸出必須與 server 的 HTML 相符。
 
-This is very difficult to guarantee with an incrementing counter because the order in which the Client Components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
+要用遞增的計數器來保證這一點非常困難，因為 Client Component 被 hydrate 的順序，可能與 server HTML 輸出的順序不一致。透過呼叫 `useId`，你可以確保 hydration 正常運作，並讓 server 與 client 之間的輸出相符。
 
-Inside React, `useId` is generated from the "parent path" of the calling component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
+在 React 內部，`useId` 是根據呼叫它的元件的「父層路徑（parent path）」產生的。這就是為什麼，只要 client 與 server 的樹相同，無論渲染順序為何，「父層路徑」都會吻合。
 
 </DeepDive>
 
 ---
 
-### Generating IDs for several related elements {/*generating-ids-for-several-related-elements*/}
+### 為多個相關的元素產生 ID {/*generating-ids-for-several-related-elements*/}
 
-If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them: 
+如果你需要為多個相關的元素賦予 ID，可以呼叫 `useId` 來為它們產生一個共用的前綴：
 
 <Sandpack>
 
@@ -218,13 +218,13 @@ input { margin: 5px; }
 
 </Sandpack>
 
-This lets you avoid calling `useId` for every single element that needs a unique ID.
+這讓你不必為每一個需要唯一 ID 的元素都各自呼叫一次 `useId`。
 
 ---
 
-### Specifying a shared prefix for all generated IDs {/*specifying-a-shared-prefix-for-all-generated-ids*/}
+### 為所有產生的 ID 指定共用前綴 {/*specifying-a-shared-prefix-for-all-generated-ids*/}
 
-If you render multiple independent React applications on a single page, pass `identifierPrefix` as an option to your [`createRoot`](/reference/react-dom/client/createRoot#parameters) or [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) calls. This ensures that the IDs generated by the two different apps never clash because every identifier generated with `useId` will start with the distinct prefix you've specified.
+如果你在單一頁面上渲染多個獨立的 React 應用程式，請將 `identifierPrefix` 作為選項傳遞給你的 [`createRoot`](/reference/react-dom/client/createRoot#parameters) 或 [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) 呼叫。這能確保兩個不同應用程式所產生的 ID 永遠不會衝突，因為每個使用 `useId` 產生的識別碼，都會以你指定的、彼此不同的前綴開頭。
 
 <Sandpack>
 
@@ -307,9 +307,9 @@ input { margin: 5px; }
 
 ---
 
-### Using the same ID prefix on the client and the server {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
+### 在 client 與 server 上使用相同的 ID 前綴 {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
 
-If you [render multiple independent React apps on the same page](#specifying-a-shared-prefix-for-all-generated-ids), and some of these apps are server-rendered, make sure that the `identifierPrefix` you pass to the [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) call on the client side is the same as the `identifierPrefix` you pass to the [server APIs](/reference/react-dom/server) such as [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
+如果你[在同一個頁面上渲染多個獨立的 React 應用程式](#specifying-a-shared-prefix-for-all-generated-ids)，而其中某些應用程式是 server 渲染的，請確保你在 client 端傳遞給 [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) 呼叫的 `identifierPrefix`，與你傳遞給 [server API](/reference/react-dom/server)（例如 [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream)）的 `identifierPrefix` 相同。
 
 ```js
 // Server
@@ -333,4 +333,4 @@ const root = hydrateRoot(
 );
 ```
 
-You do not need to pass `identifierPrefix` if you only have one React app on the page.
+如果你的頁面上只有一個 React 應用程式，則不需要傳遞 `identifierPrefix`。
