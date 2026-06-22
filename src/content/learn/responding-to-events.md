@@ -169,7 +169,11 @@ button { margin-right: 10px; }
 
 ### 將 event handler 作為 prop 傳遞 {/*passing-event-handlers-as-props*/}
 
+<<<<<<< HEAD
 通常你會想要 parent component 指定 child component 的 event handler。以按鈕為例：根據你在哪裡使用 `Button` component，你可能想要執行不同的函式，也許一個播放電影，另一個上傳圖片。
+=======
+Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image.
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 要做到這一點，像這樣將 component 從 parent 接收到的 prop 作為 event handler：
 
@@ -312,12 +316,21 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 注意 `App` component 不需要知道 `Toolbar` 將會如何處理 `onPlayMovie` 或 `onUploadImage`，這是 `Toolbar` 的實作細節。在這裡，`Toolbar` 將它們作為 `onClick` handler 傳遞給它的 `Button`，但是它也可以在之後透過鍵盤快捷鍵觸發它們。像 `onPlayMovie` 這樣依據特定應用互動命名的 prop 讓你在以後更改其使用方式時具有彈性。
   
 <Note>
 
 請確保你使用適當的 HTML tag 來處理你的 event handler。例如，要處理點擊時，請使用 [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) 而不是 `<div onClick={handleClick}>`。使用真正的瀏覽器 `<button>` 會啟用內建的瀏覽器行為，例如鍵盤導覽。如果你不喜歡預設的瀏覽器按鈕樣式，並且想要讓它看起來像連結或其他不同的 UI 元件，你可以透過 CSS 達成。[學習更多關於撰寫無障礙的標記。](https://developer.mozilla.org/zh-TW/docs/Learn/Accessibility/HTML)
   
+=======
+Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+
+<Note>
+
+Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 </Note>
 
 ## 事件傳遞 {/*event-propagation*/}
@@ -411,12 +424,21 @@ button { margin: 5px; }
 
 當你點擊按鈕時，
 
+<<<<<<< HEAD
 1. React 呼叫傳給 `<button>` 的 `onClick` handler。
 2. 這個在 `Button` 裡面定義的 handler 做了以下事情：
    * 呼叫 `e.stopPropagation()`，阻止事件繼續冒泡。
    * 呼叫 `onClick` 函式，這是從 `Toolbar` component 傳遞過來的 prop。
 3. 這個在 `Toolbar` component 裡面定義的函式會顯示按鈕自己的 alert。
 4. 因為事件被阻止傳遞，parent `<div>` 的 `onClick` handler **不會**執行。
+=======
+1. React calls the `onClick` handler passed to `<button>`.
+2. That handler, defined in `Button`, does the following:
+   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
+   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
+3. That function, defined in the `Toolbar` component, displays the button's own alert.
+4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 因為 `e.stopPropagation()`，點擊按鈕只會顯示單一個 alert（來自 `<button>`），而不是兩個（來自 `<button>` 和 parent toolbar `<div>`）。點擊按鈕和點擊包含它的 toolbar 本身不是同一件事，所以阻止傳遞對這個 UI 來說是有意義的。
 
@@ -433,11 +455,19 @@ button { margin: 5px; }
 </div>
 ```
 
+<<<<<<< HEAD
 每個事件會有三個傳遞的階段：
 
 1. 往下傳遞，呼叫所有 `onClickCapture` handler。
 2. 執行被點擊 element 的 `onClick` handler。
 3. 往上傳遞，呼叫所有 `onClick` handler。
+=======
+Each event propagates in three phases:
+
+1. It travels down, calling all `onClickCapture` handlers.
+2. It runs the clicked element's `onClick` handler.
+3. It travels upwards, calling all `onClick` handlers.
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
 
 捕捉事件對於像是路由或是分析用的程式碼很有用，但你可能不會在應用程式的程式碼裡面使用它們。
 

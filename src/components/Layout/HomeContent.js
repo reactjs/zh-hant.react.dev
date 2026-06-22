@@ -264,7 +264,11 @@ export function HomeContent() {
                 color="gray"
                 icon="framework"
                 href="/learn/creating-a-react-app">
+<<<<<<< HEAD
                 開始使用框架
+=======
+                Get started with a framework
+>>>>>>> 8bb31acb86bf68fa33d97dd0f1b834dfa71e2b1a
               </CTA>
             </div>
           </Center>
