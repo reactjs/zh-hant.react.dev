@@ -31,7 +31,11 @@ title: 編輯器設定
 
 ### Linting {/*linting*/}
 
+<<<<<<< HEAD
 Code linter 可以在你撰寫程式碼的時候發現問題，幫助你儘早解決這些問題。[ESLint](https://eslint.org/)是一個流行的、開放原始碼的 JavaScript 的 linter。
+=======
+Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript.
+>>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
 
 * [用 React 推薦的設定安裝 ESLint](https://www.npmjs.com/package/eslint-config-react-app)（請確認你[安裝了 Node！](https://nodejs.org/en/download/current/)）
 * [在 VSCode 中用官方擴充功能整合 ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
