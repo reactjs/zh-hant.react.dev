@@ -63,7 +63,7 @@ React 允許你將 markup、CSS 以及 JavaScript 結合為自定義「component
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3Am.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3Am.jpg"
       alt="Katherine Johnson"
     />
   )
@@ -99,7 +99,7 @@ component 會回傳一個帶有 `src` 與 `alt` 屬性的 `<img />` 標籤。`<i
 回傳的內容可以全寫在同一行，如下方 component：
 
 ```js
-return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
+return <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
 但是，如果你的 markup 與 `return` 關鍵字不在同一行，則必須使將它們包裹在一對括號中，如下所示：
@@ -107,7 +107,7 @@ return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```js
 return (
   <div>
-    <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+    <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
   </div>
 );
 ```
@@ -129,7 +129,7 @@ return (
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3As.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -165,9 +165,9 @@ img { margin: 0 10px 10px 0; height: 90px; }
 ```html
 <section>
   <h1>Amazing scientists</h1>
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+  <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
+  <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
+  <img src="https://react.dev/images/docs/scientists/MK3eW3As.jpg" alt="Katherine Johnson" />
 </section>
 ```
 
@@ -215,7 +215,11 @@ function Profile() {
 
 你的 React 應用程式從「root」component 開始。通常，在你啟動一個新專案時，它會自動被建立。例如，如果你使用 [CodeSandbox](https://codesandbox.io/) 或 [Next.js](https://nextjs.org/) 框架，root component 會定義在 pages/index.js 中。在這些例子中，你一直在 export root component。
 
+<<<<<<< HEAD
 [基於 React 的框架](/learn/creating-a-react-app)更進一步。它們不使用空的 HTML 檔案，然後讓 React 用 JavaScript「接管」頁面管理，而是*也*會從你的 React 元件自動生成 HTML。這讓你的應用程式能夠在 JavaScript 程式碼載入之前就顯示一些內容。
+=======
+[React-based frameworks](/learn/creating-a-react-app) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
 
 [基於 React 的框架]((/learn/start-a-new-react-project)) 更進一步。它們不只是使用空的 HTML 檔案並讓 React 通過 JavaScript 管理頁面，它們*還會*自動從你的 React component 中生成 HTML。這使得你的應用程式在 JavaScript 程式碼載入之前就能顯示一些內容。
 
@@ -250,7 +254,7 @@ function Profile() {
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/lICfvbD.jpg"
+      src="https://react.dev/images/docs/scientists/lICfvbD.jpg"
       alt="Aklilu Lemma"
     />
   );
@@ -275,7 +279,7 @@ img { height: 181px; }
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/lICfvbD.jpg"
+      src="https://react.dev/images/docs/scientists/lICfvbD.jpg"
       alt="Aklilu Lemma"
     />
   );
@@ -308,7 +312,7 @@ img { height: 181px; }
 ```js
 export default function Profile() {
   return
-    <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
+    <img src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
 }
 ```
 
@@ -326,7 +330,7 @@ img { height: 180px; }
 
 ```js
 export default function Profile() {
-  return <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
+  return <img src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
 }
 ```
 
@@ -344,7 +348,11 @@ img { height: 180px; }
 export default function Profile() {
   return (
     <img
+<<<<<<< HEAD
       src="https://i.imgur.com/jA8hHMpm.jpg"
+=======
+      src="https://react.dev/images/docs/scientists/jA8hHMpm.jpg"
+>>>>>>> c7d6b700038c63d1aaf2c649af1aefe01ebbacac
       alt="Katsuko Saruhashi"
     />
   );
@@ -369,7 +377,7 @@ img { height: 180px; }
 function profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -405,7 +413,7 @@ React component 的命名必須以大寫字母為首。
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
