@@ -37,9 +37,15 @@ Mockup 看起來像這樣：
 
 依據你的專業背景，你可以用不同的方式來思考如何將設計拆解成 component：
 
+<<<<<<< HEAD
 * **程式設計**--就像你寫程式時會判斷是否該建立新的函式或物件一樣，也可以用相同的技巧來拆 component。其中一個常見的技巧叫做[單一職責原則](https://en.wikipedia.org/wiki/Separation_of_concerns)，也就是說，理想的情況下，每個 component 應該只做一件事情。如果某個 component 隨著開發越來越複雜，它就應該被分解成更小的 child component。
 * **CSS**--思考會在那些地方使用類別選擇器 (不過 component 通常並不會拆解得像 CSS 那麼細)
 * **Design**--思考你會如何安排設計稿的圖層結構
+=======
+* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), that is, a component should ideally only be concerned with one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
+* **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
+* **Design**--consider how you would organize the design's layers.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 假如你的 JSON 架構設計非常棒，通常會發現它可以很自然地對應到 UI 的 component 架構。那是因為 UI 與資料模型通常會擁有相同的資訊架構 -- 也就是相同的結構。將 UI 拆成一個個 component，讓每一個 component 都能對應到資料模型中的一部分。
 
@@ -226,7 +232,18 @@ td {
 
 剩下的那些資料，很可能就是要放進 state 的了。
 
+<<<<<<< HEAD
 讓我們再一起逐項看過這些資料：
+=======
+Let's go through them one by one again:
+
+1. The original list of products is **passed in as props, so it's not state.**
+2. The search text seems to be state since it changes over time and can't be computed from anything.
+3. The value of the checkbox seems to be state since it changes over time and can't be computed from anything.
+4. The filtered list of products **isn't state because it can be computed** by taking the original list of products and filtering it according to the search text and value of the checkbox.
+
+This means only the search text and the value of the checkbox are state! Nicely done!
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 1. 原始的產品清單會**透過 props 傳遞，所以它不能放進 state**。
 2. 搜尋文字看起來是 state，因為它會隨時間變化而改變，且不能從任何東西計算出來。
@@ -263,6 +280,7 @@ Props 和 state 雖然不同，但它們會一起運作。parent component 通�
 
 現在，讓我們來為這些 state 套用我們的策略：
 
+<<<<<<< HEAD
 1. **找出使用 state 的 component：**
     * `ProductTable` 需要透過 state（搜尋文字與 checkbox 勾選狀態）來過濾產品清單。
     * `SearchBar` 需要顯示這些 state（搜尋文字與 checkbox 勾選狀態）的內容。
@@ -270,6 +288,15 @@ Props 和 state 雖然不同，但它們會一起運作。parent component 通�
 3. **決定 state 要放在哪裡：**我們會把搜尋文字與勾選狀態這兩個 state 值保存在 `FilterableProductTable`。
 
 所以這兩個 state 值會被放在 `FilterableProductTable` 裡。
+=======
+1. **Identify components that use state:**
+    * `ProductTable` needs to filter the product list based on that state (search text and checkbox value).
+    * `SearchBar` needs to display that state (search text and checkbox value).
+2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
+3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
+
+So the state values will live in `FilterableProductTable`.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 使用  [`useState()` Hook](/reference/react/useState) 將 state 新增進 component 裡。Hook 是一種特殊的函式，可以讓你在 React 中「鉤住」component 的生命週期與行為。在 `FilterableProductTable` 的頂端新增兩個 state 變數，並且為它們設定初始值：
 
@@ -460,7 +487,11 @@ function SearchBar({ filterText, inStockOnly }) {
 
 ## 第五步：加入反向資料流 {/*step-5-add-inverse-data-flow*/}
 
+<<<<<<< HEAD
 目前應用程式已經能透過 props 和 state 隨著階層結構往下流正確地渲染。但為了能根據使用者的輸入來改變 state，就需要支援資料往反方向流動：也就是在階層中最底部的表單 component，要能更新 `FilterableProductTable` 中的 state。
+=======
+Currently your app renders correctly with props and state flowing down the hierarchy. But to change the state according to user input, you will need to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
+>>>>>>> 7c36f7ac329fe3cf2e11222edce9a535158c2cab
 
 React 讓這種資料流變得更加明確，但它比起雙向資料綁定需要多寫一點程式碼。如果你試著在上方的範例中輸入文字或勾選 checkbox，你將發現 React 會忽略你的輸入。這是刻意設計的。當寫下 `<input value={filterText} />` 時，其實是把 `input` 的 `value` prop 設定為 `FilterableProductTable` 提供的 `filterText` state。因此只要 `filterText` 不被更新，輸入框內的文字也就永遠無法改變。
 
