@@ -227,7 +227,11 @@ function Form() {
 }
 ```
 
+<<<<<<< HEAD
 然而，你需要 Effect 來 *處理* 與外部系統的同步。
+=======
+However, you *do* need Effects to synchronize with external systems.
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
