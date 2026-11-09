@@ -143,7 +143,7 @@ return (
 ```js
 const user = {
   name: 'Hedy Lamarr',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+  imageUrl: 'https://react.dev/images/docs/scientists/yXOvdOSs.jpg',
   imageSize: 90,
 };
 
@@ -336,7 +336,11 @@ function MyButton() {
 }
 ```
 
+<<<<<<< HEAD
 React 將會再次呼叫你的 component 函式。這個時候，`count` 會變成 `1`，然後它將變成 `2`，以此類推。
+=======
+Calling `setCount` tells React to call your component function again. This is called a *re-render*. This time, `count` will be `1`. Then it will be `2`. And so on.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 如果你 render 相同的 component 多次，每個 component 都會有自己的 state。分別點擊各個按鈕試試：
 
